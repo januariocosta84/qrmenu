@@ -187,6 +187,8 @@ REST_FRAMEWORK = {
 
 # ---- Public platform (self-service restaurant sign-up) ----
 PLATFORM_NAME = os.environ.get("PLATFORM_NAME", "QR Menu")
+# Subject prefix for emails to platform admins (Django's default is "[Django] ").
+EMAIL_SUBJECT_PREFIX = os.environ.get("EMAIL_SUBJECT_PREFIX", f"[{PLATFORM_NAME}] ")
 SUPPORT_EMAIL = os.environ.get("SUPPORT_EMAIL", "")
 # "open": a restaurant goes live as soon as the owner verifies their email.
 # "approval": a platform admin must also approve it in /admin/ first.

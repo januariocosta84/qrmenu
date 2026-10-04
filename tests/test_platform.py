@@ -281,3 +281,12 @@ class OwnerBillingTests(Base):
         self.sub.save()
         self.client.force_login(self.owner)
         self.assertContains(self.client.get(reverse("dashboard:overview", args=["alpha"])), "free trial ends in 3 days")
+
+
+class AdminEmailSubjectTests(TestCase):
+    def test_admin_emails_use_platform_name_not_django(self):
+        from django.core.mail import mail_admins
+        from django.test import override_settings
+        with override_settings(ADMINS=[("Boss", "boss@example.com")]):
+            mail_admins("Restaurant waiting for approval", "body")
+        self.assertEqual(mail.outbox[-1].subject, "[QR Menu] Restaurant waiting for approval")
