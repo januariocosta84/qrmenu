@@ -16,3 +16,22 @@ application = ProtocolTypeRouter({
     "http": django_asgi_app,
     "websocket": AllowedHostsOriginValidator(AuthMiddlewareStack(URLRouter(websocket_urlpatterns))),
 })
+
+
+def assume_https(app):
+    """
+    For servers where the app listens on 127.0.0.1 behind a web server that
+    only forwards HTTPS traffic but can't add X-Forwarded-Proto (e.g. Apache
+    without mod_headers): treat every request as HTTPS.
+    """
+    async def wrapper(scope, receive, send):
+        if scope["type"] == "http" and scope.get("scheme", "http") == "http":
+            scope = {**scope, "scheme": "https"}
+        elif scope["type"] == "websocket" and scope.get("scheme", "ws") == "ws":
+            scope = {**scope, "scheme": "wss"}
+        return await app(scope, receive, send)
+    return wrapper
+
+
+if os.environ.get("ASSUME_HTTPS", "").lower() in {"1", "true", "yes"}:
+    application = assume_https(application)

@@ -90,8 +90,16 @@ if [ "$WEB" = apache2 ]; then
   else ok "Apache $AVER"; fi
   MODS="$(apache2ctl -M 2>/dev/null || true)"
   MISSING_MODS=()
-  for m in proxy proxy_http headers ssl; do echo "$MODS" | grep -q " ${m}_module" || MISSING_MODS+=("$m"); done
-  if [ ${#MISSING_MODS[@]} = 0 ]; then ok "Apache modules proxy, proxy_http, headers, ssl already enabled (no global change)"
+  for m in proxy proxy_http ssl; do echo "$MODS" | grep -q " ${m}_module" || MISSING_MODS+=("$m"); done
+  if [ ${#MISSING_MODS[@]} -gt 0 ]; then
+    # Show every existing config that would start behaving differently once these modules are on.
+    PATTERN="$(printf '%s|' "${MISSING_MODS[@]}" | sed 's/|$//')"
+    AFFECTED=$(grep -rlsiE "IfModule +!?(mod_)?($PATTERN)(_module|\.c)|^\s*(ProxyPass|ProxyPassMatch|ProxyRequests|SSLEngine)\b" \
+      /etc/apache2/sites-enabled /etc/apache2/conf-enabled /var/www --include='*.conf' --include='.htaccess' 2>/dev/null | head -20 || true)
+    if [ -n "$AFFECTED" ]; then note "These existing files mention ${MISSING_MODS[*]} and could behave differently:"; echo "$AFFECTED" | sed 's/^/      /'
+    else ok "No existing site or .htaccess refers to ${MISSING_MODS[*]}: enabling them won't change your other sites"; fi
+  fi
+  if [ ${#MISSING_MODS[@]} = 0 ]; then ok "Apache modules proxy, proxy_http, ssl already enabled (no global change)"
   elif [ "$ALLOW_APACHE_MODULES" = 1 ]; then note "Will enable Apache modules: ${MISSING_MODS[*]} (you allowed it; existing sites keep working)"
   else conflict "Apache modules not enabled: ${MISSING_MODS[*]}. Enabling them is a server-wide change. Re-run with ALLOW_APACHE_MODULES=1 to allow it"; fi
 fi
@@ -202,6 +210,7 @@ PLATFORM_NAME=QR Menu
 SIGNUP_MODE=approval
 ADMIN_URL=$ADMIN_PATH
 CASH_DRAWER_NETWORK_ENABLED=false
+ASSUME_HTTPS=$([ "$WEB" = apache2 ] && echo 1 || echo 0)
 # SMTP (needed for sign-up confirmation and password reset):
 # EMAIL_HOST=smtp.example.com
 # EMAIL_PORT=587
