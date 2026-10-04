@@ -214,11 +214,11 @@ ASSUME_HTTPS=$([ "$WEB" = apache2 ] && echo 1 || echo 0)
 # SMTP (needed for sign-up confirmation and password reset):
 # EMAIL_HOST=smtp.example.com
 # EMAIL_PORT=587
-# EMAIL_HOST_USER=no-reply@timorstore.com
+# EMAIL_HOST_USER=no-reply@qrmenu.timorstore.com
 # EMAIL_HOST_PASSWORD=change-me
 # EMAIL_USE_TLS=true
-# DEFAULT_FROM_EMAIL=QR Menu <no-reply@timorstore.com>
-# SUPPORT_EMAIL=support@timorstore.com
+# DEFAULT_FROM_EMAIL=QR Menu <no-reply@qrmenu.timorstore.com>
+# SUPPORT_EMAIL=support@qrmenu.timorstore.com
 # PLATFORM_ADMINS=Your Name <you@example.com>
 ENV
   chown "$NAME":www-data "$APP/.env"; chmod 640 "$APP/.env"
