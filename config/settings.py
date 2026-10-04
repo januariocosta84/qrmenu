@@ -224,7 +224,9 @@ if os.environ.get("EMAIL_HOST"):
     EMAIL_PORT = int(os.environ.get("EMAIL_PORT", "587"))
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
-    EMAIL_USE_TLS = env_bool("EMAIL_USE_TLS", True)
+    # Port 587 → EMAIL_USE_TLS=true (STARTTLS); port 465 → EMAIL_USE_SSL=true. Only one may be on.
+    EMAIL_USE_SSL = env_bool("EMAIL_USE_SSL", False)
+    EMAIL_USE_TLS = env_bool("EMAIL_USE_TLS", not EMAIL_USE_SSL) and not EMAIL_USE_SSL
     EMAIL_TIMEOUT = 15
 else:
     # No SMTP configured: emails are printed to the server console (development only).
