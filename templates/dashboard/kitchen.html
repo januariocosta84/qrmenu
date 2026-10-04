@@ -1,0 +1,62 @@
+{% extends "dashboard/base.html" %}
+{% load static ui_icons %}
+{% block title %}Kitchen queue{% endblock %}
+{% block mobile_title %}Kitchen queue{% endblock %}
+{% block body_class %}kds-page{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>Kitchen queue</h1>
+    <p class="page-sub" id="kds-status">Loading…</p>
+  </div>
+  <div class="page-actions">
+    <button class="btn" type="button" id="sound-toggle">{% icon "volume-off" %} Enable sound</button>
+    <button class="btn" type="button" id="fullscreen">{% icon "maximize" %} Full screen</button>
+  </div>
+</div>
+
+<div class="kds-tabs" role="tablist" aria-label="Columns">
+  <button type="button" data-tab="new" class="active">New <span class="count" data-count="new">0</span></button>
+  <button type="button" data-tab="preparing">Preparing <span class="count" data-count="preparing">0</span></button>
+  <button type="button" data-tab="ready">Ready <span class="count" data-count="ready">0</span></button>
+</div>
+
+<div class="kds" id="kds">
+  <section class="kds-col" data-col="new" id="kcol-new">
+    <h2>NEW ORDERS <span class="count" id="count-new">0</span></h2>
+    <div class="kds-list" id="col-new"></div>
+  </section>
+  <section class="kds-col" data-col="preparing" id="kcol-preparing">
+    <h2>PREPARING <span class="count" id="count-preparing">0</span></h2>
+    <div class="kds-list" id="col-preparing"></div>
+  </section>
+  <section class="kds-col" data-col="ready" id="kcol-ready">
+    <h2>READY <span class="count" id="count-ready">0</span></h2>
+    <div class="kds-list" id="col-ready"></div>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}
+{{ kds_config|json_script:"kds-config" }}
+<script src="{% static 'js/kds.js' %}" defer></script>
+<script>
+  // Phone: swipeable columns with tabs (counts mirror the column headers).
+  (function () {
+    const board = document.getElementById("kds");
+    const tabs = [...document.querySelectorAll(".kds-tabs button")];
+    tabs.forEach((t) => t.addEventListener("click", () => {
+      const col = document.getElementById("kcol-" + t.dataset.tab);
+      board.scrollTo({ left: col.offsetLeft - board.offsetLeft, behavior: "smooth" });
+    }));
+    board.addEventListener("scroll", () => {
+      const i = Math.round(board.scrollLeft / Math.max(1, board.clientWidth));
+      tabs.forEach((t, n) => t.classList.toggle("active", n === i));
+    }, { passive: true });
+    new MutationObserver(() => {
+      ["new", "preparing", "ready"].forEach((c) => {
+        document.querySelector(`[data-count="${c}"]`).textContent = document.getElementById("count-" + c).textContent;
+      });
+    }).observe(board, { subtree: true, childList: true, characterData: true });
+  })();
+</script>
+{% endblock %}

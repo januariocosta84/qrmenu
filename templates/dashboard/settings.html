@@ -1,0 +1,72 @@
+{% extends "dashboard/base.html" %}
+{% load ui_icons %}
+{% block title %}Restaurant settings{% endblock %}
+{% block content %}
+{% with r=request.restaurant %}
+<div class="page-head">
+  <div>
+    <h1>Restaurant settings</h1>
+    <p class="page-sub">Public menu: <a href="{{ public_url }}" target="_blank" rel="noopener">{{ public_url }}</a></p>
+  </div>
+</div>
+
+<form method="post" enctype="multipart/form-data" class="form" novalidate>
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="msg msg-error">{% icon "alert" %}<span>{{ form.non_field_errors|join:" " }}</span></div>{% endif %}
+  {% for sec in sections %}
+  <section class="card narrow">
+    <h2 class="fieldset-title">{% icon sec.icon %} {{ sec.title }}</h2>
+    <p class="fieldset-desc">{{ sec.desc }}</p>
+    {% if sec.title == "Branding" and r.logo or sec.title == "Branding" and r.cover_image %}
+    <div class="previews">
+      {% if r.logo %}<figure><img src="{{ r.logo.url }}" alt="" width="72" height="72"><figcaption>Logo</figcaption></figure>{% endif %}
+      {% if r.cover_image %}<figure><img src="{{ r.cover_image.url }}" alt="" height="72"><figcaption>Cover</figcaption></figure>{% endif %}
+    </div>
+    {% endif %}
+    <div class="form-grid">
+      {% for f in sec.fields %}{% include "dashboard/_field.html" with field=f.field wide=f.wide %}{% endfor %}
+    </div>
+    {% if sec.title == "Cash drawer" %}
+    <p class="help">Plug the drawer into the printer's RJ11 "DK" port. To find the printer's IP, hold FEED while switching it on to print a self-test page.</p>
+    {% endif %}
+  </section>
+  {% endfor %}
+  <div class="actions sticky-actions" style="max-width: 760px">
+    <button class="btn btn-primary btn-lg" type="submit">{% icon "check" %} Save settings</button>
+  </div>
+</form>
+
+{% if drawer_available %}
+<section class="card narrow" id="cash-drawer">
+  <div class="card-head">
+    <h2 class="fieldset-title">{% icon "drawer" %} Cash drawer test &amp; log</h2>
+    {% if r.cash_drawer_enabled and r.printer_host %}
+    <form method="post" action="{% url 'dashboard:drawer_test' r.slug %}">
+      {% csrf_token %}<button class="btn btn-sm" type="submit">Test drawer ({{ r.printer_host }}:{{ r.printer_port }})</button>
+    </form>
+    {% endif %}
+  </div>
+  {% if drawer_log %}
+  <div class="table-wrap">
+  <table class="table rtable small">
+    <thead><tr><th>Time</th><th>Reason</th><th>By</th><th>Order</th><th>Result</th></tr></thead>
+    <tbody>
+    {% for e in drawer_log %}
+      <tr>
+        <td data-label="Time" class="nowrap">{{ e.created_at|date:"d M H:i:s" }}</td>
+        <td data-label="Reason">{{ e.get_reason_display }}</td>
+        <td data-label="By">{{ e.user.username|default:"—" }}</td>
+        <td data-label="Order">{% if e.order %}<a href="{% url 'dashboard:order_detail' r.slug e.order_id %}">#{{ e.order.number }}</a>{% else %}—{% endif %}</td>
+        <td data-label="Result">{% if e.success %}<span class="pill pill-ready">Opened</span>{% else %}<span class="pill pill-cancelled" title="{{ e.error }}">Failed</span>{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% else %}
+  <p class="muted small">No drawer openings yet.</p>
+  {% endif %}
+</section>
+{% endif %}
+{% endwith %}
+{% endblock %}

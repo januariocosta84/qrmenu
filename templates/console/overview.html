@@ -1,0 +1,68 @@
+{% extends "console/base.html" %}
+{% load ui_icons menu_tags %}
+{% block title %}Overview{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>Platform overview</h1>
+    <p class="page-sub">{% now "l, j F Y" %}</p>
+  </div>
+  <div class="page-actions">
+    <form method="post" action="{% url 'console:invoices_generate' %}">{% csrf_token %}<button class="btn" type="submit">{% icon "refresh" %} Generate due invoices</button></form>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><span class="stat-icon">{% icon "store" %}</span><div><span>Restaurants</span><strong>{{ restaurants.total }}</strong></div></div>
+  <div class="stat"><span class="stat-icon ok">{% icon "check-circle" %}</span><div><span>Live · hidden</span><strong>{{ restaurants.live }} · {{ restaurants.hidden }}</strong></div></div>
+  <div class="stat"><span class="stat-icon info">{% icon "users" %}</span><div><span>Users</span><strong>{{ users }}</strong></div></div>
+  <div class="stat"><span class="stat-icon ok">{% icon "cash" %}</span><div><span>Monthly recurring revenue</span><strong>${{ mrr|floatformat:2 }}</strong></div></div>
+  <div class="stat"><span class="stat-icon ok">{% icon "receipt" %}</span><div><span>Collected (30 days)</span><strong>${{ paid_30d|floatformat:2 }}</strong></div></div>
+  <div class="stat{% if open_count %} stat-warn{% endif %}"><span class="stat-icon warn">{% icon "hourglass" %}</span><div><span>Open invoices</span><strong>{{ open_count }} · ${{ open_total|floatformat:2 }}</strong></div></div>
+  <div class="stat"><span class="stat-icon info">{% icon "flame" %}</span><div><span>Orders (30 days)</span><strong>{{ orders_30d }}</strong></div></div>
+</div>
+
+<div class="cols-even">
+  <section class="card">
+    <div class="card-head"><h2>Subscriptions</h2><a class="small" href="{% url 'console:restaurants' %}">All restaurants</a></div>
+    <table class="table">
+      <tbody>
+        <tr><td><span class="pill pill-ready">Active</span></td><td class="num"><a href="{% url 'console:restaurants' %}?billing=active">{{ states.active|default:0 }}</a></td></tr>
+        <tr><td><span class="pill pill-new">Trial</span></td><td class="num"><a href="{% url 'console:restaurants' %}?billing=trial">{{ states.trial|default:0 }}</a></td></tr>
+        <tr><td><span class="pill pill-preparing">Payment due (grace)</span></td><td class="num"><a href="{% url 'console:restaurants' %}?billing=grace">{{ states.grace|default:0 }}</a></td></tr>
+        <tr><td><span class="pill pill-cancelled">Expired</span></td><td class="num"><a href="{% url 'console:restaurants' %}?billing=expired">{{ states.expired|default:0 }}</a></td></tr>
+        <tr><td><span class="pill">Cancelled</span></td><td class="num"><a href="{% url 'console:restaurants' %}?billing=cancelled">{{ states.cancelled|default:0 }}</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>Needs attention</h2></div>
+    {% for s in requests %}
+      <div class="note">{% icon "info" %}<div><a href="{% url 'console:restaurant' s.restaurant_id %}"><strong>{{ s.restaurant.name }}</strong></a> asked to change {{ s.plan.name }} → <strong>{{ s.requested_plan.name }}</strong></div></div>
+    {% endfor %}
+    {% for inv in overdue %}
+      <div class="note">{% icon "alert" %}<div><a href="{% url 'console:invoice' inv.pk %}">{{ inv.number }}</a> · {{ inv.restaurant.name }} · ${{ inv.amount }} overdue since {{ inv.due_date|date:"d M" }}</div></div>
+    {% endfor %}
+    {% if not requests and not overdue %}<div class="empty">{% icon "check-circle" %}<p>Nothing needs your attention.</p></div>{% endif %}
+  </section>
+</div>
+
+<section class="card">
+  <div class="card-head"><h2>Newest restaurants</h2></div>
+  <div class="table-wrap">
+  <table class="table rtable">
+    <thead><tr><th>Restaurant</th><th>Registered</th><th>Status</th></tr></thead>
+    <tbody>
+    {% for r in recent %}
+      <tr>
+        <td data-label="" class="rt-title"><a href="{% url 'console:restaurant' r.pk %}"><strong>{{ r.name }}</strong></a> <span class="muted small">/r/{{ r.slug }}/</span></td>
+        <td data-label="Registered">{{ r.created_at|date:"d M Y" }}</td>
+        <td data-label="Status">{% if r.is_active %}<span class="pill pill-ready">Live</span>{% else %}<span class="pill pill-preparing">Not live</span>{% endif %}</td>
+      </tr>
+    {% empty %}<tr><td colspan="3" class="muted">No restaurants yet.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+  </div>
+</section>
+{% endblock %}

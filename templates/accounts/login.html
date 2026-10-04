@@ -1,0 +1,20 @@
+{% extends "dashboard/base.html" %}
+{% load ui_icons %}
+{% block title %}Log in{% endblock %}
+{% block body_class %}auth{% endblock %}
+{% block content %}
+<div class="auth-card">
+  <div class="auth-brand">{% icon "qr" "i-lg" %} {{ platform_name }}</div>
+  <h1>Log in</h1>
+  <form method="post" class="form">
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="msg msg-error">{% icon "alert" %}<span>Wrong email/username or password.</span></div>{% endif %}
+    <div class="field"><label for="id_username">Email or username</label><input id="id_username" name="username" autocomplete="username" required autofocus value="{{ form.username.value|default:'' }}"></div>
+    <div class="field"><label for="id_password">Password</label><input id="id_password" type="password" name="password" autocomplete="current-password" required></div>
+    <input type="hidden" name="next" value="{{ next }}">
+    <button class="btn btn-primary btn-block" type="submit">Log in</button>
+  </form>
+  <p class="small"><a href="{% url 'accounts:password_reset' %}">Forgot your password?</a></p>
+  {% if signup_open %}<p class="small">New restaurant? <a href="{% url 'accounts:signup' %}"><strong>Register here</strong></a></p>{% endif %}
+</div>
+{% endblock %}

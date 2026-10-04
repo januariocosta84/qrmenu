@@ -1,0 +1,80 @@
+{% extends "storefront/base.html" %}
+{% load static menu_tags %}
+{% block title %}{{ ui.order }} #{{ order.number }} · {{ restaurant.name }}{% endblock %}
+{% block body_class %}status-page{% endblock %}
+
+{% block content %}
+<main class="status-wrap">
+  <header class="status-head">
+    <p class="muted">{{ restaurant.name }}</p>
+    <h1>{{ ui.order }} #{{ order.number }}</h1>
+    {% if order.table_number %}<p class="table-badge">{{ ui.table }} {{ order.table_number }}</p>{% endif %}
+  </header>
+
+  <section class="status-card" id="status-card" data-status="{{ order.customer_status }}">
+    <p class="status-msg" id="status-msg">
+      {% if order.status == "cancelled" %}{{ ui.cancelled_msg }}
+      {% elif order.status == "ready" %}{{ ui.ready_msg }}
+      {% else %}{{ ui.order_received_msg }}{% endif %}
+    </p>
+
+    {% if order.status != "cancelled" %}
+    <ol class="steps" id="steps">
+      {% for code, label, done in steps %}
+      <li class="step{% if done %} done{% endif %}{% if code == order.customer_status %} current{% endif %}" data-step="{{ code }}">
+        <span class="dot" aria-hidden="true"></span><span>{{ label }}</span>
+      </li>
+      {% endfor %}
+    </ol>
+    {% else %}
+    <p class="cancelled-pill">{{ ui.status_cancelled }}</p>
+    {% endif %}
+
+    {% if order.estimated_minutes and order.status in "new accepted preparing" %}
+    <p class="eta" id="eta">⏱ {{ ui.estimated_time }}: ~{{ order.estimated_minutes }} {{ ui.minutes }}</p>
+    {% endif %}
+    <p class="muted small live-note">{{ ui.live_updates }}</p>
+  </section>
+
+  <section class="receipt">
+    <ul>
+      {% for item in order.items.all %}
+      <li>
+        <div>
+          <strong>{{ item.name }}</strong> × {{ item.quantity }}
+          {% for o in item.options.all %}<div class="muted small">+ {{ o.name }}</div>{% endfor %}
+          {% if item.note %}<div class="muted small">“{{ item.note }}”</div>{% endif %}
+        </div>
+        <span>{{ item.line_total|money:restaurant.currency_symbol }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    <dl class="totals">
+      <div><dt>{{ ui.subtotal }}</dt><dd>{{ order.subtotal|money:restaurant.currency_symbol }}</dd></div>
+      {% if order.service_charge %}<div><dt>{{ ui.service_charge }}</dt><dd>{{ order.service_charge|money:restaurant.currency_symbol }}</dd></div>{% endif %}
+      <div class="grand"><dt>{{ ui.total }}</dt><dd>{{ order.total|money:restaurant.currency_symbol }}</dd></div>
+    </dl>
+    {% if order.payment_status == "paid" %}<p class="paid-badge">✓ {{ ui.paid }}</p>{% else %}<p class="muted small">{{ ui.unpaid }}</p>{% endif %}
+    {% if order.note %}<p class="muted small">“{{ order.note }}”</p>{% endif %}
+  </section>
+
+  {% if other_orders %}
+  <section class="receipt">
+    <h2 class="small-h">{{ ui.your_orders }}</h2>
+    <ul>{% for o in other_orders %}<li><a href="{% url 'storefront:order_status' o.public_token %}">#{{ o.number }}</a><span class="muted">{{ o.total|money:restaurant.currency_symbol }}</span></li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+
+  {% if order.payment_status == "paid" %}
+  <p class="notice notice-info">✓ {{ ui.paid_scan_again }}</p>
+  {% else %}
+  <a class="btn btn-primary btn-block btn-lg" href="{{ back_url }}">{{ ui.order_more }}</a>
+  {% endif %}
+</main>
+{% endblock %}
+
+{% block scripts %}
+{{ config|json_script:"status-config" }}
+{{ ui|json_script:"ui-strings" }}
+<script src="{% static 'js/order_status.js' %}" defer></script>
+{% endblock %}

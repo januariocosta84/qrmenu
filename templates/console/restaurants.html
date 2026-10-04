@@ -1,0 +1,48 @@
+{% extends "console/base.html" %}
+{% load ui_icons %}
+{% block title %}Restaurants{% endblock %}
+{% block content %}
+<div class="page-head"><div><h1>Restaurants</h1><p class="page-sub">Approve, suspend, change plans and manage billing.</p></div></div>
+
+<form method="get" class="filters">
+  <input name="q" value="{{ q }}" placeholder="Name, URL or owner email" aria-label="Search">
+  <select name="status" aria-label="Visibility" style="flex: 0 1 160px">
+    <option value="">Any visibility</option>
+    <option value="live"{% if status == "live" %} selected{% endif %}>Live</option>
+    <option value="hidden"{% if status == "hidden" %} selected{% endif %}>Not live / suspended</option>
+  </select>
+  <select name="billing" aria-label="Subscription" style="flex: 0 1 180px">
+    <option value="">Any subscription</option>
+    {% for code, label in billing_states %}<option value="{{ code }}"{% if billing_filter == code %} selected{% endif %}>{{ label }}</option>{% endfor %}
+  </select>
+  <button class="btn" type="submit">{% icon "filter" %} Filter</button>
+</form>
+
+<section class="card">
+  <div class="table-wrap">
+  <table class="table rtable">
+    <thead><tr><th>Restaurant</th><th>Owner</th><th>Plan</th><th>Subscription</th><th>Until</th><th class="num">Orders</th><th>Visibility</th></tr></thead>
+    <tbody>
+    {% for r in page.object_list %}
+      <tr>
+        <td data-label="" class="rt-title"><a href="{% url 'console:restaurant' r.pk %}"><strong>{{ r.name }}</strong></a><br><span class="muted small">/r/{{ r.slug }}/ · {{ r.created_at|date:"d M Y" }}</span></td>
+        <td data-label="Owner">{% if r.owner %}<a href="{% url 'console:user' r.owner.user_id %}">{{ r.owner.user.email|default:r.owner.user.username }}</a>{% if not r.owner.user.email_verified %} <span class="pill pill-preparing">unverified</span>{% endif %}{% else %}—{% endif %}</td>
+        <td data-label="Plan">{{ r.sub.plan.name|default:"—" }}{% if r.sub.requested_plan %} <span class="pill pill-new" title="Requested">→ {{ r.sub.requested_plan.name }}</span>{% endif %}</td>
+        <td data-label="Subscription">{% if r.sub %}<span class="pill sub-{{ r.sub.state }}">{{ r.sub.state_label }}</span>{% endif %}</td>
+        <td data-label="Until">{% if r.sub.access_until and not r.sub.comped and not r.sub.plan.is_free %}{{ r.sub.access_until|date:"d M Y" }}{% else %}—{% endif %}</td>
+        <td data-label="Orders" class="num">{{ r.order_count }}</td>
+        <td data-label="Visibility">{% if r.is_active %}<span class="pill pill-ready">Live</span>{% else %}<span class="pill pill-cancelled">Hidden</span>{% endif %}</td>
+      </tr>
+    {% empty %}<tr><td colspan="7"><div class="empty">{% icon "store" %}<p>No restaurants match.</p></div></td></tr>{% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% if page.has_other_pages %}
+  <nav class="pager">
+    {% if page.has_previous %}<a class="btn btn-sm" href="?q={{ q|urlencode }}&status={{ status }}&billing={{ billing_filter }}&page={{ page.previous_page_number }}">{% icon "chevron-left" %} Prev</a>{% endif %}
+    <span class="muted small">Page {{ page.number }} of {{ page.paginator.num_pages }}</span>
+    {% if page.has_next %}<a class="btn btn-sm" href="?q={{ q|urlencode }}&status={{ status }}&billing={{ billing_filter }}&page={{ page.next_page_number }}">Next {% icon "chevron-right" %}</a>{% endif %}
+  </nav>
+  {% endif %}
+</section>
+{% endblock %}

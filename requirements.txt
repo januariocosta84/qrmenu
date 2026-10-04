@@ -1,0 +1,15 @@
+Django>=5.2,<5.3
+djangorestframework>=3.15,<4
+channels>=4.1,<5
+daphne>=4.1,<5
+qrcode[pil]>=7.4
+Pillow>=10.3
+dj-database-url>=2.1
+
+# Production
+psycopg[binary]>=3.1        # PostgreSQL driver
+channels-redis>=4.2         # multi-process WebSocket fan-out
+redis>=5.0
+uvicorn[standard]>=0.29     # ASGI server (HTTP + WebSockets)
+uvicorn-worker>=0.2         # Gunicorn worker class for uvicorn
+gunicorn>=22.0              # process manager for uvicorn workers (Linux)

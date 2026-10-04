@@ -1,0 +1,84 @@
+{% load static ui_icons %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ inv.number }} · {{ inv.restaurant.name }}</title>
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+  <style>
+    body { background: var(--bg); }
+    .inv-page { max-width: 820px; margin: 24px auto; padding: 0 16px 40px; }
+    .inv-sheet { background: #fff; color: #111; border-radius: 12px; border: 1px solid #e5e7eb; padding: 40px; }
+    .inv-top { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
+    .inv-brand { font-size: 1.4rem; font-weight: 900; color: #c2410c; }
+    .inv-title { font-size: 1.8rem; font-weight: 900; letter-spacing: .04em; margin: 0; text-align: right; }
+    .inv-meta { text-align: right; color: #4b5563; }
+    .inv-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+    .inv-cols h3 { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: #6b7280; margin: 0 0 6px; }
+    .inv-sheet .table th { background: #f9fafb; color: #6b7280; }
+    .inv-sheet .table td, .inv-sheet .table th { border-color: #e5e7eb; }
+    .inv-total td { font-size: 1.2rem; font-weight: 900; border-top: 2px solid #111 !important; }
+    .stamp { display: inline-block; border: 3px solid #15803d; color: #15803d; font-weight: 900; padding: 4px 14px; border-radius: 8px; transform: rotate(-6deg); letter-spacing: .1em; }
+    .stamp.open { border-color: #b45309; color: #b45309; } .stamp.void { border-color: #6b7280; color: #6b7280; }
+    .howto { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px 16px; white-space: pre-line; }
+    .inv-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+    .inv-actions form { margin: 0; display: flex; gap: 6px; flex-wrap: wrap; }
+    .inv-actions select, .inv-actions input { width: auto; min-height: 40px; }
+    @media (max-width: 640px) { .inv-sheet { padding: 20px; } .inv-cols { grid-template-columns: 1fr; } .inv-title, .inv-meta { text-align: left; } }
+    @media print { body { background: #fff; } .inv-actions, .no-print { display: none !important; } .inv-page { margin: 0; max-width: none; padding: 0; } .inv-sheet { border: 0; padding: 0; } }
+  </style>
+</head>
+<body>
+{% icon_sprite %}
+<div class="inv-page">
+  <div class="inv-actions">
+    {% if console %}
+      <a class="btn" href="{% url 'console:restaurant' inv.restaurant_id %}">{% icon "arrow-left" %} {{ inv.restaurant.name }}</a>
+    {% else %}
+      <a class="btn" href="{% url 'dashboard:billing' inv.restaurant.slug %}">{% icon "arrow-left" %} Billing</a>
+    {% endif %}
+    <button class="btn" type="button" onclick="window.print()">{% icon "printer" %} Print / save PDF</button>
+    {% if console and inv.status == "open" %}
+      <form method="post">{% csrf_token %}<input type="hidden" name="action" value="mark_paid">
+        <select name="method" aria-label="Payment method">{% for v, l in paid_form.fields.method.choices %}<option value="{{ v }}">{{ l }}</option>{% endfor %}</select>
+        <input name="reference" placeholder="Reference" maxlength="120" aria-label="Reference">
+        <button class="btn btn-success" type="submit">{% icon "check" %} Mark paid</button>
+      </form>
+      <form method="post" onsubmit="return confirm('Void {{ inv.number }}?')">{% csrf_token %}<input type="hidden" name="action" value="void"><button class="btn btn-ghost" type="submit">Void</button></form>
+    {% endif %}
+  </div>
+  {% if messages %}<div class="messages no-print">{% for m in messages %}<div class="msg msg-{{ m.level_tag }}">{% icon "info" %}<span>{{ m }}</span></div>{% endfor %}</div>{% endif %}
+
+  <div class="inv-sheet">
+    <div class="inv-top">
+      <div><div class="inv-brand">{{ platform_name }}</div>{% if support_email %}<div class="small">{{ support_email }}</div>{% endif %}</div>
+      <div>
+        <p class="inv-title">INVOICE</p>
+        <div class="inv-meta">{{ inv.number }}<br>Issued {{ inv.created_at|date:"d M Y" }}<br>Due {{ inv.due_date|date:"d M Y" }}</div>
+      </div>
+    </div>
+    <div class="inv-cols">
+      <div><h3>Billed to</h3><strong>{{ inv.restaurant.name }}</strong><br>{{ inv.restaurant.address }}<br>{{ inv.restaurant.email }}{% if inv.restaurant.phone %} · {{ inv.restaurant.phone }}{% endif %}</div>
+      <div style="text-align:right">
+        <span class="stamp {{ inv.status }}">{% if inv.status == "paid" %}PAID{% elif inv.status == "void" %}VOID{% elif inv.is_overdue %}OVERDUE{% else %}DUE{% endif %}</span>
+        {% if inv.status == "paid" %}<div class="small" style="margin-top:10px">Paid {{ inv.paid_at|date:"d M Y" }} · {{ inv.get_method_display }}{% if inv.reference %} · ref {{ inv.reference }}{% endif %}</div>{% endif %}
+      </div>
+    </div>
+    <table class="table">
+      <thead><tr><th>Description</th><th>Period</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td><strong>{{ inv.plan_name }} plan</strong> subscription{% if inv.notes %}<div class="small" style="color:#6b7280">{{ inv.notes }}</div>{% endif %}</td>
+            <td>{{ inv.period_start|date:"d M Y" }} – {{ inv.period_end|date:"d M Y" }}</td>
+            <td class="num">{{ inv.currency }} {{ inv.amount }}</td></tr>
+      </tbody>
+      <tfoot><tr class="inv-total"><td colspan="2">Total</td><td class="num">{{ inv.currency }} {{ inv.amount }}</td></tr></tfoot>
+    </table>
+    {% if inv.status == "open" and cfg.payment_instructions %}
+    <h3 style="margin-top:24px">How to pay</h3>
+    <div class="howto">{{ cfg.payment_instructions }}
+Please include <strong>{{ inv.number }}</strong> as the payment reference.</div>
+    {% endif %}
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+{% extends "dashboard/base.html" %}
+{% load static ui_icons %}
+{% block title %}New order{% endblock %}
+{% block body_class %}pos-page{% endblock %}
+{% block mobile_title %}New order{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>New order</h1>
+    <p class="page-sub">For guests without a smartphone. Choose the table and guest, tap dishes, then send.</p>
+  </div>
+</div>
+
+<div class="pos">
+  <section class="pos-menu">
+    <div class="pos-where card">
+      <label>Table
+        <select id="pos-table">
+          <option value="">Counter / takeaway</option>
+          {% for t in tables %}<option value="{{ t.id }}">Table {{ t.number }}{% if t.label %} · {{ t.label }}{% endif %}</option>{% endfor %}
+        </select>
+      </label>
+      <label>Guest
+        <select id="pos-guest"><option value="">New guest</option></select>
+      </label>
+      <label>Name (optional)
+        <input id="pos-name" maxlength="80" placeholder="e.g. Maria">
+      </label>
+    </div>
+
+    <div class="pos-cats" id="pos-cats"></div>
+    <input type="search" id="pos-search" class="pos-search" placeholder="Search dishes…" autocomplete="off" aria-label="Search dishes">
+    <div class="pos-items" id="pos-items"></div>
+  </section>
+
+  <aside class="pos-ticket card" id="pos-ticket">
+    <div class="card-head"><h2>Order</h2><span class="muted small" id="pos-where-label"></span></div>
+    <div class="empty" id="pos-empty" style="padding:20px 8px">{% icon "receipt" %}<p>Tap dishes to add them.</p></div>
+    <ul class="pos-lines" id="pos-lines"></ul>
+    <dl class="pos-totals">
+      <div><dt>Subtotal</dt><dd id="pos-subtotal">—</dd></div>
+      <div id="pos-service-row" hidden><dt>Service charge</dt><dd id="pos-service"></dd></div>
+      <div class="grand"><dt>Total</dt><dd id="pos-total">—</dd></div>
+    </dl>
+    <textarea id="pos-note" rows="2" maxlength="500" placeholder="Note for the kitchen (optional)"></textarea>
+    <p class="err" id="pos-error" hidden></p>
+    <button class="btn btn-primary btn-lg btn-block" id="pos-send" disabled>{% icon "flame" %} Send to kitchen</button>
+  </aside>
+</div>
+
+<!-- Add-ons / note for one dish -->
+<div class="cash-modal" id="pos-item-modal" hidden>
+  <div class="cash-box">
+    <h2 id="pim-title"></h2>
+    <p class="muted" id="pim-price"></p>
+    <div id="pim-options" class="pim-options"></div>
+    <label class="cash-label" for="pim-note">Note</label>
+    <input id="pim-note" maxlength="200" placeholder="e.g. no spicy" class="pim-note">
+    <div class="pim-qty">
+      <button type="button" class="btn btn-lg" id="pim-dec" aria-label="Less">−</button>
+      <strong id="pim-qty">1</strong>
+      <button type="button" class="btn btn-lg" id="pim-inc" aria-label="More">+</button>
+    </div>
+    <div class="cash-actions">
+      <button type="button" class="btn btn-lg" id="pim-cancel">Cancel</button>
+      <button type="button" class="btn btn-primary btn-lg" id="pim-add">Add</button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{{ pos_config|json_script:"pos-config" }}
+<script src="{% static 'js/pos.js' %}" defer></script>
+{% endblock %}

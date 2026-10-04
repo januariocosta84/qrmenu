@@ -1,0 +1,36 @@
+{% extends "console/base.html" %}
+{% load ui_icons %}
+{% block title %}Plans{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><h1>Subscription plans</h1><p class="page-sub">Prices and limits for restaurants. Changes apply immediately.</p></div>
+  <div class="page-actions"><a class="btn btn-primary" href="{% url 'console:plan_create' %}">{% icon "plus" %} New plan</a></div>
+</div>
+<div class="plan-grid">
+  {% for p in plans %}
+  <section class="card plan-card{% if not p.is_active %} inactive{% endif %}">
+    <div class="card-head">
+      <h2>{{ p.name }}</h2>
+      <span class="btn-row">
+        {% if p.pk == default_plan_id %}<span class="pill pill-new">Default for new sign-ups</span>{% endif %}
+        {% if not p.is_active %}<span class="pill pill-cancelled">Inactive</span>{% elif not p.is_public %}<span class="pill">Hidden</span>{% endif %}
+      </span>
+    </div>
+    <p class="plan-price">{% if p.is_free %}Free{% else %}${{ p.price_monthly }}<span class="muted small"> / month</span>{% endif %}</p>
+    <p class="muted small">{{ p.description }}</p>
+    <ul class="plain plan-limits">
+      <li>{% icon "table" %} {{ p.max_tables }} tables</li>
+      <li>{% icon "book" %} {{ p.max_menu_items }} dishes</li>
+      <li>{% icon "users" %} {{ p.max_staff }} staff accounts</li>
+    </ul>
+    <div class="card-head" style="margin:0">
+      <span class="muted small">{{ p.n }} restaurant{{ p.n|pluralize }}</span>
+      <a class="btn btn-sm" href="{% url 'console:plan_edit' p.pk %}">{% icon "edit" %} Edit</a>
+    </div>
+  </section>
+  {% empty %}
+  <section class="card"><div class="empty">{% icon "book" %}<p>No plans yet.</p></div></section>
+  {% endfor %}
+</div>
+<p class="help">Set the default plan, trial length and grace period in <a href="{% url 'console:settings' %}">Billing settings</a>.</p>
+{% endblock %}

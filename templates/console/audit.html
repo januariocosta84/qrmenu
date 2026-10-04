@@ -1,0 +1,32 @@
+{% extends "console/base.html" %}
+{% load ui_icons %}
+{% block title %}Audit log{% endblock %}
+{% block content %}
+<div class="page-head"><div><h1>Audit log</h1><p class="page-sub">Every action taken in the platform console.</p></div></div>
+<section class="card">
+  <div class="table-wrap">
+  <table class="table rtable">
+    <thead><tr><th>Time</th><th>Admin</th><th>Action</th><th>Target</th><th>Details</th><th>IP</th></tr></thead>
+    <tbody>
+    {% for a in page.object_list %}
+      <tr>
+        <td data-label="Time" class="nowrap">{{ a.created_at|date:"d M Y H:i:s" }}</td>
+        <td data-label="Admin">{{ a.user.username|default:"—" }}</td>
+        <td data-label="Action"><span class="tag">{{ a.action }}</span></td>
+        <td data-label="Target">{{ a.target|default:"—" }}</td>
+        <td data-label="Details">{{ a.details|default:"—" }}</td>
+        <td data-label="IP" class="muted small">{{ a.ip|default:"" }}</td>
+      </tr>
+    {% empty %}<tr><td colspan="6"><div class="empty">{% icon "note" %}<p>Nothing logged yet.</p></div></td></tr>{% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% if page.has_other_pages %}
+  <nav class="pager">
+    {% if page.has_previous %}<a class="btn btn-sm" href="?page={{ page.previous_page_number }}">{% icon "chevron-left" %} Newer</a>{% endif %}
+    <span class="muted small">Page {{ page.number }} of {{ page.paginator.num_pages }}</span>
+    {% if page.has_next %}<a class="btn btn-sm" href="?page={{ page.next_page_number }}">Older {% icon "chevron-right" %}</a>{% endif %}
+  </nav>
+  {% endif %}
+</section>
+{% endblock %}

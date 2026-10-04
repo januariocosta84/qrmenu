@@ -1,0 +1,137 @@
+{% extends "console/base.html" %}
+{% load ui_icons %}
+{% block title %}{{ r.name }}{% endblock %}
+{% block content %}
+<a class="back-link" href="{% url 'console:restaurants' %}">{% icon "arrow-left" %} Restaurants</a>
+<div class="page-head">
+  <div>
+    <h1>{{ r.name }}
+      {% if r.is_active %}<span class="pill pill-ready">Live</span>{% else %}<span class="pill pill-cancelled">Hidden</span>{% endif %}
+      {% if sub %}<span class="pill sub-{{ sub.state }}">{{ sub.state_label }}</span>{% endif %}</h1>
+    <p class="page-sub">/r/{{ r.slug }}/ · registered {{ r.created_at|date:"d M Y" }} · {{ orders_total }} orders ({{ orders_30d }} in 30 days)</p>
+  </div>
+  <div class="page-actions">
+    <a class="btn" href="{{ r.get_absolute_url }}" target="_blank" rel="noopener">{% icon "external" %} Menu</a>
+    <a class="btn" href="{% url 'dashboard:overview' r.slug %}">{% icon "dashboard" %} Open dashboard</a>
+    {% if r.is_active %}
+    <form method="post" data-confirm="Suspend {{ r.name }}? Customers will no longer see the menu.">{% csrf_token %}<input type="hidden" name="action" value="suspend"><button class="btn btn-danger" type="submit">Suspend</button></form>
+    {% else %}
+    <form method="post">{% csrf_token %}<input type="hidden" name="action" value="approve"><button class="btn btn-success" type="submit">{% icon "check" %} Approve / make live</button></form>
+    {% endif %}
+  </div>
+</div>
+
+{% if sub.requested_plan %}
+<div class="banner">
+  {% icon "info" %}
+  <div><strong>Plan change requested</strong> {{ sub.requested_at|timesince }} ago: {{ sub.plan.name }} → <strong>{{ sub.requested_plan.name }}</strong> (${{ sub.requested_plan.price_monthly }}/month).</div>
+  <form method="post">{% csrf_token %}<input type="hidden" name="action" value="approve_request"><button class="btn btn-sm btn-success" type="submit">Approve</button></form>
+  <form method="post">{% csrf_token %}<input type="hidden" name="action" value="reject_request"><button class="btn btn-sm" type="submit">Dismiss</button></form>
+</div>
+{% endif %}
+
+<div class="cols">
+  <div>
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "book" %} Subscription</h2>
+      {% if sub %}
+      <dl class="meta">
+        <div><dt>Plan</dt><dd>{{ sub.plan.name }} · ${{ sub.plan.price_monthly }}/mo</dd></div>
+        <div><dt>Status</dt><dd>{{ sub.state_label }}</dd></div>
+        <div><dt>Trial ends</dt><dd>{{ sub.trial_ends_on|date:"d M Y"|default:"—" }}</dd></div>
+        <div><dt>Paid until</dt><dd>{{ sub.paid_until|date:"d M Y"|default:"—" }}</dd></div>
+        <div><dt>Days left</dt><dd>{% if sub.days_left is not None %}{{ sub.days_left }}{% else %}—{% endif %}</dd></div>
+      </dl>
+      <div class="form-grid">
+        <form method="post" class="field">{% csrf_token %}<input type="hidden" name="action" value="set_plan">
+          <label for="plan">Change plan</label>
+          <div class="btn-row" style="flex-wrap:nowrap"><select id="plan" name="plan">{% for p in plans %}<option value="{{ p.pk }}"{% if p.pk == sub.plan_id %} selected{% endif %}>{{ p.name }} · ${{ p.price_monthly }}</option>{% endfor %}</select><button class="btn" type="submit">Save</button></div>
+        </form>
+        <form method="post" class="field">{% csrf_token %}<input type="hidden" name="action" value="set_paid_until">
+          <label for="paid_until">Paid until</label>
+          <div class="btn-row" style="flex-wrap:nowrap"><input type="date" id="paid_until" name="paid_until" value="{{ sub.paid_until|date:'Y-m-d' }}"><button class="btn" type="submit">Save</button></div>
+        </form>
+        <form method="post" class="field">{% csrf_token %}<input type="hidden" name="action" value="extend_trial">
+          <label for="days">Extend trial by (days)</label>
+          <div class="btn-row" style="flex-wrap:nowrap"><input type="number" id="days" name="days" value="14" min="1" max="365"><button class="btn" type="submit">Extend</button></div>
+        </form>
+      </div>
+      <div class="btn-row">
+        {% if sub.comped %}
+        <form method="post">{% csrf_token %}<input type="hidden" name="action" value="uncomp"><button class="btn btn-sm" type="submit">Remove complimentary</button></form>
+        {% else %}
+        <form method="post" data-confirm="Make this restaurant free forever?">{% csrf_token %}<input type="hidden" name="action" value="comp"><button class="btn btn-sm" type="submit">Make complimentary (free)</button></form>
+        {% endif %}
+        {% if sub.cancelled_at %}
+        <form method="post">{% csrf_token %}<input type="hidden" name="action" value="reactivate"><button class="btn btn-sm btn-success" type="submit">Reactivate subscription</button></form>
+        {% else %}
+        <form method="post" data-confirm="Cancel the subscription? Customers will no longer be able to order and open invoices will be voided.">{% csrf_token %}<input type="hidden" name="action" value="cancel"><button class="btn btn-sm btn-ghost" type="submit">Cancel subscription</button></form>
+        {% endif %}
+      </div>
+      {% else %}
+      <p class="muted">No plans exist yet. <a href="{% url 'console:plan_create' %}">Create a plan</a>.</p>
+      {% endif %}
+    </section>
+
+    <section class="card">
+      <div class="card-head"><h2 class="fieldset-title">{% icon "receipt" %} Invoices</h2></div>
+      {% if invoices %}
+      <div class="table-wrap">
+      <table class="table rtable">
+        <thead><tr><th>Invoice</th><th>Period</th><th class="num">Amount</th><th>Status</th></tr></thead>
+        <tbody>{% for inv in invoices %}
+          <tr>
+            <td data-label="" class="rt-title"><a href="{% url 'console:invoice' inv.pk %}"><strong>{{ inv.number }}</strong></a></td>
+            <td data-label="Period">{{ inv.period_start|date:"d M" }} – {{ inv.period_end|date:"d M Y" }}</td>
+            <td data-label="Amount" class="num">${{ inv.amount }}</td>
+            <td data-label="Status"><span class="pill inv-{{ inv.status }}{% if inv.is_overdue %} inv-overdue{% endif %}">{% if inv.is_overdue %}Overdue{% else %}{{ inv.get_status_display }}{% endif %}</span></td>
+          </tr>{% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}<p class="muted small">No invoices yet.</p>{% endif %}
+      {% if sub %}
+      <details class="pay-other">
+        <summary>{% icon "plus" %} Create an invoice</summary>
+        <form method="post" class="form compact" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="create_invoice">
+          <div class="form-grid">{% for f in invoice_form %}{% include "dashboard/_field.html" with field=f %}{% endfor %}</div>
+          <button class="btn btn-primary" type="submit">Create invoice</button>
+        </form>
+      </details>
+      {% endif %}
+    </section>
+  </div>
+
+  <aside>
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "chart" %} Usage</h2>
+      {% for label, pair in usage.items %}
+      <div class="usage"><div class="usage-row"><span>{{ label|capfirst }}</span><span>{{ pair.0 }}{% if pair.1 %} / {{ pair.1 }}{% endif %}</span></div>
+        {% if pair.1 %}<div class="progress"><span style="width: {% widthratio pair.0 pair.1 100 %}%"></span></div>{% endif %}</div>
+      {% endfor %}
+    </section>
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "users" %} Staff</h2>
+      <ul class="plain">{% for m in staff %}
+        <li class="usage-row"><a href="{% url 'console:user' m.user_id %}">{{ m.user.get_full_name|default:m.user.username }}</a><span class="tag">{{ m.get_role_display }}</span></li>
+      {% endfor %}</ul>
+      <p class="muted small">{{ r.address }}{% if r.phone %} · {{ r.phone }}{% endif %}{% if r.email %} · {{ r.email }}{% endif %}</p>
+    </section>
+    {% if sub %}
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "note" %} Internal notes</h2>
+      <form method="post">{% csrf_token %}<input type="hidden" name="action" value="notes">
+        <textarea name="notes" rows="4" placeholder="Only platform admins see this.">{{ sub.notes }}</textarea>
+        <button class="btn btn-sm" type="submit" style="margin-top:8px">Save notes</button>
+      </form>
+    </section>
+    {% endif %}
+    {% if audit %}
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "clock" %} Recent actions</h2>
+      <ol class="timeline small">{% for a in audit %}<li><strong>{{ a.action }}</strong> {{ a.details }}<br><span class="muted">{{ a.created_at|date:"d M H:i" }} · {{ a.user.username|default:"—" }}</span></li>{% endfor %}</ol>
+    </section>
+    {% endif %}
+  </aside>
+</div>
+{% endblock %}

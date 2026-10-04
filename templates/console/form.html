@@ -1,0 +1,16 @@
+{% extends "console/base.html" %}
+{% load ui_icons %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<a class="back-link" href="{{ back }}">{% icon "arrow-left" %} Back</a>
+<div class="page-head"><h1>{{ title }}</h1></div>
+<form method="post" class="form card narrow">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="msg msg-error">{% icon "alert" %}<span>{{ form.non_field_errors|join:" " }}</span></div>{% endif %}
+  <div class="form-grid">
+    {% for f in form.visible_fields %}{% if f.widget_type == "textarea" or f.widget_type == "checkbox" or f.name == "name" or f.name == "description" %}{% include "dashboard/_field.html" with field=f wide=True %}{% else %}{% include "dashboard/_field.html" with field=f %}{% endif %}{% endfor %}
+  </div>
+  {% if help %}<p class="help">{{ help }}</p>{% endif %}
+  <div class="actions"><button class="btn btn-primary" type="submit">{% icon "check" %} Save</button><a class="btn btn-ghost" href="{{ back }}">Cancel</a></div>
+</form>
+{% endblock %}

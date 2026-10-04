@@ -1,0 +1,60 @@
+{% extends "dashboard/base.html" %}
+{% load menu_tags ui_icons %}
+{% block title %}Overview{% endblock %}
+{% block content %}
+{% with r=request.restaurant sym=request.restaurant.currency_symbol can=request.can %}
+<div class="page-head">
+  <div>
+    <h1>Good to see you{% if user.first_name %}, {{ user.first_name }}{% endif %}</h1>
+    <p class="page-sub">{% now "l, j F Y" %} · Today at {{ r.name }}</p>
+  </div>
+</div>
+
+{% if not r.is_accepting_orders %}
+<div class="msg msg-warning">{% icon "alert" %}<span>Ordering is switched off: customers can view the menu but can't order. {% if can.manage_restaurant %}<a href="{% url 'dashboard:settings' r.slug %}">Turn it back on</a>.{% endif %}</span></div>
+{% endif %}
+
+<div class="quick">
+  {% if can.take_orders %}<a href="{% url 'dashboard:new_order' r.slug %}">{% icon "plus-circle" %}New order</a>{% endif %}
+  {% if can.kitchen %}<a href="{% url 'dashboard:kitchen' r.slug %}">{% icon "flame" %}Kitchen queue</a>{% endif %}
+  <a href="{% url 'dashboard:tables' r.slug %}">{% icon "table" %}Tables &amp; bills</a>
+  {% if can.toggle_availability %}<a href="{% url 'dashboard:menu' r.slug %}">{% icon "book" %}Sold out items</a>{% endif %}
+</div>
+
+{% if setup_steps %}
+<section class="card setup">
+  <div class="card-head">
+    <h2 class="fieldset-title">{% icon "rocket" %} Get your restaurant ready</h2>
+    <span class="muted small">{{ setup_steps.done }} of {{ setup_steps.total }} done</span>
+  </div>
+  <div class="progress" aria-hidden="true"><span style="width: {{ setup_steps.pct }}%"></span></div>
+  <ol class="checklist">
+    {% for s in setup_steps.steps %}
+    <li class="{% if s.done %}done{% endif %}">
+      <span class="tick">{% if s.done %}{% icon "check" %}{% endif %}</span>
+      {% if s.done %}<span>{{ s.label }}</span>{% else %}<a href="{{ s.url }}"{% if "print" in s.url %} target="_blank" rel="noopener"{% endif %}>{{ s.label }}</a>{% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+  <p class="help">Tip: open <a href="{{ r.get_absolute_url }}" target="_blank" rel="noopener">your menu</a> on your phone to see what customers will see.</p>
+</section>
+{% endif %}
+
+<div class="stats">
+  <div class="stat"><span class="stat-icon">{% icon "receipt" %}</span><div><span>Orders today</span><strong>{{ stats.count }}</strong></div></div>
+  <div class="stat"><span class="stat-icon ok">{% icon "cash" %}</span><div><span>Revenue today</span><strong>{{ stats.revenue|default:0|money:sym }}</strong></div></div>
+  <div class="stat"><span class="stat-icon info">{% icon "flame" %}</span><div><span>New · cooking</span><strong>{{ active.new|default:0 }} · {{ active.preparing|default:0 }}</strong></div></div>
+  <div class="stat"><span class="stat-icon ok">{% icon "check-circle" %}</span><div><span>Ready to serve</span><strong>{{ active.ready|default:0 }}</strong></div></div>
+  <div class="stat"><span class="stat-icon">{% icon "table" %}</span><div><span>Occupied tables</span><strong>{{ open_sessions }}</strong></div></div>
+  <div class="stat{% if sold_out %} stat-warn{% endif %}"><span class="stat-icon {% if sold_out %}warn{% else %}info{% endif %}">{% icon "book" %}</span><div><span>Sold out items</span><strong>{{ sold_out }}</strong></div></div>
+</div>
+
+<section class="card">
+  <div class="card-head">
+    <h2>Latest orders</h2>
+    <a class="btn btn-sm btn-ghost" href="{% url 'dashboard:orders' r.slug %}">All orders {% icon "chevron-right" %}</a>
+  </div>
+  {% include "dashboard/_orders_table.html" with orders=recent %}
+</section>
+{% endwith %}
+{% endblock %}

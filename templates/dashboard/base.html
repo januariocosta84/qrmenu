@@ -1,0 +1,138 @@
+{% load static ui_icons %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <title>{% block title %}Dashboard{% endblock %}{% if request.restaurant %} · {{ request.restaurant.name }}{% endif %}</title>
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body class="{% block body_class %}{% endblock %}{% if request.restaurant %} has-shell{% endif %}">
+{% icon_sprite %}
+{% if request.restaurant %}
+{% with r=request.restaurant can=request.can %}
+{% url 'dashboard:overview' r.slug as u_over %}
+<aside class="sidebar" id="sidebar" aria-label="Main navigation">
+  <div class="sb-brand">
+    {% if r.logo %}<img class="sb-logo" src="{{ r.logo.url }}" alt="" width="40" height="40">{% else %}<span class="sb-logo sb-initial">{{ r.name|slice:":1"|upper }}</span>{% endif %}
+    <div class="sb-brand-text">
+      <a href="{{ u_over }}" class="sb-name">{{ r.name }}</a>
+      <span class="sb-status {% if r.is_active %}is-live{% endif %}">{% icon "dot" %}{% if r.is_active %}Live{% else %}Not public yet{% endif %}</span>
+    </div>
+    <button class="icon-btn sb-close" type="button" data-nav-close aria-label="Close menu">{% icon "x" %}</button>
+  </div>
+
+  <nav class="sb-nav">
+    <p class="sb-section">Service</p>
+    <a href="{{ u_over }}" class="{% if request.path == u_over %}active{% endif %}">{% icon "dashboard" %}<span>Overview</span></a>
+    {% if can.kitchen %}<a href="{% url 'dashboard:kitchen' r.slug %}" class="{% if '/kitchen/' in request.path %}active{% endif %}">{% icon "flame" %}<span>Kitchen queue</span></a>{% endif %}
+    {% if can.take_orders %}<a href="{% url 'dashboard:new_order' r.slug %}" class="{% if '/orders/new/' in request.path %}active{% endif %}">{% icon "plus-circle" %}<span>New order</span></a>{% endif %}
+    <a href="{% url 'dashboard:orders' r.slug %}" class="{% if '/orders/' in request.path and '/orders/new/' not in request.path %}active{% endif %}">{% icon "receipt" %}<span>Orders</span></a>
+    <a href="{% url 'dashboard:tables' r.slug %}" class="{% if '/tables/' in request.path %}active{% endif %}">{% icon "table" %}<span>Tables &amp; QR</span></a>
+
+    {% if can.toggle_availability or can.reports or can.manage_restaurant or can.manage_staff %}
+    <p class="sb-section">Manage</p>
+    {% if can.toggle_availability %}<a href="{% url 'dashboard:menu' r.slug %}" class="{% if '/menu/' in request.path %}active{% endif %}">{% icon "book" %}<span>Menu</span></a>{% endif %}
+    {% if can.reports %}<a href="{% url 'dashboard:reports' r.slug %}" class="{% if '/reports/' in request.path %}active{% endif %}">{% icon "chart" %}<span>Reports</span></a>{% endif %}
+    {% if can.manage_restaurant %}<a href="{% url 'dashboard:settings' r.slug %}" class="{% if '/settings/' in request.path %}active{% endif %}">{% icon "store" %}<span>Restaurant</span></a>{% endif %}
+    {% if can.manage_billing %}<a href="{% url 'dashboard:billing' r.slug %}" class="{% if '/billing/' in request.path %}active{% endif %}">{% icon "cash" %}<span>Billing</span></a>{% endif %}
+    {% if can.manage_staff %}<a href="{% url 'dashboard:staff' r.slug %}" class="{% if '/staff/' in request.path %}active{% endif %}">{% icon "users" %}<span>Staff</span></a>{% endif %}
+    {% endif %}
+  </nav>
+
+  <div class="sb-foot">
+    <a href="{{ r.get_absolute_url }}" target="_blank" rel="noopener">{% icon "external" %}<span>View public menu</span></a>
+  </div>
+</aside>
+<div class="sb-overlay" data-nav-close></div>
+
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" id="nav-toggle" aria-label="Open menu" aria-controls="sidebar">{% icon "menu" %}</button>
+  <span class="topbar-title">{% block mobile_title %}{{ r.name }}{% endblock %}</span>
+  <span class="topbar-spacer"></span>
+  <span class="live-pill" id="conn" title="Live connection">{% icon "dot" %}<span class="live-text">Connecting</span></span>
+  {% if r.cash_drawer_enabled and r.printer_host and can.payments and drawer_available %}
+  <form method="post" action="{% url 'dashboard:drawer_open' r.slug %}" class="inline-form"
+        onsubmit="return confirm('Open the cash drawer (no sale)? This is logged.')">
+    {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <button type="submit" class="icon-btn" title="Open cash drawer (no sale)" aria-label="Open cash drawer">{% icon "drawer" %}</button>
+  </form>
+  {% endif %}
+  <a class="icon-btn bell" href="{% url 'dashboard:notifications' r.slug %}" aria-label="Notifications">{% icon "bell" %}<span class="badge" id="bell-count" hidden>0</span></a>
+  <details class="user-menu">
+    <summary class="avatar" aria-label="Account menu">{{ user.get_full_name|default:user.username|slice:":1"|upper }}</summary>
+    <div class="menu-pop">
+      <div class="menu-head">
+        <strong>{{ user.get_full_name|default:user.username }}</strong>
+        <span class="muted small">{{ user.email|default:user.username }}</span>
+        <span class="tag">{{ request.role|capfirst }}</span>
+      </div>
+      {% if user.is_superuser %}<a href="{% url 'console:overview' %}">{% icon "settings" %} Platform console</a>{% endif %}
+      <a href="{% url 'dashboard:home' %}">{% icon "switch" %} Switch restaurant</a>
+      <a href="{% url 'accounts:password_change' %}">{% icon "key" %} Change password</a>
+      <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}<button type="submit">{% icon "logout" %} Log out</button></form>
+    </div>
+  </details>
+</header>
+
+<nav class="bottom-nav" aria-label="Quick navigation">
+  <a href="{{ u_over }}" class="{% if request.path == u_over %}active{% endif %}">{% icon "dashboard" %}<span>Home</span></a>
+  {% if can.kitchen %}<a href="{% url 'dashboard:kitchen' r.slug %}" class="{% if '/kitchen/' in request.path %}active{% endif %}">{% icon "flame" %}<span>Kitchen</span></a>{% endif %}
+  {% if can.take_orders %}<a href="{% url 'dashboard:new_order' r.slug %}" class="bn-primary{% if '/orders/new/' in request.path %} active{% endif %}" aria-label="New order">{% icon "plus" %}</a>{% endif %}
+  <a href="{% url 'dashboard:orders' r.slug %}" class="{% if '/orders/' in request.path and '/orders/new/' not in request.path %}active{% endif %}">{% icon "receipt" %}<span>Orders</span></a>
+  <a href="{% url 'dashboard:tables' r.slug %}" class="{% if '/tables/' in request.path %}active{% endif %}">{% icon "table" %}<span>Tables</span></a>
+</nav>
+{% endwith %}
+{% endif %}
+
+<main class="content{% if not request.restaurant %} solo{% endif %}" id="content">
+  {% if messages %}<div class="messages">{% for m in messages %}{% if "receipt" in m.extra_tags %}<span hidden data-receipt-orders="{{ m }}"></span>{% else %}<div class="msg msg-{{ m.level_tag }} {{ m.extra_tags }}" role="status">{% if m.level_tag == "success" %}{% icon "check-circle" %}{% elif m.level_tag == "error" %}{% icon "alert" %}{% else %}{% icon "info" %}{% endif %}<span>{{ m }}</span></div>{% endif %}{% endfor %}</div>{% endif %}
+  {% if request.go_live and request.go_live != "live" %}
+  <div class="banner banner-{{ request.go_live }}">
+    {% if request.go_live == "verify_email" %}
+      {% icon "mail" %}
+      <div><strong>Confirm your email to go live.</strong> We sent a link to <strong>{{ user.email|default:"the owner's email" }}</strong>. Until then only your staff can see the menu, so set up your menu and tables in the meantime.</div>
+      {% if not user.email_verified and user.email %}
+      <form method="post" action="{% url 'accounts:resend_verification' %}">{% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}"><button class="btn btn-sm" type="submit">Resend email</button></form>
+      {% endif %}
+    {% elif request.go_live == "awaiting_approval" %}
+      {% icon "hourglass" %}
+      <div><strong>Waiting for approval.</strong> Our team reviews new restaurants before they go public. You can keep setting up your menu and tables.</div>
+    {% else %}
+      {% icon "alert" %}
+      <div><strong>This restaurant is not public.</strong> It has been suspended by the platform. Customers can't see the menu or order.{% if support_email %} Contact <a href="mailto:{{ support_email }}">{{ support_email }}</a>.{% endif %}</div>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% with b=request.billing %}{% if b and b.state != "active" and b.state != "trial" or b and b.state == "trial" and b.days_left is not None and b.days_left <= 7 %}
+  <div class="banner banner-billing-{{ b.state }}">
+    {% icon "cash" %}
+    <div>{% if b.state == "trial" %}<strong>Your free trial ends in {{ b.days_left }} day{{ b.days_left|pluralize }}.</strong> Pay the invoice to keep taking orders.
+      {% elif b.state == "grace" %}<strong>Payment due.</strong> Your subscription ended on {{ b.access_until|date:"d M" }}; ordering will be switched off soon.
+      {% elif b.state == "expired" %}<strong>Subscription expired.</strong> Customers can't place orders until the invoice is paid.
+      {% else %}<strong>Subscription cancelled.</strong> Customers can't place orders.{% endif %}</div>
+    {% if request.can.manage_billing %}<a class="btn btn-sm" href="{% url 'dashboard:billing' request.restaurant.slug %}">View billing</a>{% endif %}
+  </div>
+  {% endif %}{% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+{% if request.restaurant %}
+<script>
+  window.DASH = {
+    slug: "{{ request.restaurant.slug|escapejs }}",
+    currencySymbol: "{{ request.restaurant.currency_symbol|escapejs }}",
+    receiptMode: "{{ request.restaurant.receipt_prompt }}",
+    receiptNetwork: {{ receipt_network|yesno:"true,false" }},
+    receiptUrl: "{% url 'dashboard:receipt' request.restaurant.slug %}",
+    receiptPrintApi: "{% url 'dashboard:api_receipt_print' request.restaurant.slug %}",
+    wsPath: "/ws/kitchen/{{ request.restaurant.slug|escapejs }}/",
+    notificationsUrl: "{% url 'dashboard:api_notifications' request.restaurant.slug %}",
+    ordersBase: "{% url 'dashboard:orders' request.restaurant.slug %}"
+  };
+</script>
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endif %}
+{% block scripts %}{% endblock %}
+</body>
+</html>

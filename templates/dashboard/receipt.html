@@ -1,0 +1,83 @@
+{% load menu_tags %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title|title }} {{ numbers }} · {{ restaurant.name }}</title>
+  <style>
+    @page { size: 80mm auto; margin: 3mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #e5e7eb; color: #000; font: 12px/1.35 "Courier New", ui-monospace, monospace; }
+    .paper { width: 76mm; margin: 16px auto; padding: 4mm 3mm 6mm; background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+    .c { text-align: center; }
+    .name { font-size: 17px; font-weight: 800; margin: 0 0 2px; }
+    .title { font-size: 14px; font-weight: 800; letter-spacing: .2em; margin: 8px 0 2px; }
+    hr { border: 0; border-top: 1px dashed #000; margin: 6px 0; }
+    .row { display: flex; justify-content: space-between; gap: 8px; }
+    .row span:first-child { overflow-wrap: anywhere; }
+    .row span:last-child { white-space: nowrap; }
+    .sub { padding-left: 14px; font-size: 11px; }
+    .total { font-size: 15px; font-weight: 800; }
+    .unpaid { font-weight: 800; text-align: center; border: 1px solid #000; padding: 2px; margin-top: 6px; }
+    .foot { margin-top: 10px; }
+    .bar { display: flex; gap: 8px; justify-content: center; margin: 16px; font-family: system-ui, sans-serif; }
+    .bar button { padding: 10px 18px; font: inherit; font-weight: 700; border-radius: 8px; border: 1px solid #d1d5db; background: #fff; cursor: pointer; }
+    .bar .primary { background: #ea580c; border-color: #ea580c; color: #fff; }
+    @media print {
+      body { background: #fff; }
+      .paper { width: auto; margin: 0; padding: 0; box-shadow: none; }
+      .bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <button class="primary" type="button" onclick="window.print()">Print</button>
+    <button type="button" onclick="window.close()">Close</button>
+  </div>
+  <div class="paper">
+    <div class="c">
+      <p class="name">{{ restaurant.name }}</p>
+      {% if restaurant.address %}<div>{{ restaurant.address }}</div>{% endif %}
+      {% if restaurant.phone %}<div>Tel {{ restaurant.phone }}</div>{% endif %}
+      <p class="title">{{ title }}</p>
+    </div>
+    <hr>
+    <div class="row"><span>Order</span><span>{{ numbers }}</span></div>
+    {% if tables %}<div class="row"><span>Table</span><span>{{ tables }}</span></div>{% endif %}
+    {% if customer %}<div class="row"><span>Customer</span><span>{{ customer }}</span></div>{% endif %}
+    <div class="row"><span>Date</span><span>{{ printed_at|date:"d M Y H:i" }}</span></div>
+    <hr>
+    {% for o in orders %}{% for item in o.items.all %}
+    <div class="row"><span>{{ item.quantity }} × {{ item.name }}</span><span>{{ item.line_total|money:restaurant.currency_symbol }}</span></div>
+    {% for opt in item.options.all %}<div class="sub">+ {{ opt.name }}</div>{% endfor %}
+    {% if item.note %}<div class="sub">“{{ item.note }}”</div>{% endif %}
+    {% endfor %}{% endfor %}
+    <hr>
+    <div class="row"><span>Subtotal</span><span>{{ subtotal|money:restaurant.currency_symbol }}</span></div>
+    {% if service_charge %}<div class="row"><span>Service charge</span><span>{{ service_charge|money:restaurant.currency_symbol }}</span></div>{% endif %}
+    <div class="row total"><span>TOTAL</span><span>{{ total|money:restaurant.currency_symbol }}</span></div>
+    {% if paid %}
+      <div class="row"><span>Paid ({{ methods }})</span><span>{{ amount_paid|money:restaurant.currency_symbol }}</span></div>
+      {% if tendered %}
+      <div class="row"><span>Cash received</span><span>{{ tendered|money:restaurant.currency_symbol }}</span></div>
+      <div class="row"><span>Change</span><span>{{ change|money:restaurant.currency_symbol }}</span></div>
+      {% endif %}
+    {% else %}
+      <div class="unpaid">NOT PAID</div>
+    {% endif %}
+    {% if staff %}<div class="row"><span>Served by</span><span>{{ staff }}</span></div>{% endif %}
+    <hr>
+    {% if footer %}<div class="c foot">{{ footer }}</div>{% endif %}
+  </div>
+  {% if autoprint %}
+  <script>
+    // Opened in its own window (phones/tablets): print, then close. In an iframe the parent prints.
+    if (window.self === window.top) {
+      window.addEventListener("load", () => setTimeout(() => window.print(), 250));
+      window.addEventListener("afterprint", () => window.close());
+    }
+  </script>
+  {% endif %}
+</body>
+</html>

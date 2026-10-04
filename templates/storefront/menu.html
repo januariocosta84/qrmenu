@@ -1,0 +1,189 @@
+{% extends "storefront/base.html" %}
+{% load static menu_tags %}
+{% block title %}{{ restaurant.name }}{% if table %} · {{ ui.table }} {{ table.number }}{% endif %}{% endblock %}
+{% block head %}
+  {% if restaurant.cover_image %}<link rel="preload" as="image" href="{{ restaurant.cover_image.url }}">{% endif %}
+{% endblock %}
+{% block body_class %}menu-page{% if can_order %} can-order{% endif %}{% endblock %}
+
+{% block content %}
+<header class="hero{% if restaurant.cover_image %} has-cover{% endif %}"
+  {% if restaurant.cover_image %}style="background-image:url('{{ restaurant.cover_image.url }}')"{% endif %}>
+  <div class="hero-inner">
+    <div class="hero-top">
+      {% if table %}<span class="table-badge">{{ ui.table }} {{ table.number }}</span>{% else %}<span></span>{% endif %}
+      <form method="get" class="lang-form">
+        <label class="sr-only" for="lang">{{ ui.language }}</label>
+        <select id="lang" name="lang" onchange="this.form.submit()">
+          {% for code, name in ui_languages %}<option value="{{ code }}"{% if code == ui_lang %} selected{% endif %}>{{ name }}</option>{% endfor %}
+        </select>
+      </form>
+    </div>
+    <div class="brand">
+      {% if restaurant.logo %}<img class="logo" src="{{ restaurant.logo.url }}" alt="" width="64" height="64">{% endif %}
+      <div>
+        <h1>{{ restaurant.name }}</h1>
+        {% if description %}<p class="hero-desc">{{ description }}</p>{% endif %}
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="notices">
+  {% if preview %}<div class="notice notice-warn"><strong>Preview:</strong> only your staff can see this page. It goes public once your restaurant is live.</div>{% endif %}
+  {% if active_orders %}
+    <a class="notice notice-info" href="{% url 'storefront:order_status' active_orders.0.public_token %}">
+      <strong>{{ ui.your_orders }}:</strong>
+      {% for o in active_orders %}#{{ o.number }} · {{ o.status_label }}{% if not forloop.last %}, {% endif %}{% endfor %} →
+    </a>
+  {% endif %}
+  {% if not accepting %}
+    <div class="notice notice-warn">{{ ui.not_accepting }}</div>
+  {% elif not can_order and access_ended == "paid" %}
+    <div class="notice notice-info">✓ {{ ui.paid_scan_again }}</div>
+  {% elif not can_order %}
+    <div class="notice notice-warn">{{ ui.scan_to_order }}</div>
+  {% endif %}
+</div>
+
+<nav class="cat-nav" aria-label="{{ ui.menu }}">
+  <div class="cat-scroll">
+    {% for c in categories %}{% if c.items.all %}<a href="#cat-{{ c.id }}" data-cat="{{ c.id }}">{% tr c "name" %}</a>{% endif %}{% endfor %}
+  </div>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="{{ ui.search }}" autocomplete="off" aria-label="{{ ui.search }}">
+  </div>
+</nav>
+
+<main class="menu" id="menu">
+  {% for c in categories %}{% if c.items.all %}
+  <section class="cat" id="cat-{{ c.id }}" data-cat="{{ c.id }}">
+    <h2>{% tr c "name" %}</h2>
+    <div class="grid">
+      {% for item in c.items.all %}
+      <article class="card{% if not item.is_available %} sold-out{% endif %}{% if not item.image %} no-img{% endif %}" data-item="{{ item.id }}"
+               data-search="{% tr item 'name' %} {{ item.name }}">
+        {% if item.image %}
+        <button type="button" class="card-open" data-open="{{ item.id }}" aria-label="{% tr item 'name' %}">
+          <div class="card-img">
+            <img src="{{ item.image.url }}" alt="" loading="lazy" decoding="async" width="600" height="400">
+            <span class="badge-sold">{{ ui.sold_out }}</span>
+          </div>
+        </button>
+        {% endif %}
+        <div class="card-body">
+          {% if not item.image %}<span class="badge-sold">{{ ui.sold_out }}</span>{% endif %}
+          <h3 class="card-title" data-open="{{ item.id }}">{% tr item "name" %}</h3>
+          <p class="card-desc">{% tr item "description" %}</p>
+          {% if item.options.all %}<p class="card-addons">+ {{ ui.add_ons }}</p>{% endif %}
+          <div class="card-foot">
+            <span class="price">{{ item.price|money:restaurant.currency_symbol }}</span>
+            {% if can_order %}
+            <div class="card-actions">
+              <div class="stepper small" data-stepper>
+                <button type="button" data-dec aria-label="-">−</button>
+                <span data-qty>1</span>
+                <button type="button" data-inc aria-label="+">+</button>
+              </div>
+              <button type="button" class="btn btn-primary btn-add" data-add="{{ item.id }}"
+                      {% if not item.is_available %}disabled{% endif %}>{{ ui.add_to_cart }}</button>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}{% endfor %}
+  <p class="no-results" id="no-results" hidden>{{ ui.no_results }}</p>
+
+  <footer class="info">
+    {% if restaurant.address %}<p>📍 {{ restaurant.address }}</p>{% endif %}
+    {% if restaurant.phone %}<p>📞 <a href="tel:{{ restaurant.phone }}">{{ restaurant.phone }}</a></p>{% endif %}
+    {% if restaurant.opening_hours %}<p><strong>{{ ui.opening_hours }}</strong><br>{{ restaurant.opening_hours|linebreaksbr }}</p>{% endif %}
+  </footer>
+</main>
+
+{% if can_order %}
+<!-- Sticky cart bar -->
+<button type="button" class="cart-bar" id="cart-bar" hidden>
+  <span class="cart-count" id="cart-count">0</span>
+  <span>{{ ui.view_cart }}</span>
+  <span class="cart-total" id="cart-bar-total"></span>
+</button>
+
+<!-- Item sheet -->
+<div class="sheet" id="item-sheet" role="dialog" aria-modal="true" aria-labelledby="item-sheet-title" hidden>
+  <div class="sheet-backdrop" data-close></div>
+  <div class="sheet-panel">
+    <button type="button" class="sheet-close" data-close aria-label="{{ ui.close }}">×</button>
+    <div class="sheet-img" id="item-sheet-img"></div>
+    <div class="sheet-body">
+      <h2 id="item-sheet-title"></h2>
+      <p class="muted" id="item-sheet-desc"></p>
+      <p class="price big" id="item-sheet-price"></p>
+      <fieldset id="item-sheet-options" class="options" hidden>
+        <legend>{{ ui.add_ons }}</legend>
+        <div id="item-sheet-option-list"></div>
+      </fieldset>
+      <label class="field">
+        <span>{{ ui.special_instructions }}</span>
+        <input type="text" id="item-sheet-note" maxlength="200" placeholder="{{ ui.instructions_placeholder }}">
+      </label>
+    </div>
+    <div class="sheet-foot">
+      <div class="stepper" id="item-sheet-stepper">
+        <button type="button" data-dec aria-label="-">−</button>
+        <span data-qty>1</span>
+        <button type="button" data-inc aria-label="+">+</button>
+      </div>
+      <button type="button" class="btn btn-primary btn-block" id="item-sheet-add">{{ ui.add_to_cart }}</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cart / checkout sheet -->
+<div class="sheet" id="cart-sheet" role="dialog" aria-modal="true" aria-labelledby="cart-title" hidden>
+  <div class="sheet-backdrop" data-close></div>
+  <div class="sheet-panel tall">
+    <button type="button" class="sheet-close" data-close aria-label="{{ ui.close }}">×</button>
+    <div class="sheet-body">
+      <h2 id="cart-title">{{ ui.cart }} <small class="muted">· {{ ui.table }} {{ table.number }}</small></h2>
+      <p class="muted" id="cart-empty" hidden>{{ ui.empty_cart }}</p>
+      <ul class="cart-lines" id="cart-lines"></ul>
+      <dl class="totals" id="cart-totals">
+        <div><dt>{{ ui.subtotal }}</dt><dd id="t-subtotal"></dd></div>
+        <div id="t-service-row" hidden><dt>{{ ui.service_charge }} ({{ restaurant.service_charge_percent|floatformat:"-2" }}%)</dt><dd id="t-service"></dd></div>
+        <div class="grand"><dt>{{ ui.total }}</dt><dd id="t-total"></dd></div>
+      </dl>
+      <form id="checkout" class="checkout" novalidate>
+        <label class="field"><span>{{ ui.your_name }}</span><input name="customer_name" maxlength="80" autocomplete="name"></label>
+        <label class="field"><span>{{ ui.phone }}</span><input name="customer_phone" maxlength="30" inputmode="tel" autocomplete="tel"></label>
+        <label class="field"><span>{{ ui.order_note }}</span><textarea name="note" maxlength="500" rows="2"></textarea></label>
+        <fieldset class="field pay">
+          <legend>{{ ui.payment }}</legend>
+          <label class="radio"><input type="radio" name="payment_method" value="pay_at_counter" checked> {{ ui.pay_at_counter }}</label>
+          <label class="radio"><input type="radio" name="payment_method" value="cash"> {{ ui.cash }}</label>
+        </fieldset>
+        <p class="error" id="checkout-error" role="alert" hidden></p>
+      </form>
+    </div>
+    <div class="sheet-foot">
+      <button type="submit" form="checkout" class="btn btn-primary btn-block btn-lg" id="place-order">
+        {{ ui.place_order }} · <span id="place-total"></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+{{ items_json|json_script:"items-data" }}
+{{ config|json_script:"menu-config" }}
+{{ ui|json_script:"ui-strings" }}
+<script src="{% static 'js/menu.js' %}" defer></script>
+{% endblock %}

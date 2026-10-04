@@ -1,0 +1,68 @@
+{% load static ui_icons %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>{% block title %}Platform{% endblock %} · {{ platform_name }} console</title>
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body class="has-shell console">
+{% icon_sprite %}
+{% url 'console:overview' as u_over %}
+<aside class="sidebar" id="sidebar" aria-label="Platform navigation">
+  <div class="sb-brand">
+    <span class="sb-logo sb-initial">{% icon "qr" %}</span>
+    <div class="sb-brand-text">
+      <a href="{{ u_over }}" class="sb-name">{{ platform_name }}</a>
+      <span class="sb-status is-live">{% icon "dot" %}Platform console</span>
+    </div>
+    <button class="icon-btn sb-close" type="button" data-nav-close aria-label="Close menu">{% icon "x" %}</button>
+  </div>
+  <nav class="sb-nav">
+    <p class="sb-section">Platform</p>
+    <a href="{{ u_over }}" class="{% if request.path == u_over %}active{% endif %}">{% icon "dashboard" %}<span>Overview</span></a>
+    <a href="{% url 'console:restaurants' %}" class="{% if '/platform/restaurants/' in request.path %}active{% endif %}">{% icon "store" %}<span>Restaurants</span></a>
+    <a href="{% url 'console:users' %}" class="{% if '/platform/users/' in request.path %}active{% endif %}">{% icon "users" %}<span>Users</span></a>
+    <p class="sb-section">Billing</p>
+    <a href="{% url 'console:invoices' %}" class="{% if '/platform/invoices/' in request.path %}active{% endif %}">{% icon "receipt" %}<span>Invoices</span></a>
+    <a href="{% url 'console:plans' %}" class="{% if '/platform/plans/' in request.path %}active{% endif %}">{% icon "book" %}<span>Plans</span></a>
+    <a href="{% url 'console:settings' %}" class="{% if '/platform/settings/' in request.path %}active{% endif %}">{% icon "settings" %}<span>Billing settings</span></a>
+    <p class="sb-section">System</p>
+    <a href="{% url 'console:audit' %}" class="{% if '/platform/audit/' in request.path %}active{% endif %}">{% icon "note" %}<span>Audit log</span></a>
+    <a href="{% url 'admin:index' %}">{% icon "key" %}<span>Django admin</span></a>
+  </nav>
+  <div class="sb-foot"><a href="{% url 'dashboard:home' %}">{% icon "arrow-left" %}<span>Restaurant dashboards</span></a></div>
+</aside>
+<div class="sb-overlay" data-nav-close></div>
+
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" id="nav-toggle" aria-label="Open menu" aria-controls="sidebar">{% icon "menu" %}</button>
+  <span class="topbar-title">Platform console</span>
+  <span class="topbar-spacer"></span>
+  <details class="user-menu">
+    <summary class="avatar" aria-label="Account menu">{{ user.get_full_name|default:user.username|slice:":1"|upper }}</summary>
+    <div class="menu-pop">
+      <div class="menu-head"><strong>{{ user.get_full_name|default:user.username }}</strong><span class="muted small">{{ user.email }}</span><span class="tag">Platform admin</span></div>
+      <a href="{% url 'accounts:password_change' %}">{% icon "key" %} Change password</a>
+      <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}<button type="submit">{% icon "logout" %} Log out</button></form>
+    </div>
+  </details>
+</header>
+
+<main class="content" id="content">
+  {% if messages %}<div class="messages">{% for m in messages %}<div class="msg msg-{{ m.level_tag }}" role="status">{% if m.level_tag == "success" %}{% icon "check-circle" %}{% elif m.level_tag == "error" %}{% icon "alert" %}{% else %}{% icon "info" %}{% endif %}<span>{{ m }}</span></div>{% endfor %}</div>{% endif %}
+  {% block content %}{% endblock %}
+</main>
+<script>
+  (function () {
+    const t = document.getElementById("nav-toggle");
+    const set = (o) => document.body.classList.toggle("nav-open", o);
+    t.addEventListener("click", () => set(!document.body.classList.contains("nav-open")));
+    document.querySelectorAll("[data-nav-close]").forEach((e) => e.addEventListener("click", () => set(false)));
+    document.addEventListener("click", (e) => document.querySelectorAll("details.user-menu[open]").forEach((d) => { if (!d.contains(e.target)) d.open = false; }));
+    document.querySelectorAll("form[data-confirm]").forEach((f) => f.addEventListener("submit", (e) => { if (!confirm(f.dataset.confirm)) e.preventDefault(); }));
+  })();
+</script>
+</body>
+</html>

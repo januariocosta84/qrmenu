@@ -1,0 +1,57 @@
+{% extends "console/base.html" %}
+{% load ui_icons %}
+{% block title %}Invoices{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><h1>Invoices</h1><p class="page-sub">Open ${{ totals.open|floatformat:2 }} · overdue ${{ totals.overdue|floatformat:2 }}</p></div>
+  <div class="page-actions">
+    <form method="post" action="{% url 'console:invoices_generate' %}">{% csrf_token %}<button class="btn btn-primary" type="submit">{% icon "refresh" %} Generate due invoices</button></form>
+  </div>
+</div>
+
+<nav class="tabs">
+  <a href="?" class="{% if not status %}active{% endif %}">All</a>
+  <a href="?status=open" class="{% if status == 'open' %}active{% endif %}">Open</a>
+  <a href="?status=overdue" class="{% if status == 'overdue' %}active{% endif %}">Overdue</a>
+  <a href="?status=paid" class="{% if status == 'paid' %}active{% endif %}">Paid</a>
+  <a href="?status=void" class="{% if status == 'void' %}active{% endif %}">Void</a>
+</nav>
+<form method="get" class="filters">
+  {% if status %}<input type="hidden" name="status" value="{{ status }}">{% endif %}
+  <input name="q" value="{{ q }}" placeholder="Invoice number or restaurant" aria-label="Search invoices">
+  <button class="btn" type="submit">{% icon "search" %} Search</button>
+</form>
+
+<section class="card">
+  <div class="table-wrap">
+  <table class="table rtable">
+    <thead><tr><th>Invoice</th><th>Restaurant</th><th>Period</th><th>Due</th><th class="num">Amount</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    {% for inv in page.object_list %}
+      <tr>
+        <td data-label="" class="rt-title"><a href="{% url 'console:invoice' inv.pk %}"><strong>{{ inv.number }}</strong></a></td>
+        <td data-label="Restaurant"><a href="{% url 'console:restaurant' inv.restaurant_id %}">{{ inv.restaurant.name }}</a></td>
+        <td data-label="Period">{{ inv.period_start|date:"d M" }} – {{ inv.period_end|date:"d M Y" }}</td>
+        <td data-label="Due">{{ inv.due_date|date:"d M Y" }}</td>
+        <td data-label="Amount" class="num">${{ inv.amount }}</td>
+        <td data-label="Status"><span class="pill inv-{{ inv.status }}{% if inv.is_overdue %} inv-overdue{% endif %}">{% if inv.is_overdue %}Overdue{% else %}{{ inv.get_status_display }}{% endif %}</span></td>
+        <td data-label="">{% if inv.status == "open" %}
+          <form method="post" action="{% url 'console:invoice' inv.pk %}" class="btn-row">{% csrf_token %}
+            <input type="hidden" name="action" value="mark_paid"><input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <select name="method" aria-label="Payment method" style="min-height:32px;padding:4px 8px;width:auto">{% for v, l in paid_form.fields.method.choices %}<option value="{{ v }}">{{ l }}</option>{% endfor %}</select>
+            <button class="btn btn-sm btn-success" type="submit">{% icon "check" %} Paid</button>
+          </form>{% endif %}</td>
+      </tr>
+    {% empty %}<tr><td colspan="7"><div class="empty">{% icon "receipt" %}<p>No invoices.</p></div></td></tr>{% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% if page.has_other_pages %}
+  <nav class="pager">
+    {% if page.has_previous %}<a class="btn btn-sm" href="?status={{ status }}&q={{ q|urlencode }}&page={{ page.previous_page_number }}">{% icon "chevron-left" %} Prev</a>{% endif %}
+    <span class="muted small">Page {{ page.number }} of {{ page.paginator.num_pages }}</span>
+    {% if page.has_next %}<a class="btn btn-sm" href="?status={{ status }}&q={{ q|urlencode }}&page={{ page.next_page_number }}">Next {% icon "chevron-right" %}</a>{% endif %}
+  </nav>
+  {% endif %}
+</section>
+{% endblock %}

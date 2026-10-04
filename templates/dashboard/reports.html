@@ -1,0 +1,55 @@
+{% extends "dashboard/base.html" %}
+{% load menu_tags ui_icons %}
+{% block title %}Reports{% endblock %}
+{% block content %}
+{% with sym=request.restaurant.currency_symbol %}
+<div class="page-head">
+  <div>
+    <h1>Reports</h1>
+    <p class="page-sub">{{ date_from|date:"j M Y" }} – {{ date_to|date:"j M Y" }}</p>
+  </div>
+  <div class="page-actions">
+    <a class="btn" href="?from={{ date_from|date:'Y-m-d' }}&to={{ date_to|date:'Y-m-d' }}&format=csv">{% icon "download" %} Export CSV</a>
+  </div>
+</div>
+<form method="get" class="filters">
+  <label>From <input type="date" name="from" value="{{ date_from|date:'Y-m-d' }}"></label>
+  <label>To <input type="date" name="to" value="{{ date_to|date:'Y-m-d' }}"></label>
+  <button class="btn" type="submit">{% icon "filter" %} Apply</button>
+</form>
+
+<div class="stats">
+  <div class="stat"><span class="stat-icon ok">{% icon "cash" %}</span><div><span>Revenue</span><strong>{{ summary.revenue|default:0|money:sym }}</strong></div></div>
+  <div class="stat"><span class="stat-icon">{% icon "receipt" %}</span><div><span>Orders</span><strong>{{ summary.orders }}</strong></div></div>
+  <div class="stat"><span class="stat-icon info">{% icon "chart" %}</span><div><span>Average order</span><strong>{% if summary.avg %}{{ summary.avg|money:sym }}{% else %}—{% endif %}</strong></div></div>
+  <div class="stat"><span class="stat-icon ok">{% icon "check-circle" %}</span><div><span>Completed</span><strong>{{ summary.completed }}</strong></div></div>
+  <div class="stat"><span class="stat-icon err">{% icon "x" %}</span><div><span>Cancelled</span><strong>{{ summary.cancelled }}</strong></div></div>
+</div>
+
+<div class="cols-even">
+  <section class="card">
+    <h2>Revenue per day</h2>
+    {% if daily %}
+    <table class="table bars">
+      <tbody>{% for d in daily %}
+        <tr><td class="nowrap small">{{ d.day|date:"D j M" }}</td>
+          <td class="bar-cell"><span class="bar" style="width: {{ d.pct }}%"></span></td>
+          <td class="num nowrap"><strong>{{ d.revenue|money:sym }}</strong> <span class="muted small">{{ d.n }}</span></td></tr>
+      {% endfor %}</tbody>
+    </table>
+    {% else %}<div class="empty">{% icon "chart" %}<p>No completed orders in this period.</p></div>{% endif %}
+  </section>
+  <section class="card">
+    <h2>Best sellers</h2>
+    {% if top_items %}
+    <div class="table-wrap">
+    <table class="table rtable">
+      <thead><tr><th>Dish</th><th class="num">Qty</th><th class="num">Revenue</th></tr></thead>
+      <tbody>{% for i in top_items %}<tr><td class="rt-title" data-label="">{{ forloop.counter }}. {{ i.name }}</td><td data-label="Sold" class="num">{{ i.qty }}</td><td data-label="Revenue" class="num">{{ i.revenue|money:sym }}</td></tr>{% endfor %}</tbody>
+    </table>
+    </div>
+    {% else %}<div class="empty">{% icon "utensils" %}<p>No data yet.</p></div>{% endif %}
+  </section>
+</div>
+{% endwith %}
+{% endblock %}

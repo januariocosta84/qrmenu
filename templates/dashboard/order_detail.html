@@ -1,0 +1,110 @@
+{% extends "dashboard/base.html" %}
+{% load menu_tags ui_icons %}
+{% block title %}Order #{{ order.number }}{% endblock %}
+{% block content %}
+{% with r=request.restaurant sym=request.restaurant.currency_symbol %}
+<a class="back-link" href="{% url 'dashboard:orders' r.slug %}">{% icon "arrow-left" %} Orders</a>
+<div class="page-head">
+  <div>
+    <h1>Order #{{ order.number }} <span class="pill pill-{{ order.status }}">{{ order.get_status_display }}</span> <span class="pill pill-pay-{{ order.payment_status }}">{{ order.get_payment_status_display }}</span></h1>
+    <p class="page-sub">{% if order.table_number %}Table {{ order.table_number }}{% else %}Counter / takeaway{% endif %} · {{ order.created_at|date:"d M Y, H:i" }}</p>
+  </div>
+</div>
+
+<div class="order-layout">
+  <div class="ol-main">
+    <section class="card">
+      <dl class="meta">
+        <div><dt>Table</dt><dd>{% if order.table %}<a href="{% url 'dashboard:table_detail' r.slug order.table_id %}">{{ order.table_number }}</a>{% else %}{{ order.table_number|default:"Counter" }}{% endif %}</dd></div>
+        <div><dt>Customer</dt><dd>{{ order.customer_name|default:"—" }}</dd></div>
+        <div><dt>Ordered via</dt><dd>{% if order.source == "staff" %}{% icon "pen" %} Waiter{% if order.placed_by %} · {{ order.placed_by.get_full_name|default:order.placed_by.username }}{% endif %}{% else %}{% icon "phone" %} QR code{% endif %}</dd></div>
+        <div><dt>Phone</dt><dd>{% if order.customer_phone %}<a href="tel:{{ order.customer_phone }}">{{ order.customer_phone }}</a>{% else %}—{% endif %}</dd></div>
+        <div><dt>Est. prep</dt><dd>{% if order.estimated_minutes %}{{ order.estimated_minutes }} min{% else %}—{% endif %}</dd></div>
+        <div><dt>Language</dt><dd>{{ order.language|upper }}</dd></div>
+      </dl>
+      {% if order.note %}<div class="note">{% icon "note" %}<span>{{ order.note }}</span></div>{% endif %}
+
+      <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>Item</th><th>Qty</th><th class="num">Unit</th><th class="num">Total</th></tr></thead>
+        <tbody>
+        {% for i in order.items.all %}
+          <tr>
+            <td><strong>{{ i.name }}</strong>
+              {% for o in i.options.all %}<div class="muted small">+ {{ o.name }} ({{ o.price|money:sym }})</div>{% endfor %}
+              {% if i.note %}<div class="knote">“{{ i.note }}”</div>{% endif %}
+            </td>
+            <td>{{ i.quantity }}</td>
+            <td class="num">{{ i.unit_price|money:sym }}</td>
+            <td class="num">{{ i.line_total|money:sym }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr><td colspan="3">Subtotal</td><td class="num">{{ order.subtotal|money:sym }}</td></tr>
+          {% if order.service_charge %}<tr><td colspan="3">Service charge</td><td class="num">{{ order.service_charge|money:sym }}</td></tr>{% endif %}
+          <tr class="grand"><td colspan="3">Total</td><td class="num">{{ order.total|money:sym }}</td></tr>
+        </tfoot>
+      </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="ol-hist">
+    <section class="card">
+      <h2>History</h2>
+      <ol class="timeline">
+        {% for h in order.status_history.all %}
+        <li><strong>{{ h.get_to_status_display }}</strong> <span class="muted small">{{ h.created_at|date:"H:i:s" }}{% if h.changed_by %} · {{ h.changed_by.username }}{% endif %}</span>{% if h.note %}<div class="small">{{ h.note }}</div>{% endif %}</li>
+        {% endfor %}
+      </ol>
+    </section>
+  </div>
+
+  <aside class="ol-side">
+    {% if transitions and request.can.kitchen %}
+    <section class="card">
+      <h2>Update status</h2>
+      <form method="post" class="stack">
+        {% csrf_token %}<input type="hidden" name="action" value="status">
+        <input name="note" placeholder="Note (optional, e.g. cancel reason)" maxlength="200" aria-label="Note">
+        <div class="btn-row">
+        {% for code, label in transitions %}
+          {% if code != "cancelled" or request.can.cancel_orders %}
+          <button class="btn {% if code == 'cancelled' %}btn-ghost{% else %}btn-primary{% endif %}" name="status" value="{{ code }}"
+            {% if code == 'cancelled' %}onclick="return confirm('Cancel this order?')"{% endif %}>{% if code == 'cancelled' %}{% icon "x" %}{% endif %}{{ label }}</button>
+          {% endif %}
+        {% endfor %}
+        </div>
+      </form>
+    </section>
+    {% endif %}
+
+    <section class="card">
+      <div class="card-head"><h2>Payment</h2><span class="btn-row"><span class="pill pill-pay-{{ order.payment_status }}">{{ order.get_payment_status_display }}</span>
+        {% if order.status != "cancelled" %}<a class="btn btn-sm" href="{% url 'dashboard:receipt' request.restaurant.slug %}?orders={{ order.pk }}" data-print-receipt="{{ order.pk }}" target="_blank" rel="noopener">{% icon "printer" %} {% if is_paid %}Receipt{% else %}Bill{% endif %}</a>{% endif %}</span></div>
+      <p class="muted small">Customer chose: {{ order.get_payment_method_display }}</p>
+      {% for p in order.payments.all %}
+        <p class="small">{% icon "check-circle" %} {{ p.get_method_display }} <strong>{{ p.amount|money:sym }}</strong>{% if p.change_given %} <span class="muted">(received {{ p.cash_tendered|money:sym }}, change {{ p.change_given|money:sym }})</span>{% endif %} · {{ p.paid_at|date:"d M H:i" }}{% if p.received_by %} · {{ p.received_by.username }}{% endif %}{% if p.provider_reference %} · ref {{ p.provider_reference }}{% endif %}</p>
+      {% endfor %}
+      {% if not is_paid and request.can.payments and order.status != "cancelled" %}
+      {% if amount_paid %}<p class="small">Paid so far {{ amount_paid|money:sym }} · <strong>Still due {{ balance_due|money:sym }}</strong></p>{% endif %}
+      <form method="post" action="{% url 'dashboard:order_mark_paid' r.slug order.pk %}"
+            data-cash-due="{{ balance_due }}" data-cash-title="Order #{{ order.number }} · cash payment">
+        {% csrf_token %}
+        <button class="btn btn-success btn-lg btn-block" type="submit">{% icon "cash" %} Cash received · {{ balance_due|money:sym }}</button>
+      </form>
+      <details class="pay-other">
+        <summary class="small">Other method or partial payment</summary>
+        <form method="post" class="form compact" style="margin-top: 12px">
+          {% csrf_token %}<input type="hidden" name="action" value="payment">
+          {% include "dashboard/_form_fields.html" with form=payment_form %}
+          <button class="btn btn-block" type="submit">Record payment</button>
+        </form>
+      </details>
+      {% endif %}
+    </section>
+  </aside>
+</div>
+{% endwith %}
+{% endblock %}

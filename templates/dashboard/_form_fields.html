@@ -1,0 +1,12 @@
+{% load ui_icons %}{% with tf=translation_fields|default:"" %}
+{% if form.non_field_errors %}<div class="msg msg-error">{% icon "alert" %}<span>{{ form.non_field_errors|join:" " }}</span></div>{% endif %}
+{% for field in form.visible_fields %}{% if field.name not in tf %}{% include "dashboard/_field.html" %}{% endif %}{% endfor %}
+{% for h in form.hidden_fields %}{{ h }}{% endfor %}
+{% if tf %}
+<details class="translations"{% if form.errors %} open{% endif %}>
+  <summary>{% icon "globe" %} Translations · Tetum, Bahasa Indonesia</summary>
+  <p class="help">Leave blank to show the English text.</p>
+  {% for field in form.visible_fields %}{% if field.name in tf %}{% include "dashboard/_field.html" %}{% endif %}{% endfor %}
+</details>
+{% endif %}
+{% endwith %}

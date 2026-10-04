@@ -1,0 +1,22 @@
+# /etc/systemd/system/qrmenu.service
+# sudo systemctl daemon-reload && sudo systemctl enable --now qrmenu
+[Unit]
+Description=QR Menu (Django ASGI via Gunicorn + Uvicorn workers)
+After=network.target postgresql.service redis-server.service
+
+[Service]
+User=qrmenu
+Group=www-data
+WorkingDirectory=/srv/qrmenu/app
+EnvironmentFile=/srv/qrmenu/app/.env
+ExecStart=/srv/qrmenu/app/.venv/bin/gunicorn config.asgi:application \
+    --worker-class uvicorn_worker.UvicornWorker \
+    --workers 3 \
+    --bind 127.0.0.1:8000 \
+    --access-logfile - \
+    --timeout 60
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

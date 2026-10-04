@@ -1,0 +1,68 @@
+{% extends "console/base.html" %}
+{% load ui_icons %}
+{% block title %}{{ u.username }}{% endblock %}
+{% block content %}
+<a class="back-link" href="{% url 'console:users' %}">{% icon "arrow-left" %} Users</a>
+<div class="page-head">
+  <div>
+    <h1>{{ u.get_full_name|default:u.username }}
+      {% if u.is_active %}<span class="pill pill-ready">Active</span>{% else %}<span class="pill pill-cancelled">Disabled</span>{% endif %}
+      {% if u.is_superuser %}<span class="tag">Platform admin</span>{% endif %}</h1>
+    <p class="page-sub">{{ u.username }}{% if u.email %} · {{ u.email }}{% endif %} · joined {{ u.date_joined|date:"d M Y" }} · last login {{ u.last_login|date:"d M Y H:i"|default:"never" }}</p>
+  </div>
+</div>
+
+<div class="cols">
+  <div>
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "store" %} Restaurants</h2>
+      {% if memberships %}
+      <div class="table-wrap">
+      <table class="table rtable">
+        <thead><tr><th>Restaurant</th><th>Role</th><th>Status</th></tr></thead>
+        <tbody>{% for m in memberships %}
+          <tr>
+            <td data-label="" class="rt-title"><a href="{% url 'console:restaurant' m.restaurant_id %}"><strong>{{ m.restaurant.name }}</strong></a></td>
+            <td data-label="Role">{{ m.get_role_display }}</td>
+            <td data-label="Status">{% if m.is_active %}<span class="pill pill-ready">Active</span>{% else %}<span class="pill pill-cancelled">Disabled</span>{% endif %}</td>
+          </tr>{% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}<p class="muted">Not linked to any restaurant.</p>{% endif %}
+    </section>
+    {% if audit %}
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "clock" %} Activity</h2>
+      <ol class="timeline small">{% for a in audit %}<li><strong>{{ a.action }}</strong> {{ a.target }} {{ a.details }}<br><span class="muted">{{ a.created_at|date:"d M Y H:i" }} · by {{ a.user.username|default:"—" }}</span></li>{% endfor %}</ol>
+    </section>
+    {% endif %}
+  </div>
+
+  <aside class="card">
+    <h2 class="fieldset-title">{% icon "settings" %} Account actions</h2>
+    <div class="stack">
+      {% if u.is_active %}
+        {% if u != user %}<form method="post" data-confirm="Disable {{ u.username }}? They will no longer be able to log in.">{% csrf_token %}<input type="hidden" name="action" value="deactivate"><button class="btn btn-block btn-danger" type="submit">Disable account</button></form>{% endif %}
+      {% else %}
+        <form method="post">{% csrf_token %}<input type="hidden" name="action" value="activate"><button class="btn btn-block btn-success" type="submit">Enable account</button></form>
+      {% endif %}
+      {% if u.email %}
+      <form method="post">{% csrf_token %}<input type="hidden" name="action" value="send_reset"><button class="btn btn-block" type="submit">{% icon "mail" %} Email a password reset link</button></form>
+      {% endif %}
+      <form method="post" data-confirm="Set a new random password for {{ u.username }}? It will be shown to you once.">{% csrf_token %}<input type="hidden" name="action" value="set_password"><button class="btn btn-block" type="submit">{% icon "key" %} Set temporary password</button></form>
+      {% if not u.email_verified %}
+      <form method="post">{% csrf_token %}<input type="hidden" name="action" value="verify_email"><button class="btn btn-block" type="submit">{% icon "check" %} Mark email as confirmed</button></form>
+      {% endif %}
+      {% if u != user %}
+        {% if u.is_superuser %}
+        <form method="post" data-confirm="Remove platform admin rights from {{ u.username }}?">{% csrf_token %}<input type="hidden" name="action" value="remove_admin"><button class="btn btn-block btn-ghost" type="submit">Remove platform admin</button></form>
+        {% else %}
+        <form method="post" data-confirm="Give {{ u.username }} FULL control of the platform?">{% csrf_token %}<input type="hidden" name="action" value="make_admin"><button class="btn btn-block btn-ghost" type="submit">Make platform admin</button></form>
+        {% endif %}
+      {% endif %}
+    </div>
+    <p class="help">Marking an owner's email as confirmed doesn't publish their restaurant by itself. Use <em>Approve</em> on the restaurant page.</p>
+  </aside>
+</div>
+{% endblock %}

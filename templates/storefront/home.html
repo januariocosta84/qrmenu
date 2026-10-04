@@ -1,0 +1,51 @@
+{% extends "storefront/base.html" %}
+{% block title %}{{ platform_name }} · QR menu & table ordering for restaurants{% endblock %}
+{% block body_class %}landing{% endblock %}
+{% block content %}
+<header class="land-hero">
+  <nav class="land-nav">
+    <span class="land-brand">▦ {{ platform_name }}</span>
+    <a href="{% url 'accounts:login' %}">Log in</a>
+  </nav>
+  <div class="land-inner">
+    <h1>Scan. Order. Enjoy.</h1>
+    <p class="land-lead">A QR code menu and table ordering for your restaurant. Customers scan the code on the table, order from their phone, and the order goes straight to your kitchen. They don't need an app or an account.</p>
+    {% if signup_open %}
+    <div class="land-cta">
+      <a class="btn btn-light btn-lg" href="{% url 'accounts:signup' %}">Register your restaurant</a>
+      <a class="btn btn-ghost-light btn-lg" href="{% url 'accounts:login' %}">Log in</a>
+    </div>
+    {% endif %}
+  </div>
+</header>
+
+<main class="land">
+  <section>
+    <h2>How it works</h2>
+    <ol class="land-steps">
+      <li><strong>Create your menu</strong><span>Add dishes, photos, prices and add-ons in English, Tetum and Bahasa Indonesia.</span></li>
+      <li><strong>Print your QR codes</strong><span>One code per table. Print them and place one on each table.</span></li>
+      <li><strong>Receive orders live</strong><span>Orders appear instantly on the kitchen screen with a sound alert. Customers can follow their order on their phone.</span></li>
+    </ol>
+  </section>
+
+  <section class="land-features">
+    <div><strong>📱 Works on any phone</strong><span>Customers scan with the phone camera. No app, no account, and it loads fast on slow connections.</span></div>
+    <div><strong>🍳 Kitchen screen</strong><span>New → Preparing → Ready → Completed, with timers and notes.</span></div>
+    <div><strong>🪑 Tables & sessions</strong><span>Several people can order from one table, and you see one bill per table.</span></div>
+    <div><strong>💵 Cash & change</strong><span>Mark orders paid in one tap, and see the change to give back.</span></div>
+    <div><strong>🚫 Sold out in one tap</strong><span>Customers' menus update immediately.</span></div>
+    <div><strong>📈 Reports</strong><span>Daily revenue, best sellers and CSV export.</span></div>
+  </section>
+
+  <section class="land-diner">
+    <h2>Are you a customer?</h2>
+    <p>{{ ui.scan_to_order }}</p>
+  </section>
+
+  <footer class="land-foot">
+    <span>© {% now "Y" %} {{ platform_name }}</span>
+    {% if support_email %}<a href="mailto:{{ support_email }}">{{ support_email }}</a>{% endif %}
+  </footer>
+</main>
+{% endblock %}

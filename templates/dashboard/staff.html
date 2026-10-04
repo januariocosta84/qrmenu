@@ -1,0 +1,46 @@
+{% extends "dashboard/base.html" %}
+{% load ui_icons %}
+{% block title %}Staff{% endblock %}
+{% block content %}
+{% with r=request.restaurant %}
+<div class="page-head">
+  <div>
+    <h1>Staff</h1>
+    <p class="page-sub">Accounts for your team. Each person signs in with their own username.</p>
+  </div>
+</div>
+<div class="cols">
+  <section class="card">
+    <div class="table-wrap">
+    <table class="table rtable">
+      <thead><tr><th>User</th><th>Name</th><th>Role</th><th>Status</th><th></th></tr></thead>
+      <tbody>
+      {% for m in members %}
+        <tr>
+          <td class="rt-title" data-label=""><strong>{{ m.user.username }}</strong>{% if m.user == user %} <span class="tag">you</span>{% endif %}</td>
+          <td data-label="Name">{{ m.user.get_full_name|default:"—" }}</td>
+          <td data-label="Role">{{ m.get_role_display }}</td>
+          <td data-label="Status">{% if m.is_active %}<span class="pill pill-ready">Active</span>{% else %}<span class="pill pill-cancelled">Disabled</span>{% endif %}</td>
+          <td data-label="" class="num"><a class="btn btn-sm btn-ghost" href="{% url 'dashboard:staff_edit' r.slug m.pk %}">{% icon "edit" %} Edit</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    <h3>What each role can do</h3>
+    <ul class="small muted" style="padding-left: 18px">
+      <li><strong>Owner</strong>: everything, including staff accounts.</li>
+      <li><strong>Manager</strong>: menu, tables &amp; QR codes, restaurant settings, orders, payments, reports.</li>
+      <li><strong>Kitchen</strong>: kitchen queue, order status, mark dishes sold out.</li>
+      <li><strong>Waiter / Cashier</strong>: take orders, kitchen queue, cancel orders, payments, free tables.</li>
+    </ul>
+  </section>
+  <form method="post" class="card form compact">
+    {% csrf_token %}
+    <h2 class="fieldset-title">{% icon "plus" %} Add staff member</h2>
+    {% include "dashboard/_form_fields.html" %}
+    <button class="btn btn-primary btn-block" type="submit">Create account</button>
+  </form>
+</div>
+{% endwith %}
+{% endblock %}

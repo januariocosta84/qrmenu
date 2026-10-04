@@ -1,0 +1,93 @@
+{% extends "dashboard/base.html" %}
+{% load menu_tags ui_icons %}
+{% block title %}Menu{% endblock %}
+{% block content %}
+{% with r=request.restaurant can_edit=request.can.manage_menu %}
+<div class="page-head">
+  <div>
+    <h1>Menu <span class="count">{{ item_count }}</span></h1>
+    <p class="page-sub">Tap the switch to mark a dish <strong>Sold out</strong>. Customers' menus update immediately.</p>
+  </div>
+  {% if can_edit %}
+  <div class="page-actions">
+    <a class="btn" href="{% url 'dashboard:category_create' r.slug %}">{% icon "plus" %} Category</a>
+    <a class="btn btn-primary" href="{% url 'dashboard:item_create' r.slug %}">{% icon "plus" %} Add dish</a>
+  </div>
+  {% endif %}
+</div>
+
+{% for c in categories %}
+<section class="card">
+  <div class="card-head">
+    <h2>{{ c.name }} <span class="count">{{ c.items.all|length }}</span>{% if not c.is_active %} <span class="pill pill-cancelled">Hidden</span>{% endif %}</h2>
+    {% if can_edit %}
+    <div class="btn-row">
+      <a class="btn btn-sm" href="{% url 'dashboard:item_create' r.slug %}?category={{ c.pk }}">{% icon "plus" %} Dish</a>
+      <a class="btn btn-sm btn-ghost" href="{% url 'dashboard:category_edit' r.slug c.pk %}" title="Edit category">{% icon "edit" %}</a>
+      <form method="post" action="{% url 'dashboard:category_delete' r.slug c.pk %}" onsubmit="return confirm('Delete category {{ c.name|escapejs }}?')">{% csrf_token %}<button class="btn btn-sm btn-ghost" type="submit" title="Delete category" aria-label="Delete category">{% icon "trash" %}</button></form>
+    </div>
+    {% endif %}
+  </div>
+  {% if c.items.all %}
+  <ul class="menu-list">
+    {% for item in c.items.all %}
+    <li class="menu-row{% if not item.is_available %} is-soldout{% endif %}" data-item="{{ item.pk }}">
+      {% if item.image %}<img src="{{ item.image.url }}" alt="" width="56" height="56" loading="lazy">{% else %}<span class="thumb-ph">{% icon "utensils" %}</span>{% endif %}
+      <div class="menu-row-main">
+        <strong>{{ item.name }}</strong>
+        <span class="muted small">{{ item.price|money:r.currency_symbol }}{% if item.options.all %} · {{ item.options.all|length }} add-on{{ item.options.all|length|pluralize }}{% endif %}</span>
+      </div>
+      <form method="post" action="{% url 'dashboard:item_toggle' r.slug item.pk %}" class="avail-form">
+        {% csrf_token %}
+        <button type="submit" class="switch{% if item.is_available %} on{% endif %}" role="switch"
+                aria-checked="{{ item.is_available|yesno:'true,false' }}" data-toggle="{{ item.pk }}">
+          <span class="switch-label">{{ item.is_available|yesno:"Available,Sold Out" }}</span>
+        </button>
+      </form>
+      {% if can_edit %}<a class="btn btn-sm btn-ghost" href="{% url 'dashboard:item_edit' r.slug item.pk %}" title="Edit dish" aria-label="Edit {{ item.name }}">{% icon "edit" %}</a>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="muted small">No dishes in this category yet.</p>
+  {% endif %}
+</section>
+{% empty %}
+<section class="card"><div class="empty">{% icon "book" %}<p>Your menu is empty.{% if can_edit %} <a href="{% url 'dashboard:category_create' r.slug %}">Create your first category</a> (e.g. Breakfast, Main Meals, Drinks).{% endif %}</p></div></section>
+{% endfor %}
+{% endwith %}
+{% endblock %}
+{% block scripts %}
+<script>
+  // Toggle availability without reloading; falls back to the form POST without JS.
+  (function () {
+    const base = "{{ availability_url|escapejs }}";
+    document.querySelectorAll("[data-toggle]").forEach((btn) => {
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const id = btn.dataset.toggle;
+        const next = !btn.classList.contains("on");
+        btn.disabled = true;
+        try {
+          const data = await DASH.api(base.replace("/0/availability/", `/${id}/availability/`), "POST", { is_available: next });
+          apply(id, data.is_available);
+        } catch (err) {
+          DASH.toast(err.message, null, "error");
+        }
+        btn.disabled = false;
+      });
+    });
+    function apply(id, on) {
+      const btn = document.querySelector(`[data-toggle="${id}"]`);
+      if (!btn) return;
+      btn.classList.toggle("on", on);
+      btn.setAttribute("aria-checked", on);
+      btn.querySelector(".switch-label").textContent = on ? "Available" : "Sold Out";
+      btn.closest(".menu-row").classList.toggle("is-soldout", !on);
+    }
+    document.addEventListener("dash:message", (e) => {
+      if (e.detail.event === "availability") apply(e.detail.data.id, e.detail.data.is_available);
+    });
+  })();
+</script>
+{% endblock %}

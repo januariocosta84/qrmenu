@@ -1,0 +1,93 @@
+{% extends "dashboard/base.html" %}
+{% load ui_icons %}
+{% block title %}Billing{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><h1>Billing</h1><p class="page-sub">Your plan, usage and invoices.</p></div>
+</div>
+
+{% if not sub %}
+<section class="card"><div class="empty">{% icon "info" %}<p>Billing isn't set up on this platform yet.</p></div></section>
+{% else %}
+<div class="cols">
+  <div>
+    <section class="card plan-current sub-card-{{ sub.state }}">
+      <div class="card-head">
+        <div>
+          <span class="muted small">Current plan</span>
+          <h2 style="margin:2px 0 0;font-size:1.5rem">{{ sub.plan.name }}</h2>
+        </div>
+        <span class="pill sub-{{ sub.state }}">{{ sub.state_label }}</span>
+      </div>
+      <p class="plan-price">{% if sub.plan.is_free %}Free{% else %}${{ sub.plan.price_monthly }}<span class="muted small"> / month</span>{% endif %}</p>
+      {% if sub.comped %}
+        <p>Your account is complimentary. There's nothing to pay.</p>
+      {% elif sub.state == "trial" %}
+        <p>Free trial until <strong>{{ sub.trial_ends_on|date:"d M Y" }}</strong> ({{ sub.days_left }} day{{ sub.days_left|pluralize }} left). Pay the invoice before then to keep taking orders.</p>
+      {% elif sub.state == "active" and not sub.plan.is_free %}
+        <p>Paid until <strong>{{ sub.access_until|date:"d M Y" }}</strong>.</p>
+      {% elif sub.state == "grace" %}
+        <div class="msg msg-warning">{% icon "alert" %}<span>Your subscription ended on {{ sub.access_until|date:"d M Y" }}. Please pay the open invoice. Ordering will be switched off soon.</span></div>
+      {% elif sub.state == "expired" %}
+        <div class="msg msg-error">{% icon "alert" %}<span>Your subscription has expired. Customers can't order until the invoice is paid.</span></div>
+      {% elif sub.state == "cancelled" %}
+        <div class="msg msg-error">{% icon "alert" %}<span>Your subscription was cancelled.{% if support_email %} Contact <a href="mailto:{{ support_email }}">{{ support_email }}</a> to reactivate.{% endif %}</span></div>
+      {% endif %}
+      {% if sub.requested_plan %}<p class="note">{% icon "hourglass" %} Change to <strong>{{ sub.requested_plan.name }}</strong> requested {{ sub.requested_at|timesince }} ago. Waiting for confirmation.</p>{% endif %}
+
+      <h3>Usage</h3>
+      {% for label, used, limit in usage %}
+      <div class="usage">
+        <div class="usage-row"><span>{{ label }}</span><span>{{ used }} / {{ limit }}</span></div>
+        <div class="progress"><span style="width: {% widthratio used limit 100 %}%"></span></div>
+      </div>
+      {% endfor %}
+    </section>
+
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "receipt" %} Invoices</h2>
+      {% if invoices %}
+      <div class="table-wrap">
+      <table class="table rtable">
+        <thead><tr><th>Invoice</th><th>Period</th><th>Due</th><th class="num">Amount</th><th>Status</th></tr></thead>
+        <tbody>{% for inv in invoices %}
+          <tr>
+            <td data-label="" class="rt-title"><a href="{% url 'dashboard:billing_invoice' request.restaurant.slug inv.pk %}"><strong>{{ inv.number }}</strong></a></td>
+            <td data-label="Period">{{ inv.period_start|date:"d M" }} – {{ inv.period_end|date:"d M Y" }}</td>
+            <td data-label="Due">{{ inv.due_date|date:"d M Y" }}</td>
+            <td data-label="Amount" class="num">${{ inv.amount }}</td>
+            <td data-label="Status"><span class="pill inv-{{ inv.status }}{% if inv.is_overdue %} inv-overdue{% endif %}">{% if inv.is_overdue %}Overdue{% else %}{{ inv.get_status_display }}{% endif %}</span></td>
+          </tr>{% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}<p class="muted">No invoices yet.</p>{% endif %}
+    </section>
+  </div>
+
+  <aside>
+    {% if cfg.payment_instructions %}
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "cash" %} How to pay</h2>
+      <div class="howto-box">{{ cfg.payment_instructions|linebreaksbr }}</div>
+      <p class="help">Use the invoice number as the payment reference. Your subscription is extended as soon as we confirm the payment.</p>
+    </section>
+    {% endif %}
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "book" %} Plans</h2>
+      {% for p in plans %}
+      <div class="plan-option{% if p.pk == sub.plan_id %} current{% endif %}">
+        <div class="usage-row"><strong>{{ p.name }}</strong><span>{% if p.is_free %}Free{% else %}${{ p.price_monthly }}/mo{% endif %}</span></div>
+        <p class="muted small" style="margin:2px 0 6px">{{ p.max_tables }} tables · {{ p.max_menu_items }} dishes · {{ p.max_staff }} staff</p>
+        {% if p.pk == sub.plan_id %}<span class="pill pill-ready">Your plan</span>
+        {% elif sub.requested_plan_id == p.pk %}<span class="pill pill-new">Requested</span>
+        {% else %}
+        <form method="post" onsubmit="return confirm('Request a change to {{ p.name|escapejs }}?')">{% csrf_token %}<input type="hidden" name="plan" value="{{ p.pk }}"><button class="btn btn-sm" type="submit">Switch to {{ p.name }}</button></form>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </section>
+  </aside>
+</div>
+{% endif %}
+{% endblock %}

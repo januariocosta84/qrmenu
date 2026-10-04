@@ -1,0 +1,32 @@
+{% extends "dashboard/base.html" %}
+{% load ui_icons %}
+{% block title %}Notifications{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><h1>Notifications</h1></div>
+  <div class="page-actions">
+    <form method="post">{% csrf_token %}<button class="btn" type="submit">{% icon "check" %} Mark all as read</button></form>
+  </div>
+</div>
+<section class="card">
+  <ul class="notif-list">
+    {% for n in page.object_list %}
+    <li class="{% if not n.is_read %}unread{% endif %}">
+      <span class="notif-dot" aria-hidden="true"></span>
+      <div>
+        {% if n.order %}<a href="{% url 'dashboard:order_detail' request.restaurant.slug n.order_id %}">{{ n.title }}</a>{% else %}{{ n.title }}{% endif %}
+        <div class="muted small">{{ n.body }} · {{ n.created_at|timesince }} ago</div>
+      </div>
+    </li>
+    {% empty %}
+    <li class="empty" style="display:block">{% icon "bell" %}<p>No notifications.</p></li>
+    {% endfor %}
+  </ul>
+  {% if page.has_other_pages %}
+  <nav class="pager">
+    {% if page.has_previous %}<a class="btn btn-sm" href="?page={{ page.previous_page_number }}">{% icon "chevron-left" %} Newer</a>{% endif %}
+    {% if page.has_next %}<a class="btn btn-sm" href="?page={{ page.next_page_number }}">Older {% icon "chevron-right" %}</a>{% endif %}
+  </nav>
+  {% endif %}
+</section>
+{% endblock %}

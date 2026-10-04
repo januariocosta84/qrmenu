@@ -1,0 +1,46 @@
+{% extends "console/base.html" %}
+{% load ui_icons %}
+{% block title %}Users{% endblock %}
+{% block content %}
+<div class="page-head"><div><h1>Users</h1><p class="page-sub">Every account on the platform: owners, staff and platform admins.</p></div></div>
+
+<nav class="tabs">
+  <a href="?q={{ q|urlencode }}" class="{% if not kind %}active{% endif %}">All</a>
+  <a href="?kind=owners&q={{ q|urlencode }}" class="{% if kind == 'owners' %}active{% endif %}">Restaurant owners</a>
+  <a href="?kind=admins&q={{ q|urlencode }}" class="{% if kind == 'admins' %}active{% endif %}">Platform admins</a>
+  <a href="?kind=unverified&q={{ q|urlencode }}" class="{% if kind == 'unverified' %}active{% endif %}">Email not confirmed</a>
+  <a href="?kind=disabled&q={{ q|urlencode }}" class="{% if kind == 'disabled' %}active{% endif %}">Disabled</a>
+</nav>
+<form method="get" class="filters">
+  {% if kind %}<input type="hidden" name="kind" value="{{ kind }}">{% endif %}
+  <input name="q" value="{{ q }}" placeholder="Name, username or email" aria-label="Search users">
+  <button class="btn" type="submit">{% icon "search" %} Search</button>
+</form>
+
+<section class="card">
+  <div class="table-wrap">
+  <table class="table rtable">
+    <thead><tr><th>User</th><th>Email</th><th class="num">Restaurants</th><th>Joined</th><th>Last login</th><th>Status</th></tr></thead>
+    <tbody>
+    {% for u in page.object_list %}
+      <tr>
+        <td data-label="" class="rt-title"><a href="{% url 'console:user' u.pk %}"><strong>{{ u.get_full_name|default:u.username }}</strong></a>{% if u.is_superuser %} <span class="tag">Platform admin</span>{% endif %}<br><span class="muted small">{{ u.username }}</span></td>
+        <td data-label="Email">{{ u.email|default:"—" }}{% if u.email and not u.email_verified %} <span class="pill pill-preparing">unverified</span>{% endif %}</td>
+        <td data-label="Restaurants" class="num">{{ u.n_restaurants }}</td>
+        <td data-label="Joined">{{ u.date_joined|date:"d M Y" }}</td>
+        <td data-label="Last login">{{ u.last_login|date:"d M Y H:i"|default:"never" }}</td>
+        <td data-label="Status">{% if u.is_active %}<span class="pill pill-ready">Active</span>{% else %}<span class="pill pill-cancelled">Disabled</span>{% endif %}</td>
+      </tr>
+    {% empty %}<tr><td colspan="6"><div class="empty">{% icon "users" %}<p>No users match.</p></div></td></tr>{% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% if page.has_other_pages %}
+  <nav class="pager">
+    {% if page.has_previous %}<a class="btn btn-sm" href="?q={{ q|urlencode }}&kind={{ kind }}&page={{ page.previous_page_number }}">{% icon "chevron-left" %} Prev</a>{% endif %}
+    <span class="muted small">Page {{ page.number }} of {{ page.paginator.num_pages }}</span>
+    {% if page.has_next %}<a class="btn btn-sm" href="?q={{ q|urlencode }}&kind={{ kind }}&page={{ page.next_page_number }}">Next {% icon "chevron-right" %}</a>{% endif %}
+  </nav>
+  {% endif %}
+</section>
+{% endblock %}

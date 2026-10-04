@@ -1,0 +1,12 @@
+{% autoescape off %}Hello {{ user.first_name|default:"there" }},
+
+Thanks for registering your restaurant on {{ platform }}.
+
+Please confirm your email address by opening this link:
+
+{{ link }}
+
+The link is valid for {{ days }} days. If you did not sign up, you can ignore this email.
+
+— {{ platform }}
+{% endautoescape %}

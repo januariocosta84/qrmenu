@@ -1,0 +1,30 @@
+{% extends "dashboard/base.html" %}
+{% load ui_icons %}
+{% block title %}Register your restaurant{% endblock %}
+{% block body_class %}auth{% endblock %}
+{% block content %}
+<div class="auth-card wide">
+  <div class="auth-brand">{% icon "qr" "i-lg" %} {{ platform_name }}</div>
+  <h1>Register your restaurant</h1>
+  <p class="muted">Free to start. Set up your menu, print a QR code for each table, and start taking orders. Your customers don't need an app or an account.</p>
+  <form method="post" class="form" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="msg msg-error">{% icon "alert" %}<span>{{ form.non_field_errors|join:" " }}</span></div>{% endif %}
+    {% for field in form %}{% if field.name != "website" and field.name != "accept" %}
+    <div class="field{% if field.errors %} has-error{% endif %}">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}
+      {% if field.help_text %}<small class="help">{{ field.help_text }}</small>{% endif %}
+      {% for e in field.errors %}<small class="err">{{ e }}</small>{% endfor %}
+    </div>
+    {% endif %}{% endfor %}
+    <div class="hp" aria-hidden="true"><label>Website {{ form.website }}</label></div>
+    <div class="field field-check{% if form.accept.errors %} has-error{% endif %}">
+      <label>{{ form.accept }} {{ form.accept.label }}</label>
+      {% for e in form.accept.errors %}<small class="err">{{ e }}</small>{% endfor %}
+    </div>
+    <button class="btn btn-primary btn-block btn-lg" type="submit">Create my restaurant</button>
+    {% if approval_required %}<p class="help">New restaurants are reviewed by our team before they go live. You can set up your menu in the meantime.</p>{% endif %}
+  </form>
+  <p class="small">Already registered? <a href="{% url 'accounts:login' %}">Log in</a></p>
+</div>
+{% endblock %}
