@@ -23,6 +23,8 @@ MARKER="$BASE/.qrmenu-installed"
 NAME=qrmenu                                  # user, database, service, nginx site, cron file
 ACME_ROOT=/var/www/qrmenu-acme
 SITE=/etc/nginx/sites-available/$NAME
+APACHE_SITE=/etc/apache2/sites-available/$NAME.conf
+ALLOW_APACHE_MODULES="${ALLOW_APACHE_MODULES:-0}"
 UNIT=/etc/systemd/system/$NAME.service
 CRON=/etc/cron.d/$NAME
 OURS_TAG="QR Menu"                           # text present in every file this script writes
@@ -43,8 +45,9 @@ is_ours_file() { [ -f "$1" ] && grep -q "$OURS_TAG" "$1"; }
 echo "== Pre-flight checks for $DOMAIN (nothing is changed in this phase)"
 
 # --- OS and Python
-. /etc/os-release
-case "$ID" in ubuntu|debian) ok "OS: $PRETTY_NAME" ;; *) conflict "Unsupported OS: $PRETTY_NAME (Ubuntu/Debian only)";; esac
+OS_ID="$(. /etc/os-release && echo "$ID")"          # read in a subshell: os-release defines NAME=...
+OS_PRETTY="$(. /etc/os-release && echo "$PRETTY_NAME")"
+case "$OS_ID" in ubuntu|debian) ok "OS: $OS_PRETTY" ;; *) conflict "Unsupported OS: $OS_PRETTY (Ubuntu/Debian only)";; esac
 PYV="$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])' 2>/dev/null || echo 0)"
 if python3 -c 'import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)' 2>/dev/null; then ok "Python $PYV"
 else conflict "Python $PYV is too old (3.10+ needed). Ask me for the safe side-by-side install option."; fi
@@ -64,13 +67,35 @@ ok "Service / cron / nginx site names checked"
 # --- nginx: who owns ports 80/443, and is our domain already served by another site?
 LISTEN80="$(ss -ltnpH 'sport = :80' 2>/dev/null | grep -o 'users:(("[^"]*' | head -1 | cut -d'"' -f2 || true)"
 LISTEN443="$(ss -ltnpH 'sport = :443' 2>/dev/null | grep -o 'users:(("[^"]*' | head -1 | cut -d'"' -f2 || true)"
+WEB=""
 for pair in "80:$LISTEN80" "443:$LISTEN443"; do
   port="${pair%%:*}"; prog="${pair#*:}"
-  if [ -z "$prog" ]; then ok "Port $port free"
-  elif [ "$prog" = nginx ]; then ok "Port $port served by nginx (we add one site next to the others)"
-  else conflict "Port $port is used by '$prog', not nginx. Can't add a site without touching it."; fi
+  case "$prog" in
+    "") ok "Port $port free" ;;
+    nginx|apache2)
+      if [ -n "$WEB" ] && [ "$WEB" != "$prog" ]; then conflict "Ports 80/443 are split between $WEB and $prog"
+      else WEB=$prog; ok "Port $port served by $prog (we add one site next to the existing ones)"; fi ;;
+    *) conflict "Port $port is used by '$prog'. Only nginx or Apache are supported, without touching it." ;;
+  esac
 done
-if [ -d /etc/nginx ]; then
+[ -z "$WEB" ] && { command -v apache2 >/dev/null && WEB=apache2 || WEB=nginx; }
+ok "Web server: $WEB"
+
+if [ "$WEB" = apache2 ]; then
+  [ -e "$APACHE_SITE" ] && ! is_ours_file "$APACHE_SITE" && conflict "$APACHE_SITE already exists and isn't QR Menu's"
+  HITS=$(grep -rlsiE "^\s*Server(Name|Alias)\s.*\b${DOMAIN//./\\.}\b" /etc/apache2 2>/dev/null | grep -v "/$NAME.conf\$" || true)
+  [ -n "$HITS" ] && conflict "$DOMAIN is already configured in: $HITS" || ok "$DOMAIN not used by another Apache site"
+  AVER="$(apache2 -v 2>/dev/null | sed -n 's#.*Apache/\([0-9.]*\).*#\1#p')"
+  if printf '%s\n2.4.46\n' "$AVER" | sort -V -C 2>/dev/null; then conflict "Apache $AVER is too old for WebSockets via upgrade=websocket (2.4.47+)"
+  else ok "Apache $AVER"; fi
+  MODS="$(apache2ctl -M 2>/dev/null || true)"
+  MISSING_MODS=()
+  for m in proxy proxy_http headers ssl; do echo "$MODS" | grep -q " ${m}_module" || MISSING_MODS+=("$m"); done
+  if [ ${#MISSING_MODS[@]} = 0 ]; then ok "Apache modules proxy, proxy_http, headers, ssl already enabled (no global change)"
+  elif [ "$ALLOW_APACHE_MODULES" = 1 ]; then note "Will enable Apache modules: ${MISSING_MODS[*]} (you allowed it; existing sites keep working)"
+  else conflict "Apache modules not enabled: ${MISSING_MODS[*]}. Enabling them is a server-wide change. Re-run with ALLOW_APACHE_MODULES=1 to allow it"; fi
+fi
+if [ "$WEB" = nginx ] && [ -d /etc/nginx ]; then
   HITS=$(grep -rlsE "server_name[^;]*\b${DOMAIN//./\\.}\b" /etc/nginx 2>/dev/null | grep -v "/$NAME\$" || true)
   [ -n "$HITS" ] && conflict "$DOMAIN is already configured in: $HITS" || ok "$DOMAIN not used by another nginx site"
   grep -rqsE '\$qrmenu_connection_upgrade|upstream\s+qrmenu_upstream' /etc/nginx --exclude="$NAME" \
@@ -107,8 +132,8 @@ else
 fi
 
 # --- DNS
-PUBLIC_IP="$(curl -s -4 --max-time 5 ifconfig.me || hostname -I | awk '{print $1}')"
-DNS_IP="$(getent ahostsv4 "$DOMAIN" | awk 'NR==1{print $1}')"
+PUBLIC_IP="$(curl -s -4 --max-time 5 ifconfig.me || hostname -I | awk '{print $1}' || true)"
+DNS_IP="$( (getent ahostsv4 "$DOMAIN" || true) | awk 'NR==1{print $1}')"
 if [ "$DNS_IP" = "$PUBLIC_IP" ]; then ok "DNS: $DOMAIN → $DNS_IP (this server)"
 elif [ -z "$DNS_IP" ]; then note "DNS: $DOMAIN doesn't resolve yet. Add an A record → $PUBLIC_IP (needed for HTTPS)"
 else note "DNS: $DOMAIN → $DNS_IP, but this server is $PUBLIC_IP"; fi
@@ -119,7 +144,8 @@ if command -v ufw >/dev/null && ufw status 2>/dev/null | grep -q "Status: active
 fi
 
 # --- Packages that would be installed (missing only, never upgraded)
-WANT=(python3-venv python3-dev build-essential libpq-dev postgresql redis-server nginx certbot git curl)
+WANT=(python3-venv python3-dev build-essential libpq-dev postgresql redis-server certbot git curl)
+[ "$WEB" = nginx ] && WANT+=(nginx)
 MISSING=(); for p in "${WANT[@]}"; do dpkg -s "$p" >/dev/null 2>&1 || MISSING+=("$p"); done
 [ ${#MISSING[@]} = 0 ] && ok "All required packages present" || note "Would install (new only): ${MISSING[*]}"
 command -v certbot >/dev/null && [[ " ${MISSING[*]} " == *" certbot "* ]] && MISSING=("${MISSING[@]/certbot}")
@@ -127,7 +153,8 @@ command -v certbot >/dev/null && [[ " ${MISSING[*]} " == *" certbot "* ]] && MIS
 echo
 echo "== It will ADD only:"
 echo "   user '$NAME' · folder $BASE · PostgreSQL db/role '$NAME' · Redis db ${REDIS_DB:-?}"
-echo "   $UNIT (port ${APP_PORT:-?}) · $SITE (+ link) · $CRON · $ACME_ROOT · HTTPS certificate for $DOMAIN"
+if [ "$WEB" = apache2 ]; then WEBSITE="$APACHE_SITE (a2ensite)"; else WEBSITE="$SITE (+ link)"; fi
+echo "   $UNIT (port ${APP_PORT:-?}) · $WEBSITE · $CRON · $ACME_ROOT · HTTPS certificate for $DOMAIN"
 echo "== It will NOT modify, restart or remove any other site, service, database or config."
 echo
 
@@ -207,14 +234,42 @@ ok "App running on 127.0.0.1:$APP_PORT"
 
 echo "0 6 * * * $NAME cd $APP && .venv/bin/python manage.py generate_invoices >> $BASE/invoices.log 2>&1  # $OURS_TAG" > "$CRON"
 
-# nginx: add OUR site only; test the whole config before every reload; undo our file if the test fails.
-safe_reload() {
-  if nginx -t 2>/tmp/qrmenu-nginx-test; then systemctl reload nginx
-  else red "nginx config test failed; removing QR Menu's site so other sites stay untouched:"; cat /tmp/qrmenu-nginx-test
-       rm -f "/etc/nginx/sites-enabled/$NAME"; nginx -t && systemctl reload nginx; exit 1; fi
-}
-if [ ! -f "/etc/letsencrypt/live/$DOMAIN/fullchain.pem" ]; then
-  cat > "$SITE" <<NGINX
+if [ "$WEB" = apache2 ]; then
+  # Apache: add OUR site only; configtest before every graceful reload; disable our site if anything fails.
+  safe_reload() {
+    if apache2ctl configtest 2>/tmp/qrmenu-apache-test; then systemctl reload apache2
+    else red "Apache config test failed; disabling QR Menu's site so other sites stay untouched:"; cat /tmp/qrmenu-apache-test
+         a2dissite -q "$NAME" || true; apache2ctl configtest && systemctl reload apache2; exit 1; fi
+  }
+  if [ ${#MISSING_MODS[@]} -gt 0 ]; then a2enmod -q "${MISSING_MODS[@]}"; fi
+  if [ ! -f "/etc/letsencrypt/live/$DOMAIN/fullchain.pem" ]; then
+    cat > "$APACHE_SITE" <<APACHE
+# $OURS_TAG site (temporary, until the HTTPS certificate exists)
+<VirtualHost *:80>
+    ServerName $DOMAIN
+    Alias /.well-known/acme-challenge/ $ACME_ROOT/.well-known/acme-challenge/
+    <Directory $ACME_ROOT>
+        Require all granted
+    </Directory>
+</VirtualHost>
+APACHE
+    a2ensite -q "$NAME"
+    safe_reload
+    certbot certonly --webroot -w "$ACME_ROOT" -d "$DOMAIN" --non-interactive --agree-tos -m "$EMAIL" \
+      --deploy-hook "systemctl reload apache2"
+  fi
+  render deploy/apache.conf > "$APACHE_SITE"
+  a2ensite -q "$NAME"
+  safe_reload
+else
+  # nginx: add OUR site only; test the whole config before every reload; undo our file if the test fails.
+  safe_reload() {
+    if nginx -t 2>/tmp/qrmenu-nginx-test; then systemctl reload nginx
+    else red "nginx config test failed; removing QR Menu's site so other sites stay untouched:"; cat /tmp/qrmenu-nginx-test
+         rm -f "/etc/nginx/sites-enabled/$NAME"; nginx -t && systemctl reload nginx; exit 1; fi
+  }
+  if [ ! -f "/etc/letsencrypt/live/$DOMAIN/fullchain.pem" ]; then
+    cat > "$SITE" <<NGINX
 # $OURS_TAG site (temporary, until the HTTPS certificate exists)
 server {
     listen 80;
@@ -223,15 +278,16 @@ server {
     location / { return 503; }
 }
 NGINX
+    ln -sf "$SITE" "/etc/nginx/sites-enabled/$NAME"
+    systemctl is-active -q nginx || systemctl start nginx
+    safe_reload
+    certbot certonly --webroot -w "$ACME_ROOT" -d "$DOMAIN" --non-interactive --agree-tos -m "$EMAIL" \
+      --deploy-hook "systemctl reload nginx"
+  fi
+  render deploy/nginx.conf > "$SITE"
   ln -sf "$SITE" "/etc/nginx/sites-enabled/$NAME"
-  systemctl is-active -q nginx || systemctl start nginx
   safe_reload
-  certbot certonly --webroot -w "$ACME_ROOT" -d "$DOMAIN" --non-interactive --agree-tos -m "$EMAIL" \
-    --deploy-hook "systemctl reload nginx"
 fi
-render deploy/nginx.conf > "$SITE"
-ln -sf "$SITE" "/etc/nginx/sites-enabled/$NAME"
-safe_reload
 
 code=$(curl -s -o /dev/null -w '%{http_code}' "https://$DOMAIN/" || true)
 ADMIN_PATH="$(grep '^ADMIN_URL=' .env | cut -d= -f2)"
