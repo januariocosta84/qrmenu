@@ -397,52 +397,43 @@ Settings are read from environment variables. A `.env` file in the project root 
 
 ## Deployment (Linux VPS)
 
-Target setup: Ubuntu 22.04+, Nginx, Gunicorn running Uvicorn (ASGI) workers, PostgreSQL and Redis. The config files are in [deploy/](deploy/).
+`deploy/setup.sh` installs QR Menu on an Ubuntu/Debian server, **including a server that already runs other apps. It never touches them:**
+
+- It installs only **missing** packages (`apt --no-upgrade`), so nothing already installed is upgraded or restarted.
+- It **adds** its own nginx site, systemd service, user, PostgreSQL database and role, cron file and certificate, all named `qrmenu`. It never edits, removes or restarts anything else: nginx is only *reloaded*, after `nginx -t` passes, and QR Menu's site is removed again if the test fails.
+- It picks a **free local port** (8170–8199) and an **empty Redis database** (7–15), so nothing collides.
+- It gets the HTTPS certificate with certbot's *webroot* mode, which doesn't touch other sites' nginx config.
+- It **stops with a clear message** if anything with the same name exists, if ports 80/443 belong to something other than nginx, or if the domain is already configured elsewhere.
 
 ```bash
-# 1. System packages
-sudo apt install python3-venv postgresql redis-server nginx certbot python3-certbot-nginx
-
-# 2. Database
-sudo -u postgres createuser qrmenu -P
-sudo -u postgres createdb qrmenu -O qrmenu
-
-# 3. App
-sudo useradd --system --home /srv/qrmenu qrmenu
-sudo mkdir -p /srv/qrmenu/media && sudo chown -R qrmenu:www-data /srv/qrmenu
-# copy the project to /srv/qrmenu/app, then as the qrmenu user:
+# 0. DNS: A record  qrmenu.timorstore.com → <server IP>
+# 1. On the server (as root)
+git clone https://github.com/januariocosta84/qrmenu.git /srv/qrmenu/app
 cd /srv/qrmenu/app
-python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
-cp .env.example .env   # set the secret key, domain, DATABASE_URL, REDIS_URL, MEDIA_ROOT=/srv/qrmenu/media
-.venv/bin/python manage.py migrate
-.venv/bin/python manage.py collectstatic --noinput
-.venv/bin/python manage.py createsuperuser
-.venv/bin/python manage.py check --deploy
 
-# 4. Services
-sudo cp deploy/qrmenu.service /etc/systemd/system/
-sudo systemctl daemon-reload && sudo systemctl enable --now qrmenu
-sudo cp deploy/nginx.conf /etc/nginx/sites-available/qrmenu    # edit the domain
-sudo ln -s /etc/nginx/sites-available/qrmenu /etc/nginx/sites-enabled/
-sudo certbot --nginx -d menu.example.com
-sudo systemctl reload nginx
+# 2. Dry run: reports what it would add and any conflicts, and changes NOTHING
+MODE=check DOMAIN=qrmenu.timorstore.com bash deploy/setup.sh
+
+# 3. Install
+DOMAIN=qrmenu.timorstore.com EMAIL=you@example.com bash deploy/setup.sh
+
+# 4. Platform owner account
+sudo -u qrmenu .venv/bin/python manage.py createsuperuser
 ```
 
-Nginx serves `/static/` and `/media/` directly and passes `/ws/` (WebSocket upgrade) and everything else to the app.
+**Update:** `cd /srv/qrmenu/app && sudo -u qrmenu git pull && sudo DOMAIN=qrmenu.timorstore.com EMAIL=you@example.com bash deploy/setup.sh`
+**Logs:** `journalctl -u qrmenu -n 100 --no-pager`
+**Remove (QR Menu only):** `sudo bash deploy/uninstall.sh` keeps the database and images and backs them up to `/root`. Add `PURGE=1` to delete everything.
 
-**Backups:** back up the PostgreSQL database (`pg_dump`) and the `MEDIA_ROOT` folder.
+**Backups:** back up the `qrmenu` PostgreSQL database (`pg_dump qrmenu`) and `/srv/qrmenu/media`.
 
 **Before opening sign-up to the public, check that you have:**
-- [ ] A real domain with HTTPS (certbot), and `PUBLIC_BASE_URL`, `DJANGO_ALLOWED_HOSTS` and `DJANGO_CSRF_TRUSTED_ORIGINS` set to it
-- [ ] Working SMTP: register a test restaurant and confirm that the email arrives (check spam; set up SPF/DKIM for your domain)
-- [ ] `SIGNUP_MODE` chosen (`approval` is a safe start), and `PLATFORM_ADMINS` / `SUPPORT_EMAIL` set
-- [ ] A non-obvious `ADMIN_URL`, and a strong superuser password
-- [ ] `CASH_DRAWER_NETWORK_ENABLED=false`
-- [ ] `REDIS_URL` set (needed for live updates with several workers, and for shared rate limits)
-- [ ] `python manage.py check --deploy` passing, with nightly database and media backups
-- [ ] Terms of service and a privacy policy for owners (not included; add your own pages)
-
----
+- [ ] Working SMTP in `/srv/qrmenu/app/.env`: register a test restaurant and confirm that the email arrives
+- [ ] `SIGNUP_MODE` chosen (`approval` is the default from the script), and `PLATFORM_ADMINS` / `SUPPORT_EMAIL` set
+- [ ] A strong platform-owner password; the Django admin path is random (see `ADMIN_URL` in `.env`)
+- [ ] Payment instructions in Platform console → Billing settings
+- [ ] Nightly database and media backups
+- [ ] Terms of service and a privacy policy for owners (not included)
 
 ## Cash drawer
 
