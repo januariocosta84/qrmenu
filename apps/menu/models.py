@@ -29,7 +29,7 @@ class MenuItem(TranslatableMixin, TimeStampedModel):
     TRANSLATABLE_FIELDS = ("name", "description")
 
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="menu_items")
-    category = models.ForeignKey(MenuCategory, on_delete=models.PROTECT, related_name="items")
+    category = models.ForeignKey(MenuCategory, on_delete=models.RESTRICT, related_name="items")
     name = models.CharField(max_length=120)
     description = models.TextField(blank=True, max_length=600)
     price = models.DecimalField(**PRICE_KW)

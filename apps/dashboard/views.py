@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db import transaction
-from django.db.models import Count, ProtectedError, Q, Sum
+from django.db.models import Count, ProtectedError, Q, RestrictedError, Sum
 from django.db.models.functions import TruncDate
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -653,7 +653,7 @@ def category_delete(request, pk):
     try:
         category.delete()
         messages.success(request, "Category deleted.")
-    except ProtectedError:
+    except (ProtectedError, RestrictedError):
         messages.error(request, "Move or delete the dishes in this category first.")
     return _go(request, "menu")
 

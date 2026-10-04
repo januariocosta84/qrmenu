@@ -107,6 +107,23 @@ Demo restaurant ready: /r/demo/
 
 > The demo password is for local testing only. Never run `seed_demo` on a public server.
 
+### Test data
+
+```bash
+python manage.py seed_testdata            # creates the data below; prints all logins
+python manage.py seed_testdata --remove   # deletes exactly this test data, nothing else
+```
+
+It creates three restaurants, each with a full menu (with pictures), tables, a login for **every role** (`test-<restaurant>-owner|manager|kitchen|waiter`, password `Test-pass-2026`; change it with `--password`), 30 days of order history (cash payments with change, bank transfers, cancellations, waiter-entered orders, several guests per table), live orders on the kitchen screen, and invoices:
+
+| Restaurant | Plan / subscription | Use it to test |
+|---|---|---|
+| Dili Bay Grill (TEST) | Standard, **active**, 5% service charge | Normal service, reports, paid invoices plus next month's open one |
+| Kafe Atauro (TEST) | Pro, **trial ending in 5 days** | The trial banner and an open invoice |
+| Warung Lospalos (TEST) | Standard, **expired** | Ordering blocked, an overdue invoice, the expired banner |
+
+All test restaurants and users start with `test-`, which is how `--remove` finds them. On a server with `DJANGO_DEBUG=false` it refuses to run unless you add `--yes-production`.
+
 ## Try it on your phone
 
 1. Find your computer's LAN IP address (for example `192.168.1.20`).
