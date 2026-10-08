@@ -152,7 +152,7 @@ if command -v ufw >/dev/null && ufw status 2>/dev/null | grep -q "Status: active
 fi
 
 # --- Packages that would be installed (missing only, never upgraded)
-WANT=(python3-venv python3-dev build-essential libpq-dev postgresql redis-server certbot git curl)
+WANT=(python3-venv python3-dev build-essential libpq-dev postgresql redis-server certbot git curl gettext)
 [ "$WEB" = nginx ] && WANT+=(nginx)
 MISSING=(); for p in "${WANT[@]}"; do dpkg -s "$p" >/dev/null 2>&1 || MISSING+=("$p"); done
 [ ${#MISSING[@]} = 0 ] && ok "All required packages present" || note "Would install (new only): ${MISSING[*]}"
@@ -229,6 +229,7 @@ cd "$APP"
 sudo -u "$NAME" .venv/bin/pip install -q --upgrade pip
 sudo -u "$NAME" .venv/bin/pip install -q -r requirements.txt
 sudo -u "$NAME" .venv/bin/python manage.py migrate --noinput
+sudo -u "$NAME" .venv/bin/python manage.py compilemessages --ignore=.venv -v 0  # dashboard languages (locale/)
 sudo -u "$NAME" .venv/bin/python manage.py collectstatic --noinput -v 0
 sudo -u "$NAME" .venv/bin/python manage.py check --deploy --fail-level ERROR
 

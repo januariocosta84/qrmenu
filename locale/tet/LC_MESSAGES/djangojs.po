@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: qrmenu dashboard\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-08 10:18+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: tet\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Total due"
+msgstr "Totál atu selu"
+
+msgid "Cash received from customer"
+msgstr "Osan ne'ebé simu husi kliente"
+
+msgid "Exact"
+msgstr "Osan loos"
+
+msgid "Change to give"
+msgstr "Troku atu fó"
+
+msgid "Cancel"
+msgstr "Kansela"
+
+msgid "Paid"
+msgstr "Selu ona"
+
+msgid "Not enough: %(amount)s short."
+msgstr "La to'o: falta %(amount)s."
+
+msgid "Enter the amount received."
+msgstr "Hakerek montante ne'ebé simu."
+
+msgid "Paid · give %(amount)s change"
+msgstr "Selu ona · fó troku %(amount)s"
+
+msgid "Paid · exact amount"
+msgstr "Selu ona · osan loos"
+
+msgid "Receipt printed."
+msgstr "Resibu imprime ona."
+
+msgid "Receipt not printed: %(reason)s"
+msgstr "Resibu la imprime: %(reason)s"
+
+msgid "Receipt"
+msgstr "Resibu"
+
+msgid "PAID"
+msgstr "SELU ONA"
+
+msgid "Print receipt?"
+msgstr "Imprime resibu?"
+
+msgid "GIVE CHANGE"
+msgstr "FÓ TROKU"
+
+msgid "EXACT AMOUNT"
+msgstr "OSAN LOOS"
+
+msgid "Received %(received)s · Total %(total)s"
+msgstr "Simu %(received)s · Totál %(total)s"
+
+msgid "No"
+msgstr "Lae"
+
+msgid "Yes, print"
+msgstr "Sin, imprime"
+
+msgid "OK · print receipt"
+msgstr "OK · imprime resibu"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Cash payment"
+msgstr "Pagamentu osan-kontadu"
+
+msgid "Live: new orders appear automatically"
+msgstr "Direta: pedidu foun sira mosu automatikamente"
+
+msgid "Live"
+msgstr "Ativu"
+
+msgid "Table %(n)s"
+msgstr "Meza %(n)s"
+
+msgid "Counter"
+msgstr "Balkaun"
+
+msgid "New order #%(number)s · %(where)s"
+msgstr "Pedidu foun #%(number)s · %(where)s"
+
+msgid "New order #%(number)s"
+msgstr "Pedidu foun #%(number)s"
+
+msgid "Reconnecting…"
+msgstr "Liga fali hela…"
+
+msgid "Offline"
+msgstr "La iha ligasaun"
+
+msgid "UNPAID"
+msgstr "SEIDAUK SELU"
+
+msgid "by waiter %(name)s"
+msgstr "husi serbidór %(name)s"
+
+msgid "by waiter"
+msgstr "husi serbidór"
+
+msgid "Customer note:"
+msgstr "Nota kliente:"
+
+msgid "ACCEPT ORDER"
+msgstr "SIMU PEDIDU"
+
+msgid "MARK AS READY"
+msgstr "MARKA PRONTU"
+
+msgid "COMPLETED"
+msgstr "REMATA ONA"
+
+msgid "Mark paid"
+msgstr "Marka selu ona"
+
+msgid "%(n)s items"
+msgstr "item %(n)s"
+
+msgid "Cancel order #%(number)s? Reason (optional):"
+msgstr "Kansela pedidu #%(number)s? Razaun (opsionál):"
+
+msgid "Could not update the order."
+msgstr "La konsege atualiza pedidu."
+
+msgid "Order #%(number)s · cash payment"
+msgstr "Pedidu #%(number)s · selu ho osan-kontadu"
+
+msgid "Cash drawer opened · #%(number)s paid"
+msgstr "Gaveta osan loke ona · #%(number)s selu ona"
+
+msgid "Paid, but the drawer did not open: %(reason)s"
+msgstr "Selu ona, maibé gaveta la loke: %(reason)s"
+
+msgid "Could not record the payment."
+msgstr "La konsege rejista pagamentu."
+
+msgid "Updated %(time)s · new orders appear automatically."
+msgstr "Atualiza iha %(time)s · pedidu foun sira mosu automatikamente."
+
+msgid "Could not load orders — retrying…"
+msgstr "La konsege karrega pedidu — koko fali hela…"
+
+msgid "Sound on"
+msgstr "Son moris"
+
+msgid "Enable sound"
+msgstr "Ativa son"
+
+msgid "New guest"
+msgstr "Bainaka foun"
+
+msgid "Sold out"
+msgstr "Hotu ona"
+
+msgid "No dishes."
+msgstr "La iha hahán."
+
+msgid "sold out"
+msgstr "hotu ona"
+
+msgid "Send to kitchen"
+msgstr "Haruka ba kozinha"
+
+msgid "Order #%(number)s sent to the kitchen · %(where)s"
+msgstr "Pedidu #%(number)s haruka ona ba kozinha · %(where)s"
+
+msgid "Guest %(n)s"
+msgstr "Bainaka %(n)s"
+
+msgid "Could not send the order."
+msgstr "La konsege haruka pedidu."
+
+msgid "Ordering is switched off in Restaurant settings."
+msgstr "Pedidu dezativa hela iha Konfigurasaun restaurante."

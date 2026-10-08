@@ -5,6 +5,7 @@ Every staff action is checked against a capability. Capabilities map to the
 roles allowed to perform them; a user only ever holds a role *within* a
 specific restaurant, which is what keeps restaurants isolated from each other.
 """
+from django.utils.translation import gettext_lazy as _
 
 
 class Role:
@@ -14,10 +15,10 @@ class Role:
     WAITER = "waiter"
 
     CHOICES = [
-        (OWNER, "Owner"),
-        (MANAGER, "Manager"),
-        (KITCHEN, "Kitchen"),
-        (WAITER, "Waiter / Cashier"),
+        (OWNER, _("Owner")),
+        (MANAGER, _("Manager")),
+        (KITCHEN, _("Kitchen")),
+        (WAITER, _("Waiter / Cashier")),
     ]
 
 

@@ -2,6 +2,7 @@ from decimal import Decimal
 
 from django.db import transaction
 from django.db.models import Sum
+from django.utils.translation import gettext as _
 
 from apps.orders import realtime
 from apps.orders.models import Order, OrderStatus, PaymentMethod, PaymentStatus
@@ -54,9 +55,9 @@ def receive_cash(orders, *, tendered: Decimal | None = None, user=None, skip_unp
         for order in locked:
             problem = None
             if order.status == OrderStatus.CANCELLED:
-                problem = OrderError("This order was cancelled; there is nothing to pay.", code="cancelled")
+                problem = OrderError(_("This order was cancelled; there is nothing to pay."), code="cancelled")
             elif order.payment_status == PaymentStatus.PAID:
-                problem = OrderError(f"Order #{order.number} is already paid.", code="already_paid")
+                problem = OrderError(_("Order #%(number)s is already paid.") % {"number": order.number}, code="already_paid")
             if problem:
                 if skip_unpayable:
                     continue
@@ -65,14 +66,15 @@ def receive_cash(orders, *, tendered: Decimal | None = None, user=None, skip_unp
             if due > 0:
                 payable.append((order, due))
         if not payable:
-            raise OrderError("There is nothing left to pay.", code="nothing_due")
+            raise OrderError(_("There is nothing left to pay."), code="nothing_due")
 
-        total_due = sum((due for _, due in payable), Decimal("0"))
+        total_due = sum((due for _o, due in payable), Decimal("0"))
         tendered = total_due if tendered is None else tendered
         if tendered < total_due:
             sym = payable[0][0].restaurant.currency_symbol
             raise OrderError(
-                f"Not enough cash: received {sym}{tendered:.2f} but {sym}{total_due:.2f} is due.",
+                _("Not enough cash: received %(received)s but %(due)s is due.") % {
+                    "received": f"{sym}{tendered:.2f}", "due": f"{sym}{total_due:.2f}"},
                 code="insufficient_cash",
             )
         change = tendered - total_due
@@ -84,10 +86,10 @@ def receive_cash(orders, *, tendered: Decimal | None = None, user=None, skip_unp
                 cash_tendered=due + change if last else due,
                 change_given=change if last else Decimal("0"),
             ))
-        for order, _ in payable:
+        for order, _due in payable:
             order.refresh_from_db()
             transaction.on_commit(lambda o=order: realtime.broadcast_order(o, "order_updated"))
-        for bill in {o.table_session for o, _ in payable if o.table_session_id}:
+        for bill in {o.table_session for o, _due in payable if o.table_session_id}:
             close_bill_if_settled(bill, user)
     return CashResult(payments, total_due, tendered, change)
 
@@ -103,13 +105,13 @@ def receive_payment(
     with transaction.atomic():
         order = Order.objects.select_for_update().get(pk=order.pk)
         if order.status == OrderStatus.CANCELLED:
-            raise OrderError("This order was cancelled; there is nothing to pay.", code="cancelled")
+            raise OrderError(_("This order was cancelled; there is nothing to pay."), code="cancelled")
         if order.payment_status == PaymentStatus.PAID:
-            raise OrderError(f"Order #{order.number} is already paid.", code="already_paid")
+            raise OrderError(_("Order #%(number)s is already paid.") % {"number": order.number}, code="already_paid")
         due = balance_due(order)
         amount = due if amount is None else amount
         if amount <= 0:
-            raise OrderError("Amount must be greater than zero.", code="invalid_amount")
+            raise OrderError(_("Amount must be greater than zero."), code="invalid_amount")
         payment = ManualProvider().record(order, amount, method, user=user, reference=reference)
         order.refresh_from_db()
         close_bill_if_settled(order.table_session, user)

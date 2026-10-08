@@ -10,6 +10,7 @@ from django.http import Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils.http import url_has_allowed_host_and_scheme
+from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
 
 from apps.core.utils import client_ip
@@ -44,7 +45,7 @@ class RateLimitedLoginView(auth_views.LoginView):
     def post(self, request, *args, **kwargs):
         key = _key(request, request.POST.get("username", ""))
         if cache.get(key, 0) >= settings.LOGIN_MAX_ATTEMPTS:
-            messages.error(request, "Too many failed login attempts. Please try again in 15 minutes.")
+            messages.error(request, _("Too many failed login attempts. Please try again in 15 minutes."))
             return self.get(request, *args, **kwargs)
         return super().post(request, *args, **kwargs)
 
@@ -68,7 +69,7 @@ def signup(request):
     form = SignupForm(request.POST or None)
     if request.method == "POST":
         if _hit(f"signup:{client_ip(request)}", 3600) > settings.SIGNUPS_PER_IP_PER_HOUR:
-            messages.error(request, "Too many sign-ups from your network. Please try again in an hour.")
+            messages.error(request, _("Too many sign-ups from your network. Please try again in an hour."))
         elif form.is_valid():
             d = form.cleaned_data
             user, restaurant = signup_service.register_restaurant(
@@ -78,11 +79,11 @@ def signup(request):
             login(request, user, backend="apps.accounts.backends.EmailOrUsernameBackend")
             try:
                 signup_service.send_verification_email(request, user)
-                messages.success(request, f"Welcome! We sent a confirmation link to {user.email}.")
+                messages.success(request, _("Welcome! We sent a confirmation link to %(email)s.") % {"email": user.email})
             except Exception:
                 logger.exception("Verification email to %s failed", user.email)
-                messages.warning(request, "Your account is ready, but we couldn't send the confirmation email. "
-                                          "Use “Resend email” below.")
+                messages.warning(request, _("Your account is ready, but we couldn't send the confirmation email. "
+                                            "Use “Resend email” below."))
             return redirect("dashboard:overview", restaurant.slug)
     return render(request, "accounts/signup.html", {
         "form": form, "approval_required": settings.SIGNUP_MODE == "approval",
@@ -92,15 +93,15 @@ def signup(request):
 def verify_email(request, token):
     user = signup_service.verify_token(token)
     if user is None:
-        messages.error(request, "This confirmation link is invalid or has expired. Log in and request a new one.")
+        messages.error(request, _("This confirmation link is invalid or has expired. Log in and request a new one."))
         return redirect("accounts:login")
     published = signup_service.mark_verified(user)
     if published and settings.SIGNUP_MODE == "open":
-        messages.success(request, "Email confirmed — your restaurant is now live! Customers can scan your QR codes.")
+        messages.success(request, _("Email confirmed — your restaurant is now live! Customers can scan your QR codes."))
     elif published:
-        messages.success(request, "Email confirmed. Your restaurant is waiting for approval by the platform team.")
+        messages.success(request, _("Email confirmed. Your restaurant is waiting for approval by the platform team."))
     else:
-        messages.success(request, "Email confirmed.")
+        messages.success(request, _("Email confirmed."))
     return redirect("dashboard:home" if request.user.is_authenticated else "accounts:login")
 
 
@@ -109,16 +110,16 @@ def verify_email(request, token):
 def resend_verification(request):
     user = request.user
     if user.email_verified:
-        messages.info(request, "Your email is already confirmed.")
+        messages.info(request, _("Your email is already confirmed."))
     elif _hit(f"resend-verify:{user.pk}", 3600) > 3:
-        messages.error(request, "Please wait a while before requesting another email.")
+        messages.error(request, _("Please wait a while before requesting another email."))
     else:
         try:
             signup_service.send_verification_email(request, user)
-            messages.success(request, f"Confirmation email sent to {user.email}.")
+            messages.success(request, _("Confirmation email sent to %(email)s.") % {"email": user.email})
         except Exception:
             logger.exception("Verification email to %s failed", user.email)
-            messages.error(request, "We couldn't send the email right now. Please try again later.")
+            messages.error(request, _("We couldn't send the email right now. Please try again later."))
     nxt = request.POST.get("next", "")
     if nxt and url_has_allowed_host_and_scheme(nxt, allowed_hosts={request.get_host()}):
         return redirect(nxt)

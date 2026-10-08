@@ -1,11 +1,11 @@
 {% extends "dashboard/base.html" %}
-{% load ui_icons %}
-{% block title %}Notifications{% endblock %}
+{% load ui_icons i18n %}
+{% block title %}{% translate "Notifications" %}{% endblock %}
 {% block content %}
 <div class="page-head">
-  <div><h1>Notifications</h1></div>
+  <div><h1>{% translate "Notifications" %}</h1></div>
   <div class="page-actions">
-    <form method="post">{% csrf_token %}<button class="btn" type="submit">{% icon "check" %} Mark all as read</button></form>
+    <form method="post">{% csrf_token %}<button class="btn" type="submit">{% icon "check" %} {% translate "Mark all as read" %}</button></form>
   </div>
 </div>
 <section class="card">
@@ -15,17 +15,17 @@
       <span class="notif-dot" aria-hidden="true"></span>
       <div>
         {% if n.order %}<a href="{% url 'dashboard:order_detail' request.restaurant.slug n.order_id %}">{{ n.title }}</a>{% else %}{{ n.title }}{% endif %}
-        <div class="muted small">{{ n.body }} · {{ n.created_at|timesince }} ago</div>
+        <div class="muted small">{{ n.body }} · {% blocktranslate trimmed with t=n.created_at|timesince %}{{ t }} ago{% endblocktranslate %}</div>
       </div>
     </li>
     {% empty %}
-    <li class="empty" style="display:block">{% icon "bell" %}<p>No notifications.</p></li>
+    <li class="empty" style="display:block">{% icon "bell" %}<p>{% translate "No notifications." %}</p></li>
     {% endfor %}
   </ul>
   {% if page.has_other_pages %}
   <nav class="pager">
-    {% if page.has_previous %}<a class="btn btn-sm" href="?page={{ page.previous_page_number }}">{% icon "chevron-left" %} Newer</a>{% endif %}
-    {% if page.has_next %}<a class="btn btn-sm" href="?page={{ page.next_page_number }}">Older {% icon "chevron-right" %}</a>{% endif %}
+    {% if page.has_previous %}<a class="btn btn-sm" href="?page={{ page.previous_page_number }}">{% icon "chevron-left" %} {% translate "Newer" %}</a>{% endif %}
+    {% if page.has_next %}<a class="btn btn-sm" href="?page={{ page.next_page_number }}">{% translate "Older" %} {% icon "chevron-right" %}</a>{% endif %}
   </nav>
   {% endif %}
 </section>

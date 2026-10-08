@@ -210,6 +210,19 @@ h1, h2, h3 { line-height: 1.2; margin: 0; }
 .land-nav { display: flex; justify-content: space-between; align-items: center; padding: 16px; max-width: 1000px; margin: 0 auto; }
 .land-nav a { color: #fff; font-weight: 700; text-decoration: none; }
 .land-brand { font-weight: 900; font-size: 1.15rem; }
+.land-nav-right { display: flex; align-items: center; gap: 14px; }
+/* Language switch (after "Log in") */
+.land-lang { position: relative; }
+.land-lang summary { list-style: none; display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 10px; border-radius: 999px; background: rgba(255, 255, 255, .16); color: #fff; font-weight: 700; font-size: .85rem; cursor: pointer; }
+.land-lang summary::-webkit-details-marker { display: none; }
+.land-lang summary:hover { background: rgba(255, 255, 255, .26); }
+.land-lang summary .chev { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.land-lang-pop { position: absolute; right: 0; top: 44px; z-index: 20; width: 210px; margin: 0; padding: 6px; display: grid; gap: 2px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(16, 24, 40, .2); }
+.land-lang-pop button { display: flex; align-items: center; gap: 8px; width: 100%; padding: 9px 10px; border: 0; border-radius: 8px; background: none; color: #1f2937; font: inherit; text-align: left; cursor: pointer; }
+.land-lang-pop button:hover { background: #f3f4f6; }
+.land-lang-pop button.is-current { font-weight: 800; color: var(--brand); }
+.flag { display: inline-block; flex: none; width: 22px; height: 15px; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px rgba(0, 0, 0, .15); line-height: 0; }
+.flag svg { display: block; width: 100%; height: 100%; }
 .land-inner { max-width: 1000px; margin: 0 auto; padding: 32px 16px 56px; }
 .land-inner h1 { font-size: clamp(2.2rem, 7vw, 3.6rem); }
 .land-lead { font-size: 1.15rem; max-width: 640px; opacity: .95; margin: 14px 0 26px; }
@@ -225,5 +238,30 @@ h1, h2, h3 { line-height: 1.2; margin: 0; }
 .land-steps span, .land-features span { color: var(--muted); }
 .land-features { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 .land-features div { display: flex; flex-direction: column; gap: 4px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius); }
+.land-features .land-ico { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 6px; border-radius: 10px; background: var(--brand-soft); color: var(--brand); }
+.land-ico .i { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+/* Pricing */
+.land-pricing-sub { color: var(--muted); margin: -4px 0 18px; }
+.land-plans { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items: stretch; }
+.land-plan { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 22px 20px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
+.land-plan.is-featured { border: 2px solid var(--brand); box-shadow: 0 10px 28px rgba(194, 65, 12, .14); }
+.land-plan-tag { position: absolute; top: -12px; left: 20px; padding: 3px 10px; border-radius: 999px; background: var(--brand); color: #fff; font-size: .75rem; font-weight: 800; }
+.land-plan-name { font-size: 1.15rem; }
+.land-plan-price { margin: 0; font-size: 2rem; font-weight: 900; letter-spacing: -.02em; }
+.land-plan-price small { font-size: .95rem; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+.land-plan-desc { margin: 0; color: var(--muted); }
+.land-plan-limits { list-style: none; margin: 0 0 6px; padding: 0; display: grid; gap: 8px; flex: 1; }
+.land-plan-limits li { display: flex; align-items: center; gap: 8px; }
+.land-plan-limits .i { width: 18px; height: 18px; flex: none; color: var(--brand); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.land-plan-btn { background: var(--brand-soft); color: var(--brand-dark); }
+.land-plan.is-featured .land-plan-btn { background: var(--brand); color: #fff; }
 .land-diner { text-align: center; background: var(--brand-soft); border-radius: var(--radius); padding: 24px 16px; }
+.land-contact { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+.land-contact a { display: inline-flex; align-items: center; gap: 6px; }
+.land-contact .wa-logo { width: 16px; height: 16px; fill: #25D366; }
+/* Floating WhatsApp button */
+.wa-float { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 30; display: inline-flex; align-items: center; gap: 8px; height: 52px; padding: 0 18px 0 14px; border-radius: 999px; background: #25D366; color: #fff; font-weight: 800; text-decoration: none; box-shadow: 0 8px 24px rgba(0, 0, 0, .22); }
+.wa-float:hover { background: #1ebe5b; }
+.wa-float .wa-logo { width: 26px; height: 26px; fill: currentColor; }
+@media (max-width: 480px) { .wa-float { width: 56px; height: 56px; padding: 0; justify-content: center; } .wa-float span { display: none; } }
 .land-foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); padding-top: 16px; }

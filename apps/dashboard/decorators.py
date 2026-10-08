@@ -40,6 +40,7 @@ def staff_view(capability: str = "view_dashboard"):
                 raise PermissionDenied
             request.restaurant = restaurant
             request.role = role
+            request.role_label = dict(Role.CHOICES).get(role, role)
             request.can = {cap: role_can(role, cap) for cap in CAPABILITIES}
             request.go_live = go_live_status(restaurant)
             request.billing = get_subscription(restaurant)

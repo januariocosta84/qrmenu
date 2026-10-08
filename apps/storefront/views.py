@@ -32,9 +32,15 @@ def _visible_restaurant(request, slug):
 
 @require_GET
 def home(request):
+    from apps.billing.models import BillingSettings, Plan
+
+    billing = BillingSettings.load()
     return render(request, "storefront/home.html", {
         "signup_open": settings.SIGNUP_MODE != "closed",
         "platform_name": settings.PLATFORM_NAME,
+        "plans": Plan.objects.filter(is_active=True, is_public=True),
+        "default_plan_id": billing.default_plan_id,
+        "trial_days": billing.trial_days,
     })
 
 

@@ -1,44 +1,44 @@
 {% extends "dashboard/base.html" %}
-{% load static ui_icons %}
-{% block title %}Kitchen queue{% endblock %}
-{% block mobile_title %}Kitchen queue{% endblock %}
+{% load static ui_icons i18n %}
+{% block title %}{% translate "Kitchen queue" %}{% endblock %}
+{% block mobile_title %}{% translate "Kitchen queue" %}{% endblock %}
 {% block body_class %}kds-page{% endblock %}
 {% block content %}
 <div class="page-head">
   <div>
-    <h1>Kitchen queue</h1>
-    <p class="page-sub" id="kds-status">Loading…</p>
+    <h1>{% translate "Kitchen queue" %}</h1>
+    <p class="page-sub" id="kds-status">{% translate "Loading…" %}</p>
   </div>
   <div class="page-actions">
-    <button class="btn" type="button" id="sound-toggle">{% icon "volume-off" %} Enable sound</button>
-    <button class="btn" type="button" id="fullscreen">{% icon "maximize" %} Full screen</button>
+    <button class="btn" type="button" id="sound-toggle">{% icon "volume-off" %} {% translate "Enable sound" %}</button>
+    <button class="btn" type="button" id="fullscreen">{% icon "maximize" %} {% translate "Full screen" %}</button>
   </div>
 </div>
 
-<div class="kds-tabs" role="tablist" aria-label="Columns">
-  <button type="button" data-tab="new" class="active">New <span class="count" data-count="new">0</span></button>
-  <button type="button" data-tab="preparing">Preparing <span class="count" data-count="preparing">0</span></button>
-  <button type="button" data-tab="ready">Ready <span class="count" data-count="ready">0</span></button>
+<div class="kds-tabs" role="tablist" aria-label="{% translate "Columns" %}">
+  <button type="button" data-tab="new" class="active">{% translate "New" %} <span class="count" data-count="new">0</span></button>
+  <button type="button" data-tab="preparing">{% translate "Preparing" %} <span class="count" data-count="preparing">0</span></button>
+  <button type="button" data-tab="ready">{% translate "Ready" %} <span class="count" data-count="ready">0</span></button>
 </div>
 
 <div class="kds" id="kds">
   <section class="kds-col" data-col="new" id="kcol-new">
-    <h2>NEW ORDERS <span class="count" id="count-new">0</span></h2>
+    <h2>{% translate "NEW ORDERS" %} <span class="count" id="count-new">0</span></h2>
     <div class="kds-list" id="col-new"></div>
   </section>
   <section class="kds-col" data-col="preparing" id="kcol-preparing">
-    <h2>PREPARING <span class="count" id="count-preparing">0</span></h2>
+    <h2>{% translate "PREPARING" %} <span class="count" id="count-preparing">0</span></h2>
     <div class="kds-list" id="col-preparing"></div>
   </section>
   <section class="kds-col" data-col="ready" id="kcol-ready">
-    <h2>READY <span class="count" id="count-ready">0</span></h2>
+    <h2>{% translate "READY" %} <span class="count" id="count-ready">0</span></h2>
     <div class="kds-list" id="col-ready"></div>
   </section>
 </div>
 {% endblock %}
 {% block scripts %}
 {{ kds_config|json_script:"kds-config" }}
-<script src="{% static 'js/kds.js' %}" defer></script>
+<script src="{% static 'js/kds.js' %}?v={{ static_v }}" defer></script>
 <script>
   // Phone: swipeable columns with tabs (counts mirror the column headers).
   (function () {

@@ -2,6 +2,7 @@
 (function () {
   "use strict";
   const D = window.DASH;
+  const _ = D.t;
   const CFG = JSON.parse(document.getElementById("kds-config").textContent);
   const $ = (s, r = document) => r.querySelector(s);
   const orders = new Map();
@@ -33,9 +34,9 @@
     c.dataset.id = o.id;
 
     const head = el("header", "kcard-head");
-    const title = el("h3", null, `#${o.number} — ${o.table_number ? "Table " + o.table_number : "Counter"}`);
+    const title = el("h3", null, `#${o.number} — ${o.table_number ? _("Table %(n)s", { n: o.table_number }) : _("Counter")}`);
     const paid = o.payment_status === "paid";
-    title.appendChild(el("span", `kpay kpay-${paid ? "paid" : "unpaid"}`, paid ? "PAID" : "UNPAID"));
+    title.appendChild(el("span", `kpay kpay-${paid ? "paid" : "unpaid"}`, paid ? _("PAID") : _("UNPAID")));
     const since = col === "preparing" ? o.preparing_at : col === "ready" ? o.ready_at : o.created_at;
     const timer = el("span", "timer", elapsed(since));
     timer.dataset.since = since || "";
@@ -52,7 +53,7 @@
     if (o.source === "staff") {
       const by = el("span", "kby");
       by.innerHTML = D.icon("pen");
-      by.appendChild(document.createTextNode(`by waiter${o.placed_by_name ? " " + o.placed_by_name : ""}`));
+      by.appendChild(document.createTextNode(o.placed_by_name ? _("by waiter %(name)s", { name: o.placed_by_name }) : _("by waiter")));
       c.appendChild(by);
     }
 
@@ -67,7 +68,7 @@
     c.appendChild(ul);
     if (o.note) {
       const n = el("div", "kcard-note");
-      n.appendChild(el("strong", null, "Customer note: "));
+      n.appendChild(el("strong", null, _("Customer note:") + " "));
       n.appendChild(document.createTextNode(o.note));
       c.appendChild(n);
     }
@@ -80,23 +81,23 @@
       return b;
     };
     if (col === "new") {
-      foot.appendChild(btn("ACCEPT ORDER", "preparing", "btn-primary btn-lg"));
-      if (CFG.canCancel) foot.appendChild(btn("Cancel", "cancelled", "btn-ghost"));
+      foot.appendChild(btn(_("ACCEPT ORDER"), "preparing", "btn-primary btn-lg"));
+      if (CFG.canCancel) foot.appendChild(btn(_("Cancel"), "cancelled", "btn-ghost"));
     } else if (col === "preparing") {
-      foot.appendChild(btn("MARK AS READY", "ready", "btn-success btn-lg"));
-      if (CFG.canCancel) foot.appendChild(btn("Cancel", "cancelled", "btn-ghost"));
+      foot.appendChild(btn(_("MARK AS READY"), "ready", "btn-success btn-lg"));
+      if (CFG.canCancel) foot.appendChild(btn(_("Cancel"), "cancelled", "btn-ghost"));
     } else if (col === "ready") {
-      foot.appendChild(btn("COMPLETED", "completed", "btn-dark btn-lg"));
+      foot.appendChild(btn(_("COMPLETED"), "completed", "btn-dark btn-lg"));
     }
     if (CFG.canPay && !paid) {
       const pay = el("button", "btn btn-sm");
       pay.innerHTML = D.icon("cash");
-      pay.appendChild(document.createTextNode(` Mark paid · ${money(o.total)}`));
+      pay.appendChild(document.createTextNode(` ${_("Mark paid")} · ${money(o.total)}`));
       pay.type = "button";
       pay.addEventListener("click", () => markPaid(o, pay));
       foot.appendChild(pay);
     }
-    const meta = el("div", "kcard-meta muted small", `${o.items.reduce((s, i) => s + i.quantity, 0)} items · ${money(o.total)}`);
+    const meta = el("div", "kcard-meta muted small", `${_("%(n)s items", { n: o.items.reduce((s, i) => s + i.quantity, 0) })} · ${money(o.total)}`);
     c.append(foot, meta);
     return c;
   }
@@ -104,14 +105,14 @@
   async function act(order, status, button) {
     let note = "";
     if (status === "cancelled") {
-      note = prompt(`Cancel order #${order.number}? Reason (optional):`, "");
+      note = prompt(_("Cancel order #%(number)s? Reason (optional):", { number: order.number }), "");
       if (note === null) return;
     }
     button.disabled = true;
     try {
       upsert(await D.api(statusUrl(order.id), "POST", { status, note }));
     } catch (err) {
-      D.toast(err.message || "Could not update the order.", null, "error");
+      D.toast(err.message || _("Could not update the order."), null, "error");
       button.disabled = false;
       load();
     }
@@ -119,7 +120,7 @@
 
   async function markPaid(order, button) {
     const dueCents = Math.round(parseFloat(order.total) * 100);
-    const tendered = await D.cashDialog({ title: `Order #${order.number} — cash payment`, dueCents });
+    const tendered = await D.cashDialog({ title: _("Order #%(number)s · cash payment", { number: order.number }), dueCents });
     if (tendered === null) return;
     button.disabled = true;
     try {
@@ -131,10 +132,10 @@
         tenderedCents: Math.round(parseFloat(res.tendered) * 100),
         dueCents, orderIds: rc.orders || [], mode: rc.mode, printed: rc.printed,
       });
-      if (res.drawer && res.drawer.opened) D.toast(`Cash drawer opened · #${order.number} paid`, null, "new");
-      else if (res.drawer && res.drawer.attempted) D.toast(`Paid, but the drawer did not open: ${res.drawer.message}`, null, "error");
+      if (res.drawer && res.drawer.opened) D.toast(_("Cash drawer opened · #%(number)s paid", { number: order.number }), null, "new");
+      else if (res.drawer && res.drawer.attempted) D.toast(_("Paid, but the drawer did not open: %(reason)s", { reason: res.drawer.message }), null, "error");
     } catch (err) {
-      D.toast(err.message || "Could not record the payment.", null, "error");
+      D.toast(err.message || _("Could not record the payment."), null, "error");
       button.disabled = false;
     }
   }
@@ -168,9 +169,9 @@
       orders.clear();
       data.forEach((o) => orders.set(o.id, o));
       render();
-      $("#kds-status").textContent = `Updated ${new Date().toLocaleTimeString()} · new orders appear automatically.`;
-    } catch (_) {
-      $("#kds-status").textContent = "Could not load orders — retrying…";
+      $("#kds-status").textContent = _("Updated %(time)s · new orders appear automatically.", { time: new Date().toLocaleTimeString(D.lang) });
+    } catch (err) {
+      $("#kds-status").textContent = _("Could not load orders — retrying…");
       setTimeout(load, 5000);
     }
   }
@@ -197,7 +198,7 @@
 
   // Controls
   const soundBtn = $("#sound-toggle");
-  const syncSound = () => (soundBtn.innerHTML = D.soundEnabled() ? D.icon("volume") + " Sound on" : D.icon("volume-off") + " Enable sound");
+  const syncSound = () => (soundBtn.innerHTML = D.soundEnabled() ? D.icon("volume") + " " + _("Sound on") : D.icon("volume-off") + " " + _("Enable sound"));
   soundBtn.addEventListener("click", () => { D.setSound(!D.soundEnabled()); syncSound(); });
   syncSound();
   $("#fullscreen").addEventListener("click", () => {

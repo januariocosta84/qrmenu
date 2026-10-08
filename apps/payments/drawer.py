@@ -17,6 +17,7 @@ from dataclasses import dataclass
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _, gettext_lazy
 
 from .models import CashDrawerOpening
 
@@ -42,12 +43,12 @@ def validate_printer_host(host: str) -> str:
     try:
         infos = socket.getaddrinfo(host, None, type=socket.SOCK_STREAM)
     except socket.gaierror:
-        raise ValidationError("Can't find this printer address. Use the printer's IP, e.g. 192.168.1.50.")
+        raise ValidationError(_("Can't find this printer address. Use the printer's IP, e.g. 192.168.1.50."))
     if not getattr(settings, "CASH_DRAWER_ALLOW_PUBLIC_HOSTS", False):
         for info in infos:
             ip = ipaddress.ip_address(info[4][0])
             if not ip.is_private or ip.is_loopback or ip.is_link_local:
-                raise ValidationError("The printer must be on the local network (e.g. 192.168.x.x or 10.x.x.x).")
+                raise ValidationError(_("The printer must be on the local network (e.g. 192.168.x.x or 10.x.x.x)."))
     return host
 
 
@@ -61,7 +62,7 @@ class DrawerResult:
         return {"opened": self.opened, "attempted": self.attempted, "message": self.message}
 
 
-NOT_CONFIGURED = DrawerResult(False, "Cash drawer is not set up.", attempted=False)
+NOT_CONFIGURED = DrawerResult(False, gettext_lazy("Cash drawer is not set up."), attempted=False)
 
 
 def open_cash_drawer(restaurant, *, user=None, reason: str = CashDrawerOpening.PAYMENT, order=None) -> DrawerResult:
@@ -74,9 +75,9 @@ def open_cash_drawer(restaurant, *, user=None, reason: str = CashDrawerOpening.P
         with socket.create_connection((restaurant.printer_host, restaurant.printer_port), timeout=CONNECT_TIMEOUT) as s:
             s.sendall(kick_command(restaurant.drawer_pin))
     except socket.timeout:
-        error = f"Printer at {target} did not respond. Is it switched on and connected?"
+        error = _("Printer at %(target)s did not respond. Is it switched on and connected?") % {"target": target}
     except OSError as exc:
-        error = f"Could not reach the printer at {target} ({exc.strerror or exc})."
+        error = _("Could not reach the printer at %(target)s (%(error)s).") % {"target": target, "error": exc.strerror or exc}
     except ValidationError as exc:
         error = " ".join(exc.messages)
     CashDrawerOpening.objects.create(
@@ -85,4 +86,4 @@ def open_cash_drawer(restaurant, *, user=None, reason: str = CashDrawerOpening.P
     if error:
         logger.warning("Cash drawer for %s: %s", restaurant.slug, error)
         return DrawerResult(False, error)
-    return DrawerResult(True, "Cash drawer opened.")
+    return DrawerResult(True, _("Cash drawer opened."))

@@ -1,0 +1,2283 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: qrmenu dashboard\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-08 11:50+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Restaurant name"
+msgstr "Nama restoran"
+
+msgid "Your name"
+msgstr "Nama Anda"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "You'll sign in with this email. We'll send a confirmation link."
+msgstr ""
+"Anda akan masuk dengan email ini. Kami akan mengirim tautan konfirmasi."
+
+msgid "Phone (optional)"
+msgstr "Telepon (opsional)"
+
+msgid "Password"
+msgstr "Kata sandi"
+
+msgid "I confirm I own or manage this restaurant."
+msgstr "Saya menyatakan bahwa saya pemilik atau pengelola restoran ini."
+
+msgid ""
+"An account with this email already exists. Try logging in or resetting your "
+"password."
+msgstr ""
+"Akun dengan email ini sudah ada. Coba masuk atau atur ulang kata sandi Anda."
+
+msgid "Enter the restaurant's name."
+msgstr "Masukkan nama restoran."
+
+msgid "Sign-up failed. Please try again."
+msgstr "Pendaftaran gagal. Silakan coba lagi."
+
+msgid "Too many failed login attempts. Please try again in 15 minutes."
+msgstr ""
+"Terlalu banyak percobaan masuk yang gagal. Silakan coba lagi dalam 15 menit."
+
+msgid "Too many sign-ups from your network. Please try again in an hour."
+msgstr ""
+"Terlalu banyak pendaftaran dari jaringan Anda. Silakan coba lagi dalam satu "
+"jam."
+
+#, python-format
+msgid "Welcome! We sent a confirmation link to %(email)s."
+msgstr "Selamat datang! Kami telah mengirim tautan konfirmasi ke %(email)s."
+
+msgid ""
+"Your account is ready, but we couldn't send the confirmation email. Use "
+"“Resend email” below."
+msgstr ""
+"Akun Anda sudah siap, tetapi kami tidak dapat mengirim email konfirmasi. "
+"Gunakan “Kirim ulang email” di bawah."
+
+msgid ""
+"This confirmation link is invalid or has expired. Log in and request a new "
+"one."
+msgstr ""
+"Tautan konfirmasi ini tidak valid atau sudah kedaluwarsa. Masuk dan minta "
+"tautan baru."
+
+msgid ""
+"Email confirmed — your restaurant is now live! Customers can scan your QR "
+"codes."
+msgstr ""
+"Email dikonfirmasi — restoran Anda sekarang aktif! Pelanggan dapat memindai "
+"kode QR Anda."
+
+msgid ""
+"Email confirmed. Your restaurant is waiting for approval by the platform "
+"team."
+msgstr "Email dikonfirmasi. Restoran Anda menunggu persetujuan tim platform."
+
+msgid "Email confirmed."
+msgstr "Email dikonfirmasi."
+
+msgid "Your email is already confirmed."
+msgstr "Email Anda sudah dikonfirmasi."
+
+msgid "Please wait a while before requesting another email."
+msgstr "Harap tunggu sebentar sebelum meminta email lain."
+
+#, python-format
+msgid "Confirmation email sent to %(email)s."
+msgstr "Email konfirmasi telah dikirim ke %(email)s."
+
+msgid "We couldn't send the email right now. Please try again later."
+msgstr "Kami tidak dapat mengirim email saat ini. Silakan coba lagi nanti."
+
+msgid "Trial"
+msgstr "Uji coba"
+
+msgid "Active"
+msgstr "Aktif"
+
+msgid "Payment due"
+msgstr "Pembayaran jatuh tempo"
+
+msgid "Expired"
+msgstr "Kedaluwarsa"
+
+msgid "Cancelled"
+msgstr "Dibatalkan"
+
+msgid "Complimentary"
+msgstr "Gratis (khusus)"
+
+msgid "Free plan"
+msgstr "Paket gratis"
+
+msgid "Open"
+msgstr "Terbuka"
+
+msgid "Paid"
+msgstr "Lunas"
+
+msgid "Void"
+msgstr "Dibatalkan"
+
+msgid "This field is required."
+msgstr ""
+
+msgid "Enter a valid email address."
+msgstr ""
+
+msgid "Enter a whole number."
+msgstr ""
+
+msgid "Enter a number."
+msgstr ""
+
+msgid "Enter a valid value."
+msgstr ""
+
+msgid "Enter a valid date."
+msgstr ""
+
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+msgid "Currently"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "No"
+msgstr "Tidak"
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Your old password was entered incorrectly. Please enter it again."
+msgstr ""
+
+msgid "Old password"
+msgstr ""
+
+msgid "New password"
+msgstr ""
+
+msgid "New password confirmation"
+msgstr ""
+
+msgid "The two password fields didn’t match."
+msgstr ""
+
+msgid "This password is too common."
+msgstr ""
+
+msgid "This password is entirely numeric."
+msgstr ""
+
+#, python-format
+msgid "The password is too similar to the %(verbose_name)s."
+msgstr ""
+
+#, python-format
+msgid ""
+"This password is too short. It must contain at least %(min_length)d "
+"character."
+msgid_plural ""
+"This password is too short. It must contain at least %(min_length)d "
+"characters."
+msgstr[0] ""
+
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] ""
+
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] ""
+
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] ""
+
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] ""
+
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] ""
+
+#, python-format
+msgid "%(num)d minute"
+msgid_plural "%(num)d minutes"
+msgstr[0] ""
+
+msgid "Monday"
+msgstr ""
+
+msgid "Tuesday"
+msgstr ""
+
+msgid "Wednesday"
+msgstr ""
+
+msgid "Thursday"
+msgstr ""
+
+msgid "Friday"
+msgstr ""
+
+msgid "Saturday"
+msgstr ""
+
+msgid "Sunday"
+msgstr ""
+
+msgid "Mon"
+msgstr ""
+
+msgid "Tue"
+msgstr ""
+
+msgid "Wed"
+msgstr ""
+
+msgid "Thu"
+msgstr ""
+
+msgid "Fri"
+msgstr ""
+
+msgid "Sat"
+msgstr ""
+
+msgid "Sun"
+msgstr ""
+
+msgid "January"
+msgstr ""
+
+msgid "February"
+msgstr ""
+
+msgid "March"
+msgstr ""
+
+msgid "April"
+msgstr ""
+
+msgid "May"
+msgstr ""
+
+msgid "June"
+msgstr ""
+
+msgid "July"
+msgstr ""
+
+msgid "August"
+msgstr ""
+
+msgid "September"
+msgstr ""
+
+msgid "October"
+msgstr ""
+
+msgid "November"
+msgstr ""
+
+msgid "December"
+msgstr ""
+
+msgid "jan"
+msgstr ""
+
+msgid "feb"
+msgstr ""
+
+msgid "mar"
+msgstr ""
+
+msgid "apr"
+msgstr ""
+
+msgid "may"
+msgstr ""
+
+msgid "jun"
+msgstr ""
+
+msgid "jul"
+msgstr ""
+
+msgid "aug"
+msgstr ""
+
+msgid "sep"
+msgstr ""
+
+msgid "oct"
+msgstr ""
+
+msgid "nov"
+msgstr ""
+
+msgid "dec"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "January"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "March"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "May"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "December"
+msgstr ""
+
+#, python-format
+msgid "Image is too large (max %(mb)s MB)."
+msgstr "Gambar terlalu besar (maks. %(mb)s MB)."
+
+msgid "Only JPEG, PNG and WebP images are allowed."
+msgstr "Hanya gambar JPEG, PNG, dan WebP yang diizinkan."
+
+msgid "Image dimensions are too large."
+msgstr "Dimensi gambar terlalu besar."
+
+msgid "Upload a valid image file."
+msgstr "Unggah file gambar yang valid."
+
+msgid "Owner"
+msgstr "Pemilik"
+
+msgid "Manager"
+msgstr "Manajer"
+
+msgid "Kitchen"
+msgstr "Dapur"
+
+msgid "Waiter / Cashier"
+msgstr "Pelayan / Kasir"
+
+msgid "Unknown table."
+msgstr "Meja tidak dikenal."
+
+msgid "That guest is not at this table any more."
+msgstr "Tamu itu sudah tidak di meja ini."
+
+msgid "Your role cannot cancel orders."
+msgstr "Peran Anda tidak dapat membatalkan pesanan."
+
+msgid "No orders to print."
+msgstr "Tidak ada pesanan untuk dicetak."
+
+msgid "Name"
+msgstr "Nama"
+
+msgid "Description"
+msgstr "Deskripsi"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Cover image"
+msgstr "Gambar sampul"
+
+msgid "Address"
+msgstr "Alamat"
+
+msgid "Phone"
+msgstr "Telepon"
+
+msgid "Opening hours"
+msgstr "Jam buka"
+
+msgid "Currency"
+msgstr "Mata uang"
+
+msgid "Currency symbol"
+msgstr "Simbol mata uang"
+
+msgid "Service charge (%)"
+msgstr "Biaya layanan (%)"
+
+msgid "Default menu language"
+msgstr "Bahasa menu bawaan"
+
+msgid "Default preparation time (minutes)"
+msgstr "Waktu persiapan bawaan (menit)"
+
+msgid "Accepting orders"
+msgstr "Menerima pesanan"
+
+msgid "Cash drawer enabled"
+msgstr "Laci kas aktif"
+
+msgid "Printer IP address"
+msgstr "Alamat IP printer"
+
+msgid "Printer port"
+msgstr "Port printer"
+
+msgid "Drawer pin"
+msgstr "Pin laci"
+
+msgid "After a payment"
+msgstr "Setelah pembayaran"
+
+msgid "Receipt printer"
+msgstr "Printer struk"
+
+msgid "Paper width"
+msgstr "Lebar kertas"
+
+msgid "Receipt footer"
+msgstr "Catatan kaki struk"
+
+msgid "Enter the receipt printer's IP address to print receipts on it."
+msgstr "Masukkan alamat IP printer struk untuk mencetak struk."
+
+msgid "Enter the receipt printer's IP address to use the cash drawer."
+msgstr "Masukkan alamat IP printer struk untuk menggunakan laci kas."
+
+msgid "Position"
+msgstr "Urutan"
+
+msgid "Visible to customers"
+msgstr "Terlihat oleh pelanggan"
+
+msgid "A category with this name already exists."
+msgstr "Kategori dengan nama ini sudah ada."
+
+msgid "Category"
+msgstr "Kategori"
+
+msgid "Price"
+msgstr "Harga"
+
+msgid "Photo"
+msgstr "Foto"
+
+msgid "Available (untick = Sold Out)"
+msgstr "Tersedia (hapus centang = Habis)"
+
+msgid "Preparation time (minutes)"
+msgstr "Waktu persiapan (menit)"
+
+msgid "Available"
+msgstr "Tersedia"
+
+msgid "Table number"
+msgstr "Nomor meja"
+
+msgid "Label"
+msgstr "Label"
+
+msgid "Seats"
+msgstr "Kursi"
+
+msgid "This table number already exists."
+msgstr "Nomor meja ini sudah ada."
+
+msgid "From table"
+msgstr "Dari meja"
+
+msgid "To table"
+msgstr "Sampai meja"
+
+msgid "Choose a range of at most 200 tables, with end ≥ start."
+msgstr "Pilih rentang maksimal 200 meja, dengan akhir ≥ awal."
+
+msgid "Username"
+msgstr "Nama pengguna"
+
+msgid "Role"
+msgstr "Peran"
+
+msgid "Share it with the staff member; they can change it later."
+msgstr "Bagikan kepada staf; mereka dapat mengubahnya nanti."
+
+msgid "An account with this email already exists."
+msgstr "Akun dengan email ini sudah ada."
+
+msgid "This username is already taken."
+msgstr "Nama pengguna ini sudah dipakai."
+
+msgid "Method"
+msgstr "Metode"
+
+msgid "Amount"
+msgstr "Jumlah"
+
+msgid "Reference"
+msgstr "Referensi"
+
+msgid "Receipt / transfer reference"
+msgstr "Referensi struk / transfer"
+
+msgid "Order # / name"
+msgstr "No. pesanan / nama"
+
+msgid "Add your logo, address and opening hours"
+msgstr "Tambahkan logo, alamat, dan jam buka"
+
+msgid "Create menu categories (e.g. Rice, Drinks)"
+msgstr "Buat kategori menu (mis. Nasi, Minuman)"
+
+msgid "Add your dishes with photos and prices"
+msgstr "Tambahkan hidangan dengan foto dan harga"
+
+msgid "Create your tables"
+msgstr "Buat meja Anda"
+
+msgid "Print the QR codes and place one on each table"
+msgstr "Cetak kode QR dan letakkan satu di setiap meja"
+
+msgid "Add kitchen and waiter accounts"
+msgstr "Tambahkan akun dapur dan pelayan"
+
+#, python-format
+msgid "Order #%(number)s → %(status)s."
+msgstr "Pesanan #%(number)s → %(status)s."
+
+#, python-format
+msgid "Payment recorded. Order #%(number)s is now %(status)s."
+msgstr "Pembayaran dicatat. Pesanan #%(number)s sekarang %(status)s."
+
+msgid "Accept"
+msgstr "Terima"
+
+msgid "Start preparing"
+msgstr "Mulai siapkan"
+
+msgid "Mark ready"
+msgstr "Tandai siap"
+
+msgid "Complete"
+msgstr "Selesaikan"
+
+msgid "Cancel order"
+msgstr "Batalkan pesanan"
+
+msgid "Enter the cash received as a number, e.g. 20 or 20.00."
+msgstr "Masukkan uang tunai yang diterima sebagai angka, mis. 20 atau 20.00."
+
+msgid "Enter a valid cash amount."
+msgstr "Masukkan jumlah tunai yang valid."
+
+#, python-format
+msgid "GIVE CHANGE: %(change)s  (received %(received)s, total %(total)s)"
+msgstr "BERI KEMBALIAN: %(change)s  (diterima %(received)s, total %(total)s)"
+
+#, python-format
+msgid "Exact amount received: %(total)s. No change."
+msgstr "Uang pas diterima: %(total)s. Tanpa kembalian."
+
+#, python-format
+msgid "Receipt not printed: %(reason)s"
+msgstr "Struk tidak dicetak: %(reason)s"
+
+msgid "Cash drawer opened."
+msgstr "Laci kas terbuka."
+
+#, python-format
+msgid "Payment saved, but the cash drawer did not open: %(reason)s"
+msgstr "Pembayaran tersimpan, tetapi laci kas tidak terbuka: %(reason)s"
+
+#, python-format
+msgid "Order #%(number)s marked as paid."
+msgstr "Pesanan #%(number)s ditandai lunas."
+
+msgid "Your role cannot manage tables."
+msgstr "Peran Anda tidak dapat mengelola meja."
+
+#, python-format
+msgid "Limit reached: a restaurant can have up to %(n)s tables on your plan."
+msgstr "Batas tercapai: paket Anda mengizinkan hingga %(n)s meja."
+
+#, python-format
+msgid "Created %(n)s table."
+msgid_plural "Created %(n)s tables."
+msgstr[0] "%(n)s meja dibuat."
+
+#, python-format
+msgid "Limit reached: your plan allows %(n)s tables."
+msgstr "Batas tercapai: paket Anda mengizinkan %(n)s meja."
+
+#, python-format
+msgid "Table %(number)s created."
+msgstr "Meja %(number)s dibuat."
+
+#, python-format
+msgid "Guest %(n)s"
+msgstr "Tamu %(n)s"
+
+#, python-format
+msgid "Marked as paid: %(numbers)s."
+msgstr "Ditandai lunas: %(numbers)s."
+
+msgid "This guest has nothing left to pay."
+msgstr "Tamu ini tidak memiliki sisa tagihan."
+
+msgid "There were no unpaid orders at this table."
+msgstr "Tidak ada pesanan yang belum dibayar di meja ini."
+
+#, python-format
+msgid "Table %(number)s is now free."
+msgstr "Meja %(number)s sekarang kosong."
+
+#, python-format
+msgid ""
+"Table %(number)s is now free. Customers must scan the QR code again to order."
+msgstr ""
+"Meja %(number)s sekarang kosong. Pelanggan harus memindai kode QR lagi untuk "
+"memesan."
+
+msgid "Table updated. Reprint its QR code if you changed the number."
+msgstr "Meja diperbarui. Cetak ulang kode QR-nya jika Anda mengubah nomornya."
+
+#, python-format
+msgid "Edit table %(number)s"
+msgstr "Ubah meja %(number)s"
+
+#, python-format
+msgid "Table %(number)s deleted."
+msgstr "Meja %(number)s dihapus."
+
+#, python-format
+msgid ""
+"New QR code generated for table %(number)s. Old printed codes no longer work "
+"— print the new one."
+msgstr ""
+"Kode QR baru dibuat untuk meja %(number)s. Kode lama yang tercetak tidak "
+"berlaku lagi — cetak yang baru."
+
+msgid "Category saved."
+msgstr "Kategori disimpan."
+
+#, python-format
+msgid "Edit category: %(name)s"
+msgstr "Ubah kategori: %(name)s"
+
+msgid "New category"
+msgstr "Kategori baru"
+
+msgid "Category deleted."
+msgstr "Kategori dihapus."
+
+msgid "Move or delete the dishes in this category first."
+msgstr "Pindahkan atau hapus dulu hidangan di kategori ini."
+
+msgid "Create a category first."
+msgstr "Buat kategori terlebih dahulu."
+
+#, python-format
+msgid "Limit reached: your plan allows %(n)s dishes."
+msgstr "Batas tercapai: paket Anda mengizinkan %(n)s hidangan."
+
+#, python-format
+msgid "“%(name)s” saved."
+msgstr "“%(name)s” disimpan."
+
+#, python-format
+msgid "“%(name)s” deleted."
+msgstr "“%(name)s” dihapus."
+
+msgid "Restaurant settings saved."
+msgstr "Pengaturan restoran disimpan."
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "How your restaurant appears to customers."
+msgstr "Bagaimana restoran Anda tampil bagi pelanggan."
+
+msgid "Branding"
+msgstr "Branding"
+
+msgid "Shown at the top of your menu. JPEG, PNG or WebP up to 5 MB."
+msgstr "Ditampilkan di bagian atas menu. JPEG, PNG, atau WebP hingga 5 MB."
+
+msgid "Ordering & money"
+msgstr "Pesanan & uang"
+
+msgid "Pause ordering at any time; prices are shown in this currency."
+msgstr "Jeda pesanan kapan saja; harga ditampilkan dalam mata uang ini."
+
+msgid "Customer menu language"
+msgstr "Bahasa menu pelanggan"
+
+msgid ""
+"Customers can switch language on the menu; untranslated text falls back to "
+"English."
+msgstr ""
+"Pelanggan dapat mengganti bahasa di menu; teks yang belum diterjemahkan "
+"tampil dalam bahasa Inggris."
+
+msgid "Receipts"
+msgstr "Struk"
+
+msgid "What happens after a payment is recorded."
+msgstr "Apa yang terjadi setelah pembayaran dicatat."
+
+msgid "Receipt printer & cash drawer"
+msgstr "Printer struk & laci kas"
+
+msgid "Your network (ESC/POS) receipt printer. The cash drawer plugs into it."
+msgstr ""
+"Printer struk jaringan (ESC/POS) Anda. Laci kas tersambung ke printer ini."
+
+#, python-format
+msgid "Limit reached: your plan allows %(n)s staff accounts."
+msgstr "Batas tercapai: paket Anda mengizinkan %(n)s akun staf."
+
+#, python-format
+msgid "Staff account “%(username)s” created."
+msgstr "Akun staf “%(username)s” dibuat."
+
+msgid "You cannot demote or deactivate yourself."
+msgstr "Anda tidak dapat menurunkan peran atau menonaktifkan diri sendiri."
+
+msgid "Staff member updated."
+msgstr "Staf diperbarui."
+
+#, python-format
+msgid "Edit %(name)s"
+msgstr "Ubah %(name)s"
+
+msgid "Choose a different plan."
+msgstr "Pilih paket lain."
+
+#, python-format
+msgid "Request sent: change to %(plan)s. We'll confirm shortly."
+msgstr ""
+"Permintaan terkirim: ganti ke %(plan)s. Kami akan segera mengonfirmasi."
+
+msgid "Tables"
+msgstr "Meja"
+
+msgid "Dishes"
+msgstr "Hidangan"
+
+msgid "Staff accounts"
+msgstr "Akun staf"
+
+msgid "Lower numbers appear first."
+msgstr "Angka lebih kecil tampil lebih dulu."
+
+msgid "Hidden categories are not shown to customers."
+msgstr "Kategori tersembunyi tidak ditampilkan kepada pelanggan."
+
+msgid "Untick to mark as Sold Out."
+msgstr "Hapus centang untuk menandai Habis."
+
+msgid "Typical preparation time; leave blank to use the restaurant default."
+msgstr "Waktu persiapan biasa; kosongkan untuk memakai bawaan restoran."
+
+msgid "New"
+msgstr "Baru"
+
+msgid "Accepted"
+msgstr "Diterima"
+
+msgid "Preparing"
+msgstr "Disiapkan"
+
+msgid "Ready"
+msgstr "Siap"
+
+msgid "Completed"
+msgstr "Selesai"
+
+msgid "Pay at restaurant"
+msgstr "Bayar di restoran"
+
+msgid "Cash"
+msgstr "Tunai"
+
+msgid "Manual payment"
+msgstr "Pembayaran manual"
+
+msgid "Bank transfer"
+msgstr "Transfer bank"
+
+msgid "Visa / Mastercard"
+msgstr "Visa / Mastercard"
+
+msgid "Online payment gateway"
+msgstr "Gerbang pembayaran online"
+
+msgid "QR payment"
+msgstr "Pembayaran QR"
+
+msgid "Unpaid"
+msgstr "Belum dibayar"
+
+msgid "Refunded"
+msgstr "Dikembalikan"
+
+msgid "QR code"
+msgstr "Kode QR"
+
+msgid "Staff"
+msgstr "Staf"
+
+msgid "New order"
+msgstr "Pesanan baru"
+
+msgid "Order cancelled"
+msgstr "Pesanan dibatalkan"
+
+msgid "This restaurant is not accepting orders right now."
+msgstr "Restoran ini sedang tidak menerima pesanan."
+
+msgid "Invalid table."
+msgstr "Meja tidak valid."
+
+msgid "Your cart is empty."
+msgstr "Keranjang Anda kosong."
+
+msgid "Invalid quantity."
+msgstr "Jumlah tidak valid."
+
+msgid "Invalid add-on selected."
+msgstr "Tambahan yang dipilih tidak valid."
+
+msgid "Some items are no longer available."
+msgstr "Beberapa item sudah tidak tersedia."
+
+#, python-format
+msgid "Cannot change order from %(from)s to %(to)s."
+msgstr "Tidak dapat mengubah pesanan dari %(from)s ke %(to)s."
+
+msgid ""
+"Can't find this printer address. Use the printer's IP, e.g. 192.168.1.50."
+msgstr ""
+"Alamat printer ini tidak ditemukan. Gunakan IP printer, mis. 192.168.1.50."
+
+msgid ""
+"The printer must be on the local network (e.g. 192.168.x.x or 10.x.x.x)."
+msgstr ""
+"Printer harus berada di jaringan lokal (mis. 192.168.x.x atau 10.x.x.x)."
+
+msgid "Cash drawer is not set up."
+msgstr "Laci kas belum diatur."
+
+#, python-format
+msgid "Printer at %(target)s did not respond. Is it switched on and connected?"
+msgstr ""
+"Printer di %(target)s tidak merespons. Apakah sudah menyala dan tersambung?"
+
+#, python-format
+msgid "Could not reach the printer at %(target)s (%(error)s)."
+msgstr "Tidak dapat menghubungi printer di %(target)s (%(error)s)."
+
+msgid "Pending"
+msgstr "Tertunda"
+
+msgid "Succeeded"
+msgstr "Berhasil"
+
+msgid "Failed"
+msgstr "Gagal"
+
+msgid "Cash payment"
+msgstr "Pembayaran tunai"
+
+msgid "No sale / change"
+msgstr "Tanpa penjualan / kembalian"
+
+msgid "Test"
+msgstr "Tes"
+
+msgid "Manual / other"
+msgstr "Manual / lainnya"
+
+msgid "Bank transfer (manual check)"
+msgstr "Transfer bank (cek manual)"
+
+msgid "Card (external terminal)"
+msgstr "Kartu (terminal eksternal)"
+
+msgid "QR payment (manual check)"
+msgstr "Pembayaran QR (cek manual)"
+
+msgid "Network receipt printer is not set up."
+msgstr "Printer struk jaringan belum diatur."
+
+msgid "Nothing to print."
+msgstr "Tidak ada yang dicetak."
+
+#, python-format
+msgid "Printer at %(target)s did not respond. Is it switched on?"
+msgstr "Printer di %(target)s tidak merespons. Apakah sudah menyala?"
+
+msgid "Receipt printed."
+msgstr "Struk dicetak."
+
+msgid "This order was cancelled; there is nothing to pay."
+msgstr "Pesanan ini dibatalkan; tidak ada yang perlu dibayar."
+
+#, python-format
+msgid "Order #%(number)s is already paid."
+msgstr "Pesanan #%(number)s sudah lunas."
+
+msgid "There is nothing left to pay."
+msgstr "Tidak ada sisa yang perlu dibayar."
+
+#, python-format
+msgid "Not enough cash: received %(received)s but %(due)s is due."
+msgstr "Uang tunai kurang: diterima %(received)s tetapi tagihan %(due)s."
+
+msgid "Amount must be greater than zero."
+msgstr "Jumlah harus lebih dari nol."
+
+msgid "Use letters, numbers and dashes only (max 20), e.g. 12 or A-3."
+msgstr ""
+"Gunakan huruf, angka, dan tanda hubung saja (maks. 20), mis. 12 atau A-3."
+
+msgid "e.g. Mon–Sat 08:00–22:00"
+msgstr "mis. Sen–Sab 08:00–22:00"
+
+msgid "Pin 2 (most drawers)"
+msgstr "Pin 2 (kebanyakan laci)"
+
+msgid "Pin 5"
+msgstr "Pin 5"
+
+msgid "Open the cash drawer automatically when a cash payment is recorded."
+msgstr "Buka laci kas otomatis saat pembayaran tunai dicatat."
+
+msgid ""
+"IP address of the receipt printer the drawer is plugged into, e.g. "
+"192.168.1.50"
+msgstr "Alamat IP printer struk tempat laci tersambung, mis. 192.168.1.50"
+
+msgid "Raw printing port; 9100 for almost all network receipt printers."
+msgstr "Port cetak langsung; 9100 untuk hampir semua printer struk jaringan."
+
+msgid "Ask \"Print receipt?\" after each payment"
+msgstr "Tanya “Cetak struk?” setelah setiap pembayaran"
+
+msgid "Always print after payment"
+msgstr "Selalu cetak setelah pembayaran"
+
+msgid "Never print automatically"
+msgstr "Jangan pernah cetak otomatis"
+
+msgid "This device's printer (print dialog)"
+msgstr "Printer perangkat ini (dialog cetak)"
+
+msgid "Network receipt printer (prints directly)"
+msgstr "Printer struk jaringan (cetak langsung)"
+
+msgid "80 mm paper"
+msgstr "Kertas 80 mm"
+
+msgid "58 mm paper"
+msgstr "Kertas 58 mm"
+
+msgid "Paper width of the network receipt printer."
+msgstr "Lebar kertas printer struk."
+
+msgid "Optional, e.g. 'Terrace' or 'Window'."
+msgstr "Opsional, mis. 'Teras' atau 'Jendela'."
+
+msgid "Log in"
+msgstr "Masuk"
+
+msgid "Wrong email/username or password."
+msgstr "Email/nama pengguna atau kata sandi salah."
+
+msgid "Email or username"
+msgstr "Email atau nama pengguna"
+
+msgid "Forgot your password?"
+msgstr "Lupa kata sandi?"
+
+msgid "New restaurant?"
+msgstr "Restoran baru?"
+
+msgid "Register here"
+msgstr "Daftar di sini"
+
+msgid "Change password"
+msgstr "Ubah kata sandi"
+
+msgid "Save"
+msgstr "Simpan"
+
+msgid "Back"
+msgstr "Kembali"
+
+msgid "Reset password"
+msgstr "Atur ulang kata sandi"
+
+msgid "Reset your password"
+msgstr "Atur ulang kata sandi Anda"
+
+msgid ""
+"Enter the email you registered with. We'll send you a link to choose a new "
+"password."
+msgstr ""
+"Masukkan email yang Anda daftarkan. Kami akan mengirim tautan untuk memilih "
+"kata sandi baru."
+
+msgid "Send reset link"
+msgstr "Kirim tautan"
+
+msgid "Back to log in"
+msgstr "Kembali ke halaman masuk"
+
+msgid ""
+"Staff accounts created by a restaurant owner without an email: ask the owner "
+"to reset your password."
+msgstr ""
+"Akun staf yang dibuat pemilik tanpa email: minta pemilik mengatur ulang kata "
+"sandi Anda."
+
+msgid "Password changed"
+msgstr "Kata sandi diubah"
+
+msgid "You can now log in with your new password."
+msgstr "Sekarang Anda dapat masuk dengan kata sandi baru."
+
+msgid "Choose a new password"
+msgstr "Pilih kata sandi baru"
+
+msgid "Save new password"
+msgstr "Simpan kata sandi baru"
+
+msgid "Link expired"
+msgstr "Tautan kedaluwarsa"
+
+msgid "This password reset link is invalid or was already used."
+msgstr "Tautan atur ulang kata sandi ini tidak valid atau sudah digunakan."
+
+msgid "Request a new one"
+msgstr "Minta yang baru"
+
+msgid "Check your email"
+msgstr "Periksa email Anda"
+
+msgid ""
+"If an account exists for that email, we've sent a link to reset your "
+"password. It may take a few minutes; check your spam folder too."
+msgstr ""
+"Jika ada akun dengan email tersebut, kami telah mengirim tautan untuk "
+"mengatur ulang kata sandi. Mungkin perlu beberapa menit; periksa juga folder "
+"spam."
+
+msgid "Register your restaurant"
+msgstr "Daftarkan restoran Anda"
+
+msgid ""
+"Free to start. Set up your menu, print a QR code for each table, and start "
+"taking orders. Your customers don't need an app or an account."
+msgstr ""
+"Gratis untuk memulai. Siapkan menu, cetak kode QR untuk setiap meja, dan "
+"mulai menerima pesanan. Pelanggan tidak perlu aplikasi atau akun."
+
+msgid "Create my restaurant"
+msgstr "Buat restoran saya"
+
+msgid ""
+"New restaurants are reviewed by our team before they go live. You can set up "
+"your menu in the meantime."
+msgstr ""
+"Restoran baru ditinjau oleh tim kami sebelum aktif. Sementara itu, Anda "
+"dapat menyiapkan menu."
+
+msgid "Already registered?"
+msgstr "Sudah terdaftar?"
+
+msgid "Translations · Tetum, Bahasa Indonesia"
+msgstr "Terjemahan · Tetun, Bahasa Indonesia"
+
+msgid "Leave blank to show the English text."
+msgstr "Kosongkan untuk menampilkan teks bahasa Inggris."
+
+msgid "Language"
+msgstr "Bahasa"
+
+msgid "Order"
+msgstr "Pesanan"
+
+msgid "Table"
+msgstr "Meja"
+
+msgid "Customer"
+msgstr "Pelanggan"
+
+msgid "Items"
+msgstr "Item"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Payment"
+msgstr "Pembayaran"
+
+msgid "Time"
+msgstr "Waktu"
+
+msgid "waiter"
+msgstr "pelayan"
+
+msgid "Counter"
+msgstr "Kasir"
+
+#, python-format
+msgid "Order #%(n)s · cash payment"
+msgstr "Pesanan #%(n)s · pembayaran tunai"
+
+msgid "Cash received"
+msgstr "Tunai diterima"
+
+msgid "Mark paid"
+msgstr "Tandai lunas"
+
+msgid "No orders yet."
+msgstr "Belum ada pesanan."
+
+msgid "Dashboard"
+msgstr "Dasbor"
+
+msgid "Main navigation"
+msgstr "Navigasi utama"
+
+msgid "Live"
+msgstr "Aktif"
+
+msgid "Not public yet"
+msgstr "Belum publik"
+
+msgid "Close menu"
+msgstr "Tutup menu"
+
+msgid "Service"
+msgstr "Layanan"
+
+msgid "Overview"
+msgstr "Ringkasan"
+
+msgid "Kitchen queue"
+msgstr "Antrean dapur"
+
+msgid "Orders"
+msgstr "Pesanan"
+
+msgid "Tables &amp; QR"
+msgstr "Meja &amp; QR"
+
+msgid "Manage"
+msgstr "Kelola"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Reports"
+msgstr "Laporan"
+
+msgid "Restaurant"
+msgstr "Restoran"
+
+msgid "Billing"
+msgstr "Tagihan"
+
+msgid "View public menu"
+msgstr "Lihat menu publik"
+
+msgid "Open menu"
+msgstr "Buka menu"
+
+msgid "Live connection"
+msgstr "Koneksi langsung"
+
+msgid "Connecting"
+msgstr "Menghubungkan"
+
+msgid "Open the cash drawer (no sale)? This is logged."
+msgstr "Buka laci kas (tanpa penjualan)? Ini akan dicatat."
+
+msgid "Open cash drawer (no sale)"
+msgstr "Buka laci kas (tanpa penjualan)"
+
+msgid "Open cash drawer"
+msgstr "Buka laci kas"
+
+msgid "Notifications"
+msgstr "Notifikasi"
+
+msgid "Account menu"
+msgstr "Menu akun"
+
+msgid "Platform console"
+msgstr "Konsol platform"
+
+msgid "Switch restaurant"
+msgstr "Ganti restoran"
+
+msgid "Log out"
+msgstr "Keluar"
+
+msgid "Quick navigation"
+msgstr "Navigasi cepat"
+
+msgid "Home"
+msgstr "Beranda"
+
+msgid "the owner's email"
+msgstr "email pemilik"
+
+msgid "Confirm your email to go live."
+msgstr "Konfirmasi email Anda agar aktif."
+
+#, python-format
+msgid ""
+"We sent a link to <strong>%(email)s</strong>. Until then only your staff can "
+"see the menu, so set up your menu and tables in the meantime."
+msgstr ""
+"Kami mengirim tautan ke <strong>%(email)s</strong>. Sampai saat itu hanya "
+"staf Anda yang dapat melihat menu, jadi siapkan menu dan meja Anda terlebih "
+"dahulu."
+
+msgid "Resend email"
+msgstr "Kirim ulang email"
+
+msgid "Waiting for approval."
+msgstr "Menunggu persetujuan."
+
+msgid ""
+"Our team reviews new restaurants before they go public. You can keep setting "
+"up your menu and tables."
+msgstr ""
+"Tim kami meninjau restoran baru sebelum dipublikasikan. Anda dapat terus "
+"menyiapkan menu dan meja."
+
+msgid "This restaurant is not public."
+msgstr "Restoran ini tidak publik."
+
+msgid ""
+"It has been suspended by the platform. Customers can't see the menu or order."
+msgstr ""
+"Restoran ini ditangguhkan oleh platform. Pelanggan tidak dapat melihat menu "
+"atau memesan."
+
+#, python-format
+msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
+msgstr "Hubungi <a href=\"mailto:%(email)s\">%(email)s</a>."
+
+#, python-format
+msgid "Your free trial ends in %(days)s day."
+msgid_plural "Your free trial ends in %(days)s days."
+msgstr[0] "Uji coba gratis Anda berakhir dalam %(days)s hari."
+
+msgid "Pay the invoice to keep taking orders."
+msgstr "Bayar tagihan agar tetap dapat menerima pesanan."
+
+msgid "Payment due."
+msgstr "Pembayaran jatuh tempo."
+
+#, python-format
+msgid ""
+"Your subscription ended on %(date)s; ordering will be switched off soon."
+msgstr ""
+"Langganan Anda berakhir pada %(date)s; pemesanan akan segera dinonaktifkan."
+
+msgid "Subscription expired."
+msgstr "Langganan kedaluwarsa."
+
+msgid "Customers can't place orders until the invoice is paid."
+msgstr "Pelanggan tidak dapat memesan sampai tagihan dibayar."
+
+msgid "Subscription cancelled."
+msgstr "Langganan dibatalkan."
+
+msgid "Customers can't place orders."
+msgstr "Pelanggan tidak dapat memesan."
+
+msgid "View billing"
+msgstr "Lihat tagihan"
+
+msgid "Your plan, usage and invoices."
+msgstr "Paket, penggunaan, dan tagihan Anda."
+
+msgid "Billing isn't set up on this platform yet."
+msgstr "Tagihan belum diatur di platform ini."
+
+msgid "Current plan"
+msgstr "Paket saat ini"
+
+msgid "Free"
+msgstr "Gratis"
+
+msgid "month"
+msgstr "bulan"
+
+msgid "Your account is complimentary. There's nothing to pay."
+msgstr "Akun Anda gratis. Tidak ada yang perlu dibayar."
+
+#, python-format
+msgid "Free trial until <strong>%(date)s</strong>"
+msgstr "Uji coba gratis hingga <strong>%(date)s</strong>"
+
+#, python-format
+msgid "%(n)s day left"
+msgid_plural "%(n)s days left"
+msgstr[0] "sisa %(n)s hari"
+
+msgid "Pay the invoice before then to keep taking orders."
+msgstr "Bayar tagihan sebelum itu agar tetap dapat menerima pesanan."
+
+#, python-format
+msgid "Paid until <strong>%(date)s</strong>."
+msgstr "Lunas hingga <strong>%(date)s</strong>."
+
+#, python-format
+msgid ""
+"Your subscription ended on %(date)s. Please pay the open invoice. Ordering "
+"will be switched off soon."
+msgstr ""
+"Langganan Anda berakhir pada %(date)s. Harap bayar tagihan yang terbuka. "
+"Pemesanan akan segera dinonaktifkan."
+
+msgid ""
+"Your subscription has expired. Customers can't order until the invoice is "
+"paid."
+msgstr ""
+"Langganan Anda kedaluwarsa. Pelanggan tidak dapat memesan sampai tagihan "
+"dibayar."
+
+msgid "Your subscription was cancelled."
+msgstr "Langganan Anda dibatalkan."
+
+#, python-format
+msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a> to reactivate."
+msgstr ""
+"Hubungi <a href=\"mailto:%(email)s\">%(email)s</a> untuk mengaktifkan "
+"kembali."
+
+#, python-format
+msgid ""
+"Change to <strong>%(plan)s</strong> requested %(ago)s ago. Waiting for "
+"confirmation."
+msgstr ""
+"Perubahan ke <strong>%(plan)s</strong> diminta %(ago)s lalu. Menunggu "
+"konfirmasi."
+
+msgid "Usage"
+msgstr "Penggunaan"
+
+msgid "Invoices"
+msgstr "Tagihan"
+
+msgid "Invoice"
+msgstr "Tagihan"
+
+msgid "Period"
+msgstr "Periode"
+
+msgid "Due"
+msgstr "Jatuh tempo"
+
+msgid "Overdue"
+msgstr "Terlambat"
+
+msgid "No invoices yet."
+msgstr "Belum ada tagihan."
+
+msgid "How to pay"
+msgstr "Cara membayar"
+
+msgid ""
+"Use the invoice number as the payment reference. Your subscription is "
+"extended as soon as we confirm the payment."
+msgstr ""
+"Gunakan nomor tagihan sebagai referensi pembayaran. Langganan Anda "
+"diperpanjang segera setelah kami mengonfirmasi pembayaran."
+
+msgid "Plans"
+msgstr "Paket"
+
+msgid "mo"
+msgstr "bln"
+
+#, python-format
+msgid "%(t)s tables · %(d)s dishes · %(s)s staff"
+msgstr "%(t)s meja · %(d)s hidangan · %(s)s staf"
+
+msgid "Your plan"
+msgstr "Paket Anda"
+
+msgid "Requested"
+msgstr "Diminta"
+
+#, python-format
+msgid "Request a change to %(plan)s?"
+msgstr "Minta perubahan ke %(plan)s?"
+
+#, python-format
+msgid "Switch to %(plan)s"
+msgstr "Ganti ke %(plan)s"
+
+msgid "Your restaurants"
+msgstr "Restoran Anda"
+
+msgid "Choose a restaurant"
+msgstr "Pilih restoran"
+
+#, python-format
+msgid "Signed in as %(name)s"
+msgstr "Masuk sebagai %(name)s"
+
+msgid "Not live"
+msgstr "Tidak aktif"
+
+msgid ""
+"Your account is not linked to a restaurant yet. Ask the restaurant owner to "
+"add you as staff."
+msgstr ""
+"Akun Anda belum terhubung ke restoran. Minta pemilik restoran menambahkan "
+"Anda sebagai staf."
+
+#, python-format
+msgid "Or <a href=\"%(url)s\">create a restaurant</a> in the platform admin."
+msgstr "Atau <a href=\"%(url)s\">buat restoran</a> di admin platform."
+
+msgid "Open the platform console"
+msgstr "Buka konsol platform"
+
+msgid "Add a dish"
+msgstr "Tambah hidangan"
+
+#, python-format
+msgid "Edit “%(name)s”"
+msgstr "Ubah “%(name)s”"
+
+msgid "Dish details"
+msgstr "Detail hidangan"
+
+msgid ""
+"Images: JPEG, PNG or WebP up to 5 MB. They're automatically resized and "
+"converted to WebP for fast loading."
+msgstr ""
+"Gambar: JPEG, PNG, atau WebP hingga 5 MB. Otomatis diubah ukurannya dan "
+"dikonversi ke WebP agar cepat dimuat."
+
+msgid "Add-ons &amp; extras"
+msgstr "Tambahan &amp; ekstra"
+
+msgid ""
+"Optional extras customers can tick, e.g. “Fried Egg +$0.50”. Use price 0 for "
+"free options like “No onions”."
+msgstr ""
+"Ekstra opsional yang bisa dipilih pelanggan, mis. “Telur ceplok +$0.50”. "
+"Gunakan harga 0 untuk opsi gratis seperti “Tanpa bawang”."
+
+msgid "Remove"
+msgstr "Hapus"
+
+msgid "Translations"
+msgstr "Terjemahan"
+
+msgid "Need more rows? Save, and two new empty rows will appear."
+msgstr "Butuh baris lagi? Simpan, lalu dua baris kosong baru akan muncul."
+
+msgid "Save dish"
+msgstr "Simpan hidangan"
+
+msgid "Cancel"
+msgstr "Batal"
+
+#, python-format
+msgid "Delete %(name)s? Past orders are kept."
+msgstr "Hapus %(name)s? Pesanan sebelumnya tetap disimpan."
+
+msgid "Delete this dish"
+msgstr "Hapus hidangan ini"
+
+msgid "Loading…"
+msgstr "Memuat…"
+
+msgid "Enable sound"
+msgstr "Aktifkan suara"
+
+msgid "Full screen"
+msgstr "Layar penuh"
+
+msgid "Columns"
+msgstr "Kolom"
+
+msgid "NEW ORDERS"
+msgstr "PESANAN BARU"
+
+msgid "PREPARING"
+msgstr "DISIAPKAN"
+
+msgid "READY"
+msgstr "SIAP"
+
+msgid ""
+"Tap the switch to mark a dish <strong>Sold out</strong>. Customers' menus "
+"update immediately."
+msgstr ""
+"Ketuk sakelar untuk menandai hidangan <strong>Habis</strong>. Menu pelanggan "
+"langsung diperbarui."
+
+msgid "Add dish"
+msgstr "Tambah hidangan"
+
+msgid "Hidden"
+msgstr "Tersembunyi"
+
+msgid "Dish"
+msgstr "Hidangan"
+
+msgid "Edit category"
+msgstr "Ubah kategori"
+
+#, python-format
+msgid "Delete category %(name)s?"
+msgstr "Hapus kategori %(name)s?"
+
+msgid "Delete category"
+msgstr "Hapus kategori"
+
+#, python-format
+msgid "%(n)s add-on"
+msgid_plural "%(n)s add-ons"
+msgstr[0] "%(n)s tambahan"
+
+msgid "Sold Out"
+msgstr "Habis"
+
+msgid "Edit dish"
+msgstr "Ubah hidangan"
+
+msgid "No dishes in this category yet."
+msgstr "Belum ada hidangan di kategori ini."
+
+msgid "Your menu is empty."
+msgstr "Menu Anda kosong."
+
+#, python-format
+msgid ""
+"<a href=\"%(url)s\">Create your first category</a> (e.g. Breakfast, Main "
+"Meals, Drinks)."
+msgstr ""
+"<a href=\"%(url)s\">Buat kategori pertama Anda</a> (mis. Sarapan, Hidangan "
+"Utama, Minuman)."
+
+msgid ""
+"For guests without a smartphone. Choose the table and guest, tap dishes, "
+"then send."
+msgstr ""
+"Untuk tamu tanpa ponsel pintar. Pilih meja dan tamu, ketuk hidangan, lalu "
+"kirim."
+
+msgid "Counter / takeaway"
+msgstr "Kasir / bawa pulang"
+
+#, python-format
+msgid "Table %(n)s"
+msgstr "Meja %(n)s"
+
+msgid "Guest"
+msgstr "Tamu"
+
+msgid "New guest"
+msgstr "Tamu baru"
+
+msgid "Name (optional)"
+msgstr "Nama (opsional)"
+
+msgid "e.g. Maria"
+msgstr "mis. Maria"
+
+msgid "Search dishes…"
+msgstr "Cari hidangan…"
+
+msgid "Search dishes"
+msgstr "Cari hidangan"
+
+msgid "Tap dishes to add them."
+msgstr "Ketuk hidangan untuk menambahkannya."
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "Service charge"
+msgstr "Biaya layanan"
+
+msgid "Note for the kitchen (optional)"
+msgstr "Catatan untuk dapur (opsional)"
+
+msgid "Send to kitchen"
+msgstr "Kirim ke dapur"
+
+msgid "Note"
+msgstr "Catatan"
+
+msgid "e.g. no spicy"
+msgstr "mis. tidak pedas"
+
+msgid "Less"
+msgstr "Kurangi"
+
+msgid "More"
+msgstr "Tambah"
+
+msgid "Add"
+msgstr "Tambah"
+
+msgid "Mark all as read"
+msgstr "Tandai semua sudah dibaca"
+
+#, python-format
+msgid "%(t)s ago"
+msgstr "%(t)s lalu"
+
+msgid "No notifications."
+msgstr "Tidak ada notifikasi."
+
+msgid "Newer"
+msgstr "Lebih baru"
+
+msgid "Older"
+msgstr "Lebih lama"
+
+#, python-format
+msgid "Order #%(n)s"
+msgstr "Pesanan #%(n)s"
+
+#, python-format
+msgid "Table %(t)s"
+msgstr "Meja %(t)s"
+
+msgid "Ordered via"
+msgstr "Dipesan melalui"
+
+msgid "Waiter"
+msgstr "Pelayan"
+
+msgid "Est. prep"
+msgstr "Est. persiapan"
+
+#, python-format
+msgid "%(m)s min"
+msgstr "%(m)s mnt"
+
+msgid "Item"
+msgstr "Item"
+
+msgid "Qty"
+msgstr "Jml"
+
+msgid "Unit"
+msgstr "Satuan"
+
+msgid "History"
+msgstr "Riwayat"
+
+msgid "Update status"
+msgstr "Perbarui status"
+
+msgid "Note (optional, e.g. cancel reason)"
+msgstr "Catatan (opsional, mis. alasan pembatalan)"
+
+msgid "Cancel this order?"
+msgstr "Batalkan pesanan ini?"
+
+msgid "Receipt"
+msgstr "Struk"
+
+msgid "Bill"
+msgstr "Tagihan"
+
+#, python-format
+msgid "Customer chose: %(m)s"
+msgstr "Pilihan pelanggan: %(m)s"
+
+#, python-format
+msgid "received %(got)s, change %(change)s"
+msgstr "diterima %(got)s, kembalian %(change)s"
+
+#, python-format
+msgid "ref %(ref)s"
+msgstr "ref %(ref)s"
+
+#, python-format
+msgid "Paid so far %(paid)s · <strong>Still due %(due)s</strong>"
+msgstr "Sudah dibayar %(paid)s · <strong>Sisa %(due)s</strong>"
+
+msgid "Other method or partial payment"
+msgstr "Metode lain atau pembayaran sebagian"
+
+msgid "Record payment"
+msgstr "Catat pembayaran"
+
+msgid "Every order from QR codes and waiters."
+msgstr "Semua pesanan dari kode QR dan pelayan."
+
+msgid "Filter by status"
+msgstr "Saring menurut status"
+
+msgid "All"
+msgstr "Semua"
+
+msgid "Order # or name"
+msgstr "No. pesanan atau nama"
+
+msgid "Order number or customer name"
+msgstr "Nomor pesanan atau nama pelanggan"
+
+msgid "From date"
+msgstr "Dari tanggal"
+
+msgid "To date"
+msgstr "Sampai tanggal"
+
+msgid "Filter"
+msgstr "Saring"
+
+#, python-format
+msgid "Page %(n)s of %(total)s"
+msgstr "Halaman %(n)s dari %(total)s"
+
+#, python-format
+msgid "Good to see you, %(name)s"
+msgstr "Senang bertemu Anda, %(name)s"
+
+msgid "Good to see you"
+msgstr "Senang bertemu Anda"
+
+#, python-format
+msgid "Today at %(name)s"
+msgstr "Hari ini di %(name)s"
+
+msgid "Ordering is switched off: customers can view the menu but can't order."
+msgstr ""
+"Pemesanan dinonaktifkan: pelanggan dapat melihat menu tetapi tidak dapat "
+"memesan."
+
+msgid "Turn it back on"
+msgstr "Aktifkan kembali"
+
+msgid "Tables &amp; bills"
+msgstr "Meja &amp; tagihan"
+
+msgid "Sold out items"
+msgstr "Item habis"
+
+msgid "Get your restaurant ready"
+msgstr "Siapkan restoran Anda"
+
+#, python-format
+msgid "%(done)s of %(total)s done"
+msgstr "%(done)s dari %(total)s selesai"
+
+#, python-format
+msgid ""
+"Tip: open <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener\">your menu</"
+"a> on your phone to see what customers will see."
+msgstr ""
+"Tips: buka <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener\">menu Anda</"
+"a> di ponsel untuk melihat tampilan bagi pelanggan."
+
+msgid "Orders today"
+msgstr "Pesanan hari ini"
+
+msgid "Revenue today"
+msgstr "Pendapatan hari ini"
+
+msgid "New · cooking"
+msgstr "Baru · dimasak"
+
+msgid "Ready to serve"
+msgstr "Siap disajikan"
+
+msgid "Occupied tables"
+msgstr "Meja terisi"
+
+msgid "Latest orders"
+msgstr "Pesanan terbaru"
+
+msgid "All orders"
+msgstr "Semua pesanan"
+
+msgid "Export CSV"
+msgstr "Ekspor CSV"
+
+msgid "From"
+msgstr "Dari"
+
+msgid "To"
+msgstr "Sampai"
+
+msgid "Apply"
+msgstr "Terapkan"
+
+msgid "Revenue"
+msgstr "Pendapatan"
+
+msgid "Average order"
+msgstr "Rata-rata pesanan"
+
+msgid "Revenue per day"
+msgstr "Pendapatan per hari"
+
+msgid "No completed orders in this period."
+msgstr "Tidak ada pesanan selesai pada periode ini."
+
+msgid "Best sellers"
+msgstr "Terlaris"
+
+msgid "Sold"
+msgstr "Terjual"
+
+msgid "No data yet."
+msgstr "Belum ada data."
+
+msgid "Restaurant settings"
+msgstr "Pengaturan restoran"
+
+msgid "Public menu:"
+msgstr "Menu publik:"
+
+msgid "Cover"
+msgstr "Sampul"
+
+msgid ""
+"Plug the drawer into the printer's RJ11 “DK” port. To find the printer's IP, "
+"hold FEED while switching it on to print a self-test page."
+msgstr ""
+"Colokkan laci ke port RJ11 “DK” pada printer. Untuk mengetahui IP printer, "
+"tahan FEED sambil menyalakannya untuk mencetak halaman uji."
+
+msgid "Save settings"
+msgstr "Simpan pengaturan"
+
+msgid "Cash drawer test &amp; log"
+msgstr "Uji &amp; log laci kas"
+
+msgid "Test drawer"
+msgstr "Uji laci"
+
+msgid "Reason"
+msgstr "Alasan"
+
+msgid "By"
+msgstr "Oleh"
+
+msgid "Result"
+msgstr "Hasil"
+
+msgid "Opened"
+msgstr "Dibuka"
+
+msgid "No drawer openings yet."
+msgstr "Laci belum pernah dibuka."
+
+msgid "Accounts for your team. Each person signs in with their own username."
+msgstr ""
+"Akun untuk tim Anda. Setiap orang masuk dengan nama penggunanya sendiri."
+
+msgid "User"
+msgstr "Pengguna"
+
+msgid "you"
+msgstr "Anda"
+
+msgid "Disabled"
+msgstr "Nonaktif"
+
+msgid "Edit"
+msgstr "Ubah"
+
+msgid "What each role can do"
+msgstr "Yang dapat dilakukan setiap peran"
+
+msgid "everything, including staff accounts."
+msgstr "semuanya, termasuk akun staf."
+
+msgid ""
+"menu, tables &amp; QR codes, restaurant settings, orders, payments, reports."
+msgstr ""
+"menu, meja &amp; kode QR, pengaturan restoran, pesanan, pembayaran, laporan."
+
+msgid "kitchen queue, order status, mark dishes sold out."
+msgstr "antrean dapur, status pesanan, tandai hidangan habis."
+
+msgid "take orders, kitchen queue, cancel orders, payments, free tables."
+msgstr ""
+"menerima pesanan, antrean dapur, membatalkan pesanan, pembayaran, "
+"mengosongkan meja."
+
+msgid "Add staff member"
+msgstr "Tambah staf"
+
+msgid "Create account"
+msgstr "Buat akun"
+
+msgid "Occupied"
+msgstr "Terisi"
+
+msgctxt "table"
+msgid "Free"
+msgstr "Kosong"
+
+#, python-format
+msgid "Open since %(t)s"
+msgstr "Dibuka sejak %(t)s"
+
+#, python-format
+msgid "%(n)s order"
+msgid_plural "%(n)s orders"
+msgstr[0] "%(n)s pesanan"
+
+msgid "Add order"
+msgstr "Tambah pesanan"
+
+msgid "Current bill"
+msgstr "Tagihan saat ini"
+
+msgid "Print bill"
+msgstr "Cetak tagihan"
+
+msgid "Free this table? Everyone who scanned it must scan again to order."
+msgstr ""
+"Kosongkan meja ini? Semua yang sudah memindai harus memindai lagi untuk "
+"memesan."
+
+msgid "Free table"
+msgstr "Kosongkan meja"
+
+msgid "Unpaid at this table"
+msgstr "Belum dibayar di meja ini"
+
+#, python-format
+msgid "Table %(n)s · whole bill"
+msgstr "Meja %(n)s · seluruh tagihan"
+
+msgid "Whole table paid"
+msgstr "Seluruh meja lunas"
+
+msgid "Paid &amp; free table"
+msgstr "Lunas &amp; kosongkan meja"
+
+msgid "Everything at this table is paid."
+msgstr "Semua di meja ini sudah lunas."
+
+#, python-format
+msgid "Table %(n)s · %(guest)s"
+msgstr "Meja %(n)s · %(guest)s"
+
+msgid "Table is open, but nothing has been ordered yet."
+msgstr "Meja terbuka, tetapi belum ada pesanan."
+
+msgid ""
+"This table is free. A bill starts when a customer scans the QR code or a "
+"waiter adds an order."
+msgstr ""
+"Meja ini kosong. Tagihan dimulai saat pelanggan memindai kode QR atau "
+"pelayan menambahkan pesanan."
+
+msgid "Recent bills"
+msgstr "Tagihan terbaru"
+
+msgid "Closed"
+msgstr "Ditutup"
+
+msgid "Open the customer link"
+msgstr "Buka tautan pelanggan"
+
+msgid "Print"
+msgstr "Cetak"
+
+msgid "Generate a new QR code? The currently printed code will STOP working."
+msgstr ""
+"Buat kode QR baru? Kode yang tercetak saat ini akan BERHENTI berfungsi."
+
+msgid "Regenerate QR code"
+msgstr "Buat ulang kode QR"
+
+msgid ""
+"Use this if a code was copied or misused. Old printouts stop working "
+"immediately."
+msgstr ""
+"Gunakan ini jika kode disalin atau disalahgunakan. Cetakan lama langsung "
+"tidak berlaku."
+
+#, python-format
+msgid "Delete table %(n)s? Past orders are kept."
+msgstr "Hapus meja %(n)s? Pesanan sebelumnya tetap disimpan."
+
+msgid "Delete table"
+msgstr "Hapus meja"
+
+msgid "Tables &amp; QR codes"
+msgstr "Meja &amp; kode QR"
+
+msgid ""
+"Each table has its own QR code. Customers scan it to see the menu and order."
+msgstr ""
+"Setiap meja punya kode QR sendiri. Pelanggan memindainya untuk melihat menu "
+"dan memesan."
+
+msgid "Print all QR codes"
+msgstr "Cetak semua kode QR"
+
+#, python-format
+msgid "QR code for table %(n)s"
+msgstr "Kode QR untuk meja %(n)s"
+
+#, python-format
+msgid "%(n)s active"
+msgstr "%(n)s aktif"
+
+msgid "Download PNG"
+msgstr "Unduh PNG"
+
+msgid "No tables yet. Add your first table below."
+msgstr "Belum ada meja. Tambahkan meja pertama Anda di bawah."
+
+msgid "Add a table"
+msgstr "Tambah meja"
+
+msgid "Use numbers or short codes like 12 or A-3."
+msgstr "Gunakan angka atau kode singkat seperti 12 atau A-3."
+
+msgid "Add table"
+msgstr "Tambah meja"
+
+msgid "Add many tables"
+msgstr "Tambah banyak meja"
+
+msgid "Creates numbered tables, skipping numbers that already exist."
+msgstr "Membuat meja bernomor, melewati nomor yang sudah ada."
+
+msgid "Create tables"
+msgstr "Buat meja"
+
+msgid "QR menu & table ordering for restaurants"
+msgstr "Menu QR & pemesanan di meja untuk restoran"
+
+msgid "Scan. Order. Enjoy."
+msgstr "Scan. Pesan. Nikmati."
+
+msgid ""
+"A QR code menu and table ordering for your restaurant. Customers scan the "
+"code on the table, order from their phone, and the order goes straight to "
+"your kitchen. They don't need an app or an account."
+msgstr ""
+"Menu kode QR dan pemesanan di meja untuk restoran Anda. Pelanggan memindai "
+"kode di meja, memesan dari ponsel, dan pesanan langsung masuk ke dapur. "
+"Mereka tidak perlu aplikasi atau akun."
+
+msgid "Open dashboard"
+msgstr "Buka dasbor"
+
+msgid "How it works"
+msgstr "Cara kerjanya"
+
+msgid "Create your menu"
+msgstr "Buat menu Anda"
+
+msgid ""
+"Add dishes, photos, prices and add-ons in English, Tetum and Bahasa "
+"Indonesia."
+msgstr ""
+"Tambahkan hidangan, foto, harga, dan tambahan dalam bahasa Inggris, Tetun, "
+"dan Bahasa Indonesia."
+
+msgid "Print your QR codes"
+msgstr "Cetak kode QR Anda"
+
+msgid "One code per table. Print them and place one on each table."
+msgstr "Satu kode per meja. Cetak dan letakkan satu di setiap meja."
+
+msgid "Receive orders live"
+msgstr "Terima pesanan secara langsung"
+
+msgid ""
+"Orders appear instantly on the kitchen screen with a sound alert. Customers "
+"can follow their order on their phone."
+msgstr ""
+"Pesanan langsung muncul di layar dapur dengan bunyi peringatan. Pelanggan "
+"dapat memantau pesanan di ponsel."
+
+msgid "Works on any phone"
+msgstr "Bisa di ponsel apa saja"
+
+msgid ""
+"Customers scan with the phone camera. No app, no account, and it loads fast "
+"on slow connections."
+msgstr ""
+"Pelanggan memindai dengan kamera ponsel. Tanpa aplikasi, tanpa akun, dan "
+"cepat dimuat meski koneksi lambat."
+
+msgid "Kitchen screen"
+msgstr "Layar dapur"
+
+msgid "New → Preparing → Ready → Completed, with timers and notes."
+msgstr "Baru → Disiapkan → Siap → Selesai, dengan pengatur waktu dan catatan."
+
+msgid "Tables & sessions"
+msgstr "Meja & sesi"
+
+msgid ""
+"Several people can order from one table, and you see one bill per table."
+msgstr ""
+"Beberapa orang dapat memesan dari satu meja, dan Anda melihat satu tagihan "
+"per meja."
+
+msgid "Cash & change"
+msgstr "Tunai & kembalian"
+
+msgid "Mark orders paid in one tap, and see the change to give back."
+msgstr ""
+"Tandai pesanan lunas dengan sekali ketuk, dan lihat kembalian yang harus "
+"diberikan."
+
+msgid "Sold out in one tap"
+msgstr "Tandai habis sekali ketuk"
+
+msgid "Customers' menus update immediately."
+msgstr "Menu pelanggan langsung diperbarui."
+
+msgid "Daily revenue, best sellers and CSV export."
+msgstr "Pendapatan harian, menu terlaris, dan ekspor CSV."
+
+msgid "Pricing"
+msgstr "Harga"
+
+msgid "Simple monthly plans. No setup fees."
+msgstr "Paket bulanan sederhana. Tanpa biaya pemasangan."
+
+#, python-format
+msgid "New restaurants get a %(days)s-day free trial."
+msgid_plural "New restaurants get a %(days)s-day free trial."
+msgstr[0] "Restoran baru mendapat uji coba gratis %(days)s hari."
+
+msgid "Most popular"
+msgstr "Paling populer"
+
+#, python-format
+msgid "Up to %(n)s table"
+msgid_plural "Up to %(n)s tables"
+msgstr[0] "Hingga %(n)s meja"
+
+#, python-format
+msgid "Up to %(n)s dish"
+msgid_plural "Up to %(n)s dishes"
+msgstr[0] "Hingga %(n)s hidangan"
+
+#, python-format
+msgid "Up to %(n)s staff account"
+msgid_plural "Up to %(n)s staff accounts"
+msgstr[0] "Hingga %(n)s akun staf"
+
+msgid "Get started"
+msgstr "Mulai"
+
+msgid "Are you a customer?"
+msgstr "Anda pelanggan?"
+
+msgid "To order, please scan the QR code on your table."
+msgstr "Untuk memesan, silakan pindai kode QR di meja Anda."
+
+#, python-format
+msgid "Hello! I'd like to know more about %(name)s."
+msgstr "Halo! Saya ingin tahu lebih lanjut tentang %(name)s."
+
+msgid "Chat with us on WhatsApp"
+msgstr "Hubungi kami di WhatsApp"

@@ -3,6 +3,7 @@ import uuid
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from apps.core.models import TimeStampedModel
 from apps.restaurants.models import Restaurant, Table, TableSession
@@ -20,12 +21,12 @@ class OrderStatus:
     CANCELLED = "cancelled"
 
     CHOICES = [
-        (NEW, "New"),
-        (ACCEPTED, "Accepted"),
-        (PREPARING, "Preparing"),
-        (READY, "Ready"),
-        (COMPLETED, "Completed"),
-        (CANCELLED, "Cancelled"),
+        (NEW, _("New")),
+        (ACCEPTED, _("Accepted")),
+        (PREPARING, _("Preparing")),
+        (READY, _("Ready")),
+        (COMPLETED, _("Completed")),
+        (CANCELLED, _("Cancelled")),
     ]
     ACTIVE = (NEW, ACCEPTED, PREPARING, READY)
     FINAL = (COMPLETED, CANCELLED)
@@ -53,13 +54,13 @@ class PaymentMethod:
     QR_PAYMENT = "qr_payment"
 
     CHOICES = [
-        (PAY_AT_COUNTER, "Pay at restaurant"),
-        (CASH, "Cash"),
-        (MANUAL, "Manual payment"),
-        (BANK_TRANSFER, "Bank transfer"),
-        (CARD, "Visa / Mastercard"),
-        (ONLINE_GATEWAY, "Online payment gateway"),
-        (QR_PAYMENT, "QR payment"),
+        (PAY_AT_COUNTER, _("Pay at restaurant")),
+        (CASH, _("Cash")),
+        (MANUAL, _("Manual payment")),
+        (BANK_TRANSFER, _("Bank transfer")),
+        (CARD, _("Visa / Mastercard")),
+        (ONLINE_GATEWAY, _("Online payment gateway")),
+        (QR_PAYMENT, _("QR payment")),
     ]
     # Methods customers may choose in v1.
     CUSTOMER_CHOICES = (PAY_AT_COUNTER, CASH)
@@ -69,7 +70,7 @@ class PaymentStatus:
     UNPAID = "unpaid"
     PAID = "paid"
     REFUNDED = "refunded"
-    CHOICES = [(UNPAID, "Unpaid"), (PAID, "Paid"), (REFUNDED, "Refunded")]
+    CHOICES = [(UNPAID, _("Unpaid")), (PAID, _("Paid")), (REFUNDED, _("Refunded"))]
 
 
 class Order(TimeStampedModel):
@@ -114,7 +115,7 @@ class Order(TimeStampedModel):
     placed_ip = models.GenericIPAddressField(null=True, blank=True)
     # "qr" = customer's phone, "staff" = entered by a waiter (guest without a smartphone).
     SOURCE_QR, SOURCE_STAFF = "qr", "staff"
-    source = models.CharField(max_length=10, choices=[(SOURCE_QR, "QR code"), (SOURCE_STAFF, "Staff")], default=SOURCE_QR)
+    source = models.CharField(max_length=10, choices=[(SOURCE_QR, _("QR code")), (SOURCE_STAFF, _("Staff"))], default=SOURCE_QR)
     placed_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+"
     )
@@ -193,7 +194,7 @@ class OrderStatusHistory(models.Model):
 class Notification(models.Model):
     NEW_ORDER = "new_order"
     ORDER_CANCELLED = "order_cancelled"
-    KIND_CHOICES = [(NEW_ORDER, "New order"), (ORDER_CANCELLED, "Order cancelled")]
+    KIND_CHOICES = [(NEW_ORDER, _("New order")), (ORDER_CANCELLED, _("Order cancelled"))]
 
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="notifications")
     order = models.ForeignKey(Order, null=True, blank=True, on_delete=models.CASCADE, related_name="notifications")

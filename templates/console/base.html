@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex">
   <title>{% block title %}Platform{% endblock %} · {{ platform_name }} console</title>
-  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}?v={{ static_v }}">
 </head>
 <body class="has-shell console">
 {% icon_sprite %}

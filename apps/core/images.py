@@ -12,6 +12,7 @@ import uuid
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.files.base import ContentFile
+from django.utils.translation import gettext as _
 from PIL import Image, ImageOps, UnidentifiedImageError
 
 ALLOWED_FORMATS = {"JPEG", "PNG", "WEBP"}
@@ -28,17 +29,17 @@ SIZES = {
 def validate_image_upload(f) -> None:
     if f.size > settings.MAX_IMAGE_UPLOAD_BYTES:
         mb = settings.MAX_IMAGE_UPLOAD_BYTES // (1024 * 1024)
-        raise ValidationError(f"Image is too large (max {mb} MB).")
+        raise ValidationError(_("Image is too large (max %(mb)s MB).") % {"mb": mb})
     try:
         f.seek(0)
         with Image.open(f) as img:
             if img.format not in ALLOWED_FORMATS:
-                raise ValidationError("Only JPEG, PNG and WebP images are allowed.")
+                raise ValidationError(_("Only JPEG, PNG and WebP images are allowed."))
             if img.width * img.height > MAX_PIXELS:
-                raise ValidationError("Image dimensions are too large.")
+                raise ValidationError(_("Image dimensions are too large."))
             img.verify()
     except (UnidentifiedImageError, OSError, Image.DecompressionBombError) as exc:
-        raise ValidationError("Upload a valid image file.") from exc
+        raise ValidationError(_("Upload a valid image file.")) from exc
     finally:
         f.seek(0)
 

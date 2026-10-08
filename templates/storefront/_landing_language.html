@@ -1,0 +1,14 @@
+{% load i18n %}{% get_current_language as LANG %}{% get_available_languages as LANGS %}
+<details class="land-lang">
+  <summary title="{% translate "Language" %}" aria-label="{% translate "Language" %}">{% include "dashboard/_flag.html" with code=LANG %}<span>{{ LANG|upper }}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+  <form method="post" action="{% url 'set_language' %}" class="land-lang-pop">
+    {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
+    {% for code, name in LANGS %}<button type="submit" name="language" value="{{ code }}" lang="{{ code }}"{% if code == LANG %} class="is-current" aria-current="true"{% endif %}>{% include "dashboard/_flag.html" %}{{ name }}</button>{% endfor %}
+  </form>
+</details>
+<script>
+  // Close the language list when clicking elsewhere.
+  document.addEventListener("click", (e) => {
+    document.querySelectorAll("details.land-lang[open]").forEach((d) => { if (!d.contains(e.target)) d.open = false; });
+  });
+</script>

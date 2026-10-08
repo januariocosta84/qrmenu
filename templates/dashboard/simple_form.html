@@ -1,12 +1,12 @@
 {% extends "dashboard/base.html" %}
-{% load ui_icons %}
+{% load ui_icons i18n %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-<a class="back-link" href="{{ back }}">{% icon "arrow-left" %} Back</a>
+<a class="back-link" href="{{ back }}">{% icon "arrow-left" %} {% translate "Back" %}</a>
 <div class="page-head"><h1>{{ title }}</h1></div>
 <form method="post" enctype="multipart/form-data" class="form card narrow">
   {% csrf_token %}
   {% include "dashboard/_form_fields.html" %}
-  <div class="actions"><button class="btn btn-primary" type="submit">{% icon "check" %} Save</button><a class="btn btn-ghost" href="{{ back }}">Cancel</a></div>
+  <div class="actions"><button class="btn btn-primary" type="submit">{% icon "check" %} {% translate "Save" %}</button><a class="btn btn-ghost" href="{{ back }}">{% translate "Cancel" %}</a></div>
 </form>
 {% endblock %}

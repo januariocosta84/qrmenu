@@ -1,0 +1,2278 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: qrmenu dashboard\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-08 11:50+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: tet\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Restaurant name"
+msgstr "Naran restaurante"
+
+msgid "Your name"
+msgstr "Ita-nia naran"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "You'll sign in with this email. We'll send a confirmation link."
+msgstr "Ita sei tama ho email ne'e. Ami sei haruka link ida atu konfirma."
+
+msgid "Phone (optional)"
+msgstr "Telefone (opsionál)"
+
+msgid "Password"
+msgstr "Liafuan-pase"
+
+msgid "I confirm I own or manage this restaurant."
+msgstr "Ha'u konfirma katak ha'u mak na'in ka jestór restaurante ne'e."
+
+msgid ""
+"An account with this email already exists. Try logging in or resetting your "
+"password."
+msgstr "Konta ho email ne'e iha ona. Koko tama ka troka liafuan-pase."
+
+msgid "Enter the restaurant's name."
+msgstr "Hakerek naran restaurante."
+
+msgid "Sign-up failed. Please try again."
+msgstr "Rejistu la susesu. Favór koko fali."
+
+msgid "Too many failed login attempts. Please try again in 15 minutes."
+msgstr "Koko tama sala barak liu. Favór koko fali iha minutu 15 nia laran."
+
+msgid "Too many sign-ups from your network. Please try again in an hour."
+msgstr ""
+"Rejistu barak liu husi ita-nia rede. Favór koko fali iha oras ida nia laran."
+
+#, python-format
+msgid "Welcome! We sent a confirmation link to %(email)s."
+msgstr "Bemvindu! Ami haruka ona link konfirmasaun ba %(email)s."
+
+msgid ""
+"Your account is ready, but we couldn't send the confirmation email. Use "
+"“Resend email” below."
+msgstr ""
+"Ita-nia konta prontu ona, maibé ami la konsege haruka email konfirmasaun. "
+"Uza “Haruka fali email” iha okos."
+
+msgid ""
+"This confirmation link is invalid or has expired. Log in and request a new "
+"one."
+msgstr ""
+"Link konfirmasaun ne'e la válidu ka liu ona prazu. Tama no husu link foun."
+
+msgid ""
+"Email confirmed — your restaurant is now live! Customers can scan your QR "
+"codes."
+msgstr ""
+"Email konfirmadu ona — ita-nia restaurante ativu ona! Kliente sira bele scan "
+"ita-nia kódigu QR."
+
+msgid ""
+"Email confirmed. Your restaurant is waiting for approval by the platform "
+"team."
+msgstr ""
+"Email konfirmadu ona. Ita-nia restaurante hein hela aprovasaun husi ekipa "
+"plataforma."
+
+msgid "Email confirmed."
+msgstr "Email konfirmadu ona."
+
+msgid "Your email is already confirmed."
+msgstr "Ita-nia email konfirmadu tiha ona."
+
+msgid "Please wait a while before requesting another email."
+msgstr "Favór hein uitoan molok husu email seluk."
+
+#, python-format
+msgid "Confirmation email sent to %(email)s."
+msgstr "Email konfirmasaun haruka ona ba %(email)s."
+
+msgid "We couldn't send the email right now. Please try again later."
+msgstr "Ami la konsege haruka email agora. Favór koko fali depois."
+
+msgid "Trial"
+msgstr "Períodu esperimentál"
+
+msgid "Active"
+msgstr "Ativu"
+
+msgid "Payment due"
+msgstr "Tenke selu"
+
+msgid "Expired"
+msgstr "Liu ona prazu"
+
+msgid "Cancelled"
+msgstr "Kansela ona"
+
+msgid "Complimentary"
+msgstr "Gratuitu (oferta)"
+
+msgid "Free plan"
+msgstr "Planu gratuitu"
+
+msgid "Open"
+msgstr "Seidauk selu"
+
+msgid "Paid"
+msgstr "Selu ona"
+
+msgid "Void"
+msgstr "Anula ona"
+
+msgid "This field is required."
+msgstr "Tenke prense kampu ne'e."
+
+msgid "Enter a valid email address."
+msgstr "Hakerek enderesu email ne'ebé válidu."
+
+msgid "Enter a whole number."
+msgstr "Hakerek númeru tomak."
+
+msgid "Enter a number."
+msgstr "Hakerek númeru ida."
+
+msgid "Enter a valid value."
+msgstr "Hakerek valór ne'ebé válidu."
+
+msgid "Enter a valid date."
+msgstr "Hakerek data ne'ebé válidu."
+
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr "Valór ne'e tenke boot liu ka hanesan %(limit_value)s."
+
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr "Valór ne'e tenke ki'ik liu ka hanesan %(limit_value)s."
+
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr "Hili opsaun ne'ebé válidu. %(value)s la'ós opsaun ida husi lista."
+
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr "Hili opsaun ne'ebé válidu. Opsaun ne'e la iha lista."
+
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+"Tau imajen ne'ebé válidu. Arkivu ne'ebé ita tau la'ós imajen ka imajen aat."
+
+msgid "Currently"
+msgstr "Agora"
+
+msgid "Change"
+msgstr "Troka"
+
+msgid "Clear"
+msgstr "Hamoos"
+
+msgid "Yes"
+msgstr "Sin"
+
+msgid "No"
+msgstr "Lae"
+
+msgid "Unknown"
+msgstr "La hatene"
+
+msgid "Your old password was entered incorrectly. Please enter it again."
+msgstr "Liafuan-pase tuan sala. Favór hakerek fali."
+
+msgid "Old password"
+msgstr "Liafuan-pase tuan"
+
+msgid "New password"
+msgstr "Liafuan-pase foun"
+
+msgid "New password confirmation"
+msgstr "Konfirma liafuan-pase foun"
+
+msgid "The two password fields didn’t match."
+msgstr "Liafuan-pase rua la hanesan."
+
+msgid "This password is too common."
+msgstr "Liafuan-pase ne'e komún liu."
+
+msgid "This password is entirely numeric."
+msgstr "Liafuan-pase ne'e iha númeru de'it."
+
+#, python-format
+msgid "The password is too similar to the %(verbose_name)s."
+msgstr "Liafuan-pase ne'e hanesan liu ho %(verbose_name)s."
+
+#, python-format
+msgid ""
+"This password is too short. It must contain at least %(min_length)d "
+"character."
+msgid_plural ""
+"This password is too short. It must contain at least %(min_length)d "
+"characters."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] "tinan %(num)d"
+msgstr[1] "tinan %(num)d"
+
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] "fulan %(num)d"
+msgstr[1] "fulan %(num)d"
+
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] "semana %(num)d"
+msgstr[1] "semana %(num)d"
+
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] "loron %(num)d"
+msgstr[1] "loron %(num)d"
+
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] "oras %(num)d"
+msgstr[1] "oras %(num)d"
+
+#, python-format
+msgid "%(num)d minute"
+msgid_plural "%(num)d minutes"
+msgstr[0] "minutu %(num)d"
+msgstr[1] "minutu %(num)d"
+
+msgid "Monday"
+msgstr "Segunda"
+
+msgid "Tuesday"
+msgstr "Tersa"
+
+msgid "Wednesday"
+msgstr "Kuarta"
+
+msgid "Thursday"
+msgstr "Kinta"
+
+msgid "Friday"
+msgstr "Sesta"
+
+msgid "Saturday"
+msgstr "Sábadu"
+
+msgid "Sunday"
+msgstr "Domingu"
+
+msgid "Mon"
+msgstr "Seg"
+
+msgid "Tue"
+msgstr "Ter"
+
+msgid "Wed"
+msgstr "Kua"
+
+msgid "Thu"
+msgstr "Kin"
+
+msgid "Fri"
+msgstr "Ses"
+
+msgid "Sat"
+msgstr "Sáb"
+
+msgid "Sun"
+msgstr "Dom"
+
+msgid "January"
+msgstr "Janeiru"
+
+msgid "February"
+msgstr "Fevereiru"
+
+msgid "March"
+msgstr "Marsu"
+
+msgid "April"
+msgstr "Abríl"
+
+msgid "May"
+msgstr "Maiu"
+
+msgid "June"
+msgstr "Juñu"
+
+msgid "July"
+msgstr "Jullu"
+
+msgid "August"
+msgstr "Agostu"
+
+msgid "September"
+msgstr "Setembru"
+
+msgid "October"
+msgstr "Outubru"
+
+msgid "November"
+msgstr "Novembru"
+
+msgid "December"
+msgstr "Dezembru"
+
+msgid "jan"
+msgstr "jan"
+
+msgid "feb"
+msgstr "fev"
+
+msgid "mar"
+msgstr "mar"
+
+msgid "apr"
+msgstr "abr"
+
+msgid "may"
+msgstr "mai"
+
+msgid "jun"
+msgstr "jun"
+
+msgid "jul"
+msgstr "jul"
+
+msgid "aug"
+msgstr "ago"
+
+msgid "sep"
+msgstr "set"
+
+msgid "oct"
+msgstr "out"
+
+msgid "nov"
+msgstr "nov"
+
+msgid "dec"
+msgstr "dez"
+
+msgctxt "alt. month"
+msgid "January"
+msgstr "Janeiru"
+
+msgctxt "alt. month"
+msgid "February"
+msgstr "Fevereiru"
+
+msgctxt "alt. month"
+msgid "March"
+msgstr "Marsu"
+
+msgctxt "alt. month"
+msgid "April"
+msgstr "Abríl"
+
+msgctxt "alt. month"
+msgid "May"
+msgstr "Maiu"
+
+msgctxt "alt. month"
+msgid "June"
+msgstr "Juñu"
+
+msgctxt "alt. month"
+msgid "July"
+msgstr "Jullu"
+
+msgctxt "alt. month"
+msgid "August"
+msgstr "Agostu"
+
+msgctxt "alt. month"
+msgid "September"
+msgstr "Setembru"
+
+msgctxt "alt. month"
+msgid "October"
+msgstr "Outubru"
+
+msgctxt "alt. month"
+msgid "November"
+msgstr "Novembru"
+
+msgctxt "alt. month"
+msgid "December"
+msgstr "Dezembru"
+
+#, python-format
+msgid "Image is too large (max %(mb)s MB)."
+msgstr "Imajen boot liu (másimu %(mb)s MB)."
+
+msgid "Only JPEG, PNG and WebP images are allowed."
+msgstr "Imajen JPEG, PNG no WebP de'it mak bele."
+
+msgid "Image dimensions are too large."
+msgstr "Medida imajen nian boot liu."
+
+msgid "Upload a valid image file."
+msgstr "Tau arkivu imajen ida ne'ebé válidu."
+
+msgid "Owner"
+msgstr "Na'in"
+
+msgid "Manager"
+msgstr "Jerente"
+
+msgid "Kitchen"
+msgstr "Kozinha"
+
+msgid "Waiter / Cashier"
+msgstr "Serbidór / Kaixa"
+
+msgid "Unknown table."
+msgstr "Meza la koñesidu."
+
+msgid "That guest is not at this table any more."
+msgstr "Bainaka ne'e la iha ona meza ne'e."
+
+msgid "Your role cannot cancel orders."
+msgstr "Ita-nia knaar la bele kansela pedidu."
+
+msgid "No orders to print."
+msgstr "La iha pedidu atu imprime."
+
+msgid "Name"
+msgstr "Naran"
+
+msgid "Description"
+msgstr "Deskrisaun"
+
+msgid "Logo"
+msgstr "Logotipu"
+
+msgid "Cover image"
+msgstr "Imajen kapa"
+
+msgid "Address"
+msgstr "Enderesu"
+
+msgid "Phone"
+msgstr "Telefone"
+
+msgid "Opening hours"
+msgstr "Oras loke"
+
+msgid "Currency"
+msgstr "Moeda"
+
+msgid "Currency symbol"
+msgstr "Símbolu moeda"
+
+msgid "Service charge (%)"
+msgstr "Taxa servisu (%)"
+
+msgid "Default menu language"
+msgstr "Lian menu nian ne'ebé uza beibeik"
+
+msgid "Default preparation time (minutes)"
+msgstr "Tempu prepara ne'ebé uza beibeik (minutu)"
+
+msgid "Accepting orders"
+msgstr "Simu pedidu"
+
+msgid "Cash drawer enabled"
+msgstr "Gaveta osan ativu"
+
+msgid "Printer IP address"
+msgstr "Enderesu IP imprimidora"
+
+msgid "Printer port"
+msgstr "Porta imprimidora"
+
+msgid "Drawer pin"
+msgstr "Pinu gaveta"
+
+msgid "After a payment"
+msgstr "Hafoin pagamentu"
+
+msgid "Receipt printer"
+msgstr "Imprimidora resibu"
+
+msgid "Paper width"
+msgstr "Luan surat-tahan"
+
+msgid "Receipt footer"
+msgstr "Testu iha resibu nia okos"
+
+msgid "Enter the receipt printer's IP address to print receipts on it."
+msgstr "Hakerek enderesu IP imprimidora resibu nian atu imprime iha ne'ebá."
+
+msgid "Enter the receipt printer's IP address to use the cash drawer."
+msgstr "Hakerek enderesu IP imprimidora resibu nian atu uza gaveta osan."
+
+msgid "Position"
+msgstr "Pozisaun"
+
+msgid "Visible to customers"
+msgstr "Kliente sira bele haree"
+
+msgid "A category with this name already exists."
+msgstr "Kategoria ho naran ne'e iha ona."
+
+msgid "Category"
+msgstr "Kategoria"
+
+msgid "Price"
+msgstr "Folin"
+
+msgid "Photo"
+msgstr "Foto"
+
+msgid "Available (untick = Sold Out)"
+msgstr "Iha (hasai marka = Hotu ona)"
+
+msgid "Preparation time (minutes)"
+msgstr "Tempu prepara (minutu)"
+
+msgid "Available"
+msgstr "Iha"
+
+msgid "Table number"
+msgstr "Númeru meza"
+
+msgid "Label"
+msgstr "Etiketa"
+
+msgid "Seats"
+msgstr "Kadeira"
+
+msgid "This table number already exists."
+msgstr "Númeru meza ne'e iha ona."
+
+msgid "From table"
+msgstr "Husi meza"
+
+msgid "To table"
+msgstr "To'o meza"
+
+msgid "Choose a range of at most 200 tables, with end ≥ start."
+msgstr "Hili meza másimu 200, ho remata ≥ hahú."
+
+msgid "Username"
+msgstr "Naran uzuáriu"
+
+msgid "Role"
+msgstr "Knaar"
+
+msgid "Share it with the staff member; they can change it later."
+msgstr "Fó ida ne'e ba funsionáriu; nia bele troka depois."
+
+msgid "An account with this email already exists."
+msgstr "Konta ho email ne'e iha ona."
+
+msgid "This username is already taken."
+msgstr "Naran uzuáriu ne'e iha ema uza ona."
+
+msgid "Method"
+msgstr "Métodu"
+
+msgid "Amount"
+msgstr "Montante"
+
+msgid "Reference"
+msgstr "Referénsia"
+
+msgid "Receipt / transfer reference"
+msgstr "Referénsia resibu / transferénsia"
+
+msgid "Order # / name"
+msgstr "Nú. pedidu / naran"
+
+msgid "Add your logo, address and opening hours"
+msgstr "Aumenta ita-nia logotipu, enderesu no oras loke"
+
+msgid "Create menu categories (e.g. Rice, Drinks)"
+msgstr "Kria kategoria menu (ez. Etu, Hemu)"
+
+msgid "Add your dishes with photos and prices"
+msgstr "Aumenta hahán sira ho foto no folin"
+
+msgid "Create your tables"
+msgstr "Kria ita-nia meza sira"
+
+msgid "Print the QR codes and place one on each table"
+msgstr "Imprime kódigu QR no tau ida iha meza ida-idak"
+
+msgid "Add kitchen and waiter accounts"
+msgstr "Aumenta konta ba kozinha no serbidór sira"
+
+#, python-format
+msgid "Order #%(number)s → %(status)s."
+msgstr "Pedidu #%(number)s → %(status)s."
+
+#, python-format
+msgid "Payment recorded. Order #%(number)s is now %(status)s."
+msgstr "Pagamentu rejista ona. Pedidu #%(number)s agora: %(status)s."
+
+msgid "Accept"
+msgstr "Simu"
+
+msgid "Start preparing"
+msgstr "Hahú prepara"
+
+msgid "Mark ready"
+msgstr "Marka prontu"
+
+msgid "Complete"
+msgstr "Remata"
+
+msgid "Cancel order"
+msgstr "Kansela pedidu"
+
+msgid "Enter the cash received as a number, e.g. 20 or 20.00."
+msgstr "Hakerek osan ne'ebé simu ho númeru, ez. 20 ka 20.00."
+
+msgid "Enter a valid cash amount."
+msgstr "Hakerek montante osan ne'ebé válidu."
+
+#, python-format
+msgid "GIVE CHANGE: %(change)s  (received %(received)s, total %(total)s)"
+msgstr "FÓ TROKU: %(change)s  (simu %(received)s, totál %(total)s)"
+
+#, python-format
+msgid "Exact amount received: %(total)s. No change."
+msgstr "Simu osan loos: %(total)s. La iha troku."
+
+#, python-format
+msgid "Receipt not printed: %(reason)s"
+msgstr "Resibu la imprime: %(reason)s"
+
+msgid "Cash drawer opened."
+msgstr "Gaveta osan loke ona."
+
+#, python-format
+msgid "Payment saved, but the cash drawer did not open: %(reason)s"
+msgstr "Pagamentu rai ona, maibé gaveta osan la loke: %(reason)s"
+
+#, python-format
+msgid "Order #%(number)s marked as paid."
+msgstr "Pedidu #%(number)s marka ona katak selu ona."
+
+msgid "Your role cannot manage tables."
+msgstr "Ita-nia knaar la bele jere meza."
+
+#, python-format
+msgid "Limit reached: a restaurant can have up to %(n)s tables on your plan."
+msgstr "To'o ona limite: ita-nia planu permite meza to'o %(n)s."
+
+#, python-format
+msgid "Created %(n)s table."
+msgid_plural "Created %(n)s tables."
+msgstr[0] "Kria ona meza %(n)s."
+msgstr[1] "Kria ona meza %(n)s."
+
+#, python-format
+msgid "Limit reached: your plan allows %(n)s tables."
+msgstr "To'o ona limite: ita-nia planu permite meza %(n)s."
+
+#, python-format
+msgid "Table %(number)s created."
+msgstr "Meza %(number)s kria ona."
+
+#, python-format
+msgid "Guest %(n)s"
+msgstr "Bainaka %(n)s"
+
+#, python-format
+msgid "Marked as paid: %(numbers)s."
+msgstr "Marka ona katak selu ona: %(numbers)s."
+
+msgid "This guest has nothing left to pay."
+msgstr "Bainaka ne'e la iha buat ida atu selu tan."
+
+msgid "There were no unpaid orders at this table."
+msgstr "La iha pedidu ne'ebé seidauk selu iha meza ne'e."
+
+#, python-format
+msgid "Table %(number)s is now free."
+msgstr "Meza %(number)s agora livre."
+
+#, python-format
+msgid ""
+"Table %(number)s is now free. Customers must scan the QR code again to order."
+msgstr ""
+"Meza %(number)s agora livre. Kliente sira tenke scan fali kódigu QR atu pede."
+
+msgid "Table updated. Reprint its QR code if you changed the number."
+msgstr "Meza atualiza ona. Imprime fali kódigu QR se ita troka númeru."
+
+#, python-format
+msgid "Edit table %(number)s"
+msgstr "Edita meza %(number)s"
+
+#, python-format
+msgid "Table %(number)s deleted."
+msgstr "Meza %(number)s hamoos ona."
+
+#, python-format
+msgid ""
+"New QR code generated for table %(number)s. Old printed codes no longer work "
+"— print the new one."
+msgstr ""
+"Kódigu QR foun kria ona ba meza %(number)s. Kódigu tuan sira la funsiona ona "
+"— imprime ida foun."
+
+msgid "Category saved."
+msgstr "Kategoria rai ona."
+
+#, python-format
+msgid "Edit category: %(name)s"
+msgstr "Edita kategoria: %(name)s"
+
+msgid "New category"
+msgstr "Kategoria foun"
+
+msgid "Category deleted."
+msgstr "Kategoria hamoos ona."
+
+msgid "Move or delete the dishes in this category first."
+msgstr "Muda ka hamoos uluk hahán sira iha kategoria ne'e."
+
+msgid "Create a category first."
+msgstr "Kria uluk kategoria ida."
+
+#, python-format
+msgid "Limit reached: your plan allows %(n)s dishes."
+msgstr "To'o ona limite: ita-nia planu permite hahán %(n)s."
+
+#, python-format
+msgid "“%(name)s” saved."
+msgstr "“%(name)s” rai ona."
+
+#, python-format
+msgid "“%(name)s” deleted."
+msgstr "“%(name)s” hamoos ona."
+
+msgid "Restaurant settings saved."
+msgstr "Konfigurasaun restaurante rai ona."
+
+msgid "Profile"
+msgstr "Perfíl"
+
+msgid "How your restaurant appears to customers."
+msgstr "Oinsá ita-nia restaurante mosu ba kliente sira."
+
+msgid "Branding"
+msgstr "Imajen"
+
+msgid "Shown at the top of your menu. JPEG, PNG or WebP up to 5 MB."
+msgstr "Mosu iha menu nia leten. JPEG, PNG ka WebP to'o 5 MB."
+
+msgid "Ordering & money"
+msgstr "Pedidu no osan"
+
+msgid "Pause ordering at any time; prices are shown in this currency."
+msgstr "Bele para pedidu iha tempu ruma; folin sira mosu iha moeda ne'e."
+
+msgid "Customer menu language"
+msgstr "Lian menu ba kliente"
+
+msgid ""
+"Customers can switch language on the menu; untranslated text falls back to "
+"English."
+msgstr ""
+"Kliente sira bele troka lian iha menu; testu ne'ebé seidauk tradús sei mosu "
+"iha Inglés."
+
+msgid "Receipts"
+msgstr "Resibu"
+
+msgid "What happens after a payment is recorded."
+msgstr "Saida mak akontese hafoin rejista pagamentu."
+
+msgid "Receipt printer & cash drawer"
+msgstr "Imprimidora resibu no gaveta osan"
+
+msgid "Your network (ESC/POS) receipt printer. The cash drawer plugs into it."
+msgstr ""
+"Ita-nia imprimidora resibu iha rede (ESC/POS). Gaveta osan liga ba ne'e."
+
+#, python-format
+msgid "Limit reached: your plan allows %(n)s staff accounts."
+msgstr "To'o ona limite: ita-nia planu permite konta funsionáriu %(n)s."
+
+#, python-format
+msgid "Staff account “%(username)s” created."
+msgstr "Konta funsionáriu “%(username)s” kria ona."
+
+msgid "You cannot demote or deactivate yourself."
+msgstr "Ita labele hatuun ita-nia knaar rasik ka dezativa ita-an."
+
+msgid "Staff member updated."
+msgstr "Funsionáriu atualiza ona."
+
+#, python-format
+msgid "Edit %(name)s"
+msgstr "Edita %(name)s"
+
+msgid "Choose a different plan."
+msgstr "Hili planu seluk."
+
+#, python-format
+msgid "Request sent: change to %(plan)s. We'll confirm shortly."
+msgstr "Pedidu haruka ona: troka ba %(plan)s. Ami sei konfirma lalais."
+
+msgid "Tables"
+msgstr "Meza"
+
+msgid "Dishes"
+msgstr "Hahán"
+
+msgid "Staff accounts"
+msgstr "Konta funsionáriu"
+
+msgid "Lower numbers appear first."
+msgstr "Númeru ki'ik mosu uluk."
+
+msgid "Hidden categories are not shown to customers."
+msgstr "Kategoria subar la mosu ba kliente sira."
+
+msgid "Untick to mark as Sold Out."
+msgstr "Hasai marka atu marka Hotu ona."
+
+msgid "Typical preparation time; leave blank to use the restaurant default."
+msgstr "Tempu prepara normál; husik mamuk atu uza tempu restaurante nian."
+
+msgid "New"
+msgstr "Foun"
+
+msgid "Accepted"
+msgstr "Simu ona"
+
+msgid "Preparing"
+msgstr "Prepara hela"
+
+msgid "Ready"
+msgstr "Prontu"
+
+msgid "Completed"
+msgstr "Remata ona"
+
+msgid "Pay at restaurant"
+msgstr "Selu iha restaurante"
+
+msgid "Cash"
+msgstr "Osan-kontadu"
+
+msgid "Manual payment"
+msgstr "Pagamentu manuál"
+
+msgid "Bank transfer"
+msgstr "Transferénsia banku"
+
+msgid "Visa / Mastercard"
+msgstr "Visa / Mastercard"
+
+msgid "Online payment gateway"
+msgstr "Pagamentu online"
+
+msgid "QR payment"
+msgstr "Pagamentu QR"
+
+msgid "Unpaid"
+msgstr "Seidauk selu"
+
+msgid "Refunded"
+msgstr "Fó fali osan ona"
+
+msgid "QR code"
+msgstr "Kódigu QR"
+
+msgid "Staff"
+msgstr "Funsionáriu"
+
+msgid "New order"
+msgstr "Pedidu foun"
+
+msgid "Order cancelled"
+msgstr "Pedidu kansela ona"
+
+msgid "This restaurant is not accepting orders right now."
+msgstr "Restaurante ne'e la simu pedidu agora."
+
+msgid "Invalid table."
+msgstr "Meza la válidu."
+
+msgid "Your cart is empty."
+msgstr "Ita-nia karriñu mamuk."
+
+msgid "Invalid quantity."
+msgstr "Kuantidade la válidu."
+
+msgid "Invalid add-on selected."
+msgstr "Hili aumentu ne'ebé la válidu."
+
+msgid "Some items are no longer available."
+msgstr "Hahán balu la iha ona."
+
+#, python-format
+msgid "Cannot change order from %(from)s to %(to)s."
+msgstr "Labele troka pedidu husi %(from)s ba %(to)s."
+
+msgid ""
+"Can't find this printer address. Use the printer's IP, e.g. 192.168.1.50."
+msgstr ""
+"La hetan enderesu imprimidora ne'e. Uza IP imprimidora nian, ez. "
+"192.168.1.50."
+
+msgid ""
+"The printer must be on the local network (e.g. 192.168.x.x or 10.x.x.x)."
+msgstr "Imprimidora tenke iha rede lokál (ez. 192.168.x.x ka 10.x.x.x)."
+
+msgid "Cash drawer is not set up."
+msgstr "Gaveta osan seidauk konfigura."
+
+#, python-format
+msgid "Printer at %(target)s did not respond. Is it switched on and connected?"
+msgstr "Imprimidora iha %(target)s la responde. Nia moris no liga ona?"
+
+#, python-format
+msgid "Could not reach the printer at %(target)s (%(error)s)."
+msgstr "La konsege liga ba imprimidora iha %(target)s (%(error)s)."
+
+msgid "Pending"
+msgstr "Hein hela"
+
+msgid "Succeeded"
+msgstr "Susesu"
+
+msgid "Failed"
+msgstr "La susesu"
+
+msgid "Cash payment"
+msgstr "Pagamentu osan-kontadu"
+
+msgid "No sale / change"
+msgstr "La fa'an / troku"
+
+msgid "Test"
+msgstr "Teste"
+
+msgid "Manual / other"
+msgstr "Manuál / seluk"
+
+msgid "Bank transfer (manual check)"
+msgstr "Transferénsia banku (verifika manuál)"
+
+msgid "Card (external terminal)"
+msgstr "Kartaun (terminál esterna)"
+
+msgid "QR payment (manual check)"
+msgstr "Pagamentu QR (verifika manuál)"
+
+msgid "Network receipt printer is not set up."
+msgstr "Imprimidora resibu iha rede seidauk konfigura."
+
+msgid "Nothing to print."
+msgstr "La iha buat ida atu imprime."
+
+#, python-format
+msgid "Printer at %(target)s did not respond. Is it switched on?"
+msgstr "Imprimidora iha %(target)s la responde. Nia moris ona?"
+
+msgid "Receipt printed."
+msgstr "Resibu imprime ona."
+
+msgid "This order was cancelled; there is nothing to pay."
+msgstr "Pedidu ne'e kansela ona; la iha buat ida atu selu."
+
+#, python-format
+msgid "Order #%(number)s is already paid."
+msgstr "Pedidu #%(number)s selu tiha ona."
+
+msgid "There is nothing left to pay."
+msgstr "La iha buat ida atu selu tan."
+
+#, python-format
+msgid "Not enough cash: received %(received)s but %(due)s is due."
+msgstr "Osan la to'o: simu %(received)s maibé tenke selu %(due)s."
+
+msgid "Amount must be greater than zero."
+msgstr "Montante tenke boot liu zero."
+
+msgid "Use letters, numbers and dashes only (max 20), e.g. 12 or A-3."
+msgstr "Uza letra, númeru no tasi (-) de'it (másimu 20), ez. 12 ka A-3."
+
+msgid "e.g. Mon–Sat 08:00–22:00"
+msgstr "ez. Seg–Sáb 08:00–22:00"
+
+msgid "Pin 2 (most drawers)"
+msgstr "Pinu 2 (gaveta barak liu)"
+
+msgid "Pin 5"
+msgstr "Pinu 5"
+
+msgid "Open the cash drawer automatically when a cash payment is recorded."
+msgstr ""
+"Loke gaveta osan automatikamente bainhira rejista pagamentu osan-kontadu."
+
+msgid ""
+"IP address of the receipt printer the drawer is plugged into, e.g. "
+"192.168.1.50"
+msgstr "Enderesu IP imprimidora resibu ne'ebé gaveta liga ba, ez. 192.168.1.50"
+
+msgid "Raw printing port; 9100 for almost all network receipt printers."
+msgstr "Porta imprime direta; 9100 ba kuaze imprimidora resibu rede hotu."
+
+msgid "Ask \"Print receipt?\" after each payment"
+msgstr "Husu “Imprime resibu?” hafoin pagamentu ida-idak"
+
+msgid "Always print after payment"
+msgstr "Imprime beibeik hafoin pagamentu"
+
+msgid "Never print automatically"
+msgstr "Labele imprime automatikamente"
+
+msgid "This device's printer (print dialog)"
+msgstr "Imprimidora aparellu ida ne'e (janela imprime)"
+
+msgid "Network receipt printer (prints directly)"
+msgstr "Imprimidora resibu iha rede (imprime direta)"
+
+msgid "80 mm paper"
+msgstr "Surat-tahan 80 mm"
+
+msgid "58 mm paper"
+msgstr "Surat-tahan 58 mm"
+
+msgid "Paper width of the network receipt printer."
+msgstr "Luan surat-tahan imprimidora resibu nian."
+
+msgid "Optional, e.g. 'Terrace' or 'Window'."
+msgstr "Opsionál, ez. 'Teraza' ka 'Janela'."
+
+msgid "Log in"
+msgstr "Tama"
+
+msgid "Wrong email/username or password."
+msgstr "Email/naran uzuáriu ka liafuan-pase sala."
+
+msgid "Email or username"
+msgstr "Email ka naran uzuáriu"
+
+msgid "Forgot your password?"
+msgstr "Haluha liafuan-pase?"
+
+msgid "New restaurant?"
+msgstr "Restaurante foun?"
+
+msgid "Register here"
+msgstr "Rejistu iha ne'e"
+
+msgid "Change password"
+msgstr "Troka liafuan-pase"
+
+msgid "Save"
+msgstr "Rai"
+
+msgid "Back"
+msgstr "Fila"
+
+msgid "Reset password"
+msgstr "Troka fali liafuan-pase"
+
+msgid "Reset your password"
+msgstr "Troka fali ita-nia liafuan-pase"
+
+msgid ""
+"Enter the email you registered with. We'll send you a link to choose a new "
+"password."
+msgstr ""
+"Hakerek email ne'ebé ita uza atu rejistu. Ami sei haruka link ida atu hili "
+"liafuan-pase foun."
+
+msgid "Send reset link"
+msgstr "Haruka link"
+
+msgid "Back to log in"
+msgstr "Fila ba tama"
+
+msgid ""
+"Staff accounts created by a restaurant owner without an email: ask the owner "
+"to reset your password."
+msgstr ""
+"Konta funsionáriu ne'ebé na'in kria la ho email: husu na'in atu troka fali "
+"ita-nia liafuan-pase."
+
+msgid "Password changed"
+msgstr "Liafuan-pase troka ona"
+
+msgid "You can now log in with your new password."
+msgstr "Agora ita bele tama ho liafuan-pase foun."
+
+msgid "Choose a new password"
+msgstr "Hili liafuan-pase foun"
+
+msgid "Save new password"
+msgstr "Rai liafuan-pase foun"
+
+msgid "Link expired"
+msgstr "Link liu ona prazu"
+
+msgid "This password reset link is invalid or was already used."
+msgstr "Link atu troka liafuan-pase ne'e la válidu ka uza tiha ona."
+
+msgid "Request a new one"
+msgstr "Husu ida foun"
+
+msgid "Check your email"
+msgstr "Haree ita-nia email"
+
+msgid ""
+"If an account exists for that email, we've sent a link to reset your "
+"password. It may take a few minutes; check your spam folder too."
+msgstr ""
+"Se iha konta ho email ne'e, ami haruka ona link atu troka fali liafuan-pase. "
+"Bele demora minutu balu; haree mós pasta spam."
+
+msgid "Register your restaurant"
+msgstr "Rejistu ita-nia restaurante"
+
+msgid ""
+"Free to start. Set up your menu, print a QR code for each table, and start "
+"taking orders. Your customers don't need an app or an account."
+msgstr ""
+"Gratuitu atu hahú. Prepara ita-nia menu, imprime kódigu QR ida ba meza ida-"
+"idak, no hahú simu pedidu. Ita-nia kliente sira la presiza aplikasaun ka "
+"konta."
+
+msgid "Create my restaurant"
+msgstr "Kria ha'u-nia restaurante"
+
+msgid ""
+"New restaurants are reviewed by our team before they go live. You can set up "
+"your menu in the meantime."
+msgstr ""
+"Ami-nia ekipa sei haree restaurante foun sira molok sira ativu. Entretantu "
+"ita bele prepara ita-nia menu."
+
+msgid "Already registered?"
+msgstr "Rejistu tiha ona?"
+
+msgid "Translations · Tetum, Bahasa Indonesia"
+msgstr "Tradusaun · Tetun, Bahasa Indonézia"
+
+msgid "Leave blank to show the English text."
+msgstr "Husik mamuk atu hatudu testu Inglés."
+
+msgid "Language"
+msgstr "Lian"
+
+msgid "Order"
+msgstr "Pedidu"
+
+msgid "Table"
+msgstr "Meza"
+
+msgid "Customer"
+msgstr "Kliente"
+
+msgid "Items"
+msgstr "Item"
+
+msgid "Total"
+msgstr "Totál"
+
+msgid "Status"
+msgstr "Estadu"
+
+msgid "Payment"
+msgstr "Pagamentu"
+
+msgid "Time"
+msgstr "Oras"
+
+msgid "waiter"
+msgstr "serbidór"
+
+msgid "Counter"
+msgstr "Balkaun"
+
+#, python-format
+msgid "Order #%(n)s · cash payment"
+msgstr "Pedidu #%(n)s · selu ho osan-kontadu"
+
+msgid "Cash received"
+msgstr "Simu osan"
+
+msgid "Mark paid"
+msgstr "Marka selu ona"
+
+msgid "No orders yet."
+msgstr "Seidauk iha pedidu."
+
+msgid "Dashboard"
+msgstr "Painél"
+
+msgid "Main navigation"
+msgstr "Navegasaun prinsipál"
+
+msgid "Live"
+msgstr "Ativu"
+
+msgid "Not public yet"
+msgstr "Seidauk públiku"
+
+msgid "Close menu"
+msgstr "Taka menu"
+
+msgid "Service"
+msgstr "Servisu"
+
+msgid "Overview"
+msgstr "Rezumu"
+
+msgid "Kitchen queue"
+msgstr "Lista kozinha"
+
+msgid "Orders"
+msgstr "Pedidu"
+
+msgid "Tables &amp; QR"
+msgstr "Meza no QR"
+
+msgid "Manage"
+msgstr "Jestaun"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Reports"
+msgstr "Relatóriu"
+
+msgid "Restaurant"
+msgstr "Restaurante"
+
+msgid "Billing"
+msgstr "Faturasaun"
+
+msgid "View public menu"
+msgstr "Haree menu públiku"
+
+msgid "Open menu"
+msgstr "Loke menu"
+
+msgid "Live connection"
+msgstr "Ligasaun direta"
+
+msgid "Connecting"
+msgstr "Liga hela"
+
+msgid "Open the cash drawer (no sale)? This is logged."
+msgstr "Loke gaveta osan (la fa'an)? Ida ne'e sei rejista."
+
+msgid "Open cash drawer (no sale)"
+msgstr "Loke gaveta osan (la fa'an)"
+
+msgid "Open cash drawer"
+msgstr "Loke gaveta osan"
+
+msgid "Notifications"
+msgstr "Notifikasaun"
+
+msgid "Account menu"
+msgstr "Menu konta"
+
+msgid "Platform console"
+msgstr "Konsola plataforma"
+
+msgid "Switch restaurant"
+msgstr "Troka restaurante"
+
+msgid "Log out"
+msgstr "Sai"
+
+msgid "Quick navigation"
+msgstr "Navegasaun lalais"
+
+msgid "Home"
+msgstr "Uma"
+
+msgid "the owner's email"
+msgstr "email na'in nian"
+
+msgid "Confirm your email to go live."
+msgstr "Konfirma ita-nia email atu ativu."
+
+#, python-format
+msgid ""
+"We sent a link to <strong>%(email)s</strong>. Until then only your staff can "
+"see the menu, so set up your menu and tables in the meantime."
+msgstr ""
+"Ami haruka ona link ba <strong>%(email)s</strong>. To'o ne'ebá funsionáriu "
+"sira de'it mak bele haree menu, entaun prepara uluk menu no meza sira."
+
+msgid "Resend email"
+msgstr "Haruka fali email"
+
+msgid "Waiting for approval."
+msgstr "Hein hela aprovasaun."
+
+msgid ""
+"Our team reviews new restaurants before they go public. You can keep setting "
+"up your menu and tables."
+msgstr ""
+"Ami-nia ekipa haree restaurante foun sira molok sira sai públiku. Ita bele "
+"kontinua prepara menu no meza sira."
+
+msgid "This restaurant is not public."
+msgstr "Restaurante ne'e la públiku."
+
+msgid ""
+"It has been suspended by the platform. Customers can't see the menu or order."
+msgstr "Plataforma suspende ona. Kliente sira labele haree menu ka pede."
+
+#, python-format
+msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
+msgstr "Kontaktu <a href=\"mailto:%(email)s\">%(email)s</a>."
+
+#, python-format
+msgid "Your free trial ends in %(days)s day."
+msgid_plural "Your free trial ends in %(days)s days."
+msgstr[0] "Ita-nia períodu esperimentál remata iha loron %(days)s."
+msgstr[1] "Ita-nia períodu esperimentál remata iha loron %(days)s."
+
+msgid "Pay the invoice to keep taking orders."
+msgstr "Selu fatura atu kontinua simu pedidu."
+
+msgid "Payment due."
+msgstr "Tenke selu."
+
+#, python-format
+msgid ""
+"Your subscription ended on %(date)s; ordering will be switched off soon."
+msgstr "Ita-nia asinatura remata iha %(date)s; pedidu sei dezativa lalais."
+
+msgid "Subscription expired."
+msgstr "Asinatura liu ona prazu."
+
+msgid "Customers can't place orders until the invoice is paid."
+msgstr "Kliente sira labele pede to'o fatura selu ona."
+
+msgid "Subscription cancelled."
+msgstr "Asinatura kansela ona."
+
+msgid "Customers can't place orders."
+msgstr "Kliente sira labele pede."
+
+msgid "View billing"
+msgstr "Haree faturasaun"
+
+msgid "Your plan, usage and invoices."
+msgstr "Ita-nia planu, uzu no fatura sira."
+
+msgid "Billing isn't set up on this platform yet."
+msgstr "Faturasaun seidauk konfigura iha plataforma ne'e."
+
+msgid "Current plan"
+msgstr "Planu atuál"
+
+msgid "Free"
+msgstr "Gratuitu"
+
+msgid "month"
+msgstr "fulan"
+
+msgid "Your account is complimentary. There's nothing to pay."
+msgstr "Ita-nia konta gratuitu. La iha buat ida atu selu."
+
+#, python-format
+msgid "Free trial until <strong>%(date)s</strong>"
+msgstr "Períodu esperimentál to'o <strong>%(date)s</strong>"
+
+#, python-format
+msgid "%(n)s day left"
+msgid_plural "%(n)s days left"
+msgstr[0] "loron %(n)s tan"
+msgstr[1] "loron %(n)s tan"
+
+msgid "Pay the invoice before then to keep taking orders."
+msgstr "Selu fatura molok ne'e atu kontinua simu pedidu."
+
+#, python-format
+msgid "Paid until <strong>%(date)s</strong>."
+msgstr "Selu ona to'o <strong>%(date)s</strong>."
+
+#, python-format
+msgid ""
+"Your subscription ended on %(date)s. Please pay the open invoice. Ordering "
+"will be switched off soon."
+msgstr ""
+"Ita-nia asinatura remata iha %(date)s. Favór selu fatura ne'ebé seidauk "
+"selu. Pedidu sei dezativa lalais."
+
+msgid ""
+"Your subscription has expired. Customers can't order until the invoice is "
+"paid."
+msgstr ""
+"Ita-nia asinatura liu ona prazu. Kliente sira labele pede to'o fatura selu "
+"ona."
+
+msgid "Your subscription was cancelled."
+msgstr "Ita-nia asinatura kansela ona."
+
+#, python-format
+msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a> to reactivate."
+msgstr "Kontaktu <a href=\"mailto:%(email)s\">%(email)s</a> atu ativa fali."
+
+#, python-format
+msgid ""
+"Change to <strong>%(plan)s</strong> requested %(ago)s ago. Waiting for "
+"confirmation."
+msgstr ""
+"Husu troka ba <strong>%(plan)s</strong> %(ago)s liubá. Hein hela "
+"konfirmasaun."
+
+msgid "Usage"
+msgstr "Uzu"
+
+msgid "Invoices"
+msgstr "Fatura"
+
+msgid "Invoice"
+msgstr "Fatura"
+
+msgid "Period"
+msgstr "Períodu"
+
+msgid "Due"
+msgstr "Prazu"
+
+msgid "Overdue"
+msgstr "Liu ona prazu"
+
+msgid "No invoices yet."
+msgstr "Seidauk iha fatura."
+
+msgid "How to pay"
+msgstr "Oinsá atu selu"
+
+msgid ""
+"Use the invoice number as the payment reference. Your subscription is "
+"extended as soon as we confirm the payment."
+msgstr ""
+"Uza númeru fatura nian hanesan referénsia pagamentu. Ita-nia asinatura sei "
+"aumenta kedas bainhira ami konfirma pagamentu."
+
+msgid "Plans"
+msgstr "Planu"
+
+msgid "mo"
+msgstr "fulan"
+
+#, python-format
+msgid "%(t)s tables · %(d)s dishes · %(s)s staff"
+msgstr "meza %(t)s · hahán %(d)s · funsionáriu %(s)s"
+
+msgid "Your plan"
+msgstr "Ita-nia planu"
+
+msgid "Requested"
+msgstr "Husu ona"
+
+#, python-format
+msgid "Request a change to %(plan)s?"
+msgstr "Husu troka ba %(plan)s?"
+
+#, python-format
+msgid "Switch to %(plan)s"
+msgstr "Troka ba %(plan)s"
+
+msgid "Your restaurants"
+msgstr "Ita-nia restaurante sira"
+
+msgid "Choose a restaurant"
+msgstr "Hili restaurante ida"
+
+#, python-format
+msgid "Signed in as %(name)s"
+msgstr "Tama hanesan %(name)s"
+
+msgid "Not live"
+msgstr "La ativu"
+
+msgid ""
+"Your account is not linked to a restaurant yet. Ask the restaurant owner to "
+"add you as staff."
+msgstr ""
+"Ita-nia konta seidauk liga ba restaurante ida. Husu restaurante na'in atu "
+"aumenta ita hanesan funsionáriu."
+
+#, python-format
+msgid "Or <a href=\"%(url)s\">create a restaurant</a> in the platform admin."
+msgstr "Ka <a href=\"%(url)s\">kria restaurante ida</a> iha admin plataforma."
+
+msgid "Open the platform console"
+msgstr "Loke konsola plataforma"
+
+msgid "Add a dish"
+msgstr "Aumenta hahán"
+
+#, python-format
+msgid "Edit “%(name)s”"
+msgstr "Edita “%(name)s”"
+
+msgid "Dish details"
+msgstr "Detallu hahán"
+
+msgid ""
+"Images: JPEG, PNG or WebP up to 5 MB. They're automatically resized and "
+"converted to WebP for fast loading."
+msgstr ""
+"Imajen: JPEG, PNG ka WebP to'o 5 MB. Sistema sei hadi'a medida no troka ba "
+"WebP automatikamente atu loke lalais."
+
+msgid "Add-ons &amp; extras"
+msgstr "Aumentu no estra"
+
+msgid ""
+"Optional extras customers can tick, e.g. “Fried Egg +$0.50”. Use price 0 for "
+"free options like “No onions”."
+msgstr ""
+"Estra opsionál ne'ebé kliente bele hili, ez. “Manutolun sona +$0.50”. Uza "
+"folin 0 ba opsaun gratuitu hanesan “La ho liis”."
+
+msgid "Remove"
+msgstr "Hasai"
+
+msgid "Translations"
+msgstr "Tradusaun"
+
+msgid "Need more rows? Save, and two new empty rows will appear."
+msgstr "Presiza liña barak liu? Rai, no liña mamuk foun rua sei mosu."
+
+msgid "Save dish"
+msgstr "Rai hahán"
+
+msgid "Cancel"
+msgstr "Kansela"
+
+#, python-format
+msgid "Delete %(name)s? Past orders are kept."
+msgstr "Hamoos %(name)s? Pedidu uluk sira sei rai nafatin."
+
+msgid "Delete this dish"
+msgstr "Hamoos hahán ne'e"
+
+msgid "Loading…"
+msgstr "Karrega hela…"
+
+msgid "Enable sound"
+msgstr "Ativa son"
+
+msgid "Full screen"
+msgstr "Ekran tomak"
+
+msgid "Columns"
+msgstr "Koluna"
+
+msgid "NEW ORDERS"
+msgstr "PEDIDU FOUN"
+
+msgid "PREPARING"
+msgstr "PREPARA HELA"
+
+msgid "READY"
+msgstr "PRONTU"
+
+msgid ""
+"Tap the switch to mark a dish <strong>Sold out</strong>. Customers' menus "
+"update immediately."
+msgstr ""
+"Toka botaun atu marka hahán ida <strong>Hotu ona</strong>. Menu kliente sira "
+"nian atualiza kedas."
+
+msgid "Add dish"
+msgstr "Aumenta hahán"
+
+msgid "Hidden"
+msgstr "Subar"
+
+msgid "Dish"
+msgstr "Hahán"
+
+msgid "Edit category"
+msgstr "Edita kategoria"
+
+#, python-format
+msgid "Delete category %(name)s?"
+msgstr "Hamoos kategoria %(name)s?"
+
+msgid "Delete category"
+msgstr "Hamoos kategoria"
+
+#, python-format
+msgid "%(n)s add-on"
+msgid_plural "%(n)s add-ons"
+msgstr[0] "aumentu %(n)s"
+msgstr[1] "aumentu %(n)s"
+
+msgid "Sold Out"
+msgstr "Hotu ona"
+
+msgid "Edit dish"
+msgstr "Edita hahán"
+
+msgid "No dishes in this category yet."
+msgstr "Seidauk iha hahán iha kategoria ne'e."
+
+msgid "Your menu is empty."
+msgstr "Ita-nia menu mamuk."
+
+#, python-format
+msgid ""
+"<a href=\"%(url)s\">Create your first category</a> (e.g. Breakfast, Main "
+"Meals, Drinks)."
+msgstr ""
+"<a href=\"%(url)s\">Kria ita-nia kategoria dahuluk</a> (ez. Matabixu, Hahán "
+"prinsipál, Hemu)."
+
+msgid ""
+"For guests without a smartphone. Choose the table and guest, tap dishes, "
+"then send."
+msgstr ""
+"Ba bainaka sira ne'ebé la iha telemovel. Hili meza no bainaka, toka hahán, "
+"depois haruka."
+
+msgid "Counter / takeaway"
+msgstr "Balkaun / lori ba uma"
+
+#, python-format
+msgid "Table %(n)s"
+msgstr "Meza %(n)s"
+
+msgid "Guest"
+msgstr "Bainaka"
+
+msgid "New guest"
+msgstr "Bainaka foun"
+
+msgid "Name (optional)"
+msgstr "Naran (opsionál)"
+
+msgid "e.g. Maria"
+msgstr "ez. Maria"
+
+msgid "Search dishes…"
+msgstr "Buka hahán…"
+
+msgid "Search dishes"
+msgstr "Buka hahán"
+
+msgid "Tap dishes to add them."
+msgstr "Toka hahán atu aumenta."
+
+msgid "Subtotal"
+msgstr "Subtotál"
+
+msgid "Service charge"
+msgstr "Taxa servisu"
+
+msgid "Note for the kitchen (optional)"
+msgstr "Nota ba kozinha (opsionál)"
+
+msgid "Send to kitchen"
+msgstr "Haruka ba kozinha"
+
+msgid "Note"
+msgstr "Nota"
+
+msgid "e.g. no spicy"
+msgstr "ez. la ho ai-manas"
+
+msgid "Less"
+msgstr "Menus"
+
+msgid "More"
+msgstr "Liu tan"
+
+msgid "Add"
+msgstr "Aumenta"
+
+msgid "Mark all as read"
+msgstr "Marka hotu katak lee ona"
+
+#, python-format
+msgid "%(t)s ago"
+msgstr "%(t)s liubá"
+
+msgid "No notifications."
+msgstr "La iha notifikasaun."
+
+msgid "Newer"
+msgstr "Foun liu"
+
+msgid "Older"
+msgstr "Tuan liu"
+
+#, python-format
+msgid "Order #%(n)s"
+msgstr "Pedidu #%(n)s"
+
+#, python-format
+msgid "Table %(t)s"
+msgstr "Meza %(t)s"
+
+msgid "Ordered via"
+msgstr "Pede liuhusi"
+
+msgid "Waiter"
+msgstr "Serbidór"
+
+msgid "Est. prep"
+msgstr "Tempu prepara"
+
+#, python-format
+msgid "%(m)s min"
+msgstr "minutu %(m)s"
+
+msgid "Item"
+msgstr "Item"
+
+msgid "Qty"
+msgstr "Kuant."
+
+msgid "Unit"
+msgstr "Unidade"
+
+msgid "History"
+msgstr "Istória"
+
+msgid "Update status"
+msgstr "Atualiza estadu"
+
+msgid "Note (optional, e.g. cancel reason)"
+msgstr "Nota (opsionál, ez. razaun kansela)"
+
+msgid "Cancel this order?"
+msgstr "Kansela pedidu ne'e?"
+
+msgid "Receipt"
+msgstr "Resibu"
+
+msgid "Bill"
+msgstr "Konta"
+
+#, python-format
+msgid "Customer chose: %(m)s"
+msgstr "Kliente hili: %(m)s"
+
+#, python-format
+msgid "received %(got)s, change %(change)s"
+msgstr "simu %(got)s, troku %(change)s"
+
+#, python-format
+msgid "ref %(ref)s"
+msgstr "ref. %(ref)s"
+
+#, python-format
+msgid "Paid so far %(paid)s · <strong>Still due %(due)s</strong>"
+msgstr "Selu ona %(paid)s · <strong>Sei tenke selu %(due)s</strong>"
+
+msgid "Other method or partial payment"
+msgstr "Métodu seluk ka selu balun"
+
+msgid "Record payment"
+msgstr "Rejista pagamentu"
+
+msgid "Every order from QR codes and waiters."
+msgstr "Pedidu hotu husi kódigu QR no serbidór sira."
+
+msgid "Filter by status"
+msgstr "Filtra tuir estadu"
+
+msgid "All"
+msgstr "Hotu"
+
+msgid "Order # or name"
+msgstr "Nú. pedidu ka naran"
+
+msgid "Order number or customer name"
+msgstr "Númeru pedidu ka naran kliente"
+
+msgid "From date"
+msgstr "Husi data"
+
+msgid "To date"
+msgstr "To'o data"
+
+msgid "Filter"
+msgstr "Filtra"
+
+#, python-format
+msgid "Page %(n)s of %(total)s"
+msgstr "Pájina %(n)s husi %(total)s"
+
+#, python-format
+msgid "Good to see you, %(name)s"
+msgstr "Di'ak haree ita, %(name)s"
+
+msgid "Good to see you"
+msgstr "Di'ak haree ita"
+
+#, python-format
+msgid "Today at %(name)s"
+msgstr "Ohin iha %(name)s"
+
+msgid "Ordering is switched off: customers can view the menu but can't order."
+msgstr "Pedidu dezativa hela: kliente sira bele haree menu maibé labele pede."
+
+msgid "Turn it back on"
+msgstr "Ativa fali"
+
+msgid "Tables &amp; bills"
+msgstr "Meza no konta"
+
+msgid "Sold out items"
+msgstr "Hahán ne'ebé hotu ona"
+
+msgid "Get your restaurant ready"
+msgstr "Prepara ita-nia restaurante"
+
+#, python-format
+msgid "%(done)s of %(total)s done"
+msgstr "%(done)s husi %(total)s halo ona"
+
+#, python-format
+msgid ""
+"Tip: open <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener\">your menu</"
+"a> on your phone to see what customers will see."
+msgstr ""
+"Dika: loke <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener\">ita-nia "
+"menu</a> iha telemovel atu haree saida mak kliente sira sei haree."
+
+msgid "Orders today"
+msgstr "Pedidu ohin"
+
+msgid "Revenue today"
+msgstr "Rendimentu ohin"
+
+msgid "New · cooking"
+msgstr "Foun · te'in hela"
+
+msgid "Ready to serve"
+msgstr "Prontu atu serve"
+
+msgid "Occupied tables"
+msgstr "Meza okupadu"
+
+msgid "Latest orders"
+msgstr "Pedidu foun liu"
+
+msgid "All orders"
+msgstr "Pedidu hotu"
+
+msgid "Export CSV"
+msgstr "Esporta CSV"
+
+msgid "From"
+msgstr "Husi"
+
+msgid "To"
+msgstr "To'o"
+
+msgid "Apply"
+msgstr "Aplika"
+
+msgid "Revenue"
+msgstr "Rendimentu"
+
+msgid "Average order"
+msgstr "Pedidu médiu"
+
+msgid "Revenue per day"
+msgstr "Rendimentu kada loron"
+
+msgid "No completed orders in this period."
+msgstr "La iha pedidu remata ona iha períodu ne'e."
+
+msgid "Best sellers"
+msgstr "Fa'an barak liu"
+
+msgid "Sold"
+msgstr "Fa'an ona"
+
+msgid "No data yet."
+msgstr "Seidauk iha dadus."
+
+msgid "Restaurant settings"
+msgstr "Konfigurasaun restaurante"
+
+msgid "Public menu:"
+msgstr "Menu públiku:"
+
+msgid "Cover"
+msgstr "Kapa"
+
+msgid ""
+"Plug the drawer into the printer's RJ11 “DK” port. To find the printer's IP, "
+"hold FEED while switching it on to print a self-test page."
+msgstr ""
+"Liga gaveta ba porta RJ11 “DK” imprimidora nian. Atu hatene IP imprimidora, "
+"kaer FEED bainhira hamoris nia atu imprime pájina teste."
+
+msgid "Save settings"
+msgstr "Rai konfigurasaun"
+
+msgid "Cash drawer test &amp; log"
+msgstr "Teste no rejistu gaveta osan"
+
+msgid "Test drawer"
+msgstr "Teste gaveta"
+
+msgid "Reason"
+msgstr "Razaun"
+
+msgid "By"
+msgstr "Husi"
+
+msgid "Result"
+msgstr "Rezultadu"
+
+msgid "Opened"
+msgstr "Loke"
+
+msgid "No drawer openings yet."
+msgstr "Gaveta seidauk loke."
+
+msgid "Accounts for your team. Each person signs in with their own username."
+msgstr "Konta ba ita-nia ekipa. Ema ida-idak tama ho nia naran uzuáriu rasik."
+
+msgid "User"
+msgstr "Uzuáriu"
+
+msgid "you"
+msgstr "ita"
+
+msgid "Disabled"
+msgstr "Dezativa"
+
+msgid "Edit"
+msgstr "Edita"
+
+msgid "What each role can do"
+msgstr "Saida mak knaar ida-idak bele halo"
+
+msgid "everything, including staff accounts."
+msgstr "buat hotu, inklui konta funsionáriu."
+
+msgid ""
+"menu, tables &amp; QR codes, restaurant settings, orders, payments, reports."
+msgstr ""
+"menu, meza no kódigu QR, konfigurasaun restaurante, pedidu, pagamentu, "
+"relatóriu."
+
+msgid "kitchen queue, order status, mark dishes sold out."
+msgstr "lista kozinha, estadu pedidu, marka hahán hotu ona."
+
+msgid "take orders, kitchen queue, cancel orders, payments, free tables."
+msgstr ""
+"simu pedidu, lista kozinha, kansela pedidu, pagamentu, halo meza livre."
+
+msgid "Add staff member"
+msgstr "Aumenta funsionáriu"
+
+msgid "Create account"
+msgstr "Kria konta"
+
+msgid "Occupied"
+msgstr "Okupadu"
+
+msgctxt "table"
+msgid "Free"
+msgstr "Livre"
+
+#, python-format
+msgid "Open since %(t)s"
+msgstr "Loke dezde %(t)s"
+
+#, python-format
+msgid "%(n)s order"
+msgid_plural "%(n)s orders"
+msgstr[0] "pedidu %(n)s"
+msgstr[1] "pedidu %(n)s"
+
+msgid "Add order"
+msgstr "Aumenta pedidu"
+
+msgid "Current bill"
+msgstr "Konta atuál"
+
+msgid "Print bill"
+msgstr "Imprime konta"
+
+msgid "Free this table? Everyone who scanned it must scan again to order."
+msgstr ""
+"Halo meza ne'e livre? Ema hotu ne'ebé scan ona tenke scan fali atu pede."
+
+msgid "Free table"
+msgstr "Halo meza livre"
+
+msgid "Unpaid at this table"
+msgstr "Seidauk selu iha meza ne'e"
+
+#, python-format
+msgid "Table %(n)s · whole bill"
+msgstr "Meza %(n)s · konta tomak"
+
+msgid "Whole table paid"
+msgstr "Meza tomak selu ona"
+
+msgid "Paid &amp; free table"
+msgstr "Selu ona no halo meza livre"
+
+msgid "Everything at this table is paid."
+msgstr "Buat hotu iha meza ne'e selu ona."
+
+#, python-format
+msgid "Table %(n)s · %(guest)s"
+msgstr "Meza %(n)s · %(guest)s"
+
+msgid "Table is open, but nothing has been ordered yet."
+msgstr "Meza loke ona, maibé seidauk iha pedidu."
+
+msgid ""
+"This table is free. A bill starts when a customer scans the QR code or a "
+"waiter adds an order."
+msgstr ""
+"Meza ne'e livre. Konta hahú bainhira kliente scan kódigu QR ka serbidór "
+"aumenta pedidu."
+
+msgid "Recent bills"
+msgstr "Konta foin daudaun"
+
+msgid "Closed"
+msgstr "Taka"
+
+msgid "Open the customer link"
+msgstr "Loke link kliente nian"
+
+msgid "Print"
+msgstr "Imprime"
+
+msgid "Generate a new QR code? The currently printed code will STOP working."
+msgstr "Kria kódigu QR foun? Kódigu ne'ebé imprime ona sei LA FUNSIONA tan."
+
+msgid "Regenerate QR code"
+msgstr "Kria fali kódigu QR"
+
+msgid ""
+"Use this if a code was copied or misused. Old printouts stop working "
+"immediately."
+msgstr ""
+"Uza ida ne'e se ema kopia ka uza sala kódigu ruma. Kódigu tuan sira para "
+"funsiona kedas."
+
+#, python-format
+msgid "Delete table %(n)s? Past orders are kept."
+msgstr "Hamoos meza %(n)s? Pedidu uluk sira sei rai nafatin."
+
+msgid "Delete table"
+msgstr "Hamoos meza"
+
+msgid "Tables &amp; QR codes"
+msgstr "Meza no kódigu QR"
+
+msgid ""
+"Each table has its own QR code. Customers scan it to see the menu and order."
+msgstr ""
+"Meza ida-idak iha nia kódigu QR rasik. Kliente sira scan atu haree menu no "
+"pede."
+
+msgid "Print all QR codes"
+msgstr "Imprime kódigu QR hotu"
+
+#, python-format
+msgid "QR code for table %(n)s"
+msgstr "Kódigu QR ba meza %(n)s"
+
+#, python-format
+msgid "%(n)s active"
+msgstr "%(n)s ativu"
+
+msgid "Download PNG"
+msgstr "Download PNG"
+
+msgid "No tables yet. Add your first table below."
+msgstr "Seidauk iha meza. Aumenta ita-nia meza dahuluk iha okos."
+
+msgid "Add a table"
+msgstr "Aumenta meza"
+
+msgid "Use numbers or short codes like 12 or A-3."
+msgstr "Uza númeru ka kódigu badak hanesan 12 ka A-3."
+
+msgid "Add table"
+msgstr "Aumenta meza"
+
+msgid "Add many tables"
+msgstr "Aumenta meza barak"
+
+msgid "Creates numbered tables, skipping numbers that already exist."
+msgstr "Kria meza ho númeru, la kria númeru ne'ebé iha ona."
+
+msgid "Create tables"
+msgstr "Kria meza"
+
+msgid "QR menu & table ordering for restaurants"
+msgstr "Menu QR no pedidu iha meza ba restaurante"
+
+msgid "Scan. Order. Enjoy."
+msgstr "Scan. Pedir. Bom apetite."
+
+msgid ""
+"A QR code menu and table ordering for your restaurant. Customers scan the "
+"code on the table, order from their phone, and the order goes straight to "
+"your kitchen. They don't need an app or an account."
+msgstr ""
+"Menu ho kódigu QR no pedidu iha meza ba ita-nia restaurante. Kliente sira "
+"scan kódigu iha meza, pede husi sira-nia telemovel, no pedidu ba direta ba "
+"ita-nia kozinha. Sira la presiza aplikasaun ka konta."
+
+msgid "Open dashboard"
+msgstr "Loke painél"
+
+msgid "How it works"
+msgstr "Oinsá nia funsiona"
+
+msgid "Create your menu"
+msgstr "Kria ita-nia menu"
+
+msgid ""
+"Add dishes, photos, prices and add-ons in English, Tetum and Bahasa "
+"Indonesia."
+msgstr ""
+"Aumenta hahán, foto, folin no estra iha Inglés, Tetun no Bahasa Indonézia."
+
+msgid "Print your QR codes"
+msgstr "Imprime ita-nia kódigu QR"
+
+msgid "One code per table. Print them and place one on each table."
+msgstr "Kódigu ida ba meza ida. Imprime no tau ida iha meza ida-idak."
+
+msgid "Receive orders live"
+msgstr "Simu pedidu direta"
+
+msgid ""
+"Orders appear instantly on the kitchen screen with a sound alert. Customers "
+"can follow their order on their phone."
+msgstr ""
+"Pedidu sira mosu kedas iha ekran kozinha ho son alerta. Kliente sira bele "
+"tuir sira-nia pedidu iha telemovel."
+
+msgid "Works on any phone"
+msgstr "Funsiona iha telemovel hotu"
+
+msgid ""
+"Customers scan with the phone camera. No app, no account, and it loads fast "
+"on slow connections."
+msgstr ""
+"Kliente sira scan ho kámara telemovel. La presiza aplikasaun ka konta, no "
+"loke lalais maski internet neineik."
+
+msgid "Kitchen screen"
+msgstr "Ekran kozinha"
+
+msgid "New → Preparing → Ready → Completed, with timers and notes."
+msgstr "Foun → Prepara hela → Prontu → Remata ona, ho relójiu no nota."
+
+msgid "Tables & sessions"
+msgstr "Meza no sesaun"
+
+msgid ""
+"Several people can order from one table, and you see one bill per table."
+msgstr "Ema barak bele pede husi meza ida, no ita haree konta ida ba meza ida."
+
+msgid "Cash & change"
+msgstr "Osan no troku"
+
+msgid "Mark orders paid in one tap, and see the change to give back."
+msgstr "Marka pedidu selu ona ho toka ida, no haree troku atu fó fali."
+
+msgid "Sold out in one tap"
+msgstr "Hotu ona ho toka ida"
+
+msgid "Customers' menus update immediately."
+msgstr "Menu kliente sira nian atualiza kedas."
+
+msgid "Daily revenue, best sellers and CSV export."
+msgstr "Rendimentu loron-loron, buat ne'ebé fa'an barak liu no esporta CSV."
+
+msgid "Pricing"
+msgstr "Folin"
+
+msgid "Simple monthly plans. No setup fees."
+msgstr "Planu fulan-fulan ne'ebé simples. La iha kustu instalasaun."
+
+#, python-format
+msgid "New restaurants get a %(days)s-day free trial."
+msgid_plural "New restaurants get a %(days)s-day free trial."
+msgstr[0] "Restaurante foun sira hetan loron %(days)s esperimentál gratuitu."
+msgstr[1] "Restaurante foun sira hetan loron %(days)s esperimentál gratuitu."
+
+msgid "Most popular"
+msgstr "Popular liu"
+
+#, python-format
+msgid "Up to %(n)s table"
+msgid_plural "Up to %(n)s tables"
+msgstr[0] "Meza to'o %(n)s"
+msgstr[1] "Meza to'o %(n)s"
+
+#, python-format
+msgid "Up to %(n)s dish"
+msgid_plural "Up to %(n)s dishes"
+msgstr[0] "Hahán to'o %(n)s"
+msgstr[1] "Hahán to'o %(n)s"
+
+#, python-format
+msgid "Up to %(n)s staff account"
+msgid_plural "Up to %(n)s staff accounts"
+msgstr[0] "Konta funsionáriu to'o %(n)s"
+msgstr[1] "Konta funsionáriu to'o %(n)s"
+
+msgid "Get started"
+msgstr "Hahú"
+
+msgid "Are you a customer?"
+msgstr "Ita kliente?"
+
+msgid "To order, please scan the QR code on your table."
+msgstr "Atu pede, favór scan kódigu QR iha ita-nia meza."
+
+#, python-format
+msgid "Hello! I'd like to know more about %(name)s."
+msgstr "Olá! Ha'u hakarak hatene liu tan kona-ba %(name)s."
+
+msgid "Chat with us on WhatsApp"
+msgstr "Ko'alia ho ami iha WhatsApp"

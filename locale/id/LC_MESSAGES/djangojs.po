@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: qrmenu dashboard\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-08 10:18+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Total due"
+msgstr "Total tagihan"
+
+msgid "Cash received from customer"
+msgstr "Uang tunai dari pelanggan"
+
+msgid "Exact"
+msgstr "Uang pas"
+
+msgid "Change to give"
+msgstr "Kembalian"
+
+msgid "Cancel"
+msgstr "Batal"
+
+msgid "Paid"
+msgstr "Lunas"
+
+msgid "Not enough: %(amount)s short."
+msgstr "Kurang: masih kurang %(amount)s."
+
+msgid "Enter the amount received."
+msgstr "Masukkan jumlah yang diterima."
+
+msgid "Paid · give %(amount)s change"
+msgstr "Lunas · beri kembalian %(amount)s"
+
+msgid "Paid · exact amount"
+msgstr "Lunas · uang pas"
+
+msgid "Receipt printed."
+msgstr "Struk dicetak."
+
+msgid "Receipt not printed: %(reason)s"
+msgstr "Struk tidak dicetak: %(reason)s"
+
+msgid "Receipt"
+msgstr "Struk"
+
+msgid "PAID"
+msgstr "LUNAS"
+
+msgid "Print receipt?"
+msgstr "Cetak struk?"
+
+msgid "GIVE CHANGE"
+msgstr "BERI KEMBALIAN"
+
+msgid "EXACT AMOUNT"
+msgstr "UANG PAS"
+
+msgid "Received %(received)s · Total %(total)s"
+msgstr "Diterima %(received)s · Total %(total)s"
+
+msgid "No"
+msgstr "Tidak"
+
+msgid "Yes, print"
+msgstr "Ya, cetak"
+
+msgid "OK · print receipt"
+msgstr "OK · cetak struk"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Cash payment"
+msgstr "Pembayaran tunai"
+
+msgid "Live: new orders appear automatically"
+msgstr "Langsung: pesanan baru muncul otomatis"
+
+msgid "Live"
+msgstr "Aktif"
+
+msgid "Table %(n)s"
+msgstr "Meja %(n)s"
+
+msgid "Counter"
+msgstr "Kasir"
+
+msgid "New order #%(number)s · %(where)s"
+msgstr "Pesanan baru #%(number)s · %(where)s"
+
+msgid "New order #%(number)s"
+msgstr "Pesanan baru #%(number)s"
+
+msgid "Reconnecting…"
+msgstr "Menghubungkan ulang…"
+
+msgid "Offline"
+msgstr "Luring"
+
+msgid "UNPAID"
+msgstr "BELUM DIBAYAR"
+
+msgid "by waiter %(name)s"
+msgstr "oleh pelayan %(name)s"
+
+msgid "by waiter"
+msgstr "oleh pelayan"
+
+msgid "Customer note:"
+msgstr "Catatan pelanggan:"
+
+msgid "ACCEPT ORDER"
+msgstr "TERIMA PESANAN"
+
+msgid "MARK AS READY"
+msgstr "TANDAI SIAP"
+
+msgid "COMPLETED"
+msgstr "SELESAI"
+
+msgid "Mark paid"
+msgstr "Tandai lunas"
+
+msgid "%(n)s items"
+msgstr "%(n)s item"
+
+msgid "Cancel order #%(number)s? Reason (optional):"
+msgstr "Batalkan pesanan #%(number)s? Alasan (opsional):"
+
+msgid "Could not update the order."
+msgstr "Tidak dapat memperbarui pesanan."
+
+msgid "Order #%(number)s · cash payment"
+msgstr "Pesanan #%(number)s · pembayaran tunai"
+
+msgid "Cash drawer opened · #%(number)s paid"
+msgstr "Laci kas terbuka · #%(number)s lunas"
+
+msgid "Paid, but the drawer did not open: %(reason)s"
+msgstr "Lunas, tetapi laci tidak terbuka: %(reason)s"
+
+msgid "Could not record the payment."
+msgstr "Tidak dapat mencatat pembayaran."
+
+msgid "Updated %(time)s · new orders appear automatically."
+msgstr "Diperbarui %(time)s · pesanan baru muncul otomatis."
+
+msgid "Could not load orders — retrying…"
+msgstr "Tidak dapat memuat pesanan — mencoba lagi…"
+
+msgid "Sound on"
+msgstr "Suara aktif"
+
+msgid "Enable sound"
+msgstr "Aktifkan suara"
+
+msgid "New guest"
+msgstr "Tamu baru"
+
+msgid "Sold out"
+msgstr "Habis"
+
+msgid "No dishes."
+msgstr "Tidak ada hidangan."
+
+msgid "sold out"
+msgstr "habis"
+
+msgid "Send to kitchen"
+msgstr "Kirim ke dapur"
+
+msgid "Order #%(number)s sent to the kitchen · %(where)s"
+msgstr "Pesanan #%(number)s dikirim ke dapur · %(where)s"
+
+msgid "Guest %(n)s"
+msgstr "Tamu %(n)s"
+
+msgid "Could not send the order."
+msgstr "Tidak dapat mengirim pesanan."
+
+msgid "Ordering is switched off in Restaurant settings."
+msgstr "Pemesanan dinonaktifkan di Pengaturan restoran."

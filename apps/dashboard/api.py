@@ -8,6 +8,7 @@ from decimal import Decimal
 
 from django.shortcuts import get_object_or_404
 from django.utils.dateparse import parse_datetime
+from django.utils.translation import gettext as _
 from rest_framework import serializers, status
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
@@ -80,12 +81,12 @@ class StaffCreateOrderAPI(StaffAPIView):
         if d.get("table"):
             table = Table.objects.filter(restaurant=self.restaurant, pk=d["table"], is_active=True).first()
             if table is None:
-                return Response({"error": "invalid_table", "message": "Unknown table."}, status=400)
+                return Response({"error": "invalid_table", "message": _("Unknown table.")}, status=400)
         guest = d.get("guest") or ""
         if guest:
             session = table.current_session() if table else None
             if not session or not session.orders.filter(customer_ref=guest).exists():
-                return Response({"error": "invalid_guest", "message": "That guest is not at this table any more."},
+                return Response({"error": "invalid_guest", "message": _("That guest is not at this table any more.")},
                                 status=400)
         else:
             guest = "w" + secrets.token_hex(7)  # new guest without a phone
@@ -115,7 +116,7 @@ class OrderStatusAPI(StaffAPIView):
         s.is_valid(raise_exception=True)
         to_status = s.validated_data["status"]
         if to_status == OrderStatus.CANCELLED and not self.restaurant.user_can(request.user, "cancel_orders"):
-            return Response({"error": "forbidden", "message": "Your role cannot cancel orders."}, status=403)
+            return Response({"error": "forbidden", "message": _("Your role cannot cancel orders.")}, status=403)
         try:
             order = change_status(order, to_status, user=request.user, note=s.validated_data.get("note", ""))
         except OrderError as exc:
@@ -184,7 +185,7 @@ class ReceiptPrintAPI(StaffAPIView):
     def post(self, request, slug):
         orders = receipt_orders(self.restaurant, parse_order_ids(request.data.get("orders")))
         if not orders:
-            return Response({"printed": False, "attempted": False, "message": "No orders to print."}, status=400)
+            return Response({"printed": False, "attempted": False, "message": _("No orders to print.")}, status=400)
         result = print_receipt_network(self.restaurant, orders)
         return Response(result.as_dict(), status=200 if result.printed else 503)
 

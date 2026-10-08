@@ -1,34 +1,34 @@
-{% load menu_tags ui_icons %}
+{% load menu_tags ui_icons i18n %}
 {% if orders %}
 <div class="table-wrap">
 <table class="table rtable">
-  <thead><tr><th>Order</th><th>Table</th><th>Customer</th><th>Items</th><th class="num">Total</th><th>Status</th><th>Payment</th><th>Time</th></tr></thead>
+  <thead><tr><th>{% translate "Order" %}</th><th>{% translate "Table" %}</th><th>{% translate "Customer" %}</th><th>{% translate "Items" %}</th><th class="num">{% translate "Total" %}</th><th>{% translate "Status" %}</th><th>{% translate "Payment" %}</th><th>{% translate "Time" %}</th></tr></thead>
   <tbody>
   {% for o in orders %}
     <tr>
-      <td class="rt-title" data-label=""><a href="{% url 'dashboard:order_detail' request.restaurant.slug o.pk %}"><strong>#{{ o.number }}</strong></a>{% if o.source == "staff" %} <span class="kby">{% icon "pen" %}waiter</span>{% endif %}</td>
-      <td data-label="Table">{{ o.table_number|default:"Counter" }}</td>
-      <td data-label="Customer">{{ o.customer_name|default:"—" }}</td>
-      <td data-label="Items" class="muted small">{% for i in o.items.all %}{{ i.name }} × {{ i.quantity }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
-      <td data-label="Total" class="num"><strong>{{ o.total|money:request.restaurant.currency_symbol }}</strong></td>
-      <td data-label="Status"><span class="pill pill-{{ o.status }}">{{ o.get_status_display }}</span></td>
-      <td data-label="Payment" class="nowrap">
+      <td class="rt-title" data-label=""><a href="{% url 'dashboard:order_detail' request.restaurant.slug o.pk %}"><strong>#{{ o.number }}</strong></a>{% if o.source == "staff" %} <span class="kby">{% icon "pen" %}{% translate "waiter" %}</span>{% endif %}</td>
+      <td data-label="{% translate "Table" %}">{% if o.table_number %}{{ o.table_number }}{% else %}{% translate "Counter" %}{% endif %}</td>
+      <td data-label="{% translate "Customer" %}">{{ o.customer_name|default:"—" }}</td>
+      <td data-label="{% translate "Items" %}" class="muted small">{% for i in o.items.all %}{{ i.name }} × {{ i.quantity }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+      <td data-label="{% translate "Total" %}" class="num"><strong>{{ o.total|money:request.restaurant.currency_symbol }}</strong></td>
+      <td data-label="{% translate "Status" %}"><span class="pill pill-{{ o.status }}">{{ o.get_status_display }}</span></td>
+      <td data-label="{% translate "Payment" %}" class="nowrap">
         {% if o.payment_status == "unpaid" and o.status != "cancelled" and request.can.payments %}
         <form method="post" action="{% url 'dashboard:order_mark_paid' request.restaurant.slug o.pk %}" class="inline-form"
-              data-cash-due="{{ o.total }}" data-cash-paid="{{ o.paid_sum|default:0 }}" data-cash-title="Order #{{ o.number }} · cash payment">
+              data-cash-due="{{ o.total }}" data-cash-paid="{{ o.paid_sum|default:0 }}" data-cash-title="{% blocktranslate trimmed with n=o.number %}Order #{{ n }} · cash payment{% endblocktranslate %}">
           {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
-          <button class="btn btn-sm btn-success" type="submit" title="Cash received">{% icon "cash" %} Mark paid</button>
+          <button class="btn btn-sm btn-success" type="submit" title="{% translate "Cash received" %}">{% icon "cash" %} {% translate "Mark paid" %}</button>
         </form>
         {% else %}
         <span class="pill pill-pay-{{ o.payment_status }}">{{ o.get_payment_status_display }}</span>
         {% endif %}
       </td>
-      <td data-label="Time" class="muted small nowrap" title="{{ o.created_at }}">{{ o.created_at|date:"d M, H:i" }}</td>
+      <td data-label="{% translate "Time" %}" class="muted small nowrap" title="{{ o.created_at }}">{{ o.created_at|date:"d M, H:i" }}</td>
     </tr>
   {% endfor %}
   </tbody>
 </table>
 </div>
 {% else %}
-<div class="empty">{% icon "receipt" %}<p>No orders yet.</p></div>
+<div class="empty">{% icon "receipt" %}<p>{% translate "No orders yet." %}</p></div>
 {% endif %}

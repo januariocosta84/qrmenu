@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: qrmenu dashboard\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-08 10:18+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Total due"
+msgstr "Total a pagar"
+
+msgid "Cash received from customer"
+msgstr "Dinheiro recebido do cliente"
+
+msgid "Exact"
+msgstr "Valor exato"
+
+msgid "Change to give"
+msgstr "Troco a dar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Paid"
+msgstr "Pago"
+
+msgid "Not enough: %(amount)s short."
+msgstr "Insuficiente: faltam %(amount)s."
+
+msgid "Enter the amount received."
+msgstr "Introduza o valor recebido."
+
+msgid "Paid · give %(amount)s change"
+msgstr "Pago · dar %(amount)s de troco"
+
+msgid "Paid · exact amount"
+msgstr "Pago · valor exato"
+
+msgid "Receipt printed."
+msgstr "Recibo impresso."
+
+msgid "Receipt not printed: %(reason)s"
+msgstr "Recibo não impresso: %(reason)s"
+
+msgid "Receipt"
+msgstr "Recibo"
+
+msgid "PAID"
+msgstr "PAGO"
+
+msgid "Print receipt?"
+msgstr "Imprimir recibo?"
+
+msgid "GIVE CHANGE"
+msgstr "DAR TROCO"
+
+msgid "EXACT AMOUNT"
+msgstr "VALOR EXATO"
+
+msgid "Received %(received)s · Total %(total)s"
+msgstr "Recebido %(received)s · Total %(total)s"
+
+msgid "No"
+msgstr "Não"
+
+msgid "Yes, print"
+msgstr "Sim, imprimir"
+
+msgid "OK · print receipt"
+msgstr "OK · imprimir recibo"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Cash payment"
+msgstr "Pagamento em dinheiro"
+
+msgid "Live: new orders appear automatically"
+msgstr "Em direto: os novos pedidos aparecem automaticamente"
+
+msgid "Live"
+msgstr "Ativo"
+
+msgid "Table %(n)s"
+msgstr "Mesa %(n)s"
+
+msgid "Counter"
+msgstr "Balcão"
+
+msgid "New order #%(number)s · %(where)s"
+msgstr "Novo pedido n.º %(number)s · %(where)s"
+
+msgid "New order #%(number)s"
+msgstr "Novo pedido n.º %(number)s"
+
+msgid "Reconnecting…"
+msgstr "A religar…"
+
+msgid "Offline"
+msgstr "Sem ligação"
+
+msgid "UNPAID"
+msgstr "POR PAGAR"
+
+msgid "by waiter %(name)s"
+msgstr "pelo empregado %(name)s"
+
+msgid "by waiter"
+msgstr "pelo empregado"
+
+msgid "Customer note:"
+msgstr "Nota do cliente:"
+
+msgid "ACCEPT ORDER"
+msgstr "ACEITAR PEDIDO"
+
+msgid "MARK AS READY"
+msgstr "MARCAR COMO PRONTO"
+
+msgid "COMPLETED"
+msgstr "CONCLUÍDO"
+
+msgid "Mark paid"
+msgstr "Marcar como pago"
+
+msgid "%(n)s items"
+msgstr "%(n)s artigos"
+
+msgid "Cancel order #%(number)s? Reason (optional):"
+msgstr "Cancelar o pedido n.º %(number)s? Motivo (opcional):"
+
+msgid "Could not update the order."
+msgstr "Não foi possível atualizar o pedido."
+
+msgid "Order #%(number)s · cash payment"
+msgstr "Pedido n.º %(number)s · pagamento em dinheiro"
+
+msgid "Cash drawer opened · #%(number)s paid"
+msgstr "Gaveta aberta · n.º %(number)s pago"
+
+msgid "Paid, but the drawer did not open: %(reason)s"
+msgstr "Pago, mas a gaveta não abriu: %(reason)s"
+
+msgid "Could not record the payment."
+msgstr "Não foi possível registar o pagamento."
+
+msgid "Updated %(time)s · new orders appear automatically."
+msgstr "Atualizado às %(time)s · os novos pedidos aparecem automaticamente."
+
+msgid "Could not load orders — retrying…"
+msgstr "Não foi possível carregar os pedidos — a tentar de novo…"
+
+msgid "Sound on"
+msgstr "Som ligado"
+
+msgid "Enable sound"
+msgstr "Ativar som"
+
+msgid "New guest"
+msgstr "Novo cliente"
+
+msgid "Sold out"
+msgstr "Esgotado"
+
+msgid "No dishes."
+msgstr "Sem pratos."
+
+msgid "sold out"
+msgstr "esgotado"
+
+msgid "Send to kitchen"
+msgstr "Enviar para a cozinha"
+
+msgid "Order #%(number)s sent to the kitchen · %(where)s"
+msgstr "Pedido n.º %(number)s enviado para a cozinha · %(where)s"
+
+msgid "Guest %(n)s"
+msgstr "Cliente %(n)s"
+
+msgid "Could not send the order."
+msgstr "Não foi possível enviar o pedido."
+
+msgid "Ordering is switched off in Restaurant settings."
+msgstr "Os pedidos estão desativados nas Definições do restaurante."

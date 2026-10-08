@@ -6,6 +6,7 @@ from decimal import ROUND_HALF_UP, Decimal
 
 from django.db import transaction
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from apps.billing.services import subscription_allows_orders
 from apps.menu.models import MenuItem, MenuItemOption
@@ -62,11 +63,11 @@ def place_order(
     "options": [ids], "note": str}]. All prices come from the database.
     """
     if not restaurant.is_active or not restaurant.is_accepting_orders or not subscription_allows_orders(restaurant):
-        raise OrderError("This restaurant is not accepting orders right now.", code="not_accepting")
+        raise OrderError(_("This restaurant is not accepting orders right now."), code="not_accepting")
     if table is not None and (table.restaurant_id != restaurant.id or not table.is_active):
-        raise OrderError("Invalid table.", code="invalid_table")
+        raise OrderError(_("Invalid table."), code="invalid_table")
     if not lines:
-        raise OrderError("Your cart is empty.", code="empty")
+        raise OrderError(_("Your cart is empty."), code="empty")
 
     item_ids = {int(line["menu_item"]) for line in lines}
     items = {
@@ -90,12 +91,12 @@ def place_order(
             continue
         qty = int(line["quantity"])
         if not 1 <= qty <= MAX_QUANTITY:
-            raise OrderError("Invalid quantity.", code="invalid_quantity")
+            raise OrderError(_("Invalid quantity."), code="invalid_quantity")
         chosen = []
         for oid in dict.fromkeys(int(o) for o in line.get("options") or []):  # de-duplicate, keep order
             option = options.get(oid)
             if option is None or option.menu_item_id != item.id:
-                raise OrderError("Invalid add-on selected.", code="invalid_option")
+                raise OrderError(_("Invalid add-on selected."), code="invalid_option")
             if not option.is_available:
                 unavailable.append(item.id)
                 break
@@ -107,7 +108,7 @@ def place_order(
 
     if unavailable:
         raise OrderError(
-            "Some items are no longer available.", code="unavailable", details={"unavailable": sorted(set(unavailable))}
+            _("Some items are no longer available."), code="unavailable", details={"unavailable": sorted(set(unavailable))}
         )
 
     subtotal = _money(subtotal)
@@ -174,7 +175,8 @@ def change_status(order: Order, to_status: str, *, user=None, note: str = "") ->
             return order
         if not order.can_transition(to_status):
             raise OrderError(
-                f"Cannot change order from {order.get_status_display()} to {dict(OrderStatus.CHOICES)[to_status]}.",
+                _("Cannot change order from %(from)s to %(to)s.") % {
+                    "from": order.get_status_display(), "to": dict(OrderStatus.CHOICES)[to_status]},
                 code="invalid_transition",
             )
         now = timezone.now()

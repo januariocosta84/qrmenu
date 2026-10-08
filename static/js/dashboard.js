@@ -6,6 +6,16 @@
 
   const $ = (s) => document.querySelector(s);
 
+  /**
+   * Translate a dashboard string with Django's JS catalog (/jsi18n/), e.g.
+   * D.t("Table %(n)s", { n: 4 }). Falls back to English if the catalog is missing.
+   */
+  D.t = function (text, vars) {
+    const s = typeof window.gettext === "function" ? window.gettext(text) : text;
+    return vars ? s.replace(/%\((\w+)\)s/g, (m, k) => (k in vars ? vars[k] : m)) : s;
+  };
+  const _ = D.t;
+
   D.csrf = function () {
     const m = document.cookie.match(/(?:^|;\s*)csrftoken=([^;]+)/);
     return m ? decodeURIComponent(m[1]) : "";
@@ -44,10 +54,10 @@
   // ---- Sound (browsers require a user gesture before audio can play) ----
   let audioCtx = null;
   D.soundEnabled = () => {
-    try { return localStorage.getItem("dash-sound") === "1"; } catch (_) { return false; }
+    try { return localStorage.getItem("dash-sound") === "1"; } catch (err) { return false; }
   };
   D.setSound = (on) => {
-    try { localStorage.setItem("dash-sound", on ? "1" : "0"); } catch (_) { /* ignore */ }
+    try { localStorage.setItem("dash-sound", on ? "1" : "0"); } catch (err) { /* ignore */ }
     if (on) D.beep();
   };
   D.beep = function () {
@@ -67,7 +77,7 @@
         osc.start(now + t);
         osc.stop(now + t + 0.17);
       });
-    } catch (_) { /* audio unavailable */ }
+    } catch (err) { /* audio unavailable */ }
   };
   document.addEventListener("click", () => { if (audioCtx && audioCtx.state === "suspended") audioCtx.resume(); }, { passive: true });
 
@@ -106,17 +116,17 @@
       wrap.innerHTML = `
         <div class="cash-box" role="dialog" aria-modal="true" aria-labelledby="cash-title">
           <h2 id="cash-title"></h2>
-          <div class="cash-due"><span>Total due</span><strong data-due></strong></div>
-          <label class="cash-label" for="cash-in">Cash received from customer</label>
+          <div class="cash-due"><span>${_("Total due")}</span><strong data-due></strong></div>
+          <label class="cash-label" for="cash-in">${_("Cash received from customer")}</label>
           <input id="cash-in" class="cash-input" inputmode="decimal" autocomplete="off">
           <div class="cash-quick">
-            <button type="button" class="btn" data-exact>Exact</button>
+            <button type="button" class="btn" data-exact>${_("Exact")}</button>
           </div>
-          <div class="cash-change"><span>Change to give</span><strong data-change></strong></div>
+          <div class="cash-change"><span>${_("Change to give")}</span><strong data-change></strong></div>
           <p class="err" data-err hidden></p>
           <div class="cash-actions">
-            <button type="button" class="btn btn-lg" data-cancel>Cancel</button>
-            <button type="button" class="btn btn-success btn-lg" data-ok>Paid</button>
+            <button type="button" class="btn btn-lg" data-cancel>${_("Cancel")}</button>
+            <button type="button" class="btn btn-success btn-lg" data-ok>${_("Paid")}</button>
           </div>
         </div>`;
       const $w = (s) => wrap.querySelector(s);
@@ -143,10 +153,10 @@
         $w(".cash-change").classList.toggle("has-change", ok && change > 0);
         const err = $w("[data-err]");
         err.hidden = ok || !input.value;
-        if (!ok && Number.isFinite(c)) err.textContent = `Not enough: ${fmt(dueCents - c)} short.`;
-        else if (!ok) err.textContent = "Enter the amount received.";
+        if (!ok && Number.isFinite(c)) err.textContent = _("Not enough: %(amount)s short.", { amount: fmt(dueCents - c) });
+        else if (!ok) err.textContent = _("Enter the amount received.");
         $w("[data-ok]").disabled = !ok;
-        $w("[data-ok]").innerHTML = D.icon("cash") + (ok && change > 0 ? ` Paid · give ${fmt(change)} change` : " Paid · exact amount");
+        $w("[data-ok]").innerHTML = D.icon("cash") + " " + (ok && change > 0 ? _("Paid · give %(amount)s change", { amount: fmt(change) }) : _("Paid · exact amount"));
       }
       function close(value) {
         wrap.remove();
@@ -180,9 +190,9 @@
     if (D.receiptNetwork) {
       try {
         const res = await D.api(D.receiptPrintApi, "POST", { orders: orderIds });
-        D.toast(res.message || "Receipt printed.");
+        D.toast(res.message || _("Receipt printed."));
       } catch (err) {
-        D.toast(`Receipt not printed: ${err.message}`, null, "error");
+        D.toast(_("Receipt not printed: %(reason)s", { reason: err.message }), null, "error");
       }
       return;
     }
@@ -196,9 +206,17 @@
     if (old) old.remove();
     const frame = document.createElement("iframe");
     frame.id = "receipt-frame";
-    frame.title = "Receipt";
+    frame.title = _("Receipt");
     frame.style.cssText = "position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden";
-    frame.onload = () => { frame.contentWindow.focus(); frame.contentWindow.print(); };
+    frame.onload = () => {
+      try {
+        frame.contentWindow.focus();
+        frame.contentWindow.print();
+      } catch (err) {  // frame blocked or not printable: print from its own window instead
+        frame.remove();
+        if (!window.open(url, "_blank")) location.href = url;
+      }
+    };
     frame.src = url;
     document.body.appendChild(frame);
   };
@@ -215,15 +233,15 @@
     wrap.className = "cash-modal";
     wrap.innerHTML = `<div class="cash-box change-result" role="alertdialog" aria-modal="true" aria-labelledby="pd-q">
       <div data-cash hidden><p class="cash-label"></p><p class="change-big"></p><p class="muted" data-detail></p></div>
-      <div data-paid hidden><p class="change-big">${D.icon("check-circle")}</p><p class="cash-label">PAID</p></div>
-      <div data-ask hidden class="receipt-ask"><p id="pd-q" class="receipt-q">${D.icon("printer")} Print receipt?</p></div>
+      <div data-paid hidden><p class="change-big">${D.icon("check-circle")}</p><p class="cash-label">${_("PAID")}</p></div>
+      <div data-ask hidden class="receipt-ask"><p id="pd-q" class="receipt-q">${D.icon("printer")} ${_("Print receipt?")}</p></div>
       <div class="cash-actions" data-actions></div></div>`;
     const $w = (s) => wrap.querySelector(s);
     if (changeCents !== null) {
       $w("[data-cash]").hidden = false;
-      $w("[data-cash] .cash-label").textContent = changeCents > 0 ? "GIVE CHANGE" : "EXACT AMOUNT";
+      $w("[data-cash] .cash-label").textContent = changeCents > 0 ? _("GIVE CHANGE") : _("EXACT AMOUNT");
       $w("[data-cash] .change-big").textContent = changeCents > 0 ? fmt(changeCents) : "✓";
-      $w("[data-detail]").textContent = `Received ${fmt(tenderedCents)} · Total ${fmt(dueCents)}`;
+      $w("[data-detail]").textContent = _("Received %(received)s · Total %(total)s", { received: fmt(tenderedCents), total: fmt(dueCents) });
     } else {
       $w("[data-paid]").hidden = false;
     }
@@ -241,14 +259,14 @@
     let primary;
     if (ask) {
       $w("[data-ask]").hidden = false;
-      button("", "No", null);
-      primary = button("btn-primary", `${D.icon("printer")} Yes, print`, () => D.printReceipt(orderIds));
+      button("", _("No"), null);
+      primary = button("btn-primary", `${D.icon("printer")} ${_("Yes, print")}`, () => D.printReceipt(orderIds));
     } else if (always) {
-      primary = button("btn-primary btn-block", `${D.icon("printer")} OK · print receipt`, () => D.printReceipt(orderIds));
+      primary = button("btn-primary btn-block", `${D.icon("printer")} ${_("OK · print receipt")}`, () => D.printReceipt(orderIds));
     } else {
-      primary = button("btn-primary btn-block", "OK", null);
+      primary = button("btn-primary btn-block", _("OK"), null);
     }
-    if (printed) D.toast(printed.printed ? "Receipt printed." : `Receipt not printed: ${printed.message}`, null, printed.printed ? "info" : "error");
+    if (printed) D.toast(printed.printed ? _("Receipt printed.") : _("Receipt not printed: %(reason)s", { reason: printed.message }), null, printed.printed ? "info" : "error");
     function onKey(e) {
       if (e.key === "Escape") close();
       if (ask && (e.key === "y" || e.key === "Y")) { close(); D.printReceipt(orderIds); }
@@ -263,15 +281,14 @@
   D.showChange = (changeCents, tenderedCents, dueCents) =>
     D.paymentDone({ changeCents, tenderedCents, dueCents, mode: "never" });
 
-  // After a page reload: turn the server's "GIVE CHANGE" message and receipt
-  // marker into one pop-up ("Give change $6.00 · Print receipt? No / Yes").
+  // After a page reload: turn the server's change amounts ("change,received,total")
+  // and receipt marker into one pop-up ("Give change $6.00 · Print receipt? No / Yes").
   {
-    const changeMsg = document.querySelector(".msg.change");
+    const amounts = document.querySelector("[data-change-amounts]");
     const marker = document.querySelector("[data-receipt-orders]");
     const orderIds = marker ? marker.dataset.receiptOrders.split(",").map(Number).filter(Boolean) : [];
-    const m = changeMsg && changeMsg.textContent.match(/GIVE CHANGE:\s*\D*([\d.,]+).*received\s*\D*([\d.,]+).*total\s*\D*([\d.,]+)/i);
-    const c = (v) => toCents(v.replace(/,/g, ""));
-    if (m) D.paymentDone({ changeCents: c(m[1]), tenderedCents: c(m[2]), dueCents: c(m[3]), orderIds });
+    const m = amounts ? amounts.dataset.changeAmounts.split(",").map(toCents) : null;
+    if (m && m.length === 3) D.paymentDone({ changeCents: m[0], tenderedCents: m[1], dueCents: m[2], orderIds });
     else if (orderIds.length) D.paymentDone({ orderIds });
   }
 
@@ -289,7 +306,7 @@
     if (!form.matches("form[data-cash-due]") || form.dataset.cashConfirmed) return;
     e.preventDefault();
     const dueCents = toCents(form.dataset.cashDue) - toCents(form.dataset.cashPaid || "0");
-    const tendered = await D.cashDialog({ title: form.dataset.cashTitle || "Cash payment", dueCents });
+    const tendered = await D.cashDialog({ title: form.dataset.cashTitle || _("Cash payment"), dueCents });
     if (tendered === null) return;
     let field = form.querySelector("input[name=tendered]");
     if (!field) {
@@ -344,9 +361,9 @@
     let ping = null;
     ws.onopen = () => {
       conn.classList.add("live");
-      conn.title = "Live: new orders appear automatically";
+      conn.title = _("Live: new orders appear automatically");
       const t = conn.querySelector(".live-text");
-      if (t) t.textContent = "Live";
+      if (t) t.textContent = _("Live");
       if (everConnected) document.dispatchEvent(new CustomEvent("dash:reconnect"));
       everConnected = true;
       delay = 1000;
@@ -354,14 +371,14 @@
     };
     ws.onmessage = (e) => {
       let msg;
-      try { msg = JSON.parse(e.data); } catch (_) { return; }
+      try { msg = JSON.parse(e.data); } catch (err) { return; }
       if (msg.event === "new_order") {
         const o = msg.data;
-        const where = o.table_number ? `Table ${o.table_number}` : "Counter";
-        D.toast(`New order #${o.number} · ${where}`, `${D.ordersBase}${o.id}/`, "new");
+        const where = o.table_number ? _("Table %(n)s", { n: o.table_number }) : _("Counter");
+        D.toast(_("New order #%(number)s · %(where)s", { number: o.number, where }), `${D.ordersBase}${o.id}/`, "new");
         setUnread(unread + 1);
         if (D.soundEnabled()) D.beep();
-        flashTitle(`🔔 New order #${o.number}`);
+        flashTitle("🔔 " + _("New order #%(number)s", { number: o.number }));
         if (navigator.vibrate) navigator.vibrate(300);
       }
       document.dispatchEvent(new CustomEvent("dash:message", { detail: msg }));
@@ -369,9 +386,9 @@
     ws.onclose = () => {
       clearInterval(ping);
       conn.classList.remove("live");
-      conn.title = "Reconnecting…";
+      conn.title = _("Reconnecting…");
       const t = conn.querySelector(".live-text");
-      if (t) t.textContent = "Offline";
+      if (t) t.textContent = _("Offline");
       setTimeout(() => connect(Math.min(delay * 2, 30000)), delay);
     };
   }

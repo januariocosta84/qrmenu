@@ -1,37 +1,37 @@
 {% extends "dashboard/base.html" %}
-{% load ui_icons %}
-{% block title %}Orders{% endblock %}
+{% load ui_icons i18n %}
+{% block title %}{% translate "Orders" %}{% endblock %}
 {% block content %}
 {% with r=request.restaurant %}
 <div class="page-head">
   <div>
-    <h1>Orders</h1>
-    <p class="page-sub">Every order from QR codes and waiters.</p>
+    <h1>{% translate "Orders" %}</h1>
+    <p class="page-sub">{% translate "Every order from QR codes and waiters." %}</p>
   </div>
-  {% if request.can.take_orders %}<div class="page-actions"><a class="btn btn-primary" href="{% url 'dashboard:new_order' r.slug %}">{% icon "plus" %} New order</a></div>{% endif %}
+  {% if request.can.take_orders %}<div class="page-actions"><a class="btn btn-primary" href="{% url 'dashboard:new_order' r.slug %}">{% icon "plus" %} {% translate "New order" %}</a></div>{% endif %}
 </div>
 
-<nav class="tabs" aria-label="Filter by status">
-  <a href="?" class="{% if not status %}active{% endif %}">All</a>
+<nav class="tabs" aria-label="{% translate "Filter by status" %}">
+  <a href="?" class="{% if not status %}active{% endif %}">{% translate "All" %}</a>
   {% for code, label, n in tabs %}<a href="?status={{ code }}" class="{% if status == code %}active{% endif %}">{{ label }} <span class="count">{{ n }}</span></a>{% endfor %}
 </nav>
 
 <form method="get" class="filters">
   {% if status %}<input type="hidden" name="status" value="{{ status }}">{% endif %}
-  <input name="q" placeholder="Order # or name" value="{{ form.q.value|default:'' }}" aria-label="Order number or customer name">
-  <input name="table" placeholder="Table" value="{{ form.table.value|default:'' }}" aria-label="Table" style="flex: 0 1 110px">
-  <input type="date" name="date_from" value="{{ form.date_from.value|default:'' }}" aria-label="From date">
-  <input type="date" name="date_to" value="{{ form.date_to.value|default:'' }}" aria-label="To date">
-  <button class="btn" type="submit">{% icon "filter" %} Filter</button>
+  <input name="q" placeholder="{% translate "Order # or name" %}" value="{{ form.q.value|default:'' }}" aria-label="{% translate "Order number or customer name" %}">
+  <input name="table" placeholder="{% translate "Table" %}" value="{{ form.table.value|default:'' }}" aria-label="{% translate "Table" %}" style="flex: 0 1 110px">
+  <input type="date" name="date_from" value="{{ form.date_from.value|default:'' }}" aria-label="{% translate "From date" %}">
+  <input type="date" name="date_to" value="{{ form.date_to.value|default:'' }}" aria-label="{% translate "To date" %}">
+  <button class="btn" type="submit">{% icon "filter" %} {% translate "Filter" %}</button>
 </form>
 
 <section class="card">
   {% include "dashboard/_orders_table.html" with orders=page.object_list %}
   {% if page.has_other_pages %}
   <nav class="pager">
-    {% if page.has_previous %}<a class="btn btn-sm" href="?{{ querystring }}&page={{ page.previous_page_number }}">{% icon "chevron-left" %} Newer</a>{% endif %}
-    <span class="muted small">Page {{ page.number }} of {{ page.paginator.num_pages }}</span>
-    {% if page.has_next %}<a class="btn btn-sm" href="?{{ querystring }}&page={{ page.next_page_number }}">Older {% icon "chevron-right" %}</a>{% endif %}
+    {% if page.has_previous %}<a class="btn btn-sm" href="?{{ querystring }}&page={{ page.previous_page_number }}">{% icon "chevron-left" %} {% translate "Newer" %}</a>{% endif %}
+    <span class="muted small">{% blocktranslate trimmed with n=page.number total=page.paginator.num_pages %}Page {{ n }} of {{ total }}{% endblocktranslate %}</span>
+    {% if page.has_next %}<a class="btn btn-sm" href="?{{ querystring }}&page={{ page.next_page_number }}">{% translate "Older" %} {% icon "chevron-right" %}</a>{% endif %}
   </nav>
   {% endif %}
 </section>

@@ -60,6 +60,7 @@ ICONS = {
     "filter": '<path d="M22 3H2l8 9.46V19l4 2v-8.54z"/>',
     "dot": '<circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/>',
     "arrow-left": '<path d="m12 19-7-7 7-7M19 12H5"/>',
+    "ban": '<circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>',
     "utensils": '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>',
 }
 

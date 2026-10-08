@@ -16,6 +16,8 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.safestring import mark_safe
+from django.utils.translation import gettext as _, gettext_lazy, ngettext
+from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.http import require_POST
 
 from apps.billing.services import plan_limit, subscription_allows_orders
@@ -100,17 +102,17 @@ def _setup_steps(r):
     slug = r.slug
     item_count = MenuItem.objects.filter(restaurant=r).count()
     steps = [
-        ("Add your logo, address and opening hours", bool(r.logo or r.address or r.opening_hours),
+        (_("Add your logo, address and opening hours"), bool(r.logo or r.address or r.opening_hours),
          reverse("dashboard:settings", args=[slug])),
-        ("Create menu categories (e.g. Rice, Drinks)", MenuCategory.objects.filter(restaurant=r).exists(),
+        (_("Create menu categories (e.g. Rice, Drinks)"), MenuCategory.objects.filter(restaurant=r).exists(),
          reverse("dashboard:category_create", args=[slug])),
-        ("Add your dishes with photos and prices", item_count >= 3, reverse("dashboard:item_create", args=[slug])),
-        ("Create your tables", Table.objects.filter(restaurant=r).exists(), reverse("dashboard:tables", args=[slug])),
-        ("Print the QR codes and place one on each table", Order.objects.filter(restaurant=r).exists(),
+        (_("Add your dishes with photos and prices"), item_count >= 3, reverse("dashboard:item_create", args=[slug])),
+        (_("Create your tables"), Table.objects.filter(restaurant=r).exists(), reverse("dashboard:tables", args=[slug])),
+        (_("Print the QR codes and place one on each table"), Order.objects.filter(restaurant=r).exists(),
          reverse("dashboard:tables_print", args=[slug])),
-        ("Add kitchen and waiter accounts", r.staff.count() > 1, reverse("dashboard:staff", args=[slug])),
+        (_("Add kitchen and waiter accounts"), r.staff.count() > 1, reverse("dashboard:staff", args=[slug])),
     ]
-    done = sum(1 for _, ok, _ in steps if ok)
+    done = sum(1 for _label, ok, _url in steps if ok)
     if done == len(steps):
         return None
     return {
@@ -227,11 +229,12 @@ def order_detail(request, pk):
         if action == "status" and request.can["kitchen"]:
             to_status = request.POST.get("status", "")
             if to_status == OrderStatus.CANCELLED and not request.can["cancel_orders"]:
-                messages.error(request, "Your role cannot cancel orders.")
+                messages.error(request, _("Your role cannot cancel orders."))
             elif to_status in dict(OrderStatus.CHOICES):
                 try:
                     change_status(order, to_status, user=request.user, note=request.POST.get("note", ""))
-                    messages.success(request, f"Order #{order.number} → {dict(OrderStatus.CHOICES)[to_status]}.")
+                    messages.success(request, _("Order #%(number)s → %(status)s.") % {
+                        "number": order.number, "status": dict(OrderStatus.CHOICES)[to_status]})
                 except OrderError as exc:
                     messages.error(request, str(exc))
             return _go(request, "order_detail", order.pk)
@@ -245,7 +248,8 @@ def order_detail(request, pk):
                     order.refresh_from_db()
                     messages.success(
                         request,
-                        f"Payment recorded. Order #{order.number} is now {order.get_payment_status_display()}.",
+                        _("Payment recorded. Order #%(number)s is now %(status)s.") % {
+                            "number": order.number, "status": order.get_payment_status_display()},
                     )
                     if d["method"] == PaymentMethod.CASH:
                         _drawer_message(request, open_cash_drawer(r, user=request.user, order=order))
@@ -256,10 +260,10 @@ def order_detail(request, pk):
                 return _go(request, "order_detail", order.pk)
 
     action_labels = {
-        OrderStatus.ACCEPTED: "Accept", OrderStatus.PREPARING: "Start preparing", OrderStatus.READY: "Mark ready",
-        OrderStatus.COMPLETED: "Complete", OrderStatus.CANCELLED: "Cancel order",
+        OrderStatus.ACCEPTED: _("Accept"), OrderStatus.PREPARING: _("Start preparing"),
+        OrderStatus.READY: _("Mark ready"), OrderStatus.COMPLETED: _("Complete"), OrderStatus.CANCELLED: _("Cancel order"),
     }
-    transitions = [(code, action_labels[code]) for code, _ in OrderStatus.CHOICES if order.can_transition(code)]
+    transitions = [(code, action_labels[code]) for code, _label in OrderStatus.CHOICES if order.can_transition(code)]
     return render(request, "dashboard/order_detail.html", {
         "order": order,
         "transitions": transitions,
@@ -278,23 +282,29 @@ def _tendered(request):
     try:
         value = Decimal(raw).quantize(Decimal("0.01"))
     except InvalidOperation:
-        raise OrderError("Enter the cash received as a number, e.g. 20 or 20.00.", code="invalid_amount")
+        raise OrderError(_("Enter the cash received as a number, e.g. 20 or 20.00."), code="invalid_amount")
     if value <= 0 or value >= Decimal("100000"):
-        raise OrderError("Enter a valid cash amount.", code="invalid_amount")
+        raise OrderError(_("Enter a valid cash amount."), code="invalid_amount")
     return value
 
 
 def _change_message(request, result):
     sym = request.restaurant.currency_symbol
+    money = lambda v: f"{sym}{v:.2f}"  # noqa: E731
     if result.change > 0:
         messages.add_message(
             request, messages.SUCCESS,
-            f"💵 GIVE CHANGE: {sym}{result.change:.2f}  (received {sym}{result.tendered:.2f}, "
-            f"total {sym}{result.total_due:.2f})",
+            "💵 " + _("GIVE CHANGE: %(change)s  (received %(received)s, total %(total)s)") % {
+                "change": money(result.change), "received": money(result.tendered), "total": money(result.total_due)},
             extra_tags="change",
         )
+        # Plain amounts for the "Give change" pop-up (the message above is translated).
+        messages.add_message(
+            request, messages.INFO, f"{result.change:.2f},{result.tendered:.2f},{result.total_due:.2f}",
+            extra_tags="change-data",
+        )
     else:
-        messages.success(request, f"Exact amount received: {sym}{result.total_due:.2f}. No change.")
+        messages.success(request, _("Exact amount received: %(total)s. No change.") % {"total": money(result.total_due)})
 
 
 def _receipt_after_payment(request, orders):
@@ -308,12 +318,13 @@ def _receipt_after_payment(request, orders):
     if r.receipt_prompt == r.RECEIPT_ALWAYS and network_printing_available(r):
         result = print_receipt_network(r, receipt_orders(r, [o.pk for o in orders]))
         (messages.success if result.printed else messages.warning)(
-            request, result.message if result.printed else f"Receipt not printed: {result.message}"
+            request, result.message if result.printed else _("Receipt not printed: %(reason)s") % {"reason": result.message}
         )
         return
     messages.add_message(request, messages.INFO, ",".join(str(o.pk) for o in orders), extra_tags="receipt")
 
 
+@xframe_options_sameorigin  # the dashboard prints it from a hidden iframe
 @staff_view("view_orders")
 def receipt(request):
     """Printable receipt / bill for one or more orders (?orders=12,13)."""
@@ -338,9 +349,9 @@ def receipt_print(request):
 
 def _drawer_message(request, result):
     if result.opened:
-        messages.success(request, "🗄 Cash drawer opened.")
+        messages.success(request, "🗄 " + _("Cash drawer opened."))
     elif result.attempted:
-        messages.warning(request, f"Payment saved, but the cash drawer did not open: {result.message}")
+        messages.warning(request, _("Payment saved, but the cash drawer did not open: %(reason)s") % {"reason": result.message})
 
 
 @require_POST
@@ -375,7 +386,7 @@ def order_mark_paid(request, pk):
     try:
         tendered = _tendered(request)
         result = receive_cash([order], tendered=tendered, user=request.user)
-        messages.success(request, f"Order #{order.number} marked as paid.")
+        messages.success(request, _("Order #%(number)s marked as paid.") % {"number": order.number})
         _change_message(request, result)
         _drawer_message(request, open_cash_drawer(request.restaurant, user=request.user, order=order))
         _receipt_after_payment(request, result.orders)
@@ -394,7 +405,7 @@ def tables(request):
     bulk = BulkTableForm()
     if request.method == "POST":
         if not can_manage:
-            messages.error(request, "Your role cannot manage tables.")
+            messages.error(request, _("Your role cannot manage tables."))
             return _go(request, "tables")
         if request.POST.get("action") == "bulk":
             bulk = BulkTableForm(request.POST)
@@ -408,20 +419,20 @@ def tables(request):
                 max_tables = plan_limit(r, "max_tables")
                 room = max_tables - len(existing)
                 if len(new) > room:
-                    messages.error(request, f"Limit reached: a restaurant can have up to "
-                                            f"{max_tables} tables on your plan.")
+                    messages.error(request, _("Limit reached: a restaurant can have up to %(n)s tables on your plan.")
+                                   % {"n": max_tables})
                     return _go(request, "tables")
                 Table.objects.bulk_create(new)
-                messages.success(request, f"Created {len(new)} tables.")
+                messages.success(request, ngettext("Created %(n)s table.", "Created %(n)s tables.", len(new)) % {"n": len(new)})
                 return _go(request, "tables")
         else:
             form = TableForm(request.POST, restaurant=r)
             if Table.objects.filter(restaurant=r).count() >= plan_limit(r, "max_tables"):
-                messages.error(request, f"Limit reached: your plan allows {plan_limit(r, 'max_tables')} tables.")
+                messages.error(request, _("Limit reached: your plan allows %(n)s tables.") % {"n": plan_limit(r, "max_tables")})
                 return _go(request, "tables")
             if form.is_valid():
                 table = form.save()
-                messages.success(request, f"{table} created.")
+                messages.success(request, _("Table %(number)s created.") % {"number": table.number})
                 return _go(request, "tables")
 
     table_list = sorted(
@@ -483,7 +494,7 @@ def _guest_bills(orders):
             g["unpaid"] += o.total
     result = list(guests.values())
     for i, g in enumerate(result, start=1):
-        g["label"] = f"Guest {i}" + (f" · {g['name']}" if g["name"] else "")
+        g["label"] = _("Guest %(n)s") % {"n": i} + (f" · {g['name']}" if g["name"] else "")
         g["total"] = sum((o.total for o in g["orders"] if o.status != OrderStatus.CANCELLED), Decimal("0"))
     return result
 
@@ -498,12 +509,12 @@ def guest_mark_paid(request, pk, ref):
     try:
         result = receive_cash(orders, tendered=_tendered(request), user=request.user, skip_unpayable=True)
         numbers = ", ".join(f"#{o.number}" for o in result.orders)
-        messages.success(request, f"Marked as paid: {numbers}.")
+        messages.success(request, _("Marked as paid: %(numbers)s.") % {"numbers": numbers})
         _change_message(request, result)
         _drawer_message(request, open_cash_drawer(request.restaurant, user=request.user))
         _receipt_after_payment(request, result.orders)
     except OrderError as exc:
-        messages.error(request, str(exc) if exc.code != "nothing_due" else "This guest has nothing left to pay.")
+        messages.error(request, str(exc) if exc.code != "nothing_due" else _("This guest has nothing left to pay."))
     return _go(request, "table_detail", table.pk)
 
 
@@ -520,7 +531,7 @@ def table_mark_paid(request, pk):
     try:
         result = receive_cash(list(unpaid), tendered=_tendered(request), user=request.user, skip_unpayable=True)
         numbers = ", ".join(f"#{o.number}" for o in result.orders)
-        messages.success(request, f"Marked as paid: {numbers}.")
+        messages.success(request, _("Marked as paid: %(numbers)s.") % {"numbers": numbers})
         _change_message(request, result)
         _drawer_message(request, open_cash_drawer(request.restaurant, user=request.user))
         _receipt_after_payment(request, result.orders)
@@ -528,10 +539,10 @@ def table_mark_paid(request, pk):
         if exc.code != "nothing_due":
             messages.error(request, str(exc))
             return _go(request, "table_detail", table.pk)  # e.g. not enough cash: keep the table open
-        messages.info(request, "There were no unpaid orders at this table.")
+        messages.info(request, _("There were no unpaid orders at this table."))
     if request.POST.get("close_session") and request.can["table_sessions"]:
         table.free(user=request.user)
-        messages.success(request, f"{table} is now free.")
+        messages.success(request, _("Table %(number)s is now free.") % {"number": table.number})
     return _go(request, "table_detail", table.pk)
 
 
@@ -540,7 +551,8 @@ def table_mark_paid(request, pk):
 def table_session_close(request, pk):
     table = get_object_or_404(Table, restaurant=request.restaurant, pk=pk)
     table.free(user=request.user)
-    messages.success(request, f"{table} is now free. Customers must scan the QR code again to order.")
+    messages.success(request, _("Table %(number)s is now free. Customers must scan the QR code again to order.") % {
+        "number": table.number})
     return _go(request, "table_detail", table.pk)
 
 
@@ -550,10 +562,10 @@ def table_edit(request, pk):
     form = TableForm(request.POST or None, instance=table, restaurant=request.restaurant)
     if request.method == "POST" and form.is_valid():
         form.save()
-        messages.success(request, "Table updated. Reprint its QR code if you changed the number.")
+        messages.success(request, _("Table updated. Reprint its QR code if you changed the number."))
         return _go(request, "tables")
     return render(request, "dashboard/simple_form.html", {
-        "form": form, "title": f"Edit {table}", "back": reverse("dashboard:tables", args=[request.restaurant.slug]),
+        "form": form, "title": _("Edit table %(number)s") % {"number": table.number}, "back": reverse("dashboard:tables", args=[request.restaurant.slug]),
     })
 
 
@@ -562,7 +574,7 @@ def table_edit(request, pk):
 def table_delete(request, pk):
     table = get_object_or_404(Table, restaurant=request.restaurant, pk=pk)
     table.delete()  # orders keep their table_number snapshot
-    messages.success(request, f"{table} deleted.")
+    messages.success(request, _("Table %(number)s deleted.") % {"number": table.number})
     return _go(request, "tables")
 
 
@@ -571,7 +583,8 @@ def table_delete(request, pk):
 def table_regenerate_qr(request, pk):
     table = get_object_or_404(Table, restaurant=request.restaurant, pk=pk)
     table.regenerate_qr()
-    messages.success(request, f"New QR code generated for {table}. Old printed codes no longer work — print the new one.")
+    messages.success(request, _("New QR code generated for table %(number)s. Old printed codes no longer work — print the new one.")
+                     % {"number": table.number})
     return redirect(request.POST.get("next") or reverse("dashboard:table_detail", args=[request.restaurant.slug, pk]))
 
 
@@ -636,11 +649,11 @@ def category_form(request, pk=None):
     form = CategoryForm(request.POST or None, instance=category, restaurant=r)
     if request.method == "POST" and form.is_valid():
         form.save()
-        messages.success(request, "Category saved.")
+        messages.success(request, _("Category saved."))
         return _go(request, "menu")
     return render(request, "dashboard/simple_form.html", {
         "form": form,
-        "title": f"Edit category: {category.name}" if pk else "New category",
+        "title": _("Edit category: %(name)s") % {"name": category.name} if pk else _("New category"),
         "back": reverse("dashboard:menu", args=[r.slug]),
         "translation_fields": form.translation_field_names(),
     })
@@ -652,9 +665,9 @@ def category_delete(request, pk):
     category = get_object_or_404(MenuCategory, restaurant=request.restaurant, pk=pk)
     try:
         category.delete()
-        messages.success(request, "Category deleted.")
+        messages.success(request, _("Category deleted."))
     except (ProtectedError, RestrictedError):
-        messages.error(request, "Move or delete the dishes in this category first.")
+        messages.error(request, _("Move or delete the dishes in this category first."))
     return _go(request, "menu")
 
 
@@ -666,11 +679,11 @@ def item_form(request, pk=None):
         item.category_id = MenuCategory.objects.filter(restaurant=r, pk=request.GET["category"]).values_list(
             "pk", flat=True).first()
     if not MenuCategory.objects.filter(restaurant=r).exists():
-        messages.info(request, "Create a category first.")
+        messages.info(request, _("Create a category first."))
         return _go(request, "category_create")
 
     if not pk and MenuItem.objects.filter(restaurant=r).count() >= plan_limit(r, "max_menu_items"):
-        messages.error(request, f"Limit reached: your plan allows {plan_limit(r, 'max_menu_items')} dishes.")
+        messages.error(request, _("Limit reached: your plan allows %(n)s dishes.") % {"n": plan_limit(r, "max_menu_items")})
         return _go(request, "menu")
     form = MenuItemForm(request.POST or None, request.FILES or None, instance=item, restaurant=r)
     formset = OptionFormSet(request.POST or None, instance=item, prefix="opt")
@@ -680,7 +693,7 @@ def item_form(request, pk=None):
             formset.instance = item
             formset.save()
         realtime.broadcast_availability(item)
-        messages.success(request, f"“{item.name}” saved.")
+        messages.success(request, _("“%(name)s” saved.") % {"name": item.name})
         return _go(request, "menu")
     return render(request, "dashboard/item_form.html", {
         "form": form, "formset": formset, "item": item,
@@ -693,7 +706,7 @@ def item_form(request, pk=None):
 def item_delete(request, pk):
     item = get_object_or_404(MenuItem, restaurant=request.restaurant, pk=pk)
     item.delete()  # past orders keep name/price snapshots
-    messages.success(request, f"“{item.name}” deleted.")
+    messages.success(request, _("“%(name)s” deleted.") % {"name": item.name})
     return _go(request, "menu")
 
 
@@ -705,7 +718,7 @@ def restaurant_settings(request):
     form = RestaurantForm(request.POST or None, request.FILES or None, instance=r)
     if request.method == "POST" and form.is_valid():
         form.save()
-        messages.success(request, "Restaurant settings saved.")
+        messages.success(request, _("Restaurant settings saved."))
         return _go(request, "settings")
     return render(request, "dashboard/settings.html", {
         "form": form, "translation_fields": form.translation_field_names(),
@@ -716,18 +729,22 @@ def restaurant_settings(request):
     })
 
 
-SETTINGS_SECTIONS = [
-    ("Profile", "store", "How your restaurant appears to customers.",
+SETTINGS_SECTIONS = [  # (key, title, icon, description, fields)
+    ("profile", gettext_lazy("Profile"), "store", gettext_lazy("How your restaurant appears to customers."),
      ["name", "description", "address", "phone", "email", "opening_hours"]),
-    ("Branding", "image", "Shown at the top of your menu. JPEG, PNG or WebP up to 5 MB.",
+    ("branding", gettext_lazy("Branding"), "image",
+     gettext_lazy("Shown at the top of your menu. JPEG, PNG or WebP up to 5 MB."),
      ["logo", "cover_image"]),
-    ("Ordering & money", "receipt", "Pause ordering at any time; prices are shown in this currency.",
+    ("ordering", gettext_lazy("Ordering & money"), "receipt",
+     gettext_lazy("Pause ordering at any time; prices are shown in this currency."),
      ["is_accepting_orders", "currency", "currency_symbol", "service_charge_percent", "default_prep_minutes"]),
-    ("Language", "globe", "Customers can switch language on the menu; untranslated text falls back to English.",
+    ("language", gettext_lazy("Customer menu language"), "globe",
+     gettext_lazy("Customers can switch language on the menu; untranslated text falls back to English."),
      ["default_language", "description_tet", "description_id"]),
-    ("Receipts", "printer", "What happens after a payment is recorded.",
+    ("receipts", gettext_lazy("Receipts"), "printer", gettext_lazy("What happens after a payment is recorded."),
      ["receipt_prompt", "receipt_printer", "receipt_width", "receipt_footer"]),
-    ("Receipt printer & cash drawer", "drawer", "Your network (ESC/POS) receipt printer. The cash drawer plugs into it.",
+    ("drawer", gettext_lazy("Receipt printer & cash drawer"), "drawer",
+     gettext_lazy("Your network (ESC/POS) receipt printer. The cash drawer plugs into it."),
      ["printer_host", "printer_port", "cash_drawer_enabled", "drawer_pin"]),
 ]
 WIDE_FIELDS = {"name", "description", "address", "opening_hours", "description_tet", "description_id",
@@ -736,10 +753,10 @@ WIDE_FIELDS = {"name", "description", "address", "opening_hours", "description_t
 
 def _settings_sections(form):
     sections = []
-    for title, icon_name, desc, names in SETTINGS_SECTIONS:
+    for key, title, icon_name, desc, names in SETTINGS_SECTIONS:
         fields = [{"field": form[n], "wide": n in WIDE_FIELDS} for n in names if n in form.fields]
         if fields:
-            sections.append({"title": title, "icon": icon_name, "desc": desc, "fields": fields})
+            sections.append({"key": key, "title": title, "icon": icon_name, "desc": desc, "fields": fields})
     return sections
 
 
@@ -748,7 +765,7 @@ def staff(request):
     r = request.restaurant
     form = StaffCreateForm(request.POST or None)
     if request.method == "POST" and r.staff.count() >= plan_limit(r, "max_staff"):
-        messages.error(request, f"Limit reached: your plan allows {plan_limit(r, 'max_staff')} staff accounts.")
+        messages.error(request, _("Limit reached: your plan allows %(n)s staff accounts.") % {"n": plan_limit(r, "max_staff")})
     elif request.method == "POST" and form.is_valid():
         d = form.cleaned_data
         with transaction.atomic():
@@ -756,7 +773,7 @@ def staff(request):
                 username=d["username"], email=d["email"], password=d["password"], first_name=d["first_name"]
             )
             RestaurantStaff.objects.create(restaurant=r, user=user, role=d["role"])
-        messages.success(request, f"Staff account “{user.username}” created.")
+        messages.success(request, _("Staff account “%(username)s” created.") % {"username": user.username})
         return _go(request, "staff")
     return render(request, "dashboard/staff.html", {
         "members": r.staff.select_related("user").order_by("role", "user__username"),
@@ -772,13 +789,13 @@ def staff_edit(request, pk):
         if member.user == request.user and (
             form.cleaned_data["role"] != Role.OWNER or not form.cleaned_data["is_active"]
         ):
-            messages.error(request, "You cannot demote or deactivate yourself.")
+            messages.error(request, _("You cannot demote or deactivate yourself."))
         else:
             form.save()
-            messages.success(request, "Staff member updated.")
+            messages.success(request, _("Staff member updated."))
             return _go(request, "staff")
     return render(request, "dashboard/simple_form.html", {
-        "form": form, "title": f"Edit {member.user.username}",
+        "form": form, "title": _("Edit %(name)s") % {"name": member.user.username},
         "back": reverse("dashboard:staff", args=[request.restaurant.slug]),
     })
 
@@ -857,10 +874,10 @@ def billing_page(request):
     if request.method == "POST" and sub is not None:
         plan = Plan.objects.filter(pk=request.POST.get("plan"), is_active=True, is_public=True).first()
         if plan is None or plan == sub.plan:
-            messages.error(request, "Choose a different plan.")
+            messages.error(request, _("Choose a different plan."))
         else:
             request_plan_change(sub, plan, request.user)
-            messages.success(request, f"Request sent: change to {plan.name}. We'll confirm shortly.")
+            messages.success(request, _("Request sent: change to %(plan)s. We'll confirm shortly.") % {"plan": plan.name})
         return _go(request, "billing")
     return render(request, "dashboard/billing.html", {
         "sub": sub,
@@ -868,9 +885,9 @@ def billing_page(request):
         "plans": Plan.objects.filter(is_active=True, is_public=True),
         "invoices": r.invoices.exclude(status="void")[:24] if sub else [],
         "usage": [
-            ("Tables", Table.objects.filter(restaurant=r).count(), sub.plan.max_tables if sub else None),
-            ("Dishes", MenuItem.objects.filter(restaurant=r).count(), sub.plan.max_menu_items if sub else None),
-            ("Staff accounts", r.staff.count(), sub.plan.max_staff if sub else None),
+            (_("Tables"), Table.objects.filter(restaurant=r).count(), sub.plan.max_tables if sub else None),
+            (_("Dishes"), MenuItem.objects.filter(restaurant=r).count(), sub.plan.max_menu_items if sub else None),
+            (_("Staff accounts"), r.staff.count(), sub.plan.max_staff if sub else None),
         ],
     })
 

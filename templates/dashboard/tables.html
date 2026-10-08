@@ -1,14 +1,14 @@
 {% extends "dashboard/base.html" %}
-{% load ui_icons %}
-{% block title %}Tables &amp; QR codes{% endblock %}
+{% load ui_icons i18n %}
+{% block title %}{% translate "Tables &amp; QR codes" %}{% endblock %}
 {% block content %}
 {% with r=request.restaurant %}
 <div class="page-head">
   <div>
-    <h1>Tables &amp; QR codes</h1>
-    <p class="page-sub">Each table has its own QR code. Customers scan it to see the menu and order.</p>
+    <h1>{% translate "Tables &amp; QR codes" %}</h1>
+    <p class="page-sub">{% translate "Each table has its own QR code. Customers scan it to see the menu and order." %}</p>
   </div>
-  {% if tables %}<div class="page-actions"><a class="btn btn-primary" href="{% url 'dashboard:tables_print' r.slug %}" target="_blank" rel="noopener">{% icon "printer" %} Print all QR codes</a></div>{% endif %}
+  {% if tables %}<div class="page-actions"><a class="btn btn-primary" href="{% url 'dashboard:tables_print' r.slug %}" target="_blank" rel="noopener">{% icon "printer" %} {% translate "Print all QR codes" %}</a></div>{% endif %}
 </div>
 
 <section class="card">
@@ -17,24 +17,24 @@
     {% for t in tables %}
     <div class="tcard{% if not t.is_active %} inactive{% endif %}">
       <a href="{% url 'dashboard:table_detail' r.slug t.pk %}" class="tcard-main">
-        <img src="{% url 'dashboard:table_qr' r.slug t.pk %}" alt="QR code for table {{ t.number }}" width="104" height="104" loading="lazy">
-        <strong>Table {{ t.number }}</strong>
+        <img src="{% url 'dashboard:table_qr' r.slug t.pk %}" alt="{% blocktranslate trimmed with n=t.number %}QR code for table {{ n }}{% endblocktranslate %}" width="104" height="104" loading="lazy">
+        <strong>{% blocktranslate trimmed with n=t.number %}Table {{ n }}{% endblocktranslate %}</strong>
         {% if t.label %}<span class="muted small">{{ t.label }}</span>{% endif %}
         <span>
-          {% if t.active_orders %}<span class="pill pill-preparing">{{ t.active_orders }} active</span>{% elif t.has_open_session %}<span class="pill pill-new">Occupied</span>{% else %}<span class="pill">Free</span>{% endif %}
-          {% if not t.is_active %}<span class="pill pill-cancelled">Disabled</span>{% endif %}
+          {% if t.active_orders %}<span class="pill pill-preparing">{% blocktranslate trimmed with n=t.active_orders %}{{ n }} active{% endblocktranslate %}</span>{% elif t.has_open_session %}<span class="pill pill-new">{% translate "Occupied" %}</span>{% else %}<span class="pill">{% translate "Free" context "table" %}</span>{% endif %}
+          {% if not t.is_active %}<span class="pill pill-cancelled">{% translate "Disabled" %}</span>{% endif %}
         </span>
       </a>
       <div class="tcard-actions">
-        <a href="{% url 'dashboard:table_qr' r.slug t.pk %}?download=1" title="Download PNG">{% icon "download" %} PNG</a>
-        <a href="{% url 'dashboard:tables_print' r.slug %}?id={{ t.pk }}" target="_blank" rel="noopener" title="Print">{% icon "printer" %} Print</a>
-        {% if can_manage %}<a href="{% url 'dashboard:table_edit' r.slug t.pk %}" title="Edit">{% icon "edit" %} Edit</a>{% endif %}
+        <a href="{% url 'dashboard:table_qr' r.slug t.pk %}?download=1" title="{% translate "Download PNG" %}">{% icon "download" %} PNG</a>
+        <a href="{% url 'dashboard:tables_print' r.slug %}?id={{ t.pk }}" target="_blank" rel="noopener" title="{% translate "Print" %}">{% icon "printer" %} {% translate "Print" %}</a>
+        {% if can_manage %}<a href="{% url 'dashboard:table_edit' r.slug t.pk %}" title="{% translate "Edit" %}">{% icon "edit" %} {% translate "Edit" %}</a>{% endif %}
       </div>
     </div>
     {% endfor %}
   </div>
   {% else %}
-  <div class="empty">{% icon "qr" %}<p>No tables yet. Add your first table below.</p></div>
+  <div class="empty">{% icon "qr" %}<p>{% translate "No tables yet. Add your first table below." %}</p></div>
   {% endif %}
 </section>
 
@@ -42,17 +42,17 @@
 <div class="cols-even">
   <form method="post" class="card form compact">
     {% csrf_token %}
-    <h2 class="fieldset-title">{% icon "plus" %} Add a table</h2>
-    <p class="fieldset-desc">Use numbers or short codes like 12 or A-3.</p>
+    <h2 class="fieldset-title">{% icon "plus" %} {% translate "Add a table" %}</h2>
+    <p class="fieldset-desc">{% translate "Use numbers or short codes like 12 or A-3." %}</p>
     {% include "dashboard/_form_fields.html" %}
-    <button class="btn btn-primary" type="submit">Add table</button>
+    <button class="btn btn-primary" type="submit">{% translate "Add table" %}</button>
   </form>
   <form method="post" class="card form compact">
     {% csrf_token %}<input type="hidden" name="action" value="bulk">
-    <h2 class="fieldset-title">{% icon "table" %} Add many tables</h2>
-    <p class="fieldset-desc">Creates numbered tables, skipping numbers that already exist.</p>
+    <h2 class="fieldset-title">{% icon "table" %} {% translate "Add many tables" %}</h2>
+    <p class="fieldset-desc">{% translate "Creates numbered tables, skipping numbers that already exist." %}</p>
     {% include "dashboard/_form_fields.html" with form=bulk %}
-    <button class="btn" type="submit">Create tables</button>
+    <button class="btn" type="submit">{% translate "Create tables" %}</button>
   </form>
 </div>
 {% endif %}

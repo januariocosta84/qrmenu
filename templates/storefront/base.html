@@ -1,11 +1,11 @@
 {% load static %}<!doctype html>
-<html lang="{{ ui_lang }}">
+<html lang="{% block html_lang %}{{ ui_lang }}{% endblock %}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#c2410c">
   <title>{% block title %}Menu{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'css/storefront.css' %}">
+  <link rel="stylesheet" href="{% static 'css/storefront.css' %}?v={{ static_v }}">
   {% block head %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">

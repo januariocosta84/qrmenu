@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ inv.number }} · {{ inv.restaurant.name }}</title>
-  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}?v={{ static_v }}">
   <style>
     body { background: var(--bg); }
     .inv-page { max-width: 820px; margin: 24px auto; padding: 0 16px 40px; }

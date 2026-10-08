@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from apps.core.models import TimeStampedModel, TranslatableMixin
 from apps.restaurants.models import Restaurant
@@ -13,8 +14,8 @@ class MenuCategory(TranslatableMixin, TimeStampedModel):
 
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="categories")
     name = models.CharField(max_length=80)
-    position = models.PositiveIntegerField(default=0, help_text="Lower numbers appear first.")
-    is_active = models.BooleanField(default=True, help_text="Hidden categories are not shown to customers.")
+    position = models.PositiveIntegerField(default=0, help_text=_("Lower numbers appear first."))
+    is_active = models.BooleanField(default=True, help_text=_("Hidden categories are not shown to customers."))
 
     class Meta:
         ordering = ["position", "id"]
@@ -34,10 +35,10 @@ class MenuItem(TranslatableMixin, TimeStampedModel):
     description = models.TextField(blank=True, max_length=600)
     price = models.DecimalField(**PRICE_KW)
     image = models.ImageField(upload_to="menu/items/", blank=True)
-    is_available = models.BooleanField(default=True, help_text="Untick to mark as Sold Out.")
+    is_available = models.BooleanField(default=True, help_text=_("Untick to mark as Sold Out."))
     prep_minutes = models.PositiveSmallIntegerField(
         null=True, blank=True, validators=[MaxValueValidator(240)],
-        help_text="Typical preparation time; leave blank to use the restaurant default.",
+        help_text=_("Typical preparation time; leave blank to use the restaurant default."),
     )
     position = models.PositiveIntegerField(default=0)
 

@@ -1,0 +1,6 @@
+{% load i18n ui_icons %}{% get_current_language as LANG %}{% get_available_languages as LANGS %}
+<form method="post" action="{% url 'set_language' %}" class="lang-menu{% if standalone %} is-standalone{% endif %}{% if in_topbar %} is-dropdown{% endif %}" aria-label="{% translate "Language" %}">
+  {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
+  <p class="lang-menu-title">{% translate "Language" %}</p>
+  {% for code, name in LANGS %}<button type="submit" name="language" value="{{ code }}" lang="{{ code }}"{% if code == LANG %} class="is-current" aria-current="true"{% endif %}>{% include "dashboard/_flag.html" %}{{ name }}</button>{% endfor %}
+</form>

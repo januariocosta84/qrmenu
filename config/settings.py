@@ -6,9 +6,11 @@ loaded from a `.env` file in the project root). Defaults are safe for local
 development only.
 """
 import os
+import time
 from pathlib import Path
 
 import dj_database_url
+import django.conf.locale
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -84,6 +86,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "apps.core.middleware.UILanguageMiddleware",
+    "apps.core.middleware.StaffLanguageMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -128,11 +131,29 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = "en"
+# Staff dashboard languages (gettext catalogs in locale/). The customer menu
+# has its own language list in apps/core/i18n.py.
+LANGUAGES = [
+    ("en", "English"),
+    ("pt", "Português"),
+    ("tet", "Tetun"),
+    ("id", "Bahasa Indonesia"),
+]
+LOCALE_PATHS = [BASE_DIR / "locale"]
+LANGUAGE_COOKIE_NAME = "dash_lang"
+LANGUAGE_COOKIE_AGE = 365 * 24 * 3600
+LANGUAGE_COOKIE_SAMESITE = "Lax"
+# Django ships no Tetun locale; register it so the language tools know its name.
+django.conf.locale.LANG_INFO.setdefault(
+    "tet", {"bidi": False, "code": "tet", "name": "Tetum", "name_local": "Tetun"}
+)
 TIME_ZONE = os.environ.get("TIME_ZONE", "Asia/Dili")
 USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "/static/"
+# Appended to dashboard CSS/JS links (?v=...) so browsers fetch fresh files after each restart.
+STATIC_VERSION = os.environ.get("STATIC_VERSION") or str(int(time.time()))
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = "/media/"
@@ -190,6 +211,8 @@ PLATFORM_NAME = os.environ.get("PLATFORM_NAME", "QR Menu")
 # Subject prefix for emails to platform admins (Django's default is "[Django] ").
 EMAIL_SUBJECT_PREFIX = os.environ.get("EMAIL_SUBJECT_PREFIX", f"[{PLATFORM_NAME}] ")
 SUPPORT_EMAIL = os.environ.get("SUPPORT_EMAIL", "")
+# WhatsApp contact on the landing page (digits with country code, no +); empty hides it.
+SUPPORT_WHATSAPP = "".join(c for c in os.environ.get("SUPPORT_WHATSAPP", "67075946629") if c.isdigit())
 # "open": a restaurant goes live as soon as the owner verifies their email.
 # "approval": a platform admin must also approve it in /admin/ first.
 # "closed": no public sign-up (restaurants are created by the platform admin).

@@ -11,6 +11,7 @@ from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from apps.core.models import TimeStampedModel
 from apps.restaurants.models import Restaurant
@@ -63,13 +64,13 @@ class BillingSettings(models.Model):
 
     @classmethod
     def load(cls) -> "BillingSettings":
-        obj, _ = cls.objects.get_or_create(pk=1)
+        obj, _created = cls.objects.get_or_create(pk=1)
         return obj
 
 
 class Subscription(TimeStampedModel):
     TRIAL, ACTIVE, GRACE, EXPIRED, CANCELLED = "trial", "active", "grace", "expired", "cancelled"
-    STATE_LABELS = {TRIAL: "Trial", ACTIVE: "Active", GRACE: "Payment due", EXPIRED: "Expired", CANCELLED: "Cancelled"}
+    STATE_LABELS = {TRIAL: _("Trial"), ACTIVE: _("Active"), GRACE: _("Payment due"), EXPIRED: _("Expired"), CANCELLED: _("Cancelled")}
 
     restaurant = models.OneToOneField(Restaurant, on_delete=models.CASCADE, related_name="subscription")
     plan = models.ForeignKey(Plan, on_delete=models.PROTECT, related_name="subscriptions")
@@ -108,9 +109,9 @@ class Subscription(TimeStampedModel):
     @property
     def state_label(self) -> str:
         if self.comped and not self.cancelled_at:
-            return "Complimentary"
+            return _("Complimentary")
         if self.plan.is_free and not self.cancelled_at:
-            return "Free plan"
+            return _("Free plan")
         return self.STATE_LABELS[self.state]
 
     @property
@@ -131,7 +132,7 @@ class Subscription(TimeStampedModel):
 
 class Invoice(models.Model):
     OPEN, PAID, VOID = "open", "paid", "void"
-    STATUS_CHOICES = [(OPEN, "Open"), (PAID, "Paid"), (VOID, "Void")]
+    STATUS_CHOICES = [(OPEN, _("Open")), (PAID, _("Paid")), (VOID, _("Void"))]
     METHOD_CHOICES = [
         ("bank_transfer", "Bank transfer"), ("cash", "Cash"), ("mobile_money", "Mobile money"),
         ("card", "Card"), ("other", "Other"),

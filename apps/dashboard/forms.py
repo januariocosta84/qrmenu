@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import UploadedFile
+from django.utils.translation import gettext_lazy as _
 
 from apps.core.i18n import TRANSLATED_LANGUAGES
 from apps.core.images import process_image
@@ -41,11 +42,11 @@ class TranslationFormMixin:
 
     def translation_field_names(self):
         model = self._meta.model
-        return [f"{f}_{code}" for f in model.TRANSLATABLE_FIELDS for code, _ in TRANSLATED_LANGUAGES]
+        return [f"{f}_{code}" for f in model.TRANSLATABLE_FIELDS for code, _name in TRANSLATED_LANGUAGES]
 
     def apply_translations(self, instance):
         for field in instance.TRANSLATABLE_FIELDS:
-            for code, _ in TRANSLATED_LANGUAGES:
+            for code, _name in TRANSLATED_LANGUAGES:
                 instance.set_translation(code, field, self.cleaned_data.get(f"{field}_{code}", ""))
 
     def save(self, commit=True):
@@ -92,7 +93,17 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
             "logo": forms.ClearableFileInput(attrs={"accept": "image/jpeg,image/png,image/webp"}),
             "cover_image": forms.ClearableFileInput(attrs={"accept": "image/jpeg,image/png,image/webp"}),
         }
-
+        labels = {
+            "name": _("Name"), "description": _("Description"), "logo": _("Logo"), "cover_image": _("Cover image"),
+            "address": _("Address"), "phone": _("Phone"), "email": _("Email"), "opening_hours": _("Opening hours"),
+            "currency": _("Currency"), "currency_symbol": _("Currency symbol"),
+            "service_charge_percent": _("Service charge (%)"), "default_language": _("Default menu language"),
+            "default_prep_minutes": _("Default preparation time (minutes)"),
+            "is_accepting_orders": _("Accepting orders"), "cash_drawer_enabled": _("Cash drawer enabled"),
+            "printer_host": _("Printer IP address"), "printer_port": _("Printer port"), "drawer_pin": _("Drawer pin"),
+            "receipt_prompt": _("After a payment"), "receipt_printer": _("Receipt printer"),
+            "receipt_width": _("Paper width"), "receipt_footer": _("Receipt footer"),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -107,9 +118,9 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
     def clean(self):
         cleaned = super().clean()
         if cleaned.get("receipt_printer") == Restaurant.RECEIPT_NETWORK and not cleaned.get("printer_host"):
-            self.add_error("printer_host", "Enter the receipt printer's IP address to print receipts on it.")
+            self.add_error("printer_host", _("Enter the receipt printer's IP address to print receipts on it."))
         if cleaned.get("cash_drawer_enabled") and not cleaned.get("printer_host"):
-            self.add_error("printer_host", "Enter the receipt printer's IP address to use the cash drawer.")
+            self.add_error("printer_host", _("Enter the receipt printer's IP address to use the cash drawer."))
         return cleaned
 
 
@@ -117,6 +128,7 @@ class CategoryForm(TranslationFormMixin, forms.ModelForm):
     class Meta:
         model = MenuCategory
         fields = ["name", "position", "is_active"]
+        labels = {"name": _("Name"), "position": _("Position"), "is_active": _("Visible to customers")}
 
     def __init__(self, *args, restaurant, **kwargs):
         self.restaurant = restaurant
@@ -128,7 +140,7 @@ class CategoryForm(TranslationFormMixin, forms.ModelForm):
         if self.instance.pk:
             qs = qs.exclude(pk=self.instance.pk)
         if qs.exists():
-            raise ValidationError("A category with this name already exists.")
+            raise ValidationError(_("A category with this name already exists."))
         return name
 
 
@@ -143,7 +155,11 @@ class MenuItemForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
             "image": forms.ClearableFileInput(attrs={"accept": "image/jpeg,image/png,image/webp"}),
             "price": forms.NumberInput(attrs={"step": "0.01", "min": "0", "inputmode": "decimal"}),
         }
-        labels = {"is_available": "Available (untick = Sold Out)"}
+        labels = {
+            "category": _("Category"), "name": _("Name"), "description": _("Description"), "price": _("Price"),
+            "image": _("Photo"), "is_available": _("Available (untick = Sold Out)"),
+            "prep_minutes": _("Preparation time (minutes)"), "position": _("Position"),
+        }
 
     def __init__(self, *args, restaurant, **kwargs):
         self.restaurant = restaurant
@@ -161,6 +177,7 @@ class OptionForm(TranslationFormMixin, forms.ModelForm):
         model = MenuItemOption
         fields = ["name", "price", "is_available", "position"]
         widgets = {"price": forms.NumberInput(attrs={"step": "0.01", "min": "0"})}
+        labels = {"name": _("Name"), "price": _("Price"), "is_available": _("Available"), "position": _("Position")}
 
 
 OptionFormSet = forms.inlineformset_factory(
@@ -172,6 +189,7 @@ class TableForm(forms.ModelForm):
     class Meta:
         model = Table
         fields = ["number", "label", "seats", "is_active"]
+        labels = {"number": _("Table number"), "label": _("Label"), "seats": _("Seats"), "is_active": _("Active")}
 
     def __init__(self, *args, restaurant, **kwargs):
         self.restaurant = restaurant
@@ -183,7 +201,7 @@ class TableForm(forms.ModelForm):
         if self.instance.pk:
             qs = qs.exclude(pk=self.instance.pk)
         if qs.exists():
-            raise ValidationError("This table number already exists.")
+            raise ValidationError(_("This table number already exists."))
         return number
 
     def save(self, commit=True):
@@ -192,35 +210,36 @@ class TableForm(forms.ModelForm):
 
 
 class BulkTableForm(forms.Form):
-    start = forms.IntegerField(min_value=1, max_value=999, initial=1)
-    end = forms.IntegerField(min_value=1, max_value=999, initial=10)
+    start = forms.IntegerField(min_value=1, max_value=999, initial=1, label=_("From table"))
+    end = forms.IntegerField(min_value=1, max_value=999, initial=10, label=_("To table"))
 
     def clean(self):
         cleaned = super().clean()
         start, end = cleaned.get("start"), cleaned.get("end")
         if start and end and (end < start or end - start >= 200):
-            raise ValidationError("Choose a range of at most 200 tables, with end ≥ start.")
+            raise ValidationError(_("Choose a range of at most 200 tables, with end ≥ start."))
         return cleaned
 
 
 class StaffCreateForm(forms.Form):
-    username = forms.CharField(max_length=150)
-    first_name = forms.CharField(max_length=150, required=False, label="Name")
-    email = forms.EmailField(required=False)
-    role = forms.ChoiceField(choices=Role.CHOICES)
-    password = forms.CharField(widget=forms.PasswordInput, help_text="Share it with the staff member; they can change it later.")
+    username = forms.CharField(max_length=150, label=_("Username"))
+    first_name = forms.CharField(max_length=150, required=False, label=_("Name"))
+    email = forms.EmailField(required=False, label=_("Email"))
+    role = forms.ChoiceField(choices=Role.CHOICES, label=_("Role"))
+    password = forms.CharField(widget=forms.PasswordInput, label=_("Password"),
+                               help_text=_("Share it with the staff member; they can change it later."))
 
     def clean_email(self):
         email = self.cleaned_data.get("email", "").strip().lower()
         if email and User.objects.filter(email__iexact=email).exists():
-            raise ValidationError("An account with this email already exists.")
+            raise ValidationError(_("An account with this email already exists."))
         return email
 
     def clean_username(self):
         username = self.cleaned_data["username"].strip()
         User.username_validator(username)
         if User.objects.filter(username__iexact=username).exists():
-            raise ValidationError("This username is already taken.")
+            raise ValidationError(_("This username is already taken."))
         return username
 
     def clean(self):
@@ -238,16 +257,18 @@ class StaffEditForm(forms.ModelForm):
     class Meta:
         model = RestaurantStaff
         fields = ["role", "is_active"]
+        labels = {"role": _("Role"), "is_active": _("Active")}
 
 
 class PaymentForm(forms.Form):
-    method = forms.ChoiceField(choices=STAFF_RECORDABLE_METHODS)
-    amount = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0.01)
-    reference = forms.CharField(max_length=120, required=False, help_text="Receipt / transfer reference")
+    method = forms.ChoiceField(choices=STAFF_RECORDABLE_METHODS, label=_("Method"))
+    amount = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0.01, label=_("Amount"))
+    reference = forms.CharField(max_length=120, required=False, label=_("Reference"),
+                                help_text=_("Receipt / transfer reference"))
 
 
 class OrderFilterForm(forms.Form):
-    q = forms.CharField(required=False, label="Order # / name")
+    q = forms.CharField(required=False, label=_("Order # / name"))
     table = forms.CharField(required=False, validators=[table_number_validator])
     date_from = forms.DateField(required=False, widget=forms.DateInput(attrs={"type": "date"}))
     date_to = forms.DateField(required=False, widget=forms.DateInput(attrs={"type": "date"}))

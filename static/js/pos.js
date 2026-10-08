@@ -2,6 +2,7 @@
 (function () {
   "use strict";
   const D = window.DASH;
+  const _ = D.t;
   const CFG = JSON.parse(document.getElementById("pos-config").textContent);
   const $ = (s) => document.querySelector(s);
   const el = (tag, cls, text) => {
@@ -25,7 +26,7 @@
   if (CFG.table) tableSel.value = String(CFG.table);
 
   function fillGuests(selectRef) {
-    guestSel.replaceChildren(new Option("New guest", ""));
+    guestSel.replaceChildren(new Option(_("New guest"), ""));
     (CFG.guests[tableSel.value] || []).forEach((g) => guestSel.add(new Option(g.label, g.ref)));
     guestSel.disabled = !tableSel.value;
     guestSel.value = selectRef && [...guestSel.options].some((o) => o.value === selectRef) ? selectRef : "";
@@ -61,12 +62,12 @@
       b.type = "button";
       b.disabled = !i.is_available;
       b.appendChild(el("strong", null, i.name));
-      b.appendChild(el("span", null, i.is_available ? money(cents(i.price)) : "Sold out"));
+      b.appendChild(el("span", null, i.is_available ? money(cents(i.price)) : _("Sold out")));
       if (i.options.length) b.appendChild(el("small", "muted", "+ add-ons"));
       b.addEventListener("click", () => (i.options.length ? openItem(i) : addLine(i.id, 1, [], "")));
       return b;
     }));
-    if (!list.length) box.appendChild(el("p", "muted", "No dishes."));
+    if (!list.length) box.appendChild(el("p", "muted", _("No dishes.")));
   }
   $("#pos-search").addEventListener("input", renderItems);
 
@@ -88,7 +89,7 @@
       cb.type = "checkbox";
       cb.value = o.id;
       cb.disabled = !o.is_available;
-      label.append(cb, el("span", null, o.name + (o.is_available ? "" : " (sold out)")),
+      label.append(cb, el("span", null, o.name + (o.is_available ? "" : " (" + _("sold out") + ")")),
                    el("span", "muted", cents(o.price) ? "+" + money(cents(o.price)) : ""));
       return label;
     }));
@@ -145,7 +146,7 @@
     $("#pos-service-row").hidden = service === 0;
     $("#pos-total").textContent = money(sub + service);
     $("#pos-send").disabled = !lines.length || sending || !CFG.acceptingOrders;
-    $("#pos-send").innerHTML = D.icon("flame") + (lines.length ? ` Send to kitchen · ${money(sub + service)}` : " Send to kitchen");
+    $("#pos-send").innerHTML = D.icon("flame") + " " + _("Send to kitchen") + (lines.length ? ` · ${money(sub + service)}` : "");
   }
 
   // ---------- Send ----------
@@ -163,21 +164,21 @@
         note: $("#pos-note").value.trim(),
         items: lines.map((l) => ({ menu_item: l.id, quantity: l.qty, options: l.options, note: l.note })),
       });
-      const where = order.table_number ? `Table ${order.table_number}` : "Counter";
-      D.toast(`Order #${order.number} sent to the kitchen · ${where}`, CFG.orderUrl.replace("/0/", `/${order.id}/`), "new");
+      const where = order.table_number ? _("Table %(n)s", { n: order.table_number }) : _("Counter");
+      D.toast(_("Order #%(number)s sent to the kitchen · %(where)s", { number: order.number, where }), CFG.orderUrl.replace("/0/", `/${order.id}/`), "new");
       // Keep adding for the same guest if the waiter wants more.
       if (tableSel.value) {
         const list = (CFG.guests[tableSel.value] = CFG.guests[tableSel.value] || []);
         if (!list.some((g) => g.ref === order.guest)) {
           const name = $("#pos-name").value.trim();
-          list.push({ ref: order.guest, label: `Guest ${list.length + 1}${name ? " · " + name : ""}` });
+          list.push({ ref: order.guest, label: _("Guest %(n)s", { n: list.length + 1 }) + (name ? " · " + name : "") });
         }
         fillGuests(order.guest);
       }
       lines = [];
       $("#pos-note").value = "";
     } catch (e) {
-      err.textContent = e.message || "Could not send the order.";
+      err.textContent = e.message || _("Could not send the order.");
       err.hidden = false;
       if (e.data && e.data.unavailable) {
         e.data.unavailable.forEach((id) => { if (items[id]) items[id].is_available = false; });
@@ -190,7 +191,7 @@
   });
 
   if (!CFG.acceptingOrders) {
-    $("#pos-error").textContent = "Ordering is switched off in Restaurant settings.";
+    $("#pos-error").textContent = _("Ordering is switched off in Restaurant settings.");
     $("#pos-error").hidden = false;
   }
   renderCats();

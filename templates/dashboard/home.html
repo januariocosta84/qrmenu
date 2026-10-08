@@ -1,25 +1,25 @@
 {% extends "dashboard/base.html" %}
-{% load ui_icons %}
-{% block title %}Your restaurants{% endblock %}
+{% load ui_icons i18n %}
+{% block title %}{% translate "Your restaurants" %}{% endblock %}
 {% block body_class %}auth{% endblock %}
 {% block content %}
 <div class="auth-card wide">
   <div class="auth-brand">{% icon "qr" "i-lg" %} {{ platform_name }}</div>
-  <h1>Choose a restaurant</h1>
-  <p class="muted">Signed in as {{ user.get_full_name|default:user.username }}</p>
+  <h1>{% translate "Choose a restaurant" %}</h1>
+  <p class="muted">{% blocktranslate trimmed with name=user.get_full_name|default:user.username %}Signed in as {{ name }}{% endblocktranslate %}</p>
   {% if restaurants %}
     <ul class="restaurant-list">{% for r in restaurants %}
       <li><a href="{% url 'dashboard:overview' r.slug %}">
         {% if r.logo %}<img class="sb-logo" src="{{ r.logo.url }}" alt="" width="36" height="36" style="width:36px;height:36px">{% else %}<span class="sb-logo sb-initial">{{ r.name|slice:":1"|upper }}</span>{% endif %}
         <span style="flex:1"><strong>{{ r.name }}</strong><br><span class="muted small">/r/{{ r.slug }}/</span></span>
-        {% if r.is_active %}<span class="pill pill-ready">Live</span>{% else %}<span class="pill pill-preparing">Not live</span>{% endif %}
+        {% if r.is_active %}<span class="pill pill-ready">{% translate "Live" %}</span>{% else %}<span class="pill pill-preparing">{% translate "Not live" %}</span>{% endif %}
         {% icon "chevron-right" %}
       </a></li>{% endfor %}
     </ul>
   {% else %}
-    <div class="empty">{% icon "store" %}<p>Your account is not linked to a restaurant yet. Ask the restaurant owner to add you as staff{% if user.is_superuser %}, or <a href="{% url 'admin:restaurants_restaurant_add' %}">create a restaurant</a> in the platform admin{% endif %}.</p></div>
+    <div class="empty">{% icon "store" %}<p>{% translate "Your account is not linked to a restaurant yet. Ask the restaurant owner to add you as staff." %}{% if user.is_superuser %} {% url 'admin:restaurants_restaurant_add' as add_url %}{% blocktranslate trimmed with url=add_url %}Or <a href="{{ url }}">create a restaurant</a> in the platform admin.{% endblocktranslate %}{% endif %}</p></div>
   {% endif %}
-  {% if user.is_superuser %}<p><a class="btn btn-primary btn-block" href="{% url 'console:overview' %}">{% icon "settings" %} Open the platform console</a></p>{% endif %}
-  <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}<button class="btn btn-ghost" type="submit">{% icon "logout" %} Log out</button></form>
+  {% if user.is_superuser %}<p><a class="btn btn-primary btn-block" href="{% url 'console:overview' %}">{% icon "settings" %} {% translate "Open the platform console" %}</a></p>{% endif %}
+  <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}<button class="btn btn-ghost" type="submit">{% icon "logout" %} {% translate "Log out" %}</button></form>
 </div>
 {% endblock %}

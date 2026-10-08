@@ -15,6 +15,7 @@ from decimal import Decimal
 
 from django.db import transaction
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from apps.orders.models import Order, PaymentMethod, PaymentStatus
 
@@ -79,11 +80,11 @@ PROVIDERS: dict[str, PaymentProvider] = {
 }
 
 STAFF_RECORDABLE_METHODS = [
-    (PaymentMethod.CASH, "Cash"),
-    (PaymentMethod.MANUAL, "Manual / other"),
-    (PaymentMethod.BANK_TRANSFER, "Bank transfer (manual check)"),
-    (PaymentMethod.CARD, "Card (external terminal)"),
-    (PaymentMethod.QR_PAYMENT, "QR payment (manual check)"),
+    (PaymentMethod.CASH, _("Cash")),
+    (PaymentMethod.MANUAL, _("Manual / other")),
+    (PaymentMethod.BANK_TRANSFER, _("Bank transfer (manual check)")),
+    (PaymentMethod.CARD, _("Card (external terminal)")),
+    (PaymentMethod.QR_PAYMENT, _("QR payment (manual check)")),
 ]
 
 

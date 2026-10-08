@@ -11,6 +11,8 @@ def ui(request):
         "ui_languages": LANGUAGES,
         "platform_name": settings.PLATFORM_NAME,
         "support_email": settings.SUPPORT_EMAIL,
+        "support_whatsapp": settings.SUPPORT_WHATSAPP,
+        "static_v": settings.STATIC_VERSION,
         "drawer_available": settings.CASH_DRAWER_NETWORK_ENABLED,
         "receipt_network": _receipt_network(request),
     }

@@ -15,6 +15,7 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db.models import Prefetch
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from apps.orders.models import Order, OrderItem, OrderStatus, PaymentStatus
 
@@ -163,9 +164,9 @@ def network_printing_available(restaurant) -> bool:
 
 def print_receipt_network(restaurant, orders) -> PrintResult:
     if not network_printing_available(restaurant):
-        return PrintResult(False, "Network receipt printer is not set up.", attempted=False)
+        return PrintResult(False, _("Network receipt printer is not set up."), attempted=False)
     if not orders:
-        return PrintResult(False, "Nothing to print.", attempted=False)
+        return PrintResult(False, _("Nothing to print."), attempted=False)
     target = f"{restaurant.printer_host}:{restaurant.printer_port}"
     payload = escpos_receipt(receipt_data(restaurant, orders), restaurant.receipt_width)
     try:
@@ -173,9 +174,10 @@ def print_receipt_network(restaurant, orders) -> PrintResult:
         with socket.create_connection((restaurant.printer_host, restaurant.printer_port), timeout=CONNECT_TIMEOUT) as s:
             s.sendall(payload)
     except socket.timeout:
-        return PrintResult(False, f"Printer at {target} did not respond. Is it switched on?")
+        return PrintResult(False, _("Printer at %(target)s did not respond. Is it switched on?") % {"target": target})
     except OSError as exc:
-        return PrintResult(False, f"Could not reach the printer at {target} ({exc.strerror or exc}).")
+        return PrintResult(False, _("Could not reach the printer at %(target)s (%(error)s).") % {
+            "target": target, "error": exc.strerror or exc})
     except ValidationError as exc:
         return PrintResult(False, " ".join(exc.messages))
-    return PrintResult(True, "Receipt printed.")
+    return PrintResult(True, _("Receipt printed."))

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from apps.core.models import TimeStampedModel
 from apps.orders.models import Order, PaymentMethod
@@ -18,7 +19,7 @@ class Payment(TimeStampedModel):
     """
 
     PENDING, SUCCEEDED, FAILED, REFUNDED = "pending", "succeeded", "failed", "refunded"
-    STATUS_CHOICES = [(PENDING, "Pending"), (SUCCEEDED, "Succeeded"), (FAILED, "Failed"), (REFUNDED, "Refunded")]
+    STATUS_CHOICES = [(PENDING, _("Pending")), (SUCCEEDED, _("Succeeded")), (FAILED, _("Failed")), (REFUNDED, _("Refunded"))]
 
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="payments")
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="payments")
@@ -52,7 +53,7 @@ class CashDrawerOpening(models.Model):
     """Audit log: every time the cash drawer is opened (or fails to open), and by whom."""
 
     PAYMENT, NO_SALE, TEST = "payment", "no_sale", "test"
-    REASON_CHOICES = [(PAYMENT, "Cash payment"), (NO_SALE, "No sale / change"), (TEST, "Test")]
+    REASON_CHOICES = [(PAYMENT, _("Cash payment")), (NO_SALE, _("No sale / change")), (TEST, _("Test"))]
 
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="drawer_openings")
     order = models.ForeignKey(Order, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")

@@ -1,0 +1,2299 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: qrmenu dashboard\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-08 11:50+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Restaurant name"
+msgstr "Nome do restaurante"
+
+msgid "Your name"
+msgstr "O seu nome"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "You'll sign in with this email. We'll send a confirmation link."
+msgstr "Vai iniciar sessão com este email. Enviaremos um link de confirmação."
+
+msgid "Phone (optional)"
+msgstr "Telefone (opcional)"
+
+msgid "Password"
+msgstr "Palavra-passe"
+
+msgid "I confirm I own or manage this restaurant."
+msgstr "Confirmo que sou proprietário ou gestor deste restaurante."
+
+msgid ""
+"An account with this email already exists. Try logging in or resetting your "
+"password."
+msgstr ""
+"Já existe uma conta com este email. Tente iniciar sessão ou repor a palavra-"
+"passe."
+
+msgid "Enter the restaurant's name."
+msgstr "Introduza o nome do restaurante."
+
+msgid "Sign-up failed. Please try again."
+msgstr "O registo falhou. Tente novamente."
+
+msgid "Too many failed login attempts. Please try again in 15 minutes."
+msgstr "Demasiadas tentativas falhadas. Tente novamente dentro de 15 minutos."
+
+msgid "Too many sign-ups from your network. Please try again in an hour."
+msgstr ""
+"Demasiados registos a partir da sua rede. Tente novamente dentro de uma hora."
+
+#, python-format
+msgid "Welcome! We sent a confirmation link to %(email)s."
+msgstr "Bem-vindo! Enviámos um link de confirmação para %(email)s."
+
+msgid ""
+"Your account is ready, but we couldn't send the confirmation email. Use "
+"“Resend email” below."
+msgstr ""
+"A sua conta está pronta, mas não foi possível enviar o email de confirmação. "
+"Use “Reenviar email” abaixo."
+
+msgid ""
+"This confirmation link is invalid or has expired. Log in and request a new "
+"one."
+msgstr ""
+"Este link de confirmação é inválido ou expirou. Inicie sessão e peça um novo."
+
+msgid ""
+"Email confirmed — your restaurant is now live! Customers can scan your QR "
+"codes."
+msgstr ""
+"Email confirmado — o seu restaurante já está ativo! Os clientes podem ler os "
+"seus códigos QR."
+
+msgid ""
+"Email confirmed. Your restaurant is waiting for approval by the platform "
+"team."
+msgstr ""
+"Email confirmado. O seu restaurante aguarda aprovação da equipa da "
+"plataforma."
+
+msgid "Email confirmed."
+msgstr "Email confirmado."
+
+msgid "Your email is already confirmed."
+msgstr "O seu email já está confirmado."
+
+msgid "Please wait a while before requesting another email."
+msgstr "Aguarde um pouco antes de pedir outro email."
+
+#, python-format
+msgid "Confirmation email sent to %(email)s."
+msgstr "Email de confirmação enviado para %(email)s."
+
+msgid "We couldn't send the email right now. Please try again later."
+msgstr "Não foi possível enviar o email agora. Tente mais tarde."
+
+msgid "Trial"
+msgstr "Período experimental"
+
+msgid "Active"
+msgstr "Ativo"
+
+msgid "Payment due"
+msgstr "Pagamento em atraso"
+
+msgid "Expired"
+msgstr "Expirado"
+
+msgid "Cancelled"
+msgstr "Cancelado"
+
+msgid "Complimentary"
+msgstr "Gratuito (oferta)"
+
+msgid "Free plan"
+msgstr "Plano gratuito"
+
+msgid "Open"
+msgstr "Em aberto"
+
+msgid "Paid"
+msgstr "Pago"
+
+msgid "Void"
+msgstr "Anulada"
+
+msgid "This field is required."
+msgstr ""
+
+msgid "Enter a valid email address."
+msgstr ""
+
+msgid "Enter a whole number."
+msgstr ""
+
+msgid "Enter a number."
+msgstr ""
+
+msgid "Enter a valid value."
+msgstr ""
+
+msgid "Enter a valid date."
+msgstr ""
+
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+msgid "Currently"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "No"
+msgstr "Não"
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Your old password was entered incorrectly. Please enter it again."
+msgstr ""
+
+msgid "Old password"
+msgstr ""
+
+msgid "New password"
+msgstr ""
+
+msgid "New password confirmation"
+msgstr ""
+
+msgid "The two password fields didn’t match."
+msgstr ""
+
+msgid "This password is too common."
+msgstr ""
+
+msgid "This password is entirely numeric."
+msgstr ""
+
+#, python-format
+msgid "The password is too similar to the %(verbose_name)s."
+msgstr ""
+
+#, python-format
+msgid ""
+"This password is too short. It must contain at least %(min_length)d "
+"character."
+msgid_plural ""
+"This password is too short. It must contain at least %(min_length)d "
+"characters."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%(num)d minute"
+msgid_plural "%(num)d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Monday"
+msgstr ""
+
+msgid "Tuesday"
+msgstr ""
+
+msgid "Wednesday"
+msgstr ""
+
+msgid "Thursday"
+msgstr ""
+
+msgid "Friday"
+msgstr ""
+
+msgid "Saturday"
+msgstr ""
+
+msgid "Sunday"
+msgstr ""
+
+msgid "Mon"
+msgstr ""
+
+msgid "Tue"
+msgstr ""
+
+msgid "Wed"
+msgstr ""
+
+msgid "Thu"
+msgstr ""
+
+msgid "Fri"
+msgstr ""
+
+msgid "Sat"
+msgstr ""
+
+msgid "Sun"
+msgstr ""
+
+msgid "January"
+msgstr ""
+
+msgid "February"
+msgstr ""
+
+msgid "March"
+msgstr ""
+
+msgid "April"
+msgstr ""
+
+msgid "May"
+msgstr ""
+
+msgid "June"
+msgstr ""
+
+msgid "July"
+msgstr ""
+
+msgid "August"
+msgstr ""
+
+msgid "September"
+msgstr ""
+
+msgid "October"
+msgstr ""
+
+msgid "November"
+msgstr ""
+
+msgid "December"
+msgstr ""
+
+msgid "jan"
+msgstr ""
+
+msgid "feb"
+msgstr ""
+
+msgid "mar"
+msgstr ""
+
+msgid "apr"
+msgstr ""
+
+msgid "may"
+msgstr ""
+
+msgid "jun"
+msgstr ""
+
+msgid "jul"
+msgstr ""
+
+msgid "aug"
+msgstr ""
+
+msgid "sep"
+msgstr ""
+
+msgid "oct"
+msgstr ""
+
+msgid "nov"
+msgstr ""
+
+msgid "dec"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "January"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "March"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "May"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+msgctxt "alt. month"
+msgid "December"
+msgstr ""
+
+#, python-format
+msgid "Image is too large (max %(mb)s MB)."
+msgstr "A imagem é demasiado grande (máx. %(mb)s MB)."
+
+msgid "Only JPEG, PNG and WebP images are allowed."
+msgstr "Só são permitidas imagens JPEG, PNG e WebP."
+
+msgid "Image dimensions are too large."
+msgstr "As dimensões da imagem são demasiado grandes."
+
+msgid "Upload a valid image file."
+msgstr "Carregue um ficheiro de imagem válido."
+
+msgid "Owner"
+msgstr "Proprietário"
+
+msgid "Manager"
+msgstr "Gerente"
+
+msgid "Kitchen"
+msgstr "Cozinha"
+
+msgid "Waiter / Cashier"
+msgstr "Empregado / Caixa"
+
+msgid "Unknown table."
+msgstr "Mesa desconhecida."
+
+msgid "That guest is not at this table any more."
+msgstr "Esse cliente já não está nesta mesa."
+
+msgid "Your role cannot cancel orders."
+msgstr "A sua função não permite cancelar pedidos."
+
+msgid "No orders to print."
+msgstr "Não há pedidos para imprimir."
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Logo"
+msgstr "Logótipo"
+
+msgid "Cover image"
+msgstr "Imagem de capa"
+
+msgid "Address"
+msgstr "Morada"
+
+msgid "Phone"
+msgstr "Telefone"
+
+msgid "Opening hours"
+msgstr "Horário"
+
+msgid "Currency"
+msgstr "Moeda"
+
+msgid "Currency symbol"
+msgstr "Símbolo da moeda"
+
+msgid "Service charge (%)"
+msgstr "Taxa de serviço (%)"
+
+msgid "Default menu language"
+msgstr "Língua predefinida do menu"
+
+msgid "Default preparation time (minutes)"
+msgstr "Tempo de preparação predefinido (minutos)"
+
+msgid "Accepting orders"
+msgstr "Aceitar pedidos"
+
+msgid "Cash drawer enabled"
+msgstr "Gaveta de dinheiro ativa"
+
+msgid "Printer IP address"
+msgstr "Endereço IP da impressora"
+
+msgid "Printer port"
+msgstr "Porta da impressora"
+
+msgid "Drawer pin"
+msgstr "Pino da gaveta"
+
+msgid "After a payment"
+msgstr "Depois de um pagamento"
+
+msgid "Receipt printer"
+msgstr "Impressora de recibos"
+
+msgid "Paper width"
+msgstr "Largura do papel"
+
+msgid "Receipt footer"
+msgstr "Rodapé do recibo"
+
+msgid "Enter the receipt printer's IP address to print receipts on it."
+msgstr "Introduza o endereço IP da impressora de recibos para imprimir nela."
+
+msgid "Enter the receipt printer's IP address to use the cash drawer."
+msgstr ""
+"Introduza o endereço IP da impressora de recibos para usar a gaveta de "
+"dinheiro."
+
+msgid "Position"
+msgstr "Posição"
+
+msgid "Visible to customers"
+msgstr "Visível para os clientes"
+
+msgid "A category with this name already exists."
+msgstr "Já existe uma categoria com este nome."
+
+msgid "Category"
+msgstr "Categoria"
+
+msgid "Price"
+msgstr "Preço"
+
+msgid "Photo"
+msgstr "Fotografia"
+
+msgid "Available (untick = Sold Out)"
+msgstr "Disponível (desmarcar = Esgotado)"
+
+msgid "Preparation time (minutes)"
+msgstr "Tempo de preparação (minutos)"
+
+msgid "Available"
+msgstr "Disponível"
+
+msgid "Table number"
+msgstr "Número da mesa"
+
+msgid "Label"
+msgstr "Etiqueta"
+
+msgid "Seats"
+msgstr "Lugares"
+
+msgid "This table number already exists."
+msgstr "Este número de mesa já existe."
+
+msgid "From table"
+msgstr "Da mesa"
+
+msgid "To table"
+msgstr "Até à mesa"
+
+msgid "Choose a range of at most 200 tables, with end ≥ start."
+msgstr "Escolha um intervalo de no máximo 200 mesas, com fim ≥ início."
+
+msgid "Username"
+msgstr "Nome de utilizador"
+
+msgid "Role"
+msgstr "Função"
+
+msgid "Share it with the staff member; they can change it later."
+msgstr "Partilhe-a com o funcionário; poderá alterá-la depois."
+
+msgid "An account with this email already exists."
+msgstr "Já existe uma conta com este email."
+
+msgid "This username is already taken."
+msgstr "Este nome de utilizador já está a ser usado."
+
+msgid "Method"
+msgstr "Método"
+
+msgid "Amount"
+msgstr "Montante"
+
+msgid "Reference"
+msgstr "Referência"
+
+msgid "Receipt / transfer reference"
+msgstr "Referência do recibo / transferência"
+
+msgid "Order # / name"
+msgstr "N.º do pedido / nome"
+
+msgid "Add your logo, address and opening hours"
+msgstr "Adicione o logótipo, a morada e o horário"
+
+msgid "Create menu categories (e.g. Rice, Drinks)"
+msgstr "Crie categorias do menu (ex.: Arroz, Bebidas)"
+
+msgid "Add your dishes with photos and prices"
+msgstr "Adicione os pratos com fotografias e preços"
+
+msgid "Create your tables"
+msgstr "Crie as suas mesas"
+
+msgid "Print the QR codes and place one on each table"
+msgstr "Imprima os códigos QR e coloque um em cada mesa"
+
+msgid "Add kitchen and waiter accounts"
+msgstr "Adicione contas para a cozinha e os empregados"
+
+#, python-format
+msgid "Order #%(number)s → %(status)s."
+msgstr "Pedido n.º %(number)s → %(status)s."
+
+#, python-format
+msgid "Payment recorded. Order #%(number)s is now %(status)s."
+msgstr "Pagamento registado. O pedido n.º %(number)s está agora: %(status)s."
+
+msgid "Accept"
+msgstr "Aceitar"
+
+msgid "Start preparing"
+msgstr "Começar a preparar"
+
+msgid "Mark ready"
+msgstr "Marcar como pronto"
+
+msgid "Complete"
+msgstr "Concluir"
+
+msgid "Cancel order"
+msgstr "Cancelar pedido"
+
+msgid "Enter the cash received as a number, e.g. 20 or 20.00."
+msgstr "Introduza o dinheiro recebido como número, ex.: 20 ou 20.00."
+
+msgid "Enter a valid cash amount."
+msgstr "Introduza um montante válido."
+
+#, python-format
+msgid "GIVE CHANGE: %(change)s  (received %(received)s, total %(total)s)"
+msgstr "DAR TROCO: %(change)s  (recebido %(received)s, total %(total)s)"
+
+#, python-format
+msgid "Exact amount received: %(total)s. No change."
+msgstr "Valor exato recebido: %(total)s. Sem troco."
+
+#, python-format
+msgid "Receipt not printed: %(reason)s"
+msgstr "Recibo não impresso: %(reason)s"
+
+msgid "Cash drawer opened."
+msgstr "Gaveta de dinheiro aberta."
+
+#, python-format
+msgid "Payment saved, but the cash drawer did not open: %(reason)s"
+msgstr "Pagamento guardado, mas a gaveta não abriu: %(reason)s"
+
+#, python-format
+msgid "Order #%(number)s marked as paid."
+msgstr "Pedido n.º %(number)s marcado como pago."
+
+msgid "Your role cannot manage tables."
+msgstr "A sua função não permite gerir mesas."
+
+#, python-format
+msgid "Limit reached: a restaurant can have up to %(n)s tables on your plan."
+msgstr "Limite atingido: o seu plano permite até %(n)s mesas."
+
+#, python-format
+msgid "Created %(n)s table."
+msgid_plural "Created %(n)s tables."
+msgstr[0] "Criada %(n)s mesa."
+msgstr[1] "Criadas %(n)s mesas."
+
+#, python-format
+msgid "Limit reached: your plan allows %(n)s tables."
+msgstr "Limite atingido: o seu plano permite %(n)s mesas."
+
+#, python-format
+msgid "Table %(number)s created."
+msgstr "Mesa %(number)s criada."
+
+#, python-format
+msgid "Guest %(n)s"
+msgstr "Cliente %(n)s"
+
+#, python-format
+msgid "Marked as paid: %(numbers)s."
+msgstr "Marcados como pagos: %(numbers)s."
+
+msgid "This guest has nothing left to pay."
+msgstr "Este cliente não tem nada por pagar."
+
+msgid "There were no unpaid orders at this table."
+msgstr "Não havia pedidos por pagar nesta mesa."
+
+#, python-format
+msgid "Table %(number)s is now free."
+msgstr "A mesa %(number)s está agora livre."
+
+#, python-format
+msgid ""
+"Table %(number)s is now free. Customers must scan the QR code again to order."
+msgstr ""
+"A mesa %(number)s está agora livre. Os clientes têm de ler o código QR outra "
+"vez para pedir."
+
+msgid "Table updated. Reprint its QR code if you changed the number."
+msgstr "Mesa atualizada. Volte a imprimir o código QR se mudou o número."
+
+#, python-format
+msgid "Edit table %(number)s"
+msgstr "Editar mesa %(number)s"
+
+#, python-format
+msgid "Table %(number)s deleted."
+msgstr "Mesa %(number)s eliminada."
+
+#, python-format
+msgid ""
+"New QR code generated for table %(number)s. Old printed codes no longer work "
+"— print the new one."
+msgstr ""
+"Novo código QR gerado para a mesa %(number)s. Os códigos antigos já não "
+"funcionam — imprima o novo."
+
+msgid "Category saved."
+msgstr "Categoria guardada."
+
+#, python-format
+msgid "Edit category: %(name)s"
+msgstr "Editar categoria: %(name)s"
+
+msgid "New category"
+msgstr "Nova categoria"
+
+msgid "Category deleted."
+msgstr "Categoria eliminada."
+
+msgid "Move or delete the dishes in this category first."
+msgstr "Mova ou elimine primeiro os pratos desta categoria."
+
+msgid "Create a category first."
+msgstr "Crie primeiro uma categoria."
+
+#, python-format
+msgid "Limit reached: your plan allows %(n)s dishes."
+msgstr "Limite atingido: o seu plano permite %(n)s pratos."
+
+#, python-format
+msgid "“%(name)s” saved."
+msgstr "“%(name)s” guardado."
+
+#, python-format
+msgid "“%(name)s” deleted."
+msgstr "“%(name)s” eliminado."
+
+msgid "Restaurant settings saved."
+msgstr "Definições do restaurante guardadas."
+
+msgid "Profile"
+msgstr "Perfil"
+
+msgid "How your restaurant appears to customers."
+msgstr "Como o seu restaurante aparece aos clientes."
+
+msgid "Branding"
+msgstr "Imagem"
+
+msgid "Shown at the top of your menu. JPEG, PNG or WebP up to 5 MB."
+msgstr "Aparece no topo do menu. JPEG, PNG ou WebP até 5 MB."
+
+msgid "Ordering & money"
+msgstr "Pedidos e dinheiro"
+
+msgid "Pause ordering at any time; prices are shown in this currency."
+msgstr ""
+"Pause os pedidos a qualquer momento; os preços são mostrados nesta moeda."
+
+msgid "Customer menu language"
+msgstr "Língua do menu para clientes"
+
+msgid ""
+"Customers can switch language on the menu; untranslated text falls back to "
+"English."
+msgstr ""
+"Os clientes podem mudar a língua no menu; o texto não traduzido aparece em "
+"inglês."
+
+msgid "Receipts"
+msgstr "Recibos"
+
+msgid "What happens after a payment is recorded."
+msgstr "O que acontece depois de registar um pagamento."
+
+msgid "Receipt printer & cash drawer"
+msgstr "Impressora de recibos e gaveta de dinheiro"
+
+msgid "Your network (ESC/POS) receipt printer. The cash drawer plugs into it."
+msgstr ""
+"A sua impressora de recibos de rede (ESC/POS). A gaveta de dinheiro liga-se "
+"a ela."
+
+#, python-format
+msgid "Limit reached: your plan allows %(n)s staff accounts."
+msgstr "Limite atingido: o seu plano permite %(n)s contas de funcionários."
+
+#, python-format
+msgid "Staff account “%(username)s” created."
+msgstr "Conta de funcionário “%(username)s” criada."
+
+msgid "You cannot demote or deactivate yourself."
+msgstr "Não pode baixar a sua própria função nem desativar-se."
+
+msgid "Staff member updated."
+msgstr "Funcionário atualizado."
+
+#, python-format
+msgid "Edit %(name)s"
+msgstr "Editar %(name)s"
+
+msgid "Choose a different plan."
+msgstr "Escolha um plano diferente."
+
+#, python-format
+msgid "Request sent: change to %(plan)s. We'll confirm shortly."
+msgstr "Pedido enviado: mudar para %(plan)s. Confirmaremos em breve."
+
+msgid "Tables"
+msgstr "Mesas"
+
+msgid "Dishes"
+msgstr "Pratos"
+
+msgid "Staff accounts"
+msgstr "Contas de funcionários"
+
+msgid "Lower numbers appear first."
+msgstr "Os números mais baixos aparecem primeiro."
+
+msgid "Hidden categories are not shown to customers."
+msgstr "As categorias ocultas não são mostradas aos clientes."
+
+msgid "Untick to mark as Sold Out."
+msgstr "Desmarque para marcar como Esgotado."
+
+msgid "Typical preparation time; leave blank to use the restaurant default."
+msgstr ""
+"Tempo de preparação habitual; deixe em branco para usar o predefinido do "
+"restaurante."
+
+msgid "New"
+msgstr "Novo"
+
+msgid "Accepted"
+msgstr "Aceite"
+
+msgid "Preparing"
+msgstr "Em preparação"
+
+msgid "Ready"
+msgstr "Pronto"
+
+msgid "Completed"
+msgstr "Concluído"
+
+msgid "Pay at restaurant"
+msgstr "Pagar no restaurante"
+
+msgid "Cash"
+msgstr "Dinheiro"
+
+msgid "Manual payment"
+msgstr "Pagamento manual"
+
+msgid "Bank transfer"
+msgstr "Transferência bancária"
+
+msgid "Visa / Mastercard"
+msgstr "Visa / Mastercard"
+
+msgid "Online payment gateway"
+msgstr "Pagamento online"
+
+msgid "QR payment"
+msgstr "Pagamento por QR"
+
+msgid "Unpaid"
+msgstr "Por pagar"
+
+msgid "Refunded"
+msgstr "Reembolsado"
+
+msgid "QR code"
+msgstr "Código QR"
+
+msgid "Staff"
+msgstr "Funcionários"
+
+msgid "New order"
+msgstr "Novo pedido"
+
+msgid "Order cancelled"
+msgstr "Pedido cancelado"
+
+msgid "This restaurant is not accepting orders right now."
+msgstr "Este restaurante não está a aceitar pedidos neste momento."
+
+msgid "Invalid table."
+msgstr "Mesa inválida."
+
+msgid "Your cart is empty."
+msgstr "O seu carrinho está vazio."
+
+msgid "Invalid quantity."
+msgstr "Quantidade inválida."
+
+msgid "Invalid add-on selected."
+msgstr "Extra inválido selecionado."
+
+msgid "Some items are no longer available."
+msgstr "Alguns artigos já não estão disponíveis."
+
+#, python-format
+msgid "Cannot change order from %(from)s to %(to)s."
+msgstr "Não é possível mudar o pedido de %(from)s para %(to)s."
+
+msgid ""
+"Can't find this printer address. Use the printer's IP, e.g. 192.168.1.50."
+msgstr ""
+"Não foi possível encontrar este endereço. Use o IP da impressora, ex.: "
+"192.168.1.50."
+
+msgid ""
+"The printer must be on the local network (e.g. 192.168.x.x or 10.x.x.x)."
+msgstr ""
+"A impressora tem de estar na rede local (ex.: 192.168.x.x ou 10.x.x.x)."
+
+msgid "Cash drawer is not set up."
+msgstr "A gaveta de dinheiro não está configurada."
+
+#, python-format
+msgid "Printer at %(target)s did not respond. Is it switched on and connected?"
+msgstr "A impressora em %(target)s não respondeu. Está ligada e conectada?"
+
+#, python-format
+msgid "Could not reach the printer at %(target)s (%(error)s)."
+msgstr "Não foi possível contactar a impressora em %(target)s (%(error)s)."
+
+msgid "Pending"
+msgstr "Pendente"
+
+msgid "Succeeded"
+msgstr "Concluído"
+
+msgid "Failed"
+msgstr "Falhou"
+
+msgid "Cash payment"
+msgstr "Pagamento em dinheiro"
+
+msgid "No sale / change"
+msgstr "Sem venda / troco"
+
+msgid "Test"
+msgstr "Teste"
+
+msgid "Manual / other"
+msgstr "Manual / outro"
+
+msgid "Bank transfer (manual check)"
+msgstr "Transferência bancária (verificação manual)"
+
+msgid "Card (external terminal)"
+msgstr "Cartão (terminal externo)"
+
+msgid "QR payment (manual check)"
+msgstr "Pagamento por QR (verificação manual)"
+
+msgid "Network receipt printer is not set up."
+msgstr "A impressora de recibos de rede não está configurada."
+
+msgid "Nothing to print."
+msgstr "Nada para imprimir."
+
+#, python-format
+msgid "Printer at %(target)s did not respond. Is it switched on?"
+msgstr "A impressora em %(target)s não respondeu. Está ligada?"
+
+msgid "Receipt printed."
+msgstr "Recibo impresso."
+
+msgid "This order was cancelled; there is nothing to pay."
+msgstr "Este pedido foi cancelado; não há nada a pagar."
+
+#, python-format
+msgid "Order #%(number)s is already paid."
+msgstr "O pedido n.º %(number)s já está pago."
+
+msgid "There is nothing left to pay."
+msgstr "Não há mais nada a pagar."
+
+#, python-format
+msgid "Not enough cash: received %(received)s but %(due)s is due."
+msgstr "Dinheiro insuficiente: recebido %(received)s, mas são devidos %(due)s."
+
+msgid "Amount must be greater than zero."
+msgstr "O montante tem de ser maior que zero."
+
+msgid "Use letters, numbers and dashes only (max 20), e.g. 12 or A-3."
+msgstr "Use apenas letras, números e hífenes (máx. 20), ex.: 12 ou A-3."
+
+msgid "e.g. Mon–Sat 08:00–22:00"
+msgstr "ex.: Seg–Sáb 08:00–22:00"
+
+msgid "Pin 2 (most drawers)"
+msgstr "Pino 2 (a maioria das gavetas)"
+
+msgid "Pin 5"
+msgstr "Pino 5"
+
+msgid "Open the cash drawer automatically when a cash payment is recorded."
+msgstr "Abrir a gaveta automaticamente ao registar um pagamento em dinheiro."
+
+msgid ""
+"IP address of the receipt printer the drawer is plugged into, e.g. "
+"192.168.1.50"
+msgstr ""
+"Endereço IP da impressora de recibos onde a gaveta está ligada, ex.: "
+"192.168.1.50"
+
+msgid "Raw printing port; 9100 for almost all network receipt printers."
+msgstr ""
+"Porta de impressão direta; 9100 para quase todas as impressoras de recibos "
+"de rede."
+
+msgid "Ask \"Print receipt?\" after each payment"
+msgstr "Perguntar “Imprimir recibo?” após cada pagamento"
+
+msgid "Always print after payment"
+msgstr "Imprimir sempre após o pagamento"
+
+msgid "Never print automatically"
+msgstr "Nunca imprimir automaticamente"
+
+msgid "This device's printer (print dialog)"
+msgstr "Impressora deste dispositivo (janela de impressão)"
+
+msgid "Network receipt printer (prints directly)"
+msgstr "Impressora de recibos de rede (imprime diretamente)"
+
+msgid "80 mm paper"
+msgstr "Papel de 80 mm"
+
+msgid "58 mm paper"
+msgstr "Papel de 58 mm"
+
+msgid "Paper width of the network receipt printer."
+msgstr "Largura do papel da impressora de recibos."
+
+msgid "Optional, e.g. 'Terrace' or 'Window'."
+msgstr "Opcional, ex.: 'Esplanada' ou 'Janela'."
+
+msgid "Log in"
+msgstr "Iniciar sessão"
+
+msgid "Wrong email/username or password."
+msgstr "Email/nome de utilizador ou palavra-passe incorretos."
+
+msgid "Email or username"
+msgstr "Email ou nome de utilizador"
+
+msgid "Forgot your password?"
+msgstr "Esqueceu a palavra-passe?"
+
+msgid "New restaurant?"
+msgstr "Novo restaurante?"
+
+msgid "Register here"
+msgstr "Registe-se aqui"
+
+msgid "Change password"
+msgstr "Alterar palavra-passe"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Back"
+msgstr "Voltar"
+
+msgid "Reset password"
+msgstr "Repor palavra-passe"
+
+msgid "Reset your password"
+msgstr "Repor a palavra-passe"
+
+msgid ""
+"Enter the email you registered with. We'll send you a link to choose a new "
+"password."
+msgstr ""
+"Introduza o email com que se registou. Enviaremos um link para escolher uma "
+"nova palavra-passe."
+
+msgid "Send reset link"
+msgstr "Enviar link"
+
+msgid "Back to log in"
+msgstr "Voltar ao início de sessão"
+
+msgid ""
+"Staff accounts created by a restaurant owner without an email: ask the owner "
+"to reset your password."
+msgstr ""
+"Contas de funcionários criadas pelo proprietário sem email: peça ao "
+"proprietário para repor a sua palavra-passe."
+
+msgid "Password changed"
+msgstr "Palavra-passe alterada"
+
+msgid "You can now log in with your new password."
+msgstr "Já pode iniciar sessão com a nova palavra-passe."
+
+msgid "Choose a new password"
+msgstr "Escolha uma nova palavra-passe"
+
+msgid "Save new password"
+msgstr "Guardar nova palavra-passe"
+
+msgid "Link expired"
+msgstr "Link expirado"
+
+msgid "This password reset link is invalid or was already used."
+msgstr "Este link para repor a palavra-passe é inválido ou já foi usado."
+
+msgid "Request a new one"
+msgstr "Peça um novo"
+
+msgid "Check your email"
+msgstr "Verifique o seu email"
+
+msgid ""
+"If an account exists for that email, we've sent a link to reset your "
+"password. It may take a few minutes; check your spam folder too."
+msgstr ""
+"Se existir uma conta com esse email, enviámos um link para repor a palavra-"
+"passe. Pode demorar alguns minutos; verifique também a pasta de spam."
+
+msgid "Register your restaurant"
+msgstr "Registe o seu restaurante"
+
+msgid ""
+"Free to start. Set up your menu, print a QR code for each table, and start "
+"taking orders. Your customers don't need an app or an account."
+msgstr ""
+"Grátis para começar. Configure o menu, imprima um código QR para cada mesa e "
+"comece a receber pedidos. Os clientes não precisam de app nem de conta."
+
+msgid "Create my restaurant"
+msgstr "Criar o meu restaurante"
+
+msgid ""
+"New restaurants are reviewed by our team before they go live. You can set up "
+"your menu in the meantime."
+msgstr ""
+"Os novos restaurantes são revistos pela nossa equipa antes de ficarem "
+"ativos. Entretanto, pode configurar o menu."
+
+msgid "Already registered?"
+msgstr "Já tem conta?"
+
+msgid "Translations · Tetum, Bahasa Indonesia"
+msgstr "Traduções · Tétum, Bahasa Indonesia"
+
+msgid "Leave blank to show the English text."
+msgstr "Deixe em branco para mostrar o texto em inglês."
+
+msgid "Language"
+msgstr "Língua"
+
+msgid "Order"
+msgstr "Pedido"
+
+msgid "Table"
+msgstr "Mesa"
+
+msgid "Customer"
+msgstr "Cliente"
+
+msgid "Items"
+msgstr "Artigos"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Payment"
+msgstr "Pagamento"
+
+msgid "Time"
+msgstr "Hora"
+
+msgid "waiter"
+msgstr "empregado"
+
+msgid "Counter"
+msgstr "Balcão"
+
+#, python-format
+msgid "Order #%(n)s · cash payment"
+msgstr "Pedido n.º %(n)s · pagamento em dinheiro"
+
+msgid "Cash received"
+msgstr "Dinheiro recebido"
+
+msgid "Mark paid"
+msgstr "Marcar como pago"
+
+msgid "No orders yet."
+msgstr "Ainda não há pedidos."
+
+msgid "Dashboard"
+msgstr "Painel"
+
+msgid "Main navigation"
+msgstr "Navegação principal"
+
+msgid "Live"
+msgstr "Ativo"
+
+msgid "Not public yet"
+msgstr "Ainda não é público"
+
+msgid "Close menu"
+msgstr "Fechar menu"
+
+msgid "Service"
+msgstr "Serviço"
+
+msgid "Overview"
+msgstr "Resumo"
+
+msgid "Kitchen queue"
+msgstr "Fila da cozinha"
+
+msgid "Orders"
+msgstr "Pedidos"
+
+msgid "Tables &amp; QR"
+msgstr "Mesas e QR"
+
+msgid "Manage"
+msgstr "Gestão"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Reports"
+msgstr "Relatórios"
+
+msgid "Restaurant"
+msgstr "Restaurante"
+
+msgid "Billing"
+msgstr "Faturação"
+
+msgid "View public menu"
+msgstr "Ver menu público"
+
+msgid "Open menu"
+msgstr "Abrir menu"
+
+msgid "Live connection"
+msgstr "Ligação em direto"
+
+msgid "Connecting"
+msgstr "A ligar"
+
+msgid "Open the cash drawer (no sale)? This is logged."
+msgstr "Abrir a gaveta de dinheiro (sem venda)? Isto fica registado."
+
+msgid "Open cash drawer (no sale)"
+msgstr "Abrir gaveta (sem venda)"
+
+msgid "Open cash drawer"
+msgstr "Abrir gaveta de dinheiro"
+
+msgid "Notifications"
+msgstr "Notificações"
+
+msgid "Account menu"
+msgstr "Menu da conta"
+
+msgid "Platform console"
+msgstr "Consola da plataforma"
+
+msgid "Switch restaurant"
+msgstr "Mudar de restaurante"
+
+msgid "Log out"
+msgstr "Terminar sessão"
+
+msgid "Quick navigation"
+msgstr "Navegação rápida"
+
+msgid "Home"
+msgstr "Início"
+
+msgid "the owner's email"
+msgstr "o email do proprietário"
+
+msgid "Confirm your email to go live."
+msgstr "Confirme o seu email para ficar ativo."
+
+#, python-format
+msgid ""
+"We sent a link to <strong>%(email)s</strong>. Until then only your staff can "
+"see the menu, so set up your menu and tables in the meantime."
+msgstr ""
+"Enviámos um link para <strong>%(email)s</strong>. Até lá só os seus "
+"funcionários veem o menu; entretanto, configure o menu e as mesas."
+
+msgid "Resend email"
+msgstr "Reenviar email"
+
+msgid "Waiting for approval."
+msgstr "A aguardar aprovação."
+
+msgid ""
+"Our team reviews new restaurants before they go public. You can keep setting "
+"up your menu and tables."
+msgstr ""
+"A nossa equipa revê os novos restaurantes antes de ficarem públicos. Pode "
+"continuar a configurar o menu e as mesas."
+
+msgid "This restaurant is not public."
+msgstr "Este restaurante não é público."
+
+msgid ""
+"It has been suspended by the platform. Customers can't see the menu or order."
+msgstr ""
+"Foi suspenso pela plataforma. Os clientes não podem ver o menu nem fazer "
+"pedidos."
+
+#, python-format
+msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
+msgstr "Contacte <a href=\"mailto:%(email)s\">%(email)s</a>."
+
+#, python-format
+msgid "Your free trial ends in %(days)s day."
+msgid_plural "Your free trial ends in %(days)s days."
+msgstr[0] "O seu período experimental termina dentro de %(days)s dia."
+msgstr[1] "O seu período experimental termina dentro de %(days)s dias."
+
+msgid "Pay the invoice to keep taking orders."
+msgstr "Pague a fatura para continuar a receber pedidos."
+
+msgid "Payment due."
+msgstr "Pagamento em atraso."
+
+#, python-format
+msgid ""
+"Your subscription ended on %(date)s; ordering will be switched off soon."
+msgstr ""
+"A sua subscrição terminou em %(date)s; os pedidos serão desativados em breve."
+
+msgid "Subscription expired."
+msgstr "Subscrição expirada."
+
+msgid "Customers can't place orders until the invoice is paid."
+msgstr "Os clientes não podem fazer pedidos até a fatura ser paga."
+
+msgid "Subscription cancelled."
+msgstr "Subscrição cancelada."
+
+msgid "Customers can't place orders."
+msgstr "Os clientes não podem fazer pedidos."
+
+msgid "View billing"
+msgstr "Ver faturação"
+
+msgid "Your plan, usage and invoices."
+msgstr "O seu plano, utilização e faturas."
+
+msgid "Billing isn't set up on this platform yet."
+msgstr "A faturação ainda não está configurada nesta plataforma."
+
+msgid "Current plan"
+msgstr "Plano atual"
+
+msgid "Free"
+msgstr "Grátis"
+
+msgid "month"
+msgstr "mês"
+
+msgid "Your account is complimentary. There's nothing to pay."
+msgstr "A sua conta é gratuita. Não há nada a pagar."
+
+#, python-format
+msgid "Free trial until <strong>%(date)s</strong>"
+msgstr "Período experimental até <strong>%(date)s</strong>"
+
+#, python-format
+msgid "%(n)s day left"
+msgid_plural "%(n)s days left"
+msgstr[0] "falta %(n)s dia"
+msgstr[1] "faltam %(n)s dias"
+
+msgid "Pay the invoice before then to keep taking orders."
+msgstr "Pague a fatura antes disso para continuar a receber pedidos."
+
+#, python-format
+msgid "Paid until <strong>%(date)s</strong>."
+msgstr "Pago até <strong>%(date)s</strong>."
+
+#, python-format
+msgid ""
+"Your subscription ended on %(date)s. Please pay the open invoice. Ordering "
+"will be switched off soon."
+msgstr ""
+"A sua subscrição terminou em %(date)s. Pague a fatura em aberto. Os pedidos "
+"serão desativados em breve."
+
+msgid ""
+"Your subscription has expired. Customers can't order until the invoice is "
+"paid."
+msgstr ""
+"A sua subscrição expirou. Os clientes não podem fazer pedidos até a fatura "
+"ser paga."
+
+msgid "Your subscription was cancelled."
+msgstr "A sua subscrição foi cancelada."
+
+#, python-format
+msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a> to reactivate."
+msgstr "Contacte <a href=\"mailto:%(email)s\">%(email)s</a> para reativar."
+
+#, python-format
+msgid ""
+"Change to <strong>%(plan)s</strong> requested %(ago)s ago. Waiting for "
+"confirmation."
+msgstr ""
+"Mudança para <strong>%(plan)s</strong> pedida há %(ago)s. A aguardar "
+"confirmação."
+
+msgid "Usage"
+msgstr "Utilização"
+
+msgid "Invoices"
+msgstr "Faturas"
+
+msgid "Invoice"
+msgstr "Fatura"
+
+msgid "Period"
+msgstr "Período"
+
+msgid "Due"
+msgstr "Vencimento"
+
+msgid "Overdue"
+msgstr "Em atraso"
+
+msgid "No invoices yet."
+msgstr "Ainda não há faturas."
+
+msgid "How to pay"
+msgstr "Como pagar"
+
+msgid ""
+"Use the invoice number as the payment reference. Your subscription is "
+"extended as soon as we confirm the payment."
+msgstr ""
+"Use o número da fatura como referência do pagamento. A subscrição é "
+"prolongada assim que confirmarmos o pagamento."
+
+msgid "Plans"
+msgstr "Planos"
+
+msgid "mo"
+msgstr "mês"
+
+#, python-format
+msgid "%(t)s tables · %(d)s dishes · %(s)s staff"
+msgstr "%(t)s mesas · %(d)s pratos · %(s)s funcionários"
+
+msgid "Your plan"
+msgstr "O seu plano"
+
+msgid "Requested"
+msgstr "Pedido"
+
+#, python-format
+msgid "Request a change to %(plan)s?"
+msgstr "Pedir a mudança para %(plan)s?"
+
+#, python-format
+msgid "Switch to %(plan)s"
+msgstr "Mudar para %(plan)s"
+
+msgid "Your restaurants"
+msgstr "Os seus restaurantes"
+
+msgid "Choose a restaurant"
+msgstr "Escolha um restaurante"
+
+#, python-format
+msgid "Signed in as %(name)s"
+msgstr "Sessão iniciada como %(name)s"
+
+msgid "Not live"
+msgstr "Inativo"
+
+msgid ""
+"Your account is not linked to a restaurant yet. Ask the restaurant owner to "
+"add you as staff."
+msgstr ""
+"A sua conta ainda não está ligada a um restaurante. Peça ao proprietário "
+"para o adicionar como funcionário."
+
+#, python-format
+msgid "Or <a href=\"%(url)s\">create a restaurant</a> in the platform admin."
+msgstr ""
+"Ou <a href=\"%(url)s\">crie um restaurante</a> na administração da "
+"plataforma."
+
+msgid "Open the platform console"
+msgstr "Abrir a consola da plataforma"
+
+msgid "Add a dish"
+msgstr "Adicionar prato"
+
+#, python-format
+msgid "Edit “%(name)s”"
+msgstr "Editar “%(name)s”"
+
+msgid "Dish details"
+msgstr "Detalhes do prato"
+
+msgid ""
+"Images: JPEG, PNG or WebP up to 5 MB. They're automatically resized and "
+"converted to WebP for fast loading."
+msgstr ""
+"Imagens: JPEG, PNG ou WebP até 5 MB. São redimensionadas e convertidas para "
+"WebP automaticamente para carregarem depressa."
+
+msgid "Add-ons &amp; extras"
+msgstr "Extras e complementos"
+
+msgid ""
+"Optional extras customers can tick, e.g. “Fried Egg +$0.50”. Use price 0 for "
+"free options like “No onions”."
+msgstr ""
+"Extras opcionais que os clientes podem escolher, ex.: “Ovo estrelado +"
+"$0.50”. Use preço 0 para opções grátis como “Sem cebola”."
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "Translations"
+msgstr "Traduções"
+
+msgid "Need more rows? Save, and two new empty rows will appear."
+msgstr "Precisa de mais linhas? Guarde e aparecerão duas linhas vazias novas."
+
+msgid "Save dish"
+msgstr "Guardar prato"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+#, python-format
+msgid "Delete %(name)s? Past orders are kept."
+msgstr "Eliminar %(name)s? Os pedidos anteriores são mantidos."
+
+msgid "Delete this dish"
+msgstr "Eliminar este prato"
+
+msgid "Loading…"
+msgstr "A carregar…"
+
+msgid "Enable sound"
+msgstr "Ativar som"
+
+msgid "Full screen"
+msgstr "Ecrã inteiro"
+
+msgid "Columns"
+msgstr "Colunas"
+
+msgid "NEW ORDERS"
+msgstr "NOVOS PEDIDOS"
+
+msgid "PREPARING"
+msgstr "EM PREPARAÇÃO"
+
+msgid "READY"
+msgstr "PRONTO"
+
+msgid ""
+"Tap the switch to mark a dish <strong>Sold out</strong>. Customers' menus "
+"update immediately."
+msgstr ""
+"Toque no interruptor para marcar um prato como <strong>Esgotado</strong>. Os "
+"menus dos clientes atualizam-se de imediato."
+
+msgid "Add dish"
+msgstr "Adicionar prato"
+
+msgid "Hidden"
+msgstr "Oculta"
+
+msgid "Dish"
+msgstr "Prato"
+
+msgid "Edit category"
+msgstr "Editar categoria"
+
+#, python-format
+msgid "Delete category %(name)s?"
+msgstr "Eliminar a categoria %(name)s?"
+
+msgid "Delete category"
+msgstr "Eliminar categoria"
+
+#, python-format
+msgid "%(n)s add-on"
+msgid_plural "%(n)s add-ons"
+msgstr[0] "%(n)s extra"
+msgstr[1] "%(n)s extras"
+
+msgid "Sold Out"
+msgstr "Esgotado"
+
+msgid "Edit dish"
+msgstr "Editar prato"
+
+msgid "No dishes in this category yet."
+msgstr "Ainda não há pratos nesta categoria."
+
+msgid "Your menu is empty."
+msgstr "O seu menu está vazio."
+
+#, python-format
+msgid ""
+"<a href=\"%(url)s\">Create your first category</a> (e.g. Breakfast, Main "
+"Meals, Drinks)."
+msgstr ""
+"<a href=\"%(url)s\">Crie a primeira categoria</a> (ex.: Pequeno-almoço, "
+"Pratos principais, Bebidas)."
+
+msgid ""
+"For guests without a smartphone. Choose the table and guest, tap dishes, "
+"then send."
+msgstr ""
+"Para clientes sem smartphone. Escolha a mesa e o cliente, toque nos pratos e "
+"envie."
+
+msgid "Counter / takeaway"
+msgstr "Balcão / para levar"
+
+#, python-format
+msgid "Table %(n)s"
+msgstr "Mesa %(n)s"
+
+msgid "Guest"
+msgstr "Cliente"
+
+msgid "New guest"
+msgstr "Novo cliente"
+
+msgid "Name (optional)"
+msgstr "Nome (opcional)"
+
+msgid "e.g. Maria"
+msgstr "ex.: Maria"
+
+msgid "Search dishes…"
+msgstr "Procurar pratos…"
+
+msgid "Search dishes"
+msgstr "Procurar pratos"
+
+msgid "Tap dishes to add them."
+msgstr "Toque nos pratos para os adicionar."
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "Service charge"
+msgstr "Taxa de serviço"
+
+msgid "Note for the kitchen (optional)"
+msgstr "Nota para a cozinha (opcional)"
+
+msgid "Send to kitchen"
+msgstr "Enviar para a cozinha"
+
+msgid "Note"
+msgstr "Nota"
+
+msgid "e.g. no spicy"
+msgstr "ex.: sem picante"
+
+msgid "Less"
+msgstr "Menos"
+
+msgid "More"
+msgstr "Mais"
+
+msgid "Add"
+msgstr "Adicionar"
+
+msgid "Mark all as read"
+msgstr "Marcar tudo como lido"
+
+#, python-format
+msgid "%(t)s ago"
+msgstr "há %(t)s"
+
+msgid "No notifications."
+msgstr "Sem notificações."
+
+msgid "Newer"
+msgstr "Mais recentes"
+
+msgid "Older"
+msgstr "Mais antigos"
+
+#, python-format
+msgid "Order #%(n)s"
+msgstr "Pedido n.º %(n)s"
+
+#, python-format
+msgid "Table %(t)s"
+msgstr "Mesa %(t)s"
+
+msgid "Ordered via"
+msgstr "Pedido através de"
+
+msgid "Waiter"
+msgstr "Empregado"
+
+msgid "Est. prep"
+msgstr "Prep. estimada"
+
+#, python-format
+msgid "%(m)s min"
+msgstr "%(m)s min"
+
+msgid "Item"
+msgstr "Artigo"
+
+msgid "Qty"
+msgstr "Qtd."
+
+msgid "Unit"
+msgstr "Unid."
+
+msgid "History"
+msgstr "Histórico"
+
+msgid "Update status"
+msgstr "Atualizar estado"
+
+msgid "Note (optional, e.g. cancel reason)"
+msgstr "Nota (opcional, ex.: motivo do cancelamento)"
+
+msgid "Cancel this order?"
+msgstr "Cancelar este pedido?"
+
+msgid "Receipt"
+msgstr "Recibo"
+
+msgid "Bill"
+msgstr "Conta"
+
+#, python-format
+msgid "Customer chose: %(m)s"
+msgstr "O cliente escolheu: %(m)s"
+
+#, python-format
+msgid "received %(got)s, change %(change)s"
+msgstr "recebido %(got)s, troco %(change)s"
+
+#, python-format
+msgid "ref %(ref)s"
+msgstr "ref. %(ref)s"
+
+#, python-format
+msgid "Paid so far %(paid)s · <strong>Still due %(due)s</strong>"
+msgstr "Pago até agora %(paid)s · <strong>Falta pagar %(due)s</strong>"
+
+msgid "Other method or partial payment"
+msgstr "Outro método ou pagamento parcial"
+
+msgid "Record payment"
+msgstr "Registar pagamento"
+
+msgid "Every order from QR codes and waiters."
+msgstr "Todos os pedidos dos códigos QR e dos empregados."
+
+msgid "Filter by status"
+msgstr "Filtrar por estado"
+
+msgid "All"
+msgstr "Todos"
+
+msgid "Order # or name"
+msgstr "N.º do pedido ou nome"
+
+msgid "Order number or customer name"
+msgstr "Número do pedido ou nome do cliente"
+
+msgid "From date"
+msgstr "Desde a data"
+
+msgid "To date"
+msgstr "Até à data"
+
+msgid "Filter"
+msgstr "Filtrar"
+
+#, python-format
+msgid "Page %(n)s of %(total)s"
+msgstr "Página %(n)s de %(total)s"
+
+#, python-format
+msgid "Good to see you, %(name)s"
+msgstr "Bom vê-lo, %(name)s"
+
+msgid "Good to see you"
+msgstr "Bom vê-lo"
+
+#, python-format
+msgid "Today at %(name)s"
+msgstr "Hoje em %(name)s"
+
+msgid "Ordering is switched off: customers can view the menu but can't order."
+msgstr ""
+"Os pedidos estão desativados: os clientes veem o menu mas não podem pedir."
+
+msgid "Turn it back on"
+msgstr "Voltar a ativar"
+
+msgid "Tables &amp; bills"
+msgstr "Mesas e contas"
+
+msgid "Sold out items"
+msgstr "Artigos esgotados"
+
+msgid "Get your restaurant ready"
+msgstr "Prepare o seu restaurante"
+
+#, python-format
+msgid "%(done)s of %(total)s done"
+msgstr "%(done)s de %(total)s feitos"
+
+#, python-format
+msgid ""
+"Tip: open <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener\">your menu</"
+"a> on your phone to see what customers will see."
+msgstr ""
+"Dica: abra <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener\">o seu "
+"menu</a> no telemóvel para ver o que os clientes vão ver."
+
+msgid "Orders today"
+msgstr "Pedidos hoje"
+
+msgid "Revenue today"
+msgstr "Receita hoje"
+
+msgid "New · cooking"
+msgstr "Novos · a cozinhar"
+
+msgid "Ready to serve"
+msgstr "Prontos a servir"
+
+msgid "Occupied tables"
+msgstr "Mesas ocupadas"
+
+msgid "Latest orders"
+msgstr "Últimos pedidos"
+
+msgid "All orders"
+msgstr "Todos os pedidos"
+
+msgid "Export CSV"
+msgstr "Exportar CSV"
+
+msgid "From"
+msgstr "De"
+
+msgid "To"
+msgstr "Até"
+
+msgid "Apply"
+msgstr "Aplicar"
+
+msgid "Revenue"
+msgstr "Receita"
+
+msgid "Average order"
+msgstr "Pedido médio"
+
+msgid "Revenue per day"
+msgstr "Receita por dia"
+
+msgid "No completed orders in this period."
+msgstr "Não há pedidos concluídos neste período."
+
+msgid "Best sellers"
+msgstr "Mais vendidos"
+
+msgid "Sold"
+msgstr "Vendidos"
+
+msgid "No data yet."
+msgstr "Ainda não há dados."
+
+msgid "Restaurant settings"
+msgstr "Definições do restaurante"
+
+msgid "Public menu:"
+msgstr "Menu público:"
+
+msgid "Cover"
+msgstr "Capa"
+
+msgid ""
+"Plug the drawer into the printer's RJ11 “DK” port. To find the printer's IP, "
+"hold FEED while switching it on to print a self-test page."
+msgstr ""
+"Ligue a gaveta à porta RJ11 “DK” da impressora. Para saber o IP da "
+"impressora, mantenha FEED premido ao ligá-la para imprimir uma página de "
+"teste."
+
+msgid "Save settings"
+msgstr "Guardar definições"
+
+msgid "Cash drawer test &amp; log"
+msgstr "Teste e registo da gaveta"
+
+msgid "Test drawer"
+msgstr "Testar gaveta"
+
+msgid "Reason"
+msgstr "Motivo"
+
+msgid "By"
+msgstr "Por"
+
+msgid "Result"
+msgstr "Resultado"
+
+msgid "Opened"
+msgstr "Aberta"
+
+msgid "No drawer openings yet."
+msgstr "A gaveta ainda não foi aberta."
+
+msgid "Accounts for your team. Each person signs in with their own username."
+msgstr ""
+"Contas para a sua equipa. Cada pessoa inicia sessão com o seu próprio nome "
+"de utilizador."
+
+msgid "User"
+msgstr "Utilizador"
+
+msgid "you"
+msgstr "você"
+
+msgid "Disabled"
+msgstr "Desativado"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "What each role can do"
+msgstr "O que cada função pode fazer"
+
+msgid "everything, including staff accounts."
+msgstr "tudo, incluindo as contas dos funcionários."
+
+msgid ""
+"menu, tables &amp; QR codes, restaurant settings, orders, payments, reports."
+msgstr ""
+"menu, mesas e códigos QR, definições do restaurante, pedidos, pagamentos, "
+"relatórios."
+
+msgid "kitchen queue, order status, mark dishes sold out."
+msgstr "fila da cozinha, estado dos pedidos, marcar pratos como esgotados."
+
+msgid "take orders, kitchen queue, cancel orders, payments, free tables."
+msgstr ""
+"registar pedidos, fila da cozinha, cancelar pedidos, pagamentos, libertar "
+"mesas."
+
+msgid "Add staff member"
+msgstr "Adicionar funcionário"
+
+msgid "Create account"
+msgstr "Criar conta"
+
+msgid "Occupied"
+msgstr "Ocupada"
+
+msgctxt "table"
+msgid "Free"
+msgstr "Livre"
+
+#, python-format
+msgid "Open since %(t)s"
+msgstr "Aberta desde %(t)s"
+
+#, python-format
+msgid "%(n)s order"
+msgid_plural "%(n)s orders"
+msgstr[0] "%(n)s pedido"
+msgstr[1] "%(n)s pedidos"
+
+msgid "Add order"
+msgstr "Adicionar pedido"
+
+msgid "Current bill"
+msgstr "Conta atual"
+
+msgid "Print bill"
+msgstr "Imprimir conta"
+
+msgid "Free this table? Everyone who scanned it must scan again to order."
+msgstr ""
+"Libertar esta mesa? Quem a leu terá de ler o código outra vez para pedir."
+
+msgid "Free table"
+msgstr "Libertar mesa"
+
+msgid "Unpaid at this table"
+msgstr "Por pagar nesta mesa"
+
+#, python-format
+msgid "Table %(n)s · whole bill"
+msgstr "Mesa %(n)s · conta inteira"
+
+msgid "Whole table paid"
+msgstr "Mesa inteira paga"
+
+msgid "Paid &amp; free table"
+msgstr "Pago e libertar mesa"
+
+msgid "Everything at this table is paid."
+msgstr "Tudo nesta mesa está pago."
+
+#, python-format
+msgid "Table %(n)s · %(guest)s"
+msgstr "Mesa %(n)s · %(guest)s"
+
+msgid "Table is open, but nothing has been ordered yet."
+msgstr "A mesa está aberta, mas ainda não há pedidos."
+
+msgid ""
+"This table is free. A bill starts when a customer scans the QR code or a "
+"waiter adds an order."
+msgstr ""
+"Esta mesa está livre. Abre-se uma conta quando um cliente lê o código QR ou "
+"um empregado adiciona um pedido."
+
+msgid "Recent bills"
+msgstr "Contas recentes"
+
+msgid "Closed"
+msgstr "Fechada"
+
+msgid "Open the customer link"
+msgstr "Abrir o link do cliente"
+
+msgid "Print"
+msgstr "Imprimir"
+
+msgid "Generate a new QR code? The currently printed code will STOP working."
+msgstr "Gerar um novo código QR? O código impresso atual DEIXARÁ de funcionar."
+
+msgid "Regenerate QR code"
+msgstr "Gerar novo código QR"
+
+msgid ""
+"Use this if a code was copied or misused. Old printouts stop working "
+"immediately."
+msgstr ""
+"Use isto se um código foi copiado ou mal usado. As impressões antigas deixam "
+"de funcionar de imediato."
+
+#, python-format
+msgid "Delete table %(n)s? Past orders are kept."
+msgstr "Eliminar a mesa %(n)s? Os pedidos anteriores são mantidos."
+
+msgid "Delete table"
+msgstr "Eliminar mesa"
+
+msgid "Tables &amp; QR codes"
+msgstr "Mesas e códigos QR"
+
+msgid ""
+"Each table has its own QR code. Customers scan it to see the menu and order."
+msgstr ""
+"Cada mesa tem o seu código QR. Os clientes leem-no para ver o menu e pedir."
+
+msgid "Print all QR codes"
+msgstr "Imprimir todos os códigos QR"
+
+#, python-format
+msgid "QR code for table %(n)s"
+msgstr "Código QR da mesa %(n)s"
+
+#, python-format
+msgid "%(n)s active"
+msgstr "%(n)s ativos"
+
+msgid "Download PNG"
+msgstr "Descarregar PNG"
+
+msgid "No tables yet. Add your first table below."
+msgstr "Ainda não há mesas. Adicione a primeira mesa abaixo."
+
+msgid "Add a table"
+msgstr "Adicionar mesa"
+
+msgid "Use numbers or short codes like 12 or A-3."
+msgstr "Use números ou códigos curtos como 12 ou A-3."
+
+msgid "Add table"
+msgstr "Adicionar mesa"
+
+msgid "Add many tables"
+msgstr "Adicionar várias mesas"
+
+msgid "Creates numbered tables, skipping numbers that already exist."
+msgstr "Cria mesas numeradas, ignorando os números que já existem."
+
+msgid "Create tables"
+msgstr "Criar mesas"
+
+msgid "QR menu & table ordering for restaurants"
+msgstr "Menu QR e pedidos à mesa para restaurantes"
+
+msgid "Scan. Order. Enjoy."
+msgstr "Scan. Pedir. Bom apetite."
+
+msgid ""
+"A QR code menu and table ordering for your restaurant. Customers scan the "
+"code on the table, order from their phone, and the order goes straight to "
+"your kitchen. They don't need an app or an account."
+msgstr ""
+"Um menu com código QR e pedidos à mesa para o seu restaurante. Os clientes "
+"leem o código na mesa, pedem pelo telemóvel e o pedido vai diretamente para "
+"a cozinha. Não precisam de app nem de conta."
+
+msgid "Open dashboard"
+msgstr "Abrir painel"
+
+msgid "How it works"
+msgstr "Como funciona"
+
+msgid "Create your menu"
+msgstr "Crie o seu menu"
+
+msgid ""
+"Add dishes, photos, prices and add-ons in English, Tetum and Bahasa "
+"Indonesia."
+msgstr ""
+"Adicione pratos, fotografias, preços e extras em inglês, tétum e bahasa "
+"indonésio."
+
+msgid "Print your QR codes"
+msgstr "Imprima os seus códigos QR"
+
+msgid "One code per table. Print them and place one on each table."
+msgstr "Um código por mesa. Imprima-os e coloque um em cada mesa."
+
+msgid "Receive orders live"
+msgstr "Receba pedidos em direto"
+
+msgid ""
+"Orders appear instantly on the kitchen screen with a sound alert. Customers "
+"can follow their order on their phone."
+msgstr ""
+"Os pedidos aparecem de imediato no ecrã da cozinha com um alerta sonoro. Os "
+"clientes podem acompanhar o pedido no telemóvel."
+
+msgid "Works on any phone"
+msgstr "Funciona em qualquer telemóvel"
+
+msgid ""
+"Customers scan with the phone camera. No app, no account, and it loads fast "
+"on slow connections."
+msgstr ""
+"Os clientes leem com a câmara do telemóvel. Sem app, sem conta, e carrega "
+"depressa mesmo com ligações lentas."
+
+msgid "Kitchen screen"
+msgstr "Ecrã da cozinha"
+
+msgid "New → Preparing → Ready → Completed, with timers and notes."
+msgstr "Novo → Em preparação → Pronto → Concluído, com temporizadores e notas."
+
+msgid "Tables & sessions"
+msgstr "Mesas e sessões"
+
+msgid ""
+"Several people can order from one table, and you see one bill per table."
+msgstr "Várias pessoas podem pedir da mesma mesa, e vê uma conta por mesa."
+
+msgid "Cash & change"
+msgstr "Dinheiro e troco"
+
+msgid "Mark orders paid in one tap, and see the change to give back."
+msgstr "Marque pedidos como pagos com um toque e veja o troco a dar."
+
+msgid "Sold out in one tap"
+msgstr "Esgotado com um toque"
+
+msgid "Customers' menus update immediately."
+msgstr "Os menus dos clientes atualizam-se de imediato."
+
+msgid "Daily revenue, best sellers and CSV export."
+msgstr "Receita diária, mais vendidos e exportação CSV."
+
+msgid "Pricing"
+msgstr "Preços"
+
+msgid "Simple monthly plans. No setup fees."
+msgstr "Planos mensais simples. Sem custos de instalação."
+
+#, python-format
+msgid "New restaurants get a %(days)s-day free trial."
+msgid_plural "New restaurants get a %(days)s-day free trial."
+msgstr[0] "Os novos restaurantes têm %(days)s dia de teste grátis."
+msgstr[1] "Os novos restaurantes têm %(days)s dias de teste grátis."
+
+msgid "Most popular"
+msgstr "Mais popular"
+
+#, python-format
+msgid "Up to %(n)s table"
+msgid_plural "Up to %(n)s tables"
+msgstr[0] "Até %(n)s mesa"
+msgstr[1] "Até %(n)s mesas"
+
+#, python-format
+msgid "Up to %(n)s dish"
+msgid_plural "Up to %(n)s dishes"
+msgstr[0] "Até %(n)s prato"
+msgstr[1] "Até %(n)s pratos"
+
+#, python-format
+msgid "Up to %(n)s staff account"
+msgid_plural "Up to %(n)s staff accounts"
+msgstr[0] "Até %(n)s conta de funcionário"
+msgstr[1] "Até %(n)s contas de funcionários"
+
+msgid "Get started"
+msgstr "Começar"
+
+msgid "Are you a customer?"
+msgstr "É cliente?"
+
+msgid "To order, please scan the QR code on your table."
+msgstr "Para pedir, leia o código QR na sua mesa."
+
+#, python-format
+msgid "Hello! I'd like to know more about %(name)s."
+msgstr "Olá! Gostaria de saber mais sobre o %(name)s."
+
+msgid "Chat with us on WhatsApp"
+msgstr "Fale connosco no WhatsApp"

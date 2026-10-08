@@ -7,13 +7,14 @@ from django.db import models, transaction
 from django.db.models import Q
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from apps.core.i18n import LANGUAGES
 from apps.core.models import TimeStampedModel, TranslatableMixin
 from apps.core.permissions import Role, role_can
 
 table_number_validator = RegexValidator(
-    r"^[A-Za-z0-9-]{1,20}$", "Use letters, numbers and dashes only (max 20), e.g. 12 or A-3."
+    r"^[A-Za-z0-9-]{1,20}$", _("Use letters, numbers and dashes only (max 20), e.g. 12 or A-3.")
 )
 
 
@@ -28,7 +29,7 @@ class Restaurant(TranslatableMixin, TimeStampedModel):
     address = models.CharField(max_length=255, blank=True)
     phone = models.CharField(max_length=30, blank=True)
     email = models.EmailField(blank=True)
-    opening_hours = models.TextField(blank=True, help_text="e.g. Mon–Sat 08:00–22:00")
+    opening_hours = models.TextField(blank=True, help_text=_("e.g. Mon–Sat 08:00–22:00"))
 
     currency = models.CharField(max_length=3, default="USD")
     currency_symbol = models.CharField(max_length=5, default="$")
@@ -43,36 +44,36 @@ class Restaurant(TranslatableMixin, TimeStampedModel):
     is_accepting_orders = models.BooleanField(default=True)
 
     # Cash drawer, connected to a network (ESC/POS) receipt printer.
-    DRAWER_PIN_CHOICES = [(0, "Pin 2 (most drawers)"), (1, "Pin 5")]
+    DRAWER_PIN_CHOICES = [(0, _("Pin 2 (most drawers)")), (1, _("Pin 5"))]
     cash_drawer_enabled = models.BooleanField(
-        default=False, help_text="Open the cash drawer automatically when a cash payment is recorded."
+        default=False, help_text=_("Open the cash drawer automatically when a cash payment is recorded.")
     )
     printer_host = models.CharField(
-        max_length=100, blank=True, help_text="IP address of the receipt printer the drawer is plugged into, e.g. 192.168.1.50"
+        max_length=100, blank=True, help_text=_("IP address of the receipt printer the drawer is plugged into, e.g. 192.168.1.50")
     )
     printer_port = models.PositiveIntegerField(
         default=9100, validators=[MinValueValidator(1), MaxValueValidator(65535)],
-        help_text="Raw printing port; 9100 for almost all network receipt printers.",
+        help_text=_("Raw printing port; 9100 for almost all network receipt printers."),
     )
     drawer_pin = models.PositiveSmallIntegerField(choices=DRAWER_PIN_CHOICES, default=0)
 
     # Receipts
     RECEIPT_ASK, RECEIPT_ALWAYS, RECEIPT_NEVER = "ask", "always", "never"
     RECEIPT_PROMPT_CHOICES = [
-        (RECEIPT_ASK, "Ask \"Print receipt?\" after each payment"),
-        (RECEIPT_ALWAYS, "Always print after payment"),
-        (RECEIPT_NEVER, "Never print automatically"),
+        (RECEIPT_ASK, _('Ask "Print receipt?" after each payment')),
+        (RECEIPT_ALWAYS, _("Always print after payment")),
+        (RECEIPT_NEVER, _("Never print automatically")),
     ]
     RECEIPT_BROWSER, RECEIPT_NETWORK = "browser", "network"
     RECEIPT_PRINTER_CHOICES = [
-        (RECEIPT_BROWSER, "This device's printer (print dialog)"),
-        (RECEIPT_NETWORK, "Network receipt printer (prints directly)"),
+        (RECEIPT_BROWSER, _("This device's printer (print dialog)")),
+        (RECEIPT_NETWORK, _("Network receipt printer (prints directly)")),
     ]
     receipt_prompt = models.CharField(max_length=10, choices=RECEIPT_PROMPT_CHOICES, default=RECEIPT_ASK)
     receipt_printer = models.CharField(max_length=10, choices=RECEIPT_PRINTER_CHOICES, default=RECEIPT_BROWSER)
     receipt_width = models.PositiveSmallIntegerField(
-        choices=[(48, "80 mm paper"), (32, "58 mm paper")], default=48,
-        help_text="Paper width of the network receipt printer.",
+        choices=[(48, _("80 mm paper")), (32, _("58 mm paper"))], default=48,
+        help_text=_("Paper width of the network receipt printer."),
     )
     receipt_footer = models.CharField(max_length=200, blank=True, default="Thank you! Obrigadu! Terima kasih!")
 
@@ -125,7 +126,7 @@ class RestaurantStaff(TimeStampedModel):
 class Table(TimeStampedModel):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="tables")
     number = models.CharField(max_length=20, validators=[table_number_validator])
-    label = models.CharField(max_length=60, blank=True, help_text="Optional, e.g. 'Terrace' or 'Window'.")
+    label = models.CharField(max_length=60, blank=True, help_text=_("Optional, e.g. 'Terrace' or 'Window'."))
     seats = models.PositiveSmallIntegerField(default=4, validators=[MaxValueValidator(100)])
     is_active = models.BooleanField(default=True)
     # Bumped each time staff free the table: scans from an earlier "epoch" stop working.

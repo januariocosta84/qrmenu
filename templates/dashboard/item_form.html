@@ -1,37 +1,37 @@
 {% extends "dashboard/base.html" %}
-{% load ui_icons %}
-{% block title %}{% if item.pk %}Edit {{ item.name }}{% else %}Add food{% endif %}{% endblock %}
+{% load ui_icons i18n %}
+{% block title %}{% if item.pk %}{% blocktranslate trimmed with name=item.name %}Edit {{ name }}{% endblocktranslate %}{% else %}{% translate "Add a dish" %}{% endif %}{% endblock %}
 {% block content %}
 {% with r=request.restaurant %}
-<a class="back-link" href="{% url 'dashboard:menu' r.slug %}">{% icon "arrow-left" %} Menu</a>
-<div class="page-head"><h1>{% if item.pk %}Edit “{{ item.name }}”{% else %}Add a dish{% endif %}</h1></div>
+<a class="back-link" href="{% url 'dashboard:menu' r.slug %}">{% icon "arrow-left" %} {% translate "Menu" %}</a>
+<div class="page-head"><h1>{% if item.pk %}{% blocktranslate trimmed with name=item.name %}Edit “{{ name }}”{% endblocktranslate %}{% else %}{% translate "Add a dish" %}{% endif %}</h1></div>
 
 <form method="post" enctype="multipart/form-data" class="form">
   {% csrf_token %}
   <div class="cols">
     <section class="card">
-      <h2 class="fieldset-title">{% icon "utensils" %} Dish details</h2>
+      <h2 class="fieldset-title">{% icon "utensils" %} {% translate "Dish details" %}</h2>
       {% if item.image %}<img class="preview" src="{{ item.image.url }}" alt="" width="220">{% endif %}
       {% include "dashboard/_form_fields.html" %}
-      <p class="help">Images: JPEG, PNG or WebP up to 5 MB. They're automatically resized and converted to WebP for fast loading.</p>
+      <p class="help">{% translate "Images: JPEG, PNG or WebP up to 5 MB. They're automatically resized and converted to WebP for fast loading." %}</p>
     </section>
 
     <section class="card">
-      <h2 class="fieldset-title">{% icon "plus-circle" %} Add-ons &amp; extras</h2>
-      <p class="help">Optional extras customers can tick, e.g. “Fried Egg +$0.50”. Use price 0 for free options like “No onions”.</p>
+      <h2 class="fieldset-title">{% icon "plus-circle" %} {% translate "Add-ons &amp; extras" %}</h2>
+      <p class="help">{% translate "Optional extras customers can tick, e.g. “Fried Egg +$0.50”. Use price 0 for free options like “No onions”." %}</p>
       {{ formset.management_form }}
       {% if formset.non_form_errors %}<div class="msg msg-error">{% icon "alert" %}<span>{{ formset.non_form_errors|join:" " }}</span></div>{% endif %}
       {% for f in formset %}
       <fieldset class="option-row">
         {% for h in f.hidden_fields %}{{ h }}{% endfor %}
         <div class="option-grid">
-          <label>Name {{ f.name }}</label>
-          <label>Price {{ f.price }}</label>
-          <label>Order {{ f.position }}</label>
-          <label class="inline">{{ f.is_available }} Available</label>
-          {% if f.instance.pk %}<label class="inline danger">{{ f.DELETE }} Remove</label>{% endif %}
+          <label>{% translate "Name" %} {{ f.name }}</label>
+          <label>{% translate "Price" %} {{ f.price }}</label>
+          <label>{% translate "Position" %} {{ f.position }}</label>
+          <label class="inline">{{ f.is_available }} {% translate "Available" %}</label>
+          {% if f.instance.pk %}<label class="inline danger">{{ f.DELETE }} {% translate "Remove" %}</label>{% endif %}
         </div>
-        <details><summary class="small muted">{% icon "globe" %} Translations</summary>
+        <details><summary class="small muted">{% icon "globe" %} {% translate "Translations" %}</summary>
           <div class="option-grid">
             {% for field in f.visible_fields %}{% if "name_" in field.name %}<label>{{ field.label }} {{ field }}</label>{% endif %}{% endfor %}
           </div>
@@ -39,18 +39,18 @@
         {% for field in f %}{% for e in field.errors %}<small class="err">{{ field.label }}: {{ e }}</small>{% endfor %}{% endfor %}
       </fieldset>
       {% endfor %}
-      <p class="help">Need more rows? Save, and two new empty rows will appear.</p>
+      <p class="help">{% translate "Need more rows? Save, and two new empty rows will appear." %}</p>
     </section>
   </div>
   <div class="actions sticky-actions">
-    <button class="btn btn-primary btn-lg" type="submit">{% icon "check" %} Save dish</button>
-    <a class="btn" href="{% url 'dashboard:menu' r.slug %}">Cancel</a>
+    <button class="btn btn-primary btn-lg" type="submit">{% icon "check" %} {% translate "Save dish" %}</button>
+    <a class="btn" href="{% url 'dashboard:menu' r.slug %}">{% translate "Cancel" %}</a>
   </div>
 </form>
 
 {% if item.pk %}
-<form method="post" action="{% url 'dashboard:item_delete' r.slug item.pk %}" onsubmit="return confirm('Delete {{ item.name|escapejs }}? Past orders are kept.')">
-  {% csrf_token %}<button class="link-danger" type="submit">{% icon "trash" %} Delete this dish</button>
+<form method="post" action="{% url 'dashboard:item_delete' r.slug item.pk %}" onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% blocktranslate trimmed with name=item.name %}Delete {{ name }}? Past orders are kept.{% endblocktranslate %}">
+  {% csrf_token %}<button class="link-danger" type="submit">{% icon "trash" %} {% translate "Delete this dish" %}</button>
 </form>
 {% endif %}
 {% endwith %}

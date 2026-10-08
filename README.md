@@ -60,6 +60,7 @@ Built with Django 5.2, Django REST Framework, Django Channels (WebSockets) and P
 - **Restaurant profile**: name, logo, cover image, address, phone, opening hours, description, currency, service charge and default language. Ordering can be paused.
 - **Staff accounts** with the roles Owner, Manager, Kitchen and Waiter/Cashier.
 - **Reports**: orders, revenue, average order value, revenue per day, best sellers and CSV export.
+- **Dashboard languages**: English, Português, Tetun and Bahasa Indonesia. Each staff member picks a language in the account menu (or on the login page); it's remembered on that device and doesn't change the customer menu.
 - In-app notifications with an unread count.
 
 **Platform (public, multi-tenant)**
@@ -485,6 +486,18 @@ For safety, the printer address must be on the local network (`192.168.x.x`, `10
 1. Add it to `LANGUAGES` in [apps/core/i18n.py](apps/core/i18n.py) and add a block of strings to `UI_STRINGS`.
 2. That's all. Menu translation fields for the new language appear in the dashboard forms automatically, and no migration is needed because translations live in a JSON column.
 
+### Dashboard translations
+The staff dashboard uses Django's gettext catalogs in [locale/](locale/) (`pt`, `tet`, `id`); the customer menu keeps its own strings in `apps/core/i18n.py`. After changing dashboard text (`{% translate %}` in templates, `_()` in Python, `_()` in `static/js/dashboard.js`, `kds.js`, `pos.js`), update and compile the catalogs (needs the `gettext` package):
+
+```bash
+python manage.py makemessages -l pt -l tet -l id --no-location --ignore=.venv --ignore=staticfiles --ignore=media --ignore=tests
+python manage.py makemessages -d djangojs -l pt -l tet -l id --no-location --ignore=.venv --ignore=staticfiles --ignore=media --ignore=static/js/menu.js --ignore=static/js/order_status.js
+# translate the new empty msgstr entries in locale/*/LC_MESSAGES/*.po, then:
+python manage.py compilemessages --ignore=.venv
+```
+
+Django has no Tetun catalog of its own, so its form errors and date names are listed in [apps/core/django_strings.py](apps/core/django_strings.py) and translated only in `locale/tet`. To add a dashboard language, add it to `LANGUAGES` in [config/settings.py](config/settings.py) and run the commands above with `-l <code>`.
+
 ### Add an online payment method
 The payment layer is in [apps/payments/](apps/payments/):
 1. Subclass `PaymentProvider` in `providers.py`. Implement `start()` to create the payment and return a redirect URL or QR payload, and `handle_webhook()` to verify the signature and mark the `Payment` as succeeded.
@@ -552,7 +565,7 @@ tests/             test suite
 
 ## Known limitations
 
-- **The Tetum translations need a native speaker's review.** This covers both the UI strings in `apps/core/i18n.py` and the demo menu names.
+- **The Tetum translations need a native speaker's review.** This covers the UI strings in `apps/core/i18n.py`, the demo menu names, and the dashboard catalogs in `locale/` (the Portuguese and Indonesian dashboard text should get a quick review too).
 - Without `REDIS_URL`, real-time updates only work within **one** server process. Set Redis in production.
 - No billing or subscriptions for restaurants yet. The platform is free to use until you add a plan system.
 - No built-in terms of service or privacy policy pages, and no self-service account deletion.
