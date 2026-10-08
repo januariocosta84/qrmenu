@@ -78,7 +78,7 @@
       {% for p in plans %}
       <div class="plan-option{% if p.pk == sub.plan_id %} current{% endif %}">
         <div class="usage-row"><strong>{{ p.name }}</strong><span>{% if p.is_free %}{% translate "Free" %}{% else %}${{ p.price_monthly }}/{% translate "mo" %}{% endif %}</span></div>
-        <p class="muted small" style="margin:2px 0 6px">{% blocktranslate trimmed with t=p.max_tables d=p.max_menu_items s=p.max_staff %}{{ t }} tables · {{ d }} dishes · {{ s }} staff{% endblocktranslate %}</p>
+        <p class="muted small" style="margin:2px 0 6px">{% blocktranslate trimmed with t=p.max_tables d=p.max_menu_items s=p.max_staff %}{{ t }} tables · {{ d }} dishes · {{ s }} staff{% endblocktranslate %}{% if p.feature_analytics %} · {% translate "Analytics" %}{% endif %}{% if p.feature_cash_register %} · {% translate "Cash register" %}{% endif %}{% if p.feature_quotations %} · {% translate "Quotations" %}{% endif %}</p>
         {% if p.pk == sub.plan_id %}<span class="pill pill-ready">{% translate "Your plan" %}</span>
         {% elif sub.requested_plan_id == p.pk %}<span class="pill pill-new">{% translate "Requested" %}</span>
         {% else %}

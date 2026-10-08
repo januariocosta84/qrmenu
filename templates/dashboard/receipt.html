@@ -48,6 +48,7 @@
       <p class="name">{{ restaurant.name }}</p>
       {% if restaurant.address %}<div>{{ restaurant.address }}</div>{% endif %}
       {% if restaurant.phone %}<div>Tel {{ restaurant.phone }}</div>{% endif %}
+      {% if vat_number %}<div>Tax ID {{ vat_number }}</div>{% endif %}
       <p class="title">{{ title }}</p>
     </div>
     <hr>
@@ -64,6 +65,7 @@
     <hr>
     <div class="row"><span>Subtotal</span><span>{{ subtotal|money:restaurant.currency_symbol }}</span></div>
     {% if service_charge %}<div class="row"><span>Service charge</span><span>{{ service_charge|money:restaurant.currency_symbol }}</span></div>{% endif %}
+    {% for v in vat_lines %}<div class="row"><span>{{ v.label }}</span><span>{{ v.amount|money:restaurant.currency_symbol }}</span></div>{% endfor %}
     <div class="row total"><span>TOTAL</span><span>{{ total|money:restaurant.currency_symbol }}</span></div>
     {% if paid %}
       <div class="row"><span>Paid ({{ methods }})</span><span>{{ amount_paid|money:restaurant.currency_symbol }}</span></div>

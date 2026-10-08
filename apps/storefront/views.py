@@ -101,6 +101,8 @@ def _render_menu(request, restaurant, *, table, can_order, invalid_qr=False, acc
                     and subscription_allows_orders(restaurant),
         "currencySymbol": restaurant.currency_symbol,
         "serviceChargePercent": str(restaurant.service_charge_percent),
+        "vatPercent": str(restaurant.vat_percent) if restaurant.vat_enabled else "0",
+        "vatInclusive": restaurant.vat_inclusive,
         "orderUrl": reverse("storefront:api_place_order", args=[restaurant.slug]),
         "accessUrl": reverse("storefront:api_access", args=[restaurant.slug]),
         "menuUrl": reverse("storefront:api_menu", args=[restaurant.slug]),

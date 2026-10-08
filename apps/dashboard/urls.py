@@ -1,5 +1,7 @@
 from django.urls import path
 
+from apps.quotations import views as quotes
+
 from . import api, views
 
 app_name = "dashboard"
@@ -37,11 +39,20 @@ urlpatterns = [
     path(f"dashboard/{R}menu/items/<int:pk>/delete/", views.item_delete, name="item_delete"),
     path(f"dashboard/{R}menu/items/<int:pk>/toggle/", views.item_toggle, name="item_toggle"),
     path(f"dashboard/{R}settings/", views.restaurant_settings, name="settings"),
+    path(f"dashboard/{R}cash-register/", views.cash_register, name="cash_register"),
+    path(f"dashboard/{R}cash-register/<int:pk>/report/", views.cash_report, name="cash_report"),
     path(f"dashboard/{R}cash-drawer/open/", views.drawer_open, name="drawer_open"),
     path(f"dashboard/{R}cash-drawer/test/", views.drawer_test, name="drawer_test"),
     path(f"dashboard/{R}staff/", views.staff, name="staff"),
     path(f"dashboard/{R}staff/<int:pk>/", views.staff_edit, name="staff_edit"),
     path(f"dashboard/{R}reports/", views.reports, name="reports"),
+    path(f"dashboard/{R}analytics/", views.analytics_page, name="analytics"),
+    path(f"dashboard/{R}quotations/", quotes.quotation_list, name="quotations"),
+    path(f"dashboard/{R}quotations/new/", quotes.quotation_create, name="quotation_create"),
+    path(f"dashboard/{R}quotations/<int:pk>/", quotes.quotation_edit, name="quotation_edit"),
+    path(f"dashboard/{R}quotations/<int:pk>/print/", quotes.quotation_print, name="quotation_print"),
+    path(f"dashboard/{R}quotations/<int:pk>/duplicate/", quotes.quotation_duplicate, name="quotation_duplicate"),
+    path(f"dashboard/{R}quotations/<int:pk>/delete/", quotes.quotation_delete, name="quotation_delete"),
     path(f"dashboard/{R}notifications/", views.notifications, name="notifications"),
     # Staff REST API
     path("api/v1/auth/token/", api.ThrottledObtainAuthToken.as_view(), name="api_token"),

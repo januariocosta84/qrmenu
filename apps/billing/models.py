@@ -28,6 +28,12 @@ class Plan(TimeStampedModel):
     is_active = models.BooleanField(default=True, help_text="Inactive plans can't be chosen for new subscriptions.")
     is_public = models.BooleanField(default=True, help_text="Shown to restaurant owners on their Billing page.")
     position = models.PositiveIntegerField(default=0)
+    # Extra features included in this plan (see FEATURES).
+    feature_analytics = models.BooleanField(default=False, help_text=_("Analytics page (trends, busy times, best sellers)."))
+    feature_cash_register = models.BooleanField(default=False, help_text=_("Cash register: opening change and end-of-day reconciliation."))
+    feature_quotations = models.BooleanField(default=False, help_text=_("Quotations for catering and procurement bids."))
+
+    FEATURES = ("analytics", "cash_register", "quotations")
 
     class Meta:
         ordering = ["position", "price_monthly", "name"]
@@ -38,6 +44,9 @@ class Plan(TimeStampedModel):
     @property
     def is_free(self) -> bool:
         return self.price_monthly == 0
+
+    def has_feature(self, name: str) -> bool:
+        return bool(getattr(self, f"feature_{name}", False))
 
 
 class BillingSettings(models.Model):

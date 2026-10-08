@@ -25,7 +25,7 @@ class StaffOrderSerializer(serializers.ModelSerializer):
         fields = [
             "id", "number", "status", "status_display", "table_number", "table_session", "source", "placed_by_name",
             "customer_name", "customer_phone", "note", "items",
-            "subtotal", "service_charge", "total", "currency",
+            "subtotal", "service_charge", "vat_label", "vat_percent", "vat_inclusive", "vat_amount", "total", "currency",
             "payment_method", "payment_method_display", "payment_status",
             "estimated_minutes", "created_at", "accepted_at", "preparing_at",
             "ready_at", "completed_at", "cancelled_at", "cancel_reason",
@@ -48,7 +48,7 @@ class PublicOrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = [
             "token", "number", "status", "table_number", "items",
-            "subtotal", "service_charge", "total", "currency",
+            "subtotal", "service_charge", "vat_label", "vat_percent", "vat_inclusive", "vat_amount", "total", "currency",
             "payment_status", "estimated_minutes", "created_at", "ready_at",
         ]
         read_only_fields = fields

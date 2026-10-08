@@ -34,6 +34,22 @@ def _money(value: Decimal) -> Decimal:
     return value.quantize(CENT, rounding=ROUND_HALF_UP)
 
 
+def order_vat(restaurant, base: Decimal) -> dict:
+    """
+    VAT fields for a new order, where `base` is subtotal + service charge.
+    Inclusive: the VAT is the part of `base` that is tax. Exclusive: added on top.
+    """
+    rate = restaurant.vat_percent if restaurant.vat_enabled else Decimal("0")
+    if rate <= 0:
+        return {"vat_label": "", "vat_percent": Decimal("0"), "vat_inclusive": False, "vat_amount": Decimal("0")}
+    if restaurant.vat_inclusive:
+        amount = _money(base * rate / (100 + rate))
+    else:
+        amount = _money(base * rate / 100)
+    return {"vat_label": restaurant.vat_label or "VAT", "vat_percent": rate,
+            "vat_inclusive": restaurant.vat_inclusive, "vat_amount": amount}
+
+
 def _open_table_session(table: Table) -> TableSession:
     session = table.current_session()
     if session and session.is_stale:
@@ -113,7 +129,8 @@ def place_order(
 
     subtotal = _money(subtotal)
     service_charge = _money(subtotal * restaurant.service_charge_percent / 100)
-    total = subtotal + service_charge
+    vat = order_vat(restaurant, subtotal + service_charge)
+    total = subtotal + service_charge + (0 if vat["vat_inclusive"] else vat["vat_amount"])
     estimate = max((i.prep_minutes or restaurant.default_prep_minutes) for i, *_ in prepared)
 
     with transaction.atomic():
@@ -133,6 +150,7 @@ def place_order(
             currency=restaurant.currency,
             subtotal=subtotal,
             service_charge=service_charge,
+            **vat,
             total=total,
             payment_method=payment_method,
             estimated_minutes=estimate,

@@ -180,7 +180,7 @@ class Command(BaseCommand):
 
     def history(self, r, items, tables, users, light=False):
         """Past visits: each table session has 1–3 guests, each with 1–2 orders; mostly completed and paid."""
-        now = timezone.now()
+        now = timezone.localtime()  # local time, so order hours fall within opening hours
         count = 0
         for day in range(self.days, 0, -1):
             visits = random.randint(1, 3) if light else random.randint(4, 12)

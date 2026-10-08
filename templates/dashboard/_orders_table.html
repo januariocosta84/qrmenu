@@ -1,4 +1,4 @@
-{% load menu_tags ui_icons i18n %}
+{% load menu_tags ui_icons i18n l10n %}
 {% if orders %}
 <div class="table-wrap">
 <table class="table rtable">
@@ -15,7 +15,7 @@
       <td data-label="{% translate "Payment" %}" class="nowrap">
         {% if o.payment_status == "unpaid" and o.status != "cancelled" and request.can.payments %}
         <form method="post" action="{% url 'dashboard:order_mark_paid' request.restaurant.slug o.pk %}" class="inline-form"
-              data-cash-due="{{ o.total }}" data-cash-paid="{{ o.paid_sum|default:0 }}" data-cash-title="{% blocktranslate trimmed with n=o.number %}Order #{{ n }} · cash payment{% endblocktranslate %}">
+              data-cash-due="{{ o.total|unlocalize }}" data-cash-paid="{{ o.paid_sum|default:0|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=o.number %}Order #{{ n }} · cash payment{% endblocktranslate %}">
           {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
           <button class="btn btn-sm btn-success" type="submit" title="{% translate "Cash received" %}">{% icon "cash" %} {% translate "Mark paid" %}</button>
         </form>

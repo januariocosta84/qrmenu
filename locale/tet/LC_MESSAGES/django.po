@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-08 11:50+0900\n"
+"POT-Creation-Date: 2026-10-08 16:02+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,6 +103,15 @@ msgstr "Email konfirmasaun haruka ona ba %(email)s."
 
 msgid "We couldn't send the email right now. Please try again later."
 msgstr "Ami la konsege haruka email agora. Favór koko fali depois."
+
+msgid "Analytics page (trends, busy times, best sellers)."
+msgstr "Pájina análize (tendénsia, oras okupadu, fa'an barak liu)."
+
+msgid "Cash register: opening change and end-of-day reconciliation."
+msgstr "Kaixa: troku inisiál no konfere iha loron nia rohan."
+
+msgid "Quotations for catering and procurement bids."
+msgstr "Kotasaun ba catering no konkursu públiku."
 
 msgid "Trial"
 msgstr "Períodu esperimentál"
@@ -461,6 +470,15 @@ msgstr "Ita-nia knaar la bele kansela pedidu."
 msgid "No orders to print."
 msgstr "La iha pedidu atu imprime."
 
+msgid "How VAT is charged"
+msgstr "Oinsá kobra IVA"
+
+msgid "Add VAT on top of menu prices"
+msgstr "Aumenta IVA ba folin menu"
+
+msgid "Menu prices already include VAT"
+msgstr "Folin menu inklui ona IVA"
+
 msgid "Name"
 msgstr "Naran"
 
@@ -524,8 +542,23 @@ msgstr "Luan surat-tahan"
 msgid "Receipt footer"
 msgstr "Testu iha resibu nia okos"
 
+msgid "Charge VAT"
+msgstr "Kobra IVA"
+
+msgid "VAT rate (%)"
+msgstr "Taxa IVA (%)"
+
+msgid "Tax name"
+msgstr "Naran impostu"
+
+msgid "Tax ID"
+msgstr "Númeru impostu (NIF)"
+
 msgid "Enter the receipt printer's IP address to print receipts on it."
 msgstr "Hakerek enderesu IP imprimidora resibu nian atu imprime iha ne'ebá."
+
+msgid "Enter the VAT rate, e.g. 10."
+msgstr "Hakerek taxa IVA, ez. 10."
 
 msgid "Enter the receipt printer's IP address to use the cash drawer."
 msgstr "Hakerek enderesu IP imprimidora resibu nian atu uza gaveta osan."
@@ -675,6 +708,13 @@ msgid "Payment saved, but the cash drawer did not open: %(reason)s"
 msgstr "Pagamentu rai ona, maibé gaveta osan la loke: %(reason)s"
 
 #, python-format
+msgid "Cash register opened with %(amount)s change."
+msgstr "Kaixa loke ona ho troku %(amount)s."
+
+msgid "Cash movement recorded."
+msgstr "Movimentu osan rejista ona."
+
+#, python-format
 msgid "Order #%(number)s marked as paid."
 msgstr "Pedidu #%(number)s marka ona katak selu ona."
 
@@ -794,6 +834,16 @@ msgstr "Pedidu no osan"
 msgid "Pause ordering at any time; prices are shown in this currency."
 msgstr "Bele para pedidu iha tempu ruma; folin sira mosu iha moeda ne'e."
 
+msgid "Tax (VAT)"
+msgstr "Impostu (IVA)"
+
+msgid ""
+"Off by default. Switch it on only if your restaurant must charge VAT. Past "
+"orders keep the VAT they were placed with."
+msgstr ""
+"Dezativa hela. Ativa de'it se ita-nia restaurante tenke kobra IVA. Pedidu "
+"uluk sira rai nafatin IVA ne'ebé sira iha bainhira pede."
+
 msgid "Customer menu language"
 msgstr "Lian menu ba kliente"
 
@@ -834,6 +884,21 @@ msgstr "Funsionáriu atualiza ona."
 #, python-format
 msgid "Edit %(name)s"
 msgstr "Edita %(name)s"
+
+msgid "Revenue"
+msgstr "Rendimentu"
+
+msgid "Completed orders"
+msgstr "Pedidu remata ona"
+
+msgid "Average order"
+msgstr "Pedidu médiu"
+
+msgid "Cancelled orders"
+msgstr "Pedidu kansela ona"
+
+msgid " pts"
+msgstr " pts"
 
 msgid "Choose a different plan."
 msgstr "Hili planu seluk."
@@ -905,6 +970,9 @@ msgstr "Seidauk selu"
 msgid "Refunded"
 msgstr "Fó fali osan ona"
 
+msgid "VAT is part of the item prices (not added on top)."
+msgstr "IVA tama ona iha folin item sira (la aumenta tan)."
+
 msgid "QR code"
 msgstr "Kódigu QR"
 
@@ -938,6 +1006,27 @@ msgstr "Hahán balu la iha ona."
 #, python-format
 msgid "Cannot change order from %(from)s to %(to)s."
 msgstr "Labele troka pedidu husi %(from)s ba %(to)s."
+
+msgid "Enter whole numbers for the notes and coins."
+msgstr "Hakerek númeru tomak ba nota no moeda sira."
+
+msgid "Enter the amount as a number, e.g. 50 or 50.00."
+msgstr "Hakerek montante ho númeru, ez. 50 ka 50.00."
+
+msgid "Enter a valid amount."
+msgstr "Hakerek montante ne'ebé válidu."
+
+msgid "The cash register is already open."
+msgstr "Kaixa loke tiha ona."
+
+msgid "This cash session is already closed."
+msgstr "Sesaun kaixa ne'e taka tiha ona."
+
+msgid "Enter an amount greater than zero."
+msgstr "Hakerek montante boot liu zero."
+
+msgid "Write a short reason, e.g. “bought ice”."
+msgstr "Hakerek razaun badak, ez. “sosa jelu”."
 
 msgid ""
 "Can't find this printer address. Use the printer's IP, e.g. 192.168.1.50."
@@ -977,6 +1066,15 @@ msgstr "La fa'an / troku"
 
 msgid "Test"
 msgstr "Teste"
+
+msgid "Notes and coins counted, e.g. {\"20\": 2}."
+msgstr "Nota no moeda ne'ebé konta ona, ez. {\"20\": 2}."
+
+msgid "Cash in"
+msgstr "Osan tama"
+
+msgid "Cash out"
+msgstr "Osan sai"
 
 msgid "Manual / other"
 msgstr "Manuál / seluk"
@@ -1020,11 +1118,114 @@ msgstr "Osan la to'o: simu %(received)s maibé tenke selu %(due)s."
 msgid "Amount must be greater than zero."
 msgstr "Montante tenke boot liu zero."
 
+msgid "Client contact person"
+msgstr "Ema ba kontaktu"
+
+msgid "Organisation"
+msgstr "Organizasaun"
+
+msgid "Phone / email"
+msgstr "Telefone / email"
+
+msgid "Tender / procurement reference"
+msgstr "Referénsia konkursu / aprovizionamentu"
+
+msgid "Subject"
+msgstr "Asuntu"
+
+msgid "Event / delivery date"
+msgstr "Data eventu / entrega"
+
+msgid "Number of guests"
+msgstr "Númeru konvidadu"
+
+msgid "Quotation date"
+msgstr "Data kotasaun"
+
+msgid "Valid until"
+msgstr "Válidu to'o"
+
+msgid "Document language"
+msgstr "Lian dokumentu"
+
+msgid "Status"
+msgstr "Estadu"
+
+msgid "Discount (amount)"
+msgstr "Deskontu (montante)"
+
+msgid "VAT (%)"
+msgstr "IVA (%)"
+
+msgid "Terms, payment & bank details"
+msgstr "Kondisaun, pagamentu no dadus banku"
+
+msgid "e.g. Lunch catering for training workshop"
+msgstr "ez. Hahán meiudia ba workshop formasaun"
+
+msgid "0 = no VAT."
+msgstr "0 = la iha IVA."
+
+msgid "Must be on or after the quotation date."
+msgstr "Tenke hanesan ka depois data kotasaun."
+
+#, python-format
+msgid "Line %(n)s: enter numbers for quantity and price."
+msgstr "Liña %(n)s: hakerek númeru ba kuantidade no folin."
+
+#, python-format
+msgid "Line %(n)s: enter a description."
+msgstr "Liña %(n)s: hakerek deskrisaun."
+
+#, python-format
+msgid "Line %(n)s: quantity and price must be valid positive numbers."
+msgstr "Liña %(n)s: kuantidade no folin tenke númeru pozitivu ne'ebé válidu."
+
+msgid "Add at least one line."
+msgstr "Aumenta pelumenus liña ida."
+
+msgid "Draft"
+msgstr "Rascunho"
+
+msgid "Sent"
+msgstr "Haruka ona"
+
+msgid "Rejected"
+msgstr "Rejeita ona"
+
+#, python-format
+msgid "Quotation %(number)s saved."
+msgstr "Kotasaun %(number)s rai ona."
+
+#, python-format
+msgid "Copied as %(number)s. Update the dates and prices if needed."
+msgstr "Kopia ona hanesan %(number)s. Atualiza data no folin se presiza."
+
+#, python-format
+msgid "Quotation %(number)s deleted."
+msgstr "Kotasaun %(number)s hamoos ona."
+
 msgid "Use letters, numbers and dashes only (max 20), e.g. 12 or A-3."
 msgstr "Uza letra, númeru no tasi (-) de'it (másimu 20), ez. 12 ka A-3."
 
 msgid "e.g. Mon–Sat 08:00–22:00"
 msgstr "ez. Seg–Sáb 08:00–22:00"
+
+msgid "Charge VAT on orders."
+msgstr "Kobra IVA ba pedidu sira."
+
+msgid ""
+"Add on top: the bill total goes up by the VAT. Already included: totals stay "
+"the same and receipts show the VAT part."
+msgstr ""
+"Aumenta: totál konta sobu ho IVA. Inklui ona: totál la muda no resibu hatudu "
+"parte IVA."
+
+msgid "Name printed on bills, e.g. VAT or IVA."
+msgstr "Naran ne'ebé imprime iha konta, ez. VAT ka IVA."
+
+msgid "Tax ID printed on receipts."
+msgstr "NIF ne'ebé imprime iha resibu."
 
 msgid "Pin 2 (most drawers)"
 msgstr "Pinu 2 (gaveta barak liu)"
@@ -1179,6 +1380,27 @@ msgstr ""
 msgid "Already registered?"
 msgstr "Rejistu tiha ona?"
 
+msgid "Count notes and coins"
+msgstr "Konta nota no moeda"
+
+msgid "Note / coin"
+msgstr "Nota / moeda"
+
+msgid "How many"
+msgstr "Hira"
+
+msgid "Total"
+msgstr "Totál"
+
+msgid "Exact"
+msgstr "Loos"
+
+msgid "over"
+msgstr "liu"
+
+msgid "short"
+msgstr "falta"
+
 msgid "Translations · Tetum, Bahasa Indonesia"
 msgstr "Tradusaun · Tetun, Bahasa Indonézia"
 
@@ -1199,12 +1421,6 @@ msgstr "Kliente"
 
 msgid "Items"
 msgstr "Item"
-
-msgid "Total"
-msgstr "Totál"
-
-msgid "Status"
-msgstr "Estadu"
 
 msgid "Payment"
 msgstr "Pagamentu"
@@ -1230,6 +1446,178 @@ msgstr "Marka selu ona"
 
 msgid "No orders yet."
 msgstr "Seidauk iha pedidu."
+
+msgid "Analytics"
+msgstr "Análize"
+
+#, python-format
+msgid "compared with %(a)s – %(b)s"
+msgstr "kompara ho %(a)s – %(b)s"
+
+msgid "Reports & CSV"
+msgstr "Relatóriu no CSV"
+
+msgid "Date range"
+msgstr "Períodu"
+
+msgid "7 days"
+msgstr "loron 7"
+
+msgid "30 days"
+msgstr "loron 30"
+
+msgid "90 days"
+msgstr "loron 90"
+
+msgid "This month"
+msgstr "Fulan ida ne'e"
+
+msgid "From date"
+msgstr "Husi data"
+
+msgid "To date"
+msgstr "To'o data"
+
+msgid "Apply"
+msgstr "Aplika"
+
+msgid "vs previous period"
+msgstr "kompara ho períodu uluk"
+
+msgid "No earlier data to compare"
+msgstr "La iha dadus uluk atu kompara"
+
+msgid "Revenue per day"
+msgstr "Rendimentu kada loron"
+
+msgid "Completed orders. The gray line is the previous period, day by day."
+msgstr "Pedidu remata ona. Liña mutin-matak mak períodu uluk, loron ba loron."
+
+msgid "This period"
+msgstr "Períodu ida ne'e"
+
+msgid "Previous period"
+msgstr "Períodu uluk"
+
+msgid "Revenue per day, this period compared with the previous period"
+msgstr "Rendimentu kada loron, períodu ida ne'e kompara ho períodu uluk"
+
+msgid "Show as table"
+msgstr "Hatudu hanesan tabela"
+
+msgid "Day"
+msgstr "Loron"
+
+msgid "Busy times"
+msgstr "Oras ne'ebé okupadu"
+
+msgid "Orders by weekday and hour. Darker = more orders."
+msgstr "Pedidu tuir loron no oras. Kór metan liu = pedidu barak liu."
+
+msgid "Busiest"
+msgstr "Okupadu liu"
+
+msgid "No orders in this period yet."
+msgstr "Seidauk iha pedidu iha períodu ne'e."
+
+#, python-format
+msgid "%(n)s order"
+msgid_plural "%(n)s orders"
+msgstr[0] "pedidu %(n)s"
+msgstr[1] "pedidu %(n)s"
+
+msgid "orders per hour"
+msgstr "pedidu kada oras"
+
+msgid "How customers pay"
+msgstr "Oinsá kliente sira selu"
+
+#, python-format
+msgid "Payments received in this period: %(total)s"
+msgstr "Pagamentu ne'ebé simu iha períodu ne'e: %(total)s"
+
+msgid "Share of each payment method"
+msgstr "Parte husi métodu pagamentu ida-idak"
+
+#, python-format
+msgid "%(n)s payment"
+msgid_plural "%(n)s payments"
+msgstr[0] "pagamentu %(n)s"
+msgstr[1] "pagamentu %(n)s"
+
+msgid "No payments in this period yet."
+msgstr "Seidauk iha pagamentu iha períodu ne'e."
+
+msgid "Where orders come from"
+msgstr "Pedidu mai husi ne'ebé"
+
+msgid "Customer's phone (QR)"
+msgstr "Telemovel kliente (QR)"
+
+msgid "Entered by waiter"
+msgstr "Serbidór mak hatama"
+
+msgid "At a table"
+msgstr "Iha meza"
+
+msgid "Counter / takeaway"
+msgstr "Balkaun / lori ba uma"
+
+msgid "Sales by category"
+msgstr "Fa'an tuir kategoria"
+
+msgid "Revenue from completed orders."
+msgstr "Rendimentu husi pedidu ne'ebé remata ona."
+
+#, python-format
+msgid "%(n)s sold"
+msgid_plural "%(n)s sold"
+msgstr[0] "fa'an %(n)s"
+msgstr[1] "fa'an %(n)s"
+
+msgid "No completed orders in this period."
+msgstr "La iha pedidu remata ona iha períodu ne'e."
+
+msgid "Best-selling dishes"
+msgstr "Hahán ne'ebé fa'an barak liu"
+
+msgid "Top 10 by revenue · number sold after the dot."
+msgstr "Top 10 tuir rendimentu · kuantidade fa'an iha pontu nia kotuk."
+
+msgid "Not sold in this period"
+msgstr "La fa'an iha períodu ne'e"
+
+msgid ""
+"Available dishes nobody ordered. Consider a better photo, a lower price or "
+"removing them."
+msgstr ""
+"Hahán ne'ebé iha maibé ema ida la pede. Hanoin foto di'ak liu, folin tun liu "
+"ka hasai sira."
+
+msgid "Kitchen speed"
+msgstr "Lalais kozinha"
+
+msgid "Time from order placed to “Ready”."
+msgstr "Tempu husi pedidu to'o “Prontu”."
+
+msgid "Average"
+msgstr "Médiu"
+
+#, python-format
+msgid "%(m)s min"
+msgstr "minutu %(m)s"
+
+msgid "Typical (median)"
+msgstr "Normál (mediana)"
+
+msgid "Ready on time"
+msgstr "Prontu ho tempu"
+
+msgid "Orders measured"
+msgstr "Pedidu ne'ebé sukat"
+
+msgid "No orders marked ready in this period."
+msgstr "La iha pedidu marka prontu iha períodu ne'e."
 
 msgid "Dashboard"
 msgstr "Painél"
@@ -1261,6 +1649,9 @@ msgstr "Pedidu"
 msgid "Tables &amp; QR"
 msgstr "Meza no QR"
 
+msgid "Cash register"
+msgstr "Kaixa"
+
 msgid "Manage"
 msgstr "Jestaun"
 
@@ -1269,6 +1660,9 @@ msgstr "Menu"
 
 msgid "Reports"
 msgstr "Relatóriu"
+
+msgid "Quotations"
+msgstr "Kotasaun"
 
 msgid "Restaurant"
 msgstr "Restaurante"
@@ -1508,6 +1902,136 @@ msgstr "Husu troka ba %(plan)s?"
 msgid "Switch to %(plan)s"
 msgstr "Troka ba %(plan)s"
 
+msgid ""
+"Enter the change in the drawer before selling starts. At the end, count the "
+"drawer and compare it with what the system expects."
+msgstr ""
+"Hakerek troku iha gaveta molok hahú fa'an. Iha rohan, konta gaveta no "
+"kompara ho saida mak sistema hein."
+
+msgid "Start of day: change in the drawer"
+msgstr "Loron nia hahú: troku iha gaveta"
+
+msgid ""
+"Count the notes and coins you put in the drawer as change (the opening "
+"float)."
+msgstr ""
+"Konta nota no moeda ne'ebé ita tau iha gaveta hanesan troku (osan inisiál)."
+
+msgid "Change in the drawer"
+msgstr "Troku iha gaveta"
+
+msgid "Open cash register"
+msgstr "Loke kaixa"
+
+#, python-format
+msgid "Open since %(t)s · by %(name)s"
+msgstr "Loke dezde %(t)s · husi %(name)s"
+
+#, python-format
+msgid "Open since %(t)s"
+msgstr "Loke dezde %(t)s"
+
+msgid "Opening change"
+msgstr "Troku inisiál"
+
+#, python-format
+msgid "Cash sales (%(n)s payment)"
+msgid_plural "Cash sales (%(n)s payments)"
+msgstr[0] "Fa'an ho osan-kontadu (pagamentu %(n)s)"
+msgstr[1] "Fa'an ho osan-kontadu (pagamentu %(n)s)"
+
+msgid "Cash in · out"
+msgstr "Osan tama · sai"
+
+msgid "Expected in the drawer"
+msgstr "Hein iha gaveta"
+
+msgid "How it adds up"
+msgstr "Oinsá kalkula"
+
+msgid "Cash sales"
+msgstr "Fa'an ho osan-kontadu"
+
+#, python-format
+msgid "received %(got)s, change %(change)s"
+msgstr "simu %(got)s, troku %(change)s"
+
+msgid "Other payments (not in the drawer)"
+msgstr "Pagamentu seluk (la iha gaveta)"
+
+msgid "None yet."
+msgstr "Seidauk iha."
+
+msgid "Cash in / out"
+msgstr "Osan tama / sai"
+
+msgid "Cash in or out"
+msgstr "Osan tama ka sai"
+
+msgid "Reason, e.g. bought ice"
+msgstr "Razaun, ez. sosa jelu"
+
+msgid "Reason"
+msgstr "Razaun"
+
+msgid "Add"
+msgstr "Aumenta"
+
+msgid "Close the cash register with this count? This can't be undone."
+msgstr "Taka kaixa ho kontajen ne'e? Labele kansela fali."
+
+msgid "End of day: count the drawer"
+msgstr "Loron nia rohan: konta gaveta"
+
+msgid "Count all the cash in the drawer, including the opening change."
+msgstr "Konta osan hotu iha gaveta, inklui troku inisiál."
+
+msgid "Cash counted"
+msgstr "Osan ne'ebé konta ona"
+
+msgid "Difference"
+msgstr "Diferensa"
+
+msgid "Note (optional)"
+msgstr "Nota (opsionál)"
+
+msgid "e.g. $1 coin missing"
+msgstr "ez. moeda $1 lakon"
+
+msgid "Close & reconcile"
+msgstr "Taka no konfere"
+
+msgid "Past sessions"
+msgstr "Sesaun uluk"
+
+msgid "Opened"
+msgstr "Loke"
+
+msgid "Closed"
+msgstr "Taka"
+
+msgid "Expected"
+msgstr "Hein"
+
+msgid "Counted"
+msgstr "Konta ona"
+
+msgid "Report"
+msgstr "Relatóriu"
+
+msgid "No closed sessions yet."
+msgstr "Seidauk iha sesaun ne'ebé taka ona."
+
+msgid "Exact: the drawer matches."
+msgstr "Loos: gaveta tuir loos."
+
+msgid "Over: more cash than expected."
+msgstr "Liu: osan barak liu saida mak hein."
+
+msgid "Short: less cash than expected."
+msgstr "Falta: osan menus liu saida mak hein."
+
 msgid "Your restaurants"
 msgstr "Ita-nia restaurante sira"
 
@@ -1664,9 +2188,6 @@ msgstr ""
 "Ba bainaka sira ne'ebé la iha telemovel. Hili meza no bainaka, toka hahán, "
 "depois haruka."
 
-msgid "Counter / takeaway"
-msgstr "Balkaun / lori ba uma"
-
 #, python-format
 msgid "Table %(n)s"
 msgstr "Meza %(n)s"
@@ -1698,6 +2219,9 @@ msgstr "Subtotál"
 msgid "Service charge"
 msgstr "Taxa servisu"
 
+msgid "included"
+msgstr "inklui ona"
+
 msgid "Note for the kitchen (optional)"
 msgstr "Nota ba kozinha (opsionál)"
 
@@ -1715,9 +2239,6 @@ msgstr "Menus"
 
 msgid "More"
 msgstr "Liu tan"
-
-msgid "Add"
-msgstr "Aumenta"
 
 msgid "Mark all as read"
 msgstr "Marka hotu katak lee ona"
@@ -1752,10 +2273,6 @@ msgstr "Serbidór"
 msgid "Est. prep"
 msgstr "Tempu prepara"
 
-#, python-format
-msgid "%(m)s min"
-msgstr "minutu %(m)s"
-
 msgid "Item"
 msgstr "Item"
 
@@ -1788,10 +2305,6 @@ msgid "Customer chose: %(m)s"
 msgstr "Kliente hili: %(m)s"
 
 #, python-format
-msgid "received %(got)s, change %(change)s"
-msgstr "simu %(got)s, troku %(change)s"
-
-#, python-format
 msgid "ref %(ref)s"
 msgstr "ref. %(ref)s"
 
@@ -1820,12 +2333,6 @@ msgstr "Nú. pedidu ka naran"
 msgid "Order number or customer name"
 msgstr "Númeru pedidu ka naran kliente"
 
-msgid "From date"
-msgstr "Husi data"
-
-msgid "To date"
-msgstr "To'o data"
-
 msgid "Filter"
 msgstr "Filtra"
 
@@ -1849,6 +2356,12 @@ msgstr "Pedidu dezativa hela: kliente sira bele haree menu maibé labele pede."
 
 msgid "Turn it back on"
 msgstr "Ativa fali"
+
+msgid "Before selling starts, enter the change in the cash drawer."
+msgstr "Molok hahú fa'an, hakerek troku iha gaveta osan."
+
+msgid "Open the cash register"
+msgstr "Loke kaixa"
 
 msgid "Tables &amp; bills"
 msgstr "Meza no konta"
@@ -1892,6 +2405,158 @@ msgstr "Pedidu foun liu"
 msgid "All orders"
 msgstr "Pedidu hotu"
 
+msgid "New quotation"
+msgstr "Kotasaun foun"
+
+msgid ""
+"Add dishes from your menu or type your own lines (delivery, service staff, "
+"equipment…)."
+msgstr ""
+"Aumenta hahán husi menu ka hakerek liña rasik (entrega, funsionáriu servisu, "
+"ekipamentu…)."
+
+msgid "Print / PDF"
+msgstr "Imprime / PDF"
+
+msgid "Duplicate"
+msgstr "Duplika"
+
+msgid "Client"
+msgstr "Kliente"
+
+msgid "Quotation"
+msgstr "Kotasaun"
+
+msgid "Dish from your menu"
+msgstr "Hahán husi menu"
+
+msgid "Choose a dish from your menu…"
+msgstr "Hili hahán husi menu…"
+
+msgid "Add from menu"
+msgstr "Aumenta husi menu"
+
+msgid "Add custom line"
+msgstr "Aumenta liña rasik"
+
+msgid "Unit price"
+msgstr "Folin unidade"
+
+msgid "Remove line"
+msgstr "Hasai liña"
+
+msgid "No lines yet. Add dishes from your menu or a custom line."
+msgstr "Seidauk iha liña. Aumenta hahán husi menu ka liña rasik."
+
+msgid "pax"
+msgstr "ema"
+
+msgid "plate"
+msgstr "pratu"
+
+msgid "box"
+msgstr "kaixa"
+
+msgid "pcs"
+msgstr "unid."
+
+msgid "set"
+msgstr "konjuntu"
+
+msgid "day"
+msgstr "loron"
+
+msgid "trip"
+msgstr "viajen"
+
+msgid "VAT"
+msgstr "IVA"
+
+msgid "Grand total"
+msgstr "Totál jerál"
+
+#, python-format
+msgid ""
+"Printed at the bottom, e.g. 50%% deposit on confirmation, payment within 14 "
+"days, bank account details. New quotations start with the terms of your last "
+"one."
+msgstr ""
+"Imprime iha rohan, ez. 50%% sinal bainhira konfirma, selu iha loron 14 nia "
+"laran, dadus banku. Kotasaun foun hahú ho kondisaun husi ida ikus."
+
+msgid "Save quotation"
+msgstr "Rai kotasaun"
+
+#, python-format
+msgid "Delete quotation %(n)s?"
+msgstr "Hamoos kotasaun %(n)s?"
+
+msgid "Delete this quotation"
+msgstr "Hamoos kotasaun ne'e"
+
+msgid ""
+"Price offers for catering, events and procurement bids. Print or save as PDF."
+msgstr ""
+"Proposta folin ba catering, eventu no konkursu. Imprime ka rai hanesan PDF."
+
+msgid "Number"
+msgstr "Númeru"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Print"
+msgstr "Imprime"
+
+msgid "No quotations yet."
+msgstr "Seidauk iha kotasaun."
+
+msgid "Create your first quotation"
+msgstr "Kria ita-nia kotasaun dahuluk"
+
+msgid "Print / save as PDF"
+msgstr "Imprime / rai hanesan PDF"
+
+msgid "Close"
+msgstr "Taka"
+
+msgid "QUOTATION"
+msgstr "KOTASAUN"
+
+msgctxt "recipient"
+msgid "To"
+msgstr "Ba"
+
+msgid "Attn."
+msgstr "Ba atensaun"
+
+msgid "Details"
+msgstr "Detallu"
+
+msgid "No."
+msgstr "Nú."
+
+msgid "Discount"
+msgstr "Deskontu"
+
+msgid "Amount in words"
+msgstr "Montante ho liafuan"
+
+msgid "Terms & conditions"
+msgstr "Termu no kondisaun"
+
+msgid "For"
+msgstr "Ba"
+
+msgid "Name, signature & stamp"
+msgstr "Naran, asinatura no karimbu"
+
+msgid "Accepted by the client"
+msgstr "Kliente simu ona"
+
+msgid "Name, signature, stamp & date"
+msgstr "Naran, asinatura, karimbu no data"
+
 msgid "Export CSV"
 msgstr "Esporta CSV"
 
@@ -1901,20 +2566,8 @@ msgstr "Husi"
 msgid "To"
 msgstr "To'o"
 
-msgid "Apply"
-msgstr "Aplika"
-
-msgid "Revenue"
-msgstr "Rendimentu"
-
-msgid "Average order"
-msgstr "Pedidu médiu"
-
-msgid "Revenue per day"
-msgstr "Rendimentu kada loron"
-
-msgid "No completed orders in this period."
-msgstr "La iha pedidu remata ona iha períodu ne'e."
+msgid "VAT collected"
+msgstr "IVA ne'ebé kobra ona"
 
 msgid "Best sellers"
 msgstr "Fa'an barak liu"
@@ -1950,17 +2603,11 @@ msgstr "Teste no rejistu gaveta osan"
 msgid "Test drawer"
 msgstr "Teste gaveta"
 
-msgid "Reason"
-msgstr "Razaun"
-
 msgid "By"
 msgstr "Husi"
 
 msgid "Result"
 msgstr "Rezultadu"
-
-msgid "Opened"
-msgstr "Loke"
 
 msgid "No drawer openings yet."
 msgstr "Gaveta seidauk loke."
@@ -2012,16 +2659,6 @@ msgctxt "table"
 msgid "Free"
 msgstr "Livre"
 
-#, python-format
-msgid "Open since %(t)s"
-msgstr "Loke dezde %(t)s"
-
-#, python-format
-msgid "%(n)s order"
-msgid_plural "%(n)s orders"
-msgstr[0] "pedidu %(n)s"
-msgstr[1] "pedidu %(n)s"
-
 msgid "Add order"
 msgstr "Aumenta pedidu"
 
@@ -2071,14 +2708,8 @@ msgstr ""
 msgid "Recent bills"
 msgstr "Konta foin daudaun"
 
-msgid "Closed"
-msgstr "Taka"
-
 msgid "Open the customer link"
 msgstr "Loke link kliente nian"
-
-msgid "Print"
-msgstr "Imprime"
 
 msgid "Generate a new QR code? The currently printed code will STOP working."
 msgstr "Kria kódigu QR foun? Kódigu ne'ebé imprime ona sei LA FUNSIONA tan."
@@ -2143,6 +2774,30 @@ msgstr "Kria meza ho númeru, la kria númeru ne'ebé iha ona."
 
 msgid "Create tables"
 msgstr "Kria meza"
+
+msgid "Upgrade your plan"
+msgstr "Hasa'e ita-nia planu"
+
+msgid "See how sales compare with last period, your busiest hours and days, best-selling and unsold dishes, how customers pay and how fast the kitchen is."
+msgstr "Kompara fa'an ho períodu uluk no haree oras no loron okupadu liu, hahán ne'ebé fa'an barak no la fa'an, oinsá kliente selu no lalais kozinha."
+
+msgid "Enter the change in the drawer before selling, record cash in and out, and reconcile at the end of the day: expected vs counted, over or short, with a printable report."
+msgstr "Hakerek troku molok fa'an, osan tama no sai, no konfere iha loron nia rohan: hein vs konta ona, liu ka falta, ho relatóriu atu imprime."
+
+msgid "Create professional price offers for catering, events and procurement bids from your menu, with amount in words, and print them as PDF in four languages."
+msgstr "Kria proposta folin profisionál ba catering, eventu no konkursu husi ita-nia menu, ho montante ho liafuan, no imprime hanesan PDF iha lian haat."
+
+msgid "Available in:"
+msgstr "Iha iha:"
+
+msgid "Not included in your current plan."
+msgstr "La inklui iha ita-nia planu atuál."
+
+msgid "See plans & upgrade"
+msgstr "Haree planu no hasa'e"
+
+msgid "Ask the restaurant owner to upgrade the plan."
+msgstr "Husu restaurante na'in atu hasa'e planu."
 
 msgid "QR menu & table ordering for restaurants"
 msgstr "Menu QR no pedidu iha meza ba restaurante"
@@ -2261,6 +2916,15 @@ msgid_plural "Up to %(n)s staff accounts"
 msgstr[0] "Konta funsionáriu to'o %(n)s"
 msgstr[1] "Konta funsionáriu to'o %(n)s"
 
+msgid "Sales analytics"
+msgstr "Análize fa'an"
+
+msgid "Cash register & end-of-day reconciliation"
+msgstr "Kaixa no konfere iha loron nia rohan"
+
+msgid "Quotations for catering & tenders"
+msgstr "Kotasaun ba catering no konkursu"
+
 msgid "Get started"
 msgstr "Hahú"
 
@@ -2276,3 +2940,10 @@ msgstr "Olá! Ha'u hakarak hatene liu tan kona-ba %(name)s."
 
 msgid "Chat with us on WhatsApp"
 msgstr "Ko'alia ho ami iha WhatsApp"
+
+#~ msgid ""
+#~ "Ticked: menu prices already include VAT (totals stay the same, receipts "
+#~ "show the VAT part). Unticked: VAT is added on top at checkout."
+#~ msgstr ""
+#~ "Marka: folin menu inklui ona IVA (totál la muda, resibu hatudu parte "
+#~ "IVA). La marka: IVA aumenta iha tempu selu."

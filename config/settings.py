@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     "apps.dashboard",
     "apps.billing",
     "apps.console",
+    "apps.quotations",
 ]
 
 MIDDLEWARE = [
@@ -140,6 +141,7 @@ LANGUAGES = [
     ("id", "Bahasa Indonesia"),
 ]
 LOCALE_PATHS = [BASE_DIR / "locale"]
+FORMAT_MODULE_PATH = ["config.formats"]  # Tetun date formats
 LANGUAGE_COOKIE_NAME = "dash_lang"
 LANGUAGE_COOKIE_AGE = 365 * 24 * 3600
 LANGUAGE_COOKIE_SAMESITE = "Lax"

@@ -1,0 +1,45 @@
+{% extends "dashboard/base.html" %}
+{% load i18n menu_tags ui_icons %}
+{% block title %}{% translate "Quotations" %}{% endblock %}
+{% block content %}
+{% with r=request.restaurant sym=request.restaurant.currency_symbol %}
+<div class="page-head">
+  <div>
+    <h1>{% translate "Quotations" %}</h1>
+    <p class="page-sub">{% translate "Price offers for catering, events and procurement bids. Print or save as PDF." %}</p>
+  </div>
+  <div class="page-actions"><a class="btn btn-primary" href="{% url 'dashboard:quotation_create' r.slug %}">{% icon "plus" %} {% translate "New quotation" %}</a></div>
+</div>
+
+<nav class="tabs" aria-label="{% translate "Filter by status" %}">
+  <a href="?" class="{% if not status %}active{% endif %}">{% translate "All" %}</a>
+  <a href="?status=draft" class="{% if status == 'draft' %}active{% endif %}">{% translate "Draft" %}</a>
+  <a href="?status=sent" class="{% if status == 'sent' %}active{% endif %}">{% translate "Sent" %}</a>
+  <a href="?status=accepted" class="{% if status == 'accepted' %}active{% endif %}">{% translate "Accepted" %}</a>
+  <a href="?status=rejected" class="{% if status == 'rejected' %}active{% endif %}">{% translate "Rejected" %}</a>
+</nav>
+
+<section class="card">
+  {% if quotations %}
+  <div class="table-wrap">
+  <table class="table rtable">
+    <thead><tr><th>{% translate "Number" %}</th><th>{% translate "Client" %}</th><th>{% translate "Subject" %}</th><th>{% translate "Date" %}</th><th class="num">{% translate "Total" %}</th><th>{% translate "Status" %}</th><th></th></tr></thead>
+    <tbody>{% for q in quotations %}
+      <tr>
+        <td class="rt-title" data-label=""><a href="{% url 'dashboard:quotation_edit' r.slug q.pk %}"><strong>{{ q.number }}</strong></a></td>
+        <td data-label="{% translate "Client" %}">{{ q.client_organization|default:q.client_name }}{% if q.client_organization %}<div class="muted small">{{ q.client_name }}</div>{% endif %}</td>
+        <td data-label="{% translate "Subject" %}">{{ q.title|default:"—" }}</td>
+        <td data-label="{% translate "Date" %}" class="nowrap">{{ q.issue_date|date:"d M Y" }}</td>
+        <td data-label="{% translate "Total" %}" class="num"><strong>{{ q.total|money:sym }}</strong></td>
+        <td data-label="{% translate "Status" %}"><span class="pill quote-{{ q.status }}">{{ q.get_status_display }}</span></td>
+        <td data-label="" class="num nowrap"><a class="btn btn-sm" href="{% url 'dashboard:quotation_print' r.slug q.pk %}" target="_blank" rel="noopener">{% icon "printer" %} {% translate "Print" %}</a></td>
+      </tr>{% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% else %}
+  <div class="empty">{% icon "receipt" %}<p>{% translate "No quotations yet." %} <a href="{% url 'dashboard:quotation_create' r.slug %}">{% translate "Create your first quotation" %}</a></p></div>
+  {% endif %}
+</section>
+{% endwith %}
+{% endblock %}

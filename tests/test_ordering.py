@@ -34,6 +34,17 @@ def make_restaurant(slug="alpha", service="0"):
     return r, rice, egg, tea, table
 
 
+def make_pro(restaurant):
+    """Put the restaurant on the Pro plan (analytics, cash register, quotations)."""
+    from apps.billing.models import Plan
+    from apps.billing.services import get_subscription
+
+    sub = get_subscription(restaurant)
+    sub.plan = Plan.objects.get(name="Pro")
+    sub.save()
+    return sub
+
+
 def staff(restaurant, username, role):
     user = User.objects.create_user(username=username, password="pw-Secret-123")
     RestaurantStaff.objects.create(restaurant=restaurant, user=user, role=role)

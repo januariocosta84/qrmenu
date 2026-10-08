@@ -1,0 +1,1 @@
+{% load i18n menu_tags %}{% with sym=request.restaurant.currency_symbol %}{% if d is None %}—{% elif d == 0 %}<span class="pill pill-ready">{% translate "Exact" %}</span>{% elif d > 0 %}<span class="pill pill-new">+{{ a|money:sym }} {% translate "over" %}</span>{% else %}<span class="pill pill-cancelled">−{{ a|money:sym }} {% translate "short" %}</span>{% endif %}{% endwith %}

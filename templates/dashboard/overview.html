@@ -14,6 +14,10 @@
 <div class="msg msg-warning">{% icon "alert" %}<span>{% translate "Ordering is switched off: customers can view the menu but can't order." %} {% if can.manage_restaurant %}<a href="{% url 'dashboard:settings' r.slug %}">{% translate "Turn it back on" %}</a>.{% endif %}</span></div>
 {% endif %}
 
+{% if can.payments and request.features.cash_register and not cash_open %}
+<div class="msg msg-info">{% icon "drawer" %}<span>{% translate "Before selling starts, enter the change in the cash drawer." %} <a href="{% url 'dashboard:cash_register' r.slug %}">{% translate "Open the cash register" %}</a></span></div>
+{% endif %}
+
 <div class="quick">
   {% if can.take_orders %}<a href="{% url 'dashboard:new_order' r.slug %}">{% icon "plus-circle" %}{% translate "New order" %}</a>{% endif %}
   {% if can.kitchen %}<a href="{% url 'dashboard:kitchen' r.slug %}">{% icon "flame" %}{% translate "Kitchen queue" %}</a>{% endif %}

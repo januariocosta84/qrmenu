@@ -1,0 +1,105 @@
+{% load menu_tags %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cash report · {{ restaurant.name }}</title>
+  <style>
+    /*
+     * Thermal POS roll, same layout as the ESC/POS output: 80 mm paper prints
+     * 72 mm wide (48 columns), 58 mm paper prints 48 mm (32 columns). One column
+     * is 1.5 mm, like the printer's Font A; double size doubles that.
+     */
+    :root { --paper: {% if restaurant.receipt_width == 32 %}58mm{% else %}80mm{% endif %}; --print: {% if restaurant.receipt_width == 32 %}48mm{% else %}72mm{% endif %}; }
+    @page { size: {% if restaurant.receipt_width == 32 %}58mm{% else %}80mm{% endif %} 297mm; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: #e5e7eb; color: #000; font: 2.5mm/3.4mm ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, "Courier New", monospace; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .paper { width: var(--paper); margin: 16px auto; padding: 3mm calc((var(--paper) - var(--print)) / 2) 8mm; background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+    p { margin: 0; }
+    .c { text-align: center; }
+    .name { font-size: 5mm; line-height: 6mm; font-weight: 800; overflow-wrap: anywhere; }
+    .title { font-weight: 800; margin-top: 3.4mm; }
+    hr { border: 0; border-top: .3mm dashed #000; margin: 1.5mm 0; }
+    .row { display: flex; justify-content: space-between; gap: 1.5mm; }
+    .row span:first-child { overflow-wrap: anywhere; }
+    .row span:last-child { white-space: nowrap; text-align: right; }
+    .sub { padding-left: 4.5mm; overflow-wrap: anywhere; }
+    .total { font-weight: 800; }
+    .unpaid { font-weight: 800; text-align: center; border: .3mm solid #000; margin-top: 1.5mm; }
+    .foot { margin-top: 1.5mm; overflow-wrap: anywhere; }
+    .bar { display: flex; gap: 8px; justify-content: center; margin: 16px; font: 15px system-ui, sans-serif; }
+    .bar button { padding: 10px 18px; font: inherit; font-weight: 700; border-radius: 8px; border: 1px solid #d1d5db; background: #fff; cursor: pointer; }
+    .bar .primary { background: #ea580c; border-color: #ea580c; color: #fff; }
+    @media print {
+      body { background: #fff; }
+      .paper { margin: 0; box-shadow: none; }
+      .bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <button class="primary" type="button" onclick="window.print()">Print</button>
+    <button type="button" onclick="window.close()">Close</button>
+  </div>
+  <div class="paper">{% with f=f s=f.session sym=restaurant.currency_symbol %}
+    <div class="c">
+      <p class="name">{{ restaurant.name }}</p>
+      <p class="title">CASH REPORT</p>
+    </div>
+    <hr>
+    <div class="row"><span>Opened</span><span>{{ s.opened_at|date:"d M Y H:i" }}</span></div>
+    <div class="row"><span>By</span><span>{{ s.opened_by.username|default:"—" }}</span></div>
+    {% if s.closed_at %}
+    <div class="row"><span>Closed</span><span>{{ s.closed_at|date:"d M Y H:i" }}</span></div>
+    <div class="row"><span>By</span><span>{{ s.closed_by.username|default:"—" }}</span></div>
+    {% else %}<div class="unpaid">STILL OPEN</div>{% endif %}
+    <hr>
+    <div class="row"><span>Opening change</span><span>{{ f.opening_float|money:sym }}</span></div>
+    <div class="row"><span>+ Cash sales ({{ f.cash_sales_count }})</span><span>{{ f.cash_sales|money:sym }}</span></div>
+    <div class="sub">received {{ f.cash_received|money:sym }}, change {{ f.change_given|money:sym }}</div>
+    <div class="row"><span>+ Cash in</span><span>{{ f.cash_in|money:sym }}</span></div>
+    <div class="row"><span>- Cash out</span><span>{{ f.cash_out|money:sym }}</span></div>
+    {% for m in f.movements %}<div class="sub">{% if m.kind == "out" %}-{% else %}+{% endif %}{{ m.amount|money:sym }} {{ m.reason }}</div>{% endfor %}
+    <div class="row total"><span>EXPECTED CASH</span><span>{{ f.expected|money:sym }}</span></div>
+    {% if f.counted is not None %}
+    <div class="row total"><span>COUNTED CASH</span><span>{{ f.counted|money:sym }}</span></div>
+    <div class="row total"><span>DIFFERENCE</span><span>{% if f.difference > 0 %}+{{ f.difference_abs|money:sym }} OVER{% elif f.difference < 0 %}-{{ f.difference_abs|money:sym }} SHORT{% else %}EXACT{% endif %}</span></div>
+    {% endif %}
+    {% if s.closing_count %}<hr><p>Counted notes and coins</p>
+    {% for d, n in s.closing_count.items %}<div class="sub">{{ n }} x {{ sym }}{{ d }}</div>{% endfor %}{% endif %}
+    <hr>
+    <p>Other payments (not in drawer)</p>
+    {% for o in f.other %}<div class="row"><span>{{ o.method }} ({{ o.n }})</span><span>{{ o.total|money:sym }}</span></div>{% empty %}<div class="sub">none</div>{% endfor %}
+    <div class="row total"><span>TOTAL TAKINGS</span><span>{{ f.takings|money:sym }}</span></div>
+    {% if s.note %}<hr><p>Note: {{ s.note }}</p>{% endif %}
+    <hr>
+    <div class="c">Printed {{ printed_at|date:"d M Y H:i" }}</div>
+  {% endwith %}</div>
+  <script>
+    // Page height = receipt length, so the roll is cut right after the footer.
+    (function () {
+      const style = document.createElement("style");
+      document.head.appendChild(style);
+      const fit = () => {
+        const paper = document.querySelector(".paper");
+        const width = getComputedStyle(document.documentElement).getPropertyValue("--paper").trim();
+        const mm = Math.ceil(paper.getBoundingClientRect().height * 25.4 / 96) + 2;
+        style.textContent = `@page { size: ${width} ${mm}mm; margin: 0; }`;
+      };
+      window.addEventListener("load", fit);
+      window.addEventListener("beforeprint", fit);
+    })();
+  </script>
+  {% if autoprint %}
+  <script>
+    // Opened in its own window (phones/tablets): print, then close. In an iframe the parent prints.
+    if (window.self === window.top) {
+      window.addEventListener("load", () => setTimeout(() => window.print(), 250));
+      window.addEventListener("afterprint", () => window.close());
+    }
+  </script>
+  {% endif %}
+</body>
+</html>

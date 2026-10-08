@@ -1,0 +1,143 @@
+{% extends "dashboard/base.html" %}
+{% load i18n menu_tags ui_icons l10n %}
+{% block title %}{% translate "Cash register" %}{% endblock %}
+{% block content %}
+{% with r=request.restaurant sym=request.restaurant.currency_symbol %}
+<div class="page-head">
+  <div>
+    <h1>{% translate "Cash register" %}</h1>
+    <p class="page-sub">{% translate "Enter the change in the drawer before selling starts. At the end, count the drawer and compare it with what the system expects." %}</p>
+  </div>
+</div>
+
+{% if not figures %}
+<form method="post" class="card form narrow" data-cash-form>
+  {% csrf_token %}<input type="hidden" name="action" value="open">
+  <h2 class="fieldset-title">{% icon "cash" %} {% translate "Start of day: change in the drawer" %}</h2>
+  <p class="fieldset-desc">{% translate "Count the notes and coins you put in the drawer as change (the opening float)." %}</p>
+  {% include "dashboard/_cash_count.html" with prefix="open" open_count=True %}
+  <div class="field"><label for="open-amount">{% translate "Change in the drawer" %}</label>
+    <input id="open-amount" name="amount" inputmode="decimal" required placeholder="0.00" autocomplete="off"></div>
+  <button class="btn btn-primary btn-lg btn-block" type="submit">{% icon "check" %} {% translate "Open cash register" %}</button>
+</form>
+{% else %}{% with f=figures s=figures.session %}
+<p class="muted small">{% if s.opened_by %}{% blocktranslate trimmed with t=s.opened_at|date:"d M H:i" name=s.opened_by.get_full_name|default:s.opened_by.username %}Open since {{ t }} · by {{ name }}{% endblocktranslate %}{% else %}{% blocktranslate trimmed with t=s.opened_at|date:"d M H:i" %}Open since {{ t }}{% endblocktranslate %}{% endif %}</p>
+<div class="stats">
+  <div class="stat"><span class="stat-icon">{% icon "cash" %}</span><div><span>{% translate "Opening change" %}</span><strong>{{ f.opening_float|money:sym }}</strong></div></div>
+  <div class="stat"><span class="stat-icon ok">{% icon "plus-circle" %}</span><div><span>{% blocktranslate trimmed count n=f.cash_sales_count %}Cash sales ({{ n }} payment){% plural %}Cash sales ({{ n }} payments){% endblocktranslate %}</span><strong>{{ f.cash_sales|money:sym }}</strong></div></div>
+  <div class="stat"><span class="stat-icon info">{% icon "refresh" %}</span><div><span>{% translate "Cash in · out" %}</span><strong>+{{ f.cash_in|money:sym }} · −{{ f.cash_out|money:sym }}</strong></div></div>
+  <div class="stat stat-strong"><span class="stat-icon ok">{% icon "drawer" %}</span><div><span>{% translate "Expected in the drawer" %}</span><strong>{{ f.expected|money:sym }}</strong></div></div>
+</div>
+
+<div class="cols-even">
+  <section class="card">
+    <h2 class="fieldset-title">{% icon "receipt" %} {% translate "How it adds up" %}</h2>
+    <table class="table cash-sum">
+      <tbody>
+        <tr><td>{% translate "Opening change" %}</td><td class="num">{{ f.opening_float|money:sym }}</td></tr>
+        <tr><td>+ {% translate "Cash sales" %} <span class="muted small">({% blocktranslate trimmed with got=f.cash_received|money:sym change=f.change_given|money:sym %}received {{ got }}, change {{ change }}{% endblocktranslate %})</span></td><td class="num">{{ f.cash_sales|money:sym }}</td></tr>
+        <tr><td>+ {% translate "Cash in" %}</td><td class="num">{{ f.cash_in|money:sym }}</td></tr>
+        <tr><td>− {% translate "Cash out" %}</td><td class="num">{{ f.cash_out|money:sym }}</td></tr>
+        <tr class="grand"><td>= {% translate "Expected in the drawer" %}</td><td class="num">{{ f.expected|money:sym }}</td></tr>
+      </tbody>
+    </table>
+    <h3>{% translate "Other payments (not in the drawer)" %}</h3>
+    {% if f.other %}<ul class="plain small">{% for o in f.other %}<li class="usage-row"><span>{{ o.method }} ({{ o.n }})</span><strong>{{ o.total|money:sym }}</strong></li>{% endfor %}</ul>
+    {% else %}<p class="muted small">{% translate "None yet." %}</p>{% endif %}
+
+    <h3>{% translate "Cash in / out" %}</h3>
+    {% if f.movements %}<ul class="plain small">{% for m in f.movements %}<li class="usage-row"><span>{{ m.created_at|date:"H:i" }} · {{ m.reason }} <span class="muted">· {{ m.user.username }}</span></span><strong>{% if m.kind == "out" %}−{% else %}+{% endif %}{{ m.amount|money:sym }}</strong></li>{% endfor %}</ul>{% endif %}
+    <form method="post" class="form compact cash-move">
+      {% csrf_token %}
+      <select name="action" aria-label="{% translate "Cash in or out" %}"><option value="out">{% translate "Cash out" %}</option><option value="in">{% translate "Cash in" %}</option></select>
+      <input name="amount" inputmode="decimal" placeholder="0.00" required aria-label="{% translate "Amount" %}">
+      <input name="reason" maxlength="120" placeholder="{% translate "Reason, e.g. bought ice" %}" required aria-label="{% translate "Reason" %}">
+      <button class="btn" type="submit">{% translate "Add" %}</button>
+    </form>
+  </section>
+
+  <form method="post" class="card form" data-cash-form data-expected="{{ f.expected|unlocalize }}"
+        onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% translate "Close the cash register with this count? This can't be undone." %}">
+    {% csrf_token %}<input type="hidden" name="action" value="close">
+    <h2 class="fieldset-title">{% icon "check-circle" %} {% translate "End of day: count the drawer" %}</h2>
+    <p class="fieldset-desc">{% translate "Count all the cash in the drawer, including the opening change." %}</p>
+    {% include "dashboard/_cash_count.html" with prefix="close" open_count=True %}
+    <div class="field"><label for="close-amount">{% translate "Cash counted" %}</label>
+      <input id="close-amount" name="amount" inputmode="decimal" required placeholder="0.00" autocomplete="off"></div>
+    <div class="cash-diff" data-diff hidden>
+      <span>{% translate "Difference" %}</span><strong data-diff-value></strong>
+      <small data-diff-text></small>
+    </div>
+    <div class="field"><label for="close-note">{% translate "Note (optional)" %}</label>
+      <input id="close-note" name="note" maxlength="300" placeholder="{% translate "e.g. $1 coin missing" %}"></div>
+    <button class="btn btn-primary btn-lg btn-block" type="submit">{% icon "check" %} {% translate "Close & reconcile" %}</button>
+  </form>
+</div>
+{% endwith %}{% endif %}
+
+<section class="card">
+  <h2 class="fieldset-title">{% icon "book" %} {% translate "Past sessions" %}</h2>
+  {% if history %}
+  <div class="table-wrap">
+  <table class="table rtable">
+    <thead><tr><th>{% translate "Opened" %}</th><th>{% translate "Closed" %}</th><th class="num">{% translate "Opening change" %}</th><th class="num">{% translate "Expected" %}</th><th class="num">{% translate "Counted" %}</th><th class="num">{% translate "Difference" %}</th><th></th></tr></thead>
+    <tbody>{% for h in history %}{% with s=h.session %}
+      <tr>
+        <td class="rt-title" data-label="">{{ s.opened_at|date:"d M H:i" }}</td>
+        <td data-label="{% translate "Closed" %}">{{ s.closed_at|date:"d M H:i" }} · {{ s.closed_by.username }}</td>
+        <td data-label="{% translate "Opening change" %}" class="num">{{ s.opening_float|money:sym }}</td>
+        <td data-label="{% translate "Expected" %}" class="num">{{ h.expected|money:sym }}</td>
+        <td data-label="{% translate "Counted" %}" class="num">{{ h.counted|money:sym }}</td>
+        <td data-label="{% translate "Difference" %}" class="num">{% include "dashboard/_cash_diff.html" with d=h.difference a=h.difference_abs %}</td>
+        <td data-label="" class="num"><a class="btn btn-sm" href="{% url 'dashboard:cash_report' r.slug s.pk %}" target="_blank" rel="noopener">{% icon "printer" %} {% translate "Report" %}</a></td>
+      </tr>{% endwith %}{% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% else %}<p class="muted small">{% translate "No closed sessions yet." %}</p>{% endif %}
+</section>
+{% endwith %}
+{% endblock %}
+{% block scripts %}
+<script>
+  // Counting helper: notes × count → total in the amount field; live difference on the closing form.
+  (function () {
+    const sym = "{{ request.restaurant.currency_symbol|escapejs }}";
+    const money = (c) => (c < 0 ? "−" : "") + sym + (Math.abs(c) / 100).toFixed(2);
+    const T = {
+      exact: "{% filter escapejs %}{% translate "Exact: the drawer matches." %}{% endfilter %}",
+      over: "{% filter escapejs %}{% translate "Over: more cash than expected." %}{% endfilter %}",
+      short: "{% filter escapejs %}{% translate "Short: less cash than expected." %}{% endfilter %}",
+    };
+    document.querySelectorAll("[data-cash-form]").forEach((form) => {
+      const amount = form.querySelector('input[name="amount"]');
+      const table = form.querySelector(".cash-count-table");
+      const diff = form.querySelector("[data-diff]");
+      const expected = form.dataset.expected ? Math.round(parseFloat(form.dataset.expected) * 100) : null;
+      function showDiff() {
+        if (!diff || expected === null) return;
+        const v = parseFloat(String(amount.value).replace(",", "."));
+        diff.hidden = !Number.isFinite(v);
+        if (diff.hidden) return;
+        const d = Math.round(v * 100) - expected;
+        diff.querySelector("[data-diff-value]").textContent = (d > 0 ? "+" : "") + money(d);
+        diff.querySelector("[data-diff-text]").textContent = d === 0 ? T.exact : d > 0 ? T.over : T.short;
+        diff.className = "cash-diff " + (d === 0 ? "is-exact" : d > 0 ? "is-over" : "is-short");
+      }
+      if (table) table.addEventListener("input", () => {
+        let total = 0, any = false;
+        table.querySelectorAll("input[data-value]").forEach((inp) => {
+          const n = parseInt(inp.value, 10);
+          const line = Number.isFinite(n) && n > 0 ? Math.round(parseFloat(inp.dataset.value) * 100) * n : 0;
+          if (line) any = true;
+          total += line;
+          inp.closest("tr").querySelector("[data-line]").textContent = line ? money(line) : "—";
+        });
+        if (any) amount.value = (total / 100).toFixed(2);
+        showDiff();
+      });
+      amount.addEventListener("input", showDiff);
+    });
+  })();
+</script>
+{% endblock %}

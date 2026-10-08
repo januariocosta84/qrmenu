@@ -1,0 +1,185 @@
+{% extends "dashboard/base.html" %}
+{% load i18n menu_tags ui_icons l10n %}
+{% block title %}{% if quotation %}{{ quotation.number }}{% else %}{% translate "New quotation" %}{% endif %}{% endblock %}
+{% block content %}
+{% with r=request.restaurant sym=request.restaurant.currency_symbol %}
+<a class="back-link" href="{% url 'dashboard:quotations' r.slug %}">{% icon "arrow-left" %} {% translate "Quotations" %}</a>
+<div class="page-head">
+  <div>
+    <h1>{% if quotation %}{{ quotation.number }} <span class="pill quote-{{ quotation.status }}">{{ quotation.get_status_display }}</span>{% else %}{% translate "New quotation" %}{% endif %}</h1>
+    <p class="page-sub">{% translate "Add dishes from your menu or type your own lines (delivery, service staff, equipment…)." %}</p>
+  </div>
+  {% if quotation %}
+  <div class="page-actions">
+    <a class="btn btn-primary" href="{% url 'dashboard:quotation_print' r.slug quotation.pk %}" target="_blank" rel="noopener">{% icon "printer" %} {% translate "Print / PDF" %}</a>
+    <form method="post" action="{% url 'dashboard:quotation_duplicate' r.slug quotation.pk %}" class="inline-form">{% csrf_token %}<button class="btn" type="submit">{% icon "refresh" %} {% translate "Duplicate" %}</button></form>
+  </div>
+  {% endif %}
+</div>
+
+<form method="post" class="form" id="quote-form" novalidate>
+  {% csrf_token %}
+  {% if form.non_field_errors or line_errors %}<div class="msg msg-error">{% icon "alert" %}<span>{{ form.non_field_errors|join:" " }} {{ line_errors|join:" " }}</span></div>{% endif %}
+
+  <div class="cols-even">
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "users" %} {% translate "Client" %}</h2>
+      <div class="form-grid">
+        {% include "dashboard/_field.html" with field=form.client_organization wide=True %}
+        {% include "dashboard/_field.html" with field=form.client_name %}
+        {% include "dashboard/_field.html" with field=form.client_contact %}
+        {% include "dashboard/_field.html" with field=form.client_address wide=True %}
+        {% include "dashboard/_field.html" with field=form.reference wide=True %}
+      </div>
+    </section>
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "receipt" %} {% translate "Quotation" %}</h2>
+      <div class="form-grid">
+        {% include "dashboard/_field.html" with field=form.title wide=True %}
+        {% include "dashboard/_field.html" with field=form.event_date %}
+        {% include "dashboard/_field.html" with field=form.guests %}
+        {% include "dashboard/_field.html" with field=form.issue_date %}
+        {% include "dashboard/_field.html" with field=form.valid_until %}
+        {% include "dashboard/_field.html" with field=form.language %}
+        {% include "dashboard/_field.html" with field=form.status %}
+      </div>
+    </section>
+  </div>
+
+  <section class="card">
+    <div class="card-head">
+      <h2 class="fieldset-title">{% icon "utensils" %} {% translate "Items" %}</h2>
+      <div class="quote-tools">
+        <select id="menu-pick" aria-label="{% translate "Dish from your menu" %}">
+          <option value="">{% translate "Choose a dish from your menu…" %}</option>
+          {% for c in categories %}{% if c.items.all %}<optgroup label="{{ c.name }}">
+            {% for m in c.items.all %}<option value="{{ m.pk }}" data-name="{{ m.name }}" data-price="{{ m.price|unlocalize }}">{{ m.name }} · {{ m.price|money:sym }}</option>{% endfor %}
+          </optgroup>{% endif %}{% endfor %}
+        </select>
+        <button type="button" class="btn" id="add-menu">{% icon "plus" %} {% translate "Add from menu" %}</button>
+        <button type="button" class="btn" id="add-custom">{% icon "pen" %} {% translate "Add custom line" %}</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+    <table class="table quote-lines">
+      <thead><tr><th class="num">#</th><th>{% translate "Description" %}</th><th>{% translate "Unit" %}</th><th class="num">{% translate "Qty" %}</th><th class="num">{% translate "Unit price" %}</th><th class="num">{% translate "Amount" %}</th><th></th></tr></thead>
+      <tbody id="lines">
+        {% for l in lines %}
+        <tr class="qline">
+          <td class="num qno">{{ forloop.counter }}</td>
+          <td><input name="line_description" value="{{ l.description }}" maxlength="300" aria-label="{% translate "Description" %}"><input type="hidden" name="line_menu_item" value="{{ l.menu_item_id|default_if_none:'' }}"></td>
+          <td><input name="line_unit" value="{{ l.unit }}" maxlength="20" list="unit-list" class="qunit" aria-label="{% translate "Unit" %}"></td>
+          <td><input name="line_quantity" value="{{ l.quantity|floatformat:'-2u' }}" inputmode="decimal" class="qnum" aria-label="{% translate "Qty" %}"></td>
+          <td><input name="line_price" value="{{ l.unit_price|floatformat:'2u' }}" inputmode="decimal" class="qnum" aria-label="{% translate "Unit price" %}"></td>
+          <td class="num qamount">—</td>
+          <td><button type="button" class="btn btn-sm btn-ghost qremove" aria-label="{% translate "Remove line" %}">{% icon "trash" %}</button></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    <p class="muted small" id="no-lines"{% if lines %} hidden{% endif %}>{% translate "No lines yet. Add dishes from your menu or a custom line." %}</p>
+    <datalist id="unit-list">
+      <option value="{% translate "pax" %}"><option value="{% translate "plate" %}"><option value="{% translate "box" %}">
+      <option value="{% translate "pcs" %}"><option value="{% translate "set" %}"><option value="{% translate "day" %}"><option value="{% translate "trip" %}">
+    </datalist>
+
+    <div class="quote-totals">
+      <div class="row"><span>{% translate "Subtotal" %}</span><strong id="t-sub">—</strong></div>
+      <div class="row"><label for="{{ form.discount.id_for_label }}">{{ form.discount.label }}</label>{{ form.discount }}</div>
+      <div class="row"><label for="{{ form.vat_percent.id_for_label }}">{{ form.vat_percent.label }}</label>{{ form.vat_percent }}</div>
+      <div class="row"><span>{% translate "VAT" %}</span><strong id="t-vat">—</strong></div>
+      <div class="row grand"><span>{% translate "Grand total" %}</span><strong id="t-total">—</strong></div>
+      {% for e in form.discount.errors %}<small class="err">{{ e }}</small>{% endfor %}{% for e in form.vat_percent.errors %}<small class="err">{{ e }}</small>{% endfor %}
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 class="fieldset-title">{% icon "note" %} {{ form.terms.label }}</h2>
+    <p class="fieldset-desc">{% translate "Printed at the bottom, e.g. 50% deposit on confirmation, payment within 14 days, bank account details. New quotations start with the terms of your last one." %}</p>
+    {{ form.terms }}
+  </section>
+
+  <div class="actions sticky-actions">
+    <button class="btn btn-primary btn-lg" type="submit">{% icon "check" %} {% translate "Save quotation" %}</button>
+    <a class="btn" href="{% url 'dashboard:quotations' r.slug %}">{% translate "Cancel" %}</a>
+  </div>
+</form>
+
+{% if quotation %}
+<form method="post" action="{% url 'dashboard:quotation_delete' r.slug quotation.pk %}" onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% blocktranslate trimmed with n=quotation.number %}Delete quotation {{ n }}?{% endblocktranslate %}">
+  {% csrf_token %}<button class="link-danger" type="submit">{% icon "trash" %} {% translate "Delete this quotation" %}</button>
+</form>
+{% endif %}
+
+<template id="line-tpl">
+  <tr class="qline">
+    <td class="num qno"></td>
+    <td><input name="line_description" maxlength="300" aria-label="{% translate "Description" %}"><input type="hidden" name="line_menu_item" value=""></td>
+    <td><input name="line_unit" maxlength="20" list="unit-list" class="qunit" aria-label="{% translate "Unit" %}"></td>
+    <td><input name="line_quantity" value="1" inputmode="decimal" class="qnum" aria-label="{% translate "Qty" %}"></td>
+    <td><input name="line_price" value="0.00" inputmode="decimal" class="qnum" aria-label="{% translate "Unit price" %}"></td>
+    <td class="num qamount">—</td>
+    <td><button type="button" class="btn btn-sm btn-ghost qremove" aria-label="{% translate "Remove line" %}">{% icon "trash" %}</button></td>
+  </tr>
+</template>
+{% endwith %}
+{% endblock %}
+{% block scripts %}
+<script>
+  // Quotation editor: add lines from the menu or by hand, keep totals live (the server recalculates on save).
+  (function () {
+    const sym = "{{ request.restaurant.currency_symbol|escapejs }}";
+    const defaultUnit = "{% filter escapejs %}{% translate "pax" %}{% endfilter %}";
+    const $ = (s, r = document) => r.querySelector(s);
+    const body = $("#lines"), tpl = $("#line-tpl");
+    const num = (v) => { const n = parseFloat(String(v || "").replace(",", ".")); return Number.isFinite(n) ? n : 0; };
+    const cents = (v) => Math.round(num(v) * 100);
+    const money = (c) => sym + (c / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    function recalc() {
+      let sub = 0;
+      body.querySelectorAll(".qline").forEach((tr, i) => {
+        tr.querySelector(".qno").textContent = i + 1;
+        const amount = Math.round(num(tr.querySelector('[name="line_quantity"]').value) * cents(tr.querySelector('[name="line_price"]').value));
+        tr.querySelector(".qamount").textContent = money(amount);
+        sub += amount;
+      });
+      const discount = Math.min(cents($("#id_discount").value), sub);
+      const vat = Math.round(((sub - discount) * num($("#id_vat_percent").value)) / 100);
+      $("#t-sub").textContent = money(sub);
+      $("#t-vat").textContent = money(vat);
+      $("#t-total").textContent = money(sub - discount + vat);
+      $("#no-lines").hidden = body.querySelector(".qline") !== null;
+    }
+    function addLine(desc, price, menuId, focus = true) {
+      const row = tpl.content.firstElementChild.cloneNode(true);
+      row.querySelector('[name="line_description"]').value = desc || "";
+      row.querySelector('[name="line_menu_item"]').value = menuId || "";
+      if (price !== undefined) row.querySelector('[name="line_price"]').value = num(price).toFixed(2);
+      const guests = num($("#id_guests") && $("#id_guests").value);
+      if (menuId) {
+        row.querySelector('[name="line_unit"]').value = defaultUnit;
+        if (guests > 0) row.querySelector('[name="line_quantity"]').value = guests;
+      }
+      body.appendChild(row);
+      recalc();
+      if (focus) (menuId ? row.querySelector('[name="line_quantity"]') : row.querySelector('[name="line_description"]')).focus();
+    }
+    $("#add-menu").addEventListener("click", () => {
+      const opt = $("#menu-pick").selectedOptions[0];
+      if (!opt || !opt.value) { $("#menu-pick").focus(); return; }
+      addLine(opt.dataset.name, opt.dataset.price, opt.value);
+      $("#menu-pick").value = "";
+    });
+    $("#add-custom").addEventListener("click", () => addLine("", undefined, ""));
+    body.addEventListener("click", (e) => {
+      const btn = e.target.closest(".qremove");
+      if (btn) { btn.closest("tr").remove(); recalc(); }
+    });
+    document.getElementById("quote-form").addEventListener("input", recalc);
+    if (!body.querySelector(".qline")) addLine("", undefined, "", false);
+    recalc();
+  })();
+</script>
+{% endblock %}

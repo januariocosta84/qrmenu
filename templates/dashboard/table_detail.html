@@ -1,5 +1,5 @@
 {% extends "dashboard/base.html" %}
-{% load menu_tags ui_icons i18n %}
+{% load menu_tags ui_icons i18n l10n %}
 {% block title %}{% blocktranslate trimmed with n=table.number %}Table {{ n }}{% endblocktranslate %}{% endblock %}
 {% block content %}
 {% with r=request.restaurant sym=request.restaurant.currency_symbol %}
@@ -32,7 +32,7 @@
       <div class="pay-table">
         <div><span class="muted small">{% translate "Unpaid at this table" %}</span><br><strong>{{ session_unpaid|money:sym }}</strong></div>
         <form method="post" action="{% url 'dashboard:table_mark_paid' r.slug table.pk %}" class="btn-row"
-              data-cash-due="{{ session_unpaid }}" data-cash-title="{% blocktranslate trimmed with n=table.number %}Table {{ n }} · whole bill{% endblocktranslate %}">
+              data-cash-due="{{ session_unpaid|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=table.number %}Table {{ n }} · whole bill{% endblocktranslate %}">
           {% csrf_token %}
           <button class="btn btn-success" type="submit">{% icon "cash" %} {% translate "Whole table paid" %}</button>
           {% if request.can.table_sessions %}<button class="btn" type="submit" name="close_session" value="1">{% translate "Paid &amp; free table" %}</button>{% endif %}
@@ -50,7 +50,7 @@
           {% if g.ref and request.can.take_orders %}<a class="btn btn-sm btn-ghost" href="{% url 'dashboard:new_order' r.slug %}?table={{ table.pk }}&guest={{ g.ref }}">{% icon "plus" %} {% translate "Add" %}</a>{% endif %}
           {% if g.unpaid and g.ref and request.can.payments %}
           <form method="post" action="{% url 'dashboard:guest_mark_paid' r.slug table.pk g.ref %}"
-                data-cash-due="{{ g.unpaid }}" data-cash-title="{% blocktranslate trimmed with n=table.number guest=g.label %}Table {{ n }} · {{ guest }}{% endblocktranslate %}">
+                data-cash-due="{{ g.unpaid|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=table.number guest=g.label %}Table {{ n }} · {{ guest }}{% endblocktranslate %}">
             {% csrf_token %}
             <button class="btn btn-sm btn-success" type="submit">{% icon "cash" %} {% translate "Paid" %} · {{ g.unpaid|money:sym }}</button>
           </form>
@@ -67,7 +67,7 @@
             <span class="small"><strong>{{ o.total|money:sym }}</strong>{% if o.customer_name %} · {{ o.customer_name }}{% endif %} · {{ o.created_at|date:"H:i" }}{% if o.source == "staff" %} · <span class="kby">{% icon "pen" %}{% translate "waiter" %}</span>{% endif %}</span>
             {% if o.payment_status == "unpaid" and o.status != "cancelled" and request.can.payments %}
             <form method="post" action="{% url 'dashboard:order_mark_paid' r.slug o.pk %}"
-                  data-cash-due="{{ o.total }}" data-cash-title="{% blocktranslate trimmed with n=o.number %}Order #{{ n }} · cash payment{% endblocktranslate %}">
+                  data-cash-due="{{ o.total|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=o.number %}Order #{{ n }} · cash payment{% endblocktranslate %}">
               {% csrf_token %}<input type="hidden" name="next" value="{{ request.path }}">
               <button class="btn btn-sm" type="submit">{% icon "cash" %} {% translate "Mark paid" %}</button>
             </form>
@@ -97,6 +97,7 @@
   <aside class="card qr-panel">
     <h2 class="fieldset-title">{% icon "qr" %} {% translate "QR code" %}</h2>
     <div class="qr-box">{{ qr_svg }}</div>
+    {% if site_link %}<p class="qr-site">{{ site_link }}</p>{% endif %}
     <p class="small break muted" style="margin-top:10px"><a href="{{ qr_url }}" target="_blank" rel="noopener">{% translate "Open the customer link" %}</a></p>
     <div class="btn-row">
       <a class="btn btn-sm" href="{% url 'dashboard:table_qr' r.slug table.pk %}?download=1">{% icon "download" %} PNG</a>

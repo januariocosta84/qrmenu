@@ -1,0 +1,16 @@
+{% load i18n %}{# Count notes and coins; the total fills the amount field. #}
+{% if denominations %}
+<details class="cash-count"{% if open_count %} open{% endif %}>
+  <summary>{% translate "Count notes and coins" %}</summary>
+  <table class="table cash-count-table" data-count-for="{{ prefix }}-amount">
+    <thead><tr><th>{% translate "Note / coin" %}</th><th class="num">{% translate "How many" %}</th><th class="num">{% translate "Total" %}</th></tr></thead>
+    <tbody>
+    {% for value, label in denominations %}
+      <tr><td><strong>{{ label }}</strong></td>
+        <td class="num"><input type="number" name="count_{{ value }}" min="0" max="100000" step="1" inputmode="numeric" data-value="{{ value }}" aria-label="{{ label }}"></td>
+        <td class="num" data-line>—</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</details>
+{% endif %}

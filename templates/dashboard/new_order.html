@@ -40,6 +40,7 @@
     <dl class="pos-totals">
       <div><dt>{% translate "Subtotal" %}</dt><dd id="pos-subtotal">—</dd></div>
       <div id="pos-service-row" hidden><dt>{% translate "Service charge" %}</dt><dd id="pos-service"></dd></div>
+      {% with r=request.restaurant %}<div id="pos-vat-row" hidden><dt>{{ r.vat_label }} {{ r.vat_percent|floatformat:"-2" }}%{% if r.vat_inclusive %} <span class="muted small">({% translate "included" %})</span>{% endif %}</dt><dd id="pos-vat"></dd></div>{% endwith %}
       <div class="grand"><dt>{% translate "Total" %}</dt><dd id="pos-total">—</dd></div>
     </dl>
     <textarea id="pos-note" rows="2" maxlength="500" placeholder="{% translate "Note for the kitchen (optional)" %}"></textarea>

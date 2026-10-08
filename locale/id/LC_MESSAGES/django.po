@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-08 11:50+0900\n"
+"POT-Creation-Date: 2026-10-08 16:02+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,6 +106,15 @@ msgstr "Email konfirmasi telah dikirim ke %(email)s."
 
 msgid "We couldn't send the email right now. Please try again later."
 msgstr "Kami tidak dapat mengirim email saat ini. Silakan coba lagi nanti."
+
+msgid "Analytics page (trends, busy times, best sellers)."
+msgstr "Halaman analitik (tren, waktu ramai, terlaris)."
+
+msgid "Cash register: opening change and end-of-day reconciliation."
+msgstr "Kas: kembalian awal dan pencocokan akhir hari."
+
+msgid "Quotations for catering and procurement bids."
+msgstr "Penawaran untuk katering dan tender pengadaan."
 
 msgid "Trial"
 msgstr "Uji coba"
@@ -456,6 +465,15 @@ msgstr "Peran Anda tidak dapat membatalkan pesanan."
 msgid "No orders to print."
 msgstr "Tidak ada pesanan untuk dicetak."
 
+msgid "How VAT is charged"
+msgstr "Cara PPN dikenakan"
+
+msgid "Add VAT on top of menu prices"
+msgstr "Tambahkan PPN ke harga menu"
+
+msgid "Menu prices already include VAT"
+msgstr "Harga menu sudah termasuk PPN"
+
 msgid "Name"
 msgstr "Nama"
 
@@ -519,8 +537,23 @@ msgstr "Lebar kertas"
 msgid "Receipt footer"
 msgstr "Catatan kaki struk"
 
+msgid "Charge VAT"
+msgstr "Kenakan PPN"
+
+msgid "VAT rate (%)"
+msgstr "Tarif PPN (%)"
+
+msgid "Tax name"
+msgstr "Nama pajak"
+
+msgid "Tax ID"
+msgstr "NPWP"
+
 msgid "Enter the receipt printer's IP address to print receipts on it."
 msgstr "Masukkan alamat IP printer struk untuk mencetak struk."
+
+msgid "Enter the VAT rate, e.g. 10."
+msgstr "Masukkan tarif PPN, mis. 10."
 
 msgid "Enter the receipt printer's IP address to use the cash drawer."
 msgstr "Masukkan alamat IP printer struk untuk menggunakan laci kas."
@@ -670,6 +703,13 @@ msgid "Payment saved, but the cash drawer did not open: %(reason)s"
 msgstr "Pembayaran tersimpan, tetapi laci kas tidak terbuka: %(reason)s"
 
 #, python-format
+msgid "Cash register opened with %(amount)s change."
+msgstr "Kas dibuka dengan uang kembalian %(amount)s."
+
+msgid "Cash movement recorded."
+msgstr "Pergerakan kas dicatat."
+
+#, python-format
 msgid "Order #%(number)s marked as paid."
 msgstr "Pesanan #%(number)s ditandai lunas."
 
@@ -789,6 +829,16 @@ msgstr "Pesanan & uang"
 msgid "Pause ordering at any time; prices are shown in this currency."
 msgstr "Jeda pesanan kapan saja; harga ditampilkan dalam mata uang ini."
 
+msgid "Tax (VAT)"
+msgstr "Pajak (PPN)"
+
+msgid ""
+"Off by default. Switch it on only if your restaurant must charge VAT. Past "
+"orders keep the VAT they were placed with."
+msgstr ""
+"Nonaktif secara bawaan. Aktifkan hanya jika restoran Anda wajib memungut "
+"PPN. Pesanan lama tetap memakai PPN saat dipesan."
+
 msgid "Customer menu language"
 msgstr "Bahasa menu pelanggan"
 
@@ -829,6 +879,21 @@ msgstr "Staf diperbarui."
 #, python-format
 msgid "Edit %(name)s"
 msgstr "Ubah %(name)s"
+
+msgid "Revenue"
+msgstr "Pendapatan"
+
+msgid "Completed orders"
+msgstr "Pesanan selesai"
+
+msgid "Average order"
+msgstr "Rata-rata pesanan"
+
+msgid "Cancelled orders"
+msgstr "Pesanan dibatalkan"
+
+msgid " pts"
+msgstr " poin"
 
 msgid "Choose a different plan."
 msgstr "Pilih paket lain."
@@ -901,6 +966,9 @@ msgstr "Belum dibayar"
 msgid "Refunded"
 msgstr "Dikembalikan"
 
+msgid "VAT is part of the item prices (not added on top)."
+msgstr "PPN sudah termasuk dalam harga item (tidak ditambahkan)."
+
 msgid "QR code"
 msgstr "Kode QR"
 
@@ -934,6 +1002,27 @@ msgstr "Beberapa item sudah tidak tersedia."
 #, python-format
 msgid "Cannot change order from %(from)s to %(to)s."
 msgstr "Tidak dapat mengubah pesanan dari %(from)s ke %(to)s."
+
+msgid "Enter whole numbers for the notes and coins."
+msgstr "Masukkan bilangan bulat untuk uang kertas dan koin."
+
+msgid "Enter the amount as a number, e.g. 50 or 50.00."
+msgstr "Masukkan jumlah sebagai angka, mis. 50 atau 50.00."
+
+msgid "Enter a valid amount."
+msgstr "Masukkan jumlah yang valid."
+
+msgid "The cash register is already open."
+msgstr "Kas sudah dibuka."
+
+msgid "This cash session is already closed."
+msgstr "Sesi kas ini sudah ditutup."
+
+msgid "Enter an amount greater than zero."
+msgstr "Masukkan jumlah lebih dari nol."
+
+msgid "Write a short reason, e.g. “bought ice”."
+msgstr "Tulis alasan singkat, mis. “beli es”."
 
 msgid ""
 "Can't find this printer address. Use the printer's IP, e.g. 192.168.1.50."
@@ -974,6 +1063,15 @@ msgstr "Tanpa penjualan / kembalian"
 
 msgid "Test"
 msgstr "Tes"
+
+msgid "Notes and coins counted, e.g. {\"20\": 2}."
+msgstr "Uang kertas dan koin yang dihitung, mis. {\"20\": 2}."
+
+msgid "Cash in"
+msgstr "Kas masuk"
+
+msgid "Cash out"
+msgstr "Kas keluar"
 
 msgid "Manual / other"
 msgstr "Manual / lainnya"
@@ -1017,12 +1115,115 @@ msgstr "Uang tunai kurang: diterima %(received)s tetapi tagihan %(due)s."
 msgid "Amount must be greater than zero."
 msgstr "Jumlah harus lebih dari nol."
 
+msgid "Client contact person"
+msgstr "Narahubung klien"
+
+msgid "Organisation"
+msgstr "Organisasi"
+
+msgid "Phone / email"
+msgstr "Telepon / email"
+
+msgid "Tender / procurement reference"
+msgstr "Referensi tender / pengadaan"
+
+msgid "Subject"
+msgstr "Perihal"
+
+msgid "Event / delivery date"
+msgstr "Tanggal acara / pengantaran"
+
+msgid "Number of guests"
+msgstr "Jumlah tamu"
+
+msgid "Quotation date"
+msgstr "Tanggal penawaran"
+
+msgid "Valid until"
+msgstr "Berlaku sampai"
+
+msgid "Document language"
+msgstr "Bahasa dokumen"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Discount (amount)"
+msgstr "Diskon (jumlah)"
+
+msgid "VAT (%)"
+msgstr "PPN (%)"
+
+msgid "Terms, payment & bank details"
+msgstr "Syarat, pembayaran & rekening bank"
+
+msgid "e.g. Lunch catering for training workshop"
+msgstr "mis. Katering makan siang untuk lokakarya pelatihan"
+
+msgid "0 = no VAT."
+msgstr "0 = tanpa PPN."
+
+msgid "Must be on or after the quotation date."
+msgstr "Harus pada atau setelah tanggal penawaran."
+
+#, python-format
+msgid "Line %(n)s: enter numbers for quantity and price."
+msgstr "Baris %(n)s: masukkan angka untuk jumlah dan harga."
+
+#, python-format
+msgid "Line %(n)s: enter a description."
+msgstr "Baris %(n)s: masukkan deskripsi."
+
+#, python-format
+msgid "Line %(n)s: quantity and price must be valid positive numbers."
+msgstr "Baris %(n)s: jumlah dan harga harus angka positif yang valid."
+
+msgid "Add at least one line."
+msgstr "Tambahkan minimal satu baris."
+
+msgid "Draft"
+msgstr "Draf"
+
+msgid "Sent"
+msgstr "Terkirim"
+
+msgid "Rejected"
+msgstr "Ditolak"
+
+#, python-format
+msgid "Quotation %(number)s saved."
+msgstr "Penawaran %(number)s disimpan."
+
+#, python-format
+msgid "Copied as %(number)s. Update the dates and prices if needed."
+msgstr "Disalin sebagai %(number)s. Perbarui tanggal dan harga bila perlu."
+
+#, python-format
+msgid "Quotation %(number)s deleted."
+msgstr "Penawaran %(number)s dihapus."
+
 msgid "Use letters, numbers and dashes only (max 20), e.g. 12 or A-3."
 msgstr ""
 "Gunakan huruf, angka, dan tanda hubung saja (maks. 20), mis. 12 atau A-3."
 
 msgid "e.g. Mon–Sat 08:00–22:00"
 msgstr "mis. Sen–Sab 08:00–22:00"
+
+msgid "Charge VAT on orders."
+msgstr "Kenakan PPN pada pesanan."
+
+msgid ""
+"Add on top: the bill total goes up by the VAT. Already included: totals stay "
+"the same and receipts show the VAT part."
+msgstr ""
+"Tambahkan: total tagihan naik sebesar PPN. Sudah termasuk: total tidak "
+"berubah dan struk menampilkan bagian PPN."
+
+msgid "Name printed on bills, e.g. VAT or IVA."
+msgstr "Nama yang dicetak di tagihan, mis. VAT atau PPN."
+
+msgid "Tax ID printed on receipts."
+msgstr "NPWP yang dicetak di struk."
 
 msgid "Pin 2 (most drawers)"
 msgstr "Pin 2 (kebanyakan laci)"
@@ -1176,6 +1377,27 @@ msgstr ""
 msgid "Already registered?"
 msgstr "Sudah terdaftar?"
 
+msgid "Count notes and coins"
+msgstr "Hitung uang kertas dan koin"
+
+msgid "Note / coin"
+msgstr "Uang kertas / koin"
+
+msgid "How many"
+msgstr "Jumlah"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Exact"
+msgstr "Pas"
+
+msgid "over"
+msgstr "lebih"
+
+msgid "short"
+msgstr "kurang"
+
 msgid "Translations · Tetum, Bahasa Indonesia"
 msgstr "Terjemahan · Tetun, Bahasa Indonesia"
 
@@ -1196,12 +1418,6 @@ msgstr "Pelanggan"
 
 msgid "Items"
 msgstr "Item"
-
-msgid "Total"
-msgstr "Total"
-
-msgid "Status"
-msgstr "Status"
 
 msgid "Payment"
 msgstr "Pembayaran"
@@ -1227,6 +1443,175 @@ msgstr "Tandai lunas"
 
 msgid "No orders yet."
 msgstr "Belum ada pesanan."
+
+msgid "Analytics"
+msgstr "Analitik"
+
+#, python-format
+msgid "compared with %(a)s – %(b)s"
+msgstr "dibandingkan dengan %(a)s – %(b)s"
+
+msgid "Reports & CSV"
+msgstr "Laporan & CSV"
+
+msgid "Date range"
+msgstr "Rentang tanggal"
+
+msgid "7 days"
+msgstr "7 hari"
+
+msgid "30 days"
+msgstr "30 hari"
+
+msgid "90 days"
+msgstr "90 hari"
+
+msgid "This month"
+msgstr "Bulan ini"
+
+msgid "From date"
+msgstr "Dari tanggal"
+
+msgid "To date"
+msgstr "Sampai tanggal"
+
+msgid "Apply"
+msgstr "Terapkan"
+
+msgid "vs previous period"
+msgstr "vs periode sebelumnya"
+
+msgid "No earlier data to compare"
+msgstr "Belum ada data sebelumnya untuk dibandingkan"
+
+msgid "Revenue per day"
+msgstr "Pendapatan per hari"
+
+msgid "Completed orders. The gray line is the previous period, day by day."
+msgstr "Pesanan selesai. Garis abu-abu adalah periode sebelumnya, per hari."
+
+msgid "This period"
+msgstr "Periode ini"
+
+msgid "Previous period"
+msgstr "Periode sebelumnya"
+
+msgid "Revenue per day, this period compared with the previous period"
+msgstr "Pendapatan per hari, periode ini dibandingkan periode sebelumnya"
+
+msgid "Show as table"
+msgstr "Tampilkan sebagai tabel"
+
+msgid "Day"
+msgstr "Hari"
+
+msgid "Busy times"
+msgstr "Waktu ramai"
+
+msgid "Orders by weekday and hour. Darker = more orders."
+msgstr "Pesanan per hari dan jam. Lebih gelap = lebih banyak pesanan."
+
+msgid "Busiest"
+msgstr "Paling ramai"
+
+msgid "No orders in this period yet."
+msgstr "Belum ada pesanan pada periode ini."
+
+#, python-format
+msgid "%(n)s order"
+msgid_plural "%(n)s orders"
+msgstr[0] "%(n)s pesanan"
+
+msgid "orders per hour"
+msgstr "pesanan per jam"
+
+msgid "How customers pay"
+msgstr "Cara pelanggan membayar"
+
+#, python-format
+msgid "Payments received in this period: %(total)s"
+msgstr "Pembayaran diterima pada periode ini: %(total)s"
+
+msgid "Share of each payment method"
+msgstr "Porsi setiap metode pembayaran"
+
+#, python-format
+msgid "%(n)s payment"
+msgid_plural "%(n)s payments"
+msgstr[0] "%(n)s pembayaran"
+
+msgid "No payments in this period yet."
+msgstr "Belum ada pembayaran pada periode ini."
+
+msgid "Where orders come from"
+msgstr "Asal pesanan"
+
+msgid "Customer's phone (QR)"
+msgstr "Ponsel pelanggan (QR)"
+
+msgid "Entered by waiter"
+msgstr "Dimasukkan pelayan"
+
+msgid "At a table"
+msgstr "Di meja"
+
+msgid "Counter / takeaway"
+msgstr "Kasir / bawa pulang"
+
+msgid "Sales by category"
+msgstr "Penjualan per kategori"
+
+msgid "Revenue from completed orders."
+msgstr "Pendapatan dari pesanan selesai."
+
+#, python-format
+msgid "%(n)s sold"
+msgid_plural "%(n)s sold"
+msgstr[0] "%(n)s terjual"
+
+msgid "No completed orders in this period."
+msgstr "Tidak ada pesanan selesai pada periode ini."
+
+msgid "Best-selling dishes"
+msgstr "Hidangan terlaris"
+
+msgid "Top 10 by revenue · number sold after the dot."
+msgstr "10 teratas menurut pendapatan · jumlah terjual setelah titik."
+
+msgid "Not sold in this period"
+msgstr "Tidak terjual pada periode ini"
+
+msgid ""
+"Available dishes nobody ordered. Consider a better photo, a lower price or "
+"removing them."
+msgstr ""
+"Hidangan tersedia yang tidak dipesan siapa pun. Pertimbangkan foto lebih "
+"baik, harga lebih rendah, atau menghapusnya."
+
+msgid "Kitchen speed"
+msgstr "Kecepatan dapur"
+
+msgid "Time from order placed to “Ready”."
+msgstr "Waktu dari pesanan dibuat hingga “Siap”."
+
+msgid "Average"
+msgstr "Rata-rata"
+
+#, python-format
+msgid "%(m)s min"
+msgstr "%(m)s mnt"
+
+msgid "Typical (median)"
+msgstr "Umumnya (median)"
+
+msgid "Ready on time"
+msgstr "Siap tepat waktu"
+
+msgid "Orders measured"
+msgstr "Pesanan diukur"
+
+msgid "No orders marked ready in this period."
+msgstr "Tidak ada pesanan ditandai siap pada periode ini."
 
 msgid "Dashboard"
 msgstr "Dasbor"
@@ -1258,6 +1643,9 @@ msgstr "Pesanan"
 msgid "Tables &amp; QR"
 msgstr "Meja &amp; QR"
 
+msgid "Cash register"
+msgstr "Kas"
+
 msgid "Manage"
 msgstr "Kelola"
 
@@ -1266,6 +1654,9 @@ msgstr "Menu"
 
 msgid "Reports"
 msgstr "Laporan"
+
+msgid "Quotations"
+msgstr "Penawaran harga"
 
 msgid "Restaurant"
 msgstr "Restoran"
@@ -1509,6 +1900,136 @@ msgstr "Minta perubahan ke %(plan)s?"
 msgid "Switch to %(plan)s"
 msgstr "Ganti ke %(plan)s"
 
+msgid ""
+"Enter the change in the drawer before selling starts. At the end, count the "
+"drawer and compare it with what the system expects."
+msgstr ""
+"Masukkan uang kembalian di laci sebelum mulai berjualan. Di akhir, hitung "
+"laci dan bandingkan dengan perkiraan sistem."
+
+msgid "Start of day: change in the drawer"
+msgstr "Awal hari: uang kembalian di laci"
+
+msgid ""
+"Count the notes and coins you put in the drawer as change (the opening "
+"float)."
+msgstr ""
+"Hitung uang kertas dan koin yang Anda masukkan ke laci sebagai kembalian "
+"(modal awal)."
+
+msgid "Change in the drawer"
+msgstr "Uang kembalian di laci"
+
+msgid "Open cash register"
+msgstr "Buka kas"
+
+#, python-format
+msgid "Open since %(t)s · by %(name)s"
+msgstr "Dibuka sejak %(t)s · oleh %(name)s"
+
+#, python-format
+msgid "Open since %(t)s"
+msgstr "Dibuka sejak %(t)s"
+
+msgid "Opening change"
+msgstr "Kembalian awal"
+
+#, python-format
+msgid "Cash sales (%(n)s payment)"
+msgid_plural "Cash sales (%(n)s payments)"
+msgstr[0] "Penjualan tunai (%(n)s pembayaran)"
+
+msgid "Cash in · out"
+msgstr "Kas masuk · keluar"
+
+msgid "Expected in the drawer"
+msgstr "Seharusnya di laci"
+
+msgid "How it adds up"
+msgstr "Cara perhitungannya"
+
+msgid "Cash sales"
+msgstr "Penjualan tunai"
+
+#, python-format
+msgid "received %(got)s, change %(change)s"
+msgstr "diterima %(got)s, kembalian %(change)s"
+
+msgid "Other payments (not in the drawer)"
+msgstr "Pembayaran lain (tidak di laci)"
+
+msgid "None yet."
+msgstr "Belum ada."
+
+msgid "Cash in / out"
+msgstr "Kas masuk / keluar"
+
+msgid "Cash in or out"
+msgstr "Kas masuk atau keluar"
+
+msgid "Reason, e.g. bought ice"
+msgstr "Alasan, mis. beli es"
+
+msgid "Reason"
+msgstr "Alasan"
+
+msgid "Add"
+msgstr "Tambah"
+
+msgid "Close the cash register with this count? This can't be undone."
+msgstr "Tutup kas dengan hitungan ini? Tidak dapat dibatalkan."
+
+msgid "End of day: count the drawer"
+msgstr "Akhir hari: hitung laci"
+
+msgid "Count all the cash in the drawer, including the opening change."
+msgstr "Hitung semua uang di laci, termasuk uang kembalian awal."
+
+msgid "Cash counted"
+msgstr "Uang yang dihitung"
+
+msgid "Difference"
+msgstr "Selisih"
+
+msgid "Note (optional)"
+msgstr "Catatan (opsional)"
+
+msgid "e.g. $1 coin missing"
+msgstr "mis. koin $1 hilang"
+
+msgid "Close & reconcile"
+msgstr "Tutup & cocokkan"
+
+msgid "Past sessions"
+msgstr "Sesi sebelumnya"
+
+msgid "Opened"
+msgstr "Dibuka"
+
+msgid "Closed"
+msgstr "Ditutup"
+
+msgid "Expected"
+msgstr "Seharusnya"
+
+msgid "Counted"
+msgstr "Dihitung"
+
+msgid "Report"
+msgstr "Laporan"
+
+msgid "No closed sessions yet."
+msgstr "Belum ada sesi yang ditutup."
+
+msgid "Exact: the drawer matches."
+msgstr "Pas: isi laci sesuai."
+
+msgid "Over: more cash than expected."
+msgstr "Lebih: uang lebih banyak dari seharusnya."
+
+msgid "Short: less cash than expected."
+msgstr "Kurang: uang lebih sedikit dari seharusnya."
+
 msgid "Your restaurants"
 msgstr "Restoran Anda"
 
@@ -1664,9 +2185,6 @@ msgstr ""
 "Untuk tamu tanpa ponsel pintar. Pilih meja dan tamu, ketuk hidangan, lalu "
 "kirim."
 
-msgid "Counter / takeaway"
-msgstr "Kasir / bawa pulang"
-
 #, python-format
 msgid "Table %(n)s"
 msgstr "Meja %(n)s"
@@ -1698,6 +2216,9 @@ msgstr "Subtotal"
 msgid "Service charge"
 msgstr "Biaya layanan"
 
+msgid "included"
+msgstr "termasuk"
+
 msgid "Note for the kitchen (optional)"
 msgstr "Catatan untuk dapur (opsional)"
 
@@ -1714,9 +2235,6 @@ msgid "Less"
 msgstr "Kurangi"
 
 msgid "More"
-msgstr "Tambah"
-
-msgid "Add"
 msgstr "Tambah"
 
 msgid "Mark all as read"
@@ -1752,10 +2270,6 @@ msgstr "Pelayan"
 msgid "Est. prep"
 msgstr "Est. persiapan"
 
-#, python-format
-msgid "%(m)s min"
-msgstr "%(m)s mnt"
-
 msgid "Item"
 msgstr "Item"
 
@@ -1788,10 +2302,6 @@ msgid "Customer chose: %(m)s"
 msgstr "Pilihan pelanggan: %(m)s"
 
 #, python-format
-msgid "received %(got)s, change %(change)s"
-msgstr "diterima %(got)s, kembalian %(change)s"
-
-#, python-format
 msgid "ref %(ref)s"
 msgstr "ref %(ref)s"
 
@@ -1820,12 +2330,6 @@ msgstr "No. pesanan atau nama"
 msgid "Order number or customer name"
 msgstr "Nomor pesanan atau nama pelanggan"
 
-msgid "From date"
-msgstr "Dari tanggal"
-
-msgid "To date"
-msgstr "Sampai tanggal"
-
 msgid "Filter"
 msgstr "Saring"
 
@@ -1851,6 +2355,12 @@ msgstr ""
 
 msgid "Turn it back on"
 msgstr "Aktifkan kembali"
+
+msgid "Before selling starts, enter the change in the cash drawer."
+msgstr "Sebelum mulai berjualan, masukkan uang kembalian di laci kas."
+
+msgid "Open the cash register"
+msgstr "Buka kas"
 
 msgid "Tables &amp; bills"
 msgstr "Meja &amp; tagihan"
@@ -1894,6 +2404,160 @@ msgstr "Pesanan terbaru"
 msgid "All orders"
 msgstr "Semua pesanan"
 
+msgid "New quotation"
+msgstr "Penawaran baru"
+
+msgid ""
+"Add dishes from your menu or type your own lines (delivery, service staff, "
+"equipment…)."
+msgstr ""
+"Tambahkan hidangan dari menu atau ketik baris sendiri (pengantaran, staf "
+"layanan, peralatan…)."
+
+msgid "Print / PDF"
+msgstr "Cetak / PDF"
+
+msgid "Duplicate"
+msgstr "Duplikat"
+
+msgid "Client"
+msgstr "Klien"
+
+msgid "Quotation"
+msgstr "Penawaran"
+
+msgid "Dish from your menu"
+msgstr "Hidangan dari menu"
+
+msgid "Choose a dish from your menu…"
+msgstr "Pilih hidangan dari menu…"
+
+msgid "Add from menu"
+msgstr "Tambah dari menu"
+
+msgid "Add custom line"
+msgstr "Tambah baris manual"
+
+msgid "Unit price"
+msgstr "Harga satuan"
+
+msgid "Remove line"
+msgstr "Hapus baris"
+
+msgid "No lines yet. Add dishes from your menu or a custom line."
+msgstr "Belum ada baris. Tambahkan hidangan dari menu atau baris manual."
+
+msgid "pax"
+msgstr "pax"
+
+msgid "plate"
+msgstr "piring"
+
+msgid "box"
+msgstr "kotak"
+
+msgid "pcs"
+msgstr "pcs"
+
+msgid "set"
+msgstr "set"
+
+msgid "day"
+msgstr "hari"
+
+msgid "trip"
+msgstr "perjalanan"
+
+msgid "VAT"
+msgstr "PPN"
+
+msgid "Grand total"
+msgstr "Total keseluruhan"
+
+#, python-format
+msgid ""
+"Printed at the bottom, e.g. 50%% deposit on confirmation, payment within 14 "
+"days, bank account details. New quotations start with the terms of your last "
+"one."
+msgstr ""
+"Dicetak di bagian bawah, mis. uang muka 50%% saat konfirmasi, pembayaran "
+"dalam 14 hari, rekening bank. Penawaran baru memakai syarat dari penawaran "
+"terakhir."
+
+msgid "Save quotation"
+msgstr "Simpan penawaran"
+
+#, python-format
+msgid "Delete quotation %(n)s?"
+msgstr "Hapus penawaran %(n)s?"
+
+msgid "Delete this quotation"
+msgstr "Hapus penawaran ini"
+
+msgid ""
+"Price offers for catering, events and procurement bids. Print or save as PDF."
+msgstr ""
+"Penawaran harga untuk katering, acara, dan tender pengadaan. Cetak atau "
+"simpan sebagai PDF."
+
+msgid "Number"
+msgstr "Nomor"
+
+msgid "Date"
+msgstr "Tanggal"
+
+msgid "Print"
+msgstr "Cetak"
+
+msgid "No quotations yet."
+msgstr "Belum ada penawaran."
+
+msgid "Create your first quotation"
+msgstr "Buat penawaran pertama"
+
+msgid "Print / save as PDF"
+msgstr "Cetak / simpan sebagai PDF"
+
+msgid "Close"
+msgstr "Tutup"
+
+msgid "QUOTATION"
+msgstr "PENAWARAN HARGA"
+
+msgctxt "recipient"
+msgid "To"
+msgstr "Kepada"
+
+msgid "Attn."
+msgstr "U.p."
+
+msgid "Details"
+msgstr "Rincian"
+
+msgid "No."
+msgstr "No."
+
+msgid "Discount"
+msgstr "Diskon"
+
+msgid "Amount in words"
+msgstr "Terbilang"
+
+msgid "Terms & conditions"
+msgstr "Syarat & ketentuan"
+
+msgid "For"
+msgstr "Untuk"
+
+msgid "Name, signature & stamp"
+msgstr "Nama, tanda tangan & stempel"
+
+msgid "Accepted by the client"
+msgstr "Disetujui oleh klien"
+
+msgid "Name, signature, stamp & date"
+msgstr "Nama, tanda tangan, stempel & tanggal"
+
 msgid "Export CSV"
 msgstr "Ekspor CSV"
 
@@ -1903,20 +2567,8 @@ msgstr "Dari"
 msgid "To"
 msgstr "Sampai"
 
-msgid "Apply"
-msgstr "Terapkan"
-
-msgid "Revenue"
-msgstr "Pendapatan"
-
-msgid "Average order"
-msgstr "Rata-rata pesanan"
-
-msgid "Revenue per day"
-msgstr "Pendapatan per hari"
-
-msgid "No completed orders in this period."
-msgstr "Tidak ada pesanan selesai pada periode ini."
+msgid "VAT collected"
+msgstr "PPN terkumpul"
 
 msgid "Best sellers"
 msgstr "Terlaris"
@@ -1952,17 +2604,11 @@ msgstr "Uji &amp; log laci kas"
 msgid "Test drawer"
 msgstr "Uji laci"
 
-msgid "Reason"
-msgstr "Alasan"
-
 msgid "By"
 msgstr "Oleh"
 
 msgid "Result"
 msgstr "Hasil"
-
-msgid "Opened"
-msgstr "Dibuka"
 
 msgid "No drawer openings yet."
 msgstr "Laci belum pernah dibuka."
@@ -2015,15 +2661,6 @@ msgctxt "table"
 msgid "Free"
 msgstr "Kosong"
 
-#, python-format
-msgid "Open since %(t)s"
-msgstr "Dibuka sejak %(t)s"
-
-#, python-format
-msgid "%(n)s order"
-msgid_plural "%(n)s orders"
-msgstr[0] "%(n)s pesanan"
-
 msgid "Add order"
 msgstr "Tambah pesanan"
 
@@ -2074,14 +2711,8 @@ msgstr ""
 msgid "Recent bills"
 msgstr "Tagihan terbaru"
 
-msgid "Closed"
-msgstr "Ditutup"
-
 msgid "Open the customer link"
 msgstr "Buka tautan pelanggan"
-
-msgid "Print"
-msgstr "Cetak"
 
 msgid "Generate a new QR code? The currently printed code will STOP working."
 msgstr ""
@@ -2147,6 +2778,30 @@ msgstr "Membuat meja bernomor, melewati nomor yang sudah ada."
 
 msgid "Create tables"
 msgstr "Buat meja"
+
+msgid "Upgrade your plan"
+msgstr "Tingkatkan paket Anda"
+
+msgid "See how sales compare with last period, your busiest hours and days, best-selling and unsold dishes, how customers pay and how fast the kitchen is."
+msgstr "Bandingkan penjualan dengan periode sebelumnya, lihat jam dan hari tersibuk, hidangan terlaris dan tidak laku, cara pelanggan membayar, dan kecepatan dapur."
+
+msgid "Enter the change in the drawer before selling, record cash in and out, and reconcile at the end of the day: expected vs counted, over or short, with a printable report."
+msgstr "Catat kembalian sebelum berjualan, kas masuk dan keluar, lalu cocokkan di akhir hari: seharusnya vs dihitung, lebih atau kurang, dengan laporan cetak."
+
+msgid "Create professional price offers for catering, events and procurement bids from your menu, with amount in words, and print them as PDF in four languages."
+msgstr "Buat penawaran harga profesional untuk katering, acara, dan tender dari menu Anda, dengan terbilang, dan cetak sebagai PDF dalam empat bahasa."
+
+msgid "Available in:"
+msgstr "Tersedia di:"
+
+msgid "Not included in your current plan."
+msgstr "Tidak termasuk dalam paket Anda saat ini."
+
+msgid "See plans & upgrade"
+msgstr "Lihat paket & tingkatkan"
+
+msgid "Ask the restaurant owner to upgrade the plan."
+msgstr "Minta pemilik restoran untuk meningkatkan paket."
 
 msgid "QR menu & table ordering for restaurants"
 msgstr "Menu QR & pemesanan di meja untuk restoran"
@@ -2266,6 +2921,15 @@ msgid "Up to %(n)s staff account"
 msgid_plural "Up to %(n)s staff accounts"
 msgstr[0] "Hingga %(n)s akun staf"
 
+msgid "Sales analytics"
+msgstr "Analitik penjualan"
+
+msgid "Cash register & end-of-day reconciliation"
+msgstr "Kas & pencocokan akhir hari"
+
+msgid "Quotations for catering & tenders"
+msgstr "Penawaran untuk katering & tender"
+
 msgid "Get started"
 msgstr "Mulai"
 
@@ -2281,3 +2945,10 @@ msgstr "Halo! Saya ingin tahu lebih lanjut tentang %(name)s."
 
 msgid "Chat with us on WhatsApp"
 msgstr "Hubungi kami di WhatsApp"
+
+#~ msgid ""
+#~ "Ticked: menu prices already include VAT (totals stay the same, receipts "
+#~ "show the VAT part). Unticked: VAT is added on top at checkout."
+#~ msgstr ""
+#~ "Dicentang: harga menu sudah termasuk PPN (total tidak berubah, struk "
+#~ "menampilkan bagian PPN). Tidak dicentang: PPN ditambahkan saat pembayaran."

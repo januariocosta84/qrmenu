@@ -37,6 +37,18 @@ class Restaurant(TranslatableMixin, TimeStampedModel):
         max_digits=5, decimal_places=2, default=0,
         validators=[MinValueValidator(0), MaxValueValidator(50)],
     )
+    # VAT / sales tax. Off by default; switch on in Restaurant settings if required by law.
+    vat_enabled = models.BooleanField(default=False, help_text=_("Charge VAT on orders."))
+    vat_percent = models.DecimalField(
+        max_digits=5, decimal_places=2, default=0, validators=[MinValueValidator(0), MaxValueValidator(50)],
+    )
+    vat_inclusive = models.BooleanField(
+        default=False,
+        help_text=_("Add on top: the bill total goes up by the VAT. Already included: totals stay the same "
+                    "and receipts show the VAT part."),
+    )
+    vat_label = models.CharField(max_length=20, default="VAT", help_text=_("Name printed on bills, e.g. VAT or IVA."))
+    vat_number = models.CharField(max_length=40, blank=True, help_text=_("Tax ID printed on receipts."))
     default_language = models.CharField(max_length=5, choices=LANGUAGES, default="en")
     default_prep_minutes = models.PositiveSmallIntegerField(default=15, validators=[MaxValueValidator(240)])
 

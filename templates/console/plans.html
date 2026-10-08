@@ -22,6 +22,9 @@
       <li>{% icon "table" %} {{ p.max_tables }} tables</li>
       <li>{% icon "book" %} {{ p.max_menu_items }} dishes</li>
       <li>{% icon "users" %} {{ p.max_staff }} staff accounts</li>
+      {% if p.feature_analytics %}<li>{% icon "chart" %} Analytics</li>{% endif %}
+      {% if p.feature_cash_register %}<li>{% icon "drawer" %} Cash register</li>{% endif %}
+      {% if p.feature_quotations %}<li>{% icon "note" %} Quotations</li>{% endif %}
     </ul>
     <div class="card-head" style="margin:0">
       <span class="muted small">{{ p.n }} restaurant{{ p.n|pluralize }}</span>

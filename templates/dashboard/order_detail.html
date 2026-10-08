@@ -1,5 +1,5 @@
 {% extends "dashboard/base.html" %}
-{% load menu_tags ui_icons i18n %}
+{% load menu_tags ui_icons i18n l10n %}
 {% block title %}{% blocktranslate trimmed with n=order.number %}Order #{{ n }}{% endblocktranslate %}{% endblock %}
 {% block content %}
 {% with r=request.restaurant sym=request.restaurant.currency_symbol %}
@@ -43,6 +43,7 @@
         <tfoot>
           <tr><td colspan="3">{% translate "Subtotal" %}</td><td class="num">{{ order.subtotal|money:sym }}</td></tr>
           {% if order.service_charge %}<tr><td colspan="3">{% translate "Service charge" %}</td><td class="num">{{ order.service_charge|money:sym }}</td></tr>{% endif %}
+          {% if order.vat_amount %}<tr><td colspan="3">{{ order.vat_rate_label }}{% if order.vat_inclusive %} <span class="muted small">({% translate "included" %})</span>{% endif %}</td><td class="num">{{ order.vat_amount|money:sym }}</td></tr>{% endif %}
           <tr class="grand"><td colspan="3">{% translate "Total" %}</td><td class="num">{{ order.total|money:sym }}</td></tr>
         </tfoot>
       </table>
@@ -90,7 +91,7 @@
       {% if not is_paid and request.can.payments and order.status != "cancelled" %}
       {% if amount_paid %}<p class="small">{% blocktranslate trimmed with paid=amount_paid|money:sym due=balance_due|money:sym %}Paid so far {{ paid }} · <strong>Still due {{ due }}</strong>{% endblocktranslate %}</p>{% endif %}
       <form method="post" action="{% url 'dashboard:order_mark_paid' r.slug order.pk %}"
-            data-cash-due="{{ balance_due }}" data-cash-title="{% blocktranslate trimmed with n=order.number %}Order #{{ n }} · cash payment{% endblocktranslate %}">
+            data-cash-due="{{ balance_due|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=order.number %}Order #{{ n }} · cash payment{% endblocktranslate %}">
         {% csrf_token %}
         <button class="btn btn-success btn-lg btn-block" type="submit">{% icon "cash" %} {% translate "Cash received" %} · {{ balance_due|money:sym }}</button>
       </form>

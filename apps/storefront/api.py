@@ -36,6 +36,8 @@ class PublicMenuAPI(PublicAPIView):
                 "currency": restaurant.currency,
                 "currency_symbol": restaurant.currency_symbol,
                 "service_charge_percent": str(restaurant.service_charge_percent),
+                "vat_percent": str(restaurant.vat_percent) if restaurant.vat_enabled else "0",
+                "vat_inclusive": restaurant.vat_inclusive,
                 "is_accepting_orders": restaurant.is_accepting_orders,
             },
             "categories": data,

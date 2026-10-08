@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-08 11:50+0900\n"
+"POT-Creation-Date: 2026-10-08 16:02+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,6 +105,15 @@ msgstr "Email de confirmação enviado para %(email)s."
 
 msgid "We couldn't send the email right now. Please try again later."
 msgstr "Não foi possível enviar o email agora. Tente mais tarde."
+
+msgid "Analytics page (trends, busy times, best sellers)."
+msgstr "Página de análise (tendências, horas de movimento, mais vendidos)."
+
+msgid "Cash register: opening change and end-of-day reconciliation."
+msgstr "Caixa: troco inicial e conferência no fim do dia."
+
+msgid "Quotations for catering and procurement bids."
+msgstr "Cotações para catering e concursos públicos."
 
 msgid "Trial"
 msgstr "Período experimental"
@@ -462,6 +471,15 @@ msgstr "A sua função não permite cancelar pedidos."
 msgid "No orders to print."
 msgstr "Não há pedidos para imprimir."
 
+msgid "How VAT is charged"
+msgstr "Como o IVA é cobrado"
+
+msgid "Add VAT on top of menu prices"
+msgstr "Somar IVA aos preços do menu"
+
+msgid "Menu prices already include VAT"
+msgstr "Os preços do menu já incluem IVA"
+
 msgid "Name"
 msgstr "Nome"
 
@@ -525,8 +543,23 @@ msgstr "Largura do papel"
 msgid "Receipt footer"
 msgstr "Rodapé do recibo"
 
+msgid "Charge VAT"
+msgstr "Cobrar IVA"
+
+msgid "VAT rate (%)"
+msgstr "Taxa de IVA (%)"
+
+msgid "Tax name"
+msgstr "Nome do imposto"
+
+msgid "Tax ID"
+msgstr "NIF"
+
 msgid "Enter the receipt printer's IP address to print receipts on it."
 msgstr "Introduza o endereço IP da impressora de recibos para imprimir nela."
+
+msgid "Enter the VAT rate, e.g. 10."
+msgstr "Introduza a taxa de IVA, ex.: 10."
 
 msgid "Enter the receipt printer's IP address to use the cash drawer."
 msgstr ""
@@ -678,6 +711,13 @@ msgid "Payment saved, but the cash drawer did not open: %(reason)s"
 msgstr "Pagamento guardado, mas a gaveta não abriu: %(reason)s"
 
 #, python-format
+msgid "Cash register opened with %(amount)s change."
+msgstr "Caixa aberta com %(amount)s de troco."
+
+msgid "Cash movement recorded."
+msgstr "Movimento de dinheiro registado."
+
+#, python-format
 msgid "Order #%(number)s marked as paid."
 msgstr "Pedido n.º %(number)s marcado como pago."
 
@@ -799,6 +839,16 @@ msgid "Pause ordering at any time; prices are shown in this currency."
 msgstr ""
 "Pause os pedidos a qualquer momento; os preços são mostrados nesta moeda."
 
+msgid "Tax (VAT)"
+msgstr "Imposto (IVA)"
+
+msgid ""
+"Off by default. Switch it on only if your restaurant must charge VAT. Past "
+"orders keep the VAT they were placed with."
+msgstr ""
+"Desativado por defeito. Ative apenas se o seu restaurante tiver de cobrar "
+"IVA. Os pedidos anteriores mantêm o IVA com que foram feitos."
+
 msgid "Customer menu language"
 msgstr "Língua do menu para clientes"
 
@@ -840,6 +890,21 @@ msgstr "Funcionário atualizado."
 #, python-format
 msgid "Edit %(name)s"
 msgstr "Editar %(name)s"
+
+msgid "Revenue"
+msgstr "Receita"
+
+msgid "Completed orders"
+msgstr "Pedidos concluídos"
+
+msgid "Average order"
+msgstr "Pedido médio"
+
+msgid "Cancelled orders"
+msgstr "Pedidos cancelados"
+
+msgid " pts"
+msgstr " p.p."
 
 msgid "Choose a different plan."
 msgstr "Escolha um plano diferente."
@@ -913,6 +978,9 @@ msgstr "Por pagar"
 msgid "Refunded"
 msgstr "Reembolsado"
 
+msgid "VAT is part of the item prices (not added on top)."
+msgstr "O IVA faz parte dos preços dos artigos (não é somado)."
+
 msgid "QR code"
 msgstr "Código QR"
 
@@ -946,6 +1014,27 @@ msgstr "Alguns artigos já não estão disponíveis."
 #, python-format
 msgid "Cannot change order from %(from)s to %(to)s."
 msgstr "Não é possível mudar o pedido de %(from)s para %(to)s."
+
+msgid "Enter whole numbers for the notes and coins."
+msgstr "Introduza números inteiros para as notas e moedas."
+
+msgid "Enter the amount as a number, e.g. 50 or 50.00."
+msgstr "Introduza o valor como número, ex.: 50 ou 50.00."
+
+msgid "Enter a valid amount."
+msgstr "Introduza um valor válido."
+
+msgid "The cash register is already open."
+msgstr "A caixa já está aberta."
+
+msgid "This cash session is already closed."
+msgstr "Esta sessão de caixa já está fechada."
+
+msgid "Enter an amount greater than zero."
+msgstr "Introduza um valor maior que zero."
+
+msgid "Write a short reason, e.g. “bought ice”."
+msgstr "Escreva um motivo curto, ex.: “comprei gelo”."
 
 msgid ""
 "Can't find this printer address. Use the printer's IP, e.g. 192.168.1.50."
@@ -986,6 +1075,15 @@ msgstr "Sem venda / troco"
 
 msgid "Test"
 msgstr "Teste"
+
+msgid "Notes and coins counted, e.g. {\"20\": 2}."
+msgstr "Notas e moedas contadas, ex.: {\"20\": 2}."
+
+msgid "Cash in"
+msgstr "Entrada de dinheiro"
+
+msgid "Cash out"
+msgstr "Saída de dinheiro"
 
 msgid "Manual / other"
 msgstr "Manual / outro"
@@ -1029,11 +1127,115 @@ msgstr "Dinheiro insuficiente: recebido %(received)s, mas são devidos %(due)s."
 msgid "Amount must be greater than zero."
 msgstr "O montante tem de ser maior que zero."
 
+msgid "Client contact person"
+msgstr "Pessoa de contacto"
+
+msgid "Organisation"
+msgstr "Organização"
+
+msgid "Phone / email"
+msgstr "Telefone / email"
+
+msgid "Tender / procurement reference"
+msgstr "Referência do concurso / aprovisionamento"
+
+msgid "Subject"
+msgstr "Assunto"
+
+msgid "Event / delivery date"
+msgstr "Data do evento / entrega"
+
+msgid "Number of guests"
+msgstr "Número de convidados"
+
+msgid "Quotation date"
+msgstr "Data da cotação"
+
+msgid "Valid until"
+msgstr "Válida até"
+
+msgid "Document language"
+msgstr "Língua do documento"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Discount (amount)"
+msgstr "Desconto (valor)"
+
+msgid "VAT (%)"
+msgstr "IVA (%)"
+
+msgid "Terms, payment & bank details"
+msgstr "Condições, pagamento e dados bancários"
+
+msgid "e.g. Lunch catering for training workshop"
+msgstr "ex.: Almoço para workshop de formação"
+
+msgid "0 = no VAT."
+msgstr "0 = sem IVA."
+
+msgid "Must be on or after the quotation date."
+msgstr "Tem de ser igual ou posterior à data da cotação."
+
+#, python-format
+msgid "Line %(n)s: enter numbers for quantity and price."
+msgstr "Linha %(n)s: introduza números na quantidade e no preço."
+
+#, python-format
+msgid "Line %(n)s: enter a description."
+msgstr "Linha %(n)s: introduza uma descrição."
+
+#, python-format
+msgid "Line %(n)s: quantity and price must be valid positive numbers."
+msgstr ""
+"Linha %(n)s: a quantidade e o preço têm de ser números positivos válidos."
+
+msgid "Add at least one line."
+msgstr "Adicione pelo menos uma linha."
+
+msgid "Draft"
+msgstr "Rascunho"
+
+msgid "Sent"
+msgstr "Enviada"
+
+msgid "Rejected"
+msgstr "Rejeitada"
+
+#, python-format
+msgid "Quotation %(number)s saved."
+msgstr "Cotação %(number)s guardada."
+
+#, python-format
+msgid "Copied as %(number)s. Update the dates and prices if needed."
+msgstr "Copiada como %(number)s. Atualize as datas e os preços se necessário."
+
+#, python-format
+msgid "Quotation %(number)s deleted."
+msgstr "Cotação %(number)s eliminada."
+
 msgid "Use letters, numbers and dashes only (max 20), e.g. 12 or A-3."
 msgstr "Use apenas letras, números e hífenes (máx. 20), ex.: 12 ou A-3."
 
 msgid "e.g. Mon–Sat 08:00–22:00"
 msgstr "ex.: Seg–Sáb 08:00–22:00"
+
+msgid "Charge VAT on orders."
+msgstr "Cobrar IVA nos pedidos."
+
+msgid ""
+"Add on top: the bill total goes up by the VAT. Already included: totals stay "
+"the same and receipts show the VAT part."
+msgstr ""
+"Somar: o total da conta aumenta com o IVA. Já incluído: os totais não mudam "
+"e os recibos mostram a parte do IVA."
+
+msgid "Name printed on bills, e.g. VAT or IVA."
+msgstr "Nome impresso nas contas, ex.: VAT ou IVA."
+
+msgid "Tax ID printed on receipts."
+msgstr "NIF impresso nos recibos."
 
 msgid "Pin 2 (most drawers)"
 msgstr "Pino 2 (a maioria das gavetas)"
@@ -1190,6 +1392,27 @@ msgstr ""
 msgid "Already registered?"
 msgstr "Já tem conta?"
 
+msgid "Count notes and coins"
+msgstr "Contar notas e moedas"
+
+msgid "Note / coin"
+msgstr "Nota / moeda"
+
+msgid "How many"
+msgstr "Quantidade"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Exact"
+msgstr "Certo"
+
+msgid "over"
+msgstr "a mais"
+
+msgid "short"
+msgstr "em falta"
+
 msgid "Translations · Tetum, Bahasa Indonesia"
 msgstr "Traduções · Tétum, Bahasa Indonesia"
 
@@ -1210,12 +1433,6 @@ msgstr "Cliente"
 
 msgid "Items"
 msgstr "Artigos"
-
-msgid "Total"
-msgstr "Total"
-
-msgid "Status"
-msgstr "Estado"
 
 msgid "Payment"
 msgstr "Pagamento"
@@ -1241,6 +1458,178 @@ msgstr "Marcar como pago"
 
 msgid "No orders yet."
 msgstr "Ainda não há pedidos."
+
+msgid "Analytics"
+msgstr "Análise"
+
+#, python-format
+msgid "compared with %(a)s – %(b)s"
+msgstr "comparado com %(a)s – %(b)s"
+
+msgid "Reports & CSV"
+msgstr "Relatórios e CSV"
+
+msgid "Date range"
+msgstr "Período"
+
+msgid "7 days"
+msgstr "7 dias"
+
+msgid "30 days"
+msgstr "30 dias"
+
+msgid "90 days"
+msgstr "90 dias"
+
+msgid "This month"
+msgstr "Este mês"
+
+msgid "From date"
+msgstr "Desde a data"
+
+msgid "To date"
+msgstr "Até à data"
+
+msgid "Apply"
+msgstr "Aplicar"
+
+msgid "vs previous period"
+msgstr "vs período anterior"
+
+msgid "No earlier data to compare"
+msgstr "Sem dados anteriores para comparar"
+
+msgid "Revenue per day"
+msgstr "Receita por dia"
+
+msgid "Completed orders. The gray line is the previous period, day by day."
+msgstr "Pedidos concluídos. A linha cinzenta é o período anterior, dia a dia."
+
+msgid "This period"
+msgstr "Este período"
+
+msgid "Previous period"
+msgstr "Período anterior"
+
+msgid "Revenue per day, this period compared with the previous period"
+msgstr "Receita por dia, este período comparado com o anterior"
+
+msgid "Show as table"
+msgstr "Ver como tabela"
+
+msgid "Day"
+msgstr "Dia"
+
+msgid "Busy times"
+msgstr "Horas de movimento"
+
+msgid "Orders by weekday and hour. Darker = more orders."
+msgstr "Pedidos por dia da semana e hora. Mais escuro = mais pedidos."
+
+msgid "Busiest"
+msgstr "Mais movimentado"
+
+msgid "No orders in this period yet."
+msgstr "Ainda não há pedidos neste período."
+
+#, python-format
+msgid "%(n)s order"
+msgid_plural "%(n)s orders"
+msgstr[0] "%(n)s pedido"
+msgstr[1] "%(n)s pedidos"
+
+msgid "orders per hour"
+msgstr "pedidos por hora"
+
+msgid "How customers pay"
+msgstr "Como os clientes pagam"
+
+#, python-format
+msgid "Payments received in this period: %(total)s"
+msgstr "Pagamentos recebidos neste período: %(total)s"
+
+msgid "Share of each payment method"
+msgstr "Peso de cada método de pagamento"
+
+#, python-format
+msgid "%(n)s payment"
+msgid_plural "%(n)s payments"
+msgstr[0] "%(n)s pagamento"
+msgstr[1] "%(n)s pagamentos"
+
+msgid "No payments in this period yet."
+msgstr "Ainda não há pagamentos neste período."
+
+msgid "Where orders come from"
+msgstr "De onde vêm os pedidos"
+
+msgid "Customer's phone (QR)"
+msgstr "Telemóvel do cliente (QR)"
+
+msgid "Entered by waiter"
+msgstr "Registado pelo empregado"
+
+msgid "At a table"
+msgstr "Numa mesa"
+
+msgid "Counter / takeaway"
+msgstr "Balcão / para levar"
+
+msgid "Sales by category"
+msgstr "Vendas por categoria"
+
+msgid "Revenue from completed orders."
+msgstr "Receita dos pedidos concluídos."
+
+#, python-format
+msgid "%(n)s sold"
+msgid_plural "%(n)s sold"
+msgstr[0] "%(n)s vendido"
+msgstr[1] "%(n)s vendidos"
+
+msgid "No completed orders in this period."
+msgstr "Não há pedidos concluídos neste período."
+
+msgid "Best-selling dishes"
+msgstr "Pratos mais vendidos"
+
+msgid "Top 10 by revenue · number sold after the dot."
+msgstr "Top 10 por receita · quantidade vendida depois do ponto."
+
+msgid "Not sold in this period"
+msgstr "Não vendidos neste período"
+
+msgid ""
+"Available dishes nobody ordered. Consider a better photo, a lower price or "
+"removing them."
+msgstr ""
+"Pratos disponíveis que ninguém pediu. Pense numa foto melhor, num preço mais "
+"baixo ou em retirá-los."
+
+msgid "Kitchen speed"
+msgstr "Rapidez da cozinha"
+
+msgid "Time from order placed to “Ready”."
+msgstr "Tempo desde o pedido até “Pronto”."
+
+msgid "Average"
+msgstr "Média"
+
+#, python-format
+msgid "%(m)s min"
+msgstr "%(m)s min"
+
+msgid "Typical (median)"
+msgstr "Típico (mediana)"
+
+msgid "Ready on time"
+msgstr "Pronto a tempo"
+
+msgid "Orders measured"
+msgstr "Pedidos medidos"
+
+msgid "No orders marked ready in this period."
+msgstr "Nenhum pedido marcado como pronto neste período."
 
 msgid "Dashboard"
 msgstr "Painel"
@@ -1272,6 +1661,9 @@ msgstr "Pedidos"
 msgid "Tables &amp; QR"
 msgstr "Mesas e QR"
 
+msgid "Cash register"
+msgstr "Caixa"
+
 msgid "Manage"
 msgstr "Gestão"
 
@@ -1280,6 +1672,9 @@ msgstr "Menu"
 
 msgid "Reports"
 msgstr "Relatórios"
+
+msgid "Quotations"
+msgstr "Cotações"
 
 msgid "Restaurant"
 msgstr "Restaurante"
@@ -1522,6 +1917,135 @@ msgstr "Pedir a mudança para %(plan)s?"
 msgid "Switch to %(plan)s"
 msgstr "Mudar para %(plan)s"
 
+msgid ""
+"Enter the change in the drawer before selling starts. At the end, count the "
+"drawer and compare it with what the system expects."
+msgstr ""
+"Introduza o troco da gaveta antes de começar a vender. No fim, conte a "
+"gaveta e compare com o que o sistema espera."
+
+msgid "Start of day: change in the drawer"
+msgstr "Início do dia: troco na gaveta"
+
+msgid ""
+"Count the notes and coins you put in the drawer as change (the opening "
+"float)."
+msgstr "Conte as notas e moedas que pôs na gaveta como troco (fundo de caixa)."
+
+msgid "Change in the drawer"
+msgstr "Troco na gaveta"
+
+msgid "Open cash register"
+msgstr "Abrir a caixa"
+
+#, python-format
+msgid "Open since %(t)s · by %(name)s"
+msgstr "Aberta desde %(t)s · por %(name)s"
+
+#, python-format
+msgid "Open since %(t)s"
+msgstr "Aberta desde %(t)s"
+
+msgid "Opening change"
+msgstr "Troco inicial"
+
+#, python-format
+msgid "Cash sales (%(n)s payment)"
+msgid_plural "Cash sales (%(n)s payments)"
+msgstr[0] "Vendas em dinheiro (%(n)s pagamento)"
+msgstr[1] "Vendas em dinheiro (%(n)s pagamentos)"
+
+msgid "Cash in · out"
+msgstr "Entradas · saídas"
+
+msgid "Expected in the drawer"
+msgstr "Esperado na gaveta"
+
+msgid "How it adds up"
+msgstr "Como se calcula"
+
+msgid "Cash sales"
+msgstr "Vendas em dinheiro"
+
+#, python-format
+msgid "received %(got)s, change %(change)s"
+msgstr "recebido %(got)s, troco %(change)s"
+
+msgid "Other payments (not in the drawer)"
+msgstr "Outros pagamentos (não estão na gaveta)"
+
+msgid "None yet."
+msgstr "Ainda nenhum."
+
+msgid "Cash in / out"
+msgstr "Entradas / saídas de dinheiro"
+
+msgid "Cash in or out"
+msgstr "Entrada ou saída"
+
+msgid "Reason, e.g. bought ice"
+msgstr "Motivo, ex.: comprei gelo"
+
+msgid "Reason"
+msgstr "Motivo"
+
+msgid "Add"
+msgstr "Adicionar"
+
+msgid "Close the cash register with this count? This can't be undone."
+msgstr "Fechar a caixa com esta contagem? Não é possível anular."
+
+msgid "End of day: count the drawer"
+msgstr "Fim do dia: contar a gaveta"
+
+msgid "Count all the cash in the drawer, including the opening change."
+msgstr "Conte todo o dinheiro da gaveta, incluindo o troco inicial."
+
+msgid "Cash counted"
+msgstr "Dinheiro contado"
+
+msgid "Difference"
+msgstr "Diferença"
+
+msgid "Note (optional)"
+msgstr "Nota (opcional)"
+
+msgid "e.g. $1 coin missing"
+msgstr "ex.: falta uma moeda de $1"
+
+msgid "Close & reconcile"
+msgstr "Fechar e conferir"
+
+msgid "Past sessions"
+msgstr "Sessões anteriores"
+
+msgid "Opened"
+msgstr "Aberta"
+
+msgid "Closed"
+msgstr "Fechada"
+
+msgid "Expected"
+msgstr "Esperado"
+
+msgid "Counted"
+msgstr "Contado"
+
+msgid "Report"
+msgstr "Relatório"
+
+msgid "No closed sessions yet."
+msgstr "Ainda não há sessões fechadas."
+
+msgid "Exact: the drawer matches."
+msgstr "Certo: a gaveta bate certo."
+
+msgid "Over: more cash than expected."
+msgstr "A mais: há mais dinheiro do que o esperado."
+
+msgid "Short: less cash than expected."
+msgstr "Em falta: há menos dinheiro do que o esperado."
+
 msgid "Your restaurants"
 msgstr "Os seus restaurantes"
 
@@ -1680,9 +2204,6 @@ msgstr ""
 "Para clientes sem smartphone. Escolha a mesa e o cliente, toque nos pratos e "
 "envie."
 
-msgid "Counter / takeaway"
-msgstr "Balcão / para levar"
-
 #, python-format
 msgid "Table %(n)s"
 msgstr "Mesa %(n)s"
@@ -1714,6 +2235,9 @@ msgstr "Subtotal"
 msgid "Service charge"
 msgstr "Taxa de serviço"
 
+msgid "included"
+msgstr "incluído"
+
 msgid "Note for the kitchen (optional)"
 msgstr "Nota para a cozinha (opcional)"
 
@@ -1731,9 +2255,6 @@ msgstr "Menos"
 
 msgid "More"
 msgstr "Mais"
-
-msgid "Add"
-msgstr "Adicionar"
 
 msgid "Mark all as read"
 msgstr "Marcar tudo como lido"
@@ -1768,10 +2289,6 @@ msgstr "Empregado"
 msgid "Est. prep"
 msgstr "Prep. estimada"
 
-#, python-format
-msgid "%(m)s min"
-msgstr "%(m)s min"
-
 msgid "Item"
 msgstr "Artigo"
 
@@ -1804,10 +2321,6 @@ msgid "Customer chose: %(m)s"
 msgstr "O cliente escolheu: %(m)s"
 
 #, python-format
-msgid "received %(got)s, change %(change)s"
-msgstr "recebido %(got)s, troco %(change)s"
-
-#, python-format
 msgid "ref %(ref)s"
 msgstr "ref. %(ref)s"
 
@@ -1836,12 +2349,6 @@ msgstr "N.º do pedido ou nome"
 msgid "Order number or customer name"
 msgstr "Número do pedido ou nome do cliente"
 
-msgid "From date"
-msgstr "Desde a data"
-
-msgid "To date"
-msgstr "Até à data"
-
 msgid "Filter"
 msgstr "Filtrar"
 
@@ -1866,6 +2373,12 @@ msgstr ""
 
 msgid "Turn it back on"
 msgstr "Voltar a ativar"
+
+msgid "Before selling starts, enter the change in the cash drawer."
+msgstr "Antes de começar a vender, registe o troco na gaveta."
+
+msgid "Open the cash register"
+msgstr "Abrir a caixa"
 
 msgid "Tables &amp; bills"
 msgstr "Mesas e contas"
@@ -1909,6 +2422,159 @@ msgstr "Últimos pedidos"
 msgid "All orders"
 msgstr "Todos os pedidos"
 
+msgid "New quotation"
+msgstr "Nova cotação"
+
+msgid ""
+"Add dishes from your menu or type your own lines (delivery, service staff, "
+"equipment…)."
+msgstr ""
+"Adicione pratos do menu ou escreva as suas linhas (entrega, pessoal de "
+"serviço, equipamento…)."
+
+msgid "Print / PDF"
+msgstr "Imprimir / PDF"
+
+msgid "Duplicate"
+msgstr "Duplicar"
+
+msgid "Client"
+msgstr "Cliente"
+
+msgid "Quotation"
+msgstr "Cotação"
+
+msgid "Dish from your menu"
+msgstr "Prato do menu"
+
+msgid "Choose a dish from your menu…"
+msgstr "Escolha um prato do menu…"
+
+msgid "Add from menu"
+msgstr "Adicionar do menu"
+
+msgid "Add custom line"
+msgstr "Adicionar linha própria"
+
+msgid "Unit price"
+msgstr "Preço unitário"
+
+msgid "Remove line"
+msgstr "Remover linha"
+
+msgid "No lines yet. Add dishes from your menu or a custom line."
+msgstr "Ainda sem linhas. Adicione pratos do menu ou uma linha própria."
+
+msgid "pax"
+msgstr "pax"
+
+msgid "plate"
+msgstr "prato"
+
+msgid "box"
+msgstr "caixa"
+
+msgid "pcs"
+msgstr "unid."
+
+msgid "set"
+msgstr "conjunto"
+
+msgid "day"
+msgstr "dia"
+
+msgid "trip"
+msgstr "viagem"
+
+msgid "VAT"
+msgstr "IVA"
+
+msgid "Grand total"
+msgstr "Total geral"
+
+#, python-format
+msgid ""
+"Printed at the bottom, e.g. 50%% deposit on confirmation, payment within 14 "
+"days, bank account details. New quotations start with the terms of your last "
+"one."
+msgstr ""
+"Impresso no fim, ex.: 50%% de sinal na confirmação, pagamento em 14 dias, "
+"dados bancários. As novas cotações começam com as condições da última."
+
+msgid "Save quotation"
+msgstr "Guardar cotação"
+
+#, python-format
+msgid "Delete quotation %(n)s?"
+msgstr "Eliminar a cotação %(n)s?"
+
+msgid "Delete this quotation"
+msgstr "Eliminar esta cotação"
+
+msgid ""
+"Price offers for catering, events and procurement bids. Print or save as PDF."
+msgstr ""
+"Propostas de preço para catering, eventos e concursos. Imprima ou guarde em "
+"PDF."
+
+msgid "Number"
+msgstr "Número"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Print"
+msgstr "Imprimir"
+
+msgid "No quotations yet."
+msgstr "Ainda não há cotações."
+
+msgid "Create your first quotation"
+msgstr "Criar a primeira cotação"
+
+msgid "Print / save as PDF"
+msgstr "Imprimir / guardar em PDF"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "QUOTATION"
+msgstr "COTAÇÃO"
+
+msgctxt "recipient"
+msgid "To"
+msgstr "Para"
+
+msgid "Attn."
+msgstr "A/C"
+
+msgid "Details"
+msgstr "Detalhes"
+
+msgid "No."
+msgstr "N.º"
+
+msgid "Discount"
+msgstr "Desconto"
+
+msgid "Amount in words"
+msgstr "Valor por extenso"
+
+msgid "Terms & conditions"
+msgstr "Termos e condições"
+
+msgid "For"
+msgstr "Por"
+
+msgid "Name, signature & stamp"
+msgstr "Nome, assinatura e carimbo"
+
+msgid "Accepted by the client"
+msgstr "Aceite pelo cliente"
+
+msgid "Name, signature, stamp & date"
+msgstr "Nome, assinatura, carimbo e data"
+
 msgid "Export CSV"
 msgstr "Exportar CSV"
 
@@ -1918,20 +2584,8 @@ msgstr "De"
 msgid "To"
 msgstr "Até"
 
-msgid "Apply"
-msgstr "Aplicar"
-
-msgid "Revenue"
-msgstr "Receita"
-
-msgid "Average order"
-msgstr "Pedido médio"
-
-msgid "Revenue per day"
-msgstr "Receita por dia"
-
-msgid "No completed orders in this period."
-msgstr "Não há pedidos concluídos neste período."
+msgid "VAT collected"
+msgstr "IVA cobrado"
 
 msgid "Best sellers"
 msgstr "Mais vendidos"
@@ -1968,17 +2622,11 @@ msgstr "Teste e registo da gaveta"
 msgid "Test drawer"
 msgstr "Testar gaveta"
 
-msgid "Reason"
-msgstr "Motivo"
-
 msgid "By"
 msgstr "Por"
 
 msgid "Result"
 msgstr "Resultado"
-
-msgid "Opened"
-msgstr "Aberta"
 
 msgid "No drawer openings yet."
 msgstr "A gaveta ainda não foi aberta."
@@ -2033,16 +2681,6 @@ msgctxt "table"
 msgid "Free"
 msgstr "Livre"
 
-#, python-format
-msgid "Open since %(t)s"
-msgstr "Aberta desde %(t)s"
-
-#, python-format
-msgid "%(n)s order"
-msgid_plural "%(n)s orders"
-msgstr[0] "%(n)s pedido"
-msgstr[1] "%(n)s pedidos"
-
 msgid "Add order"
 msgstr "Adicionar pedido"
 
@@ -2092,14 +2730,8 @@ msgstr ""
 msgid "Recent bills"
 msgstr "Contas recentes"
 
-msgid "Closed"
-msgstr "Fechada"
-
 msgid "Open the customer link"
 msgstr "Abrir o link do cliente"
-
-msgid "Print"
-msgstr "Imprimir"
 
 msgid "Generate a new QR code? The currently printed code will STOP working."
 msgstr "Gerar um novo código QR? O código impresso atual DEIXARÁ de funcionar."
@@ -2163,6 +2795,30 @@ msgstr "Cria mesas numeradas, ignorando os números que já existem."
 
 msgid "Create tables"
 msgstr "Criar mesas"
+
+msgid "Upgrade your plan"
+msgstr "Mude de plano"
+
+msgid "See how sales compare with last period, your busiest hours and days, best-selling and unsold dishes, how customers pay and how fast the kitchen is."
+msgstr "Compare as vendas com o período anterior e veja as horas e dias de mais movimento, os pratos mais e menos vendidos, como os clientes pagam e a rapidez da cozinha."
+
+msgid "Enter the change in the drawer before selling, record cash in and out, and reconcile at the end of the day: expected vs counted, over or short, with a printable report."
+msgstr "Registe o troco antes de vender, as entradas e saídas de dinheiro, e confira no fim do dia: esperado vs contado, a mais ou em falta, com relatório para imprimir."
+
+msgid "Create professional price offers for catering, events and procurement bids from your menu, with amount in words, and print them as PDF in four languages."
+msgstr "Crie propostas de preço profissionais para catering, eventos e concursos a partir do seu menu, com valor por extenso, e imprima em PDF em quatro línguas."
+
+msgid "Available in:"
+msgstr "Disponível em:"
+
+msgid "Not included in your current plan."
+msgstr "Não incluído no seu plano atual."
+
+msgid "See plans & upgrade"
+msgstr "Ver planos e fazer upgrade"
+
+msgid "Ask the restaurant owner to upgrade the plan."
+msgstr "Peça ao proprietário do restaurante para mudar de plano."
 
 msgid "QR menu & table ordering for restaurants"
 msgstr "Menu QR e pedidos à mesa para restaurantes"
@@ -2282,6 +2938,15 @@ msgid_plural "Up to %(n)s staff accounts"
 msgstr[0] "Até %(n)s conta de funcionário"
 msgstr[1] "Até %(n)s contas de funcionários"
 
+msgid "Sales analytics"
+msgstr "Análise de vendas"
+
+msgid "Cash register & end-of-day reconciliation"
+msgstr "Caixa e conferência no fim do dia"
+
+msgid "Quotations for catering & tenders"
+msgstr "Cotações para catering e concursos"
+
 msgid "Get started"
 msgstr "Começar"
 
@@ -2297,3 +2962,10 @@ msgstr "Olá! Gostaria de saber mais sobre o %(name)s."
 
 msgid "Chat with us on WhatsApp"
 msgstr "Fale connosco no WhatsApp"
+
+#~ msgid ""
+#~ "Ticked: menu prices already include VAT (totals stay the same, receipts "
+#~ "show the VAT part). Unticked: VAT is added on top at checkout."
+#~ msgstr ""
+#~ "Marcado: os preços do menu já incluem IVA (os totais não mudam e os "
+#~ "recibos mostram a parte do IVA). Desmarcado: o IVA é somado no pagamento."

@@ -77,6 +77,12 @@ class ImageFormMixin:
 
 class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
     IMAGE_FIELDS = {"logo": "logo", "cover_image": "cover"}
+    vat_inclusive = forms.TypedChoiceField(
+        label=_("How VAT is charged"),
+        choices=[(False, _("Add VAT on top of menu prices")), (True, _("Menu prices already include VAT"))],
+        coerce=lambda v: v in (True, "True"), empty_value=False, required=False,
+        help_text=Restaurant._meta.get_field("vat_inclusive").help_text,
+    )
 
     class Meta:
         model = Restaurant
@@ -86,6 +92,7 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
             "default_prep_minutes", "is_accepting_orders",
             "cash_drawer_enabled", "printer_host", "printer_port", "drawer_pin",
             "receipt_prompt", "receipt_printer", "receipt_width", "receipt_footer",
+            "vat_enabled", "vat_percent", "vat_inclusive", "vat_label", "vat_number",
         ]
         widgets = {
             "description": forms.Textarea(attrs={"rows": 3}),
@@ -103,14 +110,25 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
             "printer_host": _("Printer IP address"), "printer_port": _("Printer port"), "drawer_pin": _("Drawer pin"),
             "receipt_prompt": _("After a payment"), "receipt_printer": _("Receipt printer"),
             "receipt_width": _("Paper width"), "receipt_footer": _("Receipt footer"),
+            "vat_enabled": _("Charge VAT"), "vat_percent": _("VAT rate (%)"),
+            "vat_label": _("Tax name"),
+            "vat_number": _("Tax ID"),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        for name in ("vat_label", "vat_percent"):  # optional: blank means "VAT" / 0
+            self.fields[name].required = False
         if not settings.CASH_DRAWER_NETWORK_ENABLED:  # not available on this deployment
             for name in ("cash_drawer_enabled", "printer_host", "printer_port", "drawer_pin",
                          "receipt_printer", "receipt_width"):
                 self.fields.pop(name, None)
+
+    def clean_vat_label(self):
+        return (self.cleaned_data.get("vat_label") or "").strip() or "VAT"
+
+    def clean_vat_percent(self):
+        return self.cleaned_data.get("vat_percent") or 0
 
     def clean_printer_host(self):
         return validate_printer_host(self.cleaned_data.get("printer_host", ""))
@@ -119,6 +137,8 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
         cleaned = super().clean()
         if cleaned.get("receipt_printer") == Restaurant.RECEIPT_NETWORK and not cleaned.get("printer_host"):
             self.add_error("printer_host", _("Enter the receipt printer's IP address to print receipts on it."))
+        if cleaned.get("vat_enabled") and not (cleaned.get("vat_percent") or 0) > 0:
+            self.add_error("vat_percent", _("Enter the VAT rate, e.g. 10."))
         if cleaned.get("cash_drawer_enabled") and not cleaned.get("printer_host"):
             self.add_error("printer_host", _("Enter the receipt printer's IP address to use the cash drawer."))
         return cleaned

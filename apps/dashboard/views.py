@@ -28,16 +28,17 @@ from apps.menu.serializers import PublicItemSerializer
 from apps.orders import realtime
 from apps.orders.models import Notification, Order, OrderItem, OrderStatus, PaymentMethod, PaymentStatus
 from apps.orders.services import OrderError, change_status
+from apps.payments import cash_sessions
 from apps.payments.drawer import open_cash_drawer
 from apps.payments.receipts import (
     network_printing_available, parse_order_ids, print_receipt_network, receipt_data, receipt_orders,
 )
-from apps.payments.models import CashDrawerOpening
+from apps.payments.models import CashDrawerOpening, CashMovement, CashSession
 from apps.payments.services import balance_due, receive_cash, receive_payment
 from apps.restaurants.models import RestaurantStaff, Table, TableSession
-from apps.restaurants.qr import qr_png, qr_svg
+from apps.restaurants.qr import qr_png, qr_svg, site_link
 
-from .decorators import staff_view
+from .decorators import plan_feature, staff_view
 from .forms import (
     BulkTableForm, CategoryForm, MenuItemForm, OptionFormSet, OrderFilterForm, PaymentForm,
     RestaurantForm, StaffCreateForm, StaffEditForm, TableForm,
@@ -94,6 +95,7 @@ def overview(request):
         "open_sessions": TableSession.objects.filter(restaurant=r, status=TableSession.OPEN).count(),
         "sold_out": MenuItem.objects.filter(restaurant=r, is_available=False).count(),
         "setup_steps": _setup_steps(r),
+        "cash_open": cash_sessions.current_session(r) is not None,
     })
 
 
@@ -209,6 +211,8 @@ def new_order(request):
             "orderUrl": reverse("dashboard:order_detail", args=[r.slug, 0]),
             "currencySymbol": r.currency_symbol,
             "serviceChargePercent": str(r.service_charge_percent),
+            "vatPercent": str(r.vat_percent) if r.vat_enabled else "0",
+            "vatInclusive": r.vat_inclusive,
             "acceptingOrders": r.is_accepting_orders and r.is_active and subscription_allows_orders(r),
         },
     })
@@ -371,6 +375,59 @@ def drawer_test(request):
     return _go(request, "settings")
 
 
+# ---------------------------------------------------------------- cash register (till sessions)
+
+@staff_view("payments")
+@plan_feature("cash_register")
+def cash_register(request):
+    """Start of day: enter the change float. During the day: live totals. End of day: count and reconcile."""
+    r = request.restaurant
+    session = cash_sessions.current_session(r)
+    if request.method == "POST":
+        action = request.POST.get("action")
+        try:
+            if action == "open" and session is None:
+                counts, counted = cash_sessions.parse_counts(request.POST, r)
+                amount = counted if counted is not None else cash_sessions.parse_amount(request.POST.get("amount"))
+                cash_sessions.open_session(r, request.user, amount, counts)
+                messages.success(request, _("Cash register opened with %(amount)s change.") % {
+                    "amount": f"{r.currency_symbol}{amount:.2f}"})
+            elif action in ("in", "out") and session is not None:
+                amount = cash_sessions.parse_amount(request.POST.get("amount"))
+                cash_sessions.add_movement(session, request.user, action, amount, request.POST.get("reason", ""))
+                messages.success(request, _("Cash movement recorded."))
+            elif action == "close" and session is not None:
+                counts, counted = cash_sessions.parse_counts(request.POST, r)
+                if counted is None:
+                    counted = cash_sessions.parse_amount(request.POST.get("amount"))
+                session = cash_sessions.close_session(
+                    session, request.user, counted, counts, request.POST.get("note", ""))
+                return redirect("dashboard:cash_report", r.slug, session.pk)
+        except OrderError as exc:
+            messages.error(request, str(exc))
+        return _go(request, "cash_register")
+    return render(request, "dashboard/cash_register.html", {
+        "figures": cash_sessions.summary(session) if session else None,
+        "denominations": [
+            (d, f"{r.currency_symbol}{Decimal(d):.0f}" if Decimal(d) >= 1 else f"{Decimal(d) * 100:.0f}¢")
+            for d in cash_sessions.denominations(r)
+        ],
+        "history": [cash_sessions.summary(s) for s in r.cash_sessions.filter(closed_at__isnull=False)[:15]],
+    })
+
+
+@xframe_options_sameorigin  # printed from a hidden iframe like receipts
+@staff_view("payments")
+@plan_feature("cash_register")
+def cash_report(request, pk):
+    """Printable reconciliation for one till session (80 mm, like receipts)."""
+    session = get_object_or_404(CashSession, restaurant=request.restaurant, pk=pk)
+    return render(request, "dashboard/cash_report.html", {
+        "f": cash_sessions.summary(session), "restaurant": request.restaurant,
+        "printed_at": timezone.localtime(), "autoprint": request.GET.get("autoprint") == "1",
+    })
+
+
 def _safe_next(request, fallback):
     nxt = request.POST.get("next", "")
     if nxt and url_has_allowed_host_and_scheme(nxt, allowed_hosts={request.get_host()}):
@@ -478,6 +535,7 @@ def table_detail(request, pk):
             n=Count("orders"), total=Sum("orders__total")
         )[:10],
         "qr_url": qr.get_url(request),
+        "site_link": site_link(request),
         "qr_svg": mark_safe(qr_svg(qr.get_url(request))),  # generated locally from our own URL
     })
 
@@ -593,11 +651,12 @@ def table_qr_image(request, pk):
     table = get_object_or_404(Table, restaurant=request.restaurant, pk=pk)
     url = table.active_qr().get_url(request)
     filename = f"{request.restaurant.slug}-table-{table.number}"
+    link = site_link(request)  # printed under the code
     if request.GET.get("format") == "svg":
-        resp = HttpResponse(qr_svg(url), content_type="image/svg+xml")
+        resp = HttpResponse(qr_svg(url, caption=link), content_type="image/svg+xml")
         resp["Content-Disposition"] = f'attachment; filename="{filename}.svg"'
     else:
-        resp = HttpResponse(qr_png(url), content_type="image/png")
+        resp = HttpResponse(qr_png(url, caption=link), content_type="image/png")
         if request.GET.get("download"):
             resp["Content-Disposition"] = f'attachment; filename="{filename}.png"'
     resp["Cache-Control"] = "private, no-store"
@@ -615,7 +674,7 @@ def tables_print(request):
     for table in sorted(qs, key=lambda t: t.sort_key):
         url = table.active_qr().get_url(request)
         cards.append({"table": table, "url": url, "svg": mark_safe(qr_svg(url))})
-    return render(request, "dashboard/tables_print.html", {"cards": cards})
+    return render(request, "dashboard/tables_print.html", {"cards": cards, "site_link": site_link(request)})
 
 
 # ---------------------------------------------------------------- menu
@@ -738,6 +797,10 @@ SETTINGS_SECTIONS = [  # (key, title, icon, description, fields)
     ("ordering", gettext_lazy("Ordering & money"), "receipt",
      gettext_lazy("Pause ordering at any time; prices are shown in this currency."),
      ["is_accepting_orders", "currency", "currency_symbol", "service_charge_percent", "default_prep_minutes"]),
+    ("vat", gettext_lazy("Tax (VAT)"), "receipt",
+     gettext_lazy("Off by default. Switch it on only if your restaurant must charge VAT. "
+                  "Past orders keep the VAT they were placed with."),
+     ["vat_enabled", "vat_percent", "vat_inclusive", "vat_label", "vat_number"]),
     ("language", gettext_lazy("Customer menu language"), "globe",
      gettext_lazy("Customers can switch language on the menu; untranslated text falls back to English."),
      ["default_language", "description_tet", "description_id"]),
@@ -747,7 +810,7 @@ SETTINGS_SECTIONS = [  # (key, title, icon, description, fields)
      gettext_lazy("Your network (ESC/POS) receipt printer. The cash drawer plugs into it."),
      ["printer_host", "printer_port", "cash_drawer_enabled", "drawer_pin"]),
 ]
-WIDE_FIELDS = {"name", "description", "address", "opening_hours", "description_tet", "description_id",
+WIDE_FIELDS = {"vat_enabled", "vat_inclusive", "name", "description", "address", "opening_hours", "description_tet", "description_id",
                "is_accepting_orders", "cash_drawer_enabled", "receipt_prompt", "receipt_footer"}
 
 
@@ -803,6 +866,57 @@ def staff_edit(request, pk):
 # ---------------------------------------------------------------- reports & notifications
 
 @staff_view("reports")
+@plan_feature("analytics")
+def analytics_page(request):
+    """Sales analytics: trends vs the previous period, busy times, what sells, payments, kitchen speed."""
+    from . import analytics
+
+    today = timezone.localdate()
+    preset = request.GET.get("range", "30")
+    presets = {"7": 7, "30": 30, "90": 90}
+    if preset in presets:
+        date_from, date_to = today - timedelta(days=presets[preset] - 1), today
+    elif preset == "month":
+        date_from, date_to = today.replace(day=1), today
+    else:
+        preset = "custom"
+        try:
+            date_from = datetime.strptime(request.GET.get("from", ""), "%Y-%m-%d").date()
+            date_to = datetime.strptime(request.GET.get("to", ""), "%Y-%m-%d").date()
+        except ValueError:
+            date_from, date_to, preset = today - timedelta(days=29), today, "30"
+    if date_to < date_from:
+        date_from, date_to = date_to, date_from
+    date_from = max(date_from, date_to - timedelta(days=analytics.MAX_DAYS - 1))
+    data = analytics.build(request.restaurant, date_from, date_to)
+    sym = request.restaurant.currency_symbol
+    labels = {"revenue": _("Revenue"), "completed": _("Completed orders"), "avg": _("Average order"),
+              "cancel_rate": _("Cancelled orders")}
+    for k in data["kpis"]:
+        v = k["value"]
+        k["label"] = labels[k["key"]]
+        k["display"] = ("—" if v is None else f"{sym}{v:,.2f}" if k["key"] in ("revenue", "avg")
+                        else f"{v}%" if k["key"] == "cancel_rate" else f"{v:,}")
+        change = k.get("delta_pts") if k["key"] == "cancel_rate" else k.get("delta")
+        if change is None:
+            k["tone"], k["delta_text"] = "flat", ""
+        else:
+            unit = _(" pts") if k["key"] == "cancel_rate" else "%"
+            k["delta_text"] = f"{'+' if change > 0 else ''}{change:g}{unit}"
+            k["tone"] = "flat" if change == 0 else "good" if (change > 0) == k["up_good"] else "bad"
+            k["arrow"] = "↑" if change > 0 else "↓" if change < 0 else "→"
+    weekdays = [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")]
+    return render(request, "dashboard/analytics.html", {
+        "a": data, "date_from": date_from, "date_to": date_to, "preset": preset, "weekdays": weekdays,
+        "chart_data": {
+            "symbol": request.restaurant.currency_symbol,
+            "trend": data["trend"],
+            "hours": data["hours"], "heatmap": data["heatmap"], "weekdays": weekdays,
+        },
+    })
+
+
+@staff_view("reports")
 def reports(request):
     r = request.restaurant
     today = timezone.localdate()
@@ -821,11 +935,13 @@ def reports(request):
         resp = HttpResponse(content_type="text/csv")
         resp["Content-Disposition"] = f'attachment; filename="orders-{r.slug}-{date_from}-{date_to}.csv"'
         writer = csv.writer(resp)
-        writer.writerow(["Order", "Created", "Table", "Customer", "Status", "Payment", "Subtotal", "Service", "Total"])
+        writer.writerow(["Order", "Created", "Table", "Customer", "Status", "Payment", "Subtotal", "Service",
+                         "VAT", "VAT rate", "VAT included", "Total"])
         for o in qs.order_by("created_at"):
             writer.writerow([
                 o.number, timezone.localtime(o.created_at).strftime("%Y-%m-%d %H:%M"), o.table_number,
-                o.customer_name, o.status, o.payment_status, o.subtotal, o.service_charge, o.total,
+                o.customer_name, o.status, o.payment_status, o.subtotal, o.service_charge,
+                o.vat_amount, o.vat_percent, "yes" if o.vat_inclusive else "no", o.total,
             ])
         return resp
 
@@ -835,6 +951,7 @@ def reports(request):
         completed=Count("id", filter=Q(status=OrderStatus.COMPLETED)),
         cancelled=Count("id", filter=Q(status=OrderStatus.CANCELLED)),
         revenue=Sum("total", filter=Q(status=OrderStatus.COMPLETED)),
+        vat=Sum("vat_amount", filter=Q(status=OrderStatus.COMPLETED)),
     )
     summary["avg"] = (summary["revenue"] / summary["completed"]) if summary["completed"] else None
     top_items = (

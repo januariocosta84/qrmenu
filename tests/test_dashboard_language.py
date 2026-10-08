@@ -6,7 +6,7 @@ from django.urls import reverse
 from apps.core.permissions import Role
 from apps.orders.services import place_order
 
-from .test_ordering import make_restaurant, staff
+from .test_ordering import make_pro, make_restaurant, staff
 
 
 class DashboardLanguageTests(TestCase):
@@ -74,6 +74,7 @@ class DashboardPagesRenderInEveryLanguageTests(TestCase):
     def test_every_page_renders(self):
         cache.clear()
         r, rice, egg, tea, table = make_restaurant()
+        make_pro(r)
         owner = staff(r, "owner", Role.OWNER)
         order = place_order(restaurant=r, table=table, lines=[{"menu_item": rice.id, "quantity": 1}])
         pages = [reverse("dashboard:home"), reverse("accounts:password_change")] + [
@@ -82,7 +83,8 @@ class DashboardPagesRenderInEveryLanguageTests(TestCase):
                 ("table_detail", [table.pk]), ("table_edit", [table.pk]), ("order_detail", [order.pk]),
                 ("menu", []), ("item_create", []), ("item_edit", [rice.pk]), ("category_create", []),
                 ("category_edit", [rice.category_id]), ("settings", []), ("staff", []), ("reports", []),
-                ("notifications", []), ("billing", []),
+                ("notifications", []), ("billing", []), ("cash_register", []), ("analytics", []),
+                ("quotations", []), ("quotation_create", []),
             ]
         ]
         for lang, _name in settings.LANGUAGES:
@@ -138,3 +140,28 @@ class LandingPageWhatsAppTests(TestCase):
         resp = self.client.get("/")
         self.assertContains(resp, f"https://wa.me/{settings.SUPPORT_WHATSAPP}?text=Ol%C3%A1", count=2)
         self.assertContains(resp, 'class="wa-float"', count=1)
+
+
+class NumbersInMarkupIgnoreLanguageTests(TestCase):
+    """pt/id write decimals with a comma; CSS and data-* attributes must still get a dot."""
+
+    def test_css_and_data_attributes_use_a_dot(self):
+        import re
+
+        from apps.payments.models import CashSession
+
+        cache.clear()
+        r, rice, egg, tea, table = make_restaurant()
+        make_pro(r)
+        owner = staff(r, "owner", Role.OWNER)
+        o = place_order(restaurant=r, table=table, lines=[{"menu_item": rice.id, "quantity": 1}, {"menu_item": tea.id, "quantity": 1}])
+        CashSession.objects.create(restaurant=r, opening_float="10.50")
+        self.client.force_login(owner)
+        self.client.cookies[settings.LANGUAGE_COOKIE_NAME] = "pt"
+        for url in (reverse("dashboard:analytics", args=["alpha"]), reverse("dashboard:cash_register", args=["alpha"]),
+                    reverse("dashboard:orders", args=["alpha"]), reverse("dashboard:order_detail", args=["alpha", o.pk])):
+            with self.subTest(url=url):
+                html = self.client.get(url).content.decode()
+                self.assertFalse(re.findall(r'(?:width|flex): ?\d+,\d', html))
+                self.assertFalse(re.findall(r'data-(?:expected|cash-due|cash-paid|price)="\d+,\d', html))
+        self.assertContains(self.client.get(reverse("dashboard:cash_register", args=["alpha"])), 'data-expected="10.50"')

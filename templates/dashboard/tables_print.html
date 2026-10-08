@@ -15,6 +15,7 @@
     .qcard svg { width: 55mm; height: 55mm; display: block; margin: 0 auto; }
     .qcard .cta { font-size: 13pt; font-weight: 700; margin: 3mm 0 1mm; }
     .qcard .langs { font-size: 9pt; color: #555; margin: 0; line-height: 1.4; }
+    .qcard .site { font-size: 10.5pt; font-weight: 700; margin: 2.5mm 0 0; letter-spacing: .01em; }
     @media print {
       body { background: #fff; }
       .bar { display: none; }
@@ -36,6 +37,7 @@
       {{ c.svg }}
       <p class="cta">Scan to see the menu &amp; order</p>
       <p class="langs">Scan atu haree menu no halo pedidu<br>Pindai untuk melihat menu &amp; memesan</p>
+      {% if site_link %}<p class="site">{{ site_link }}</p>{% endif %}
     </div>
     {% empty %}
     <p>No active tables.</p>

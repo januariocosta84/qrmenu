@@ -1,9 +1,10 @@
 {% extends "storefront/base.html" %}
-{% load static menu_tags %}
+{% load static menu_tags ui_icons %}
 {% block title %}{{ ui.order }} #{{ order.number }} · {{ restaurant.name }}{% endblock %}
 {% block body_class %}status-page{% endblock %}
 
 {% block content %}
+{% icon_sprite %}
 <main class="status-wrap">
   <header class="status-head">
     <p class="muted">{{ restaurant.name }}</p>
@@ -52,9 +53,10 @@
     <dl class="totals">
       <div><dt>{{ ui.subtotal }}</dt><dd>{{ order.subtotal|money:restaurant.currency_symbol }}</dd></div>
       {% if order.service_charge %}<div><dt>{{ ui.service_charge }}</dt><dd>{{ order.service_charge|money:restaurant.currency_symbol }}</dd></div>{% endif %}
+      {% if order.vat_amount %}<div><dt>{{ order.vat_rate_label }}{% if order.vat_inclusive %} ({{ ui.vat_included }}){% endif %}</dt><dd>{{ order.vat_amount|money:restaurant.currency_symbol }}</dd></div>{% endif %}
       <div class="grand"><dt>{{ ui.total }}</dt><dd>{{ order.total|money:restaurant.currency_symbol }}</dd></div>
     </dl>
-    {% if order.payment_status == "paid" %}<p class="paid-badge">✓ {{ ui.paid }}</p>{% else %}<p class="muted small">{{ ui.unpaid }}</p>{% endif %}
+    {% if order.payment_status == "paid" %}<p class="paid-badge">{% icon "check-circle" %}{{ ui.paid }}</p>{% else %}<p class="muted small">{{ ui.unpaid }}</p>{% endif %}
     {% if order.note %}<p class="muted small">“{{ order.note }}”</p>{% endif %}
   </section>
 
@@ -66,7 +68,7 @@
   {% endif %}
 
   {% if order.payment_status == "paid" %}
-  <p class="notice notice-info">✓ {{ ui.paid_scan_again }}</p>
+  <p class="notice notice-info notice-icon">{% icon "check-circle" %}<span>{{ ui.paid_scan_again }}</span></p>
   {% else %}
   <a class="btn btn-primary btn-block btn-lg" href="{{ back_url }}">{{ ui.order_more }}</a>
   {% endif %}

@@ -63,6 +63,9 @@
           <li>{% icon "table" %}{% blocktranslate trimmed count n=p.max_tables %}Up to {{ n }} table{% plural %}Up to {{ n }} tables{% endblocktranslate %}</li>
           <li>{% icon "utensils" %}{% blocktranslate trimmed count n=p.max_menu_items %}Up to {{ n }} dish{% plural %}Up to {{ n }} dishes{% endblocktranslate %}</li>
           <li>{% icon "users" %}{% blocktranslate trimmed count n=p.max_staff %}Up to {{ n }} staff account{% plural %}Up to {{ n }} staff accounts{% endblocktranslate %}</li>
+          {% if p.feature_analytics %}<li>{% icon "chart" %}{% translate "Sales analytics" %}</li>{% endif %}
+          {% if p.feature_cash_register %}<li>{% icon "drawer" %}{% translate "Cash register & end-of-day reconciliation" %}</li>{% endif %}
+          {% if p.feature_quotations %}<li>{% icon "note" %}{% translate "Quotations for catering & tenders" %}</li>{% endif %}
         </ul>
         {% if user.is_authenticated %}<a class="btn btn-lg land-plan-btn" href="{% url 'dashboard:home' %}">{% translate "Open dashboard" %}</a>
         {% elif signup_open %}<a class="btn btn-lg land-plan-btn" href="{% url 'accounts:signup' %}">{% translate "Get started" %}</a>{% endif %}

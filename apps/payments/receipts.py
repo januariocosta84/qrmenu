@@ -51,8 +51,23 @@ def receipt_orders(restaurant, ids):
     )
 
 
+def vat_lines(orders) -> list[dict]:
+    """VAT per (name, rate, included?) across the orders on one bill, e.g. "VAT 10% (incl.)"."""
+    groups = {}
+    for o in orders:
+        if o.vat_amount:
+            key = (o.vat_label or "VAT", o.vat_percent, o.vat_inclusive)
+            groups[key] = groups.get(key, Decimal("0")) + o.vat_amount
+    return [
+        {"label": f"{label} {rate.normalize():f}%" + (" (incl.)" if inclusive else ""), "amount": amount,
+         "inclusive": inclusive}
+        for (label, rate, inclusive), amount in groups.items()
+    ]
+
+
 def receipt_data(restaurant, orders) -> dict:
     payments = [p for o in orders for p in o.payments.all()]
+    vat = vat_lines(orders)
     paid = all(o.payment_status == PaymentStatus.PAID for o in orders)
     tendered = sum((p.cash_tendered for p in payments if p.cash_tendered is not None), Decimal("0"))
     staff = next((p.received_by for p in reversed(payments) if p.received_by), None)
@@ -68,6 +83,8 @@ def receipt_data(restaurant, orders) -> dict:
         "customer": ", ".join(names),
         "subtotal": sum((o.subtotal for o in orders), Decimal("0")),
         "service_charge": sum((o.service_charge for o in orders), Decimal("0")),
+        "vat_lines": vat,
+        "vat_number": restaurant.vat_number if (vat or restaurant.vat_enabled) else "",
         "total": sum((o.total for o in orders), Decimal("0")),
         "amount_paid": sum((p.amount for p in payments), Decimal("0")),
         "methods": ", ".join(dict.fromkeys(p.get_method_display() for p in payments)),
@@ -105,7 +122,7 @@ def escpos_receipt(data: dict, width: int) -> bytes:
     money = lambda v: f"{sym}{v:.2f}"  # noqa: E731
     line = "-" * width
     out = [INIT, ALIGN_CENTER, DOUBLE, BOLD_ON, _txt(r.name[: width // 2] + "\n"), NORMAL, BOLD_OFF]
-    for extra in (r.address, r.phone):
+    for extra in (r.address, r.phone, f"Tax ID {data['vat_number']}" if data["vat_number"] else ""):
         if extra:
             out.append(_txt(extra[:width] + "\n"))
     out += [_txt("\n"), BOLD_ON, _txt(data["title"] + "\n"), BOLD_OFF, ALIGN_LEFT, _txt(line + "\n")]
@@ -127,6 +144,8 @@ def escpos_receipt(data: dict, width: int) -> bytes:
     out.append(_txt(_pair("Subtotal", money(data["subtotal"]), width) + "\n"))
     if data["service_charge"]:
         out.append(_txt(_pair("Service charge", money(data["service_charge"]), width) + "\n"))
+    for v in data["vat_lines"]:
+        out.append(_txt(_pair(v["label"], money(v["amount"]), width) + "\n"))
     out += [BOLD_ON, _txt(_pair("TOTAL", money(data["total"]), width) + "\n"), BOLD_OFF]
     if data["paid"]:
         out.append(_txt(_pair(f"Paid ({data['methods']})", money(data["amount_paid"]), width) + "\n"))

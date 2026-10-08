@@ -29,11 +29,14 @@
     {% if can.take_orders %}<a href="{% url 'dashboard:new_order' r.slug %}" class="{% if '/orders/new/' in request.path %}active{% endif %}">{% icon "plus-circle" %}<span>{% translate "New order" %}</span></a>{% endif %}
     <a href="{% url 'dashboard:orders' r.slug %}" class="{% if '/orders/' in request.path and '/orders/new/' not in request.path %}active{% endif %}">{% icon "receipt" %}<span>{% translate "Orders" %}</span></a>
     <a href="{% url 'dashboard:tables' r.slug %}" class="{% if '/tables/' in request.path %}active{% endif %}">{% icon "table" %}<span>{% translate "Tables &amp; QR" %}</span></a>
+    {% if can.payments %}<a href="{% url 'dashboard:cash_register' r.slug %}" class="{% if '/cash-register/' in request.path %}active{% endif %}">{% icon "drawer" %}<span>{% translate "Cash register" %}</span>{% if not request.features.cash_register %}<span class="pro-badge">PRO</span>{% endif %}</a>{% endif %}
 
-    {% if can.toggle_availability or can.reports or can.manage_restaurant or can.manage_staff %}
+    {% if can.toggle_availability or can.reports or can.manage_restaurant or can.manage_staff or can.quotations %}
     <p class="sb-section">{% translate "Manage" %}</p>
     {% if can.toggle_availability %}<a href="{% url 'dashboard:menu' r.slug %}" class="{% if '/menu/' in request.path %}active{% endif %}">{% icon "book" %}<span>{% translate "Menu" %}</span></a>{% endif %}
-    {% if can.reports %}<a href="{% url 'dashboard:reports' r.slug %}" class="{% if '/reports/' in request.path %}active{% endif %}">{% icon "chart" %}<span>{% translate "Reports" %}</span></a>{% endif %}
+    {% if can.reports %}<a href="{% url 'dashboard:analytics' r.slug %}" class="{% if '/analytics/' in request.path %}active{% endif %}">{% icon "chart" %}<span>{% translate "Analytics" %}</span>{% if not request.features.analytics %}<span class="pro-badge">PRO</span>{% endif %}</a>
+    <a href="{% url 'dashboard:reports' r.slug %}" class="{% if '/reports/' in request.path %}active{% endif %}">{% icon "receipt" %}<span>{% translate "Reports" %}</span></a>{% endif %}
+    {% if can.quotations %}<a href="{% url 'dashboard:quotations' r.slug %}" class="{% if '/quotations/' in request.path %}active{% endif %}">{% icon "note" %}<span>{% translate "Quotations" %}</span>{% if not request.features.quotations %}<span class="pro-badge">PRO</span>{% endif %}</a>{% endif %}
     {% if can.manage_restaurant %}<a href="{% url 'dashboard:settings' r.slug %}" class="{% if '/settings/' in request.path %}active{% endif %}">{% icon "store" %}<span>{% translate "Restaurant" %}</span></a>{% endif %}
     {% if can.manage_billing %}<a href="{% url 'dashboard:billing' r.slug %}" class="{% if '/billing/' in request.path %}active{% endif %}">{% icon "cash" %}<span>{% translate "Billing" %}</span></a>{% endif %}
     {% if can.manage_staff %}<a href="{% url 'dashboard:staff' r.slug %}" class="{% if '/staff/' in request.path %}active{% endif %}">{% icon "users" %}<span>{% translate "Staff" %}</span></a>{% endif %}

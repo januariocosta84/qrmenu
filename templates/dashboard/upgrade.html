@@ -1,0 +1,27 @@
+{% extends "dashboard/base.html" %}
+{% load i18n menu_tags ui_icons %}
+{% block title %}{% translate "Upgrade your plan" %}{% endblock %}
+{% block content %}
+{% with r=request.restaurant %}
+<section class="card upgrade">
+  <span class="pro-badge">PRO</span>
+  {% if feature == "analytics" %}
+    <h1>{% icon "chart" %} {% translate "Analytics" %}</h1>
+    <p>{% translate "See how sales compare with last period, your busiest hours and days, best-selling and unsold dishes, how customers pay and how fast the kitchen is." %}</p>
+  {% elif feature == "cash_register" %}
+    <h1>{% icon "drawer" %} {% translate "Cash register" %}</h1>
+    <p>{% translate "Enter the change in the drawer before selling, record cash in and out, and reconcile at the end of the day: expected vs counted, over or short, with a printable report." %}</p>
+  {% else %}
+    <h1>{% icon "note" %} {% translate "Quotations" %}</h1>
+    <p>{% translate "Create professional price offers for catering, events and procurement bids from your menu, with amount in words, and print them as PDF in four languages." %}</p>
+  {% endif %}
+  <p class="upgrade-note">{% if plans %}{% translate "Available in:" %} {% for p in plans %}<strong>{{ p.name }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %}{% else %}{% translate "Not included in your current plan." %}{% endif %}</p>
+  {% if plans %}<ul class="plain upgrade-plans">{% for p in plans %}<li><strong>{{ p.name }}</strong> · {% if p.is_free %}{% translate "Free" %}{% else %}{{ p.price_monthly|money:"$" }} / {% translate "month" %}{% endif %}</li>{% endfor %}</ul>{% endif %}
+  {% if request.can.manage_billing %}
+    <a class="btn btn-primary btn-lg" href="{% url 'dashboard:billing' r.slug %}">{% icon "cash" %} {% translate "See plans & upgrade" %}</a>
+  {% else %}
+    <p class="muted">{% translate "Ask the restaurant owner to upgrade the plan." %}</p>
+  {% endif %}
+</section>
+{% endwith %}
+{% endblock %}

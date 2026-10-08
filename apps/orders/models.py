@@ -97,6 +97,11 @@ class Order(TimeStampedModel):
     currency = models.CharField(max_length=3, default="USD")
     subtotal = models.DecimalField(**MONEY_KW)
     service_charge = models.DecimalField(default=0, **MONEY_KW)
+    # VAT snapshot at order time (0 when the restaurant doesn't charge VAT).
+    vat_label = models.CharField(max_length=20, blank=True)
+    vat_percent = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    vat_inclusive = models.BooleanField(default=False, help_text=_("VAT is part of the item prices (not added on top)."))
+    vat_amount = models.DecimalField(default=0, **MONEY_KW)
     total = models.DecimalField(**MONEY_KW)
 
     payment_method = models.CharField(
@@ -133,6 +138,13 @@ class Order(TimeStampedModel):
 
     def __str__(self):
         return f"Order #{self.number}"
+
+    @property
+    def vat_rate_label(self) -> str:
+        """e.g. "VAT 10%" (empty when the order has no VAT)."""
+        if not self.vat_amount:
+            return ""
+        return f"{self.vat_label or 'VAT'} {self.vat_percent.normalize():f}%"
 
     @property
     def is_active(self) -> bool:

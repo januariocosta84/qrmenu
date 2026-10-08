@@ -1,5 +1,5 @@
 {% extends "dashboard/base.html" %}
-{% load menu_tags ui_icons i18n %}
+{% load menu_tags ui_icons i18n l10n %}
 {% block title %}{% translate "Reports" %}{% endblock %}
 {% block content %}
 {% with sym=request.restaurant.currency_symbol %}
@@ -9,6 +9,7 @@
     <p class="page-sub">{{ date_from|date:"j M Y" }} – {{ date_to|date:"j M Y" }}</p>
   </div>
   <div class="page-actions">
+    <a class="btn btn-primary" href="{% url 'dashboard:analytics' request.restaurant.slug %}?range=custom&from={{ date_from|date:'Y-m-d' }}&to={{ date_to|date:'Y-m-d' }}">{% icon "chart" %} {% translate "Analytics" %}{% if not request.features.analytics %} <span class="pro-badge">PRO</span>{% endif %}</a>
     <a class="btn" href="?from={{ date_from|date:'Y-m-d' }}&to={{ date_to|date:'Y-m-d' }}&format=csv">{% icon "download" %} {% translate "Export CSV" %}</a>
   </div>
 </div>
@@ -24,6 +25,7 @@
   <div class="stat"><span class="stat-icon info">{% icon "chart" %}</span><div><span>{% translate "Average order" %}</span><strong>{% if summary.avg %}{{ summary.avg|money:sym }}{% else %}—{% endif %}</strong></div></div>
   <div class="stat"><span class="stat-icon ok">{% icon "check-circle" %}</span><div><span>{% translate "Completed" %}</span><strong>{{ summary.completed }}</strong></div></div>
   <div class="stat"><span class="stat-icon err">{% icon "x" %}</span><div><span>{% translate "Cancelled" %}</span><strong>{{ summary.cancelled }}</strong></div></div>
+  {% if summary.vat %}<div class="stat"><span class="stat-icon info">{% icon "receipt" %}</span><div><span>{% translate "VAT collected" %}</span><strong>{{ summary.vat|money:sym }}</strong></div></div>{% endif %}
 </div>
 
 <div class="cols-even">
@@ -33,7 +35,7 @@
     <table class="table bars">
       <tbody>{% for d in daily %}
         <tr><td class="nowrap small">{{ d.day|date:"D j M" }}</td>
-          <td class="bar-cell"><span class="bar" style="width: {{ d.pct }}%"></span></td>
+          <td class="bar-cell"><span class="bar" style="width: {{ d.pct|unlocalize }}%"></span></td>
           <td class="num nowrap"><strong>{{ d.revenue|money:sym }}</strong> <span class="muted small">{{ d.n }}</span></td></tr>
       {% endfor %}</tbody>
     </table>

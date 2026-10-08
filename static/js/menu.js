@@ -195,7 +195,7 @@
     if (existing) existing.qty = Math.min(MAX_QTY, existing.qty + qty);
     else cart.push({ key, id, qty, options, note });
     save();
-    toast(`✓ ${ITEMS[String(id)].name} × ${qty}`);
+    toast(`${ITEMS[String(id)].name} × ${qty}`, true);
   }
 
   function save() {
@@ -206,7 +206,11 @@
   function totals() {
     const sub = cart.reduce((s, l) => s + lineUnitCents(l) * l.qty, 0);
     const service = Math.round((sub * parseFloat(CONFIG.serviceChargePercent || "0")) / 100);
-    return { sub, service, total: sub + service, count: cart.reduce((s, l) => s + l.qty, 0) };
+    // VAT: same rule as the server (apps/orders/services.order_vat); 0 when not charged.
+    const rate = parseFloat(CONFIG.vatPercent || "0");
+    const vat = rate > 0 ? Math.round(((sub + service) * rate) / (CONFIG.vatInclusive ? 100 + rate : 100)) : 0;
+    const total = sub + service + (CONFIG.vatInclusive ? 0 : vat);
+    return { sub, service, vat, total, count: cart.reduce((s, l) => s + l.qty, 0) };
   }
 
   // ---------- Steppers ----------
@@ -415,6 +419,8 @@
     $("#t-subtotal").textContent = money(t.sub / 100);
     $("#t-service").textContent = money(t.service / 100);
     $("#t-service-row").hidden = t.service === 0;
+    $("#t-vat").textContent = money(t.vat / 100);
+    $("#t-vat-row").hidden = t.vat === 0;
     $("#t-total").textContent = money(t.total / 100);
     $("#place-total").textContent = money(t.total / 100);
     $("#place-order").disabled = cart.length === 0 || blocked || submitting;
@@ -491,9 +497,10 @@
 
   // ---------- Toast ----------
   let toastTimer = null;
-  function toast(msg) {
+  function toast(msg, ok = false) {
     const el = $("#toast");
     el.textContent = msg;
+    if (ok) el.insertAdjacentHTML("afterbegin", '<svg class="i" aria-hidden="true"><use href="#i-check-circle"></use></svg>');
     el.hidden = false;
     el.classList.add("show");
     clearTimeout(toastTimer);

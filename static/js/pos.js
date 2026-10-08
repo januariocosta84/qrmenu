@@ -140,13 +140,19 @@
     }));
     const sub = lines.reduce((s, l) => s + lineUnit(l) * l.qty, 0);
     const service = Math.round((sub * parseFloat(CFG.serviceChargePercent || "0")) / 100);
+    // VAT: same rule as the server (apps/orders/services.order_vat); 0 when not charged.
+    const rate = parseFloat(CFG.vatPercent || "0");
+    const vat = rate > 0 ? Math.round(((sub + service) * rate) / (CFG.vatInclusive ? 100 + rate : 100)) : 0;
+    const total = sub + service + (CFG.vatInclusive ? 0 : vat);
     $("#pos-empty").hidden = lines.length > 0;
     $("#pos-subtotal").textContent = money(sub);
     $("#pos-service").textContent = money(service);
     $("#pos-service-row").hidden = service === 0;
-    $("#pos-total").textContent = money(sub + service);
+    $("#pos-vat").textContent = money(vat);
+    $("#pos-vat-row").hidden = vat === 0;
+    $("#pos-total").textContent = money(total);
     $("#pos-send").disabled = !lines.length || sending || !CFG.acceptingOrders;
-    $("#pos-send").innerHTML = D.icon("flame") + " " + _("Send to kitchen") + (lines.length ? ` · ${money(sub + service)}` : "");
+    $("#pos-send").innerHTML = D.icon("flame") + " " + _("Send to kitchen") + (lines.length ? ` · ${money(total)}` : "");
   }
 
   // ---------- Send ----------

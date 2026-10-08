@@ -7,9 +7,12 @@ class PlanForm(forms.ModelForm):
     class Meta:
         model = Plan
         fields = ["name", "description", "price_monthly", "currency", "max_tables", "max_menu_items", "max_staff",
+                  "feature_analytics", "feature_cash_register", "feature_quotations",
                   "is_active", "is_public", "position"]
         widgets = {"price_monthly": forms.NumberInput(attrs={"step": "0.01", "min": "0"})}
-        labels = {"price_monthly": "Price per month", "max_menu_items": "Max dishes"}
+        labels = {"price_monthly": "Price per month", "max_menu_items": "Max dishes",
+                  "feature_analytics": "Includes Analytics", "feature_cash_register": "Includes Cash register",
+                  "feature_quotations": "Includes Quotations"}
 
 
 class BillingSettingsForm(forms.ModelForm):
