@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-08 16:02+0900\n"
+"POT-Creation-Date: 2026-10-08 20:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -542,6 +542,9 @@ msgstr "Luan surat-tahan"
 msgid "Receipt footer"
 msgstr "Testu iha resibu nia okos"
 
+msgid "A cash drawer is plugged into the receipt printer"
+msgstr "Gaveta osan liga ba imprimidora resibu"
+
 msgid "Charge VAT"
 msgstr "Kobra IVA"
 
@@ -707,6 +710,18 @@ msgstr "Gaveta osan loke ona."
 msgid "Payment saved, but the cash drawer did not open: %(reason)s"
 msgstr "Pagamentu rai ona, maibé gaveta osan la loke: %(reason)s"
 
+msgid "Cash payment"
+msgstr "Pagamentu osan-kontadu"
+
+msgid "No sale"
+msgstr "La fa'an"
+
+msgid "Printer test"
+msgstr "Teste imprimidora"
+
+msgid "Printing a test slip. If the cash drawer is set up in the printer driver, it opens too."
+msgstr "Imprime hela slip teste. Se gaveta osan konfigura ona iha driver imprimidora, nia mós sei loke."
+
 #, python-format
 msgid "Cash register opened with %(amount)s change."
 msgstr "Kaixa loke ona ho troku %(amount)s."
@@ -863,9 +878,8 @@ msgstr "Saida mak akontese hafoin rejista pagamentu."
 msgid "Receipt printer & cash drawer"
 msgstr "Imprimidora resibu no gaveta osan"
 
-msgid "Your network (ESC/POS) receipt printer. The cash drawer plugs into it."
-msgstr ""
-"Ita-nia imprimidora resibu iha rede (ESC/POS). Gaveta osan liga ba ne'e."
+msgid "Print receipts on the receipt printer of the cashier computer. A cash drawer plugged into that printer opens automatically on cash payments."
+msgstr "Imprime resibu iha imprimidora resibu komputadór kaixa nian. Gaveta osan ne'ebé liga ba imprimidora ne'e sei loke automatikamente bainhira selu ho osan-kontadu."
 
 #, python-format
 msgid "Limit reached: your plan allows %(n)s staff accounts."
@@ -1041,6 +1055,9 @@ msgstr "Imprimidora tenke iha rede lokál (ez. 192.168.x.x ka 10.x.x.x)."
 msgid "Cash drawer is not set up."
 msgstr "Gaveta osan seidauk konfigura."
 
+msgid "Printing a slip to open the cash drawer."
+msgstr "Imprime hela slip atu loke gaveta osan."
+
 #, python-format
 msgid "Printer at %(target)s did not respond. Is it switched on and connected?"
 msgstr "Imprimidora iha %(target)s la responde. Nia moris no liga ona?"
@@ -1057,9 +1074,6 @@ msgstr "Susesu"
 
 msgid "Failed"
 msgstr "La susesu"
-
-msgid "Cash payment"
-msgstr "Pagamentu osan-kontadu"
 
 msgid "No sale / change"
 msgstr "La fa'an / troku"
@@ -1244,6 +1258,9 @@ msgstr "Enderesu IP imprimidora resibu ne'ebé gaveta liga ba, ez. 192.168.1.50"
 
 msgid "Raw printing port; 9100 for almost all network receipt printers."
 msgstr "Porta imprime direta; 9100 ba kuaze imprimidora resibu rede hotu."
+
+msgid "The cash drawer is plugged into the receipt printer of this computer. A small slip prints to open it."
+msgstr "Gaveta osan liga ba imprimidora resibu komputadór ida ne'e nian. Slip ki'ik ida imprime atu loke nia."
 
 msgid "Ask \"Print receipt?\" after each payment"
 msgstr "Husu “Imprime resibu?” hafoin pagamentu ida-idak"
@@ -1446,6 +1463,57 @@ msgstr "Marka selu ona"
 
 msgid "No orders yet."
 msgstr "Seidauk iha pedidu."
+
+msgid "Set up the receipt printer and cash drawer (about 10 minutes)"
+msgstr "Konfigura imprimidora resibu no gaveta osan (besik minutu 10)"
+
+msgid "Install the printer on the cashier computer."
+msgstr "Instala imprimidora iha komputadór kaixa."
+
+msgid "Connect it by USB (or Wi-Fi/Bluetooth), install the driver from the printer's CD or the maker's website, and set it as the default printer. Choose 80 mm paper (or 58 mm for small printers)."
+msgstr "Liga ho USB (ka Wi-Fi/Bluetooth), instala driver husi CD imprimidora ka website fabrikante, no hili nia hanesan imprimidora prinsipál. Hili surat-tahan 80 mm (ka 58 mm ba imprimidora ki'ik)."
+
+msgid "Plug in the cash drawer."
+msgstr "Liga gaveta osan."
+
+msgid "The drawer cable (a phone-style plug) goes into the printer's port marked “DK” or “Drawer”."
+msgstr "Kabu gaveta (plug hanesan telefone) tama ba porta imprimidora ho marka “DK” ka “Drawer”."
+
+msgid "Tell the printer driver to open the drawer."
+msgstr "Konfigura driver imprimidora atu loke gaveta."
+
+msgid "On Windows: Settings → Printers → your receipt printer → Printing preferences (or Printer properties). Look for “Cash drawer” or “Peripherals” and choose “Open drawer #1 before printing”. The name varies by brand:"
+msgstr "Iha Windows: Settings → Printers → ita-nia imprimidora resibu → Printing preferences (ka Printer properties). Buka “Cash drawer” ka “Peripherals” no hili “Open drawer #1 before printing”. Naran la hanesan tuir marka:"
+
+msgid "Printing preferences → Document settings / Printer settings → Cash drawer → “Open drawer #1 before printing”."
+msgstr "Printing preferences → Document settings / Printer settings → Cash drawer → “Open drawer #1 before printing”."
+
+msgid "Printer properties → Device settings → “Cash drawer” → open before printing."
+msgstr "Printer properties → Device settings → “Cash drawer” → loke molok imprime."
+
+msgid "Printer properties → Device settings → Peripheral unit type “Cash drawer”, open at “Document top”."
+msgstr "Printer properties → Device settings → Peripheral unit type “Cash drawer”, loke iha “Document top”."
+
+msgid "Turn on the switch above and save."
+msgstr "Ativa botaun iha leten no rai."
+
+msgid "From now on, every cash payment and every “Open drawer (no sale)” prints a small slip, and the driver opens the drawer."
+msgstr "Hahú agora, pagamentu osan-kontadu ida-idak no “Loke gaveta osan (la fa'an)” ida-idak imprime slip ki'ik, no driver loke gaveta."
+
+msgid "Optional: print without the print window."
+msgstr "Opsionál: imprime la ho janela imprime."
+
+msgid "Make a Chrome shortcut for the dashboard: right-click the Chrome icon → Properties, and add --kiosk-printing at the end of “Target” (after the quotes). Open the dashboard with that shortcut, and receipts and slips print immediately on the default printer."
+msgstr "Kria shortcut Chrome ba painél: klik-loos ikone Chrome → Properties, no aumenta --kiosk-printing iha “Target” nia rohan (hafoin aspas). Loke painél ho shortcut ne'e, no resibu no slip sei imprime kedas iha imprimidora prinsipál."
+
+msgid "Test it"
+msgstr "Teste"
+
+msgid "use “Print test slip” below. The slip should print and the drawer should open. If the drawer stays closed, check step 3 (some drawers need “drawer #2”)."
+msgstr "uza “Imprime slip teste” iha okos. Slip tenke imprime no gaveta tenke loke. Se gaveta la loke, haree pasu 3 (gaveta balu presiza “drawer #2”)."
+
+msgid "Phones and tablets: print through the printer maker's app or print service. Whether the drawer opens depends on that app."
+msgstr "Telemovel no tablet: imprime liuhusi aplikasaun ka servisu imprime fabrikante nian. Gaveta loke ka lae depende ba aplikasaun ne'e."
 
 msgid "Analytics"
 msgstr "Análize"
@@ -2594,6 +2662,9 @@ msgstr ""
 "Liga gaveta ba porta RJ11 “DK” imprimidora nian. Atu hatene IP imprimidora, "
 "kaer FEED bainhira hamoris nia atu imprime pájina teste."
 
+msgid "Step-by-step setup guide"
+msgstr "Guia konfigurasaun pasu ba pasu"
+
 msgid "Save settings"
 msgstr "Rai konfigurasaun"
 
@@ -2603,11 +2674,17 @@ msgstr "Teste no rejistu gaveta osan"
 msgid "Test drawer"
 msgstr "Teste gaveta"
 
+msgid "Print test slip"
+msgstr "Imprime slip teste"
+
 msgid "By"
 msgstr "Husi"
 
 msgid "Result"
 msgstr "Rezultadu"
+
+msgid "Slip printed"
+msgstr "Slip imprime ona"
 
 msgid "No drawer openings yet."
 msgstr "Gaveta seidauk loke."
@@ -2778,14 +2855,28 @@ msgstr "Kria meza"
 msgid "Upgrade your plan"
 msgstr "Hasa'e ita-nia planu"
 
-msgid "See how sales compare with last period, your busiest hours and days, best-selling and unsold dishes, how customers pay and how fast the kitchen is."
-msgstr "Kompara fa'an ho períodu uluk no haree oras no loron okupadu liu, hahán ne'ebé fa'an barak no la fa'an, oinsá kliente selu no lalais kozinha."
+msgid ""
+"See how sales compare with last period, your busiest hours and days, best-"
+"selling and unsold dishes, how customers pay and how fast the kitchen is."
+msgstr ""
+"Kompara fa'an ho períodu uluk no haree oras no loron okupadu liu, hahán "
+"ne'ebé fa'an barak no la fa'an, oinsá kliente selu no lalais kozinha."
 
-msgid "Enter the change in the drawer before selling, record cash in and out, and reconcile at the end of the day: expected vs counted, over or short, with a printable report."
-msgstr "Hakerek troku molok fa'an, osan tama no sai, no konfere iha loron nia rohan: hein vs konta ona, liu ka falta, ho relatóriu atu imprime."
+msgid ""
+"Enter the change in the drawer before selling, record cash in and out, and "
+"reconcile at the end of the day: expected vs counted, over or short, with a "
+"printable report."
+msgstr ""
+"Hakerek troku molok fa'an, osan tama no sai, no konfere iha loron nia rohan: "
+"hein vs konta ona, liu ka falta, ho relatóriu atu imprime."
 
-msgid "Create professional price offers for catering, events and procurement bids from your menu, with amount in words, and print them as PDF in four languages."
-msgstr "Kria proposta folin profisionál ba catering, eventu no konkursu husi ita-nia menu, ho montante ho liafuan, no imprime hanesan PDF iha lian haat."
+msgid ""
+"Create professional price offers for catering, events and procurement bids "
+"from your menu, with amount in words, and print them as PDF in four "
+"languages."
+msgstr ""
+"Kria proposta folin profisionál ba catering, eventu no konkursu husi ita-nia "
+"menu, ho montante ho liafuan, no imprime hanesan PDF iha lian haat."
 
 msgid "Available in:"
 msgstr "Iha iha:"
@@ -2940,6 +3031,11 @@ msgstr "Olá! Ha'u hakarak hatene liu tan kona-ba %(name)s."
 
 msgid "Chat with us on WhatsApp"
 msgstr "Ko'alia ho ami iha WhatsApp"
+
+#~ msgid ""
+#~ "Your network (ESC/POS) receipt printer. The cash drawer plugs into it."
+#~ msgstr ""
+#~ "Ita-nia imprimidora resibu iha rede (ESC/POS). Gaveta osan liga ba ne'e."
 
 #~ msgid ""
 #~ "Ticked: menu prices already include VAT (totals stay the same, receipts "

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-08 16:02+0900\n"
+"POT-Creation-Date: 2026-10-08 20:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -537,6 +537,9 @@ msgstr "Lebar kertas"
 msgid "Receipt footer"
 msgstr "Catatan kaki struk"
 
+msgid "A cash drawer is plugged into the receipt printer"
+msgstr "Laci kas tersambung ke printer struk"
+
 msgid "Charge VAT"
 msgstr "Kenakan PPN"
 
@@ -702,6 +705,18 @@ msgstr "Laci kas terbuka."
 msgid "Payment saved, but the cash drawer did not open: %(reason)s"
 msgstr "Pembayaran tersimpan, tetapi laci kas tidak terbuka: %(reason)s"
 
+msgid "Cash payment"
+msgstr "Pembayaran tunai"
+
+msgid "No sale"
+msgstr "Tanpa penjualan"
+
+msgid "Printer test"
+msgstr "Uji printer"
+
+msgid "Printing a test slip. If the cash drawer is set up in the printer driver, it opens too."
+msgstr "Mencetak slip uji. Jika laci kas sudah diatur di driver printer, laci juga terbuka."
+
 #, python-format
 msgid "Cash register opened with %(amount)s change."
 msgstr "Kas dibuka dengan uang kembalian %(amount)s."
@@ -858,9 +873,8 @@ msgstr "Apa yang terjadi setelah pembayaran dicatat."
 msgid "Receipt printer & cash drawer"
 msgstr "Printer struk & laci kas"
 
-msgid "Your network (ESC/POS) receipt printer. The cash drawer plugs into it."
-msgstr ""
-"Printer struk jaringan (ESC/POS) Anda. Laci kas tersambung ke printer ini."
+msgid "Print receipts on the receipt printer of the cashier computer. A cash drawer plugged into that printer opens automatically on cash payments."
+msgstr "Cetak struk di printer struk komputer kasir. Laci kas yang tersambung ke printer itu terbuka otomatis saat pembayaran tunai."
 
 #, python-format
 msgid "Limit reached: your plan allows %(n)s staff accounts."
@@ -1037,6 +1051,9 @@ msgstr ""
 msgid "Cash drawer is not set up."
 msgstr "Laci kas belum diatur."
 
+msgid "Printing a slip to open the cash drawer."
+msgstr "Mencetak slip untuk membuka laci kas."
+
 #, python-format
 msgid "Printer at %(target)s did not respond. Is it switched on and connected?"
 msgstr ""
@@ -1054,9 +1071,6 @@ msgstr "Berhasil"
 
 msgid "Failed"
 msgstr "Gagal"
-
-msgid "Cash payment"
-msgstr "Pembayaran tunai"
 
 msgid "No sale / change"
 msgstr "Tanpa penjualan / kembalian"
@@ -1241,6 +1255,9 @@ msgstr "Alamat IP printer struk tempat laci tersambung, mis. 192.168.1.50"
 
 msgid "Raw printing port; 9100 for almost all network receipt printers."
 msgstr "Port cetak langsung; 9100 untuk hampir semua printer struk jaringan."
+
+msgid "The cash drawer is plugged into the receipt printer of this computer. A small slip prints to open it."
+msgstr "Laci kas tersambung ke printer struk komputer ini. Slip kecil dicetak untuk membukanya."
 
 msgid "Ask \"Print receipt?\" after each payment"
 msgstr "Tanya “Cetak struk?” setelah setiap pembayaran"
@@ -1443,6 +1460,57 @@ msgstr "Tandai lunas"
 
 msgid "No orders yet."
 msgstr "Belum ada pesanan."
+
+msgid "Set up the receipt printer and cash drawer (about 10 minutes)"
+msgstr "Siapkan printer struk dan laci kas (sekitar 10 menit)"
+
+msgid "Install the printer on the cashier computer."
+msgstr "Pasang printer di komputer kasir."
+
+msgid "Connect it by USB (or Wi-Fi/Bluetooth), install the driver from the printer's CD or the maker's website, and set it as the default printer. Choose 80 mm paper (or 58 mm for small printers)."
+msgstr "Sambungkan lewat USB (atau Wi-Fi/Bluetooth), pasang driver dari CD printer atau situs produsen, lalu jadikan printer bawaan. Pilih kertas 80 mm (atau 58 mm untuk printer kecil)."
+
+msgid "Plug in the cash drawer."
+msgstr "Sambungkan laci kas."
+
+msgid "The drawer cable (a phone-style plug) goes into the printer's port marked “DK” or “Drawer”."
+msgstr "Kabel laci (colokan seperti telepon) masuk ke port printer bertanda “DK” atau “Drawer”."
+
+msgid "Tell the printer driver to open the drawer."
+msgstr "Atur driver printer agar membuka laci."
+
+msgid "On Windows: Settings → Printers → your receipt printer → Printing preferences (or Printer properties). Look for “Cash drawer” or “Peripherals” and choose “Open drawer #1 before printing”. The name varies by brand:"
+msgstr "Di Windows: Settings → Printers → printer struk Anda → Printing preferences (atau Printer properties). Cari “Cash drawer” atau “Peripherals” lalu pilih “Open drawer #1 before printing”. Namanya berbeda tiap merek:"
+
+msgid "Printing preferences → Document settings / Printer settings → Cash drawer → “Open drawer #1 before printing”."
+msgstr "Printing preferences → Document settings / Printer settings → Cash drawer → “Open drawer #1 before printing”."
+
+msgid "Printer properties → Device settings → “Cash drawer” → open before printing."
+msgstr "Printer properties → Device settings → “Cash drawer” → buka sebelum mencetak."
+
+msgid "Printer properties → Device settings → Peripheral unit type “Cash drawer”, open at “Document top”."
+msgstr "Printer properties → Device settings → Peripheral unit type “Cash drawer”, buka di “Document top”."
+
+msgid "Turn on the switch above and save."
+msgstr "Aktifkan sakelar di atas lalu simpan."
+
+msgid "From now on, every cash payment and every “Open drawer (no sale)” prints a small slip, and the driver opens the drawer."
+msgstr "Mulai sekarang, setiap pembayaran tunai dan setiap “Buka laci kas (tanpa penjualan)” mencetak slip kecil, dan driver membuka laci."
+
+msgid "Optional: print without the print window."
+msgstr "Opsional: cetak tanpa jendela cetak."
+
+msgid "Make a Chrome shortcut for the dashboard: right-click the Chrome icon → Properties, and add --kiosk-printing at the end of “Target” (after the quotes). Open the dashboard with that shortcut, and receipts and slips print immediately on the default printer."
+msgstr "Buat pintasan Chrome untuk dasbor: klik kanan ikon Chrome → Properties, lalu tambahkan --kiosk-printing di akhir “Target” (setelah tanda kutip). Buka dasbor dengan pintasan itu, maka struk dan slip langsung tercetak di printer bawaan."
+
+msgid "Test it"
+msgstr "Uji"
+
+msgid "use “Print test slip” below. The slip should print and the drawer should open. If the drawer stays closed, check step 3 (some drawers need “drawer #2”)."
+msgstr "gunakan “Cetak slip uji” di bawah. Slip harus tercetak dan laci harus terbuka. Jika laci tetap tertutup, periksa langkah 3 (beberapa laci perlu “drawer #2”)."
+
+msgid "Phones and tablets: print through the printer maker's app or print service. Whether the drawer opens depends on that app."
+msgstr "Ponsel dan tablet: cetak melalui aplikasi atau layanan cetak produsen printer. Apakah laci terbuka tergantung aplikasi tersebut."
 
 msgid "Analytics"
 msgstr "Analitik"
@@ -2595,6 +2663,9 @@ msgstr ""
 "Colokkan laci ke port RJ11 “DK” pada printer. Untuk mengetahui IP printer, "
 "tahan FEED sambil menyalakannya untuk mencetak halaman uji."
 
+msgid "Step-by-step setup guide"
+msgstr "Panduan penyiapan langkah demi langkah"
+
 msgid "Save settings"
 msgstr "Simpan pengaturan"
 
@@ -2604,11 +2675,17 @@ msgstr "Uji &amp; log laci kas"
 msgid "Test drawer"
 msgstr "Uji laci"
 
+msgid "Print test slip"
+msgstr "Cetak slip uji"
+
 msgid "By"
 msgstr "Oleh"
 
 msgid "Result"
 msgstr "Hasil"
+
+msgid "Slip printed"
+msgstr "Slip dicetak"
 
 msgid "No drawer openings yet."
 msgstr "Laci belum pernah dibuka."
@@ -2782,14 +2859,29 @@ msgstr "Buat meja"
 msgid "Upgrade your plan"
 msgstr "Tingkatkan paket Anda"
 
-msgid "See how sales compare with last period, your busiest hours and days, best-selling and unsold dishes, how customers pay and how fast the kitchen is."
-msgstr "Bandingkan penjualan dengan periode sebelumnya, lihat jam dan hari tersibuk, hidangan terlaris dan tidak laku, cara pelanggan membayar, dan kecepatan dapur."
+msgid ""
+"See how sales compare with last period, your busiest hours and days, best-"
+"selling and unsold dishes, how customers pay and how fast the kitchen is."
+msgstr ""
+"Bandingkan penjualan dengan periode sebelumnya, lihat jam dan hari tersibuk, "
+"hidangan terlaris dan tidak laku, cara pelanggan membayar, dan kecepatan "
+"dapur."
 
-msgid "Enter the change in the drawer before selling, record cash in and out, and reconcile at the end of the day: expected vs counted, over or short, with a printable report."
-msgstr "Catat kembalian sebelum berjualan, kas masuk dan keluar, lalu cocokkan di akhir hari: seharusnya vs dihitung, lebih atau kurang, dengan laporan cetak."
+msgid ""
+"Enter the change in the drawer before selling, record cash in and out, and "
+"reconcile at the end of the day: expected vs counted, over or short, with a "
+"printable report."
+msgstr ""
+"Catat kembalian sebelum berjualan, kas masuk dan keluar, lalu cocokkan di "
+"akhir hari: seharusnya vs dihitung, lebih atau kurang, dengan laporan cetak."
 
-msgid "Create professional price offers for catering, events and procurement bids from your menu, with amount in words, and print them as PDF in four languages."
-msgstr "Buat penawaran harga profesional untuk katering, acara, dan tender dari menu Anda, dengan terbilang, dan cetak sebagai PDF dalam empat bahasa."
+msgid ""
+"Create professional price offers for catering, events and procurement bids "
+"from your menu, with amount in words, and print them as PDF in four "
+"languages."
+msgstr ""
+"Buat penawaran harga profesional untuk katering, acara, dan tender dari menu "
+"Anda, dengan terbilang, dan cetak sebagai PDF dalam empat bahasa."
 
 msgid "Available in:"
 msgstr "Tersedia di:"
@@ -2945,6 +3037,11 @@ msgstr "Halo! Saya ingin tahu lebih lanjut tentang %(name)s."
 
 msgid "Chat with us on WhatsApp"
 msgstr "Hubungi kami di WhatsApp"
+
+#~ msgid ""
+#~ "Your network (ESC/POS) receipt printer. The cash drawer plugs into it."
+#~ msgstr ""
+#~ "Printer struk jaringan (ESC/POS) Anda. Laci kas tersambung ke printer ini."
 
 #~ msgid ""
 #~ "Ticked: menu prices already include VAT (totals stay the same, receipts "

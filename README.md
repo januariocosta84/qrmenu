@@ -455,6 +455,14 @@ sudo -u qrmenu .venv/bin/python manage.py createsuperuser
 
 ## Cash drawer
 
+There are two ways to open a cash drawer. Restaurants choose in **Restaurant settings → Receipt printer & cash drawer**, which also has a step-by-step guide and a **Print test slip** button.
+
+### Through the cashier computer's printer (works on the cloud)
+
+The drawer plugs into the receipt printer installed on the cashier computer (USB, Wi-Fi or Bluetooth), and the printer driver's "open cash drawer before printing" option opens it whenever something prints. With **A cash drawer is plugged into the receipt printer** switched on, every cash payment and every **Open drawer (no sale)** prints a small 80/58 mm slip (reason, order numbers, time, staff), so the drawer opens and there's a paper trail. In "Always print" receipt mode the receipt itself opens the drawer, so no extra slip prints. Openings are logged like network openings. Tip: a Chrome shortcut with `--kiosk-printing` prints without the print dialog.
+
+### Network printer (self-hosted only)
+
 > **Self-hosted only.** It's off unless `CASH_DRAWER_NETWORK_ENABLED=true`. On a public cloud server, keep it off: the server can't reach printers inside restaurants anyway, and enabling it would let restaurant accounts make your server open connections to internal network addresses. When it's off, the drawer settings and buttons are hidden, and payments work as normal.
 
 The drawer plugs into a **network receipt printer** (Ethernet or Wi-Fi) using the printer's RJ11 "DK" port. The server sends the standard ESC/POS drawer-kick command (`ESC p 0 25 250`) to the printer's raw port. This works with Epson TM series, Xprinter, Bixolon, Rongta, and Star printers in ESC/POS mode.

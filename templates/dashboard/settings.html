@@ -27,7 +27,8 @@
       {% for f in sec.fields %}{% include "dashboard/_field.html" with field=f.field wide=f.wide %}{% endfor %}
     </div>
     {% if sec.key == "drawer" %}
-    <p class="help">{% translate "Plug the drawer into the printer's RJ11 “DK” port. To find the printer's IP, hold FEED while switching it on to print a self-test page." %}</p>
+    {% if drawer_available %}<p class="help">{% translate "Plug the drawer into the printer's RJ11 “DK” port. To find the printer's IP, hold FEED while switching it on to print a self-test page." %}</p>{% endif %}
+    <details class="guide"{% if not r.cash_drawer_via_printer %} open{% endif %}><summary>{% translate "Step-by-step setup guide" %}</summary>{% include "dashboard/_printer_guide.html" %}</details>
     {% endif %}
   </section>
   {% endfor %}
@@ -36,15 +37,14 @@
   </div>
 </form>
 
-{% if drawer_available %}
 <section class="card narrow" id="cash-drawer">
   <div class="card-head">
     <h2 class="fieldset-title">{% icon "drawer" %} {% translate "Cash drawer test &amp; log" %}</h2>
-    {% if r.cash_drawer_enabled and r.printer_host %}
     <form method="post" action="{% url 'dashboard:drawer_test' r.slug %}">
-      {% csrf_token %}<button class="btn btn-sm" type="submit">{% translate "Test drawer" %} ({{ r.printer_host }}:{{ r.printer_port }})</button>
+      {% csrf_token %}
+      {% if drawer_mode == "network" %}<button class="btn btn-sm" type="submit">{% translate "Test drawer" %} ({{ r.printer_host }}:{{ r.printer_port }})</button>
+      {% else %}<button class="btn btn-sm" type="submit">{% icon "printer" %} {% translate "Print test slip" %}</button>{% endif %}
     </form>
-    {% endif %}
   </div>
   {% if drawer_log %}
   <div class="table-wrap">
@@ -57,7 +57,7 @@
         <td data-label="{% translate "Reason" %}">{{ e.get_reason_display }}</td>
         <td data-label="{% translate "By" %}">{{ e.user.username|default:"—" }}</td>
         <td data-label="{% translate "Order" %}">{% if e.order %}<a href="{% url 'dashboard:order_detail' r.slug e.order_id %}">#{{ e.order.number }}</a>{% else %}—{% endif %}</td>
-        <td data-label="{% translate "Result" %}">{% if e.success %}<span class="pill pill-ready">{% translate "Opened" %}</span>{% else %}<span class="pill pill-cancelled" title="{{ e.error }}">{% translate "Failed" %}</span>{% endif %}</td>
+        <td data-label="{% translate "Result" %}">{% if e.success and e.error == "via printer slip" %}<span class="pill pill-ready">{% translate "Slip printed" %}</span>{% elif e.success %}<span class="pill pill-ready">{% translate "Opened" %}</span>{% else %}<span class="pill pill-cancelled" title="{{ e.error }}">{% translate "Failed" %}</span>{% endif %}</td>
       </tr>
     {% endfor %}
     </tbody>
@@ -67,6 +67,5 @@
   <p class="muted small">{% translate "No drawer openings yet." %}</p>
   {% endif %}
 </section>
-{% endif %}
 {% endwith %}
 {% endblock %}

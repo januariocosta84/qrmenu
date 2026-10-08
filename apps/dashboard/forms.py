@@ -91,7 +91,7 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
             "currency", "currency_symbol", "service_charge_percent", "default_language",
             "default_prep_minutes", "is_accepting_orders",
             "cash_drawer_enabled", "printer_host", "printer_port", "drawer_pin",
-            "receipt_prompt", "receipt_printer", "receipt_width", "receipt_footer",
+            "receipt_prompt", "receipt_printer", "receipt_width", "receipt_footer", "cash_drawer_via_printer",
             "vat_enabled", "vat_percent", "vat_inclusive", "vat_label", "vat_number",
         ]
         widgets = {
@@ -110,6 +110,7 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
             "printer_host": _("Printer IP address"), "printer_port": _("Printer port"), "drawer_pin": _("Drawer pin"),
             "receipt_prompt": _("After a payment"), "receipt_printer": _("Receipt printer"),
             "receipt_width": _("Paper width"), "receipt_footer": _("Receipt footer"),
+            "cash_drawer_via_printer": _("A cash drawer is plugged into the receipt printer"),
             "vat_enabled": _("Charge VAT"), "vat_percent": _("VAT rate (%)"),
             "vat_label": _("Tax name"),
             "vat_number": _("Tax ID"),

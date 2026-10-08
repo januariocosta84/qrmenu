@@ -132,6 +132,9 @@
         tenderedCents: Math.round(parseFloat(res.tendered) * 100),
         dueCents, orderIds: rc.orders || [], mode: rc.mode, printed: rc.printed,
       });
+      if (res.drawer && res.drawer.print_slip && !(rc.mode === "always" && !D.receiptNetwork)) {
+        D.printDrawerSlip("payment", [order.id]);
+      }
       if (res.drawer && res.drawer.opened) D.toast(_("Cash drawer opened · #%(number)s paid", { number: order.number }), null, "new");
       else if (res.drawer && res.drawer.attempted) D.toast(_("Paid, but the drawer did not open: %(reason)s", { reason: res.drawer.message }), null, "error");
     } catch (err) {

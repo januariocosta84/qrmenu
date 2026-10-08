@@ -767,3 +767,12 @@ input[type=checkbox], input[type=radio] { width: 18px; height: 18px; accent-colo
 .upgrade-plans { display: inline-grid; gap: 4px; margin: 0 0 18px; text-align: left; }
 .sb-nav a.active .pro-badge { color: #fff; border-color: rgba(255, 255, 255, .6); }
 .qr-site { margin: 6px 0 0; text-align: center; font-weight: 700; font-size: .9rem; color: var(--ink); }
+
+/* Printer & cash drawer setup guide */
+details.guide { margin-top: 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background: var(--surface-2); }
+details.guide > summary { cursor: pointer; font-weight: 700; color: var(--brand-700); }
+.printer-guide { margin-top: 10px; font-size: .92rem; color: var(--ink-2); }
+.printer-guide .label-strong { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--ink); margin: 0 0 6px; }
+.guide-steps { margin: 0; padding-left: 20px; display: grid; gap: 10px; }
+.guide-steps strong { color: var(--ink); }
+.guide-brands { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 4px; }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-08 16:02+0900\n"
+"POT-Creation-Date: 2026-10-08 20:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -543,6 +543,9 @@ msgstr "Largura do papel"
 msgid "Receipt footer"
 msgstr "Rodapé do recibo"
 
+msgid "A cash drawer is plugged into the receipt printer"
+msgstr "Há uma gaveta de dinheiro ligada à impressora de recibos"
+
 msgid "Charge VAT"
 msgstr "Cobrar IVA"
 
@@ -710,6 +713,18 @@ msgstr "Gaveta de dinheiro aberta."
 msgid "Payment saved, but the cash drawer did not open: %(reason)s"
 msgstr "Pagamento guardado, mas a gaveta não abriu: %(reason)s"
 
+msgid "Cash payment"
+msgstr "Pagamento em dinheiro"
+
+msgid "No sale"
+msgstr "Sem venda"
+
+msgid "Printer test"
+msgstr "Teste da impressora"
+
+msgid "Printing a test slip. If the cash drawer is set up in the printer driver, it opens too."
+msgstr "A imprimir um talão de teste. Se a gaveta estiver configurada no controlador da impressora, também abre."
+
 #, python-format
 msgid "Cash register opened with %(amount)s change."
 msgstr "Caixa aberta com %(amount)s de troco."
@@ -868,10 +883,8 @@ msgstr "O que acontece depois de registar um pagamento."
 msgid "Receipt printer & cash drawer"
 msgstr "Impressora de recibos e gaveta de dinheiro"
 
-msgid "Your network (ESC/POS) receipt printer. The cash drawer plugs into it."
-msgstr ""
-"A sua impressora de recibos de rede (ESC/POS). A gaveta de dinheiro liga-se "
-"a ela."
+msgid "Print receipts on the receipt printer of the cashier computer. A cash drawer plugged into that printer opens automatically on cash payments."
+msgstr "Imprima recibos na impressora de recibos do computador da caixa. Uma gaveta ligada a essa impressora abre automaticamente nos pagamentos em dinheiro."
 
 #, python-format
 msgid "Limit reached: your plan allows %(n)s staff accounts."
@@ -1050,6 +1063,9 @@ msgstr ""
 msgid "Cash drawer is not set up."
 msgstr "A gaveta de dinheiro não está configurada."
 
+msgid "Printing a slip to open the cash drawer."
+msgstr "A imprimir um talão para abrir a gaveta."
+
 #, python-format
 msgid "Printer at %(target)s did not respond. Is it switched on and connected?"
 msgstr "A impressora em %(target)s não respondeu. Está ligada e conectada?"
@@ -1066,9 +1082,6 @@ msgstr "Concluído"
 
 msgid "Failed"
 msgstr "Falhou"
-
-msgid "Cash payment"
-msgstr "Pagamento em dinheiro"
 
 msgid "No sale / change"
 msgstr "Sem venda / troco"
@@ -1257,6 +1270,9 @@ msgid "Raw printing port; 9100 for almost all network receipt printers."
 msgstr ""
 "Porta de impressão direta; 9100 para quase todas as impressoras de recibos "
 "de rede."
+
+msgid "The cash drawer is plugged into the receipt printer of this computer. A small slip prints to open it."
+msgstr "A gaveta está ligada à impressora de recibos deste computador. Imprime-se um pequeno talão para a abrir."
 
 msgid "Ask \"Print receipt?\" after each payment"
 msgstr "Perguntar “Imprimir recibo?” após cada pagamento"
@@ -1458,6 +1474,57 @@ msgstr "Marcar como pago"
 
 msgid "No orders yet."
 msgstr "Ainda não há pedidos."
+
+msgid "Set up the receipt printer and cash drawer (about 10 minutes)"
+msgstr "Configurar a impressora de recibos e a gaveta (cerca de 10 minutos)"
+
+msgid "Install the printer on the cashier computer."
+msgstr "Instale a impressora no computador da caixa."
+
+msgid "Connect it by USB (or Wi-Fi/Bluetooth), install the driver from the printer's CD or the maker's website, and set it as the default printer. Choose 80 mm paper (or 58 mm for small printers)."
+msgstr "Ligue-a por USB (ou Wi-Fi/Bluetooth), instale o controlador a partir do CD da impressora ou do site do fabricante e defina-a como impressora predefinida. Escolha papel de 80 mm (ou 58 mm nas impressoras pequenas)."
+
+msgid "Plug in the cash drawer."
+msgstr "Ligue a gaveta de dinheiro."
+
+msgid "The drawer cable (a phone-style plug) goes into the printer's port marked “DK” or “Drawer”."
+msgstr "O cabo da gaveta (ficha tipo telefone) liga-se à porta da impressora marcada “DK” ou “Drawer”."
+
+msgid "Tell the printer driver to open the drawer."
+msgstr "Configure o controlador da impressora para abrir a gaveta."
+
+msgid "On Windows: Settings → Printers → your receipt printer → Printing preferences (or Printer properties). Look for “Cash drawer” or “Peripherals” and choose “Open drawer #1 before printing”. The name varies by brand:"
+msgstr "No Windows: Definições → Impressoras → a sua impressora de recibos → Preferências de impressão (ou Propriedades da impressora). Procure “Cash drawer” ou “Peripherals” e escolha “Open drawer #1 before printing”. O nome varia conforme a marca:"
+
+msgid "Printing preferences → Document settings / Printer settings → Cash drawer → “Open drawer #1 before printing”."
+msgstr "Printing preferences → Document settings / Printer settings → Cash drawer → “Open drawer #1 before printing”."
+
+msgid "Printer properties → Device settings → “Cash drawer” → open before printing."
+msgstr "Printer properties → Device settings → “Cash drawer” → abrir antes de imprimir."
+
+msgid "Printer properties → Device settings → Peripheral unit type “Cash drawer”, open at “Document top”."
+msgstr "Printer properties → Device settings → Peripheral unit type “Cash drawer”, abrir em “Document top”."
+
+msgid "Turn on the switch above and save."
+msgstr "Ative o interruptor acima e guarde."
+
+msgid "From now on, every cash payment and every “Open drawer (no sale)” prints a small slip, and the driver opens the drawer."
+msgstr "A partir daí, cada pagamento em dinheiro e cada “Abrir gaveta (sem venda)” imprime um pequeno talão e o controlador abre a gaveta."
+
+msgid "Optional: print without the print window."
+msgstr "Opcional: imprimir sem a janela de impressão."
+
+msgid "Make a Chrome shortcut for the dashboard: right-click the Chrome icon → Properties, and add --kiosk-printing at the end of “Target” (after the quotes). Open the dashboard with that shortcut, and receipts and slips print immediately on the default printer."
+msgstr "Crie um atalho do Chrome para o painel: clique com o botão direito no ícone do Chrome → Propriedades, e acrescente --kiosk-printing no fim de “Destino” (depois das aspas). Abra o painel com esse atalho e os recibos e talões imprimem logo na impressora predefinida."
+
+msgid "Test it"
+msgstr "Teste"
+
+msgid "use “Print test slip” below. The slip should print and the drawer should open. If the drawer stays closed, check step 3 (some drawers need “drawer #2”)."
+msgstr "use “Imprimir talão de teste” abaixo. O talão deve imprimir e a gaveta deve abrir. Se a gaveta não abrir, verifique o passo 3 (algumas gavetas precisam de “drawer #2”)."
+
+msgid "Phones and tablets: print through the printer maker's app or print service. Whether the drawer opens depends on that app."
+msgstr "Telemóveis e tablets: imprima através da app ou do serviço de impressão do fabricante. Se a gaveta abre depende dessa app."
 
 msgid "Analytics"
 msgstr "Análise"
@@ -2613,6 +2680,9 @@ msgstr ""
 "impressora, mantenha FEED premido ao ligá-la para imprimir uma página de "
 "teste."
 
+msgid "Step-by-step setup guide"
+msgstr "Guia de configuração passo a passo"
+
 msgid "Save settings"
 msgstr "Guardar definições"
 
@@ -2622,11 +2692,17 @@ msgstr "Teste e registo da gaveta"
 msgid "Test drawer"
 msgstr "Testar gaveta"
 
+msgid "Print test slip"
+msgstr "Imprimir talão de teste"
+
 msgid "By"
 msgstr "Por"
 
 msgid "Result"
 msgstr "Resultado"
+
+msgid "Slip printed"
+msgstr "Talão impresso"
 
 msgid "No drawer openings yet."
 msgstr "A gaveta ainda não foi aberta."
@@ -2799,14 +2875,31 @@ msgstr "Criar mesas"
 msgid "Upgrade your plan"
 msgstr "Mude de plano"
 
-msgid "See how sales compare with last period, your busiest hours and days, best-selling and unsold dishes, how customers pay and how fast the kitchen is."
-msgstr "Compare as vendas com o período anterior e veja as horas e dias de mais movimento, os pratos mais e menos vendidos, como os clientes pagam e a rapidez da cozinha."
+msgid ""
+"See how sales compare with last period, your busiest hours and days, best-"
+"selling and unsold dishes, how customers pay and how fast the kitchen is."
+msgstr ""
+"Compare as vendas com o período anterior e veja as horas e dias de mais "
+"movimento, os pratos mais e menos vendidos, como os clientes pagam e a "
+"rapidez da cozinha."
 
-msgid "Enter the change in the drawer before selling, record cash in and out, and reconcile at the end of the day: expected vs counted, over or short, with a printable report."
-msgstr "Registe o troco antes de vender, as entradas e saídas de dinheiro, e confira no fim do dia: esperado vs contado, a mais ou em falta, com relatório para imprimir."
+msgid ""
+"Enter the change in the drawer before selling, record cash in and out, and "
+"reconcile at the end of the day: expected vs counted, over or short, with a "
+"printable report."
+msgstr ""
+"Registe o troco antes de vender, as entradas e saídas de dinheiro, e confira "
+"no fim do dia: esperado vs contado, a mais ou em falta, com relatório para "
+"imprimir."
 
-msgid "Create professional price offers for catering, events and procurement bids from your menu, with amount in words, and print them as PDF in four languages."
-msgstr "Crie propostas de preço profissionais para catering, eventos e concursos a partir do seu menu, com valor por extenso, e imprima em PDF em quatro línguas."
+msgid ""
+"Create professional price offers for catering, events and procurement bids "
+"from your menu, with amount in words, and print them as PDF in four "
+"languages."
+msgstr ""
+"Crie propostas de preço profissionais para catering, eventos e concursos a "
+"partir do seu menu, com valor por extenso, e imprima em PDF em quatro "
+"línguas."
 
 msgid "Available in:"
 msgstr "Disponível em:"
@@ -2962,6 +3055,12 @@ msgstr "Olá! Gostaria de saber mais sobre o %(name)s."
 
 msgid "Chat with us on WhatsApp"
 msgstr "Fale connosco no WhatsApp"
+
+#~ msgid ""
+#~ "Your network (ESC/POS) receipt printer. The cash drawer plugs into it."
+#~ msgstr ""
+#~ "A sua impressora de recibos de rede (ESC/POS). A gaveta de dinheiro liga-"
+#~ "se a ela."
 
 #~ msgid ""
 #~ "Ticked: menu prices already include VAT (totals stay the same, receipts "

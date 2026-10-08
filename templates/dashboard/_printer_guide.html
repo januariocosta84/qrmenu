@@ -1,0 +1,35 @@
+{% load i18n ui_icons %}
+<div class="printer-guide">
+  <p class="label-strong">{% icon "printer" %} {% translate "Set up the receipt printer and cash drawer (about 10 minutes)" %}</p>
+  <ol class="guide-steps">
+    <li>
+      <strong>{% translate "Install the printer on the cashier computer." %}</strong>
+      {% translate "Connect it by USB (or Wi-Fi/Bluetooth), install the driver from the printer's CD or the maker's website, and set it as the default printer. Choose 80 mm paper (or 58 mm for small printers)." %}
+    </li>
+    <li>
+      <strong>{% translate "Plug in the cash drawer." %}</strong>
+      {% translate "The drawer cable (a phone-style plug) goes into the printer's port marked “DK” or “Drawer”." %}
+    </li>
+    <li>
+      <strong>{% translate "Tell the printer driver to open the drawer." %}</strong>
+      {% translate "On Windows: Settings → Printers → your receipt printer → Printing preferences (or Printer properties). Look for “Cash drawer” or “Peripherals” and choose “Open drawer #1 before printing”. The name varies by brand:" %}
+      <ul class="guide-brands">
+        <li><strong>Epson TM</strong> · {% translate "Printing preferences → Document settings / Printer settings → Cash drawer → “Open drawer #1 before printing”." %}</li>
+        <li><strong>Xprinter, POS-80, Rongta</strong> · {% translate "Printer properties → Device settings → “Cash drawer” → open before printing." %}</li>
+        <li><strong>Star TSP</strong> · {% translate "Printer properties → Device settings → Peripheral unit type “Cash drawer”, open at “Document top”." %}</li>
+      </ul>
+    </li>
+    <li>
+      <strong>{% translate "Turn on the switch above and save." %}</strong>
+      {% translate "From now on, every cash payment and every “Open drawer (no sale)” prints a small slip, and the driver opens the drawer." %}
+    </li>
+    <li>
+      <strong>{% translate "Optional: print without the print window." %}</strong>
+      {% translate "Make a Chrome shortcut for the dashboard: right-click the Chrome icon → Properties, and add --kiosk-printing at the end of “Target” (after the quotes). Open the dashboard with that shortcut, and receipts and slips print immediately on the default printer." %}
+    </li>
+    <li>
+      <strong>{% translate "Test it" %}</strong> · {% translate "use “Print test slip” below. The slip should print and the drawer should open. If the drawer stays closed, check step 3 (some drawers need “drawer #2”)." %}
+    </li>
+  </ol>
+  <p class="help">{% translate "Phones and tablets: print through the printer maker's app or print service. Whether the drawer opens depends on that app." %}</p>
+</div>

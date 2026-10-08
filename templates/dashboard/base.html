@@ -58,7 +58,7 @@
     <div class="menu-pop">{% include "dashboard/_language_menu.html" with in_topbar=True %}</div>
   </details>
   <span class="live-pill" id="conn" title="{% translate "Live connection" %}">{% icon "dot" %}<span class="live-text">{% translate "Connecting" %}</span></span>
-  {% if r.cash_drawer_enabled and r.printer_host and can.payments and drawer_available %}
+  {% if drawer_mode and can.payments %}
   <form method="post" action="{% url 'dashboard:drawer_open' r.slug %}" class="inline-form"
         onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% translate "Open the cash drawer (no sale)? This is logged." %}">
     {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
@@ -99,7 +99,7 @@
 </details>
 {% endif %}
 <main class="content{% if not request.restaurant %} solo{% endif %}" id="content">
-  {% if messages %}<div class="messages">{% for m in messages %}{% if "receipt" in m.extra_tags %}<span hidden data-receipt-orders="{{ m }}"></span>{% elif "change-data" in m.extra_tags %}<span hidden data-change-amounts="{{ m }}"></span>{% else %}<div class="msg msg-{{ m.level_tag }} {{ m.extra_tags }}" role="status">{% if m.level_tag == "success" %}{% icon "check-circle" %}{% elif m.level_tag == "error" %}{% icon "alert" %}{% else %}{% icon "info" %}{% endif %}<span>{{ m }}</span></div>{% endif %}{% endfor %}</div>{% endif %}
+  {% if messages %}<div class="messages">{% for m in messages %}{% if "receipt" in m.extra_tags %}<span hidden data-receipt-orders="{{ m }}"></span>{% elif "change-data" in m.extra_tags %}<span hidden data-change-amounts="{{ m }}"></span>{% elif "drawer-slip" in m.extra_tags %}<span hidden data-drawer-slip="{{ m }}"></span>{% else %}<div class="msg msg-{{ m.level_tag }} {{ m.extra_tags }}" role="status">{% if m.level_tag == "success" %}{% icon "check-circle" %}{% elif m.level_tag == "error" %}{% icon "alert" %}{% else %}{% icon "info" %}{% endif %}<span>{{ m }}</span></div>{% endif %}{% endfor %}</div>{% endif %}
   {% if request.go_live and request.go_live != "live" %}
   <div class="banner banner-{{ request.go_live }}">
     {% if request.go_live == "verify_email" %}
@@ -139,6 +139,7 @@
     receiptNetwork: {{ receipt_network|yesno:"true,false" }},
     receiptUrl: "{% url 'dashboard:receipt' request.restaurant.slug %}",
     receiptPrintApi: "{% url 'dashboard:api_receipt_print' request.restaurant.slug %}",
+    drawerSlipUrl: "{% url 'dashboard:drawer_slip' request.restaurant.slug %}",
     wsPath: "/ws/kitchen/{{ request.restaurant.slug|escapejs }}/",
     notificationsUrl: "{% url 'dashboard:api_notifications' request.restaurant.slug %}",
     ordersBase: "{% url 'dashboard:orders' request.restaurant.slug %}",

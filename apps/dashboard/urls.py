@@ -42,6 +42,7 @@ urlpatterns = [
     path(f"dashboard/{R}cash-register/", views.cash_register, name="cash_register"),
     path(f"dashboard/{R}cash-register/<int:pk>/report/", views.cash_report, name="cash_report"),
     path(f"dashboard/{R}cash-drawer/open/", views.drawer_open, name="drawer_open"),
+    path(f"dashboard/{R}cash-drawer/slip/", views.drawer_slip, name="drawer_slip"),
     path(f"dashboard/{R}cash-drawer/test/", views.drawer_test, name="drawer_test"),
     path(f"dashboard/{R}staff/", views.staff, name="staff"),
     path(f"dashboard/{R}staff/<int:pk>/", views.staff_edit, name="staff_edit"),

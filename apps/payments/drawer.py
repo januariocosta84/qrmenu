@@ -57,16 +57,35 @@ class DrawerResult:
     opened: bool
     message: str
     attempted: bool = True
+    print_slip: bool = False  # printer-driver mode: the browser prints a slip and the driver opens the drawer
 
     def as_dict(self):
-        return {"opened": self.opened, "attempted": self.attempted, "message": self.message}
+        return {"opened": self.opened, "attempted": self.attempted, "message": self.message, "print_slip": self.print_slip}
+
+
+def drawer_mode(restaurant) -> str:
+    """
+    "network": the server sends the drawer-kick to a network printer (self-hosted installs only).
+    "printer": the browser prints a slip; the printer driver opens the drawer (works on the cloud).
+    "": no cash drawer.
+    """
+    if settings.CASH_DRAWER_NETWORK_ENABLED and restaurant.cash_drawer_enabled and restaurant.printer_host:
+        return "network"
+    if restaurant.cash_drawer_via_printer:
+        return "printer"
+    return ""
 
 
 NOT_CONFIGURED = DrawerResult(False, gettext_lazy("Cash drawer is not set up."), attempted=False)
 
 
 def open_cash_drawer(restaurant, *, user=None, reason: str = CashDrawerOpening.PAYMENT, order=None) -> DrawerResult:
-    if not settings.CASH_DRAWER_NETWORK_ENABLED or not restaurant.cash_drawer_enabled or not restaurant.printer_host:
+    mode = drawer_mode(restaurant)
+    if mode == "printer":
+        CashDrawerOpening.objects.create(restaurant=restaurant, order=order, user=user, reason=reason, success=True,
+                                         error="via printer slip")
+        return DrawerResult(False, _("Printing a slip to open the cash drawer."), attempted=False, print_slip=True)
+    if mode != "network":
         return NOT_CONFIGURED
     target = f"{restaurant.printer_host}:{restaurant.printer_port}"
     error = ""

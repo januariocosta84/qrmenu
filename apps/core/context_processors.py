@@ -15,7 +15,17 @@ def ui(request):
         "static_v": settings.STATIC_VERSION,
         "drawer_available": settings.CASH_DRAWER_NETWORK_ENABLED,
         "receipt_network": _receipt_network(request),
+        "drawer_mode": _drawer_mode(request),
     }
+
+
+def _drawer_mode(request) -> str:
+    restaurant = getattr(request, "restaurant", None)
+    if restaurant is None:
+        return ""
+    from apps.payments.drawer import drawer_mode
+
+    return drawer_mode(restaurant)
 
 
 def _receipt_network(request) -> bool:

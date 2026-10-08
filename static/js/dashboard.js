@@ -196,16 +196,25 @@
       }
       return;
     }
-    const url = `${D.receiptUrl}?orders=${encodeURIComponent(ids)}&autoprint=1`;
+    D.printPage(`${D.receiptUrl}?orders=${encodeURIComponent(ids)}&autoprint=1`, { fromClick: true });
+  };
+
+  /**
+   * Print a dashboard page (receipt, drawer slip) on this device's printer.
+   * Desktop: a hidden frame + the print dialog (silent with Chrome --kiosk-printing).
+   * Phones/tablets print frames unreliably, so after a tap we open a window that prints itself;
+   * without a tap (e.g. right after a page load) a new window would be blocked, so we use the frame.
+   */
+  D.printPage = function (url, { fromClick = false } = {}) {
     const touch = window.matchMedia("(pointer: coarse)").matches;
-    if (touch) {  // mobile browsers print iframes unreliably: use a window that prints itself
+    if (touch && fromClick) {
       if (!window.open(url, "_blank")) location.href = url;
       return;
     }
-    const old = document.getElementById("receipt-frame");
+    const old = document.getElementById("print-frame");
     if (old) old.remove();
     const frame = document.createElement("iframe");
-    frame.id = "receipt-frame";
+    frame.id = "print-frame";
     frame.title = _("Receipt");
     frame.style.cssText = "position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden";
     frame.onload = () => {
@@ -214,11 +223,17 @@
         frame.contentWindow.print();
       } catch (err) {  // frame blocked or not printable: print from its own window instead
         frame.remove();
-        if (!window.open(url, "_blank")) location.href = url;
+        if (fromClick && !window.open(url, "_blank")) location.href = url;
       }
     };
     frame.src = url;
     document.body.appendChild(frame);
+  };
+
+  /** Printer-driver cash drawer: print a small slip; the printer driver opens the drawer. */
+  D.printDrawerSlip = function (reason, orderIds = [], opts = {}) {
+    const q = new URLSearchParams({ reason: reason || "payment", orders: (orderIds || []).join(","), autoprint: "1" });
+    D.printPage(`${D.drawerSlipUrl}?${q}`, opts);
   };
 
   /**
@@ -280,6 +295,16 @@
   /** Back-compat: change pop-up without a receipt question. */
   D.showChange = (changeCents, tenderedCents, dueCents) =>
     D.paymentDone({ changeCents, tenderedCents, dueCents, mode: "never" });
+
+  // After a page reload: print a pending drawer slip (printer-driver cash drawer).
+  {
+    const slip = document.querySelector("[data-drawer-slip]");
+    const receiptPending = document.querySelector("[data-receipt-orders]") && D.receiptMode === "always" && !D.receiptNetwork;
+    if (slip && !(slip.dataset.drawerSlip.startsWith("payment:") && receiptPending)) {
+      const [reason, ids] = slip.dataset.drawerSlip.split(":");
+      D.printDrawerSlip(reason, (ids || "").split(",").filter(Boolean));
+    }
+  }
 
   // After a page reload: turn the server's change amounts ("change,received,total")
   // and receipt marker into one pop-up ("Give change $6.00 · Print receipt? No / Yes").

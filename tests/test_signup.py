@@ -190,7 +190,7 @@ class PlatformSafetyTests(TestCase):
         self.assertFalse(open_cash_drawer(self.r).attempted)
         page = self.client.get(reverse("dashboard:settings", args=["alpha"]))
         self.assertNotContains(page, "printer_host")
-        self.assertNotContains(page, "Open drawer")
+        self.assertNotContains(page, reverse("dashboard:drawer_open", args=["alpha"]))  # no "Open drawer" button
 
     def test_not_live_restaurant_staff_tools_work_but_no_orders(self):
         self.r.is_active = False

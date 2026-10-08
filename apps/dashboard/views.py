@@ -256,7 +256,7 @@ def order_detail(request, pk):
                             "number": order.number, "status": order.get_payment_status_display()},
                     )
                     if d["method"] == PaymentMethod.CASH:
-                        _drawer_message(request, open_cash_drawer(r, user=request.user, order=order))
+                        _drawer_message(request, open_cash_drawer(r, user=request.user, order=order), [order])
                     if order.payment_status == PaymentStatus.PAID:
                         _receipt_after_payment(request, [order])
                 except OrderError as exc:
@@ -351,11 +351,38 @@ def receipt_print(request):
     return _safe_next(request, reverse("dashboard:orders", args=[r.slug]))
 
 
-def _drawer_message(request, result):
-    if result.opened:
+def _slip_marker(request, reason: str, orders=()):
+    """Tell the next page to print a drawer slip (printer-driver mode): "reason:12,13"."""
+    ids = ",".join(str(o.pk) for o in orders)
+    messages.add_message(request, messages.INFO, f"{reason}:{ids}", extra_tags="drawer-slip")
+
+
+def _drawer_message(request, result, orders=()):
+    if result.print_slip:
+        _slip_marker(request, "payment", orders)
+    elif result.opened:
         messages.success(request, "🗄 " + _("Cash drawer opened."))
     elif result.attempted:
         messages.warning(request, _("Payment saved, but the cash drawer did not open: %(reason)s") % {"reason": result.message})
+
+
+@xframe_options_sameorigin  # printed from a hidden iframe like receipts
+@staff_view("payments")
+def drawer_slip(request):
+    """
+    Tiny slip for printer-driver drawers: printing it makes the printer driver open the drawer.
+    Also a paper trail: why the drawer opened, when and by whom.
+    """
+    r = request.restaurant
+    reason = request.GET.get("reason", "payment")
+    labels = {"payment": _("Cash payment"), "no_sale": _("No sale"), "test": _("Printer test")}
+    orders = receipt_orders(r, parse_order_ids(request.GET.get("orders", "")))
+    return render(request, "dashboard/drawer_slip.html", {
+        "restaurant": r, "reason": labels.get(reason, labels["payment"]), "is_test": reason == "test",
+        "orders": orders, "total": sum((o.total for o in orders), Decimal("0")),
+        "printed_at": timezone.localtime(), "staff": request.user.get_full_name() or request.user.username,
+        "autoprint": request.GET.get("autoprint") == "1",
+    })
 
 
 @require_POST
@@ -363,7 +390,10 @@ def _drawer_message(request, result):
 def drawer_open(request):
     """'No sale' opening, e.g. to give change. Logged with the staff member's name."""
     result = open_cash_drawer(request.restaurant, user=request.user, reason=CashDrawerOpening.NO_SALE)
-    (messages.success if result.opened else messages.error)(request, result.message)
+    if result.print_slip:
+        _slip_marker(request, "no_sale")
+    else:
+        (messages.success if result.opened else messages.error)(request, result.message)
     return _safe_next(request, reverse("dashboard:overview", args=[request.restaurant.slug]))
 
 
@@ -371,7 +401,12 @@ def drawer_open(request):
 @staff_view("manage_restaurant")
 def drawer_test(request):
     result = open_cash_drawer(request.restaurant, user=request.user, reason=CashDrawerOpening.TEST)
-    (messages.success if result.opened else messages.error)(request, result.message)
+    if result.print_slip or not result.attempted:
+        # Printer-driver mode, or no drawer yet: a test slip checks the printer (and opens a configured drawer).
+        _slip_marker(request, "test")
+        messages.info(request, _("Printing a test slip. If the cash drawer is set up in the printer driver, it opens too."))
+    else:
+        (messages.success if result.opened else messages.error)(request, result.message)
     return _go(request, "settings")
 
 
@@ -445,7 +480,7 @@ def order_mark_paid(request, pk):
         result = receive_cash([order], tendered=tendered, user=request.user)
         messages.success(request, _("Order #%(number)s marked as paid.") % {"number": order.number})
         _change_message(request, result)
-        _drawer_message(request, open_cash_drawer(request.restaurant, user=request.user, order=order))
+        _drawer_message(request, open_cash_drawer(request.restaurant, user=request.user, order=order), result.orders)
         _receipt_after_payment(request, result.orders)
     except OrderError as exc:
         messages.error(request, str(exc))
@@ -569,7 +604,7 @@ def guest_mark_paid(request, pk, ref):
         numbers = ", ".join(f"#{o.number}" for o in result.orders)
         messages.success(request, _("Marked as paid: %(numbers)s.") % {"numbers": numbers})
         _change_message(request, result)
-        _drawer_message(request, open_cash_drawer(request.restaurant, user=request.user))
+        _drawer_message(request, open_cash_drawer(request.restaurant, user=request.user), result.orders)
         _receipt_after_payment(request, result.orders)
     except OrderError as exc:
         messages.error(request, str(exc) if exc.code != "nothing_due" else _("This guest has nothing left to pay."))
@@ -591,7 +626,7 @@ def table_mark_paid(request, pk):
         numbers = ", ".join(f"#{o.number}" for o in result.orders)
         messages.success(request, _("Marked as paid: %(numbers)s.") % {"numbers": numbers})
         _change_message(request, result)
-        _drawer_message(request, open_cash_drawer(request.restaurant, user=request.user))
+        _drawer_message(request, open_cash_drawer(request.restaurant, user=request.user), result.orders)
         _receipt_after_payment(request, result.orders)
     except OrderError as exc:
         if exc.code != "nothing_due":
@@ -807,10 +842,11 @@ SETTINGS_SECTIONS = [  # (key, title, icon, description, fields)
     ("receipts", gettext_lazy("Receipts"), "printer", gettext_lazy("What happens after a payment is recorded."),
      ["receipt_prompt", "receipt_printer", "receipt_width", "receipt_footer"]),
     ("drawer", gettext_lazy("Receipt printer & cash drawer"), "drawer",
-     gettext_lazy("Your network (ESC/POS) receipt printer. The cash drawer plugs into it."),
-     ["printer_host", "printer_port", "cash_drawer_enabled", "drawer_pin"]),
+     gettext_lazy("Print receipts on the receipt printer of the cashier computer. "
+                  "A cash drawer plugged into that printer opens automatically on cash payments."),
+     ["cash_drawer_via_printer", "printer_host", "printer_port", "cash_drawer_enabled", "drawer_pin"]),
 ]
-WIDE_FIELDS = {"vat_enabled", "vat_inclusive", "name", "description", "address", "opening_hours", "description_tet", "description_id",
+WIDE_FIELDS = {"cash_drawer_via_printer", "vat_enabled", "vat_inclusive", "name", "description", "address", "opening_hours", "description_tet", "description_id",
                "is_accepting_orders", "cash_drawer_enabled", "receipt_prompt", "receipt_footer"}
 
 

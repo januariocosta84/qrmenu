@@ -68,6 +68,12 @@ class Restaurant(TranslatableMixin, TimeStampedModel):
         help_text=_("Raw printing port; 9100 for almost all network receipt printers."),
     )
     drawer_pin = models.PositiveSmallIntegerField(choices=DRAWER_PIN_CHOICES, default=0)
+    # Cloud-friendly: the drawer is plugged into a receipt printer installed on the cashier's
+    # computer, and the printer driver opens it whenever something prints.
+    cash_drawer_via_printer = models.BooleanField(
+        default=False,
+        help_text=_("The cash drawer is plugged into the receipt printer of this computer. A small slip prints to open it."),
+    )
 
     # Receipts
     RECEIPT_ASK, RECEIPT_ALWAYS, RECEIPT_NEVER = "ask", "always", "never"
