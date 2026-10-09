@@ -6,6 +6,8 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied, ValidationError
+from django.core.mail import mail_admins
 from django.core.paginator import Paginator
 from django.db import transaction
 from django.db.models import Count, ProtectedError, Q, RestrictedError, Sum
@@ -35,11 +37,13 @@ from apps.payments.receipts import (
 )
 from apps.payments.models import CashDrawerOpening, CashMovement, CashSession
 from apps.payments.services import balance_due, receive_cash, receive_payment
-from apps.restaurants.models import RestaurantStaff, Table, TableSession
+from apps.restaurants.models import BusinessProfile, Restaurant, RestaurantStaff, Table, TableSession
 from apps.restaurants.qr import qr_png, qr_svg, site_link
 
 from .decorators import plan_feature, staff_view
 from .forms import (
+    BranchDetailsForm,
+    BusinessProfileForm, BranchForm, ExistingStaffForm,
     BulkTableForm, CategoryForm, MenuItemForm, OptionFormSet, OrderFilterForm, PaymentForm,
     RestaurantForm, StaffCreateForm, StaffEditForm, TableForm,
 )
@@ -862,10 +866,23 @@ def _settings_sections(form):
 @staff_view("manage_staff")
 def staff(request):
     r = request.restaurant
-    form = StaffCreateForm(request.POST or None)
-    if request.method == "POST" and r.staff.count() >= plan_limit(r, "max_staff"):
+    from apps.restaurants.branches import owned_restaurants
+
+    # People who already work at one of this owner's other branches can be added here too.
+    other = owned_restaurants(request.user).exclude(pk=r.pk)
+    candidates = (User.objects.filter(memberships__restaurant__in=other, memberships__is_active=True)
+                  .exclude(memberships__restaurant=r).distinct().order_by("username"))
+    action = request.POST.get("action", "new") if request.method == "POST" else ""
+    form = StaffCreateForm(request.POST if action == "new" else None)
+    existing = ExistingStaffForm(request.POST if action == "existing" else None, candidates=candidates)
+    if action and r.staff.count() >= plan_limit(r, "max_staff"):
         messages.error(request, _("Limit reached: your plan allows %(n)s staff accounts.") % {"n": plan_limit(r, "max_staff")})
-    elif request.method == "POST" and form.is_valid():
+    elif action == "existing" and existing.is_valid():
+        d = existing.cleaned_data
+        RestaurantStaff.objects.create(restaurant=r, user=d["user"], role=d["role"])
+        messages.success(request, _("%(name)s now also works at this branch.") % {"name": d["user"].username})
+        return _go(request, "staff")
+    elif action == "new" and form.is_valid():
         d = form.cleaned_data
         with transaction.atomic():
             user = User.objects.create_user(
@@ -876,8 +893,205 @@ def staff(request):
         return _go(request, "staff")
     return render(request, "dashboard/staff.html", {
         "members": r.staff.select_related("user").order_by("role", "user__username"),
-        "form": form,
+        "form": form, "existing_form": existing, "has_candidates": candidates.exists(),
     })
+
+
+@staff_view("manage_staff")
+@plan_feature("branches")
+def branches(request):
+    """
+    Main branch dashboard: revenue per branch for one day (today by default), that day's total for
+    all branches, week and month totals, a comparison chart, and the list of sub-branches.
+    Only the main branch's owner gets here; sub-branches never see each other.
+    """
+    from apps.billing.services import branch_slots, create_branch_addon_invoice, remove_branch_slot
+    from apps.expenses import report
+    from apps.restaurants.branches import branch_family, request_branch
+
+    r = request.restaurant
+    if not r.is_main_branch:
+        if r.main_branch.staff_role(request.user) == Role.OWNER:
+            return redirect("dashboard:branches", r.main_branch.slug)
+        raise PermissionDenied
+    family = branch_family(r)
+    profile = BusinessProfile.objects.filter(restaurant=r).first()
+    verified = profile is not None and profile.status == BusinessProfile.VERIFIED
+    action = request.POST.get("action", "request") if request.method == "POST" else ""
+    form = None
+    if verified:  # only a verified business can request branches
+        form = BranchForm(request.POST if action == "request" else None, request.FILES if action == "request" else None,
+                          owned=Restaurant.objects.filter(pk__in=[b.pk for b in family]), main=r,
+                          initial={"source": r, "registration_number": profile.registration_number,
+                                   "owner_name": profile.owner_name})
+    elif action == "request":
+        raise PermissionDenied
+    if action == "request" and form.is_valid():
+        d = form.cleaned_data
+        branch = request_branch(request.user, main=r, name=d["name"], address=d["address"], phone=d["phone"],
+                                source=d["source"], copy_menu_items=d["copy_menu"], copy_settings=d["copy_settings"],
+                                storefront_photo=d["storefront_photo"], registration_number=d["registration_number"],
+                                owner_name=d["owner_name"])
+        messages.success(request, _("Branch “%(name)s” requested. The platform team will review it; meanwhile you can "
+                                    "set up its menu and staff.") % {"name": branch.name})
+        return redirect("dashboard:branch_manage", r.slug, branch.pk)
+    sub = request.billing
+    if action == "buy_slot" and sub is not None and sub.plan.extra_branch_price > 0:
+        if not branch_slots(r)["open_addon"]:
+            inv = create_branch_addon_invoice(sub)
+            messages.success(request, _("Invoice %(number)s created for an extra branch. The slot is added as soon as "
+                                        "it is paid.") % {"number": inv.number})
+        return redirect("dashboard:branches", r.slug)
+    if action == "remove_slot" and sub is not None:
+        if remove_branch_slot(sub):
+            messages.success(request, _("One unused extra branch removed from your subscription."))
+        else:
+            messages.error(request, _("Every extra branch is in use. Deactivate a branch first."))
+        return redirect("dashboard:branches", r.slug)
+
+    today = timezone.localdate()
+    try:
+        day = datetime.strptime(request.GET.get("date", ""), "%Y-%m-%d").date()
+    except ValueError:
+        day = today
+    week_from = day - timedelta(days=day.weekday())
+    month_from = day.replace(day=1)
+    month_to = (month_from.replace(day=28) + timedelta(days=4)).replace(day=1) - timedelta(days=1)
+    rows = []
+    zero = {"revenue": Decimal("0"), "orders_revenue": Decimal("0"), "recorded_revenue": Decimal("0")}
+    total = {"day": dict(zero), "week": dict(zero), "month": dict(zero)}
+    for b in family:
+        cells = {"day": report.totals(b, day, day), "week": report.totals(b, week_from, week_from + timedelta(days=6)),
+                 "month": report.totals(b, month_from, month_to)}
+        if not b.is_closed or any(c["revenue"] for c in cells.values()):
+            for k, c in cells.items():
+                for f in zero:
+                    total[k][f] += c[f]
+        rows.append({"branch": b, **cells, "current": b.pk == r.pk})
+    peak = max((row["day"]["revenue"] for row in rows), default=Decimal("0")) or Decimal("1")
+    for row in rows:
+        row["pct"] = round(float(row["day"]["revenue"] * 100 / peak), 1)
+    return render(request, "dashboard/branches.html", {
+        "rows": rows, "total": total, "form": form, "day": day, "is_today": day == today,
+        "profile": profile, "slots": branch_slots(r),
+        "prev_day": day - timedelta(days=1), "next_day": day + timedelta(days=1) if day < today else None,
+        "week_from": week_from, "month_from": month_from,
+    })
+
+
+@staff_view("manage_staff")
+@plan_feature("branches")
+def branch_manage(request, pk):
+    """Main branch manages one sub-branch: details, deactivate/reactivate, staff accounts."""
+    main = request.restaurant
+    if not main.is_main_branch:
+        raise PermissionDenied
+    sub = get_object_or_404(Restaurant, pk=pk, parent=main)
+    action = request.POST.get("action", "") if request.method == "POST" else ""
+    details = BranchDetailsForm(request.POST if action == "details" else None, instance=sub)
+    staff_form = StaffCreateForm(request.POST if action == "staff" else None, branch_roles=True)
+    if action == "details" and details.is_valid():
+        details.save()
+        messages.success(request, _("Branch details saved."))
+        return redirect("dashboard:branch_manage", main.slug, sub.pk)
+    if action == "deactivate" and not sub.is_closed:
+        sub.branch_closed_at = timezone.now()
+        sub.save(update_fields=["branch_closed_at"])
+        messages.success(request, _("%(name)s is deactivated: customers can't order and its staff can't sign in to it. "
+                                    "Its history is kept.") % {"name": sub.name})
+        return redirect("dashboard:branch_manage", main.slug, sub.pk)
+    if action == "reactivate" and sub.is_closed:
+        from apps.billing.services import branch_slots
+
+        if sub.branch_status == Restaurant.BRANCH_ACTIVE and branch_slots(main)["free"] < 1:
+            messages.error(request, _("No free branch slot: all branches in your plan are in use. Add an extra branch "
+                                      "on the Branches page first."))
+            return redirect("dashboard:branch_manage", main.slug, sub.pk)
+        sub.branch_closed_at = None
+        sub.save(update_fields=["branch_closed_at"])
+        messages.success(request, _("%(name)s is active again.") % {"name": sub.name})
+        return redirect("dashboard:branch_manage", main.slug, sub.pk)
+    if action == "resubmit" and sub.branch_status == Restaurant.BRANCH_REJECTED:
+        from apps.core.images import process_image
+        from apps.restaurants.branches import abuse_flags
+
+        photo = request.FILES.get("storefront_photo")
+        if photo:
+            try:
+                sub.storefront_photo = process_image(photo, "cover")
+            except ValidationError as exc:
+                messages.error(request, exc.messages[0])
+                return redirect("dashboard:branch_manage", main.slug, sub.pk)
+        sub.branch_status, sub.branch_review_note = Restaurant.BRANCH_PENDING, ""
+        sub.branch_flags = abuse_flags(sub)
+        sub.save()
+        try:
+            mail_admins(f"Branch request sent again: {sub.name}",
+                        f"{main.name} corrected and re-sent {sub.name}.\n\nReview it in the platform console → Verification.")
+        except Exception:
+            pass
+        messages.success(request, _("Sent for review again."))
+        return redirect("dashboard:branch_manage", main.slug, sub.pk)
+    if action == "staff":
+        if sub.staff.count() >= plan_limit(sub, "max_staff"):
+            messages.error(request, _("Limit reached: your plan allows %(n)s staff accounts.") % {"n": plan_limit(sub, "max_staff")})
+        elif staff_form.is_valid():
+            d = staff_form.cleaned_data
+            with transaction.atomic():
+                user = User.objects.create_user(username=d["username"], email=d["email"], password=d["password"],
+                                                first_name=d["first_name"])
+                RestaurantStaff.objects.create(restaurant=sub, user=user, role=d["role"])
+            messages.success(request, _("Staff account “%(username)s” created for %(branch)s.") % {
+                "username": user.username, "branch": sub.name})
+            return redirect("dashboard:branch_manage", main.slug, sub.pk)
+    if action == "staff_toggle":
+        member = get_object_or_404(RestaurantStaff, restaurant=sub, pk=request.POST.get("member"))
+        if member.user_id != request.user.pk:
+            member.is_active = not member.is_active
+            member.save(update_fields=["is_active"])
+            messages.success(request, _("Access updated for %(name)s.") % {"name": member.user.username})
+        return redirect("dashboard:branch_manage", main.slug, sub.pk)
+    return render(request, "dashboard/branch_manage.html", {
+        "sub": sub, "details": details, "staff_form": staff_form,
+        "members": sub.staff.select_related("user").order_by("role", "user__username"),
+    })
+
+
+@staff_view("manage_billing")
+def business_profile(request):
+    """The owner completes the business profile; the platform verifies it before the business can add branches."""
+    r = request.restaurant
+    if not r.is_main_branch:
+        return redirect("dashboard:business_profile", r.main_branch.slug)
+    profile = BusinessProfile.objects.filter(restaurant=r).first() or BusinessProfile(
+        restaurant=r, owner_name=request.user.get_full_name(), address=r.address, phone=r.phone)
+    form = BusinessProfileForm(request.POST or None, instance=profile)
+    if request.method == "POST" and form.is_valid():
+        if form.has_changed() or profile.status in (BusinessProfile.INCOMPLETE, BusinessProfile.REJECTED):
+            profile = form.save(commit=False)
+            profile.status, profile.submitted_at, profile.review_note = BusinessProfile.REVIEW, timezone.now(), ""
+            profile.save()
+            try:
+                mail_admins(f"Business profile to verify: {r.name}",
+                            f"{r.name}\nRegistration: {profile.registration_number}\nOwner: {profile.owner_name}\n"
+                            f"{profile.address} · {profile.phone}\n\nVerify it in the platform console → Verification.")
+            except Exception:
+                pass
+            messages.success(request, _("Thank you! Your business profile is under review."))
+        request.session.pop("profile_prompt", None)
+        return redirect("dashboard:business_profile", r.slug)
+    return render(request, "dashboard/business_profile.html", {"form": form, "profile": profile})
+
+
+@require_POST
+@staff_view()
+def profile_prompt_later(request):
+    """"Remind me later": hide the pop-up until the next login (the banner stays)."""
+    request.session.pop("profile_prompt", None)
+    nxt = request.POST.get("next", "")
+    if nxt and url_has_allowed_host_and_scheme(nxt, allowed_hosts={request.get_host()}):
+        return redirect(nxt)
+    return redirect("dashboard:overview", request.restaurant.slug)
 
 
 @staff_view("manage_staff")
@@ -1023,6 +1237,8 @@ def billing_page(request):
     from apps.billing.services import request_plan_change
 
     r = request.restaurant
+    if not r.is_main_branch:  # sub-branches are billed through the main branch
+        return redirect("dashboard:billing", r.main_branch.slug)
     sub = request.billing
     if request.method == "POST" and sub is not None:
         plan = Plan.objects.filter(pk=request.POST.get("plan"), is_active=True, is_public=True).first()

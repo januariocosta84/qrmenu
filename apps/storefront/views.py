@@ -25,8 +25,8 @@ def _apply_restaurant_language(request, restaurant):
 def _visible_restaurant(request, slug):
     """Live restaurants for everyone; not-yet-live ones only for their own staff (preview)."""
     restaurant = get_object_or_404(Restaurant, slug=slug)
-    if not restaurant.is_active and not restaurant.staff_role(request.user):
-        raise Http404
+    if (not restaurant.is_active or restaurant.is_closed) and not restaurant.staff_role(request.user):
+        raise Http404  # not live yet, or a sub-branch deactivated by its main branch
     return restaurant
 
 
@@ -42,6 +42,10 @@ def home(request):
         "default_plan_id": billing.default_plan_id,
         "trial_days": billing.trial_days,
     })
+
+
+def terms(request):
+    return render(request, "storefront/terms.html", {"platform_name": settings.PLATFORM_NAME})
 
 
 @require_GET

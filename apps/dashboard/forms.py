@@ -12,7 +12,7 @@ from apps.core.permissions import Role
 from apps.menu.models import MenuCategory, MenuItem, MenuItemOption
 from apps.payments.drawer import validate_printer_host
 from apps.payments.providers import STAFF_RECORDABLE_METHODS
-from apps.restaurants.models import Restaurant, RestaurantStaff, Table, table_number_validator
+from apps.restaurants.models import BusinessProfile, Restaurant, RestaurantStaff, Table, table_number_validator
 
 User = get_user_model()
 
@@ -242,6 +242,79 @@ class BulkTableForm(forms.Form):
         return cleaned
 
 
+class ExistingStaffForm(forms.Form):
+    """Give someone who already works at another of the owner's branches access to this branch."""
+
+    user = forms.ModelChoiceField(queryset=User.objects.none(), label=_("Staff member"))
+    role = forms.ChoiceField(choices=Role.CHOICES, label=_("Role"))
+
+    def __init__(self, *args, candidates, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["user"].queryset = candidates
+        self.fields["user"].label_from_instance = lambda u: (
+            f"{u.get_full_name()} ({u.username})" if u.get_full_name() else u.username)
+
+
+class BusinessProfileForm(forms.ModelForm):
+    class Meta:
+        model = BusinessProfile
+        fields = ["registration_number", "owner_name", "address", "phone"]
+
+
+def _brand_error(main):
+    return ValidationError(_("Branch names must use your brand name, e.g. “%(example)s”.") % {
+        "example": f"{main.name} – Dili"})
+
+
+class BranchForm(ImageFormMixin, forms.Form):
+    """A main branch requests a new sub-branch (reviewed by the platform before it goes live)."""
+
+    IMAGE_FIELDS = {"storefront_photo": "cover"}
+    name = forms.CharField(max_length=120, label=_("Branch name"),
+                           help_text=_("Must use your brand name, e.g. Kafe Atauro – Comoro. Customers see this name."))
+    address = forms.CharField(max_length=255, label=_("Branch address"))
+    phone = forms.CharField(max_length=30, label=_("Branch phone number"))
+    storefront_photo = forms.ImageField(label=_("Storefront photo"),
+                                        help_text=_("A photo of the branch from outside, showing the brand name."))
+    registration_number = forms.CharField(
+        max_length=60, label=_("Business registration number"),
+        help_text=_("All branches must belong to the same business registration as the main branch."))
+    owner_name = forms.CharField(max_length=150, label=_("Owner name"))
+    source = forms.ModelChoiceField(queryset=Restaurant.objects.none(), required=False, label=_("Copy from"),
+                                    empty_label=_("Start empty"))
+    copy_menu = forms.BooleanField(required=False, initial=True, label=_("Copy the menu (categories, dishes, photos, add-ons)"))
+    copy_settings = forms.BooleanField(required=False, initial=True,
+                                       label=_("Copy settings (currency, service charge, VAT, receipts, logo)"))
+
+    def __init__(self, *args, owned, main, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.main = main
+        self.fields["source"].queryset = owned
+
+    def clean_name(self):
+        from apps.restaurants.branches import brand_ok
+
+        name = " ".join(self.cleaned_data["name"].split())
+        if not brand_ok(self.main, name):
+            raise _brand_error(self.main)
+        return name
+
+
+class BranchDetailsForm(forms.ModelForm):
+    class Meta:
+        model = Restaurant
+        fields = ["name", "address", "phone"]
+        labels = {"name": _("Branch name"), "address": _("Address"), "phone": _("Phone")}
+
+    def clean_name(self):
+        from apps.restaurants.branches import brand_ok
+
+        name = " ".join(self.cleaned_data["name"].split())
+        if not brand_ok(self.instance.main_branch, name):
+            raise _brand_error(self.instance.main_branch)
+        return name
+
+
 class StaffCreateForm(forms.Form):
     username = forms.CharField(max_length=150, label=_("Username"))
     first_name = forms.CharField(max_length=150, required=False, label=_("Name"))
@@ -249,6 +322,12 @@ class StaffCreateForm(forms.Form):
     role = forms.ChoiceField(choices=Role.CHOICES, label=_("Role"))
     password = forms.CharField(widget=forms.PasswordInput, label=_("Password"),
                                help_text=_("Share it with the staff member; they can change it later."))
+
+    def __init__(self, *args, branch_roles=False, **kwargs):
+        super().__init__(*args, **kwargs)
+        if branch_roles:  # accounts for a sub-branch: the main branch stays the only owner
+            self.fields["role"].choices = [c for c in Role.CHOICES if c[0] != Role.OWNER]
+            self.fields["role"].initial = Role.MANAGER
 
     def clean_email(self):
         email = self.cleaned_data.get("email", "").strip().lower()

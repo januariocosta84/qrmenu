@@ -20,6 +20,7 @@
     <div class="hp" aria-hidden="true"><label>Website {{ form.website }}</label></div>
     <div class="field field-check{% if form.accept.errors %} has-error{% endif %}">
       <label>{{ form.accept }} {{ form.accept.label }}</label>
+      <a class="small" href="{% url 'storefront:terms' %}" target="_blank" rel="noopener">{% translate "Read the terms of service" %}</a>
       {% for e in form.accept.errors %}<small class="err">{{ e }}</small>{% endfor %}
     </div>
     <button class="btn btn-primary btn-block btn-lg" type="submit">{% translate "Create my restaurant" %}</button>

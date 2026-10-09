@@ -38,6 +38,8 @@ CAPABILITIES = {
     "manage_restaurant": {Role.OWNER, Role.MANAGER},
     "reports": {Role.OWNER, Role.MANAGER},
     "quotations": {Role.OWNER, Role.MANAGER},  # price offers for catering / procurement bids
+    "expenses": {Role.OWNER, Role.MANAGER},  # daily expenses and profit
+    "record_revenue": {Role.OWNER, Role.MANAGER, Role.WAITER},  # manual sales entries for their own branch
     "manage_staff": {Role.OWNER},
     "manage_billing": {Role.OWNER},
 }

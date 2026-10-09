@@ -13,7 +13,7 @@ class SignupForm(forms.Form):
     email = forms.EmailField(label=_("Email"), help_text=_("You'll sign in with this email. We'll send a confirmation link."))
     phone = forms.CharField(max_length=30, required=False, label=_("Phone (optional)"))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}), label=_("Password"))
-    accept = forms.BooleanField(label=_("I confirm I own or manage this restaurant."))
+    accept = forms.BooleanField(label=_("I confirm I own or manage this restaurant, and I accept the terms of service."))
     # Honeypot: hidden from people, filled in by bots.
     website = forms.CharField(required=False, widget=forms.TextInput(attrs={"tabindex": "-1", "autocomplete": "off"}))
 

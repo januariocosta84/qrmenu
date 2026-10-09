@@ -22,6 +22,7 @@
   <nav class="sb-nav">
     <p class="sb-section">Platform</p>
     <a href="{{ u_over }}" class="{% if request.path == u_over %}active{% endif %}">{% icon "dashboard" %}<span>Overview</span></a>
+    <a href="{% url 'console:verification' %}" class="{% if '/platform/verification/' in request.path %}active{% endif %}">{% icon "check-circle" %}<span>Verification</span></a>
     <a href="{% url 'console:restaurants' %}" class="{% if '/platform/restaurants/' in request.path %}active{% endif %}">{% icon "store" %}<span>Restaurants</span></a>
     <a href="{% url 'console:users' %}" class="{% if '/platform/users/' in request.path %}active{% endif %}">{% icon "users" %}<span>Users</span></a>
     <p class="sb-section">Billing</p>

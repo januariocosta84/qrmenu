@@ -35,12 +35,23 @@
       <li><strong>{% translate "Waiter / Cashier" %}</strong>: {% translate "take orders, kitchen queue, cancel orders, payments, free tables." %}</li>
     </ul>
   </section>
+  <div>
   <form method="post" class="card form compact">
-    {% csrf_token %}
+    {% csrf_token %}<input type="hidden" name="action" value="new">
     <h2 class="fieldset-title">{% icon "plus" %} {% translate "Add staff member" %}</h2>
     {% include "dashboard/_form_fields.html" %}
     <button class="btn btn-primary btn-block" type="submit">{% translate "Create account" %}</button>
   </form>
+  {% if has_candidates %}
+  <form method="post" class="card form compact">
+    {% csrf_token %}<input type="hidden" name="action" value="existing">
+    <h2 class="fieldset-title">{% icon "users" %} {% translate "From another branch" %}</h2>
+    <p class="fieldset-desc">{% translate "Someone who already works at one of your other branches can use the same login here." %}</p>
+    {% include "dashboard/_form_fields.html" with form=existing_form %}
+    <button class="btn btn-block" type="submit">{% translate "Add to this branch" %}</button>
+  </form>
+  {% endif %}
+  </div>
 </div>
 {% endwith %}
 {% endblock %}

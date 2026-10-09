@@ -26,7 +26,8 @@ from apps.billing.models import BillingSettings, Invoice, Plan, Subscription
 from apps.core.permissions import Role
 from apps.core.utils import client_ip
 from apps.orders.models import Order, OrderStatus
-from apps.restaurants.models import Restaurant
+from apps.restaurants import branches as branch_service
+from apps.restaurants.models import BusinessProfile, Restaurant
 
 from .forms import BillingSettingsForm, MarkPaidForm, NewInvoiceForm, PlanForm
 from .models import AuditLog
@@ -53,7 +54,7 @@ def _mrr():
     total = Decimal("0")
     for sub in Subscription.objects.select_related("plan").filter(comped=False, cancelled_at__isnull=True):
         if sub.state in (Subscription.ACTIVE, Subscription.GRACE) and not sub.plan.is_free:
-            total += sub.plan.price_monthly
+            total += sub.monthly_price
     return total
 
 
@@ -84,7 +85,84 @@ def overview(request):
         "requests": Subscription.objects.filter(requested_plan__isnull=False).select_related("restaurant", "plan", "requested_plan"),
         "recent": Restaurant.objects.order_by("-created_at")[:8],
         "paid_30d": Invoice.objects.filter(status=Invoice.PAID, paid_at__gte=since).aggregate(s=Sum("amount"))["s"] or 0,
+        "to_review": _review_counts(),
     })
+
+
+# ---------------------------------------------------------------- verification
+
+def _review_counts() -> dict:
+    return {
+        "profiles": BusinessProfile.objects.filter(status=BusinessProfile.REVIEW).count(),
+        "branches": Restaurant.objects.filter(branch_status=Restaurant.BRANCH_PENDING).count(),
+        "flagged": Restaurant.objects.filter(branch_status=Restaurant.BRANCH_PENDING).exclude(branch_flags=[]).count(),
+        "signups": Restaurant.objects.filter(parent__isnull=True, is_active=False,
+                                             staff__role=Role.OWNER, staff__user__email_verified=True).distinct().count(),
+    }
+
+
+@platform_admin
+def verification(request):
+    """Review queue: business profiles, sub-branch requests (with abuse flags) and new sign-ups waiting to go live."""
+    if request.method == "POST":
+        kind, action = request.POST.get("kind"), request.POST.get("action")
+        note = request.POST.get("note", "").strip()[:300]
+        if kind == "profile" and action in ("verify", "reject"):
+            p = get_object_or_404(BusinessProfile, pk=request.POST.get("pk"))
+            p.status = BusinessProfile.VERIFIED if action == "verify" else BusinessProfile.REJECTED
+            p.reviewed_at, p.reviewed_by, p.review_note = timezone.now(), request.user, note
+            p.save()
+            audit(request, f"profile.{action}", f"restaurant:{p.restaurant_id} {p.restaurant.name}", note)
+            messages.success(request, f"{p.restaurant.name}: business profile {'verified' if action == 'verify' else 'rejected'}.")
+        elif kind == "branch" and action in ("approve", "reject"):
+            b = get_object_or_404(Restaurant, pk=request.POST.get("pk"), parent__isnull=False)
+            msg = _branch_action(request, b, action, note)
+            if msg:
+                messages.success(request, msg)
+        else:
+            raise Http404
+        return redirect("console:verification")
+    pending = list(Restaurant.objects.filter(branch_status=Restaurant.BRANCH_PENDING).select_related("parent")
+                   .order_by("created_at"))
+    for b in pending:
+        b.slots = billing.branch_slots(b.parent)
+        b.profile = BusinessProfile.objects.filter(restaurant=b.parent).first()
+    signups = list(Restaurant.objects.filter(parent__isnull=True, is_active=False, staff__role=Role.OWNER,
+                                             staff__user__email_verified=True).distinct().order_by("created_at"))
+    for r in signups:
+        r.owner = r.staff.filter(role=Role.OWNER).select_related("user").first()
+    return render(request, "console/verification.html", {
+        "profiles": BusinessProfile.objects.filter(status=BusinessProfile.REVIEW).select_related("restaurant")
+                    .order_by("submitted_at"),
+        "branches": pending, "signups": signups,
+    })
+
+
+def _branch_action(request, b, action, note=""):
+    """Platform review of a sub-branch. Returns a success message, or None after an error message."""
+    tag = f"restaurant:{b.pk} {b.name}"
+    if action == "approve":
+        try:
+            branch_service.approve_branch(b)
+        except branch_service.NoBranchSlot as exc:
+            messages.error(request, str(exc))
+            return None
+        audit(request, "branch.approve", tag)
+        return f"{b.name} approved and live."
+    if action == "reject":
+        branch_service.reject_branch(b, note)
+        audit(request, "branch.reject", tag, note)
+        return f"{b.name} rejected. The owner was told the reason and can send it again."
+    if action == "suspend_branch":
+        branch_service.suspend_branch(b, note)
+        audit(request, "branch.suspend", tag, note)
+        return f"{b.name} suspended: hidden from customers, staff locked out, can't record revenue."
+    if action == "convert":
+        main = b.main_branch
+        branch_service.convert_to_separate_account(b)
+        audit(request, "branch.convert", tag, f"was a branch of {main.name}")
+        return f"{b.name} is now a separate account with its own subscription; its first invoice was created."
+    return None
 
 
 # ---------------------------------------------------------------- restaurants
@@ -120,6 +198,7 @@ def restaurants(request):
 RESTAURANT_ACTIONS = {
     "approve", "suspend", "set_plan", "set_paid_until", "extend_trial", "comp", "uncomp", "cancel", "reactivate",
     "create_invoice", "notes", "approve_request", "reject_request",
+    "approve_branch", "reject_branch", "suspend_branch", "convert", "verify_profile", "reject_profile",
 }
 
 
@@ -141,6 +220,9 @@ def restaurant_detail(request, pk):
 
     return render(request, "console/restaurant_detail.html", {
         "r": r, "sub": sub, "invoice_form": invoice_form,
+        "profile": BusinessProfile.objects.filter(restaurant=r.main_branch).first(),
+        "family": r.sub_branches.order_by("name") if r.is_main_branch else None,
+        "slots": billing.branch_slots(r),
         "plans": Plan.objects.filter(is_active=True),
         "staff": r.staff.select_related("user").order_by("role"),
         "invoices": r.invoices.all()[:20],
@@ -158,6 +240,18 @@ def restaurant_detail(request, pk):
 def _restaurant_action(request, r, sub, action):
     tag = f"restaurant:{r.pk} {r.name}"
     post = request.POST
+    if action in ("approve_branch", "reject_branch", "suspend_branch", "convert"):
+        if r.is_main_branch:
+            raise Http404
+        return _branch_action(request, r, action.replace("_branch", "") if action != "suspend_branch" else action,
+                              post.get("note", "").strip()[:300])
+    if action in ("verify_profile", "reject_profile"):
+        p = get_object_or_404(BusinessProfile, restaurant=r)
+        p.status = BusinessProfile.VERIFIED if action == "verify_profile" else BusinessProfile.REJECTED
+        p.reviewed_at, p.reviewed_by, p.review_note = timezone.now(), request.user, post.get("note", "").strip()[:300]
+        p.save()
+        audit(request, f"profile.{action.split('_')[0]}", tag, p.review_note)
+        return f"Business profile {p.get_status_display().lower()}."
     if action == "approve":
         r.is_active = True
         r.save(update_fields=["is_active", "updated_at"])

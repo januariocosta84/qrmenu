@@ -6,6 +6,7 @@ app_name = "console"
 
 urlpatterns = [
     path("", views.overview, name="overview"),
+    path("verification/", views.verification, name="verification"),
     path("restaurants/", views.restaurants, name="restaurants"),
     path("restaurants/<int:pk>/", views.restaurant_detail, name="restaurant"),
     path("users/", views.users, name="users"),

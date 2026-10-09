@@ -1,6 +1,7 @@
 import calendar
 import logging
 from datetime import date, timedelta
+from decimal import Decimal
 
 from django.conf import settings
 from django.core.mail import mail_admins
@@ -42,7 +43,12 @@ def start_subscription(restaurant, plan: Plan | None = None) -> Subscription | N
 
 
 def get_subscription(restaurant) -> Subscription | None:
-    """The restaurant's subscription, created on first use (existing restaurants get a trial)."""
+    """
+    The restaurant's subscription, created on first use (existing restaurants get a trial).
+    Sub-branches are covered by their main branch's subscription (plan, limits, features, billing).
+    """
+    if restaurant.parent_id:
+        restaurant = restaurant.parent
     try:
         return restaurant.subscription
     except Subscription.DoesNotExist:
@@ -83,9 +89,58 @@ def create_invoice(sub: Subscription, *, months: int = 1, amount=None, notes: st
     return Invoice.objects.create(
         subscription=sub, restaurant=sub.restaurant, number=_next_number(), plan_name=sub.plan.name,
         period_start=start, period_end=end,
-        amount=sub.plan.price_monthly * months if amount is None else amount,
-        currency=sub.plan.currency, due_date=start, notes=notes[:255],
+        amount=sub.monthly_price * months if amount is None else amount,
+        currency=sub.plan.currency, due_date=start,
+        notes=(notes or (f"Includes {sub.extra_branches} extra branch(es)" if sub.extra_branches else ""))[:255],
     )
+
+
+# ---------------------------------------------------------------- branch slots
+
+def branch_slots(main) -> dict:
+    """
+    How many sub-branches the main branch's plan allows: included in the plan + paid add-ons.
+    Active sub-branches (approved, not deactivated) use a slot; pending, rejected, suspended and
+    deactivated ones don't.
+    """
+    from apps.restaurants.models import Restaurant
+
+    main = main.main_branch
+    sub = get_subscription(main)
+    used = main.sub_branches.filter(branch_status=Restaurant.BRANCH_ACTIVE, branch_closed_at__isnull=True).count()
+    if sub is None:  # no billing on this platform: no limit
+        return {"included": None, "extra": 0, "total": None, "used": used, "free": 1, "price": None, "open_addon": None}
+    total = sub.branch_slots
+    return {
+        "included": sub.plan.included_branches, "extra": sub.extra_branches, "total": total, "used": used,
+        "free": max(0, total - used), "price": sub.plan.extra_branch_price,
+        "open_addon": sub.invoices.filter(status=Invoice.OPEN, branch_slots__gt=0).first(),
+    }
+
+
+@transaction.atomic
+def create_branch_addon_invoice(sub: Subscription, slots: int = 1) -> Invoice:
+    """Invoice for extra branch slots, charged up to the end of the current period; the slots are added once paid."""
+    today = timezone.localdate()
+    end = sub.access_until if sub.access_until and sub.access_until >= today else add_months(today, 1) - timedelta(days=1)
+    days = (end - today).days + 1
+    price = sub.plan.extra_branch_price * slots
+    amount = price if days >= 28 else (price * days / 30).quantize(Decimal("0.01"))  # pro rata for a part month
+    return Invoice.objects.create(
+        subscription=sub, restaurant=sub.restaurant, number=_next_number(), plan_name=f"{sub.plan.name} · extra branch",
+        period_start=today, period_end=end, amount=amount, currency=sub.plan.currency, due_date=today,
+        branch_slots=slots, notes=f"{slots} extra branch slot(s) at {sub.plan.extra_branch_price}/month",
+    )
+
+
+def remove_branch_slot(sub: Subscription) -> bool:
+    """Give back one unused paid slot (it stops being invoiced). False when every slot is in use."""
+    slots = branch_slots(sub.restaurant)
+    if sub.extra_branches < 1 or slots["free"] < 1:
+        return False
+    sub.extra_branches -= 1
+    sub.save(update_fields=["extra_branches", "updated_at"])
+    return True
 
 
 @transaction.atomic
@@ -97,6 +152,10 @@ def mark_invoice_paid(invoice: Invoice, *, user=None, method: str = "bank_transf
     invoice.method, invoice.reference, invoice.recorded_by = method, reference[:120], user
     invoice.save()
     sub = Subscription.objects.select_for_update().get(pk=invoice.subscription_id)
+    if invoice.branch_slots:  # add-on: more branch slots, the subscription period is unchanged
+        sub.extra_branches += invoice.branch_slots
+        sub.save(update_fields=["extra_branches", "updated_at"])
+        return invoice
     sub.paid_until = max(d for d in (sub.paid_until, invoice.period_end) if d)
     sub.cancelled_at = None
     sub.save(update_fields=["paid_until", "cancelled_at", "updated_at"])
@@ -116,9 +175,12 @@ def generate_due_invoices() -> list[Invoice]:
     cfg = BillingSettings.load()
     horizon = timezone.localdate() + timedelta(days=cfg.invoice_days_before)
     created = []
-    subs = Subscription.objects.select_related("plan", "restaurant").filter(comped=False, cancelled_at__isnull=True)
+    subs = Subscription.objects.select_related("plan", "restaurant").filter(
+        comped=False, cancelled_at__isnull=True,
+        restaurant__parent__isnull=True,  # sub-branches are billed through their main branch
+    )
     for sub in subs:
-        if not sub.is_billable or sub.invoices.filter(status=Invoice.OPEN).exists():
+        if not sub.is_billable or sub.invoices.filter(status=Invoice.OPEN, branch_slots=0).exists():
             continue
         end = sub.access_until
         if end is None or end <= horizon:

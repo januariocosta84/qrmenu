@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     "apps.billing",
     "apps.console",
     "apps.quotations",
+    "apps.expenses",
 ]
 
 MIDDLEWARE = [

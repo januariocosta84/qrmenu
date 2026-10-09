@@ -1,0 +1,20 @@
+{% extends "dashboard/base.html" %}
+{% load i18n ui_icons %}
+{% block title %}{% if closed.is_closed %}{% translate "Branch deactivated" %}{% else %}{% translate "Branch not active" %}{% endif %}{% endblock %}
+{% block body_class %}auth{% endblock %}
+{% block content %}
+<div class="auth-card">
+  <div class="auth-brand">{% icon "store" "i-lg" %} {{ closed.name }}</div>
+  {% if closed.is_closed %}
+  <h1>{% translate "Branch deactivated" %}</h1>
+  <p>{% translate "The main branch has deactivated this branch. Ask the owner if you need access again." %}</p>
+  {% elif closed.branch_status == "pending" %}
+  <h1>{% translate "Waiting for approval" %}</h1>
+  <p>{% translate "This new branch is being reviewed by the platform team. You can use it once it is approved." %}</p>
+  {% else %}
+  <h1>{% translate "Branch not active" %}</h1>
+  <p>{% translate "This branch has been suspended or was not approved by the platform. Ask the owner for details." %}</p>
+  {% endif %}
+  <p><a class="btn btn-block" href="{% url 'dashboard:home' %}">{% translate "Switch restaurant" %}</a></p>
+</div>
+{% endblock %}

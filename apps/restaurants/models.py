@@ -95,6 +95,27 @@ class Restaurant(TranslatableMixin, TimeStampedModel):
     )
     receipt_footer = models.CharField(max_length=200, blank=True, default="Thank you! Obrigadu! Terima kasih!")
 
+    # Branches: a sub-branch belongs to exactly one main branch (one level; main branches have no parent).
+    parent = models.ForeignKey(
+        "self", null=True, blank=True, on_delete=models.PROTECT, related_name="sub_branches",
+        help_text=_("The main branch this sub-branch belongs to."),
+    )
+    branch_closed_at = models.DateTimeField(
+        null=True, blank=True, help_text=_("Set when the main branch deactivates this sub-branch."),
+    )
+    # Platform review of a sub-branch (main branches leave this empty).
+    BRANCH_PENDING, BRANCH_ACTIVE, BRANCH_REJECTED, BRANCH_SUSPENDED = "pending", "active", "rejected", "suspended"
+    BRANCH_STATUS_CHOICES = [
+        (BRANCH_PENDING, _("Pending")), (BRANCH_ACTIVE, _("Active")),
+        (BRANCH_REJECTED, _("Rejected")), (BRANCH_SUSPENDED, _("Suspended")),
+    ]
+    branch_status = models.CharField(max_length=10, choices=BRANCH_STATUS_CHOICES, blank=True, db_index=True)
+    storefront_photo = models.ImageField(upload_to="restaurants/storefronts/", blank=True)
+    branch_registration_number = models.CharField(max_length=60, blank=True)
+    branch_owner_name = models.CharField(max_length=150, blank=True)
+    branch_review_note = models.CharField(max_length=300, blank=True)
+    branch_flags = models.JSONField(default=list, blank=True, help_text="Reasons this request was flagged for review.")
+
     # Per-restaurant sequential order numbers (#1001, #1002, ...)
     next_order_number = models.PositiveIntegerField(default=1001)
 
@@ -103,6 +124,29 @@ class Restaurant(TranslatableMixin, TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+    @property
+    def is_main_branch(self) -> bool:
+        return self.parent_id is None
+
+    @property
+    def main_branch(self) -> "Restaurant":
+        return self.parent if self.parent_id else self
+
+    @property
+    def is_closed(self) -> bool:
+        return self.branch_closed_at is not None
+
+    @property
+    def branch_approved(self) -> bool:
+        """Main branches always; sub-branches once the platform has approved them (and not suspended)."""
+        return self.is_main_branch or self.branch_status == self.BRANCH_ACTIVE
+
+    @property
+    def profile_status(self) -> str:
+        """Business profile status of this account (kept on the main branch)."""
+        profile = BusinessProfile.objects.filter(restaurant_id=self.main_branch.pk).only("status").first()
+        return profile.status if profile else BusinessProfile.INCOMPLETE
 
     def get_absolute_url(self):
         return reverse("storefront:menu", args=[self.slug])
@@ -255,3 +299,31 @@ class TableSession(models.Model):
     @property
     def is_stale(self) -> bool:
         return self.opened_at < timezone.now() - timedelta(hours=12)
+
+
+class BusinessProfile(TimeStampedModel):
+    """Legal details of the business behind a main branch, verified by the platform before it can add branches."""
+
+    INCOMPLETE, REVIEW, VERIFIED, REJECTED = "incomplete", "review", "verified", "rejected"
+    STATUS_CHOICES = [
+        (INCOMPLETE, _("Incomplete")), (REVIEW, _("Under review")), (VERIFIED, _("Verified")), (REJECTED, _("Rejected")),
+    ]
+
+    restaurant = models.OneToOneField(Restaurant, on_delete=models.CASCADE, related_name="business_profile")
+    registration_number = models.CharField(
+        max_length=60, verbose_name=_("Business registration number"),
+        help_text=_("e.g. your SERVE certificate number or tax number (NIF)."),
+    )
+    owner_name = models.CharField(max_length=150, verbose_name=_("Owner name"),
+                                  help_text=_("The legal owner of the business."))
+    address = models.CharField(max_length=255, verbose_name=_("Address"))
+    phone = models.CharField(max_length=30, verbose_name=_("Phone number"))
+    status = models.CharField(max_length=12, choices=STATUS_CHOICES, default=INCOMPLETE, db_index=True)
+    submitted_at = models.DateTimeField(null=True, blank=True)
+    reviewed_at = models.DateTimeField(null=True, blank=True)
+    reviewed_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL,
+                                    related_name="+")
+    review_note = models.CharField(max_length=300, blank=True)
+
+    def __str__(self):
+        return f"{self.restaurant} · {self.get_status_display()}"

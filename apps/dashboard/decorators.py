@@ -12,7 +12,9 @@ from apps.restaurants.models import Restaurant
 
 
 def go_live_status(restaurant) -> str:
-    """live | verify_email | awaiting_approval | suspended"""
+    """live | verify_email | awaiting_approval | suspended | branch_pending | branch_rejected | branch_suspended"""
+    if not restaurant.is_main_branch and restaurant.branch_status != Restaurant.BRANCH_ACTIVE:
+        return f"branch_{restaurant.branch_status or 'pending'}"
     if restaurant.is_active:
         return "live"
     owners_verified = restaurant.staff.filter(role=Role.OWNER, user__email_verified=True).exists()
@@ -66,6 +68,10 @@ def staff_view(capability: str = "view_dashboard"):
                 raise Http404("Restaurant not found")
             if not role_can(role, capability):
                 raise PermissionDenied
+            if (restaurant.is_closed or not restaurant.branch_approved) and role != Role.OWNER:
+                # Deactivated by the main branch, or not (or no longer) approved by the platform:
+                # only the owner can still open it (history, reactivate, fix and resubmit).
+                return render(request, "dashboard/branch_closed.html", {"closed": restaurant}, status=403)
             request.restaurant = restaurant
             request.role = role
             request.role_label = dict(Role.CHOICES).get(role, role)
@@ -73,6 +79,8 @@ def staff_view(capability: str = "view_dashboard"):
             request.go_live = go_live_status(restaurant)
             request.billing = get_subscription(restaurant)
             request.features = plan_features(request.billing)
+            # Owners are asked to complete the business profile (banner always, pop-up once per login).
+            request.profile_status = restaurant.profile_status if role == Role.OWNER else None
             return view(request, *args, **kwargs)
 
         return wrapper

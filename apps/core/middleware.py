@@ -58,7 +58,7 @@ class StaffLanguageMiddleware:
         from django.utils import translation
 
         lang = settings.LANGUAGE_CODE
-        if request.path == "/" or request.path.startswith(STAFF_PATHS):  # "/" = landing page for owners
+        if request.path in ("/", "/terms/") or request.path.startswith(STAFF_PATHS):  # landing & terms: for owners
             chosen = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME)
             if chosen in dict(settings.LANGUAGES):
                 lang = chosen

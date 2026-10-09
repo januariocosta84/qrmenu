@@ -55,7 +55,9 @@ class RateLimitedLoginView(auth_views.LoginView):
 
     def form_valid(self, form):
         cache.delete(_key(self.request, self.request.POST.get("username", "")))
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        self.request.session["profile_prompt"] = True  # business profile pop-up, once per login
+        return response
 
     def get_context_data(self, **kwargs):
         return {**super().get_context_data(**kwargs), "signup_open": settings.SIGNUP_MODE != "closed"}
@@ -77,6 +79,7 @@ def signup(request):
                 password=d["password"], phone=d.get("phone", ""),
             )
             login(request, user, backend="apps.accounts.backends.EmailOrUsernameBackend")
+            request.session["profile_prompt"] = True
             try:
                 signup_service.send_verification_email(request, user)
                 messages.success(request, _("Welcome! We sent a confirmation link to %(email)s.") % {"email": user.email})

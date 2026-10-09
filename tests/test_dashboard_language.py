@@ -84,7 +84,7 @@ class DashboardPagesRenderInEveryLanguageTests(TestCase):
                 ("menu", []), ("item_create", []), ("item_edit", [rice.pk]), ("category_create", []),
                 ("category_edit", [rice.category_id]), ("settings", []), ("staff", []), ("reports", []),
                 ("notifications", []), ("billing", []), ("cash_register", []), ("analytics", []),
-                ("quotations", []), ("quotation_create", []),
+                ("quotations", []), ("quotation_create", []), ("expenses", []), ("branches", []), ("revenue", []),
             ]
         ]
         for lang, _name in settings.LANGUAGES:

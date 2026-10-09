@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-08 20:18+0900\n"
+"POT-Creation-Date: 2026-10-09 16:59+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,8 +37,8 @@ msgstr "Telepon (opsional)"
 msgid "Password"
 msgstr "Kata sandi"
 
-msgid "I confirm I own or manage this restaurant."
-msgstr "Saya menyatakan bahwa saya pemilik atau pengelola restoran ini."
+msgid "I confirm I own or manage this restaurant, and I accept the terms of service."
+msgstr "Saya menyatakan memiliki atau mengelola restoran ini, dan menerima ketentuan layanan."
 
 msgid ""
 "An account with this email already exists. Try logging in or resetting your "
@@ -115,6 +115,12 @@ msgstr "Kas: kembalian awal dan pencocokan akhir hari."
 
 msgid "Quotations for catering and procurement bids."
 msgstr "Penawaran untuk katering dan tender pengadaan."
+
+msgid "Daily expenses and profit per day, week, month and year."
+msgstr "Pengeluaran harian dan laba per hari, minggu, bulan, dan tahun."
+
+msgid "Several branches under one owner, with an all-branches overview."
+msgstr "Beberapa cabang dengan satu pemilik, dengan ringkasan semua cabang."
 
 msgid "Trial"
 msgstr "Uji coba"
@@ -609,11 +615,57 @@ msgstr "Sampai meja"
 msgid "Choose a range of at most 200 tables, with end ≥ start."
 msgstr "Pilih rentang maksimal 200 meja, dengan akhir ≥ awal."
 
-msgid "Username"
-msgstr "Nama pengguna"
+msgid "Staff member"
+msgstr "Staf"
 
 msgid "Role"
 msgstr "Peran"
+
+#, python-format
+msgid "Branch names must use your brand name, e.g. “%(example)s”."
+msgstr "Nama cabang harus memakai nama merek Anda, mis. “%(example)s”."
+
+msgid "Branch name"
+msgstr "Nama cabang"
+
+msgid "Must use your brand name, e.g. Kafe Atauro – Comoro. Customers see this name."
+msgstr "Harus memakai nama merek Anda, mis. Kafe Atauro – Comoro. Pelanggan melihat nama ini."
+
+msgid "Branch address"
+msgstr "Alamat cabang"
+
+msgid "Branch phone number"
+msgstr "Nomor telepon cabang"
+
+msgid "Storefront photo"
+msgstr "Foto tampak depan"
+
+msgid "A photo of the branch from outside, showing the brand name."
+msgstr "Foto cabang dari luar yang menampilkan nama merek."
+
+msgid "Business registration number"
+msgstr "Nomor registrasi usaha"
+
+msgid "All branches must belong to the same business registration as the main branch."
+msgstr "Semua cabang harus berada di bawah registrasi usaha yang sama dengan cabang utama."
+
+msgid "Owner name"
+msgstr "Nama pemilik"
+
+msgid "Copy from"
+msgstr "Salin dari"
+
+msgid "Start empty"
+msgstr "Mulai kosong"
+
+msgid "Copy the menu (categories, dishes, photos, add-ons)"
+msgstr "Salin menu (kategori, hidangan, foto, tambahan)"
+
+msgid "Copy settings (currency, service charge, VAT, receipts, logo)"
+msgstr "Salin pengaturan (mata uang, biaya layanan, PPN, struk, logo)"
+
+msgid "Username"
+msgstr "Nama pengguna"
 
 msgid "Share it with the staff member; they can change it later."
 msgstr "Bagikan kepada staf; mereka dapat mengubahnya nanti."
@@ -714,8 +766,12 @@ msgstr "Tanpa penjualan"
 msgid "Printer test"
 msgstr "Uji printer"
 
-msgid "Printing a test slip. If the cash drawer is set up in the printer driver, it opens too."
-msgstr "Mencetak slip uji. Jika laci kas sudah diatur di driver printer, laci juga terbuka."
+msgid ""
+"Printing a test slip. If the cash drawer is set up in the printer driver, it "
+"opens too."
+msgstr ""
+"Mencetak slip uji. Jika laci kas sudah diatur di driver printer, laci juga "
+"terbuka."
 
 #, python-format
 msgid "Cash register opened with %(amount)s change."
@@ -873,16 +929,70 @@ msgstr "Apa yang terjadi setelah pembayaran dicatat."
 msgid "Receipt printer & cash drawer"
 msgstr "Printer struk & laci kas"
 
-msgid "Print receipts on the receipt printer of the cashier computer. A cash drawer plugged into that printer opens automatically on cash payments."
-msgstr "Cetak struk di printer struk komputer kasir. Laci kas yang tersambung ke printer itu terbuka otomatis saat pembayaran tunai."
+msgid ""
+"Print receipts on the receipt printer of the cashier computer. A cash drawer "
+"plugged into that printer opens automatically on cash payments."
+msgstr ""
+"Cetak struk di printer struk komputer kasir. Laci kas yang tersambung ke "
+"printer itu terbuka otomatis saat pembayaran tunai."
 
 #, python-format
 msgid "Limit reached: your plan allows %(n)s staff accounts."
 msgstr "Batas tercapai: paket Anda mengizinkan %(n)s akun staf."
 
 #, python-format
+msgid "%(name)s now also works at this branch."
+msgstr "%(name)s kini juga bekerja di cabang ini."
+
+#, python-format
 msgid "Staff account “%(username)s” created."
 msgstr "Akun staf “%(username)s” dibuat."
+
+#, python-format
+msgid "Branch “%(name)s” requested. The platform team will review it; meanwhile you can set up its menu and staff."
+msgstr "Cabang “%(name)s” diajukan. Tim platform akan meninjaunya; sementara itu Anda bisa menyiapkan menu dan stafnya."
+
+#, python-format
+msgid "Invoice %(number)s created for an extra branch. The slot is added as soon as it is paid."
+msgstr "Faktur %(number)s dibuat untuk cabang tambahan. Slot ditambahkan begitu dibayar."
+
+msgid "One unused extra branch removed from your subscription."
+msgstr "Satu cabang tambahan yang tidak dipakai dihapus dari langganan Anda."
+
+msgid "Every extra branch is in use. Deactivate a branch first."
+msgstr "Semua cabang tambahan sedang dipakai. Nonaktifkan satu cabang dulu."
+
+msgid "Branch details saved."
+msgstr "Detail cabang disimpan."
+
+#, python-format
+msgid ""
+"%(name)s is deactivated: customers can't order and its staff can't sign in "
+"to it. Its history is kept."
+msgstr ""
+"%(name)s dinonaktifkan: pelanggan tidak bisa memesan dan stafnya tidak bisa "
+"masuk. Riwayatnya tetap disimpan."
+
+msgid "No free branch slot: all branches in your plan are in use. Add an extra branch on the Branches page first."
+msgstr "Tidak ada slot kosong: semua cabang di paket Anda sedang dipakai. Tambahkan cabang tambahan di halaman Cabang dulu."
+
+#, python-format
+msgid "%(name)s is active again."
+msgstr "%(name)s aktif kembali."
+
+msgid "Sent for review again."
+msgstr "Dikirim lagi untuk ditinjau."
+
+#, python-format
+msgid "Staff account “%(username)s” created for %(branch)s."
+msgstr "Akun “%(username)s” dibuat untuk %(branch)s."
+
+#, python-format
+msgid "Access updated for %(name)s."
+msgstr "Akses diperbarui untuk %(name)s."
+
+msgid "Thank you! Your business profile is under review."
+msgstr "Terima kasih! Profil usaha Anda sedang ditinjau."
 
 msgid "You cannot demote or deactivate yourself."
 msgstr "Anda tidak dapat menurunkan peran atau menonaktifkan diri sendiri."
@@ -926,6 +1036,89 @@ msgstr "Hidangan"
 msgid "Staff accounts"
 msgstr "Akun staf"
 
+msgid "e.g. Rice 25 kg, gas refill, market vegetables"
+msgstr "mis. Beras 25 kg, isi ulang gas, sayur pasar"
+
+msgid "Date"
+msgstr "Tanggal"
+
+msgid "What was bought"
+msgstr "Yang dibeli"
+
+msgid "Paid with"
+msgstr "Dibayar dengan"
+
+msgid "e.g. Walk-in sales, catering for Ministry"
+msgstr "mis. Penjualan langsung, katering untuk Kementerian"
+
+msgid "Amount (USD)"
+msgstr "Jumlah (USD)"
+
+msgid "Payment method"
+msgstr "Metode pembayaran"
+
+msgid "Note (optional)"
+msgstr "Catatan (opsional)"
+
+msgid "Ingredients & food supplies"
+msgstr "Bahan & persediaan makanan"
+
+msgid "Drinks"
+msgstr "Minuman"
+
+msgid "Gas & fuel"
+msgstr "Gas & bahan bakar"
+
+msgid "Electricity, water & internet"
+msgstr "Listrik, air & internet"
+
+msgid "Rent"
+msgstr "Sewa"
+
+msgid "Salaries & wages"
+msgstr "Gaji & upah"
+
+msgid "Transport"
+msgstr "Transportasi"
+
+msgid "Equipment & tableware"
+msgstr "Peralatan & alat makan"
+
+msgid "Repairs & cleaning"
+msgstr "Perbaikan & kebersihan"
+
+msgid "Other"
+msgstr "Lainnya"
+
+msgid "Cash"
+msgstr "Tunai"
+
+msgid "Bank transfer"
+msgstr "Transfer bank"
+
+msgid "Transfer"
+msgstr "Transfer"
+
+#, python-format
+msgid "Expense saved: %(what)s, %(amount)s."
+msgstr "Pengeluaran disimpan: %(what)s, %(amount)s."
+
+msgid "Expense updated."
+msgstr "Pengeluaran diperbarui."
+
+msgid "Edit expense"
+msgstr "Ubah pengeluaran"
+
+msgid "Expense deleted."
+msgstr "Pengeluaran dihapus."
+
+#, python-format
+msgid "Revenue recorded: %(amount)s."
+msgstr "Pendapatan dicatat: %(amount)s."
+
+msgid "Revenue entry deleted."
+msgstr "Catatan pendapatan dihapus."
+
 msgid "Lower numbers appear first."
 msgstr "Angka lebih kecil tampil lebih dulu."
 
@@ -956,14 +1149,8 @@ msgstr "Selesai"
 msgid "Pay at restaurant"
 msgstr "Bayar di restoran"
 
-msgid "Cash"
-msgstr "Tunai"
-
 msgid "Manual payment"
 msgstr "Pembayaran manual"
-
-msgid "Bank transfer"
-msgstr "Transfer bank"
 
 msgid "Visa / Mastercard"
 msgstr "Visa / Mastercard"
@@ -1256,8 +1443,12 @@ msgstr "Alamat IP printer struk tempat laci tersambung, mis. 192.168.1.50"
 msgid "Raw printing port; 9100 for almost all network receipt printers."
 msgstr "Port cetak langsung; 9100 untuk hampir semua printer struk jaringan."
 
-msgid "The cash drawer is plugged into the receipt printer of this computer. A small slip prints to open it."
-msgstr "Laci kas tersambung ke printer struk komputer ini. Slip kecil dicetak untuk membukanya."
+msgid ""
+"The cash drawer is plugged into the receipt printer of this computer. A "
+"small slip prints to open it."
+msgstr ""
+"Laci kas tersambung ke printer struk komputer ini. Slip kecil dicetak untuk "
+"membukanya."
 
 msgid "Ask \"Print receipt?\" after each payment"
 msgstr "Tanya “Cetak struk?” setelah setiap pembayaran"
@@ -1283,8 +1474,35 @@ msgstr "Kertas 58 mm"
 msgid "Paper width of the network receipt printer."
 msgstr "Lebar kertas printer struk."
 
+msgid "The main branch this sub-branch belongs to."
+msgstr "Cabang utama tempat sub-cabang ini berada."
+
+msgid "Set when the main branch deactivates this sub-branch."
+msgstr "Diisi saat cabang utama menonaktifkan sub-cabang ini."
+
+msgid "Suspended"
+msgstr "Ditangguhkan"
+
 msgid "Optional, e.g. 'Terrace' or 'Window'."
 msgstr "Opsional, mis. 'Teras' atau 'Jendela'."
+
+msgid "Incomplete"
+msgstr "Belum lengkap"
+
+msgid "Under review"
+msgstr "Sedang ditinjau"
+
+msgid "Verified"
+msgstr "Terverifikasi"
+
+msgid "e.g. your SERVE certificate number or tax number (NIF)."
+msgstr "mis. nomor sertifikat SERVE atau nomor pajak (NIF)."
+
+msgid "The legal owner of the business."
+msgstr "Pemilik sah usaha ini."
+
+msgid "Phone number"
+msgstr "Nomor telepon"
 
 msgid "Log in"
 msgstr "Masuk"
@@ -1381,6 +1599,9 @@ msgstr ""
 "Gratis untuk memulai. Siapkan menu, cetak kode QR untuk setiap meja, dan "
 "mulai menerima pesanan. Pelanggan tidak perlu aplikasi atau akun."
 
+msgid "Read the terms of service"
+msgstr "Baca ketentuan layanan"
+
 msgid "Create my restaurant"
 msgstr "Buat restoran saya"
 
@@ -1467,50 +1688,98 @@ msgstr "Siapkan printer struk dan laci kas (sekitar 10 menit)"
 msgid "Install the printer on the cashier computer."
 msgstr "Pasang printer di komputer kasir."
 
-msgid "Connect it by USB (or Wi-Fi/Bluetooth), install the driver from the printer's CD or the maker's website, and set it as the default printer. Choose 80 mm paper (or 58 mm for small printers)."
-msgstr "Sambungkan lewat USB (atau Wi-Fi/Bluetooth), pasang driver dari CD printer atau situs produsen, lalu jadikan printer bawaan. Pilih kertas 80 mm (atau 58 mm untuk printer kecil)."
+msgid ""
+"Connect it by USB (or Wi-Fi/Bluetooth), install the driver from the "
+"printer's CD or the maker's website, and set it as the default printer. "
+"Choose 80 mm paper (or 58 mm for small printers)."
+msgstr ""
+"Sambungkan lewat USB (atau Wi-Fi/Bluetooth), pasang driver dari CD printer "
+"atau situs produsen, lalu jadikan printer bawaan. Pilih kertas 80 mm (atau "
+"58 mm untuk printer kecil)."
 
 msgid "Plug in the cash drawer."
 msgstr "Sambungkan laci kas."
 
-msgid "The drawer cable (a phone-style plug) goes into the printer's port marked “DK” or “Drawer”."
-msgstr "Kabel laci (colokan seperti telepon) masuk ke port printer bertanda “DK” atau “Drawer”."
+msgid ""
+"The drawer cable (a phone-style plug) goes into the printer's port marked "
+"“DK” or “Drawer”."
+msgstr ""
+"Kabel laci (colokan seperti telepon) masuk ke port printer bertanda “DK” "
+"atau “Drawer”."
 
 msgid "Tell the printer driver to open the drawer."
 msgstr "Atur driver printer agar membuka laci."
 
-msgid "On Windows: Settings → Printers → your receipt printer → Printing preferences (or Printer properties). Look for “Cash drawer” or “Peripherals” and choose “Open drawer #1 before printing”. The name varies by brand:"
-msgstr "Di Windows: Settings → Printers → printer struk Anda → Printing preferences (atau Printer properties). Cari “Cash drawer” atau “Peripherals” lalu pilih “Open drawer #1 before printing”. Namanya berbeda tiap merek:"
+msgid ""
+"On Windows: Settings → Printers → your receipt printer → Printing "
+"preferences (or Printer properties). Look for “Cash drawer” or “Peripherals” "
+"and choose “Open drawer #1 before printing”. The name varies by brand:"
+msgstr ""
+"Di Windows: Settings → Printers → printer struk Anda → Printing preferences "
+"(atau Printer properties). Cari “Cash drawer” atau “Peripherals” lalu pilih "
+"“Open drawer #1 before printing”. Namanya berbeda tiap merek:"
 
-msgid "Printing preferences → Document settings / Printer settings → Cash drawer → “Open drawer #1 before printing”."
-msgstr "Printing preferences → Document settings / Printer settings → Cash drawer → “Open drawer #1 before printing”."
+msgid ""
+"Printing preferences → Document settings / Printer settings → Cash drawer → "
+"“Open drawer #1 before printing”."
+msgstr ""
+"Printing preferences → Document settings / Printer settings → Cash drawer → "
+"“Open drawer #1 before printing”."
 
-msgid "Printer properties → Device settings → “Cash drawer” → open before printing."
-msgstr "Printer properties → Device settings → “Cash drawer” → buka sebelum mencetak."
+msgid ""
+"Printer properties → Device settings → “Cash drawer” → open before printing."
+msgstr ""
+"Printer properties → Device settings → “Cash drawer” → buka sebelum mencetak."
 
-msgid "Printer properties → Device settings → Peripheral unit type “Cash drawer”, open at “Document top”."
-msgstr "Printer properties → Device settings → Peripheral unit type “Cash drawer”, buka di “Document top”."
+msgid ""
+"Printer properties → Device settings → Peripheral unit type “Cash drawer”, "
+"open at “Document top”."
+msgstr ""
+"Printer properties → Device settings → Peripheral unit type “Cash drawer”, "
+"buka di “Document top”."
 
 msgid "Turn on the switch above and save."
 msgstr "Aktifkan sakelar di atas lalu simpan."
 
-msgid "From now on, every cash payment and every “Open drawer (no sale)” prints a small slip, and the driver opens the drawer."
-msgstr "Mulai sekarang, setiap pembayaran tunai dan setiap “Buka laci kas (tanpa penjualan)” mencetak slip kecil, dan driver membuka laci."
+msgid ""
+"From now on, every cash payment and every “Open drawer (no sale)” prints a "
+"small slip, and the driver opens the drawer."
+msgstr ""
+"Mulai sekarang, setiap pembayaran tunai dan setiap “Buka laci kas (tanpa "
+"penjualan)” mencetak slip kecil, dan driver membuka laci."
 
 msgid "Optional: print without the print window."
 msgstr "Opsional: cetak tanpa jendela cetak."
 
-msgid "Make a Chrome shortcut for the dashboard: right-click the Chrome icon → Properties, and add --kiosk-printing at the end of “Target” (after the quotes). Open the dashboard with that shortcut, and receipts and slips print immediately on the default printer."
-msgstr "Buat pintasan Chrome untuk dasbor: klik kanan ikon Chrome → Properties, lalu tambahkan --kiosk-printing di akhir “Target” (setelah tanda kutip). Buka dasbor dengan pintasan itu, maka struk dan slip langsung tercetak di printer bawaan."
+msgid ""
+"Make a Chrome shortcut for the dashboard: right-click the Chrome icon → "
+"Properties, and add --kiosk-printing at the end of “Target” (after the "
+"quotes). Open the dashboard with that shortcut, and receipts and slips print "
+"immediately on the default printer."
+msgstr ""
+"Buat pintasan Chrome untuk dasbor: klik kanan ikon Chrome → Properties, lalu "
+"tambahkan --kiosk-printing di akhir “Target” (setelah tanda kutip). Buka "
+"dasbor dengan pintasan itu, maka struk dan slip langsung tercetak di printer "
+"bawaan."
 
 msgid "Test it"
 msgstr "Uji"
 
-msgid "use “Print test slip” below. The slip should print and the drawer should open. If the drawer stays closed, check step 3 (some drawers need “drawer #2”)."
-msgstr "gunakan “Cetak slip uji” di bawah. Slip harus tercetak dan laci harus terbuka. Jika laci tetap tertutup, periksa langkah 3 (beberapa laci perlu “drawer #2”)."
+msgid ""
+"use “Print test slip” below. The slip should print and the drawer should "
+"open. If the drawer stays closed, check step 3 (some drawers need “drawer "
+"#2”)."
+msgstr ""
+"gunakan “Cetak slip uji” di bawah. Slip harus tercetak dan laci harus "
+"terbuka. Jika laci tetap tertutup, periksa langkah 3 (beberapa laci perlu "
+"“drawer #2”)."
 
-msgid "Phones and tablets: print through the printer maker's app or print service. Whether the drawer opens depends on that app."
-msgstr "Ponsel dan tablet: cetak melalui aplikasi atau layanan cetak produsen printer. Apakah laci terbuka tergantung aplikasi tersebut."
+msgid ""
+"Phones and tablets: print through the printer maker's app or print service. "
+"Whether the drawer opens depends on that app."
+msgstr ""
+"Ponsel dan tablet: cetak melalui aplikasi atau layanan cetak produsen "
+"printer. Apakah laci terbuka tergantung aplikasi tersebut."
 
 msgid "Analytics"
 msgstr "Analitik"
@@ -1723,6 +1992,9 @@ msgstr "Menu"
 msgid "Reports"
 msgstr "Laporan"
 
+msgid "Expenses & profit"
+msgstr "Pengeluaran & laba"
+
 msgid "Quotations"
 msgstr "Penawaran harga"
 
@@ -1731,6 +2003,9 @@ msgstr "Restoran"
 
 msgid "Billing"
 msgstr "Tagihan"
+
+msgid "Branches"
+msgstr "Cabang"
 
 msgid "View public menu"
 msgstr "Lihat menu publik"
@@ -1792,6 +2067,28 @@ msgstr ""
 msgid "Resend email"
 msgstr "Kirim ulang email"
 
+msgid "Branch waiting for approval."
+msgstr "Cabang menunggu persetujuan."
+
+msgid "The platform team checks every new branch. Until it is approved, the branch is hidden and can't record revenue. You can set up its menu and tables in the meantime."
+msgstr "Tim platform memeriksa setiap cabang baru. Sampai disetujui, cabang disembunyikan dan tidak bisa mencatat pendapatan. Sementara itu Anda bisa menyiapkan menu dan mejanya."
+
+msgid "Branch request not approved."
+msgstr "Pengajuan cabang tidak disetujui."
+
+msgid "Correct the details and send it again from Branches."
+msgstr "Perbaiki detailnya dan kirim lagi dari Cabang."
+
+msgid "Branch suspended by the platform."
+msgstr "Cabang ditangguhkan oleh platform."
+
+msgid "Customers can't see its menu and it can't record revenue."
+msgstr "Pelanggan tidak bisa melihat menunya dan cabang ini tidak bisa mencatat pendapatan."
+
+#, python-format
+msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
+msgstr "Hubungi <a href=\"mailto:%(email)s\">%(email)s</a>."
+
 msgid "Waiting for approval."
 msgstr "Menunggu persetujuan."
 
@@ -1810,10 +2107,6 @@ msgid ""
 msgstr ""
 "Restoran ini ditangguhkan oleh platform. Pelanggan tidak dapat melihat menu "
 "atau memesan."
-
-#, python-format
-msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr "Hubungi <a href=\"mailto:%(email)s\">%(email)s</a>."
 
 #, python-format
 msgid "Your free trial ends in %(days)s day."
@@ -1847,6 +2140,27 @@ msgstr "Pelanggan tidak dapat memesan."
 msgid "View billing"
 msgstr "Lihat tagihan"
 
+msgid "Your business profile needs changes."
+msgstr "Profil usaha Anda perlu diperbaiki."
+
+msgid "Complete your business profile."
+msgstr "Lengkapi profil usaha Anda."
+
+msgid "We verify every business before it can add branches. It takes two minutes: registration number, owner, address and phone."
+msgstr "Kami memverifikasi setiap usaha sebelum bisa menambah cabang. Hanya dua menit: nomor registrasi, pemilik, alamat, dan telepon."
+
+msgid "Complete now"
+msgstr "Lengkapi sekarang"
+
+msgid "Complete your business profile"
+msgstr "Lengkapi profil usaha Anda"
+
+msgid "Please add your business registration number (e.g. SERVE certificate or tax number), the owner's name, your address and phone number. Our team verifies it, and then you can add branches."
+msgstr "Tambahkan nomor registrasi usaha (mis. sertifikat SERVE atau nomor pajak), nama pemilik, alamat, dan nomor telepon. Tim kami memverifikasinya, lalu Anda bisa menambah cabang."
+
+msgid "Remind me later"
+msgstr "Ingatkan nanti"
+
 msgid "Your plan, usage and invoices."
 msgstr "Paket, penggunaan, dan tagihan Anda."
 
@@ -1861,6 +2175,11 @@ msgstr "Gratis"
 
 msgid "month"
 msgstr "bulan"
+
+#, python-format
+msgid "+ %(n)s extra branch × $%(price)s = $%(total)s / month"
+msgid_plural "+ %(n)s extra branches × $%(price)s = $%(total)s / month"
+msgstr[0] "+ %(n)s cabang tambahan × $%(price)s = $%(total)s / bulan"
 
 msgid "Your account is complimentary. There's nothing to pay."
 msgstr "Akun Anda gratis. Tidak ada yang perlu dibayar."
@@ -1951,6 +2270,11 @@ msgid "mo"
 msgstr "bln"
 
 #, python-format
+msgid "Main branch + %(n)s branch; extra branches $%(price)s/month each"
+msgid_plural "Main branch + %(n)s branches; extra branches $%(price)s/month each"
+msgstr[0] "Cabang utama + %(n)s cabang; cabang tambahan $%(price)s/bulan per cabang"
+
+#, python-format
 msgid "%(t)s tables · %(d)s dishes · %(s)s staff"
 msgstr "%(t)s meja · %(d)s hidangan · %(s)s staf"
 
@@ -1967,6 +2291,241 @@ msgstr "Minta perubahan ke %(plan)s?"
 #, python-format
 msgid "Switch to %(plan)s"
 msgstr "Ganti ke %(plan)s"
+
+msgid "Branch deactivated"
+msgstr "Cabang dinonaktifkan"
+
+msgid "Branch not active"
+msgstr "Cabang tidak aktif"
+
+msgid ""
+"The main branch has deactivated this branch. Ask the owner if you need "
+"access again."
+msgstr ""
+"Cabang utama telah menonaktifkan cabang ini. Hubungi pemilik jika Anda perlu "
+"akses lagi."
+
+msgid "Waiting for approval"
+msgstr "Menunggu persetujuan"
+
+msgid "This new branch is being reviewed by the platform team. You can use it once it is approved."
+msgstr "Cabang baru ini sedang ditinjau tim platform. Anda bisa memakainya setelah disetujui."
+
+msgid "This branch has been suspended or was not approved by the platform. Ask the owner for details."
+msgstr "Cabang ini ditangguhkan atau tidak disetujui oleh platform. Tanyakan detailnya kepada pemilik."
+
+msgid "Deactivated"
+msgstr "Nonaktif"
+
+msgid "Not live"
+msgstr "Tidak aktif"
+
+#, python-format
+msgid "Sub-branch of %(main)s."
+msgstr "Sub-cabang dari %(main)s."
+
+msgid "Open its dashboard"
+msgstr "Buka dasbornya"
+
+msgid "Waiting for approval by the platform team. Meanwhile you can set up its menu, tables and staff; it goes live and can record revenue once approved."
+msgstr "Menunggu persetujuan tim platform. Sementara itu Anda bisa menyiapkan menu, meja, dan staf; cabang aktif dan bisa mencatat pendapatan setelah disetujui."
+
+msgid "Request not approved"
+msgstr "Pengajuan tidak disetujui"
+
+msgid "Correct the branch details below if needed, optionally add a new storefront photo, and send it again."
+msgstr "Perbaiki detail cabang di bawah bila perlu, tambahkan foto tampak depan baru (opsional), lalu kirim lagi."
+
+msgid "Send again"
+msgstr "Kirim lagi"
+
+msgid "Suspended by the platform."
+msgstr "Ditangguhkan oleh platform."
+
+msgid "Branch details"
+msgstr "Detail cabang"
+
+msgid "User"
+msgstr "Pengguna"
+
+msgid "Disabled"
+msgstr "Nonaktif"
+
+msgid "Disable"
+msgstr "Nonaktifkan"
+
+msgid "Enable"
+msgstr "Aktifkan"
+
+msgid "Add staff account"
+msgstr "Tambah akun staf"
+
+msgid ""
+"A branch manager or cashier for this branch. They only see this branch: its "
+"orders and its own revenue."
+msgstr ""
+"Manajer atau kasir untuk cabang ini. Mereka hanya melihat cabang ini: "
+"pesanannya dan pendapatannya sendiri."
+
+msgid "Create account"
+msgstr "Buat akun"
+
+msgid "Reactivate branch"
+msgstr "Aktifkan kembali cabang"
+
+msgid "Deactivate branch"
+msgstr "Nonaktifkan cabang"
+
+#, python-format
+msgid ""
+"Deactivated on %(d)s. Reactivating brings back its menu, QR codes and staff "
+"access."
+msgstr ""
+"Dinonaktifkan pada %(d)s. Mengaktifkan kembali memulihkan menu, kode QR, dan "
+"akses staf."
+
+msgid "Reactivate"
+msgstr "Aktifkan kembali"
+
+msgid ""
+"Customers can no longer order, its QR codes stop working and its staff can't "
+"sign in to it. Nothing is deleted, and you can reactivate it at any time."
+msgstr ""
+"Pelanggan tidak bisa memesan lagi, kode QR berhenti berfungsi, dan staf "
+"tidak bisa masuk. Tidak ada yang dihapus, dan Anda bisa mengaktifkannya "
+"kembali kapan saja."
+
+#, python-format
+msgid "Deactivate %(n)s?"
+msgstr "Nonaktifkan %(n)s?"
+
+msgid "Deactivate"
+msgstr "Nonaktifkan"
+
+#, python-format
+msgid ""
+"%(name)s (main branch) and its sub-branches. Revenue = completed orders + "
+"sales recorded by each branch."
+msgstr ""
+"%(name)s (cabang utama) dan sub-cabangnya. Pendapatan = pesanan selesai + "
+"penjualan yang dicatat tiap cabang."
+
+msgid "Previous day"
+msgstr "Hari sebelumnya"
+
+msgid "Next day"
+msgstr "Hari berikutnya"
+
+msgid "Today"
+msgstr "Hari ini"
+
+msgid "All branches · this day"
+msgstr "Semua cabang · hari ini"
+
+#, python-format
+msgid "Orders %(o)s · recorded %(m)s"
+msgstr "Pesanan %(o)s · dicatat %(m)s"
+
+#, python-format
+msgid "Week from %(d)s"
+msgstr "Minggu sejak %(d)s"
+
+msgid "Revenue by branch"
+msgstr "Pendapatan per cabang"
+
+msgid "Branch"
+msgstr "Cabang"
+
+msgid "This day"
+msgstr "Hari ini"
+
+msgid "Week"
+msgstr "Minggu"
+
+msgid "Month"
+msgstr "Bulan"
+
+msgid "Main branch"
+msgstr "Cabang utama"
+
+#, python-format
+msgid "incl. %(m)s recorded"
+msgstr "termasuk %(m)s dicatat"
+
+msgid "All branches"
+msgstr "Semua cabang"
+
+msgid "This day compared"
+msgstr "Perbandingan hari ini"
+
+msgid "Revenue per branch for this day"
+msgstr "Pendapatan per cabang untuk hari ini"
+
+msgid "Branch slots"
+msgstr "Slot cabang"
+
+#, python-format
+msgid "Your plan includes %(included)s branches besides the main branch; you have %(extra)s extra. Pending, rejected and deactivated branches don't use a slot."
+msgstr "Paket Anda mencakup %(included)s cabang selain cabang utama; Anda punya %(extra)s tambahan. Cabang yang menunggu, ditolak, atau nonaktif tidak memakai slot."
+
+#, python-format
+msgid "Invoice %(number)s (%(amount)s) for an extra branch is waiting for payment. The slot is added once it is paid."
+msgstr "Faktur %(number)s (%(amount)s) untuk cabang tambahan menunggu pembayaran. Slot ditambahkan setelah dibayar."
+
+#, python-format
+msgid "Add an extra branch (%(price)s/month)"
+msgstr "Tambah cabang tambahan (%(price)s/bulan)"
+
+msgid "Remove one unused extra branch from your subscription?"
+msgstr "Hapus satu cabang tambahan yang tidak dipakai dari langganan Anda?"
+
+msgid "Remove an unused extra branch"
+msgstr "Hapus cabang tambahan yang tidak dipakai"
+
+msgid "Business profile"
+msgstr "Profil usaha"
+
+msgid "You can request branches once the platform team has verified your business profile."
+msgstr "Anda bisa mengajukan cabang setelah tim platform memverifikasi profil usaha Anda."
+
+msgid "To request branches, first complete your business profile. The platform team verifies it."
+msgstr "Untuk mengajukan cabang, lengkapi dulu profil usaha Anda. Tim platform akan memverifikasinya."
+
+msgid "View"
+msgstr "Lihat"
+
+msgid "Request a new branch"
+msgstr "Ajukan cabang baru"
+
+msgid "The platform team reviews every new branch: it must be the same business, using your brand name. Until it is approved, the branch is hidden and can't record revenue. It gets its own QR codes, tables and staff; you stay the owner, with the same login."
+msgstr "Tim platform meninjau setiap cabang baru: harus usaha yang sama dan memakai nama merek Anda. Sampai disetujui, cabang disembunyikan dan tidak bisa mencatat pendapatan. Cabang punya kode QR, meja, dan staf sendiri; Anda tetap pemilik dengan login yang sama."
+
+msgid "All branch slots in your plan are in use. You can still send the request; it is activated once you add an extra branch."
+msgstr "Semua slot cabang di paket Anda sedang dipakai. Anda tetap bisa mengirim pengajuan; cabang diaktifkan setelah Anda menambah cabang tambahan."
+
+msgid "Send request"
+msgstr "Kirim pengajuan"
+
+msgid "Needs changes"
+msgstr "Perlu diperbaiki"
+
+msgid "The legal details of your business. The platform team verifies them before you can add branches; all branches must belong to this same business."
+msgstr "Data legal usaha Anda. Tim platform memverifikasinya sebelum Anda bisa menambah cabang; semua cabang harus milik usaha yang sama ini."
+
+msgid "Thank you! We are checking your details, usually within one working day. You can keep using QR Menu and recording revenue in the meantime."
+msgstr "Terima kasih! Kami sedang memeriksa data Anda, biasanya dalam satu hari kerja. Sementara itu Anda tetap bisa memakai QR Menu dan mencatat pendapatan."
+
+msgid "Please correct your details and send them again."
+msgstr "Perbaiki data Anda dan kirim lagi."
+
+msgid "Your business is verified. You can request branches on the Branches page. Changing these details sends them for review again."
+msgstr "Usaha Anda sudah terverifikasi. Anda bisa mengajukan cabang di halaman Cabang. Mengubah data ini akan mengirimnya untuk ditinjau lagi."
+
+msgid "Save and send for review"
+msgstr "Simpan dan kirim untuk ditinjau"
+
+msgid "Send for verification"
+msgstr "Kirim untuk verifikasi"
 
 msgid ""
 "Enter the change in the drawer before selling starts. At the end, count the "
@@ -2059,9 +2618,6 @@ msgstr "Uang yang dihitung"
 msgid "Difference"
 msgstr "Selisih"
 
-msgid "Note (optional)"
-msgstr "Catatan (opsional)"
-
 msgid "e.g. $1 coin missing"
 msgstr "mis. koin $1 hilang"
 
@@ -2098,6 +2654,67 @@ msgstr "Lebih: uang lebih banyak dari seharusnya."
 msgid "Short: less cash than expected."
 msgstr "Kurang: uang lebih sedikit dari seharusnya."
 
+msgid ""
+"Write down what you spend each day. Profit = revenue from completed orders − "
+"expenses."
+msgstr ""
+"Catat pengeluaran setiap hari. Laba = pendapatan dari pesanan selesai − "
+"pengeluaran."
+
+msgid "Export CSV"
+msgstr "Ekspor CSV"
+
+msgid "This week"
+msgstr "Minggu ini"
+
+msgid "This year"
+msgstr "Tahun ini"
+
+msgid "Loss"
+msgstr "Rugi"
+
+msgid "Profit"
+msgstr "Laba"
+
+msgid "Expenses"
+msgstr "Pengeluaran"
+
+#, python-format
+msgid "%(a)s – %(b)s"
+msgstr "%(a)s – %(b)s"
+
+#, python-format
+msgid "Profit margin: %(m)s%% of revenue"
+msgstr "Margin laba: %(m)s%% dari pendapatan"
+
+msgid "No sales or expenses in this period yet."
+msgstr "Belum ada penjualan atau pengeluaran pada periode ini."
+
+msgid "Expenses by category"
+msgstr "Pengeluaran per kategori"
+
+msgid "Add an expense"
+msgstr "Tambah pengeluaran"
+
+msgid "Save expense"
+msgstr "Simpan pengeluaran"
+
+msgid "Expenses in this period"
+msgstr "Pengeluaran pada periode ini"
+
+msgid "Edit"
+msgstr "Ubah"
+
+msgid "Delete this expense?"
+msgstr "Hapus pengeluaran ini?"
+
+msgid "Delete"
+msgstr "Hapus"
+
+msgid "No expenses in this period. Add your first one above."
+msgstr ""
+"Tidak ada pengeluaran pada periode ini. Tambahkan yang pertama di atas."
+
 msgid "Your restaurants"
 msgstr "Restoran Anda"
 
@@ -2107,9 +2724,6 @@ msgstr "Pilih restoran"
 #, python-format
 msgid "Signed in as %(name)s"
 msgstr "Masuk sebagai %(name)s"
-
-msgid "Not live"
-msgstr "Tidak aktif"
 
 msgid ""
 "Your account is not linked to a restaurant yet. Ask the restaurant owner to "
@@ -2571,9 +3185,6 @@ msgstr ""
 msgid "Number"
 msgstr "Nomor"
 
-msgid "Date"
-msgstr "Tanggal"
-
 msgid "Print"
 msgstr "Cetak"
 
@@ -2626,9 +3237,6 @@ msgstr "Disetujui oleh klien"
 msgid "Name, signature, stamp & date"
 msgstr "Nama, tanda tangan, stempel & tanggal"
 
-msgid "Export CSV"
-msgstr "Ekspor CSV"
-
 msgid "From"
 msgstr "Dari"
 
@@ -2646,6 +3254,41 @@ msgstr "Terjual"
 
 msgid "No data yet."
 msgstr "Belum ada data."
+
+#, python-format
+msgid ""
+"%(name)s only. Record sales that weren't entered as orders, e.g. walk-in "
+"cash sales. Orders are counted automatically."
+msgstr ""
+"Hanya %(name)s. Catat penjualan yang tidak masuk sebagai pesanan, mis. "
+"penjualan tunai langsung. Pesanan dihitung otomatis."
+
+msgid "Today's revenue"
+msgstr "Pendapatan hari ini"
+
+msgid "Recorded entries"
+msgstr "Catatan tercatat"
+
+msgid "Delete this entry?"
+msgstr "Hapus catatan ini?"
+
+msgid "Total recorded"
+msgstr "Total dicatat"
+
+msgid "No recorded entries for these dates."
+msgstr "Tidak ada catatan untuk tanggal ini."
+
+msgid "Record revenue"
+msgstr "Catat pendapatan"
+
+msgid "This branch is deactivated."
+msgstr "Cabang ini dinonaktifkan."
+
+msgid "This branch is waiting for approval by the platform team. It can record revenue once approved."
+msgstr "Cabang ini menunggu persetujuan tim platform. Cabang bisa mencatat pendapatan setelah disetujui."
+
+msgid "This branch is not active, so it can't record revenue."
+msgstr "Cabang ini tidak aktif, jadi tidak bisa mencatat pendapatan."
 
 msgid "Restaurant settings"
 msgstr "Pengaturan restoran"
@@ -2694,17 +3337,8 @@ msgid "Accounts for your team. Each person signs in with their own username."
 msgstr ""
 "Akun untuk tim Anda. Setiap orang masuk dengan nama penggunanya sendiri."
 
-msgid "User"
-msgstr "Pengguna"
-
 msgid "you"
 msgstr "Anda"
-
-msgid "Disabled"
-msgstr "Nonaktif"
-
-msgid "Edit"
-msgstr "Ubah"
 
 msgid "What each role can do"
 msgstr "Yang dapat dilakukan setiap peran"
@@ -2728,8 +3362,18 @@ msgstr ""
 msgid "Add staff member"
 msgstr "Tambah staf"
 
-msgid "Create account"
-msgstr "Buat akun"
+msgid "From another branch"
+msgstr "Dari cabang lain"
+
+msgid ""
+"Someone who already works at one of your other branches can use the same "
+"login here."
+msgstr ""
+"Orang yang sudah bekerja di salah satu cabang Anda yang lain bisa memakai "
+"login yang sama di sini."
+
+msgid "Add to this branch"
+msgstr "Tambahkan ke cabang ini"
 
 msgid "Occupied"
 msgstr "Terisi"
@@ -2874,6 +3518,22 @@ msgid ""
 msgstr ""
 "Catat kembalian sebelum berjualan, kas masuk dan keluar, lalu cocokkan di "
 "akhir hari: seharusnya vs dihitung, lebih atau kurang, dengan laporan cetak."
+
+msgid ""
+"Open more branches under the same login, copy your menu to them in one "
+"click, and see revenue and profit for every branch and for the whole "
+"business."
+msgstr ""
+"Buka lebih banyak cabang dengan login yang sama, salin menu ke cabang itu "
+"dengan sekali klik, dan lihat pendapatan serta laba setiap cabang dan "
+"seluruh usaha."
+
+msgid ""
+"Write down what you spend each day and see your real profit for today, this "
+"week, this month and this year."
+msgstr ""
+"Catat pengeluaran setiap hari dan lihat laba sebenarnya hari ini, minggu "
+"ini, bulan ini, dan tahun ini."
 
 msgid ""
 "Create professional price offers for catering, events and procurement bids "
@@ -3022,6 +3682,14 @@ msgstr "Kas & pencocokan akhir hari"
 msgid "Quotations for catering & tenders"
 msgstr "Penawaran untuk katering & tender"
 
+msgid "Daily expenses & profit"
+msgstr "Pengeluaran harian & laba"
+
+#, python-format
+msgid "Main branch + %(n)s branch, one login"
+msgid_plural "Main branch + %(n)s branches, one login"
+msgstr[0] "Cabang utama + %(n)s cabang, satu login"
+
 msgid "Get started"
 msgstr "Mulai"
 
@@ -3035,8 +3703,107 @@ msgstr "Untuk memesan, silakan pindai kode QR di meja Anda."
 msgid "Hello! I'd like to know more about %(name)s."
 msgstr "Halo! Saya ingin tahu lebih lanjut tentang %(name)s."
 
+msgid "Terms of service"
+msgstr "Ketentuan layanan"
+
 msgid "Chat with us on WhatsApp"
 msgstr "Hubungi kami di WhatsApp"
+
+msgid "Last updated: 9 October 2026"
+msgstr "Terakhir diperbarui: 9 Oktober 2026"
+
+msgid "1. The service"
+msgstr "1. Layanan"
+
+#, python-format
+msgid "%(name)s provides QR code menus, table ordering and restaurant management tools to food businesses (\"you\"). By registering, you accept these terms on behalf of your business."
+msgstr "%(name)s menyediakan menu kode QR, pemesanan di meja, dan alat manajemen restoran untuk usaha makanan (\"Anda\"). Dengan mendaftar, Anda menerima ketentuan ini atas nama usaha Anda."
+
+msgid "2. Your account"
+msgstr "2. Akun Anda"
+
+msgid "You must give correct information about your business and keep your login details secret. You are responsible for everything done with your account and your staff accounts. We may ask you to verify your business (for example with your business registration or tax number) before you can use some features."
+msgstr "Anda wajib memberi informasi yang benar tentang usaha Anda dan menjaga kerahasiaan data login. Anda bertanggung jawab atas semua yang dilakukan dengan akun Anda dan akun staf Anda. Kami dapat meminta verifikasi usaha (misalnya dengan registrasi usaha atau nomor pajak) sebelum Anda memakai beberapa fitur."
+
+msgid "3. Branches"
+msgstr "3. Cabang"
+
+msgid "All branches in one account must be owned and operated by the same business, under the same business registration and brand name."
+msgstr "Semua cabang dalam satu akun harus dimiliki dan dijalankan oleh usaha yang sama, dengan registrasi usaha dan nama merek yang sama."
+
+msgid "Each new branch is reviewed by our team before it is activated. A branch that belongs to a different business is not allowed: we may suspend it, or move it to a separate account that is billed separately."
+msgstr "Setiap cabang baru ditinjau tim kami sebelum diaktifkan. Cabang milik usaha lain tidak diizinkan: kami dapat menangguhkannya atau memindahkannya ke akun terpisah yang ditagih terpisah."
+
+msgid "4. Plans and payment"
+msgstr "4. Paket dan pembayaran"
+
+msgid "Plans are billed monthly in US dollars. Each plan includes a fixed number of branches; extra branches are a monthly add-on. If an invoice is not paid after the grace period, ordering is switched off until it is paid. Prices may change with 30 days' notice."
+msgstr "Paket ditagih bulanan dalam dolar AS. Setiap paket mencakup sejumlah cabang tetap; cabang tambahan adalah add-on bulanan. Jika faktur tidak dibayar setelah masa tenggang, pemesanan dimatikan sampai dibayar. Harga dapat berubah dengan pemberitahuan 30 hari."
+
+msgid "5. Your data"
+msgstr "5. Data Anda"
+
+msgid "Your menus, orders and revenue records belong to you. We use them only to provide the service and keep each branch's data separate. We don't sell your data."
+msgstr "Menu, pesanan, dan catatan pendapatan Anda adalah milik Anda. Kami memakainya hanya untuk menyediakan layanan dan memisahkan data setiap cabang. Kami tidak menjual data Anda."
+
+msgid "6. Acceptable use"
+msgstr "6. Penggunaan yang wajar"
+
+msgid "Don't use the service for anything illegal, to mislead customers, or to disrupt the platform. We may suspend accounts that break these terms."
+msgstr "Jangan memakai layanan untuk hal ilegal, menyesatkan pelanggan, atau mengganggu platform. Kami dapat menangguhkan akun yang melanggar ketentuan ini."
+
+msgid "7. Liability"
+msgstr "7. Tanggung jawab"
+
+msgid "We work hard to keep the service available, but we can't guarantee it will always be uninterrupted. To the extent the law allows, we are not liable for indirect losses such as lost sales."
+msgstr "Kami berusaha menjaga layanan tetap tersedia, tetapi tidak dapat menjamin selalu tanpa gangguan. Sejauh diizinkan hukum, kami tidak bertanggung jawab atas kerugian tidak langsung seperti kehilangan penjualan."
+
+msgid "8. Contact"
+msgstr "8. Kontak"
+
+msgid "Questions about these terms:"
+msgstr "Pertanyaan tentang ketentuan ini:"
+
+#, python-format
+#~ msgid "Branch “%(name)s” created. Add its staff accounts here."
+#~ msgstr "Cabang “%(name)s” dibuat. Tambahkan akun staf di sini."
+
+#~ msgid "Add a branch"
+#~ msgstr "Tambah cabang"
+
+#~ msgid ""
+#~ "A new sub-branch gets its own QR codes, tables, staff and subscription. "
+#~ "You stay the owner, with the same login."
+#~ msgstr ""
+#~ "Sub-cabang baru punya kode QR, meja, staf, dan langganan sendiri. Anda "
+#~ "tetap pemilik, dengan login yang sama."
+
+#~ msgid "Create branch"
+#~ msgstr "Buat cabang"
+
+#~ msgid ""
+#~ "All your restaurants in one place. Each branch has its own menu, tables, "
+#~ "staff and orders."
+#~ msgstr ""
+#~ "Semua restoran Anda di satu tempat. Setiap cabang punya menu, meja, staf, "
+#~ "dan pesanan sendiri."
+
+#~ msgid ""
+#~ "Revenue from completed orders. Profit = revenue − expenses (branches on a "
+#~ "plan with Expenses & profit)."
+#~ msgstr ""
+#~ "Pendapatan dari pesanan selesai. Laba = pendapatan − pengeluaran (cabang "
+#~ "dengan paket yang mencakup Pengeluaran & laba)."
+
+#~ msgid "you are here"
+#~ msgstr "Anda di sini"
+
+#~ msgid ""
+#~ "Totals add up amounts as numbers; if your branches use different "
+#~ "currencies, compare them per branch."
+#~ msgstr ""
+#~ "Total menjumlahkan angka apa adanya; jika cabang memakai mata uang "
+#~ "berbeda, bandingkan per cabang."
 
 #~ msgid ""
 #~ "Your network (ESC/POS) receipt printer. The cash drawer plugs into it."

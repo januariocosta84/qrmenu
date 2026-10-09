@@ -273,3 +273,9 @@ h1, h2, h3 { line-height: 1.2; margin: 0; }
 .wa-float .wa-logo { width: 26px; height: 26px; fill: currentColor; }
 @media (max-width: 480px) { .wa-float { width: 56px; height: 56px; padding: 0; justify-content: center; } .wa-float span { display: none; } }
 .land-foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); padding-top: 16px; }
+
+/* ---------- Terms of service ---------- */
+.land-hero-slim { padding-bottom: 12px; }
+.terms { max-width: 760px; margin: 0 auto; padding: 24px 16px 48px; line-height: 1.6; }
+.terms h1 { margin-bottom: 4px; }
+.terms h2 { font-size: 1.1rem; margin: 24px 0 6px; }

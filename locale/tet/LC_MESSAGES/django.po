@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-08 20:18+0900\n"
+"POT-Creation-Date: 2026-10-09 16:59+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,8 +36,8 @@ msgstr "Telefone (opsionál)"
 msgid "Password"
 msgstr "Liafuan-pase"
 
-msgid "I confirm I own or manage this restaurant."
-msgstr "Ha'u konfirma katak ha'u mak na'in ka jestór restaurante ne'e."
+msgid "I confirm I own or manage this restaurant, and I accept the terms of service."
+msgstr "Ha'u konfirma ha'u na'in ka jere restaurante ne'e, no ha'u aseita termu servisu."
 
 msgid ""
 "An account with this email already exists. Try logging in or resetting your "
@@ -112,6 +112,12 @@ msgstr "Kaixa: troku inisiál no konfere iha loron nia rohan."
 
 msgid "Quotations for catering and procurement bids."
 msgstr "Kotasaun ba catering no konkursu públiku."
+
+msgid "Daily expenses and profit per day, week, month and year."
+msgstr "Despeza loron-loron no lukru kada loron, semana, fulan no tinan."
+
+msgid "Several branches under one owner, with an all-branches overview."
+msgstr "Filiál barak ho na'in ida, ho rezumu filiál hotu."
 
 msgid "Trial"
 msgstr "Períodu esperimentál"
@@ -233,7 +239,9 @@ msgid_plural ""
 "This password is too short. It must contain at least %(min_length)d "
 "characters."
 msgstr[0] ""
+"Liafuan-pase badak liu. Tenke iha karakter %(min_length)d pelumenus."
 msgstr[1] ""
+"Liafuan-pase badak liu. Tenke iha karakter %(min_length)d pelumenus."
 
 #, python-format
 msgid "%(num)d year"
@@ -614,11 +622,57 @@ msgstr "To'o meza"
 msgid "Choose a range of at most 200 tables, with end ≥ start."
 msgstr "Hili meza másimu 200, ho remata ≥ hahú."
 
-msgid "Username"
-msgstr "Naran uzuáriu"
+msgid "Staff member"
+msgstr "Funsionáriu"
 
 msgid "Role"
 msgstr "Knaar"
+
+#, python-format
+msgid "Branch names must use your brand name, e.g. “%(example)s”."
+msgstr "Naran filial tenke uza ita-nia naran marka, ez.: “%(example)s”."
+
+msgid "Branch name"
+msgstr "Naran filiál"
+
+msgid "Must use your brand name, e.g. Kafe Atauro – Comoro. Customers see this name."
+msgstr "Tenke uza ita-nia naran marka, ez.: Kafe Atauro – Comoro. Kliente sira haree naran ne'e."
+
+msgid "Branch address"
+msgstr "Enderesu filial"
+
+msgid "Branch phone number"
+msgstr "Númeru telefone filial"
+
+msgid "Storefront photo"
+msgstr "Foto fachada"
+
+msgid "A photo of the branch from outside, showing the brand name."
+msgstr "Foto filial husi liur, ne'ebé hatudu naran marka."
+
+msgid "Business registration number"
+msgstr "Númeru rejistu negósiu"
+
+msgid "All branches must belong to the same business registration as the main branch."
+msgstr "Filial hotu tenke pertense ba rejistu negósiu hanesan ho filial prinsipál."
+
+msgid "Owner name"
+msgstr "Naran na'in"
+
+msgid "Copy from"
+msgstr "Kopia husi"
+
+msgid "Start empty"
+msgstr "Hahú mamuk"
+
+msgid "Copy the menu (categories, dishes, photos, add-ons)"
+msgstr "Kopia menu (kategoria, hahán, foto, estra)"
+
+msgid "Copy settings (currency, service charge, VAT, receipts, logo)"
+msgstr "Kopia konfigurasaun (moeda, taxa servisu, IVA, resibu, logotipu)"
+
+msgid "Username"
+msgstr "Naran uzuáriu"
 
 msgid "Share it with the staff member; they can change it later."
 msgstr "Fó ida ne'e ba funsionáriu; nia bele troka depois."
@@ -719,8 +773,12 @@ msgstr "La fa'an"
 msgid "Printer test"
 msgstr "Teste imprimidora"
 
-msgid "Printing a test slip. If the cash drawer is set up in the printer driver, it opens too."
-msgstr "Imprime hela slip teste. Se gaveta osan konfigura ona iha driver imprimidora, nia mós sei loke."
+msgid ""
+"Printing a test slip. If the cash drawer is set up in the printer driver, it "
+"opens too."
+msgstr ""
+"Imprime hela slip teste. Se gaveta osan konfigura ona iha driver "
+"imprimidora, nia mós sei loke."
 
 #, python-format
 msgid "Cash register opened with %(amount)s change."
@@ -878,16 +936,71 @@ msgstr "Saida mak akontese hafoin rejista pagamentu."
 msgid "Receipt printer & cash drawer"
 msgstr "Imprimidora resibu no gaveta osan"
 
-msgid "Print receipts on the receipt printer of the cashier computer. A cash drawer plugged into that printer opens automatically on cash payments."
-msgstr "Imprime resibu iha imprimidora resibu komputadór kaixa nian. Gaveta osan ne'ebé liga ba imprimidora ne'e sei loke automatikamente bainhira selu ho osan-kontadu."
+msgid ""
+"Print receipts on the receipt printer of the cashier computer. A cash drawer "
+"plugged into that printer opens automatically on cash payments."
+msgstr ""
+"Imprime resibu iha imprimidora resibu komputadór kaixa nian. Gaveta osan "
+"ne'ebé liga ba imprimidora ne'e sei loke automatikamente bainhira selu ho "
+"osan-kontadu."
 
 #, python-format
 msgid "Limit reached: your plan allows %(n)s staff accounts."
 msgstr "To'o ona limite: ita-nia planu permite konta funsionáriu %(n)s."
 
 #, python-format
+msgid "%(name)s now also works at this branch."
+msgstr "%(name)s agora mós servisu iha filiál ne'e."
+
+#, python-format
 msgid "Staff account “%(username)s” created."
 msgstr "Konta funsionáriu “%(username)s” kria ona."
+
+#, python-format
+msgid "Branch “%(name)s” requested. The platform team will review it; meanwhile you can set up its menu and staff."
+msgstr "Filial “%(name)s” husu ona. Ekipa plataforma sei revee; entretantu ita bele prepara ninia menu no ekipa."
+
+#, python-format
+msgid "Invoice %(number)s created for an extra branch. The slot is added as soon as it is paid."
+msgstr "Fatura %(number)s kria ona ba filial extra ida. Fatin sei aumenta kedas bainhira selu ona."
+
+msgid "One unused extra branch removed from your subscription."
+msgstr "Filial extra ida ne'ebé la uza hasai ona husi ita-nia subskrisaun."
+
+msgid "Every extra branch is in use. Deactivate a branch first."
+msgstr "Filial extra hotu uza hela. Dezativa filial ida uluk."
+
+msgid "Branch details saved."
+msgstr "Detalle filial rai ona."
+
+#, python-format
+msgid ""
+"%(name)s is deactivated: customers can't order and its staff can't sign in "
+"to it. Its history is kept."
+msgstr ""
+"%(name)s la ativu ona: kliente sira labele husu no ninia ekipa labele tama. "
+"Istória sei rai."
+
+msgid "No free branch slot: all branches in your plan are in use. Add an extra branch on the Branches page first."
+msgstr "La iha fatin mamuk: filial hotu iha ita-nia planu uza hela. Aumenta uluk filial extra iha pájina Filial sira."
+
+#, python-format
+msgid "%(name)s is active again."
+msgstr "%(name)s ativu fali."
+
+msgid "Sent for review again."
+msgstr "Haruka fali ba revizaun."
+
+#, python-format
+msgid "Staff account “%(username)s” created for %(branch)s."
+msgstr "Konta “%(username)s” kria ona ba %(branch)s."
+
+#, python-format
+msgid "Access updated for %(name)s."
+msgstr "Asesu atualiza ona ba %(name)s."
+
+msgid "Thank you! Your business profile is under review."
+msgstr "Obrigadu! Ita-nia perfil negósiu iha revizaun."
 
 msgid "You cannot demote or deactivate yourself."
 msgstr "Ita labele hatuun ita-nia knaar rasik ka dezativa ita-an."
@@ -930,6 +1043,89 @@ msgstr "Hahán"
 msgid "Staff accounts"
 msgstr "Konta funsionáriu"
 
+msgid "e.g. Rice 25 kg, gas refill, market vegetables"
+msgstr "ez. Foos 25 kg, gas, modo husi merkadu"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "What was bought"
+msgstr "Saida mak sosa"
+
+msgid "Paid with"
+msgstr "Selu ho"
+
+msgid "e.g. Walk-in sales, catering for Ministry"
+msgstr "ez.: Fa'an iha balkaun, catering ba Ministériu"
+
+msgid "Amount (USD)"
+msgstr "Montante (USD)"
+
+msgid "Payment method"
+msgstr "Métodu pagamentu"
+
+msgid "Note (optional)"
+msgstr "Nota (opsionál)"
+
+msgid "Ingredients & food supplies"
+msgstr "Ingrediente no hahán"
+
+msgid "Drinks"
+msgstr "Hemu"
+
+msgid "Gas & fuel"
+msgstr "Gas no kombustivel"
+
+msgid "Electricity, water & internet"
+msgstr "Eletrisidade, bee no internet"
+
+msgid "Rent"
+msgstr "Aluga"
+
+msgid "Salaries & wages"
+msgstr "Saláriu"
+
+msgid "Transport"
+msgstr "Transporte"
+
+msgid "Equipment & tableware"
+msgstr "Ekipamentu no prato-kopu"
+
+msgid "Repairs & cleaning"
+msgstr "Hadi'a no hamoos"
+
+msgid "Other"
+msgstr "Seluk"
+
+msgid "Cash"
+msgstr "Osan-kontadu"
+
+msgid "Bank transfer"
+msgstr "Transferénsia banku"
+
+msgid "Transfer"
+msgstr "Transferénsia"
+
+#, python-format
+msgid "Expense saved: %(what)s, %(amount)s."
+msgstr "Despeza rai ona: %(what)s, %(amount)s."
+
+msgid "Expense updated."
+msgstr "Despeza atualiza ona."
+
+msgid "Edit expense"
+msgstr "Edita despeza"
+
+msgid "Expense deleted."
+msgstr "Despeza hamoos ona."
+
+#, python-format
+msgid "Revenue recorded: %(amount)s."
+msgstr "Rendimentu rejistu ona: %(amount)s."
+
+msgid "Revenue entry deleted."
+msgstr "Rejistu rendimentu hamoos ona."
+
 msgid "Lower numbers appear first."
 msgstr "Númeru ki'ik mosu uluk."
 
@@ -960,14 +1156,8 @@ msgstr "Remata ona"
 msgid "Pay at restaurant"
 msgstr "Selu iha restaurante"
 
-msgid "Cash"
-msgstr "Osan-kontadu"
-
 msgid "Manual payment"
 msgstr "Pagamentu manuál"
-
-msgid "Bank transfer"
-msgstr "Transferénsia banku"
 
 msgid "Visa / Mastercard"
 msgstr "Visa / Mastercard"
@@ -1259,8 +1449,12 @@ msgstr "Enderesu IP imprimidora resibu ne'ebé gaveta liga ba, ez. 192.168.1.50"
 msgid "Raw printing port; 9100 for almost all network receipt printers."
 msgstr "Porta imprime direta; 9100 ba kuaze imprimidora resibu rede hotu."
 
-msgid "The cash drawer is plugged into the receipt printer of this computer. A small slip prints to open it."
-msgstr "Gaveta osan liga ba imprimidora resibu komputadór ida ne'e nian. Slip ki'ik ida imprime atu loke nia."
+msgid ""
+"The cash drawer is plugged into the receipt printer of this computer. A "
+"small slip prints to open it."
+msgstr ""
+"Gaveta osan liga ba imprimidora resibu komputadór ida ne'e nian. Slip ki'ik "
+"ida imprime atu loke nia."
 
 msgid "Ask \"Print receipt?\" after each payment"
 msgstr "Husu “Imprime resibu?” hafoin pagamentu ida-idak"
@@ -1286,8 +1480,35 @@ msgstr "Surat-tahan 58 mm"
 msgid "Paper width of the network receipt printer."
 msgstr "Luan surat-tahan imprimidora resibu nian."
 
+msgid "The main branch this sub-branch belongs to."
+msgstr "Filial prinsipál ne'ebé sub-filial ne'e pertense ba."
+
+msgid "Set when the main branch deactivates this sub-branch."
+msgstr "Define bainhira filial prinsipál halo sub-filial ne'e la ativu."
+
+msgid "Suspended"
+msgstr "Suspende"
+
 msgid "Optional, e.g. 'Terrace' or 'Window'."
 msgstr "Opsionál, ez. 'Teraza' ka 'Janela'."
+
+msgid "Incomplete"
+msgstr "Seidauk kompletu"
+
+msgid "Under review"
+msgstr "Iha revizaun"
+
+msgid "Verified"
+msgstr "Verifika ona"
+
+msgid "e.g. your SERVE certificate number or tax number (NIF)."
+msgstr "ez.: númeru sertifikadu SERVE ka númeru impostu (NIF)."
+
+msgid "The legal owner of the business."
+msgstr "Na'in legál ba negósiu."
+
+msgid "Phone number"
+msgstr "Númeru telefone"
 
 msgid "Log in"
 msgstr "Tama"
@@ -1384,6 +1605,9 @@ msgstr ""
 "idak, no hahú simu pedidu. Ita-nia kliente sira la presiza aplikasaun ka "
 "konta."
 
+msgid "Read the terms of service"
+msgstr "Lee termu servisu"
+
 msgid "Create my restaurant"
 msgstr "Kria ha'u-nia restaurante"
 
@@ -1470,50 +1694,97 @@ msgstr "Konfigura imprimidora resibu no gaveta osan (besik minutu 10)"
 msgid "Install the printer on the cashier computer."
 msgstr "Instala imprimidora iha komputadór kaixa."
 
-msgid "Connect it by USB (or Wi-Fi/Bluetooth), install the driver from the printer's CD or the maker's website, and set it as the default printer. Choose 80 mm paper (or 58 mm for small printers)."
-msgstr "Liga ho USB (ka Wi-Fi/Bluetooth), instala driver husi CD imprimidora ka website fabrikante, no hili nia hanesan imprimidora prinsipál. Hili surat-tahan 80 mm (ka 58 mm ba imprimidora ki'ik)."
+msgid ""
+"Connect it by USB (or Wi-Fi/Bluetooth), install the driver from the "
+"printer's CD or the maker's website, and set it as the default printer. "
+"Choose 80 mm paper (or 58 mm for small printers)."
+msgstr ""
+"Liga ho USB (ka Wi-Fi/Bluetooth), instala driver husi CD imprimidora ka "
+"website fabrikante, no hili nia hanesan imprimidora prinsipál. Hili surat-"
+"tahan 80 mm (ka 58 mm ba imprimidora ki'ik)."
 
 msgid "Plug in the cash drawer."
 msgstr "Liga gaveta osan."
 
-msgid "The drawer cable (a phone-style plug) goes into the printer's port marked “DK” or “Drawer”."
-msgstr "Kabu gaveta (plug hanesan telefone) tama ba porta imprimidora ho marka “DK” ka “Drawer”."
+msgid ""
+"The drawer cable (a phone-style plug) goes into the printer's port marked "
+"“DK” or “Drawer”."
+msgstr ""
+"Kabu gaveta (plug hanesan telefone) tama ba porta imprimidora ho marka “DK” "
+"ka “Drawer”."
 
 msgid "Tell the printer driver to open the drawer."
 msgstr "Konfigura driver imprimidora atu loke gaveta."
 
-msgid "On Windows: Settings → Printers → your receipt printer → Printing preferences (or Printer properties). Look for “Cash drawer” or “Peripherals” and choose “Open drawer #1 before printing”. The name varies by brand:"
-msgstr "Iha Windows: Settings → Printers → ita-nia imprimidora resibu → Printing preferences (ka Printer properties). Buka “Cash drawer” ka “Peripherals” no hili “Open drawer #1 before printing”. Naran la hanesan tuir marka:"
+msgid ""
+"On Windows: Settings → Printers → your receipt printer → Printing "
+"preferences (or Printer properties). Look for “Cash drawer” or “Peripherals” "
+"and choose “Open drawer #1 before printing”. The name varies by brand:"
+msgstr ""
+"Iha Windows: Settings → Printers → ita-nia imprimidora resibu → Printing "
+"preferences (ka Printer properties). Buka “Cash drawer” ka “Peripherals” no "
+"hili “Open drawer #1 before printing”. Naran la hanesan tuir marka:"
 
-msgid "Printing preferences → Document settings / Printer settings → Cash drawer → “Open drawer #1 before printing”."
-msgstr "Printing preferences → Document settings / Printer settings → Cash drawer → “Open drawer #1 before printing”."
+msgid ""
+"Printing preferences → Document settings / Printer settings → Cash drawer → "
+"“Open drawer #1 before printing”."
+msgstr ""
+"Printing preferences → Document settings / Printer settings → Cash drawer → "
+"“Open drawer #1 before printing”."
 
-msgid "Printer properties → Device settings → “Cash drawer” → open before printing."
-msgstr "Printer properties → Device settings → “Cash drawer” → loke molok imprime."
+msgid ""
+"Printer properties → Device settings → “Cash drawer” → open before printing."
+msgstr ""
+"Printer properties → Device settings → “Cash drawer” → loke molok imprime."
 
-msgid "Printer properties → Device settings → Peripheral unit type “Cash drawer”, open at “Document top”."
-msgstr "Printer properties → Device settings → Peripheral unit type “Cash drawer”, loke iha “Document top”."
+msgid ""
+"Printer properties → Device settings → Peripheral unit type “Cash drawer”, "
+"open at “Document top”."
+msgstr ""
+"Printer properties → Device settings → Peripheral unit type “Cash drawer”, "
+"loke iha “Document top”."
 
 msgid "Turn on the switch above and save."
 msgstr "Ativa botaun iha leten no rai."
 
-msgid "From now on, every cash payment and every “Open drawer (no sale)” prints a small slip, and the driver opens the drawer."
-msgstr "Hahú agora, pagamentu osan-kontadu ida-idak no “Loke gaveta osan (la fa'an)” ida-idak imprime slip ki'ik, no driver loke gaveta."
+msgid ""
+"From now on, every cash payment and every “Open drawer (no sale)” prints a "
+"small slip, and the driver opens the drawer."
+msgstr ""
+"Hahú agora, pagamentu osan-kontadu ida-idak no “Loke gaveta osan (la fa'an)” "
+"ida-idak imprime slip ki'ik, no driver loke gaveta."
 
 msgid "Optional: print without the print window."
 msgstr "Opsionál: imprime la ho janela imprime."
 
-msgid "Make a Chrome shortcut for the dashboard: right-click the Chrome icon → Properties, and add --kiosk-printing at the end of “Target” (after the quotes). Open the dashboard with that shortcut, and receipts and slips print immediately on the default printer."
-msgstr "Kria shortcut Chrome ba painél: klik-loos ikone Chrome → Properties, no aumenta --kiosk-printing iha “Target” nia rohan (hafoin aspas). Loke painél ho shortcut ne'e, no resibu no slip sei imprime kedas iha imprimidora prinsipál."
+msgid ""
+"Make a Chrome shortcut for the dashboard: right-click the Chrome icon → "
+"Properties, and add --kiosk-printing at the end of “Target” (after the "
+"quotes). Open the dashboard with that shortcut, and receipts and slips print "
+"immediately on the default printer."
+msgstr ""
+"Kria shortcut Chrome ba painél: klik-loos ikone Chrome → Properties, no "
+"aumenta --kiosk-printing iha “Target” nia rohan (hafoin aspas). Loke painél "
+"ho shortcut ne'e, no resibu no slip sei imprime kedas iha imprimidora "
+"prinsipál."
 
 msgid "Test it"
 msgstr "Teste"
 
-msgid "use “Print test slip” below. The slip should print and the drawer should open. If the drawer stays closed, check step 3 (some drawers need “drawer #2”)."
-msgstr "uza “Imprime slip teste” iha okos. Slip tenke imprime no gaveta tenke loke. Se gaveta la loke, haree pasu 3 (gaveta balu presiza “drawer #2”)."
+msgid ""
+"use “Print test slip” below. The slip should print and the drawer should "
+"open. If the drawer stays closed, check step 3 (some drawers need “drawer "
+"#2”)."
+msgstr ""
+"uza “Imprime slip teste” iha okos. Slip tenke imprime no gaveta tenke loke. "
+"Se gaveta la loke, haree pasu 3 (gaveta balu presiza “drawer #2”)."
 
-msgid "Phones and tablets: print through the printer maker's app or print service. Whether the drawer opens depends on that app."
-msgstr "Telemovel no tablet: imprime liuhusi aplikasaun ka servisu imprime fabrikante nian. Gaveta loke ka lae depende ba aplikasaun ne'e."
+msgid ""
+"Phones and tablets: print through the printer maker's app or print service. "
+"Whether the drawer opens depends on that app."
+msgstr ""
+"Telemovel no tablet: imprime liuhusi aplikasaun ka servisu imprime "
+"fabrikante nian. Gaveta loke ka lae depende ba aplikasaun ne'e."
 
 msgid "Analytics"
 msgstr "Análize"
@@ -1729,6 +2000,9 @@ msgstr "Menu"
 msgid "Reports"
 msgstr "Relatóriu"
 
+msgid "Expenses & profit"
+msgstr "Despeza no lukru"
+
 msgid "Quotations"
 msgstr "Kotasaun"
 
@@ -1737,6 +2011,9 @@ msgstr "Restaurante"
 
 msgid "Billing"
 msgstr "Faturasaun"
+
+msgid "Branches"
+msgstr "Filiál"
 
 msgid "View public menu"
 msgstr "Haree menu públiku"
@@ -1797,6 +2074,28 @@ msgstr ""
 msgid "Resend email"
 msgstr "Haruka fali email"
 
+msgid "Branch waiting for approval."
+msgstr "Filial hein aprovasaun."
+
+msgid "The platform team checks every new branch. Until it is approved, the branch is hidden and can't record revenue. You can set up its menu and tables in the meantime."
+msgstr "Ekipa plataforma verifika filial foun ida-idak. To'o aprova, filial subar no labele rejistu rendimentu. Entretantu ita bele prepara ninia menu no meza."
+
+msgid "Branch request not approved."
+msgstr "Pedidu filial la aprova."
+
+msgid "Correct the details and send it again from Branches."
+msgstr "Korrije detalle no haruka fali husi Filial sira."
+
+msgid "Branch suspended by the platform."
+msgstr "Filial suspende husi plataforma."
+
+msgid "Customers can't see its menu and it can't record revenue."
+msgstr "Kliente sira labele haree ninia menu no labele rejistu rendimentu."
+
+#, python-format
+msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
+msgstr "Kontaktu <a href=\"mailto:%(email)s\">%(email)s</a>."
+
 msgid "Waiting for approval."
 msgstr "Hein hela aprovasaun."
 
@@ -1813,10 +2112,6 @@ msgstr "Restaurante ne'e la públiku."
 msgid ""
 "It has been suspended by the platform. Customers can't see the menu or order."
 msgstr "Plataforma suspende ona. Kliente sira labele haree menu ka pede."
-
-#, python-format
-msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr "Kontaktu <a href=\"mailto:%(email)s\">%(email)s</a>."
 
 #, python-format
 msgid "Your free trial ends in %(days)s day."
@@ -1850,6 +2145,27 @@ msgstr "Kliente sira labele pede."
 msgid "View billing"
 msgstr "Haree faturasaun"
 
+msgid "Your business profile needs changes."
+msgstr "Ita-nia perfil negósiu presiza muda."
+
+msgid "Complete your business profile."
+msgstr "Kompleta ita-nia perfil negósiu."
+
+msgid "We verify every business before it can add branches. It takes two minutes: registration number, owner, address and phone."
+msgstr "Ami verifika negósiu ida-idak antes bele aumenta filial. Presiza minutu rua de'it: númeru rejistu, na'in, enderesu no telefone."
+
+msgid "Complete now"
+msgstr "Kompleta agora"
+
+msgid "Complete your business profile"
+msgstr "Kompleta ita-nia perfil negósiu"
+
+msgid "Please add your business registration number (e.g. SERVE certificate or tax number), the owner's name, your address and phone number. Our team verifies it, and then you can add branches."
+msgstr "Favór aumenta ita-nia númeru rejistu negósiu (ez.: sertifikadu SERVE ka NIF), naran na'in, enderesu no númeru telefone. Ami-nia ekipa verifika, depois ita bele aumenta filial."
+
+msgid "Remind me later"
+msgstr "Fó hanoin fali depois"
+
 msgid "Your plan, usage and invoices."
 msgstr "Ita-nia planu, uzu no fatura sira."
 
@@ -1864,6 +2180,12 @@ msgstr "Gratuitu"
 
 msgid "month"
 msgstr "fulan"
+
+#, python-format
+msgid "+ %(n)s extra branch × $%(price)s = $%(total)s / month"
+msgid_plural "+ %(n)s extra branches × $%(price)s = $%(total)s / month"
+msgstr[0] "+ filial extra %(n)s × $%(price)s = $%(total)s / fulan"
+msgstr[1] "+ filial extra %(n)s × $%(price)s = $%(total)s / fulan"
 
 msgid "Your account is complimentary. There's nothing to pay."
 msgstr "Ita-nia konta gratuitu. La iha buat ida atu selu."
@@ -1953,6 +2275,12 @@ msgid "mo"
 msgstr "fulan"
 
 #, python-format
+msgid "Main branch + %(n)s branch; extra branches $%(price)s/month each"
+msgid_plural "Main branch + %(n)s branches; extra branches $%(price)s/month each"
+msgstr[0] "Filial prinsipál + filial %(n)s; filial extra $%(price)s/fulan ida-idak"
+msgstr[1] "Filial prinsipál + filial %(n)s; filial extra $%(price)s/fulan ida-idak"
+
+#, python-format
 msgid "%(t)s tables · %(d)s dishes · %(s)s staff"
 msgstr "meza %(t)s · hahán %(d)s · funsionáriu %(s)s"
 
@@ -1969,6 +2297,239 @@ msgstr "Husu troka ba %(plan)s?"
 #, python-format
 msgid "Switch to %(plan)s"
 msgstr "Troka ba %(plan)s"
+
+msgid "Branch deactivated"
+msgstr "Filial la ativu"
+
+msgid "Branch not active"
+msgstr "Filial la ativu"
+
+msgid ""
+"The main branch has deactivated this branch. Ask the owner if you need "
+"access again."
+msgstr ""
+"Filial prinsipál halo filial ne'e la ativu. Husu ba na'in se presiza asesu "
+"fali."
+
+msgid "Waiting for approval"
+msgstr "Hein aprovasaun"
+
+msgid "This new branch is being reviewed by the platform team. You can use it once it is approved."
+msgstr "Filial foun ne'e ekipa plataforma revee hela. Ita bele uza bainhira aprova ona."
+
+msgid "This branch has been suspended or was not approved by the platform. Ask the owner for details."
+msgstr "Filial ne'e suspende ka la aprova husi plataforma. Husu detalle ba na'in."
+
+msgid "Deactivated"
+msgstr "La ativu"
+
+msgid "Not live"
+msgstr "La ativu"
+
+#, python-format
+msgid "Sub-branch of %(main)s."
+msgstr "Sub-filial husi %(main)s."
+
+msgid "Open its dashboard"
+msgstr "Loke ninia painel"
+
+msgid "Waiting for approval by the platform team. Meanwhile you can set up its menu, tables and staff; it goes live and can record revenue once approved."
+msgstr "Hein aprovasaun husi ekipa plataforma. Entretantu ita bele prepara menu, meza no ekipa; sei ativu no bele rejistu rendimentu bainhira aprova ona."
+
+msgid "Request not approved"
+msgstr "Pedidu la aprova"
+
+msgid "Correct the branch details below if needed, optionally add a new storefront photo, and send it again."
+msgstr "Korrije detalle filial iha okos se presiza, bele aumenta foto fachada foun, no haruka fali."
+
+msgid "Send again"
+msgstr "Haruka fali"
+
+msgid "Suspended by the platform."
+msgstr "Suspende husi plataforma."
+
+msgid "Branch details"
+msgstr "Detalle filial"
+
+msgid "User"
+msgstr "Uzuáriu"
+
+msgid "Disabled"
+msgstr "Dezativa"
+
+msgid "Disable"
+msgstr "Dezativa"
+
+msgid "Enable"
+msgstr "Ativa"
+
+msgid "Add staff account"
+msgstr "Aumenta konta ekipa"
+
+msgid ""
+"A branch manager or cashier for this branch. They only see this branch: its "
+"orders and its own revenue."
+msgstr ""
+"Jerente ka kaixa ida ba filial ne'e. Sira haree de'it filial ne'e: ninia "
+"orden no ninia rendimentu rasik."
+
+msgid "Create account"
+msgstr "Kria konta"
+
+msgid "Reactivate branch"
+msgstr "Ativa fali filial"
+
+msgid "Deactivate branch"
+msgstr "Dezativa filial"
+
+#, python-format
+msgid ""
+"Deactivated on %(d)s. Reactivating brings back its menu, QR codes and staff "
+"access."
+msgstr ""
+"La ativu husi %(d)s. Ativa fali sei fó fila menu, kódigu QR no asesu ekipa."
+
+msgid "Reactivate"
+msgstr "Ativa fali"
+
+msgid ""
+"Customers can no longer order, its QR codes stop working and its staff can't "
+"sign in to it. Nothing is deleted, and you can reactivate it at any time."
+msgstr ""
+"Kliente sira labele husu ona, kódigu QR la funsiona no ekipa labele tama. "
+"Buat ida la hamoos, no ita bele ativa fali iha tempu ruma."
+
+#, python-format
+msgid "Deactivate %(n)s?"
+msgstr "Dezativa %(n)s?"
+
+msgid "Deactivate"
+msgstr "Dezativa"
+
+#, python-format
+msgid ""
+"%(name)s (main branch) and its sub-branches. Revenue = completed orders + "
+"sales recorded by each branch."
+msgstr ""
+"%(name)s (filial prinsipál) no ninia sub-filial sira. Rendimentu = orden "
+"ne'ebé remata + fa'an ne'ebé filial ida-idak rejistu."
+
+msgid "Previous day"
+msgstr "Loron kotuk"
+
+msgid "Next day"
+msgstr "Loron tuir mai"
+
+msgid "Today"
+msgstr "Ohin"
+
+msgid "All branches · this day"
+msgstr "Filial hotu · loron ne'e"
+
+#, python-format
+msgid "Orders %(o)s · recorded %(m)s"
+msgstr "Orden %(o)s · rejistu %(m)s"
+
+#, python-format
+msgid "Week from %(d)s"
+msgstr "Semana husi %(d)s"
+
+msgid "Revenue by branch"
+msgstr "Rendimentu tuir filial"
+
+msgid "Branch"
+msgstr "Filiál"
+
+msgid "This day"
+msgstr "Loron ne'e"
+
+msgid "Week"
+msgstr "Semana"
+
+msgid "Month"
+msgstr "Fulan"
+
+msgid "Main branch"
+msgstr "Filial prinsipál"
+
+#, python-format
+msgid "incl. %(m)s recorded"
+msgstr "inklui %(m)s rejistu"
+
+msgid "All branches"
+msgstr "Filiál hotu"
+
+msgid "This day compared"
+msgstr "Kompara loron ne'e"
+
+msgid "Revenue per branch for this day"
+msgstr "Rendimentu kada filial ba loron ne'e"
+
+msgid "Branch slots"
+msgstr "Fatin filial"
+
+#, python-format
+msgid "Your plan includes %(included)s branches besides the main branch; you have %(extra)s extra. Pending, rejected and deactivated branches don't use a slot."
+msgstr "Ita-nia planu inklui filial %(included)s aleinde filial prinsipál; ita iha %(extra)s extra. Filial pendente, rejeita no la ativu la uza fatin."
+
+#, python-format
+msgid "Invoice %(number)s (%(amount)s) for an extra branch is waiting for payment. The slot is added once it is paid."
+msgstr "Fatura %(number)s (%(amount)s) ba filial extra hein pagamentu. Fatin sei aumenta bainhira selu ona."
+
+#, python-format
+msgid "Add an extra branch (%(price)s/month)"
+msgstr "Aumenta filial extra (%(price)s/fulan)"
+
+msgid "Remove one unused extra branch from your subscription?"
+msgstr "Hasai filial extra ida ne'ebé la uza husi ita-nia subskrisaun?"
+
+msgid "Remove an unused extra branch"
+msgstr "Hasai filial extra ne'ebé la uza"
+
+msgid "Business profile"
+msgstr "Perfil negósiu"
+
+msgid "You can request branches once the platform team has verified your business profile."
+msgstr "Ita bele husu filial bainhira ekipa plataforma verifika ona ita-nia perfil negósiu."
+
+msgid "To request branches, first complete your business profile. The platform team verifies it."
+msgstr "Atu husu filial, kompleta uluk ita-nia perfil negósiu. Ekipa plataforma sei verifika."
+
+msgid "View"
+msgstr "Haree"
+
+msgid "Request a new branch"
+msgstr "Husu filial foun"
+
+msgid "The platform team reviews every new branch: it must be the same business, using your brand name. Until it is approved, the branch is hidden and can't record revenue. It gets its own QR codes, tables and staff; you stay the owner, with the same login."
+msgstr "Ekipa plataforma revee filial foun ida-idak: tenke negósiu hanesan, uza ita-nia naran marka. To'o aprova, filial subar no labele rejistu rendimentu. Nia iha kódigu QR, meza no ekipa rasik; ita kontinua na'in, ho login hanesan."
+
+msgid "All branch slots in your plan are in use. You can still send the request; it is activated once you add an extra branch."
+msgstr "Fatin filial hotu iha ita-nia planu uza hela. Ita bele nafatin haruka pedidu; sei ativa bainhira ita aumenta filial extra."
+
+msgid "Send request"
+msgstr "Haruka pedidu"
+
+msgid "Needs changes"
+msgstr "Presiza muda"
+
+msgid "The legal details of your business. The platform team verifies them before you can add branches; all branches must belong to this same business."
+msgstr "Detalle legál ita-nia negósiu. Ekipa plataforma verifika antes ita bele aumenta filial; filial hotu tenke pertense ba negósiu ida ne'e."
+
+msgid "Thank you! We are checking your details, usually within one working day. You can keep using QR Menu and recording revenue in the meantime."
+msgstr "Obrigadu! Ami verifika hela ita-nia detalle, baibain iha loron servisu ida nia laran. Entretantu ita bele kontinua uza QR Menu no rejistu rendimentu."
+
+msgid "Please correct your details and send them again."
+msgstr "Favór korrije ita-nia detalle no haruka fali."
+
+msgid "Your business is verified. You can request branches on the Branches page. Changing these details sends them for review again."
+msgstr "Ita-nia negósiu verifika ona. Ita bele husu filial iha pájina Filial sira. Muda detalle hirak ne'e sei haruka fali ba revizaun."
+
+msgid "Save and send for review"
+msgstr "Rai no haruka ba revizaun"
+
+msgid "Send for verification"
+msgstr "Haruka ba verifikasaun"
 
 msgid ""
 "Enter the change in the drawer before selling starts. At the end, count the "
@@ -2061,9 +2622,6 @@ msgstr "Osan ne'ebé konta ona"
 msgid "Difference"
 msgstr "Diferensa"
 
-msgid "Note (optional)"
-msgstr "Nota (opsionál)"
-
 msgid "e.g. $1 coin missing"
 msgstr "ez. moeda $1 lakon"
 
@@ -2100,6 +2658,66 @@ msgstr "Liu: osan barak liu saida mak hein."
 msgid "Short: less cash than expected."
 msgstr "Falta: osan menus liu saida mak hein."
 
+msgid ""
+"Write down what you spend each day. Profit = revenue from completed orders − "
+"expenses."
+msgstr ""
+"Hakerek saida mak ita gasta loron-loron. Lukru = rendimentu husi pedidu "
+"remata ona − despeza."
+
+msgid "Export CSV"
+msgstr "Esporta CSV"
+
+msgid "This week"
+msgstr "Semana ida ne'e"
+
+msgid "This year"
+msgstr "Tinan ida ne'e"
+
+msgid "Loss"
+msgstr "Lakon"
+
+msgid "Profit"
+msgstr "Lukru"
+
+msgid "Expenses"
+msgstr "Despeza"
+
+#, python-format
+msgid "%(a)s – %(b)s"
+msgstr "%(a)s – %(b)s"
+
+#, python-format
+msgid "Profit margin: %(m)s%% of revenue"
+msgstr "Marjen lukru: %(m)s%% husi rendimentu"
+
+msgid "No sales or expenses in this period yet."
+msgstr "Seidauk iha fa'an ka despeza iha períodu ne'e."
+
+msgid "Expenses by category"
+msgstr "Despeza tuir kategoria"
+
+msgid "Add an expense"
+msgstr "Aumenta despeza"
+
+msgid "Save expense"
+msgstr "Rai despeza"
+
+msgid "Expenses in this period"
+msgstr "Despeza iha períodu ne'e"
+
+msgid "Edit"
+msgstr "Edita"
+
+msgid "Delete this expense?"
+msgstr "Hamoos despeza ne'e?"
+
+msgid "Delete"
+msgstr "Hamoos"
+
+msgid "No expenses in this period. Add your first one above."
+msgstr "La iha despeza iha períodu ne'e. Aumenta ida dahuluk iha leten."
+
 msgid "Your restaurants"
 msgstr "Ita-nia restaurante sira"
 
@@ -2109,9 +2727,6 @@ msgstr "Hili restaurante ida"
 #, python-format
 msgid "Signed in as %(name)s"
 msgstr "Tama hanesan %(name)s"
-
-msgid "Not live"
-msgstr "La ativu"
 
 msgid ""
 "Your account is not linked to a restaurant yet. Ask the restaurant owner to "
@@ -2570,9 +3185,6 @@ msgstr ""
 msgid "Number"
 msgstr "Númeru"
 
-msgid "Date"
-msgstr "Data"
-
 msgid "Print"
 msgstr "Imprime"
 
@@ -2625,9 +3237,6 @@ msgstr "Kliente simu ona"
 msgid "Name, signature, stamp & date"
 msgstr "Naran, asinatura, karimbu no data"
 
-msgid "Export CSV"
-msgstr "Esporta CSV"
-
 msgid "From"
 msgstr "Husi"
 
@@ -2645,6 +3254,41 @@ msgstr "Fa'an ona"
 
 msgid "No data yet."
 msgstr "Seidauk iha dadus."
+
+#, python-format
+msgid ""
+"%(name)s only. Record sales that weren't entered as orders, e.g. walk-in "
+"cash sales. Orders are counted automatically."
+msgstr ""
+"%(name)s de'it. Rejistu fa'an ne'ebé la tama hanesan orden, ez.: fa'an osan-"
+"mean iha balkaun. Orden sira konta automátiku."
+
+msgid "Today's revenue"
+msgstr "Rendimentu ohin"
+
+msgid "Recorded entries"
+msgstr "Rejistu sira"
+
+msgid "Delete this entry?"
+msgstr "Hamoos rejistu ne'e?"
+
+msgid "Total recorded"
+msgstr "Totál rejistu"
+
+msgid "No recorded entries for these dates."
+msgstr "La iha rejistu ba data hirak ne'e."
+
+msgid "Record revenue"
+msgstr "Rejistu rendimentu"
+
+msgid "This branch is deactivated."
+msgstr "Filial ne'e la ativu."
+
+msgid "This branch is waiting for approval by the platform team. It can record revenue once approved."
+msgstr "Filial ne'e hein aprovasaun husi ekipa plataforma. Bele rejistu rendimentu bainhira aprova ona."
+
+msgid "This branch is not active, so it can't record revenue."
+msgstr "Filial ne'e la ativu, nune'e labele rejistu rendimentu."
 
 msgid "Restaurant settings"
 msgstr "Konfigurasaun restaurante"
@@ -2692,17 +3336,8 @@ msgstr "Gaveta seidauk loke."
 msgid "Accounts for your team. Each person signs in with their own username."
 msgstr "Konta ba ita-nia ekipa. Ema ida-idak tama ho nia naran uzuáriu rasik."
 
-msgid "User"
-msgstr "Uzuáriu"
-
 msgid "you"
 msgstr "ita"
-
-msgid "Disabled"
-msgstr "Dezativa"
-
-msgid "Edit"
-msgstr "Edita"
 
 msgid "What each role can do"
 msgstr "Saida mak knaar ida-idak bele halo"
@@ -2726,8 +3361,18 @@ msgstr ""
 msgid "Add staff member"
 msgstr "Aumenta funsionáriu"
 
-msgid "Create account"
-msgstr "Kria konta"
+msgid "From another branch"
+msgstr "Husi filiál seluk"
+
+msgid ""
+"Someone who already works at one of your other branches can use the same "
+"login here."
+msgstr ""
+"Ema ne'ebé servisu ona iha ita-nia filiál seluk bele uza login hanesan iha "
+"ne'e."
+
+msgid "Add to this branch"
+msgstr "Aumenta ba filiál ne'e"
 
 msgid "Occupied"
 msgstr "Okupadu"
@@ -2869,6 +3514,21 @@ msgid ""
 msgstr ""
 "Hakerek troku molok fa'an, osan tama no sai, no konfere iha loron nia rohan: "
 "hein vs konta ona, liu ka falta, ho relatóriu atu imprime."
+
+msgid ""
+"Open more branches under the same login, copy your menu to them in one "
+"click, and see revenue and profit for every branch and for the whole "
+"business."
+msgstr ""
+"Loke filiál barak liu ho login hanesan, kopia ita-nia menu ba sira ho klik "
+"ida, no haree rendimentu no lukru ba filiál ida-idak no ba negósiu tomak."
+
+msgid ""
+"Write down what you spend each day and see your real profit for today, this "
+"week, this month and this year."
+msgstr ""
+"Hakerek saida mak ita gasta loron-loron no haree lukru loloos ba ohin, "
+"semana ida ne'e, fulan ida ne'e no tinan ida ne'e."
 
 msgid ""
 "Create professional price offers for catering, events and procurement bids "
@@ -3016,6 +3676,15 @@ msgstr "Kaixa no konfere iha loron nia rohan"
 msgid "Quotations for catering & tenders"
 msgstr "Kotasaun ba catering no konkursu"
 
+msgid "Daily expenses & profit"
+msgstr "Despeza loron-loron no lukru"
+
+#, python-format
+msgid "Main branch + %(n)s branch, one login"
+msgid_plural "Main branch + %(n)s branches, one login"
+msgstr[0] "Filial prinsipál + filial %(n)s, login ida de'it"
+msgstr[1] "Filial prinsipál + filial %(n)s, login ida de'it"
+
 msgid "Get started"
 msgstr "Hahú"
 
@@ -3029,8 +3698,107 @@ msgstr "Atu pede, favór scan kódigu QR iha ita-nia meza."
 msgid "Hello! I'd like to know more about %(name)s."
 msgstr "Olá! Ha'u hakarak hatene liu tan kona-ba %(name)s."
 
+msgid "Terms of service"
+msgstr "Termu servisu"
+
 msgid "Chat with us on WhatsApp"
 msgstr "Ko'alia ho ami iha WhatsApp"
+
+msgid "Last updated: 9 October 2026"
+msgstr "Atualiza ikus: 9 Outubru 2026"
+
+msgid "1. The service"
+msgstr "1. Servisu"
+
+#, python-format
+msgid "%(name)s provides QR code menus, table ordering and restaurant management tools to food businesses (\"you\"). By registering, you accept these terms on behalf of your business."
+msgstr "%(name)s fornese menu ho kódigu QR, orden iha meza no ferramenta jestaun ba negósiu ai-han (\"ita\"). Ho rejistu, ita aseita termu hirak ne'e ba ita-nia negósiu."
+
+msgid "2. Your account"
+msgstr "2. Ita-nia konta"
+
+msgid "You must give correct information about your business and keep your login details secret. You are responsible for everything done with your account and your staff accounts. We may ask you to verify your business (for example with your business registration or tax number) before you can use some features."
+msgstr "Ita tenke fó informasaun loos kona-ba ita-nia negósiu no rai ita-nia detalle login sekretu. Ita responsável ba buat hotu ne'ebé halo ho ita-nia konta no konta ekipa. Ami bele husu verifika ita-nia negósiu (ez. ho rejistu negósiu ka númeru impostu) antes ita bele uza funsaun balun."
+
+msgid "3. Branches"
+msgstr "3. Filial sira"
+
+msgid "All branches in one account must be owned and operated by the same business, under the same business registration and brand name."
+msgstr "Filial hotu iha konta ida tenke na'in no jere husi negósiu hanesan, ho rejistu negósiu no naran marka hanesan."
+
+msgid "Each new branch is reviewed by our team before it is activated. A branch that belongs to a different business is not allowed: we may suspend it, or move it to a separate account that is billed separately."
+msgstr "Ami-nia ekipa revee filial foun ida-idak antes ativa. Filial husi negósiu seluk la permite: ami bele suspende ka muda ba konta separadu ne'ebé fatura separadu."
+
+msgid "4. Plans and payment"
+msgstr "4. Planu no pagamentu"
+
+msgid "Plans are billed monthly in US dollars. Each plan includes a fixed number of branches; extra branches are a monthly add-on. If an invoice is not paid after the grace period, ordering is switched off until it is paid. Prices may change with 30 days' notice."
+msgstr "Planu sira fatura kada fulan iha dólar amerikanu. Planu ida-idak inklui númeru filial fixu; filial extra mak add-on kada fulan. Se fatura la selu depois períodu toleránsia, orden sei mate to'o selu. Presu bele muda ho avizu loron 30."
+
+msgid "5. Your data"
+msgstr "5. Ita-nia dadus"
+
+msgid "Your menus, orders and revenue records belong to you. We use them only to provide the service and keep each branch's data separate. We don't sell your data."
+msgstr "Ita-nia menu, orden no rejistu rendimentu mak ita-nian. Ami uza de'it atu fó servisu no rai dadus filial ida-idak separadu. Ami la fa'an ita-nia dadus."
+
+msgid "6. Acceptable use"
+msgstr "6. Uza ne'ebé permite"
+
+msgid "Don't use the service for anything illegal, to mislead customers, or to disrupt the platform. We may suspend accounts that break these terms."
+msgstr "Labele uza servisu ba buat ilegál, atu bosok kliente, ka atu estraga plataforma. Ami bele suspende konta ne'ebé viola termu hirak ne'e."
+
+msgid "7. Liability"
+msgstr "7. Responsabilidade"
+
+msgid "We work hard to keep the service available, but we can't guarantee it will always be uninterrupted. To the extent the law allows, we are not liable for indirect losses such as lost sales."
+msgstr "Ami servisu maka'as atu servisu disponível, maibé ami labele garante katak nunka para. Tuir lei permite, ami la responsável ba lakon indiretu hanesan fa'an ne'ebé lakon."
+
+msgid "8. Contact"
+msgstr "8. Kontaktu"
+
+msgid "Questions about these terms:"
+msgstr "Pergunta kona-ba termu hirak ne'e:"
+
+#, python-format
+#~ msgid "Branch “%(name)s” created. Add its staff accounts here."
+#~ msgstr "Filial “%(name)s” kria ona. Aumenta konta ekipa iha ne'e."
+
+#~ msgid "Add a branch"
+#~ msgstr "Aumenta filiál"
+
+#~ msgid ""
+#~ "A new sub-branch gets its own QR codes, tables, staff and subscription. "
+#~ "You stay the owner, with the same login."
+#~ msgstr ""
+#~ "Sub-filial foun iha ninia kódigu QR, meza, ekipa no subskrisaun rasik. "
+#~ "Ita kontinua na'in, ho login hanesan."
+
+#~ msgid "Create branch"
+#~ msgstr "Kria filiál"
+
+#~ msgid ""
+#~ "All your restaurants in one place. Each branch has its own menu, tables, "
+#~ "staff and orders."
+#~ msgstr ""
+#~ "Ita-nia restaurante hotu iha fatin ida. Filiál ida-idak iha nia menu, "
+#~ "meza, funsionáriu no pedidu rasik."
+
+#~ msgid ""
+#~ "Revenue from completed orders. Profit = revenue − expenses (branches on a "
+#~ "plan with Expenses & profit)."
+#~ msgstr ""
+#~ "Rendimentu husi pedidu remata ona. Lukru = rendimentu − despeza (filiál "
+#~ "ho planu ne'ebé inklui Despeza no lukru)."
+
+#~ msgid "you are here"
+#~ msgstr "ita iha ne'e"
+
+#~ msgid ""
+#~ "Totals add up amounts as numbers; if your branches use different "
+#~ "currencies, compare them per branch."
+#~ msgstr ""
+#~ "Totál soma montante sira hanesan númeru; se filiál sira uza moeda la "
+#~ "hanesan, kompara tuir filiál."
 
 #~ msgid ""
 #~ "Your network (ESC/POS) receipt printer. The cash drawer plugs into it."

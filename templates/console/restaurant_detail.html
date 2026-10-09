@@ -21,7 +21,49 @@
   </div>
 </div>
 
-{% if sub.requested_plan %}
+{% if not r.is_main_branch %}
+<section class="card">
+  <h2 class="fieldset-title">{% icon "store" %} Branch of <a href="{% url 'console:restaurant' r.parent_id %}">{{ r.parent.name }}</a>
+    <span class="pill {% if r.branch_status == 'active' %}pill-ready{% elif r.branch_status == 'pending' %}pill-preparing{% else %}pill-cancelled{% endif %}">{{ r.get_branch_status_display }}</span>
+    {% if r.is_closed %}<span class="pill pill-cancelled">Deactivated by owner</span>{% endif %}</h2>
+  <p class="muted small">Billed through the main branch ({{ sub.plan.name }}: {{ slots.used }} / {{ slots.total|default:"∞" }} branch slots used). Registration no. {{ r.branch_registration_number|default:"—" }} · owner {{ r.branch_owner_name|default:"—" }}{% if r.branch_review_note %} · note: {{ r.branch_review_note }}{% endif %}</p>
+  {% if r.storefront_photo %}<a href="{{ r.storefront_photo.url }}" target="_blank" rel="noopener"><img class="review-photo" src="{{ r.storefront_photo.url }}" alt="Storefront"></a>{% endif %}
+  {% if r.branch_flags %}<div class="note">{% icon "alert" %}<div><strong>Flagged</strong><ul class="plain small">{% for f in r.branch_flags %}<li>{{ f }}</li>{% endfor %}</ul></div></div>{% endif %}
+  <div class="btn-row">
+    {% if r.branch_status != "active" %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="approve_branch"><button class="btn btn-success btn-sm" type="submit">{% icon "check" %} Approve / activate</button></form>{% endif %}
+    {% if r.branch_status == "pending" %}<form method="post" class="btn-row" style="flex-wrap:nowrap">{% csrf_token %}<input type="hidden" name="action" value="reject_branch"><input name="note" placeholder="Reason (sent to the owner)" maxlength="300" required><button class="btn btn-sm" type="submit">Reject</button></form>{% endif %}
+    {% if r.branch_status == "active" %}<form method="post" class="btn-row" style="flex-wrap:nowrap" data-confirm="Suspend this branch? Customers lose the menu and its staff are locked out.">{% csrf_token %}<input type="hidden" name="action" value="suspend_branch"><input name="note" placeholder="Reason (shown to the owner)" maxlength="300"><button class="btn btn-sm btn-danger" type="submit">Suspend branch</button></form>{% endif %}
+    <form method="post" data-confirm="Make {{ r.name }} a separate account? It stops being a branch of {{ r.parent.name }}, gets its own subscription on the same plan and is invoiced now.">{% csrf_token %}<input type="hidden" name="action" value="convert"><button class="btn btn-sm" type="submit">Convert to separate account</button></form>
+  </div>
+</section>
+{% endif %}
+
+{% if profile and r.is_main_branch %}
+<section class="card">
+  <h2 class="fieldset-title">{% icon "note" %} Business profile <span class="pill {% if profile.status == 'verified' %}pill-ready{% elif profile.status == 'review' %}pill-preparing{% else %}pill-cancelled{% endif %}">{{ profile.get_status_display }}</span></h2>
+  <dl class="meta">
+    <div><dt>Registration no.</dt><dd>{{ profile.registration_number }}</dd></div>
+    <div><dt>Owner</dt><dd>{{ profile.owner_name }}</dd></div>
+    <div><dt>Address</dt><dd>{{ profile.address }}</dd></div>
+    <div><dt>Phone</dt><dd>{{ profile.phone }}</dd></div>
+  </dl>
+  <div class="btn-row">
+    {% if profile.status != "verified" %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="verify_profile"><button class="btn btn-success btn-sm" type="submit">Verify</button></form>{% endif %}
+    {% if profile.status != "rejected" %}<form method="post" class="btn-row" style="flex-wrap:nowrap">{% csrf_token %}<input type="hidden" name="action" value="reject_profile"><input name="note" placeholder="What to fix" maxlength="300" required><button class="btn btn-sm" type="submit">Reject</button></form>{% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if family %}
+<section class="card">
+  <h2 class="fieldset-title">{% icon "store" %} Branches · {{ slots.used }} / {{ slots.total|default:"∞" }} slots used ({{ slots.included|default:0 }} included + {{ slots.extra }} extra)</h2>
+  <ul class="plain">{% for b in family %}
+    <li class="usage-row"><a href="{% url 'console:restaurant' b.pk %}">{{ b.name }}</a><span><span class="pill {% if b.branch_status == 'active' %}pill-ready{% elif b.branch_status == 'pending' %}pill-preparing{% else %}pill-cancelled{% endif %}">{{ b.get_branch_status_display }}</span>{% if b.is_closed %} <span class="pill">Deactivated</span>{% endif %}{% if b.branch_flags %} <span class="pill pill-cancelled">Flagged</span>{% endif %}</span></li>
+  {% endfor %}</ul>
+</section>
+{% endif %}
+
+{% if sub.requested_plan and r.is_main_branch %}
 <div class="banner">
   {% icon "info" %}
   <div><strong>Plan change requested</strong> {{ sub.requested_at|timesince }} ago: {{ sub.plan.name }} → <strong>{{ sub.requested_plan.name }}</strong> (${{ sub.requested_plan.price_monthly }}/month).</div>
@@ -34,9 +76,10 @@
   <div>
     <section class="card">
       <h2 class="fieldset-title">{% icon "book" %} Subscription</h2>
-      {% if sub %}
+      {% if not r.is_main_branch %}<p class="muted">Covered by the main branch's subscription: <a href="{% url 'console:restaurant' r.parent_id %}">{{ r.parent.name }}</a>.</p>
+      {% elif sub %}
       <dl class="meta">
-        <div><dt>Plan</dt><dd>{{ sub.plan.name }} · ${{ sub.plan.price_monthly }}/mo</dd></div>
+        <div><dt>Plan</dt><dd>{{ sub.plan.name }} · ${{ sub.plan.price_monthly }}/mo{% if sub.extra_branches %} + {{ sub.extra_branches }} extra branch(es) × ${{ sub.plan.extra_branch_price }} = ${{ sub.monthly_price }}/mo{% endif %}</dd></div>
         <div><dt>Status</dt><dd>{{ sub.state_label }}</dd></div>
         <div><dt>Trial ends</dt><dd>{{ sub.trial_ends_on|date:"d M Y"|default:"—" }}</dd></div>
         <div><dt>Paid until</dt><dd>{{ sub.paid_until|date:"d M Y"|default:"—" }}</dd></div>
@@ -90,7 +133,7 @@
       </table>
       </div>
       {% else %}<p class="muted small">No invoices yet.</p>{% endif %}
-      {% if sub %}
+      {% if sub and r.is_main_branch %}
       <details class="pay-other">
         <summary>{% icon "plus" %} Create an invoice</summary>
         <form method="post" class="form compact" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="create_invoice">
@@ -117,7 +160,7 @@
       {% endfor %}</ul>
       <p class="muted small">{{ r.address }}{% if r.phone %} · {{ r.phone }}{% endif %}{% if r.email %} · {{ r.email }}{% endif %}</p>
     </section>
-    {% if sub %}
+    {% if sub and r.is_main_branch %}
     <section class="card">
       <h2 class="fieldset-title">{% icon "note" %} Internal notes</h2>
       <form method="post">{% csrf_token %}<input type="hidden" name="action" value="notes">

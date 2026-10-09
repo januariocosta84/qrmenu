@@ -25,6 +25,8 @@
       {% if p.feature_analytics %}<li>{% icon "chart" %} Analytics</li>{% endif %}
       {% if p.feature_cash_register %}<li>{% icon "drawer" %} Cash register</li>{% endif %}
       {% if p.feature_quotations %}<li>{% icon "note" %} Quotations</li>{% endif %}
+      {% if p.feature_expenses %}<li>{% icon "cash" %} Expenses &amp; profit</li>{% endif %}
+      {% if p.feature_branches %}<li>{% icon "store" %} Branches</li>{% endif %}
     </ul>
     <div class="card-head" style="margin:0">
       <span class="muted small">{{ p.n }} restaurant{{ p.n|pluralize }}</span>

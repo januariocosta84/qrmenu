@@ -1,0 +1,42 @@
+{% extends "storefront/base.html" %}
+{% load i18n %}
+{% block html_lang %}{% get_current_language as LANG %}{{ LANG }}{% endblock %}
+{% block title %}{% translate "Terms of service" %} · {{ platform_name }}{% endblock %}
+{% block body_class %}landing{% endblock %}
+{% block content %}
+<header class="land-hero land-hero-slim">
+  <nav class="land-nav">
+    <a class="land-brand" href="{% url 'storefront:home' %}">▦ {{ platform_name }}</a>
+    <span class="land-nav-right">{% include "storefront/_landing_language.html" %}</span>
+  </nav>
+</header>
+<main class="land-main terms">
+  <h1>{% translate "Terms of service" %}</h1>
+  <p class="muted">{% translate "Last updated: 9 October 2026" %}</p>
+
+  <h2>{% translate "1. The service" %}</h2>
+  <p>{% blocktranslate trimmed with name=platform_name %}{{ name }} provides QR code menus, table ordering and restaurant management tools to food businesses ("you"). By registering, you accept these terms on behalf of your business.{% endblocktranslate %}</p>
+
+  <h2>{% translate "2. Your account" %}</h2>
+  <p>{% translate "You must give correct information about your business and keep your login details secret. You are responsible for everything done with your account and your staff accounts. We may ask you to verify your business (for example with your business registration or tax number) before you can use some features." %}</p>
+
+  <h2>{% translate "3. Branches" %}</h2>
+  <p><strong>{% translate "All branches in one account must be owned and operated by the same business, under the same business registration and brand name." %}</strong> {% translate "Each new branch is reviewed by our team before it is activated. A branch that belongs to a different business is not allowed: we may suspend it, or move it to a separate account that is billed separately." %}</p>
+
+  <h2>{% translate "4. Plans and payment" %}</h2>
+  <p>{% translate "Plans are billed monthly in US dollars. Each plan includes a fixed number of branches; extra branches are a monthly add-on. If an invoice is not paid after the grace period, ordering is switched off until it is paid. Prices may change with 30 days' notice." %}</p>
+
+  <h2>{% translate "5. Your data" %}</h2>
+  <p>{% translate "Your menus, orders and revenue records belong to you. We use them only to provide the service and keep each branch's data separate. We don't sell your data." %}</p>
+
+  <h2>{% translate "6. Acceptable use" %}</h2>
+  <p>{% translate "Don't use the service for anything illegal, to mislead customers, or to disrupt the platform. We may suspend accounts that break these terms." %}</p>
+
+  <h2>{% translate "7. Liability" %}</h2>
+  <p>{% translate "We work hard to keep the service available, but we can't guarantee it will always be uninterrupted. To the extent the law allows, we are not liable for indirect losses such as lost sales." %}</p>
+
+  <h2>{% translate "8. Contact" %}</h2>
+  <p>{% translate "Questions about these terms:" %} {% if support_email %}<a href="mailto:{{ support_email }}">{{ support_email }}</a>{% endif %}{% if support_whatsapp %} · <a href="https://wa.me/{{ support_whatsapp }}">WhatsApp +{{ support_whatsapp }}</a>{% endif %}</p>
+  <p><a class="btn" href="{% url 'storefront:home' %}">{% translate "Back" %}</a></p>
+</main>
+{% endblock %}

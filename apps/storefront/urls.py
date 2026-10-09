@@ -6,6 +6,7 @@ app_name = "storefront"
 
 urlpatterns = [
     path("", views.home, name="home"),
+    path("terms/", views.terms, name="terms"),
     path("r/<slug:slug>/", views.restaurant_menu, name="menu"),
     path("r/<slug:slug>/t/<str:number>/", views.table_menu, name="table"),
     path("restaurant/<slug:slug>/table/<str:number>/", views.legacy_table_menu, name="table_long"),

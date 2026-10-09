@@ -1,0 +1,29 @@
+{% extends "dashboard/base.html" %}
+{% load i18n ui_icons %}
+{% block title %}{% translate "Business profile" %}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{% translate "Business profile" %}
+      {% if profile.status == "verified" %}<span class="pill pill-ready">{% translate "Verified" %}</span>
+      {% elif profile.status == "review" %}<span class="pill pill-preparing">{% translate "Under review" %}</span>
+      {% elif profile.status == "rejected" %}<span class="pill pill-cancelled">{% translate "Needs changes" %}</span>
+      {% else %}<span class="pill">{% translate "Incomplete" %}</span>{% endif %}</h1>
+    <p class="page-sub">{% translate "The legal details of your business. The platform team verifies them before you can add branches; all branches must belong to this same business." %}</p>
+  </div>
+</div>
+
+{% if profile.status == "review" %}
+<div class="note">{% icon "hourglass" %}<div>{% translate "Thank you! We are checking your details, usually within one working day. You can keep using QR Menu and recording revenue in the meantime." %}</div></div>
+{% elif profile.status == "rejected" %}
+<div class="note">{% icon "alert" %}<div><strong>{% translate "Please correct your details and send them again." %}</strong>{% if profile.review_note %} {{ profile.review_note }}{% endif %}</div></div>
+{% elif profile.status == "verified" %}
+<div class="note">{% icon "check-circle" %}<div>{% translate "Your business is verified. You can request branches on the Branches page. Changing these details sends them for review again." %}</div></div>
+{% endif %}
+
+<form method="post" class="card form narrow">
+  {% csrf_token %}
+  {% include "dashboard/_form_fields.html" %}
+  <button class="btn btn-primary" type="submit">{% icon "check" %} {% if profile.status == "verified" %}{% translate "Save and send for review" %}{% else %}{% translate "Send for verification" %}{% endif %}</button>
+</form>
+{% endblock %}

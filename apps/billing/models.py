@@ -32,8 +32,19 @@ class Plan(TimeStampedModel):
     feature_analytics = models.BooleanField(default=False, help_text=_("Analytics page (trends, busy times, best sellers)."))
     feature_cash_register = models.BooleanField(default=False, help_text=_("Cash register: opening change and end-of-day reconciliation."))
     feature_quotations = models.BooleanField(default=False, help_text=_("Quotations for catering and procurement bids."))
+    feature_expenses = models.BooleanField(default=False, help_text=_("Daily expenses and profit per day, week, month and year."))
+    feature_branches = models.BooleanField(default=False, help_text=_("Several branches under one owner, with an all-branches overview."))
 
-    FEATURES = ("analytics", "cash_register", "quotations")
+    included_branches = models.PositiveSmallIntegerField(
+        default=0, validators=[MaxValueValidator(100)],
+        help_text="Sub-branches included in the price (0 = main branch only).",
+    )
+    extra_branch_price = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0, validators=[MinValueValidator(0)],
+        help_text="Monthly price of each extra branch above the included ones.",
+    )
+
+    FEATURES = ("analytics", "cash_register", "quotations", "expenses", "branches")
 
     class Meta:
         ordering = ["position", "price_monthly", "name"]
@@ -64,6 +75,10 @@ class BillingSettings(models.Model):
         blank=True, help_text="Shown to restaurant owners on their Billing page and invoices (bank account, mobile money…).",
     )
     next_invoice_number = models.PositiveIntegerField(default=1)
+    branch_flag_limit = models.PositiveSmallIntegerField(
+        default=3, validators=[MinValueValidator(1), MaxValueValidator(50)],
+        help_text="Flag an account for review when it requests more branches than this within 30 days.",
+    )
 
     class Meta:
         verbose_name = verbose_name_plural = "billing settings"
@@ -90,9 +105,18 @@ class Subscription(TimeStampedModel):
     requested_plan = models.ForeignKey(Plan, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
     requested_at = models.DateTimeField(null=True, blank=True)
     notes = models.TextField(blank=True)
+    extra_branches = models.PositiveSmallIntegerField(default=0, help_text="Paid extra branch slots (add-ons).")
 
     def __str__(self):
         return f"{self.restaurant} · {self.plan}"
+
+    @property
+    def branch_slots(self) -> int:
+        return self.plan.included_branches + self.extra_branches
+
+    @property
+    def monthly_price(self):
+        return self.plan.price_monthly + self.extra_branches * self.plan.extra_branch_price
 
     @property
     def access_until(self) -> date | None:
@@ -163,6 +187,9 @@ class Invoice(models.Model):
     recorded_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL,
                                     related_name="+")
     notes = models.CharField(max_length=255, blank=True)
+    branch_slots = models.PositiveSmallIntegerField(
+        default=0, help_text="Extra branch slots this invoice buys (an add-on invoice); added when it is paid.",
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

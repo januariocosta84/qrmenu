@@ -29,16 +29,19 @@
     {% if can.take_orders %}<a href="{% url 'dashboard:new_order' r.slug %}" class="{% if '/orders/new/' in request.path %}active{% endif %}">{% icon "plus-circle" %}<span>{% translate "New order" %}</span></a>{% endif %}
     <a href="{% url 'dashboard:orders' r.slug %}" class="{% if '/orders/' in request.path and '/orders/new/' not in request.path %}active{% endif %}">{% icon "receipt" %}<span>{% translate "Orders" %}</span></a>
     <a href="{% url 'dashboard:tables' r.slug %}" class="{% if '/tables/' in request.path %}active{% endif %}">{% icon "table" %}<span>{% translate "Tables &amp; QR" %}</span></a>
+    {% if can.record_revenue %}<a href="{% url 'dashboard:revenue' r.slug %}" class="{% if '/revenue/' in request.path %}active{% endif %}">{% icon "chart" %}<span>{% translate "Revenue" %}</span>{% if not request.features.branches %}<span class="pro-badge">PRO</span>{% endif %}</a>{% endif %}
     {% if can.payments %}<a href="{% url 'dashboard:cash_register' r.slug %}" class="{% if '/cash-register/' in request.path %}active{% endif %}">{% icon "drawer" %}<span>{% translate "Cash register" %}</span>{% if not request.features.cash_register %}<span class="pro-badge">PRO</span>{% endif %}</a>{% endif %}
 
-    {% if can.toggle_availability or can.reports or can.manage_restaurant or can.manage_staff or can.quotations %}
+    {% if can.toggle_availability or can.reports or can.manage_restaurant or can.manage_staff or can.quotations or can.expenses %}
     <p class="sb-section">{% translate "Manage" %}</p>
     {% if can.toggle_availability %}<a href="{% url 'dashboard:menu' r.slug %}" class="{% if '/menu/' in request.path %}active{% endif %}">{% icon "book" %}<span>{% translate "Menu" %}</span></a>{% endif %}
     {% if can.reports %}<a href="{% url 'dashboard:analytics' r.slug %}" class="{% if '/analytics/' in request.path %}active{% endif %}">{% icon "chart" %}<span>{% translate "Analytics" %}</span>{% if not request.features.analytics %}<span class="pro-badge">PRO</span>{% endif %}</a>
     <a href="{% url 'dashboard:reports' r.slug %}" class="{% if '/reports/' in request.path %}active{% endif %}">{% icon "receipt" %}<span>{% translate "Reports" %}</span></a>{% endif %}
+    {% if can.expenses %}<a href="{% url 'dashboard:expenses' r.slug %}" class="{% if '/expenses/' in request.path %}active{% endif %}">{% icon "cash" %}<span>{% translate "Expenses & profit" %}</span>{% if not request.features.expenses %}<span class="pro-badge">PRO</span>{% endif %}</a>{% endif %}
     {% if can.quotations %}<a href="{% url 'dashboard:quotations' r.slug %}" class="{% if '/quotations/' in request.path %}active{% endif %}">{% icon "note" %}<span>{% translate "Quotations" %}</span>{% if not request.features.quotations %}<span class="pro-badge">PRO</span>{% endif %}</a>{% endif %}
     {% if can.manage_restaurant %}<a href="{% url 'dashboard:settings' r.slug %}" class="{% if '/settings/' in request.path %}active{% endif %}">{% icon "store" %}<span>{% translate "Restaurant" %}</span></a>{% endif %}
     {% if can.manage_billing %}<a href="{% url 'dashboard:billing' r.slug %}" class="{% if '/billing/' in request.path %}active{% endif %}">{% icon "cash" %}<span>{% translate "Billing" %}</span></a>{% endif %}
+    {% if can.manage_staff and r.is_main_branch %}<a href="{% url 'dashboard:branches' r.slug %}" class="{% if '/branches/' in request.path %}active{% endif %}">{% icon "store" %}<span>{% translate "Branches" %}</span>{% if not request.features.branches %}<span class="pro-badge">PRO</span>{% endif %}</a>{% endif %}
     {% if can.manage_staff %}<a href="{% url 'dashboard:staff' r.slug %}" class="{% if '/staff/' in request.path %}active{% endif %}">{% icon "users" %}<span>{% translate "Staff" %}</span></a>{% endif %}
     {% endif %}
   </nav>
@@ -108,6 +111,15 @@
       {% if not user.email_verified and user.email %}
       <form method="post" action="{% url 'accounts:resend_verification' %}">{% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}"><button class="btn btn-sm" type="submit">{% translate "Resend email" %}</button></form>
       {% endif %}
+    {% elif request.go_live == "branch_pending" %}
+      {% icon "hourglass" %}
+      <div><strong>{% translate "Branch waiting for approval." %}</strong> {% translate "The platform team checks every new branch. Until it is approved, the branch is hidden and can't record revenue. You can set up its menu and tables in the meantime." %}</div>
+    {% elif request.go_live == "branch_rejected" %}
+      {% icon "alert" %}
+      <div><strong>{% translate "Branch request not approved." %}</strong> {% if request.restaurant.branch_review_note %}{{ request.restaurant.branch_review_note }} {% endif %}{% translate "Correct the details and send it again from Branches." %}</div>
+    {% elif request.go_live == "branch_suspended" %}
+      {% icon "alert" %}
+      <div><strong>{% translate "Branch suspended by the platform." %}</strong> {% if request.restaurant.branch_review_note %}{{ request.restaurant.branch_review_note }} {% endif %}{% translate "Customers can't see its menu and it can't record revenue." %}{% if support_email %} {% blocktranslate trimmed with email=support_email %}Contact <a href="mailto:{{ email }}">{{ email }}</a>.{% endblocktranslate %}{% endif %}</div>
     {% elif request.go_live == "awaiting_approval" %}
       {% icon "hourglass" %}
       <div><strong>{% translate "Waiting for approval." %}</strong> {% translate "Our team reviews new restaurants before they go public. You can keep setting up your menu and tables." %}</div>
@@ -127,6 +139,26 @@
     {% if request.can.manage_billing %}<a class="btn btn-sm" href="{% url 'dashboard:billing' request.restaurant.slug %}">{% translate "View billing" %}</a>{% endif %}
   </div>
   {% endif %}{% endwith %}
+  {% if request.profile_status == "incomplete" or request.profile_status == "rejected" %}
+  {% url 'dashboard:business_profile' request.restaurant.main_branch.slug as u_profile %}
+  <div class="banner banner-profile">
+    {% icon "note" %}
+    <div>{% if request.profile_status == "rejected" %}<strong>{% translate "Your business profile needs changes." %}</strong>{% else %}<strong>{% translate "Complete your business profile." %}</strong>{% endif %} {% translate "We verify every business before it can add branches. It takes two minutes: registration number, owner, address and phone." %}</div>
+    {% if u_profile not in request.path %}<a class="btn btn-sm btn-primary" href="{{ u_profile }}">{% translate "Complete now" %}</a>{% endif %}
+  </div>
+  {% if request.session.profile_prompt and request.profile_status == "incomplete" and u_profile not in request.path %}
+  <div class="cash-modal" id="profile-prompt" role="dialog" aria-modal="true" aria-labelledby="profile-prompt-title">
+    <div class="cash-box">
+      <h2 id="profile-prompt-title">{% icon "note" %} {% translate "Complete your business profile" %}</h2>
+      <p>{% translate "Please add your business registration number (e.g. SERVE certificate or tax number), the owner's name, your address and phone number. Our team verifies it, and then you can add branches." %}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="{{ u_profile }}">{% icon "check" %} {% translate "Complete now" %}</a>
+        <form method="post" action="{% url 'dashboard:profile_prompt_later' request.restaurant.slug %}" class="inline-form">{% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}"><button class="btn" type="submit">{% translate "Remind me later" %}</button></form>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% endif %}
   {% block content %}{% endblock %}
 </main>
 <div class="toasts" id="toasts" aria-live="polite"></div>

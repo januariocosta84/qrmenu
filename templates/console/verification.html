@@ -1,0 +1,69 @@
+{% extends "console/base.html" %}
+{% load ui_icons %}
+{% block title %}Verification{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>Verification</h1>
+    <p class="page-sub">Business profiles, branch requests and new sign-ups waiting for a decision. Owners are emailed when a branch is approved or rejected.</p>
+  </div>
+</div>
+
+<section class="card">
+  <h2 class="fieldset-title">{% icon "store" %} Branch requests <span class="tag">{{ branches|length }}</span></h2>
+  {% for b in branches %}
+  <div class="review-item{% if b.branch_flags %} is-flagged{% endif %}">
+    {% if b.storefront_photo %}<a href="{{ b.storefront_photo.url }}" target="_blank" rel="noopener"><img class="review-photo" src="{{ b.storefront_photo.url }}" alt="Storefront of {{ b.name }}"></a>{% else %}<div class="review-photo empty">No photo</div>{% endif %}
+    <div class="review-body">
+      <h3><a href="{% url 'console:restaurant' b.pk %}">{{ b.name }}</a> <span class="muted small">branch of <a href="{% url 'console:restaurant' b.parent_id %}">{{ b.parent.name }}</a> · requested {{ b.created_at|date:"d M Y H:i" }}</span></h3>
+      <dl class="meta">
+        <div><dt>Address</dt><dd>{{ b.address|default:"—" }}</dd></div>
+        <div><dt>Phone</dt><dd>{{ b.phone|default:"—" }}</dd></div>
+        <div><dt>Registration no.</dt><dd>{{ b.branch_registration_number|default:"—" }}{% if b.profile %} <span class="muted small">(main: {{ b.profile.registration_number }}, {{ b.profile.get_status_display|lower }})</span>{% endif %}</dd></div>
+        <div><dt>Owner</dt><dd>{{ b.branch_owner_name|default:"—" }}{% if b.profile %} <span class="muted small">(main: {{ b.profile.owner_name }})</span>{% endif %}</dd></div>
+        <div><dt>Branch slots</dt><dd>{% if b.slots.total is None %}no billing{% else %}{{ b.slots.used }} / {{ b.slots.total }} used{% if not b.slots.free %} · <strong class="link-danger">no free slot</strong>{% endif %}{% endif %}</dd></div>
+      </dl>
+      {% if b.branch_flags %}<div class="note">{% icon "alert" %}<div><strong>Flagged for review</strong><ul class="plain small">{% for f in b.branch_flags %}<li>{{ f }}</li>{% endfor %}</ul></div></div>{% endif %}
+      <div class="btn-row">
+        <form method="post">{% csrf_token %}<input type="hidden" name="kind" value="branch"><input type="hidden" name="pk" value="{{ b.pk }}"><input type="hidden" name="action" value="approve"><button class="btn btn-success btn-sm" type="submit"{% if b.slots.total is not None and not b.slots.free %} disabled title="No free branch slot"{% endif %}>{% icon "check" %} Approve</button></form>
+        <form method="post" class="btn-row" style="flex-wrap:nowrap">{% csrf_token %}<input type="hidden" name="kind" value="branch"><input type="hidden" name="pk" value="{{ b.pk }}"><input type="hidden" name="action" value="reject"><input name="note" placeholder="Reason (sent to the owner)" maxlength="300" required><button class="btn btn-sm btn-danger" type="submit">Reject</button></form>
+      </div>
+    </div>
+  </div>
+  {% empty %}<p class="muted">No branch requests waiting.</p>{% endfor %}
+</section>
+
+<section class="card">
+  <h2 class="fieldset-title">{% icon "note" %} Business profiles <span class="tag">{{ profiles|length }}</span></h2>
+  {% if profiles %}
+  <div class="table-wrap"><table class="table rtable">
+    <thead><tr><th>Business</th><th>Registration no.</th><th>Owner</th><th>Address · phone</th><th>Sent</th><th></th></tr></thead>
+    <tbody>{% for p in profiles %}
+      <tr>
+        <td class="rt-title" data-label=""><a href="{% url 'console:restaurant' p.restaurant_id %}"><strong>{{ p.restaurant.name }}</strong></a></td>
+        <td data-label="Registration no.">{{ p.registration_number }}</td>
+        <td data-label="Owner">{{ p.owner_name }}</td>
+        <td data-label="Address">{{ p.address }} · {{ p.phone }}</td>
+        <td data-label="Sent">{{ p.submitted_at|date:"d M H:i" }}</td>
+        <td data-label="" class="num nowrap">
+          <form method="post" class="inline-form">{% csrf_token %}<input type="hidden" name="kind" value="profile"><input type="hidden" name="pk" value="{{ p.pk }}"><input type="hidden" name="action" value="verify"><button class="btn btn-success btn-sm" type="submit">Verify</button></form>
+          <form method="post" class="inline-form">{% csrf_token %}<input type="hidden" name="kind" value="profile"><input type="hidden" name="pk" value="{{ p.pk }}"><input type="hidden" name="action" value="reject"><input name="note" placeholder="What to fix" maxlength="300" required size="16"><button class="btn btn-sm" type="submit">Reject</button></form>
+        </td>
+      </tr>{% endfor %}
+    </tbody>
+  </table></div>
+  {% else %}<p class="muted">No profiles waiting.</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2 class="fieldset-title">{% icon "users" %} New sign-ups not live yet <span class="tag">{{ signups|length }}</span></h2>
+  {% if signups %}
+  <ul class="plain">{% for r in signups %}
+    <li class="usage-row"><span><a href="{% url 'console:restaurant' r.pk %}"><strong>{{ r.name }}</strong></a> <span class="muted small">{{ r.owner.user.email }} · {{ r.created_at|date:"d M Y" }}</span></span>
+      <span class="btn-row"><form method="post" action="{% url 'console:restaurant' r.pk %}">{% csrf_token %}<input type="hidden" name="action" value="approve"><button class="btn btn-success btn-sm" type="submit">Approve</button></form>
+      <a class="btn btn-sm" href="{% url 'console:restaurant' r.pk %}">Open</a></span></li>
+  {% endfor %}</ul>
+  <p class="muted small">To reject a sign-up, leave it hidden (Suspend) or disable the owner's account from Users.</p>
+  {% else %}<p class="muted">No sign-ups waiting.</p>{% endif %}
+</section>
+{% endblock %}

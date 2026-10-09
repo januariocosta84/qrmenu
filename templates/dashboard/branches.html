@@ -1,0 +1,116 @@
+{% extends "dashboard/base.html" %}
+{% load i18n l10n menu_tags ui_icons %}
+{% block title %}{% translate "Branches" %}{% endblock %}
+{% block content %}
+{% with sym=request.restaurant.currency_symbol r=request.restaurant can=request.can %}
+<div class="page-head">
+  <div>
+    <h1>{% translate "Branches" %}</h1>
+    <p class="page-sub">{% blocktranslate trimmed with name=r.name %}{{ name }} (main branch) and its sub-branches. Revenue = completed orders + sales recorded by each branch.{% endblocktranslate %}</p>
+  </div>
+</div>
+
+{# Day picker: today by default, any past day #}
+<form method="get" class="range-bar day-bar">
+  <a class="btn" href="?date={{ prev_day|date:'Y-m-d' }}" aria-label="{% translate "Previous day" %}">{% icon "chevron-left" %}</a>
+  <input type="date" name="date" value="{{ day|date:'Y-m-d' }}" max="{% now 'Y-m-d' %}" aria-label="{% translate "Day" %}" onchange="this.form.submit()">
+  {% if next_day %}<a class="btn" href="?date={{ next_day|date:'Y-m-d' }}" aria-label="{% translate "Next day" %}">{% icon "chevron-right" %}</a>{% endif %}
+  {% if not is_today %}<a class="btn btn-ghost" href="?">{% translate "Today" %}</a>{% endif %}
+  <strong class="day-title">{% if is_today %}{% translate "Today" %} · {% endif %}{{ day|date:"l j F Y" }}</strong>
+</form>
+
+<div class="kpi-row">
+  <div class="kpi"><span class="kpi-label">{% translate "All branches · this day" %}</span><strong class="kpi-value">{{ total.day.revenue|money:sym }}</strong>
+    <span class="kpi-delta is-flat"><small>{% blocktranslate trimmed with o=total.day.orders_revenue|money:sym m=total.day.recorded_revenue|money:sym %}Orders {{ o }} · recorded {{ m }}{% endblocktranslate %}</small></span></div>
+  <div class="kpi"><span class="kpi-label">{% blocktranslate trimmed with d=week_from|date:"j M" %}Week from {{ d }}{% endblocktranslate %}</span><strong class="kpi-value">{{ total.week.revenue|money:sym }}</strong></div>
+  <div class="kpi"><span class="kpi-label">{{ month_from|date:"F Y" }}</span><strong class="kpi-value">{{ total.month.revenue|money:sym }}</strong></div>
+</div>
+
+<section class="card">
+  <h2 class="fieldset-title">{% icon "chart" %} {% translate "Revenue by branch" %}</h2>
+  <div class="table-wrap">
+  <table class="table rtable branch-table">
+    <thead><tr><th>{% translate "Branch" %}</th><th class="num">{% translate "This day" %}</th><th class="num">{% translate "Week" %}</th><th class="num">{% translate "Month" %}</th><th></th></tr></thead>
+    <tbody>
+    {% for row in rows %}
+      <tr class="{% if row.current %}is-current{% endif %}{% if row.branch.is_closed %} is-closed{% endif %}">
+        <td class="rt-title" data-label="">
+          <strong>{{ row.branch.name }}</strong>
+          {% if row.branch.is_main_branch %}<span class="tag">{% translate "Main branch" %}</span>{% endif %}
+          {% if row.branch.is_closed %}<span class="pill pill-cancelled">{% translate "Deactivated" %}</span>
+          {% elif row.branch.branch_status == "pending" %}<span class="pill pill-preparing">{% translate "Pending" %}</span>
+          {% elif row.branch.branch_status == "rejected" %}<span class="pill pill-cancelled">{% translate "Rejected" %}</span>
+          {% elif row.branch.branch_status == "suspended" %}<span class="pill pill-cancelled">{% translate "Suspended" %}</span>
+          {% elif not row.branch.is_active %}<span class="pill pill-preparing">{% translate "Not live" %}</span>{% endif %}
+          {% if row.branch.address %}<div class="muted small">{{ row.branch.address }}</div>{% endif %}
+        </td>
+        <td class="num" data-label="{% translate "This day" %}"><div class="bcell"><strong>{{ row.day.revenue|money:sym }}</strong>{% if row.day.recorded_revenue %}<small class="muted">{% blocktranslate trimmed with m=row.day.recorded_revenue|money:sym %}incl. {{ m }} recorded{% endblocktranslate %}</small>{% endif %}</div></td>
+        <td class="num" data-label="{% translate "Week" %}">{{ row.week.revenue|money:sym }}</td>
+        <td class="num" data-label="{% translate "Month" %}">{{ row.month.revenue|money:sym }}</td>
+        <td class="num nowrap" data-label="">
+          <a class="btn btn-sm btn-ghost" href="{% url 'dashboard:overview' row.branch.slug %}">{% icon "external" %} {% translate "Open" %}</a>
+          {% if not row.branch.is_main_branch %}<a class="btn btn-sm" href="{% url 'dashboard:branch_manage' r.slug row.branch.pk %}">{% icon "settings" %} {% translate "Manage" %}</a>{% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot><tr class="grand"><td>{% translate "All branches" %}</td><td class="num">{{ total.day.revenue|money:sym }}</td><td class="num">{{ total.week.revenue|money:sym }}</td><td class="num">{{ total.month.revenue|money:sym }}</td><td></td></tr></tfoot>
+  </table>
+  </div>
+
+  {% if rows|length > 1 %}
+  <h3>{% translate "This day compared" %}</h3>
+  <div class="hbars viz" role="img" aria-label="{% translate "Revenue per branch for this day" %}">
+    {% for row in rows %}<div class="hbar"><span class="hbar-name">{{ row.branch.name }}</span>
+      <span class="hbar-track"><i class="hbar-fill" style="width: {{ row.pct|unlocalize }}%"></i><span class="hbar-val">{{ row.day.revenue|money:sym }}</span></span></div>{% endfor %}
+  </div>
+  {% endif %}
+</section>
+
+<div class="cols-even">
+<section class="card">
+  <h2 class="fieldset-title">{% icon "store" %} {% translate "Branch slots" %}</h2>
+  {% if slots.total is not None %}
+  <p class="kpi-value">{{ slots.used }} / {{ slots.total }}</p>
+  <p class="fieldset-desc">{% blocktranslate trimmed with included=slots.included extra=slots.extra %}Your plan includes {{ included }} branches besides the main branch; you have {{ extra }} extra. Pending, rejected and deactivated branches don't use a slot.{% endblocktranslate %}</p>
+  {% if slots.price %}
+    {% if slots.open_addon %}
+      <div class="note">{% icon "hourglass" %}<div>{% blocktranslate trimmed with number=slots.open_addon.number amount=slots.open_addon.amount|money:sym %}Invoice {{ number }} ({{ amount }}) for an extra branch is waiting for payment. The slot is added once it is paid.{% endblocktranslate %}{% if can.manage_billing %} <a href="{% url 'dashboard:billing' r.slug %}">{% translate "View billing" %}</a>{% endif %}</div></div>
+    {% else %}
+      <form method="post" class="inline-form">{% csrf_token %}<input type="hidden" name="action" value="buy_slot">
+        <button class="btn" type="submit">{% icon "plus" %} {% blocktranslate trimmed with price=slots.price|money:sym %}Add an extra branch ({{ price }}/month){% endblocktranslate %}</button></form>
+    {% endif %}
+    {% if slots.extra and slots.free %}
+      <form method="post" class="inline-form" onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% translate "Remove one unused extra branch from your subscription?" %}">{% csrf_token %}<input type="hidden" name="action" value="remove_slot">
+        <button class="btn btn-ghost btn-sm" type="submit">{% translate "Remove an unused extra branch" %}</button></form>
+    {% endif %}
+  {% endif %}
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2 class="fieldset-title">{% icon "note" %} {% translate "Business profile" %}</h2>
+  {% if profile.status == "verified" %}
+    <p><span class="pill pill-ready">{% translate "Verified" %}</span> {{ profile.registration_number }} · {{ profile.owner_name }}</p>
+  {% elif profile.status == "review" %}
+    <p><span class="pill pill-preparing">{% translate "Under review" %}</span></p>
+    <p class="fieldset-desc">{% translate "You can request branches once the platform team has verified your business profile." %}</p>
+  {% else %}
+    <p class="fieldset-desc">{% translate "To request branches, first complete your business profile. The platform team verifies it." %}</p>
+  {% endif %}
+  <a class="btn btn-sm" href="{% url 'dashboard:business_profile' r.slug %}">{% if profile.status == "verified" or profile.status == "review" %}{% translate "View" %}{% else %}{% translate "Complete now" %}{% endif %}</a>
+</section>
+</div>
+
+{% if form %}
+<form method="post" enctype="multipart/form-data" class="card form narrow">
+  {% csrf_token %}<input type="hidden" name="action" value="request">
+  <h2 class="fieldset-title">{% icon "plus" %} {% translate "Request a new branch" %}</h2>
+  <p class="fieldset-desc">{% translate "The platform team reviews every new branch: it must be the same business, using your brand name. Until it is approved, the branch is hidden and can't record revenue. It gets its own QR codes, tables and staff; you stay the owner, with the same login." %}</p>
+  {% if slots.total is not None and not slots.free %}<div class="note">{% icon "info" %}<div>{% translate "All branch slots in your plan are in use. You can still send the request; it is activated once you add an extra branch." %}</div></div>{% endif %}
+  {% include "dashboard/_form_fields.html" %}
+  <button class="btn btn-primary" type="submit">{% icon "check" %} {% translate "Send request" %}</button>
+</form>
+{% endif %}
+{% endwith %}
+{% endblock %}

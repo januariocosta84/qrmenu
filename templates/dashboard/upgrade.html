@@ -11,6 +11,12 @@
   {% elif feature == "cash_register" %}
     <h1>{% icon "drawer" %} {% translate "Cash register" %}</h1>
     <p>{% translate "Enter the change in the drawer before selling, record cash in and out, and reconcile at the end of the day: expected vs counted, over or short, with a printable report." %}</p>
+  {% elif feature == "branches" %}
+    <h1>{% icon "store" %} {% translate "Branches" %}</h1>
+    <p>{% translate "Open more branches under the same login, copy your menu to them in one click, and see revenue and profit for every branch and for the whole business." %}</p>
+  {% elif feature == "expenses" %}
+    <h1>{% icon "cash" %} {% translate "Expenses & profit" %}</h1>
+    <p>{% translate "Write down what you spend each day and see your real profit for today, this week, this month and this year." %}</p>
   {% else %}
     <h1>{% icon "note" %} {% translate "Quotations" %}</h1>
     <p>{% translate "Create professional price offers for catering, events and procurement bids from your menu, with amount in words, and print them as PDF in four languages." %}</p>

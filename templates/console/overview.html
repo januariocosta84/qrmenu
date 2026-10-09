@@ -38,13 +38,16 @@
 
   <section class="card">
     <div class="card-head"><h2>Needs attention</h2></div>
+    {% if to_review.branches or to_review.profiles or to_review.signups %}
+      <div class="note">{% icon "check-circle" %}<div><a href="{% url 'console:verification' %}"><strong>To verify:</strong></a> {{ to_review.branches }} branch request(s){% if to_review.flagged %} (<strong>{{ to_review.flagged }} flagged</strong>){% endif %}, {{ to_review.profiles }} business profile(s), {{ to_review.signups }} sign-up(s)</div></div>
+    {% endif %}
     {% for s in requests %}
       <div class="note">{% icon "info" %}<div><a href="{% url 'console:restaurant' s.restaurant_id %}"><strong>{{ s.restaurant.name }}</strong></a> asked to change {{ s.plan.name }} → <strong>{{ s.requested_plan.name }}</strong></div></div>
     {% endfor %}
     {% for inv in overdue %}
       <div class="note">{% icon "alert" %}<div><a href="{% url 'console:invoice' inv.pk %}">{{ inv.number }}</a> · {{ inv.restaurant.name }} · ${{ inv.amount }} overdue since {{ inv.due_date|date:"d M" }}</div></div>
     {% endfor %}
-    {% if not requests and not overdue %}<div class="empty">{% icon "check-circle" %}<p>Nothing needs your attention.</p></div>{% endif %}
+    {% if not requests and not overdue and not to_review.branches and not to_review.profiles and not to_review.signups %}<div class="empty">{% icon "check-circle" %}<p>Nothing needs your attention.</p></div>{% endif %}
   </section>
 </div>
 

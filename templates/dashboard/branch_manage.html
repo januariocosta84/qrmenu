@@ -1,0 +1,83 @@
+{% extends "dashboard/base.html" %}
+{% load i18n ui_icons %}
+{% block title %}{{ sub.name }}{% endblock %}
+{% block content %}
+{% with r=request.restaurant %}
+<a class="back-link" href="{% url 'dashboard:branches' r.slug %}">{% icon "arrow-left" %} {% translate "Branches" %}</a>
+<div class="page-head">
+  <div>
+    <h1>{{ sub.name }} {% if sub.is_closed %}<span class="pill pill-cancelled">{% translate "Deactivated" %}</span>{% elif sub.branch_status == "pending" %}<span class="pill pill-preparing">{% translate "Pending" %}</span>{% elif sub.branch_status == "rejected" %}<span class="pill pill-cancelled">{% translate "Rejected" %}</span>{% elif sub.branch_status == "suspended" %}<span class="pill pill-cancelled">{% translate "Suspended" %}</span>{% elif not sub.is_active %}<span class="pill pill-preparing">{% translate "Not live" %}</span>{% else %}<span class="pill pill-ready">{% translate "Active" %}</span>{% endif %}</h1>
+    <p class="page-sub">{% blocktranslate trimmed with main=r.name %}Sub-branch of {{ main }}.{% endblocktranslate %}</p>
+  </div>
+  <div class="page-actions"><a class="btn" href="{% url 'dashboard:overview' sub.slug %}">{% icon "external" %} {% translate "Open its dashboard" %}</a></div>
+</div>
+
+{% if sub.branch_status == "pending" %}
+<div class="note">{% icon "hourglass" %}<div>{% translate "Waiting for approval by the platform team. Meanwhile you can set up its menu, tables and staff; it goes live and can record revenue once approved." %}</div></div>
+{% elif sub.branch_status == "rejected" %}
+<form method="post" enctype="multipart/form-data" class="card form compact">
+  {% csrf_token %}<input type="hidden" name="action" value="resubmit">
+  <h2 class="fieldset-title">{% icon "alert" %} {% translate "Request not approved" %}</h2>
+  {% if sub.branch_review_note %}<p><strong>{{ sub.branch_review_note }}</strong></p>{% endif %}
+  <p class="fieldset-desc">{% translate "Correct the branch details below if needed, optionally add a new storefront photo, and send it again." %}</p>
+  <div class="field"><label for="sp">{% translate "Storefront photo" %}</label><input type="file" id="sp" name="storefront_photo" accept="image/jpeg,image/png,image/webp"></div>
+  <button class="btn btn-primary" type="submit">{% translate "Send again" %}</button>
+</form>
+{% elif sub.branch_status == "suspended" %}
+<div class="note">{% icon "alert" %}<div><strong>{% translate "Suspended by the platform." %}</strong>{% if sub.branch_review_note %} {{ sub.branch_review_note }}{% endif %}</div></div>
+{% endif %}
+
+<div class="cols">
+  <div>
+    <form method="post" class="card form compact">
+      {% csrf_token %}<input type="hidden" name="action" value="details">
+      <h2 class="fieldset-title">{% icon "store" %} {% translate "Branch details" %}</h2>
+      {% include "dashboard/_form_fields.html" with form=details %}
+      <button class="btn btn-primary" type="submit">{% icon "check" %} {% translate "Save" %}</button>
+    </form>
+
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "users" %} {% translate "Staff accounts" %}</h2>
+      {% if members %}
+      <div class="table-wrap">
+      <table class="table rtable">
+        <thead><tr><th>{% translate "User" %}</th><th>{% translate "Role" %}</th><th>{% translate "Status" %}</th><th></th></tr></thead>
+        <tbody>{% for m in members %}
+          <tr>
+            <td class="rt-title" data-label=""><strong>{{ m.user.username }}</strong>{% if m.user.get_full_name %} <span class="muted small">· {{ m.user.get_full_name }}</span>{% endif %}</td>
+            <td data-label="{% translate "Role" %}">{{ m.get_role_display }}</td>
+            <td data-label="{% translate "Status" %}">{% if m.is_active %}<span class="pill pill-ready">{% translate "Active" %}</span>{% else %}<span class="pill pill-cancelled">{% translate "Disabled" %}</span>{% endif %}</td>
+            <td data-label="" class="num">{% if m.user != user %}
+              <form method="post" class="inline-form">{% csrf_token %}<input type="hidden" name="action" value="staff_toggle"><input type="hidden" name="member" value="{{ m.pk }}">
+                <button class="btn btn-sm btn-ghost" type="submit">{% if m.is_active %}{% translate "Disable" %}{% else %}{% translate "Enable" %}{% endif %}</button></form>{% endif %}</td>
+          </tr>{% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+
+  <aside>
+    <form method="post" class="card form compact">
+      {% csrf_token %}<input type="hidden" name="action" value="staff">
+      <h2 class="fieldset-title">{% icon "plus" %} {% translate "Add staff account" %}</h2>
+      <p class="fieldset-desc">{% translate "A branch manager or cashier for this branch. They only see this branch: its orders and its own revenue." %}</p>
+      {% include "dashboard/_form_fields.html" with form=staff_form %}
+      <button class="btn btn-primary btn-block" type="submit">{% translate "Create account" %}</button>
+    </form>
+
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "alert" %} {% if sub.is_closed %}{% translate "Reactivate branch" %}{% else %}{% translate "Deactivate branch" %}{% endif %}</h2>
+      {% if sub.is_closed %}
+        <p class="fieldset-desc">{% blocktranslate trimmed with d=sub.branch_closed_at|date:"j M Y" %}Deactivated on {{ d }}. Reactivating brings back its menu, QR codes and staff access.{% endblocktranslate %}</p>
+        <form method="post">{% csrf_token %}<input type="hidden" name="action" value="reactivate"><button class="btn btn-primary btn-block" type="submit">{% translate "Reactivate" %}</button></form>
+      {% else %}
+        <p class="fieldset-desc">{% translate "Customers can no longer order, its QR codes stop working and its staff can't sign in to it. Nothing is deleted, and you can reactivate it at any time." %}</p>
+        <form method="post" onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% blocktranslate trimmed with n=sub.name %}Deactivate {{ n }}?{% endblocktranslate %}">{% csrf_token %}<input type="hidden" name="action" value="deactivate"><button class="btn btn-block link-danger" type="submit">{% icon "x" %} {% translate "Deactivate" %}</button></form>
+      {% endif %}
+    </section>
+  </aside>
+</div>
+{% endwith %}
+{% endblock %}

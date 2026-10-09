@@ -1,5 +1,6 @@
 from django.urls import path
 
+from apps.expenses import views as expenses
 from apps.quotations import views as quotes
 
 from . import api, views
@@ -45,9 +46,18 @@ urlpatterns = [
     path(f"dashboard/{R}cash-drawer/slip/", views.drawer_slip, name="drawer_slip"),
     path(f"dashboard/{R}cash-drawer/test/", views.drawer_test, name="drawer_test"),
     path(f"dashboard/{R}staff/", views.staff, name="staff"),
+    path(f"dashboard/{R}branches/", views.branches, name="branches"),
+    path(f"dashboard/{R}branches/<int:pk>/", views.branch_manage, name="branch_manage"),
+    path(f"dashboard/{R}business-profile/", views.business_profile, name="business_profile"),
+    path(f"dashboard/{R}business-profile/later/", views.profile_prompt_later, name="profile_prompt_later"),
     path(f"dashboard/{R}staff/<int:pk>/", views.staff_edit, name="staff_edit"),
     path(f"dashboard/{R}reports/", views.reports, name="reports"),
     path(f"dashboard/{R}analytics/", views.analytics_page, name="analytics"),
+    path(f"dashboard/{R}revenue/", expenses.revenue_page, name="revenue"),
+    path(f"dashboard/{R}revenue/<int:pk>/delete/", expenses.revenue_entry_delete, name="revenue_entry_delete"),
+    path(f"dashboard/{R}expenses/", expenses.expenses_page, name="expenses"),
+    path(f"dashboard/{R}expenses/<int:pk>/", expenses.expense_edit, name="expense_edit"),
+    path(f"dashboard/{R}expenses/<int:pk>/delete/", expenses.expense_delete, name="expense_delete"),
     path(f"dashboard/{R}quotations/", quotes.quotation_list, name="quotations"),
     path(f"dashboard/{R}quotations/new/", quotes.quotation_create, name="quotation_create"),
     path(f"dashboard/{R}quotations/<int:pk>/", quotes.quotation_edit, name="quotation_edit"),

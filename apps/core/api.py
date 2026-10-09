@@ -42,4 +42,4 @@ class RestaurantScopedMixin:
 
 
 def get_public_restaurant(slug: str) -> Restaurant:
-    return get_object_or_404(Restaurant, slug=slug, is_active=True)
+    return get_object_or_404(Restaurant, slug=slug, is_active=True, branch_closed_at__isnull=True)

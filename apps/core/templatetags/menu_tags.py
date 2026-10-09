@@ -18,3 +18,11 @@ def money(value, symbol="$"):
     if value is None or value == "":
         return ""
     return f"{symbol}{Decimal(value):,.2f}"
+
+
+@register.filter
+def money_abs(value, symbol="$"):
+    """Like money, without the sign (the template writes "−" or a Loss label itself)."""
+    if value is None or value == "":
+        return ""
+    return f"{symbol}{abs(Decimal(value)):,.2f}"

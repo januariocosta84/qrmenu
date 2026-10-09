@@ -1,0 +1,70 @@
+{% extends "dashboard/base.html" %}
+{% load i18n menu_tags ui_icons %}
+{% block title %}{% translate "Revenue" %}{% endblock %}
+{% block content %}
+{% with r=request.restaurant sym=request.restaurant.currency_symbol %}
+<div class="page-head">
+  <div>
+    <h1>{% translate "Revenue" %}</h1>
+    <p class="page-sub">{% blocktranslate trimmed with name=r.name %}{{ name }} only. Record sales that weren't entered as orders, e.g. walk-in cash sales. Orders are counted automatically.{% endblocktranslate %}</p>
+  </div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi"><span class="kpi-label">{% translate "Today's revenue" %}</span><strong class="kpi-value">{{ today.revenue|money:sym }}</strong>
+    <span class="kpi-delta is-flat"><small>{% blocktranslate trimmed with o=today.orders_revenue|money:sym m=today.recorded_revenue|money:sym %}Orders {{ o }} · recorded {{ m }}{% endblocktranslate %}</small></span></div>
+  {% if not is_today %}<div class="kpi"><span class="kpi-label">{% blocktranslate trimmed with a=date_from|date:"j M" b=date_to|date:"j M Y" %}{{ a }} – {{ b }}{% endblocktranslate %}</span><strong class="kpi-value">{{ period.revenue|money:sym }}</strong>
+    <span class="kpi-delta is-flat"><small>{% blocktranslate trimmed with o=period.orders_revenue|money:sym m=period.recorded_revenue|money:sym %}Orders {{ o }} · recorded {{ m }}{% endblocktranslate %}</small></span></div>{% endif %}
+</div>
+
+<div class="cols">
+  <section class="card">
+    <div class="card-head">
+      <h2>{% translate "Recorded entries" %} <span class="count">{{ entry_count }}</span></h2>
+    </div>
+    <form method="get" class="filters">
+      <label>{% translate "From" %} <input type="date" name="from" value="{{ date_from|date:'Y-m-d' }}"></label>
+      <label>{% translate "To" %} <input type="date" name="to" value="{{ date_to|date:'Y-m-d' }}"></label>
+      <button class="btn" type="submit">{% icon "filter" %} {% translate "Filter" %}</button>
+      {% if not is_today %}<a class="btn btn-ghost" href="?">{% translate "Today" %}</a>{% endif %}
+    </form>
+    {% if entries %}
+    <div class="table-wrap">
+    <table class="table rtable">
+      <thead><tr><th>{% translate "Date" %}</th><th>{% translate "Payment method" %}</th><th>{% translate "Note" %}</th><th class="num">{% translate "Amount" %}</th><th></th></tr></thead>
+      <tbody>{% for e in entries %}
+        <tr>
+          <td class="rt-title nowrap" data-label="">{{ e.date|date:"D j M" }} <span class="muted small">{{ e.created_at|date:"H:i" }}</span></td>
+          <td data-label="{% translate "Payment method" %}">{{ e.get_method_display }}</td>
+          <td data-label="{% translate "Note" %}">{{ e.note|default:"—" }}{% if e.created_by %} <span class="muted small">· {{ e.created_by.username }}</span>{% endif %}</td>
+          <td data-label="{% translate "Amount" %}" class="num"><strong>{{ e.amount|money:sym }}</strong></td>
+          <td data-label="" class="num">{% if request.role == "owner" or request.role == "manager" or e.created_by_id == user.pk %}
+            <form method="post" action="{% url 'dashboard:revenue_entry_delete' r.slug e.pk %}" class="inline-form" onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% translate "Delete this entry?" %}">
+              {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
+              <button class="btn btn-sm btn-ghost" type="submit" aria-label="{% translate "Delete" %}">{% icon "trash" %}</button></form>{% endif %}</td>
+        </tr>{% endfor %}
+      </tbody>
+      <tfoot><tr class="grand"><td colspan="3">{% translate "Total recorded" %}{% for m in by_method %} <span class="muted small">· {% for k, v in method_labels.items %}{% if k == m.method %}{{ v }}{% endif %}{% endfor %} {{ m.s|money:sym }}</span>{% endfor %}</td><td class="num">{{ period.recorded_revenue|money:sym }}</td><td></td></tr></tfoot>
+    </table>
+    </div>
+    {% else %}<p class="muted small">{% translate "No recorded entries for these dates." %}</p>{% endif %}
+  </section>
+
+  <aside>
+    {% if can_record %}
+    <form method="post" class="card form compact">
+      {% csrf_token %}
+      <h2 class="fieldset-title">{% icon "plus" %} {% translate "Record revenue" %}</h2>
+      {% include "dashboard/_form_fields.html" %}
+      <button class="btn btn-primary btn-block" type="submit">{% icon "check" %} {% translate "Save" %}</button>
+    </form>
+    {% else %}
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "hourglass" %} {% translate "Record revenue" %}</h2>
+      <p class="fieldset-desc">{% if request.restaurant.is_closed %}{% translate "This branch is deactivated." %}{% elif request.restaurant.branch_status == "pending" %}{% translate "This branch is waiting for approval by the platform team. It can record revenue once approved." %}{% else %}{% translate "This branch is not active, so it can't record revenue." %}{% endif %}</p>
+    </section>
+    {% endif %}
+  </aside>
+</div>
+{% endwith %}
+{% endblock %}

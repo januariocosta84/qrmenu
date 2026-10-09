@@ -1,0 +1,113 @@
+{% extends "dashboard/base.html" %}
+{% load i18n l10n menu_tags ui_icons %}
+{% block title %}{% translate "Expenses & profit" %}{% endblock %}
+{% block content %}
+{% with r=request.restaurant sym=request.restaurant.currency_symbol %}
+<div class="page-head">
+  <div>
+    <h1>{% translate "Expenses & profit" %}</h1>
+    <p class="page-sub">{% translate "Write down what you spend each day. Profit = revenue from completed orders − expenses." %}</p>
+  </div>
+  <div class="page-actions"><a class="btn" href="?{% if preset == 'custom' %}period=custom&from={{ date_from|date:'Y-m-d' }}&to={{ date_to|date:'Y-m-d' }}{% else %}period={{ preset }}{% endif %}&format=csv">{% icon "download" %} {% translate "Export CSV" %}</a></div>
+</div>
+
+{# At a glance: the four questions owners ask most #}
+<div class="profit-glance">
+  {% for g in glance %}
+  <a class="profit-card{% if g.key == preset %} is-current{% endif %}" href="?period={{ g.key }}">
+    <span class="kpi-label">{% if g.key == "today" %}{% translate "Today" %}{% elif g.key == "week" %}{% translate "This week" %}{% elif g.key == "month" %}{% translate "This month" %}{% else %}{% translate "This year" %}{% endif %}</span>
+    <strong class="profit-value {% if g.profit < 0 %}is-loss{% else %}is-gain{% endif %}">{% if g.profit < 0 %}−{% endif %}{{ g.profit|money_abs:sym }}</strong>
+    <span class="profit-tag">{% if g.profit < 0 %}{% icon "alert" %} {% translate "Loss" %}{% else %}{% icon "check-circle" %} {% translate "Profit" %}{% endif %}</span>
+    <span class="profit-lines"><span>{% translate "Revenue" %} <b>{{ g.revenue|money:sym }}</b></span><span>{% translate "Expenses" %} <b>{{ g.expenses|money:sym }}</b></span></span>
+  </a>
+  {% endfor %}
+</div>
+
+<div class="range-bar">
+  <nav class="seg" aria-label="{% translate "Date range" %}">
+    <a href="?period=today" class="{% if preset == 'today' %}active{% endif %}">{% translate "Today" %}</a>
+    <a href="?period=week" class="{% if preset == 'week' %}active{% endif %}">{% translate "This week" %}</a>
+    <a href="?period=month" class="{% if preset == 'month' %}active{% endif %}">{% translate "This month" %}</a>
+    <a href="?period=year" class="{% if preset == 'year' %}active{% endif %}">{% translate "This year" %}</a>
+  </nav>
+  <form method="get">
+    <input type="hidden" name="period" value="custom">
+    <input type="date" name="from" value="{{ date_from|date:'Y-m-d' }}" aria-label="{% translate "From date" %}">
+    <input type="date" name="to" value="{{ date_to|date:'Y-m-d' }}" aria-label="{% translate "To date" %}">
+    <button class="btn" type="submit">{% icon "filter" %} {% translate "Apply" %}</button>
+  </form>
+</div>
+
+<div class="cols">
+  <section class="card">
+    <div class="card-head">
+      <h2>{% blocktranslate trimmed with a=date_from|date:"j M Y" b=date_to|date:"j M Y" %}{{ a }} – {{ b }}{% endblocktranslate %}</h2>
+    </div>
+    <div class="profit-sum">
+      <div><span>{% translate "Revenue" %}</span><strong>{{ totals.revenue|money:sym }}</strong></div>
+      <div><span>− {% translate "Expenses" %}</span><strong>{{ totals.expenses|money:sym }}</strong></div>
+      <div class="grand {% if totals.profit < 0 %}is-loss{% else %}is-gain{% endif %}"><span>= {% if totals.profit < 0 %}{% translate "Loss" %}{% else %}{% translate "Profit" %}{% endif %}</span><strong>{% if totals.profit < 0 %}−{% endif %}{{ totals.profit|money_abs:sym }}</strong></div>
+      {% if totals.margin is not None %}<p class="muted small">{% blocktranslate trimmed with m=totals.margin %}Profit margin: {{ m }}% of revenue{% endblocktranslate %}</p>{% endif %}
+    </div>
+    <div class="table-wrap">
+    <table class="table rtable">
+      <thead><tr><th>{% if detail.monthly %}{% translate "Month" %}{% else %}{% translate "Day" %}{% endif %}</th><th class="num">{% translate "Revenue" %}</th><th class="num">{% translate "Expenses" %}</th><th class="num">{% translate "Profit" %}</th></tr></thead>
+      <tbody>{% for row in detail.rows reversed %}{% if row.revenue or row.expenses %}
+        <tr>
+          <td class="rt-title" data-label="">{% if detail.monthly %}{{ row.key|date:"F Y" }}{% else %}{{ row.key|date:"D j M" }}{% endif %}</td>
+          <td data-label="{% translate "Revenue" %}" class="num">{{ row.revenue|money:sym }}</td>
+          <td data-label="{% translate "Expenses" %}" class="num">{{ row.expenses|money:sym }}</td>
+          <td data-label="{% translate "Profit" %}" class="num {% if row.profit < 0 %}is-loss{% else %}is-gain{% endif %}"><strong>{% if row.profit < 0 %}−{% endif %}{{ row.profit|money_abs:sym }}</strong></td>
+        </tr>{% endif %}{% empty %}{% endfor %}
+      </tbody>
+    </table>
+    </div>
+    {% if not totals.revenue and not totals.expenses %}<p class="muted small">{% translate "No sales or expenses in this period yet." %}</p>{% endif %}
+
+    {% if detail.categories %}
+    <h3>{% translate "Expenses by category" %}</h3>
+    <div class="hbars viz">
+      {% for c in detail.categories %}<div class="hbar"><span class="hbar-name">{{ c.label }}</span>
+        <span class="hbar-track"><i class="hbar-fill" style="width: {{ c.pct|unlocalize }}%"></i><span class="hbar-val">{{ c.amount|money:sym }} <small>· {{ c.pct }}%</small></span></span></div>{% endfor %}
+    </div>
+    {% endif %}
+  </section>
+
+  <aside>
+    <form method="post" class="card form compact">
+      {% csrf_token %}
+      <h2 class="fieldset-title">{% icon "plus" %} {% translate "Add an expense" %}</h2>
+      {% include "dashboard/_form_fields.html" %}
+      <button class="btn btn-primary btn-block" type="submit">{% icon "check" %} {% translate "Save expense" %}</button>
+    </form>
+  </aside>
+</div>
+
+<section class="card">
+  <div class="card-head"><h2>{% translate "Expenses in this period" %} <span class="count">{{ expense_count }}</span></h2></div>
+  {% if expenses %}
+  <div class="table-wrap">
+  <table class="table rtable">
+    <thead><tr><th>{% translate "Date" %}</th><th>{% translate "Category" %}</th><th>{% translate "What was bought" %}</th><th>{% translate "Paid with" %}</th><th class="num">{% translate "Amount" %}</th><th></th></tr></thead>
+    <tbody>{% for e in expenses %}
+      <tr>
+        <td class="rt-title nowrap" data-label="">{{ e.date|date:"D j M" }}</td>
+        <td data-label="{% translate "Category" %}">{{ e.get_category_display }}</td>
+        <td data-label="{% translate "What was bought" %}">{{ e.description }}{% if e.created_by %} <span class="muted small">· {{ e.created_by.username }}</span>{% endif %}</td>
+        <td data-label="{% translate "Paid with" %}">{{ e.get_paid_with_display }}</td>
+        <td data-label="{% translate "Amount" %}" class="num"><strong>{{ e.amount|money:sym }}</strong></td>
+        <td data-label="" class="num nowrap">
+          <a class="btn btn-sm btn-ghost" href="{% url 'dashboard:expense_edit' r.slug e.pk %}" aria-label="{% translate "Edit" %}">{% icon "edit" %}</a>
+          <form method="post" action="{% url 'dashboard:expense_delete' r.slug e.pk %}" class="inline-form" onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% translate "Delete this expense?" %}">
+            {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <button class="btn btn-sm btn-ghost" type="submit" aria-label="{% translate "Delete" %}">{% icon "trash" %}</button>
+          </form>
+        </td>
+      </tr>{% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% else %}<div class="empty">{% icon "receipt" %}<p>{% translate "No expenses in this period. Add your first one above." %}</p></div>{% endif %}
+</section>
+{% endwith %}
+{% endblock %}
