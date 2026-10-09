@@ -1,0 +1,118 @@
+{% extends "dashboard/base.html" %}
+{% load i18n ui_icons %}
+{% block title %}{% translate "Ordering API" %}{% endblock %}
+{% block content %}
+{% with r=request.restaurant %}
+<div class="page-head">
+  <div>
+    <h1>{% translate "Ordering API" %}</h1>
+    <p class="page-sub">{% translate "Let your website, mobile ordering app or delivery partners send orders to your branches. Orders appear live on the branch's dashboard and count as revenue when completed." %}</p>
+  </div>
+  <div class="page-actions"><a class="btn" href="{% url 'dashboard:api_docs' r.slug %}">{% icon "book" %} {% translate "API documentation" %}</a></div>
+</div>
+
+{% if problem %}<div class="banner">{% icon "alert" %}<div><strong>{% translate "API access is disabled." %}</strong> {{ problem.message }}{% if problem.code == "profile_not_verified" %} <a href="{% url 'dashboard:business_profile' r.slug %}">{% translate "Business profile" %}</a>{% endif %}</div></div>{% endif %}
+
+{% if new_key %}
+<section class="card api-newkey">
+  <h2 class="fieldset-title">{% icon "key" %} {% translate "Your new API key" %}</h2>
+  <p><strong>{% translate "Copy it now: for your security it is shown only once." %}</strong> {% translate "Afterwards only its last 4 characters are visible. If you lose it, revoke it and create a new one." %}</p>
+  <div class="api-secret"><code id="new-key">{{ new_key.raw }}</code> <button class="btn btn-sm" type="button" onclick="navigator.clipboard.writeText(document.getElementById('new-key').textContent);this.textContent=this.dataset.done" data-done="{% translate "Copied" %}">{% icon "copy" %} {% translate "Copy" %}</button></div>
+</section>
+{% endif %}
+
+<section class="card">
+  <div class="card-head"><h2>{% icon "key" %} {% translate "API keys" %}</h2></div>
+  {% if keys %}
+  <div class="table-wrap"><table class="table rtable">
+    <thead><tr><th>{% translate "Name" %}</th><th>{% translate "Key" %}</th><th>{% translate "Branches" %}</th><th>{% translate "Last used" %}</th><th></th></tr></thead>
+    <tbody>{% for k in keys %}
+      <tr class="{% if not k.is_active %}is-closed{% endif %}">
+        <td class="rt-title" data-label=""><strong>{{ k.name }}</strong> {% if k.is_sandbox %}<span class="pill pill-preparing">{% translate "Test" %}</span>{% else %}<span class="pill pill-ready">{% translate "Live" %}</span>{% endif %}{% if not k.is_active %} <span class="pill pill-cancelled">{% translate "Revoked" %}</span>{% endif %}<div class="muted small">{% blocktranslate trimmed with d=k.created_at|date:"j M Y" %}Created {{ d }}{% endblocktranslate %}</div></td>
+        <td data-label="{% translate "Key" %}"><code>{{ k.masked }}</code></td>
+        <td data-label="{% translate "Branches" %}">{% for b in k.branches.all %}{{ b.name }}{% if not forloop.last %}, {% endif %}{% empty %}{% translate "All branches" %}{% endfor %}</td>
+        <td data-label="{% translate "Last used" %}">{{ k.last_used_at|date:"j M H:i"|default:"—" }}</td>
+        <td data-label="" class="num nowrap">{% if k.is_active %}
+          <details class="pay-other inline-details"><summary class="btn btn-sm btn-ghost">{% icon "pen" %} {% translate "Edit" %}</summary>
+            <form method="post" class="form compact">{% csrf_token %}<input type="hidden" name="action" value="rename_key"><input type="hidden" name="key" value="{{ k.pk }}">
+              {% include "dashboard/_form_fields.html" with form=k.edit_form %}
+              <button class="btn btn-sm btn-primary" type="submit">{% translate "Save" %}</button></form>
+          </details>
+          <form method="post" class="inline-form" onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% blocktranslate trimmed with n=k.name %}Revoke “{{ n }}”? Apps using it stop working immediately.{% endblocktranslate %}">{% csrf_token %}<input type="hidden" name="action" value="revoke_key"><input type="hidden" name="key" value="{{ k.pk }}"><button class="btn btn-sm link-danger" type="submit">{% translate "Revoke" %}</button></form>
+        {% endif %}</td>
+      </tr>{% endfor %}
+    </tbody>
+  </table></div>
+  {% else %}<p class="muted">{% translate "No API keys yet." %}</p>{% endif %}
+
+  {% if verified %}
+  <details class="pay-other"{% if key_form.errors %} open{% endif %}>
+    <summary>{% icon "plus" %} {% translate "Create an API key" %}</summary>
+    <form method="post" class="form compact" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="create_key">
+      {% include "dashboard/_form_fields.html" with form=key_form %}
+      <button class="btn btn-primary" type="submit">{% icon "key" %} {% translate "Create key" %}</button>
+    </form>
+  </details>
+  {% else %}
+  <div class="note">{% icon "info" %}<div>{% translate "API keys can be created once your business profile is verified." %} <a href="{% url 'dashboard:business_profile' r.slug %}">{% translate "Business profile" %}</a></div></div>
+  {% endif %}
+</section>
+
+<section class="card">
+  <div class="card-head"><h2>{% icon "bell" %} {% translate "Webhooks" %}</h2></div>
+  <p class="fieldset-desc">{% translate "We send a POST request to your URL whenever an order is created or changes status (received, preparing, ready, completed, cancelled). Check the X-QRMenu-Signature header with the signing secret." %}</p>
+  {% for h in hooks %}
+  <div class="webhook">
+    <div class="usage-row"><span><code>{{ h.url }}</code> {% if h.is_active %}<span class="pill pill-ready">{% translate "On" %}</span>{% else %}<span class="pill">{% translate "Off" %}</span>{% endif %}{% if h.all_orders %} <span class="tag">{% translate "All orders" %}</span>{% else %} <span class="tag">{% translate "API orders" %}</span>{% endif %}</span>
+      <span class="btn-row">
+        <form method="post" class="inline-form">{% csrf_token %}<input type="hidden" name="webhook" value="{{ h.pk }}"><input type="hidden" name="action" value="test_webhook"><button class="btn btn-sm" type="submit">{% translate "Send test" %}</button></form>
+        <form method="post" class="inline-form">{% csrf_token %}<input type="hidden" name="webhook" value="{{ h.pk }}"><input type="hidden" name="action" value="toggle_webhook"><button class="btn btn-sm btn-ghost" type="submit">{% if h.is_active %}{% translate "Turn off" %}{% else %}{% translate "Turn on" %}{% endif %}</button></form>
+        <form method="post" class="inline-form" onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% translate "Remove this webhook?" %}">{% csrf_token %}<input type="hidden" name="webhook" value="{{ h.pk }}"><input type="hidden" name="action" value="delete_webhook"><button class="btn btn-sm link-danger" type="submit">{% translate "Remove" %}</button></form>
+      </span></div>
+    <p class="small">{% translate "Signing secret" %}: <code>{{ h.secret }}</code></p>
+    {% with d=h.deliveries.all|slice:":5" %}{% if d %}<ul class="plain small">{% for x in d %}<li>{% if x.ok %}<span class="pill pill-ready">{{ x.status_code }}</span>{% else %}<span class="pill pill-cancelled">{{ x.status_code|default:"✕" }}</span>{% endif %} {{ x.event }}{% if x.sandbox %} · {% translate "test" %}{% endif %} · {{ x.created_at|date:"j M H:i:s" }} · {{ x.duration_ms }} ms{% if x.error %} · <span class="muted">{{ x.error }}</span>{% endif %}</li>{% endfor %}</ul>{% endif %}{% endwith %}
+  </div>
+  {% endfor %}
+  {% if verified %}
+  <details class="pay-other"{% if hook_form.errors %} open{% endif %}>
+    <summary>{% icon "plus" %} {% translate "Add a webhook" %}</summary>
+    <form method="post" class="form compact" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="add_webhook">
+      {% include "dashboard/_form_fields.html" with form=hook_form %}
+      <button class="btn btn-primary" type="submit">{% translate "Add webhook" %}</button>
+    </form>
+  </details>
+  {% endif %}
+</section>
+
+{% if sandbox_orders %}
+<section class="card">
+  <div class="card-head"><h2>{% icon "code" %} {% translate "Test orders" %}</h2></div>
+  <p class="fieldset-desc">{% translate "Orders made with a test key. They are not sent to the kitchen and never count as revenue." %}</p>
+  <ul class="plain small">{% for s in sandbox_orders %}<li class="usage-row"><span>#{{ s.number }} · {{ s.branch.name }} · {{ s.api_key.name }} · {{ s.created_at|date:"j M H:i" }}</span><span><span class="tag">{{ s.status }}</span> {{ s.data.total }}</span></li>{% endfor %}</ul>
+</section>
+{% endif %}
+
+<section class="card">
+  <div class="card-head"><h2>{% icon "receipt" %} {% translate "Request log" %}</h2></div>
+  <form method="get" class="filters">
+    <label>{% translate "Key" %} <select name="key"><option value="">{% translate "All keys" %}</option>{% for k in keys %}<option value="{{ k.pk }}"{% if log_key == k.pk|stringformat:"s" %} selected{% endif %}>{{ k.name }}</option>{% endfor %}</select></label>
+    <label>{% translate "Result" %} <select name="result"><option value="">{% translate "All" %}</option><option value="ok"{% if log_result == "ok" %} selected{% endif %}>{% translate "Success" %}</option><option value="error"{% if log_result == "error" %} selected{% endif %}>{% translate "Errors" %}</option></select></label>
+    <button class="btn" type="submit">{% icon "filter" %} {% translate "Filter" %}</button>
+  </form>
+  {% if logs %}
+  <div class="table-wrap"><table class="table rtable">
+    <thead><tr><th>{% translate "Time" %}</th><th>{% translate "Key" %}</th><th>{% translate "Request" %}</th><th>{% translate "Result" %}</th></tr></thead>
+    <tbody>{% for l in logs %}
+      <tr>
+        <td class="rt-title nowrap" data-label="">{{ l.created_at|date:"j M H:i:s" }}</td>
+        <td data-label="{% translate "Key" %}">{{ l.api_key.name|default:l.key_name|default:"—" }}</td>
+        <td data-label="{% translate "Request" %}"><code>{{ l.method }} {{ l.path }}</code></td>
+        <td data-label="{% translate "Result" %}">{% if l.ok %}<span class="pill pill-ready">{{ l.status_code }}</span>{% else %}<span class="pill pill-cancelled">{{ l.status_code }}</span> <span class="muted small">{{ l.error }}</span>{% endif %} <span class="muted small">{{ l.duration_ms }} ms</span></td>
+      </tr>{% endfor %}
+    </tbody>
+  </table></div>
+  <p class="muted small">{% translate "The last 100 requests are shown; the log is kept for 90 days." %}</p>
+  {% else %}<p class="muted small">{% translate "No requests yet." %}</p>{% endif %}
+</section>
+{% endwith %}
+{% endblock %}

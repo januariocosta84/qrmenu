@@ -133,12 +133,17 @@ def revenue_page(request):
         messages.success(request, _("Revenue recorded: %(amount)s.") % {"amount": f"{r.currency_symbol}{e.amount:,.2f}"})
         return redirect(request.get_full_path())
     date_from, date_to = _day_range(request)
-    entries = RevenueEntry.objects.filter(restaurant=r, date__gte=date_from, date__lte=date_to).select_related("created_by")
+    entries = (RevenueEntry.objects.filter(restaurant=r, date__gte=date_from, date__lte=date_to)
+               .select_related("created_by", "api_key", "order"))
+    source = request.GET.get("source", "")
+    if source in (RevenueEntry.MANUAL, RevenueEntry.API):
+        entries = entries.filter(source=source)
     return render(request, "dashboard/revenue.html", {
         "form": form, "can_record": can_record, "today": report.totals(r, today, today),
         "period": report.totals(r, date_from, date_to), "date_from": date_from, "date_to": date_to,
         "is_today": date_from == date_to == today,
-        "entries": entries[:500], "entry_count": entries.count(),
+        "entries": entries[:500], "entry_count": entries.count(), "source": source,
+        "entries_total": entries.aggregate(s=Sum("amount"))["s"] or 0,
         "by_method": entries.values("method").annotate(s=Sum("amount")).order_by("-s"),
         "method_labels": dict(RevenueEntry.METHOD_CHOICES),
     })
@@ -150,7 +155,7 @@ def revenue_page(request):
 def revenue_entry_delete(request, pk):
     from .models import RevenueEntry
 
-    e = get_object_or_404(RevenueEntry, restaurant=request.restaurant, pk=pk)
+    e = get_object_or_404(RevenueEntry, restaurant=request.restaurant, pk=pk, source=RevenueEntry.MANUAL)  # API ones follow their order
     # Owners and managers can remove any entry; cashiers only their own.
     if request.role not in (Role.OWNER, Role.MANAGER) and e.created_by_id != request.user.pk:
         raise PermissionDenied

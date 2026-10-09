@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-09 16:59+0900\n"
+"POT-Creation-Date: 2026-10-09 21:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,8 +36,11 @@ msgstr "Telefone (opcional)"
 msgid "Password"
 msgstr "Palavra-passe"
 
-msgid "I confirm I own or manage this restaurant, and I accept the terms of service."
-msgstr "Confirmo que sou proprietário ou gerente deste restaurante e aceito os termos de serviço."
+msgid ""
+"I confirm I own or manage this restaurant, and I accept the terms of service."
+msgstr ""
+"Confirmo que sou proprietário ou gerente deste restaurante e aceito os "
+"termos de serviço."
 
 msgid ""
 "An account with this email already exists. Try logging in or resetting your "
@@ -121,6 +124,9 @@ msgstr "Despesas diárias e lucro por dia, semana, mês e ano."
 msgid "Several branches under one owner, with an all-branches overview."
 msgstr ""
 "Várias filiais com o mesmo proprietário, com uma visão de todas as filiais."
+
+msgid "Ordering API for websites, apps and delivery partners."
+msgstr "API de pedidos para sites, apps e parceiros de entrega."
 
 msgid "Trial"
 msgstr "Período experimental"
@@ -632,13 +638,17 @@ msgstr "Função"
 
 #, python-format
 msgid "Branch names must use your brand name, e.g. “%(example)s”."
-msgstr "Os nomes das filiais devem usar o nome da sua marca, ex.: “%(example)s”."
+msgstr ""
+"Os nomes das filiais devem usar o nome da sua marca, ex.: “%(example)s”."
 
 msgid "Branch name"
 msgstr "Nome da filial"
 
-msgid "Must use your brand name, e.g. Kafe Atauro – Comoro. Customers see this name."
-msgstr "Deve usar o nome da sua marca, ex.: Kafe Atauro – Comoro. Os clientes veem este nome."
+msgid ""
+"Must use your brand name, e.g. Kafe Atauro – Comoro. Customers see this name."
+msgstr ""
+"Deve usar o nome da sua marca, ex.: Kafe Atauro – Comoro. Os clientes veem "
+"este nome."
 
 msgid "Branch address"
 msgstr "Morada da filial"
@@ -655,8 +665,12 @@ msgstr "Uma foto da filial vista de fora, com o nome da marca visível."
 msgid "Business registration number"
 msgstr "Número de registo da empresa"
 
-msgid "All branches must belong to the same business registration as the main branch."
-msgstr "Todas as filiais devem pertencer ao mesmo registo comercial da filial principal."
+msgid ""
+"All branches must belong to the same business registration as the main "
+"branch."
+msgstr ""
+"Todas as filiais devem pertencer ao mesmo registo comercial da filial "
+"principal."
 
 msgid "Owner name"
 msgstr "Nome do proprietário"
@@ -960,18 +974,38 @@ msgid "Staff account “%(username)s” created."
 msgstr "Conta de funcionário “%(username)s” criada."
 
 #, python-format
-msgid "Branch “%(name)s” requested. The platform team will review it; meanwhile you can set up its menu and staff."
-msgstr "Filial “%(name)s” pedida. A equipa da plataforma vai analisá-la; entretanto pode preparar o menu e a equipa."
+msgid ""
+"Branch “%(name)s” requested. The platform team will review it; meanwhile you "
+"can set up its menu and staff."
+msgstr ""
+"Filial “%(name)s” pedida. A equipa da plataforma vai analisá-la; entretanto "
+"pode preparar o menu e a equipa."
 
 #, python-format
-msgid "Invoice %(number)s created for an extra branch. The slot is added as soon as it is paid."
-msgstr "Fatura %(number)s criada para uma filial extra. A vaga é adicionada assim que for paga."
+msgid ""
+"Invoice %(number)s created for an extra branch. The slot is added as soon as "
+"it is paid."
+msgstr ""
+"Fatura %(number)s criada para uma filial extra. A vaga é adicionada assim "
+"que for paga."
 
 msgid "One unused extra branch removed from your subscription."
 msgstr "Uma filial extra não usada foi removida da sua subscrição."
 
 msgid "Every extra branch is in use. Deactivate a branch first."
 msgstr "Todas as filiais extra estão em uso. Desative primeiro uma filial."
+
+msgid "All sources"
+msgstr "Todas as origens"
+
+msgid "Orders (QR & waiter)"
+msgstr "Pedidos (QR e empregado)"
+
+msgid "Manual entries"
+msgstr "Registos manuais"
+
+msgid "Ordering API (all keys)"
+msgstr "API de pedidos (todas as chaves)"
 
 msgid "Branch details saved."
 msgstr "Dados da filial guardados."
@@ -984,8 +1018,12 @@ msgstr ""
 "%(name)s está desativada: os clientes não podem pedir e a sua equipa não "
 "pode entrar. O histórico é mantido."
 
-msgid "No free branch slot: all branches in your plan are in use. Add an extra branch on the Branches page first."
-msgstr "Sem vagas livres: todas as filiais do seu plano estão em uso. Adicione primeiro uma filial extra na página Filiais."
+msgid ""
+"No free branch slot: all branches in your plan are in use. Add an extra "
+"branch on the Branches page first."
+msgstr ""
+"Sem vagas livres: todas as filiais do seu plano estão em uso. Adicione "
+"primeiro uma filial extra na página Filiais."
 
 #, python-format
 msgid "%(name)s is active again."
@@ -1109,6 +1147,12 @@ msgstr "Transferência bancária"
 msgid "Transfer"
 msgstr "Transferência"
 
+msgid "Manual"
+msgstr "Manual"
+
+msgid "API"
+msgstr "API"
+
 #, python-format
 msgid "Expense saved: %(what)s, %(amount)s."
 msgstr "Despesa guardada: %(what)s, %(amount)s."
@@ -1128,6 +1172,57 @@ msgstr "Receita registada: %(amount)s."
 
 msgid "Revenue entry deleted."
 msgstr "Registo de receita apagado."
+
+msgid "e.g. Website, Mobile app, Delivery partner"
+msgstr "ex.: Site, App móvel, Parceiro de entrega"
+
+msgid "Test (sandbox) key"
+msgstr "Chave de teste (sandbox)"
+
+msgid "Test orders are not sent to the kitchen and never count as revenue."
+msgstr "Os pedidos de teste não vão para a cozinha e nunca contam como receita."
+
+msgid "Branches"
+msgstr "Filiais"
+
+msgid "Leave all unticked to allow every branch."
+msgstr "Deixe tudo desmarcado para permitir todas as filiais."
+
+msgid "Webhook URL"
+msgstr "URL do webhook"
+
+msgid "Must start with https://"
+msgstr "Tem de começar por https://"
+
+msgid "Also send orders not placed through the API"
+msgstr "Enviar também pedidos que não vieram da API"
+
+msgid "Off: only orders created with your API keys. On: every order of your branches (QR, waiter, API)."
+msgstr "Desligado: só pedidos criados com as suas chaves API. Ligado: todos os pedidos das suas filiais (QR, empregado, API)."
+
+#, python-format
+msgid "You can have up to %(n)s active API keys."
+msgstr "Pode ter até %(n)s chaves API ativas."
+
+#, python-format
+msgid "API key “%(name)s” revoked. Requests with it are now refused."
+msgstr "Chave API “%(name)s” revogada. Os pedidos com ela são agora recusados."
+
+msgid "API key saved."
+msgstr "Chave API guardada."
+
+#, python-format
+msgid "You can have up to %(n)s webhooks."
+msgstr "Pode ter até %(n)s webhooks."
+
+msgid "Webhook added. Its signing secret is shown below."
+msgstr "Webhook adicionado. O segredo de assinatura aparece abaixo."
+
+msgid "Webhook removed."
+msgstr "Webhook removido."
+
+msgid "Test event sent. Refresh in a few seconds to see the result."
+msgstr "Evento de teste enviado. Atualize daqui a alguns segundos para ver o resultado."
 
 msgid "Lower numbers appear first."
 msgstr "Os números mais baixos aparecem primeiro."
@@ -1188,17 +1283,14 @@ msgstr "Código QR"
 msgid "Staff"
 msgstr "Funcionários"
 
+msgid "Ordering API"
+msgstr "API de pedidos"
+
 msgid "New order"
 msgstr "Novo pedido"
 
 msgid "Order cancelled"
 msgstr "Pedido cancelado"
-
-msgid "This restaurant is not accepting orders right now."
-msgstr "Este restaurante não está a aceitar pedidos neste momento."
-
-msgid "Invalid table."
-msgstr "Mesa inválida."
 
 msgid "Your cart is empty."
 msgstr "O seu carrinho está vazio."
@@ -1211,6 +1303,12 @@ msgstr "Extra inválido selecionado."
 
 msgid "Some items are no longer available."
 msgstr "Alguns artigos já não estão disponíveis."
+
+msgid "This restaurant is not accepting orders right now."
+msgstr "Este restaurante não está a aceitar pedidos neste momento."
+
+msgid "Invalid table."
+msgstr "Mesa inválida."
 
 #, python-format
 msgid "Cannot change order from %(from)s to %(to)s."
@@ -1970,14 +2068,257 @@ msgstr "Pedidos medidos"
 msgid "No orders marked ready in this period."
 msgstr "Nenhum pedido marcado como pronto neste período."
 
+msgid "Let your website, mobile ordering app or delivery partners send orders to your branches. Orders appear live on the branch's dashboard and count as revenue when completed."
+msgstr "Permita que o seu site, app de pedidos ou parceiros de entrega enviem pedidos às suas filiais. Os pedidos aparecem em tempo real no painel da filial e contam como receita quando concluídos."
+
+msgid "API documentation"
+msgstr "Documentação da API"
+
+msgid "API access is disabled."
+msgstr "O acesso à API está desativado."
+
+msgid "Business profile"
+msgstr "Perfil da empresa"
+
+msgid "Your new API key"
+msgstr "A sua nova chave API"
+
+msgid "Copy it now: for your security it is shown only once."
+msgstr "Copie-a agora: por segurança só é mostrada uma vez."
+
+msgid "Afterwards only its last 4 characters are visible. If you lose it, revoke it and create a new one."
+msgstr "Depois só os últimos 4 caracteres ficam visíveis. Se a perder, revogue-a e crie uma nova."
+
+msgid "Copied"
+msgstr "Copiado"
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "API keys"
+msgstr "Chaves API"
+
+msgid "Key"
+msgstr "Chave"
+
+msgid "Last used"
+msgstr "Último uso"
+
+msgid "Live"
+msgstr "Ativo"
+
+msgid "Revoked"
+msgstr "Revogada"
+
+#, python-format
+msgid "Created %(d)s"
+msgstr "Criada em %(d)s"
+
+msgid "All branches"
+msgstr "Todas as filiais"
+
+msgid "Edit"
+msgstr "Editar"
+
+#, python-format
+msgid "Revoke “%(n)s”? Apps using it stop working immediately."
+msgstr "Revogar “%(n)s”? As apps que a usam deixam de funcionar imediatamente."
+
+msgid "Revoke"
+msgstr "Revogar"
+
+msgid "No API keys yet."
+msgstr "Ainda não há chaves API."
+
+msgid "Create an API key"
+msgstr "Criar uma chave API"
+
+msgid "Create key"
+msgstr "Criar chave"
+
+msgid "API keys can be created once your business profile is verified."
+msgstr "Pode criar chaves API depois de o perfil da empresa ser verificado."
+
+msgid "Webhooks"
+msgstr "Webhooks"
+
+msgid "We send a POST request to your URL whenever an order is created or changes status (received, preparing, ready, completed, cancelled). Check the X-QRMenu-Signature header with the signing secret."
+msgstr "Enviamos um pedido POST para o seu URL sempre que um pedido é criado ou muda de estado (recebido, em preparação, pronto, concluído, cancelado). Verifique o cabeçalho X-QRMenu-Signature com o segredo de assinatura."
+
+msgid "On"
+msgstr "Ligado"
+
+msgid "Off"
+msgstr "Desligado"
+
+msgid "All orders"
+msgstr "Todos os pedidos"
+
+msgid "API orders"
+msgstr "Pedidos da API"
+
+msgid "Send test"
+msgstr "Enviar teste"
+
+msgid "Turn off"
+msgstr "Desligar"
+
+msgid "Turn on"
+msgstr "Ligar"
+
+msgid "Remove this webhook?"
+msgstr "Remover este webhook?"
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "Signing secret"
+msgstr "Segredo de assinatura"
+
+msgid "test"
+msgstr "teste"
+
+msgid "Add a webhook"
+msgstr "Adicionar um webhook"
+
+msgid "Add webhook"
+msgstr "Adicionar webhook"
+
+msgid "Test orders"
+msgstr "Pedidos de teste"
+
+msgid "Orders made with a test key. They are not sent to the kitchen and never count as revenue."
+msgstr "Pedidos feitos com uma chave de teste. Não vão para a cozinha e nunca contam como receita."
+
+msgid "Request log"
+msgstr "Registo de pedidos"
+
+msgid "All keys"
+msgstr "Todas as chaves"
+
+msgid "Result"
+msgstr "Resultado"
+
+msgid "All"
+msgstr "Todos"
+
+msgid "Success"
+msgstr "Sucesso"
+
+msgid "Errors"
+msgstr "Erros"
+
+msgid "Filter"
+msgstr "Filtrar"
+
+msgid "Request"
+msgstr "Pedido"
+
+msgid "The last 100 requests are shown; the log is kept for 90 days."
+msgstr "São mostrados os últimos 100 pedidos; o registo é guardado durante 90 dias."
+
+msgid "No requests yet."
+msgstr "Ainda não há pedidos."
+
+msgid "REST API with JSON, for your website, ordering app or delivery partner."
+msgstr "API REST com JSON, para o seu site, app de pedidos ou parceiro de entrega."
+
+msgid "Base URL"
+msgstr "URL base"
+
+msgid "Authentication"
+msgstr "Autenticação"
+
+msgid "Send your API key in the Authorization header of every request. Requests must use HTTPS."
+msgstr "Envie a sua chave API no cabeçalho Authorization de cada pedido. Os pedidos têm de usar HTTPS."
+
+msgid "Keys starting with <code>qrm_test_</code> are test (sandbox) keys: every endpoint works the same, but orders are simulated. They are not sent to the kitchen and never count as revenue."
+msgstr "Chaves que começam por <code>qrm_test_</code> são chaves de teste (sandbox): todos os endpoints funcionam igual, mas os pedidos são simulados. Não vão para a cozinha e nunca contam como receita."
+
+#, python-format
+msgid "Each key may make %(rate)s requests per minute. Above that you get HTTP 429 with a Retry-After header. Every request is logged on the Ordering API page."
+msgstr "Cada chave pode fazer %(rate)s pedidos por minuto. Acima disso recebe HTTP 429 com um cabeçalho Retry-After. Todos os pedidos ficam registados na página API de pedidos."
+
+msgid "Errors use the HTTP status code and a JSON body with a code and a message:"
+msgstr "Os erros usam o código de estado HTTP e um corpo JSON com um código e uma mensagem:"
+
+msgid "Code"
+msgstr "Código"
+
+msgid "Meaning"
+msgstr "Significado"
+
+msgid "No key, wrong key, or the key was revoked."
+msgstr "Sem chave, chave errada ou chave revogada."
+
+msgid "The request was not made over HTTPS."
+msgstr "O pedido não foi feito por HTTPS."
+
+msgid "The account is not on an active Pro plan, or the business profile is not verified. API access is switched off automatically."
+msgstr "A conta não tem um plano Pro ativo, ou o perfil da empresa não está verificado. O acesso à API é desligado automaticamente."
+
+msgid "The branch is not one this key may use."
+msgstr "A filial não é uma das que esta chave pode usar."
+
+msgid "Unknown order or endpoint."
+msgstr "Pedido ou endpoint desconhecido."
+
+msgid "The order can't be placed or changed: sold-out items, a total that doesn't match the menu prices, a branch that is closed, or a status change that isn't allowed."
+msgstr "O pedido não pode ser feito ou alterado: artigos esgotados, um total que não corresponde aos preços do menu, uma filial fechada ou uma mudança de estado não permitida."
+
+msgid "Too many requests; wait a minute."
+msgstr "Demasiados pedidos; aguarde um minuto."
+
+msgid "The branches this key can use (only live branches)."
+msgstr "As filiais que esta chave pode usar (só filiais ativas)."
+
+msgid "Menu categories, items, add-ons and prices of one branch. Use the item and add-on ids in orders."
+msgstr "Categorias, artigos, extras e preços do menu de uma filial. Use os ids dos artigos e extras nos pedidos."
+
+msgid "Create an order. Prices always come from the menu; if you send a total and it doesn't match, the order is refused with the correct total. The order appears immediately on the branch's dashboard with a notification."
+msgstr "Criar um pedido. Os preços vêm sempre do menu; se enviar um total que não corresponda, o pedido é recusado com o total correto. O pedido aparece logo no painel da filial com uma notificação."
+
+msgid "Field"
+msgstr "Campo"
+
+msgid "Branch id (optional when the key can use only one branch)."
+msgstr "Id da filial (opcional quando a chave só pode usar uma filial)."
+
+msgid "1–50 lines: menu_item (id), quantity (1–50), options (add-on ids, optional), note (optional)."
+msgstr "1–50 linhas: menu_item (id), quantity (1–50), options (ids de extras, opcional), note (opcional)."
+
+msgid "Optional. The total you expect; checked against the menu prices."
+msgstr "Opcional. O total que espera; verificado com os preços do menu."
+
+msgid "true when the customer already paid in your app (the order is recorded as paid)."
+msgstr "true quando o cliente já pagou na sua app (o pedido fica registado como pago)."
+
+msgid "Optional."
+msgstr "Opcional."
+
+msgid "Optional: your own order number. Sending the same reference again returns the existing order instead of creating a duplicate, so retries are safe."
+msgstr "Opcional: o seu próprio número de pedido. Enviar a mesma referência novamente devolve o pedido existente em vez de criar um duplicado, por isso repetir é seguro."
+
+msgid "Order details and current status."
+msgstr "Detalhes do pedido e estado atual."
+
+msgid "Change the status. Statuses: received → preparing → ready → completed; an order can be cancelled until it is ready. Only completed orders count as revenue; cancelled orders never do."
+msgstr "Mudar o estado. Estados: received → preparing → ready → completed; um pedido pode ser cancelado até estar pronto. Só os pedidos concluídos contam como receita; os cancelados nunca."
+
+msgid "Add a webhook URL on the Ordering API page. When an order is created or its status changes, we POST this JSON to your URL (timeout 5 seconds, no redirects):"
+msgstr "Adicione um URL de webhook na página API de pedidos. Quando um pedido é criado ou muda de estado, enviamos este JSON por POST para o seu URL (limite de 5 segundos, sem redirecionamentos):"
+
+msgid "Events: order.created, order.status_changed, and ping (the Send test button). To check that a request really comes from us, compute HMAC-SHA256 of the timestamp, a dot and the raw body with your signing secret, and compare it with the signature:"
+msgstr "Eventos: order.created, order.status_changed e ping (o botão Enviar teste). Para confirmar que um pedido vem mesmo de nós, calcule o HMAC-SHA256 do timestamp, um ponto e o corpo original com o seu segredo de assinatura, e compare com a assinatura:"
+
+msgid "When an API order is completed, it is added to the branch's revenue as an entry with the source “API – key name”. On the Branches page you can filter revenue by source."
+msgstr "Quando um pedido da API é concluído, é adicionado à receita da filial como um registo com a origem “API – nome da chave”. Na página Filiais pode filtrar a receita por origem."
+
 msgid "Dashboard"
 msgstr "Painel"
 
 msgid "Main navigation"
 msgstr "Navegação principal"
-
-msgid "Live"
-msgstr "Ativo"
 
 msgid "Not public yet"
 msgstr "Ainda não é público"
@@ -2023,9 +2364,6 @@ msgstr "Restaurante"
 
 msgid "Billing"
 msgstr "Faturação"
-
-msgid "Branches"
-msgstr "Filiais"
 
 msgid "View public menu"
 msgstr "Ver menu público"
@@ -2089,8 +2427,14 @@ msgstr "Reenviar email"
 msgid "Branch waiting for approval."
 msgstr "Filial a aguardar aprovação."
 
-msgid "The platform team checks every new branch. Until it is approved, the branch is hidden and can't record revenue. You can set up its menu and tables in the meantime."
-msgstr "A equipa da plataforma verifica cada nova filial. Até ser aprovada, a filial fica oculta e não pode registar receita. Entretanto pode preparar o menu e as mesas."
+msgid ""
+"The platform team checks every new branch. Until it is approved, the branch "
+"is hidden and can't record revenue. You can set up its menu and tables in "
+"the meantime."
+msgstr ""
+"A equipa da plataforma verifica cada nova filial. Até ser aprovada, a filial "
+"fica oculta e não pode registar receita. Entretanto pode preparar o menu e "
+"as mesas."
 
 msgid "Branch request not approved."
 msgstr "Pedido de filial não aprovado."
@@ -2166,8 +2510,12 @@ msgstr "O perfil da sua empresa precisa de alterações."
 msgid "Complete your business profile."
 msgstr "Complete o perfil da sua empresa."
 
-msgid "We verify every business before it can add branches. It takes two minutes: registration number, owner, address and phone."
-msgstr "Verificamos cada empresa antes de poder adicionar filiais. Demora dois minutos: número de registo, proprietário, morada e telefone."
+msgid ""
+"We verify every business before it can add branches. It takes two minutes: "
+"registration number, owner, address and phone."
+msgstr ""
+"Verificamos cada empresa antes de poder adicionar filiais. Demora dois "
+"minutos: número de registo, proprietário, morada e telefone."
 
 msgid "Complete now"
 msgstr "Completar agora"
@@ -2175,8 +2523,14 @@ msgstr "Completar agora"
 msgid "Complete your business profile"
 msgstr "Complete o perfil da sua empresa"
 
-msgid "Please add your business registration number (e.g. SERVE certificate or tax number), the owner's name, your address and phone number. Our team verifies it, and then you can add branches."
-msgstr "Adicione o número de registo da empresa (ex.: certificado SERVE ou NIF), o nome do proprietário, a morada e o telefone. A nossa equipa verifica e depois pode adicionar filiais."
+msgid ""
+"Please add your business registration number (e.g. SERVE certificate or tax "
+"number), the owner's name, your address and phone number. Our team verifies "
+"it, and then you can add branches."
+msgstr ""
+"Adicione o número de registo da empresa (ex.: certificado SERVE ou NIF), o "
+"nome do proprietário, a morada e o telefone. A nossa equipa verifica e "
+"depois pode adicionar filiais."
 
 msgid "Remind me later"
 msgstr "Lembrar mais tarde"
@@ -2291,7 +2645,8 @@ msgstr "mês"
 
 #, python-format
 msgid "Main branch + %(n)s branch; extra branches $%(price)s/month each"
-msgid_plural "Main branch + %(n)s branches; extra branches $%(price)s/month each"
+msgid_plural ""
+"Main branch + %(n)s branches; extra branches $%(price)s/month each"
 msgstr[0] "Filial principal + %(n)s filial; filiais extra $%(price)s/mês cada"
 msgstr[1] "Filial principal + %(n)s filiais; filiais extra $%(price)s/mês cada"
 
@@ -2329,11 +2684,19 @@ msgstr ""
 msgid "Waiting for approval"
 msgstr "A aguardar aprovação"
 
-msgid "This new branch is being reviewed by the platform team. You can use it once it is approved."
-msgstr "Esta nova filial está a ser analisada pela equipa da plataforma. Pode usá-la depois de aprovada."
+msgid ""
+"This new branch is being reviewed by the platform team. You can use it once "
+"it is approved."
+msgstr ""
+"Esta nova filial está a ser analisada pela equipa da plataforma. Pode usá-la "
+"depois de aprovada."
 
-msgid "This branch has been suspended or was not approved by the platform. Ask the owner for details."
-msgstr "Esta filial foi suspensa ou não foi aprovada pela plataforma. Peça detalhes ao proprietário."
+msgid ""
+"This branch has been suspended or was not approved by the platform. Ask the "
+"owner for details."
+msgstr ""
+"Esta filial foi suspensa ou não foi aprovada pela plataforma. Peça detalhes "
+"ao proprietário."
 
 msgid "Deactivated"
 msgstr "Desativada"
@@ -2348,14 +2711,23 @@ msgstr "Sub-filial de %(main)s."
 msgid "Open its dashboard"
 msgstr "Abrir o painel dela"
 
-msgid "Waiting for approval by the platform team. Meanwhile you can set up its menu, tables and staff; it goes live and can record revenue once approved."
-msgstr "A aguardar aprovação da equipa da plataforma. Entretanto pode preparar o menu, as mesas e a equipa; fica ativa e pode registar receita depois de aprovada."
+msgid ""
+"Waiting for approval by the platform team. Meanwhile you can set up its "
+"menu, tables and staff; it goes live and can record revenue once approved."
+msgstr ""
+"A aguardar aprovação da equipa da plataforma. Entretanto pode preparar o "
+"menu, as mesas e a equipa; fica ativa e pode registar receita depois de "
+"aprovada."
 
 msgid "Request not approved"
 msgstr "Pedido não aprovado"
 
-msgid "Correct the branch details below if needed, optionally add a new storefront photo, and send it again."
-msgstr "Corrija os dados da filial abaixo se necessário, adicione opcionalmente uma nova foto da fachada e envie novamente."
+msgid ""
+"Correct the branch details below if needed, optionally add a new storefront "
+"photo, and send it again."
+msgstr ""
+"Corrija os dados da filial abaixo se necessário, adicione opcionalmente uma "
+"nova foto da fachada e envie novamente."
 
 msgid "Send again"
 msgstr "Enviar novamente"
@@ -2439,12 +2811,15 @@ msgstr "Dia seguinte"
 msgid "Today"
 msgstr "Hoje"
 
+msgid "Revenue source"
+msgstr "Origem da receita"
+
 msgid "All branches · this day"
 msgstr "Todas as filiais · este dia"
 
 #, python-format
-msgid "Orders %(o)s · recorded %(m)s"
-msgstr "Pedidos %(o)s · registado %(m)s"
+msgid "Orders %(o)s · manual %(m)s · API %(a)s"
+msgstr "Pedidos %(o)s · manual %(m)s · API %(a)s"
 
 #, python-format
 msgid "Week from %(d)s"
@@ -2472,9 +2847,6 @@ msgstr "Filial principal"
 msgid "incl. %(m)s recorded"
 msgstr "incl. %(m)s registado"
 
-msgid "All branches"
-msgstr "Todas as filiais"
-
 msgid "This day compared"
 msgstr "Comparação deste dia"
 
@@ -2485,12 +2857,20 @@ msgid "Branch slots"
 msgstr "Vagas de filiais"
 
 #, python-format
-msgid "Your plan includes %(included)s branches besides the main branch; you have %(extra)s extra. Pending, rejected and deactivated branches don't use a slot."
-msgstr "O seu plano inclui %(included)s filiais além da principal; tem %(extra)s extra. Filiais pendentes, rejeitadas e desativadas não ocupam vaga."
+msgid ""
+"Your plan includes %(included)s branches besides the main branch; you have "
+"%(extra)s extra. Pending, rejected and deactivated branches don't use a slot."
+msgstr ""
+"O seu plano inclui %(included)s filiais além da principal; tem %(extra)s "
+"extra. Filiais pendentes, rejeitadas e desativadas não ocupam vaga."
 
 #, python-format
-msgid "Invoice %(number)s (%(amount)s) for an extra branch is waiting for payment. The slot is added once it is paid."
-msgstr "A fatura %(number)s (%(amount)s) de uma filial extra aguarda pagamento. A vaga é adicionada depois de paga."
+msgid ""
+"Invoice %(number)s (%(amount)s) for an extra branch is waiting for payment. "
+"The slot is added once it is paid."
+msgstr ""
+"A fatura %(number)s (%(amount)s) de uma filial extra aguarda pagamento. A "
+"vaga é adicionada depois de paga."
 
 #, python-format
 msgid "Add an extra branch (%(price)s/month)"
@@ -2502,14 +2882,19 @@ msgstr "Remover uma filial extra não usada da sua subscrição?"
 msgid "Remove an unused extra branch"
 msgstr "Remover uma filial extra não usada"
 
-msgid "Business profile"
-msgstr "Perfil da empresa"
+msgid ""
+"You can request branches once the platform team has verified your business "
+"profile."
+msgstr ""
+"Pode pedir filiais depois de a equipa da plataforma verificar o perfil da "
+"sua empresa."
 
-msgid "You can request branches once the platform team has verified your business profile."
-msgstr "Pode pedir filiais depois de a equipa da plataforma verificar o perfil da sua empresa."
-
-msgid "To request branches, first complete your business profile. The platform team verifies it."
-msgstr "Para pedir filiais, complete primeiro o perfil da sua empresa. A equipa da plataforma verifica-o."
+msgid ""
+"To request branches, first complete your business profile. The platform team "
+"verifies it."
+msgstr ""
+"Para pedir filiais, complete primeiro o perfil da sua empresa. A equipa da "
+"plataforma verifica-o."
 
 msgid "View"
 msgstr "Ver"
@@ -2517,11 +2902,23 @@ msgstr "Ver"
 msgid "Request a new branch"
 msgstr "Pedir uma nova filial"
 
-msgid "The platform team reviews every new branch: it must be the same business, using your brand name. Until it is approved, the branch is hidden and can't record revenue. It gets its own QR codes, tables and staff; you stay the owner, with the same login."
-msgstr "A equipa da plataforma analisa cada nova filial: tem de ser a mesma empresa, com o nome da sua marca. Até ser aprovada, fica oculta e não pode registar receita. Tem os seus próprios códigos QR, mesas e equipa; continua a ser o proprietário, com o mesmo login."
+msgid ""
+"The platform team reviews every new branch: it must be the same business, "
+"using your brand name. Until it is approved, the branch is hidden and can't "
+"record revenue. It gets its own QR codes, tables and staff; you stay the "
+"owner, with the same login."
+msgstr ""
+"A equipa da plataforma analisa cada nova filial: tem de ser a mesma empresa, "
+"com o nome da sua marca. Até ser aprovada, fica oculta e não pode registar "
+"receita. Tem os seus próprios códigos QR, mesas e equipa; continua a ser o "
+"proprietário, com o mesmo login."
 
-msgid "All branch slots in your plan are in use. You can still send the request; it is activated once you add an extra branch."
-msgstr "Todas as vagas de filial do seu plano estão em uso. Pode enviar o pedido na mesma; será ativada quando adicionar uma filial extra."
+msgid ""
+"All branch slots in your plan are in use. You can still send the request; it "
+"is activated once you add an extra branch."
+msgstr ""
+"Todas as vagas de filial do seu plano estão em uso. Pode enviar o pedido na "
+"mesma; será ativada quando adicionar uma filial extra."
 
 msgid "Send request"
 msgstr "Enviar pedido"
@@ -2529,17 +2926,30 @@ msgstr "Enviar pedido"
 msgid "Needs changes"
 msgstr "Precisa de alterações"
 
-msgid "The legal details of your business. The platform team verifies them before you can add branches; all branches must belong to this same business."
-msgstr "Os dados legais da sua empresa. A equipa da plataforma verifica-os antes de poder adicionar filiais; todas as filiais devem pertencer a esta mesma empresa."
+msgid ""
+"The legal details of your business. The platform team verifies them before "
+"you can add branches; all branches must belong to this same business."
+msgstr ""
+"Os dados legais da sua empresa. A equipa da plataforma verifica-os antes de "
+"poder adicionar filiais; todas as filiais devem pertencer a esta mesma "
+"empresa."
 
-msgid "Thank you! We are checking your details, usually within one working day. You can keep using QR Menu and recording revenue in the meantime."
-msgstr "Obrigado! Estamos a verificar os seus dados, normalmente num dia útil. Entretanto pode continuar a usar o QR Menu e a registar receita."
+msgid ""
+"Thank you! We are checking your details, usually within one working day. You "
+"can keep using QR Menu and recording revenue in the meantime."
+msgstr ""
+"Obrigado! Estamos a verificar os seus dados, normalmente num dia útil. "
+"Entretanto pode continuar a usar o QR Menu e a registar receita."
 
 msgid "Please correct your details and send them again."
 msgstr "Corrija os seus dados e envie novamente."
 
-msgid "Your business is verified. You can request branches on the Branches page. Changing these details sends them for review again."
-msgstr "A sua empresa está verificada. Pode pedir filiais na página Filiais. Alterar estes dados envia-os novamente para análise."
+msgid ""
+"Your business is verified. You can request branches on the Branches page. "
+"Changing these details sends them for review again."
+msgstr ""
+"A sua empresa está verificada. Pode pedir filiais na página Filiais. Alterar "
+"estes dados envia-os novamente para análise."
 
 msgid "Save and send for review"
 msgstr "Guardar e enviar para análise"
@@ -2721,9 +3131,6 @@ msgstr "Guardar despesa"
 msgid "Expenses in this period"
 msgstr "Despesas neste período"
 
-msgid "Edit"
-msgstr "Editar"
-
 msgid "Delete this expense?"
 msgstr "Eliminar esta despesa?"
 
@@ -2785,9 +3192,6 @@ msgid ""
 msgstr ""
 "Extras opcionais que os clientes podem escolher, ex.: “Ovo estrelado +"
 "$0.50”. Use preço 0 para opções grátis como “Sem cebola”."
-
-msgid "Remove"
-msgstr "Remover"
 
 msgid "Translations"
 msgstr "Traduções"
@@ -3024,17 +3428,11 @@ msgstr "Todos os pedidos dos códigos QR e dos empregados."
 msgid "Filter by status"
 msgstr "Filtrar por estado"
 
-msgid "All"
-msgstr "Todos"
-
 msgid "Order # or name"
 msgstr "N.º do pedido ou nome"
 
 msgid "Order number or customer name"
 msgstr "Número do pedido ou nome do cliente"
-
-msgid "Filter"
-msgstr "Filtrar"
 
 #, python-format
 msgid "Page %(n)s of %(total)s"
@@ -3102,9 +3500,6 @@ msgstr "Mesas ocupadas"
 
 msgid "Latest orders"
 msgstr "Últimos pedidos"
-
-msgid "All orders"
-msgstr "Todos os pedidos"
 
 msgid "New quotation"
 msgstr "Nova cotação"
@@ -3288,6 +3683,9 @@ msgstr "Receita de hoje"
 msgid "Recorded entries"
 msgstr "Registos"
 
+msgid "Source"
+msgstr "Origem"
+
 msgid "Delete this entry?"
 msgstr "Apagar este registo?"
 
@@ -3303,8 +3701,12 @@ msgstr "Registar receita"
 msgid "This branch is deactivated."
 msgstr "Esta filial está desativada."
 
-msgid "This branch is waiting for approval by the platform team. It can record revenue once approved."
-msgstr "Esta filial aguarda aprovação da equipa da plataforma. Pode registar receita depois de aprovada."
+msgid ""
+"This branch is waiting for approval by the platform team. It can record "
+"revenue once approved."
+msgstr ""
+"Esta filial aguarda aprovação da equipa da plataforma. Pode registar receita "
+"depois de aprovada."
 
 msgid "This branch is not active, so it can't record revenue."
 msgstr "Esta filial não está ativa, por isso não pode registar receita."
@@ -3343,9 +3745,6 @@ msgstr "Imprimir talão de teste"
 
 msgid "By"
 msgstr "Por"
-
-msgid "Result"
-msgstr "Resultado"
 
 msgid "Slip printed"
 msgstr "Talão impresso"
@@ -3547,6 +3946,9 @@ msgstr ""
 "Abra mais filiais com o mesmo início de sessão, copie o menu para elas num "
 "clique e veja a receita e o lucro de cada filial e de todo o negócio."
 
+msgid "Connect your own website, mobile ordering app or delivery partners. Their orders arrive live in the right branch, are counted as revenue when completed, and you get API keys, webhooks, a request log and a test key."
+msgstr "Ligue o seu site, app de pedidos ou parceiros de entrega. Os pedidos chegam em tempo real à filial certa, contam como receita quando concluídos, e tem chaves API, webhooks, registo de pedidos e uma chave de teste."
+
 msgid ""
 "Write down what you spend each day and see your real profit for today, this "
 "week, this month and this year."
@@ -3568,6 +3970,9 @@ msgstr "Disponível em:"
 
 msgid "Not included in your current plan."
 msgstr "Não incluído no seu plano atual."
+
+msgid "Upgrade to Pro"
+msgstr "Mudar para Pro"
 
 msgid "See plans & upgrade"
 msgstr "Ver planos e fazer upgrade"
@@ -3711,6 +4116,9 @@ msgid_plural "Main branch + %(n)s branches, one login"
 msgstr[0] "Filial principal + %(n)s filial, um só login"
 msgstr[1] "Filial principal + %(n)s filiais, um só login"
 
+msgid "Ordering API for your website, apps & delivery partners"
+msgstr "API de pedidos para o seu site, apps e parceiros de entrega"
+
 msgid "Get started"
 msgstr "Começar"
 
@@ -3737,47 +4145,96 @@ msgid "1. The service"
 msgstr "1. O serviço"
 
 #, python-format
-msgid "%(name)s provides QR code menus, table ordering and restaurant management tools to food businesses (\"you\"). By registering, you accept these terms on behalf of your business."
-msgstr "%(name)s fornece menus com código QR, pedidos à mesa e ferramentas de gestão a negócios de restauração (\"você\"). Ao registar-se, aceita estes termos em nome da sua empresa."
+msgid ""
+"%(name)s provides QR code menus, table ordering and restaurant management "
+"tools to food businesses (\"you\"). By registering, you accept these terms "
+"on behalf of your business."
+msgstr ""
+"%(name)s fornece menus com código QR, pedidos à mesa e ferramentas de gestão "
+"a negócios de restauração (\"você\"). Ao registar-se, aceita estes termos em "
+"nome da sua empresa."
 
 msgid "2. Your account"
 msgstr "2. A sua conta"
 
-msgid "You must give correct information about your business and keep your login details secret. You are responsible for everything done with your account and your staff accounts. We may ask you to verify your business (for example with your business registration or tax number) before you can use some features."
-msgstr "Deve dar informações corretas sobre a sua empresa e manter os seus dados de acesso em segredo. É responsável por tudo o que é feito com a sua conta e as contas da sua equipa. Podemos pedir a verificação da sua empresa (por exemplo com o registo comercial ou o NIF) antes de usar algumas funções."
+msgid ""
+"You must give correct information about your business and keep your login "
+"details secret. You are responsible for everything done with your account "
+"and your staff accounts. We may ask you to verify your business (for example "
+"with your business registration or tax number) before you can use some "
+"features."
+msgstr ""
+"Deve dar informações corretas sobre a sua empresa e manter os seus dados de "
+"acesso em segredo. É responsável por tudo o que é feito com a sua conta e as "
+"contas da sua equipa. Podemos pedir a verificação da sua empresa (por "
+"exemplo com o registo comercial ou o NIF) antes de usar algumas funções."
 
 msgid "3. Branches"
 msgstr "3. Filiais"
 
-msgid "All branches in one account must be owned and operated by the same business, under the same business registration and brand name."
-msgstr "Todas as filiais de uma conta devem pertencer e ser geridas pela mesma empresa, com o mesmo registo comercial e nome de marca."
+msgid ""
+"All branches in one account must be owned and operated by the same business, "
+"under the same business registration and brand name."
+msgstr ""
+"Todas as filiais de uma conta devem pertencer e ser geridas pela mesma "
+"empresa, com o mesmo registo comercial e nome de marca."
 
-msgid "Each new branch is reviewed by our team before it is activated. A branch that belongs to a different business is not allowed: we may suspend it, or move it to a separate account that is billed separately."
-msgstr "Cada nova filial é analisada pela nossa equipa antes de ser ativada. Não é permitida uma filial de outra empresa: podemos suspendê-la ou passá-la para uma conta separada, faturada separadamente."
+msgid ""
+"Each new branch is reviewed by our team before it is activated. A branch "
+"that belongs to a different business is not allowed: we may suspend it, or "
+"move it to a separate account that is billed separately."
+msgstr ""
+"Cada nova filial é analisada pela nossa equipa antes de ser ativada. Não é "
+"permitida uma filial de outra empresa: podemos suspendê-la ou passá-la para "
+"uma conta separada, faturada separadamente."
 
 msgid "4. Plans and payment"
 msgstr "4. Planos e pagamento"
 
-msgid "Plans are billed monthly in US dollars. Each plan includes a fixed number of branches; extra branches are a monthly add-on. If an invoice is not paid after the grace period, ordering is switched off until it is paid. Prices may change with 30 days' notice."
-msgstr "Os planos são faturados mensalmente em dólares americanos. Cada plano inclui um número fixo de filiais; filiais extra são um suplemento mensal. Se uma fatura não for paga após o período de tolerância, os pedidos são desligados até ao pagamento. Os preços podem mudar com 30 dias de aviso."
+msgid ""
+"Plans are billed monthly in US dollars. Each plan includes a fixed number of "
+"branches; extra branches are a monthly add-on. If an invoice is not paid "
+"after the grace period, ordering is switched off until it is paid. Prices "
+"may change with 30 days' notice."
+msgstr ""
+"Os planos são faturados mensalmente em dólares americanos. Cada plano inclui "
+"um número fixo de filiais; filiais extra são um suplemento mensal. Se uma "
+"fatura não for paga após o período de tolerância, os pedidos são desligados "
+"até ao pagamento. Os preços podem mudar com 30 dias de aviso."
 
 msgid "5. Your data"
 msgstr "5. Os seus dados"
 
-msgid "Your menus, orders and revenue records belong to you. We use them only to provide the service and keep each branch's data separate. We don't sell your data."
-msgstr "Os seus menus, pedidos e registos de receita pertencem-lhe. Usamo-los apenas para prestar o serviço e mantemos os dados de cada filial separados. Não vendemos os seus dados."
+msgid ""
+"Your menus, orders and revenue records belong to you. We use them only to "
+"provide the service and keep each branch's data separate. We don't sell your "
+"data."
+msgstr ""
+"Os seus menus, pedidos e registos de receita pertencem-lhe. Usamo-los apenas "
+"para prestar o serviço e mantemos os dados de cada filial separados. Não "
+"vendemos os seus dados."
 
 msgid "6. Acceptable use"
 msgstr "6. Utilização aceitável"
 
-msgid "Don't use the service for anything illegal, to mislead customers, or to disrupt the platform. We may suspend accounts that break these terms."
-msgstr "Não use o serviço para nada ilegal, para enganar clientes ou para perturbar a plataforma. Podemos suspender contas que violem estes termos."
+msgid ""
+"Don't use the service for anything illegal, to mislead customers, or to "
+"disrupt the platform. We may suspend accounts that break these terms."
+msgstr ""
+"Não use o serviço para nada ilegal, para enganar clientes ou para perturbar "
+"a plataforma. Podemos suspender contas que violem estes termos."
 
 msgid "7. Liability"
 msgstr "7. Responsabilidade"
 
-msgid "We work hard to keep the service available, but we can't guarantee it will always be uninterrupted. To the extent the law allows, we are not liable for indirect losses such as lost sales."
-msgstr "Esforçamo-nos por manter o serviço disponível, mas não podemos garantir que nunca será interrompido. Na medida permitida por lei, não somos responsáveis por perdas indiretas, como vendas perdidas."
+msgid ""
+"We work hard to keep the service available, but we can't guarantee it will "
+"always be uninterrupted. To the extent the law allows, we are not liable for "
+"indirect losses such as lost sales."
+msgstr ""
+"Esforçamo-nos por manter o serviço disponível, mas não podemos garantir que "
+"nunca será interrompido. Na medida permitida por lei, não somos responsáveis "
+"por perdas indiretas, como vendas perdidas."
 
 msgid "8. Contact"
 msgstr "8. Contacto"
@@ -3788,9 +4245,6 @@ msgstr "Questões sobre estes termos:"
 #, python-format
 #~ msgid "Branch “%(name)s” created. Add its staff accounts here."
 #~ msgstr "Filial “%(name)s” criada. Adicione aqui as contas da equipa."
-
-#~ msgid "Add a branch"
-#~ msgstr "Adicionar filial"
 
 #~ msgid ""
 #~ "A new sub-branch gets its own QR codes, tables, staff and subscription. "

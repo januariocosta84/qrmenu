@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-09 16:59+0900\n"
+"POT-Creation-Date: 2026-10-09 21:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,8 +37,11 @@ msgstr "Telepon (opsional)"
 msgid "Password"
 msgstr "Kata sandi"
 
-msgid "I confirm I own or manage this restaurant, and I accept the terms of service."
-msgstr "Saya menyatakan memiliki atau mengelola restoran ini, dan menerima ketentuan layanan."
+msgid ""
+"I confirm I own or manage this restaurant, and I accept the terms of service."
+msgstr ""
+"Saya menyatakan memiliki atau mengelola restoran ini, dan menerima ketentuan "
+"layanan."
 
 msgid ""
 "An account with this email already exists. Try logging in or resetting your "
@@ -121,6 +124,9 @@ msgstr "Pengeluaran harian dan laba per hari, minggu, bulan, dan tahun."
 
 msgid "Several branches under one owner, with an all-branches overview."
 msgstr "Beberapa cabang dengan satu pemilik, dengan ringkasan semua cabang."
+
+msgid "Ordering API for websites, apps and delivery partners."
+msgstr "API pemesanan untuk situs web, aplikasi, dan mitra pengantaran."
 
 msgid "Trial"
 msgstr "Uji coba"
@@ -628,8 +634,11 @@ msgstr "Nama cabang harus memakai nama merek Anda, mis. “%(example)s”."
 msgid "Branch name"
 msgstr "Nama cabang"
 
-msgid "Must use your brand name, e.g. Kafe Atauro – Comoro. Customers see this name."
-msgstr "Harus memakai nama merek Anda, mis. Kafe Atauro – Comoro. Pelanggan melihat nama ini."
+msgid ""
+"Must use your brand name, e.g. Kafe Atauro – Comoro. Customers see this name."
+msgstr ""
+"Harus memakai nama merek Anda, mis. Kafe Atauro – Comoro. Pelanggan melihat "
+"nama ini."
 
 msgid "Branch address"
 msgstr "Alamat cabang"
@@ -646,8 +655,12 @@ msgstr "Foto cabang dari luar yang menampilkan nama merek."
 msgid "Business registration number"
 msgstr "Nomor registrasi usaha"
 
-msgid "All branches must belong to the same business registration as the main branch."
-msgstr "Semua cabang harus berada di bawah registrasi usaha yang sama dengan cabang utama."
+msgid ""
+"All branches must belong to the same business registration as the main "
+"branch."
+msgstr ""
+"Semua cabang harus berada di bawah registrasi usaha yang sama dengan cabang "
+"utama."
 
 msgid "Owner name"
 msgstr "Nama pemilik"
@@ -949,18 +962,38 @@ msgid "Staff account “%(username)s” created."
 msgstr "Akun staf “%(username)s” dibuat."
 
 #, python-format
-msgid "Branch “%(name)s” requested. The platform team will review it; meanwhile you can set up its menu and staff."
-msgstr "Cabang “%(name)s” diajukan. Tim platform akan meninjaunya; sementara itu Anda bisa menyiapkan menu dan stafnya."
+msgid ""
+"Branch “%(name)s” requested. The platform team will review it; meanwhile you "
+"can set up its menu and staff."
+msgstr ""
+"Cabang “%(name)s” diajukan. Tim platform akan meninjaunya; sementara itu "
+"Anda bisa menyiapkan menu dan stafnya."
 
 #, python-format
-msgid "Invoice %(number)s created for an extra branch. The slot is added as soon as it is paid."
-msgstr "Faktur %(number)s dibuat untuk cabang tambahan. Slot ditambahkan begitu dibayar."
+msgid ""
+"Invoice %(number)s created for an extra branch. The slot is added as soon as "
+"it is paid."
+msgstr ""
+"Faktur %(number)s dibuat untuk cabang tambahan. Slot ditambahkan begitu "
+"dibayar."
 
 msgid "One unused extra branch removed from your subscription."
 msgstr "Satu cabang tambahan yang tidak dipakai dihapus dari langganan Anda."
 
 msgid "Every extra branch is in use. Deactivate a branch first."
 msgstr "Semua cabang tambahan sedang dipakai. Nonaktifkan satu cabang dulu."
+
+msgid "All sources"
+msgstr "Semua sumber"
+
+msgid "Orders (QR & waiter)"
+msgstr "Pesanan (QR & pelayan)"
+
+msgid "Manual entries"
+msgstr "Catatan manual"
+
+msgid "Ordering API (all keys)"
+msgstr "API pemesanan (semua kunci)"
 
 msgid "Branch details saved."
 msgstr "Detail cabang disimpan."
@@ -973,8 +1006,12 @@ msgstr ""
 "%(name)s dinonaktifkan: pelanggan tidak bisa memesan dan stafnya tidak bisa "
 "masuk. Riwayatnya tetap disimpan."
 
-msgid "No free branch slot: all branches in your plan are in use. Add an extra branch on the Branches page first."
-msgstr "Tidak ada slot kosong: semua cabang di paket Anda sedang dipakai. Tambahkan cabang tambahan di halaman Cabang dulu."
+msgid ""
+"No free branch slot: all branches in your plan are in use. Add an extra "
+"branch on the Branches page first."
+msgstr ""
+"Tidak ada slot kosong: semua cabang di paket Anda sedang dipakai. Tambahkan "
+"cabang tambahan di halaman Cabang dulu."
 
 #, python-format
 msgid "%(name)s is active again."
@@ -1099,6 +1136,12 @@ msgstr "Transfer bank"
 msgid "Transfer"
 msgstr "Transfer"
 
+msgid "Manual"
+msgstr "Manual"
+
+msgid "API"
+msgstr "API"
+
 #, python-format
 msgid "Expense saved: %(what)s, %(amount)s."
 msgstr "Pengeluaran disimpan: %(what)s, %(amount)s."
@@ -1118,6 +1161,57 @@ msgstr "Pendapatan dicatat: %(amount)s."
 
 msgid "Revenue entry deleted."
 msgstr "Catatan pendapatan dihapus."
+
+msgid "e.g. Website, Mobile app, Delivery partner"
+msgstr "mis. Situs web, Aplikasi seluler, Mitra pengantaran"
+
+msgid "Test (sandbox) key"
+msgstr "Kunci uji (sandbox)"
+
+msgid "Test orders are not sent to the kitchen and never count as revenue."
+msgstr "Pesanan uji tidak dikirim ke dapur dan tidak pernah dihitung sebagai pendapatan."
+
+msgid "Branches"
+msgstr "Cabang"
+
+msgid "Leave all unticked to allow every branch."
+msgstr "Biarkan semua tidak dicentang untuk mengizinkan semua cabang."
+
+msgid "Webhook URL"
+msgstr "URL webhook"
+
+msgid "Must start with https://"
+msgstr "Harus diawali https://"
+
+msgid "Also send orders not placed through the API"
+msgstr "Kirim juga pesanan yang tidak melalui API"
+
+msgid "Off: only orders created with your API keys. On: every order of your branches (QR, waiter, API)."
+msgstr "Mati: hanya pesanan yang dibuat dengan kunci API Anda. Nyala: semua pesanan cabang Anda (QR, pelayan, API)."
+
+#, python-format
+msgid "You can have up to %(n)s active API keys."
+msgstr "Anda bisa memiliki hingga %(n)s kunci API aktif."
+
+#, python-format
+msgid "API key “%(name)s” revoked. Requests with it are now refused."
+msgstr "Kunci API “%(name)s” dicabut. Permintaan dengannya kini ditolak."
+
+msgid "API key saved."
+msgstr "Kunci API disimpan."
+
+#, python-format
+msgid "You can have up to %(n)s webhooks."
+msgstr "Anda bisa memiliki hingga %(n)s webhook."
+
+msgid "Webhook added. Its signing secret is shown below."
+msgstr "Webhook ditambahkan. Rahasia penandatanganannya ada di bawah."
+
+msgid "Webhook removed."
+msgstr "Webhook dihapus."
+
+msgid "Test event sent. Refresh in a few seconds to see the result."
+msgstr "Event uji dikirim. Muat ulang dalam beberapa detik untuk melihat hasilnya."
 
 msgid "Lower numbers appear first."
 msgstr "Angka lebih kecil tampil lebih dulu."
@@ -1176,17 +1270,14 @@ msgstr "Kode QR"
 msgid "Staff"
 msgstr "Staf"
 
+msgid "Ordering API"
+msgstr "API pemesanan"
+
 msgid "New order"
 msgstr "Pesanan baru"
 
 msgid "Order cancelled"
 msgstr "Pesanan dibatalkan"
-
-msgid "This restaurant is not accepting orders right now."
-msgstr "Restoran ini sedang tidak menerima pesanan."
-
-msgid "Invalid table."
-msgstr "Meja tidak valid."
 
 msgid "Your cart is empty."
 msgstr "Keranjang Anda kosong."
@@ -1199,6 +1290,12 @@ msgstr "Tambahan yang dipilih tidak valid."
 
 msgid "Some items are no longer available."
 msgstr "Beberapa item sudah tidak tersedia."
+
+msgid "This restaurant is not accepting orders right now."
+msgstr "Restoran ini sedang tidak menerima pesanan."
+
+msgid "Invalid table."
+msgstr "Meja tidak valid."
 
 #, python-format
 msgid "Cannot change order from %(from)s to %(to)s."
@@ -1950,14 +2047,257 @@ msgstr "Pesanan diukur"
 msgid "No orders marked ready in this period."
 msgstr "Tidak ada pesanan ditandai siap pada periode ini."
 
+msgid "Let your website, mobile ordering app or delivery partners send orders to your branches. Orders appear live on the branch's dashboard and count as revenue when completed."
+msgstr "Izinkan situs web, aplikasi pemesanan, atau mitra pengantaran Anda mengirim pesanan ke cabang. Pesanan langsung muncul di dasbor cabang dan dihitung sebagai pendapatan saat selesai."
+
+msgid "API documentation"
+msgstr "Dokumentasi API"
+
+msgid "API access is disabled."
+msgstr "Akses API dinonaktifkan."
+
+msgid "Business profile"
+msgstr "Profil usaha"
+
+msgid "Your new API key"
+msgstr "Kunci API baru Anda"
+
+msgid "Copy it now: for your security it is shown only once."
+msgstr "Salin sekarang: demi keamanan, kunci hanya ditampilkan sekali."
+
+msgid "Afterwards only its last 4 characters are visible. If you lose it, revoke it and create a new one."
+msgstr "Setelah itu hanya 4 karakter terakhir yang terlihat. Jika hilang, cabut dan buat yang baru."
+
+msgid "Copied"
+msgstr "Disalin"
+
+msgid "Copy"
+msgstr "Salin"
+
+msgid "API keys"
+msgstr "Kunci API"
+
+msgid "Key"
+msgstr "Kunci"
+
+msgid "Last used"
+msgstr "Terakhir dipakai"
+
+msgid "Live"
+msgstr "Aktif"
+
+msgid "Revoked"
+msgstr "Dicabut"
+
+#, python-format
+msgid "Created %(d)s"
+msgstr "Dibuat %(d)s"
+
+msgid "All branches"
+msgstr "Semua cabang"
+
+msgid "Edit"
+msgstr "Ubah"
+
+#, python-format
+msgid "Revoke “%(n)s”? Apps using it stop working immediately."
+msgstr "Cabut “%(n)s”? Aplikasi yang memakainya langsung berhenti bekerja."
+
+msgid "Revoke"
+msgstr "Cabut"
+
+msgid "No API keys yet."
+msgstr "Belum ada kunci API."
+
+msgid "Create an API key"
+msgstr "Buat kunci API"
+
+msgid "Create key"
+msgstr "Buat kunci"
+
+msgid "API keys can be created once your business profile is verified."
+msgstr "Kunci API bisa dibuat setelah profil usaha terverifikasi."
+
+msgid "Webhooks"
+msgstr "Webhook"
+
+msgid "We send a POST request to your URL whenever an order is created or changes status (received, preparing, ready, completed, cancelled). Check the X-QRMenu-Signature header with the signing secret."
+msgstr "Kami mengirim permintaan POST ke URL Anda setiap kali pesanan dibuat atau berubah status (diterima, disiapkan, siap, selesai, dibatalkan). Periksa header X-QRMenu-Signature dengan rahasia penandatanganan."
+
+msgid "On"
+msgstr "Nyala"
+
+msgid "Off"
+msgstr "Mati"
+
+msgid "All orders"
+msgstr "Semua pesanan"
+
+msgid "API orders"
+msgstr "Pesanan API"
+
+msgid "Send test"
+msgstr "Kirim uji"
+
+msgid "Turn off"
+msgstr "Matikan"
+
+msgid "Turn on"
+msgstr "Nyalakan"
+
+msgid "Remove this webhook?"
+msgstr "Hapus webhook ini?"
+
+msgid "Remove"
+msgstr "Hapus"
+
+msgid "Signing secret"
+msgstr "Rahasia penandatanganan"
+
+msgid "test"
+msgstr "uji"
+
+msgid "Add a webhook"
+msgstr "Tambah webhook"
+
+msgid "Add webhook"
+msgstr "Tambah webhook"
+
+msgid "Test orders"
+msgstr "Pesanan uji"
+
+msgid "Orders made with a test key. They are not sent to the kitchen and never count as revenue."
+msgstr "Pesanan dengan kunci uji. Tidak dikirim ke dapur dan tidak pernah dihitung sebagai pendapatan."
+
+msgid "Request log"
+msgstr "Log permintaan"
+
+msgid "All keys"
+msgstr "Semua kunci"
+
+msgid "Result"
+msgstr "Hasil"
+
+msgid "All"
+msgstr "Semua"
+
+msgid "Success"
+msgstr "Berhasil"
+
+msgid "Errors"
+msgstr "Galat"
+
+msgid "Filter"
+msgstr "Saring"
+
+msgid "Request"
+msgstr "Permintaan"
+
+msgid "The last 100 requests are shown; the log is kept for 90 days."
+msgstr "100 permintaan terakhir ditampilkan; log disimpan 90 hari."
+
+msgid "No requests yet."
+msgstr "Belum ada permintaan."
+
+msgid "REST API with JSON, for your website, ordering app or delivery partner."
+msgstr "API REST dengan JSON, untuk situs web, aplikasi pemesanan, atau mitra pengantaran Anda."
+
+msgid "Base URL"
+msgstr "URL dasar"
+
+msgid "Authentication"
+msgstr "Autentikasi"
+
+msgid "Send your API key in the Authorization header of every request. Requests must use HTTPS."
+msgstr "Kirim kunci API di header Authorization pada setiap permintaan. Permintaan wajib memakai HTTPS."
+
+msgid "Keys starting with <code>qrm_test_</code> are test (sandbox) keys: every endpoint works the same, but orders are simulated. They are not sent to the kitchen and never count as revenue."
+msgstr "Kunci berawalan <code>qrm_test_</code> adalah kunci uji (sandbox): semua endpoint bekerja sama, tetapi pesanan disimulasikan. Tidak dikirim ke dapur dan tidak pernah dihitung sebagai pendapatan."
+
+#, python-format
+msgid "Each key may make %(rate)s requests per minute. Above that you get HTTP 429 with a Retry-After header. Every request is logged on the Ordering API page."
+msgstr "Setiap kunci boleh membuat %(rate)s permintaan per menit. Di atas itu Anda mendapat HTTP 429 dengan header Retry-After. Setiap permintaan dicatat di halaman API pemesanan."
+
+msgid "Errors use the HTTP status code and a JSON body with a code and a message:"
+msgstr "Galat memakai kode status HTTP dan isi JSON berisi kode dan pesan:"
+
+msgid "Code"
+msgstr "Kode"
+
+msgid "Meaning"
+msgstr "Arti"
+
+msgid "No key, wrong key, or the key was revoked."
+msgstr "Tanpa kunci, kunci salah, atau kunci sudah dicabut."
+
+msgid "The request was not made over HTTPS."
+msgstr "Permintaan tidak melalui HTTPS."
+
+msgid "The account is not on an active Pro plan, or the business profile is not verified. API access is switched off automatically."
+msgstr "Akun tidak memiliki paket Pro aktif, atau profil usaha belum terverifikasi. Akses API otomatis dimatikan."
+
+msgid "The branch is not one this key may use."
+msgstr "Cabang ini bukan yang boleh dipakai kunci ini."
+
+msgid "Unknown order or endpoint."
+msgstr "Pesanan atau endpoint tidak dikenal."
+
+msgid "The order can't be placed or changed: sold-out items, a total that doesn't match the menu prices, a branch that is closed, or a status change that isn't allowed."
+msgstr "Pesanan tidak bisa dibuat atau diubah: item habis, total tidak sesuai harga menu, cabang tutup, atau perubahan status yang tidak diizinkan."
+
+msgid "Too many requests; wait a minute."
+msgstr "Terlalu banyak permintaan; tunggu satu menit."
+
+msgid "The branches this key can use (only live branches)."
+msgstr "Cabang yang bisa dipakai kunci ini (hanya cabang aktif)."
+
+msgid "Menu categories, items, add-ons and prices of one branch. Use the item and add-on ids in orders."
+msgstr "Kategori menu, item, tambahan, dan harga satu cabang. Pakai id item dan tambahan dalam pesanan."
+
+msgid "Create an order. Prices always come from the menu; if you send a total and it doesn't match, the order is refused with the correct total. The order appears immediately on the branch's dashboard with a notification."
+msgstr "Membuat pesanan. Harga selalu dari menu; jika total yang dikirim tidak cocok, pesanan ditolak beserta total yang benar. Pesanan langsung muncul di dasbor cabang dengan notifikasi."
+
+msgid "Field"
+msgstr "Kolom"
+
+msgid "Branch id (optional when the key can use only one branch)."
+msgstr "Id cabang (opsional jika kunci hanya bisa memakai satu cabang)."
+
+msgid "1–50 lines: menu_item (id), quantity (1–50), options (add-on ids, optional), note (optional)."
+msgstr "1–50 baris: menu_item (id), quantity (1–50), options (id tambahan, opsional), note (opsional)."
+
+msgid "Optional. The total you expect; checked against the menu prices."
+msgstr "Opsional. Total yang Anda harapkan; dicek terhadap harga menu."
+
+msgid "true when the customer already paid in your app (the order is recorded as paid)."
+msgstr "true jika pelanggan sudah membayar di aplikasi Anda (pesanan dicatat lunas)."
+
+msgid "Optional."
+msgstr "Opsional."
+
+msgid "Optional: your own order number. Sending the same reference again returns the existing order instead of creating a duplicate, so retries are safe."
+msgstr "Opsional: nomor pesanan Anda sendiri. Mengirim referensi yang sama lagi mengembalikan pesanan yang ada alih-alih membuat duplikat, jadi pengulangan aman."
+
+msgid "Order details and current status."
+msgstr "Detail pesanan dan status saat ini."
+
+msgid "Change the status. Statuses: received → preparing → ready → completed; an order can be cancelled until it is ready. Only completed orders count as revenue; cancelled orders never do."
+msgstr "Ubah status. Status: received → preparing → ready → completed; pesanan bisa dibatalkan sampai siap. Hanya pesanan selesai yang dihitung pendapatan; yang dibatalkan tidak pernah."
+
+msgid "Add a webhook URL on the Ordering API page. When an order is created or its status changes, we POST this JSON to your URL (timeout 5 seconds, no redirects):"
+msgstr "Tambahkan URL webhook di halaman API pemesanan. Saat pesanan dibuat atau berubah status, kami POST JSON ini ke URL Anda (batas 5 detik, tanpa pengalihan):"
+
+msgid "Events: order.created, order.status_changed, and ping (the Send test button). To check that a request really comes from us, compute HMAC-SHA256 of the timestamp, a dot and the raw body with your signing secret, and compare it with the signature:"
+msgstr "Event: order.created, order.status_changed, dan ping (tombol Kirim uji). Untuk memastikan permintaan benar dari kami, hitung HMAC-SHA256 dari timestamp, titik, dan isi mentah dengan rahasia penandatanganan, lalu bandingkan dengan tanda tangannya:"
+
+msgid "When an API order is completed, it is added to the branch's revenue as an entry with the source “API – key name”. On the Branches page you can filter revenue by source."
+msgstr "Saat pesanan API selesai, pesanan ditambahkan ke pendapatan cabang sebagai catatan bersumber “API – nama kunci”. Di halaman Cabang Anda bisa menyaring pendapatan per sumber."
+
 msgid "Dashboard"
 msgstr "Dasbor"
 
 msgid "Main navigation"
 msgstr "Navigasi utama"
-
-msgid "Live"
-msgstr "Aktif"
 
 msgid "Not public yet"
 msgstr "Belum publik"
@@ -2003,9 +2343,6 @@ msgstr "Restoran"
 
 msgid "Billing"
 msgstr "Tagihan"
-
-msgid "Branches"
-msgstr "Cabang"
 
 msgid "View public menu"
 msgstr "Lihat menu publik"
@@ -2070,8 +2407,14 @@ msgstr "Kirim ulang email"
 msgid "Branch waiting for approval."
 msgstr "Cabang menunggu persetujuan."
 
-msgid "The platform team checks every new branch. Until it is approved, the branch is hidden and can't record revenue. You can set up its menu and tables in the meantime."
-msgstr "Tim platform memeriksa setiap cabang baru. Sampai disetujui, cabang disembunyikan dan tidak bisa mencatat pendapatan. Sementara itu Anda bisa menyiapkan menu dan mejanya."
+msgid ""
+"The platform team checks every new branch. Until it is approved, the branch "
+"is hidden and can't record revenue. You can set up its menu and tables in "
+"the meantime."
+msgstr ""
+"Tim platform memeriksa setiap cabang baru. Sampai disetujui, cabang "
+"disembunyikan dan tidak bisa mencatat pendapatan. Sementara itu Anda bisa "
+"menyiapkan menu dan mejanya."
 
 msgid "Branch request not approved."
 msgstr "Pengajuan cabang tidak disetujui."
@@ -2083,7 +2426,9 @@ msgid "Branch suspended by the platform."
 msgstr "Cabang ditangguhkan oleh platform."
 
 msgid "Customers can't see its menu and it can't record revenue."
-msgstr "Pelanggan tidak bisa melihat menunya dan cabang ini tidak bisa mencatat pendapatan."
+msgstr ""
+"Pelanggan tidak bisa melihat menunya dan cabang ini tidak bisa mencatat "
+"pendapatan."
 
 #, python-format
 msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
@@ -2146,8 +2491,12 @@ msgstr "Profil usaha Anda perlu diperbaiki."
 msgid "Complete your business profile."
 msgstr "Lengkapi profil usaha Anda."
 
-msgid "We verify every business before it can add branches. It takes two minutes: registration number, owner, address and phone."
-msgstr "Kami memverifikasi setiap usaha sebelum bisa menambah cabang. Hanya dua menit: nomor registrasi, pemilik, alamat, dan telepon."
+msgid ""
+"We verify every business before it can add branches. It takes two minutes: "
+"registration number, owner, address and phone."
+msgstr ""
+"Kami memverifikasi setiap usaha sebelum bisa menambah cabang. Hanya dua "
+"menit: nomor registrasi, pemilik, alamat, dan telepon."
 
 msgid "Complete now"
 msgstr "Lengkapi sekarang"
@@ -2155,8 +2504,14 @@ msgstr "Lengkapi sekarang"
 msgid "Complete your business profile"
 msgstr "Lengkapi profil usaha Anda"
 
-msgid "Please add your business registration number (e.g. SERVE certificate or tax number), the owner's name, your address and phone number. Our team verifies it, and then you can add branches."
-msgstr "Tambahkan nomor registrasi usaha (mis. sertifikat SERVE atau nomor pajak), nama pemilik, alamat, dan nomor telepon. Tim kami memverifikasinya, lalu Anda bisa menambah cabang."
+msgid ""
+"Please add your business registration number (e.g. SERVE certificate or tax "
+"number), the owner's name, your address and phone number. Our team verifies "
+"it, and then you can add branches."
+msgstr ""
+"Tambahkan nomor registrasi usaha (mis. sertifikat SERVE atau nomor pajak), "
+"nama pemilik, alamat, dan nomor telepon. Tim kami memverifikasinya, lalu "
+"Anda bisa menambah cabang."
 
 msgid "Remind me later"
 msgstr "Ingatkan nanti"
@@ -2271,8 +2626,10 @@ msgstr "bln"
 
 #, python-format
 msgid "Main branch + %(n)s branch; extra branches $%(price)s/month each"
-msgid_plural "Main branch + %(n)s branches; extra branches $%(price)s/month each"
-msgstr[0] "Cabang utama + %(n)s cabang; cabang tambahan $%(price)s/bulan per cabang"
+msgid_plural ""
+"Main branch + %(n)s branches; extra branches $%(price)s/month each"
+msgstr[0] ""
+"Cabang utama + %(n)s cabang; cabang tambahan $%(price)s/bulan per cabang"
 
 #, python-format
 msgid "%(t)s tables · %(d)s dishes · %(s)s staff"
@@ -2308,11 +2665,19 @@ msgstr ""
 msgid "Waiting for approval"
 msgstr "Menunggu persetujuan"
 
-msgid "This new branch is being reviewed by the platform team. You can use it once it is approved."
-msgstr "Cabang baru ini sedang ditinjau tim platform. Anda bisa memakainya setelah disetujui."
+msgid ""
+"This new branch is being reviewed by the platform team. You can use it once "
+"it is approved."
+msgstr ""
+"Cabang baru ini sedang ditinjau tim platform. Anda bisa memakainya setelah "
+"disetujui."
 
-msgid "This branch has been suspended or was not approved by the platform. Ask the owner for details."
-msgstr "Cabang ini ditangguhkan atau tidak disetujui oleh platform. Tanyakan detailnya kepada pemilik."
+msgid ""
+"This branch has been suspended or was not approved by the platform. Ask the "
+"owner for details."
+msgstr ""
+"Cabang ini ditangguhkan atau tidak disetujui oleh platform. Tanyakan "
+"detailnya kepada pemilik."
 
 msgid "Deactivated"
 msgstr "Nonaktif"
@@ -2327,14 +2692,22 @@ msgstr "Sub-cabang dari %(main)s."
 msgid "Open its dashboard"
 msgstr "Buka dasbornya"
 
-msgid "Waiting for approval by the platform team. Meanwhile you can set up its menu, tables and staff; it goes live and can record revenue once approved."
-msgstr "Menunggu persetujuan tim platform. Sementara itu Anda bisa menyiapkan menu, meja, dan staf; cabang aktif dan bisa mencatat pendapatan setelah disetujui."
+msgid ""
+"Waiting for approval by the platform team. Meanwhile you can set up its "
+"menu, tables and staff; it goes live and can record revenue once approved."
+msgstr ""
+"Menunggu persetujuan tim platform. Sementara itu Anda bisa menyiapkan menu, "
+"meja, dan staf; cabang aktif dan bisa mencatat pendapatan setelah disetujui."
 
 msgid "Request not approved"
 msgstr "Pengajuan tidak disetujui"
 
-msgid "Correct the branch details below if needed, optionally add a new storefront photo, and send it again."
-msgstr "Perbaiki detail cabang di bawah bila perlu, tambahkan foto tampak depan baru (opsional), lalu kirim lagi."
+msgid ""
+"Correct the branch details below if needed, optionally add a new storefront "
+"photo, and send it again."
+msgstr ""
+"Perbaiki detail cabang di bawah bila perlu, tambahkan foto tampak depan baru "
+"(opsional), lalu kirim lagi."
 
 msgid "Send again"
 msgstr "Kirim lagi"
@@ -2419,12 +2792,15 @@ msgstr "Hari berikutnya"
 msgid "Today"
 msgstr "Hari ini"
 
+msgid "Revenue source"
+msgstr "Sumber pendapatan"
+
 msgid "All branches · this day"
 msgstr "Semua cabang · hari ini"
 
 #, python-format
-msgid "Orders %(o)s · recorded %(m)s"
-msgstr "Pesanan %(o)s · dicatat %(m)s"
+msgid "Orders %(o)s · manual %(m)s · API %(a)s"
+msgstr "Pesanan %(o)s · manual %(m)s · API %(a)s"
 
 #, python-format
 msgid "Week from %(d)s"
@@ -2452,9 +2828,6 @@ msgstr "Cabang utama"
 msgid "incl. %(m)s recorded"
 msgstr "termasuk %(m)s dicatat"
 
-msgid "All branches"
-msgstr "Semua cabang"
-
 msgid "This day compared"
 msgstr "Perbandingan hari ini"
 
@@ -2465,12 +2838,21 @@ msgid "Branch slots"
 msgstr "Slot cabang"
 
 #, python-format
-msgid "Your plan includes %(included)s branches besides the main branch; you have %(extra)s extra. Pending, rejected and deactivated branches don't use a slot."
-msgstr "Paket Anda mencakup %(included)s cabang selain cabang utama; Anda punya %(extra)s tambahan. Cabang yang menunggu, ditolak, atau nonaktif tidak memakai slot."
+msgid ""
+"Your plan includes %(included)s branches besides the main branch; you have "
+"%(extra)s extra. Pending, rejected and deactivated branches don't use a slot."
+msgstr ""
+"Paket Anda mencakup %(included)s cabang selain cabang utama; Anda punya "
+"%(extra)s tambahan. Cabang yang menunggu, ditolak, atau nonaktif tidak "
+"memakai slot."
 
 #, python-format
-msgid "Invoice %(number)s (%(amount)s) for an extra branch is waiting for payment. The slot is added once it is paid."
-msgstr "Faktur %(number)s (%(amount)s) untuk cabang tambahan menunggu pembayaran. Slot ditambahkan setelah dibayar."
+msgid ""
+"Invoice %(number)s (%(amount)s) for an extra branch is waiting for payment. "
+"The slot is added once it is paid."
+msgstr ""
+"Faktur %(number)s (%(amount)s) untuk cabang tambahan menunggu pembayaran. "
+"Slot ditambahkan setelah dibayar."
 
 #, python-format
 msgid "Add an extra branch (%(price)s/month)"
@@ -2482,14 +2864,19 @@ msgstr "Hapus satu cabang tambahan yang tidak dipakai dari langganan Anda?"
 msgid "Remove an unused extra branch"
 msgstr "Hapus cabang tambahan yang tidak dipakai"
 
-msgid "Business profile"
-msgstr "Profil usaha"
+msgid ""
+"You can request branches once the platform team has verified your business "
+"profile."
+msgstr ""
+"Anda bisa mengajukan cabang setelah tim platform memverifikasi profil usaha "
+"Anda."
 
-msgid "You can request branches once the platform team has verified your business profile."
-msgstr "Anda bisa mengajukan cabang setelah tim platform memverifikasi profil usaha Anda."
-
-msgid "To request branches, first complete your business profile. The platform team verifies it."
-msgstr "Untuk mengajukan cabang, lengkapi dulu profil usaha Anda. Tim platform akan memverifikasinya."
+msgid ""
+"To request branches, first complete your business profile. The platform team "
+"verifies it."
+msgstr ""
+"Untuk mengajukan cabang, lengkapi dulu profil usaha Anda. Tim platform akan "
+"memverifikasinya."
 
 msgid "View"
 msgstr "Lihat"
@@ -2497,11 +2884,23 @@ msgstr "Lihat"
 msgid "Request a new branch"
 msgstr "Ajukan cabang baru"
 
-msgid "The platform team reviews every new branch: it must be the same business, using your brand name. Until it is approved, the branch is hidden and can't record revenue. It gets its own QR codes, tables and staff; you stay the owner, with the same login."
-msgstr "Tim platform meninjau setiap cabang baru: harus usaha yang sama dan memakai nama merek Anda. Sampai disetujui, cabang disembunyikan dan tidak bisa mencatat pendapatan. Cabang punya kode QR, meja, dan staf sendiri; Anda tetap pemilik dengan login yang sama."
+msgid ""
+"The platform team reviews every new branch: it must be the same business, "
+"using your brand name. Until it is approved, the branch is hidden and can't "
+"record revenue. It gets its own QR codes, tables and staff; you stay the "
+"owner, with the same login."
+msgstr ""
+"Tim platform meninjau setiap cabang baru: harus usaha yang sama dan memakai "
+"nama merek Anda. Sampai disetujui, cabang disembunyikan dan tidak bisa "
+"mencatat pendapatan. Cabang punya kode QR, meja, dan staf sendiri; Anda "
+"tetap pemilik dengan login yang sama."
 
-msgid "All branch slots in your plan are in use. You can still send the request; it is activated once you add an extra branch."
-msgstr "Semua slot cabang di paket Anda sedang dipakai. Anda tetap bisa mengirim pengajuan; cabang diaktifkan setelah Anda menambah cabang tambahan."
+msgid ""
+"All branch slots in your plan are in use. You can still send the request; it "
+"is activated once you add an extra branch."
+msgstr ""
+"Semua slot cabang di paket Anda sedang dipakai. Anda tetap bisa mengirim "
+"pengajuan; cabang diaktifkan setelah Anda menambah cabang tambahan."
 
 msgid "Send request"
 msgstr "Kirim pengajuan"
@@ -2509,17 +2908,29 @@ msgstr "Kirim pengajuan"
 msgid "Needs changes"
 msgstr "Perlu diperbaiki"
 
-msgid "The legal details of your business. The platform team verifies them before you can add branches; all branches must belong to this same business."
-msgstr "Data legal usaha Anda. Tim platform memverifikasinya sebelum Anda bisa menambah cabang; semua cabang harus milik usaha yang sama ini."
+msgid ""
+"The legal details of your business. The platform team verifies them before "
+"you can add branches; all branches must belong to this same business."
+msgstr ""
+"Data legal usaha Anda. Tim platform memverifikasinya sebelum Anda bisa "
+"menambah cabang; semua cabang harus milik usaha yang sama ini."
 
-msgid "Thank you! We are checking your details, usually within one working day. You can keep using QR Menu and recording revenue in the meantime."
-msgstr "Terima kasih! Kami sedang memeriksa data Anda, biasanya dalam satu hari kerja. Sementara itu Anda tetap bisa memakai QR Menu dan mencatat pendapatan."
+msgid ""
+"Thank you! We are checking your details, usually within one working day. You "
+"can keep using QR Menu and recording revenue in the meantime."
+msgstr ""
+"Terima kasih! Kami sedang memeriksa data Anda, biasanya dalam satu hari "
+"kerja. Sementara itu Anda tetap bisa memakai QR Menu dan mencatat pendapatan."
 
 msgid "Please correct your details and send them again."
 msgstr "Perbaiki data Anda dan kirim lagi."
 
-msgid "Your business is verified. You can request branches on the Branches page. Changing these details sends them for review again."
-msgstr "Usaha Anda sudah terverifikasi. Anda bisa mengajukan cabang di halaman Cabang. Mengubah data ini akan mengirimnya untuk ditinjau lagi."
+msgid ""
+"Your business is verified. You can request branches on the Branches page. "
+"Changing these details sends them for review again."
+msgstr ""
+"Usaha Anda sudah terverifikasi. Anda bisa mengajukan cabang di halaman "
+"Cabang. Mengubah data ini akan mengirimnya untuk ditinjau lagi."
 
 msgid "Save and send for review"
 msgstr "Simpan dan kirim untuk ditinjau"
@@ -2702,9 +3113,6 @@ msgstr "Simpan pengeluaran"
 msgid "Expenses in this period"
 msgstr "Pengeluaran pada periode ini"
 
-msgid "Edit"
-msgstr "Ubah"
-
 msgid "Delete this expense?"
 msgstr "Hapus pengeluaran ini?"
 
@@ -2765,9 +3173,6 @@ msgid ""
 msgstr ""
 "Ekstra opsional yang bisa dipilih pelanggan, mis. “Telur ceplok +$0.50”. "
 "Gunakan harga 0 untuk opsi gratis seperti “Tanpa bawang”."
-
-msgid "Remove"
-msgstr "Hapus"
 
 msgid "Translations"
 msgstr "Terjemahan"
@@ -3003,17 +3408,11 @@ msgstr "Semua pesanan dari kode QR dan pelayan."
 msgid "Filter by status"
 msgstr "Saring menurut status"
 
-msgid "All"
-msgstr "Semua"
-
 msgid "Order # or name"
 msgstr "No. pesanan atau nama"
 
 msgid "Order number or customer name"
 msgstr "Nomor pesanan atau nama pelanggan"
-
-msgid "Filter"
-msgstr "Saring"
 
 #, python-format
 msgid "Page %(n)s of %(total)s"
@@ -3082,9 +3481,6 @@ msgstr "Meja terisi"
 
 msgid "Latest orders"
 msgstr "Pesanan terbaru"
-
-msgid "All orders"
-msgstr "Semua pesanan"
 
 msgid "New quotation"
 msgstr "Penawaran baru"
@@ -3269,6 +3665,9 @@ msgstr "Pendapatan hari ini"
 msgid "Recorded entries"
 msgstr "Catatan tercatat"
 
+msgid "Source"
+msgstr "Sumber"
+
 msgid "Delete this entry?"
 msgstr "Hapus catatan ini?"
 
@@ -3284,8 +3683,12 @@ msgstr "Catat pendapatan"
 msgid "This branch is deactivated."
 msgstr "Cabang ini dinonaktifkan."
 
-msgid "This branch is waiting for approval by the platform team. It can record revenue once approved."
-msgstr "Cabang ini menunggu persetujuan tim platform. Cabang bisa mencatat pendapatan setelah disetujui."
+msgid ""
+"This branch is waiting for approval by the platform team. It can record "
+"revenue once approved."
+msgstr ""
+"Cabang ini menunggu persetujuan tim platform. Cabang bisa mencatat "
+"pendapatan setelah disetujui."
 
 msgid "This branch is not active, so it can't record revenue."
 msgstr "Cabang ini tidak aktif, jadi tidak bisa mencatat pendapatan."
@@ -3323,9 +3726,6 @@ msgstr "Cetak slip uji"
 
 msgid "By"
 msgstr "Oleh"
-
-msgid "Result"
-msgstr "Hasil"
 
 msgid "Slip printed"
 msgstr "Slip dicetak"
@@ -3528,6 +3928,9 @@ msgstr ""
 "dengan sekali klik, dan lihat pendapatan serta laba setiap cabang dan "
 "seluruh usaha."
 
+msgid "Connect your own website, mobile ordering app or delivery partners. Their orders arrive live in the right branch, are counted as revenue when completed, and you get API keys, webhooks, a request log and a test key."
+msgstr "Hubungkan situs web, aplikasi pemesanan, atau mitra pengantaran Anda. Pesanan masuk langsung ke cabang yang tepat, dihitung pendapatan saat selesai, dan Anda mendapat kunci API, webhook, log permintaan, dan kunci uji."
+
 msgid ""
 "Write down what you spend each day and see your real profit for today, this "
 "week, this month and this year."
@@ -3548,6 +3951,9 @@ msgstr "Tersedia di:"
 
 msgid "Not included in your current plan."
 msgstr "Tidak termasuk dalam paket Anda saat ini."
+
+msgid "Upgrade to Pro"
+msgstr "Tingkatkan ke Pro"
 
 msgid "See plans & upgrade"
 msgstr "Lihat paket & tingkatkan"
@@ -3690,6 +4096,9 @@ msgid "Main branch + %(n)s branch, one login"
 msgid_plural "Main branch + %(n)s branches, one login"
 msgstr[0] "Cabang utama + %(n)s cabang, satu login"
 
+msgid "Ordering API for your website, apps & delivery partners"
+msgstr "API pemesanan untuk situs web, aplikasi & mitra pengantaran"
+
 msgid "Get started"
 msgstr "Mulai"
 
@@ -3716,47 +4125,98 @@ msgid "1. The service"
 msgstr "1. Layanan"
 
 #, python-format
-msgid "%(name)s provides QR code menus, table ordering and restaurant management tools to food businesses (\"you\"). By registering, you accept these terms on behalf of your business."
-msgstr "%(name)s menyediakan menu kode QR, pemesanan di meja, dan alat manajemen restoran untuk usaha makanan (\"Anda\"). Dengan mendaftar, Anda menerima ketentuan ini atas nama usaha Anda."
+msgid ""
+"%(name)s provides QR code menus, table ordering and restaurant management "
+"tools to food businesses (\"you\"). By registering, you accept these terms "
+"on behalf of your business."
+msgstr ""
+"%(name)s menyediakan menu kode QR, pemesanan di meja, dan alat manajemen "
+"restoran untuk usaha makanan (\"Anda\"). Dengan mendaftar, Anda menerima "
+"ketentuan ini atas nama usaha Anda."
 
 msgid "2. Your account"
 msgstr "2. Akun Anda"
 
-msgid "You must give correct information about your business and keep your login details secret. You are responsible for everything done with your account and your staff accounts. We may ask you to verify your business (for example with your business registration or tax number) before you can use some features."
-msgstr "Anda wajib memberi informasi yang benar tentang usaha Anda dan menjaga kerahasiaan data login. Anda bertanggung jawab atas semua yang dilakukan dengan akun Anda dan akun staf Anda. Kami dapat meminta verifikasi usaha (misalnya dengan registrasi usaha atau nomor pajak) sebelum Anda memakai beberapa fitur."
+msgid ""
+"You must give correct information about your business and keep your login "
+"details secret. You are responsible for everything done with your account "
+"and your staff accounts. We may ask you to verify your business (for example "
+"with your business registration or tax number) before you can use some "
+"features."
+msgstr ""
+"Anda wajib memberi informasi yang benar tentang usaha Anda dan menjaga "
+"kerahasiaan data login. Anda bertanggung jawab atas semua yang dilakukan "
+"dengan akun Anda dan akun staf Anda. Kami dapat meminta verifikasi usaha "
+"(misalnya dengan registrasi usaha atau nomor pajak) sebelum Anda memakai "
+"beberapa fitur."
 
 msgid "3. Branches"
 msgstr "3. Cabang"
 
-msgid "All branches in one account must be owned and operated by the same business, under the same business registration and brand name."
-msgstr "Semua cabang dalam satu akun harus dimiliki dan dijalankan oleh usaha yang sama, dengan registrasi usaha dan nama merek yang sama."
+msgid ""
+"All branches in one account must be owned and operated by the same business, "
+"under the same business registration and brand name."
+msgstr ""
+"Semua cabang dalam satu akun harus dimiliki dan dijalankan oleh usaha yang "
+"sama, dengan registrasi usaha dan nama merek yang sama."
 
-msgid "Each new branch is reviewed by our team before it is activated. A branch that belongs to a different business is not allowed: we may suspend it, or move it to a separate account that is billed separately."
-msgstr "Setiap cabang baru ditinjau tim kami sebelum diaktifkan. Cabang milik usaha lain tidak diizinkan: kami dapat menangguhkannya atau memindahkannya ke akun terpisah yang ditagih terpisah."
+msgid ""
+"Each new branch is reviewed by our team before it is activated. A branch "
+"that belongs to a different business is not allowed: we may suspend it, or "
+"move it to a separate account that is billed separately."
+msgstr ""
+"Setiap cabang baru ditinjau tim kami sebelum diaktifkan. Cabang milik usaha "
+"lain tidak diizinkan: kami dapat menangguhkannya atau memindahkannya ke akun "
+"terpisah yang ditagih terpisah."
 
 msgid "4. Plans and payment"
 msgstr "4. Paket dan pembayaran"
 
-msgid "Plans are billed monthly in US dollars. Each plan includes a fixed number of branches; extra branches are a monthly add-on. If an invoice is not paid after the grace period, ordering is switched off until it is paid. Prices may change with 30 days' notice."
-msgstr "Paket ditagih bulanan dalam dolar AS. Setiap paket mencakup sejumlah cabang tetap; cabang tambahan adalah add-on bulanan. Jika faktur tidak dibayar setelah masa tenggang, pemesanan dimatikan sampai dibayar. Harga dapat berubah dengan pemberitahuan 30 hari."
+msgid ""
+"Plans are billed monthly in US dollars. Each plan includes a fixed number of "
+"branches; extra branches are a monthly add-on. If an invoice is not paid "
+"after the grace period, ordering is switched off until it is paid. Prices "
+"may change with 30 days' notice."
+msgstr ""
+"Paket ditagih bulanan dalam dolar AS. Setiap paket mencakup sejumlah cabang "
+"tetap; cabang tambahan adalah add-on bulanan. Jika faktur tidak dibayar "
+"setelah masa tenggang, pemesanan dimatikan sampai dibayar. Harga dapat "
+"berubah dengan pemberitahuan 30 hari."
 
 msgid "5. Your data"
 msgstr "5. Data Anda"
 
-msgid "Your menus, orders and revenue records belong to you. We use them only to provide the service and keep each branch's data separate. We don't sell your data."
-msgstr "Menu, pesanan, dan catatan pendapatan Anda adalah milik Anda. Kami memakainya hanya untuk menyediakan layanan dan memisahkan data setiap cabang. Kami tidak menjual data Anda."
+msgid ""
+"Your menus, orders and revenue records belong to you. We use them only to "
+"provide the service and keep each branch's data separate. We don't sell your "
+"data."
+msgstr ""
+"Menu, pesanan, dan catatan pendapatan Anda adalah milik Anda. Kami "
+"memakainya hanya untuk menyediakan layanan dan memisahkan data setiap "
+"cabang. Kami tidak menjual data Anda."
 
 msgid "6. Acceptable use"
 msgstr "6. Penggunaan yang wajar"
 
-msgid "Don't use the service for anything illegal, to mislead customers, or to disrupt the platform. We may suspend accounts that break these terms."
-msgstr "Jangan memakai layanan untuk hal ilegal, menyesatkan pelanggan, atau mengganggu platform. Kami dapat menangguhkan akun yang melanggar ketentuan ini."
+msgid ""
+"Don't use the service for anything illegal, to mislead customers, or to "
+"disrupt the platform. We may suspend accounts that break these terms."
+msgstr ""
+"Jangan memakai layanan untuk hal ilegal, menyesatkan pelanggan, atau "
+"mengganggu platform. Kami dapat menangguhkan akun yang melanggar ketentuan "
+"ini."
 
 msgid "7. Liability"
 msgstr "7. Tanggung jawab"
 
-msgid "We work hard to keep the service available, but we can't guarantee it will always be uninterrupted. To the extent the law allows, we are not liable for indirect losses such as lost sales."
-msgstr "Kami berusaha menjaga layanan tetap tersedia, tetapi tidak dapat menjamin selalu tanpa gangguan. Sejauh diizinkan hukum, kami tidak bertanggung jawab atas kerugian tidak langsung seperti kehilangan penjualan."
+msgid ""
+"We work hard to keep the service available, but we can't guarantee it will "
+"always be uninterrupted. To the extent the law allows, we are not liable for "
+"indirect losses such as lost sales."
+msgstr ""
+"Kami berusaha menjaga layanan tetap tersedia, tetapi tidak dapat menjamin "
+"selalu tanpa gangguan. Sejauh diizinkan hukum, kami tidak bertanggung jawab "
+"atas kerugian tidak langsung seperti kehilangan penjualan."
 
 msgid "8. Contact"
 msgstr "8. Kontak"
@@ -3767,9 +4227,6 @@ msgstr "Pertanyaan tentang ketentuan ini:"
 #, python-format
 #~ msgid "Branch “%(name)s” created. Add its staff accounts here."
 #~ msgstr "Cabang “%(name)s” dibuat. Tambahkan akun staf di sini."
-
-#~ msgid "Add a branch"
-#~ msgstr "Tambah cabang"
 
 #~ msgid ""
 #~ "A new sub-branch gets its own QR codes, tables, staff and subscription. "

@@ -68,6 +68,7 @@
           {% if p.feature_quotations %}<li>{% icon "note" %}{% translate "Quotations for catering & tenders" %}</li>{% endif %}
           {% if p.feature_expenses %}<li>{% icon "cash" %}{% translate "Daily expenses & profit" %}</li>{% endif %}
           {% if p.feature_branches %}<li>{% icon "store" %}{% blocktranslate trimmed count n=p.included_branches %}Main branch + {{ n }} branch, one login{% plural %}Main branch + {{ n }} branches, one login{% endblocktranslate %}</li>{% endif %}
+          {% if p.feature_api %}<li>{% icon "external" %}{% translate "Ordering API for your website, apps & delivery partners" %}</li>{% endif %}
         </ul>
         {% if user.is_authenticated %}<a class="btn btn-lg land-plan-btn" href="{% url 'dashboard:home' %}">{% translate "Open dashboard" %}</a>
         {% elif signup_open %}<a class="btn btn-lg land-plan-btn" href="{% url 'accounts:signup' %}">{% translate "Get started" %}</a>{% endif %}

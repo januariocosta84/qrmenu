@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR Menu API Tester</title>
+<style>
+  :root {
+    --bg: #f5f6f8; --surface: #fff; --surface-2: #f1f3f6; --ink: #111827; --ink-2: #4b5563; --muted: #6b7280;
+    --line: #e2e5ea; --brand: #ea580c; --brand-ink: #fff; --ok: #15803d; --ok-bg: #dcfce7; --bad: #b91c1c;
+    --bad-bg: #fee2e2; --warn: #92400e; --warn-bg: #fef3c7; --radius: 12px;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1115; --surface: #171a21; --surface-2: #1f232c; --ink: #e5e7eb; --ink-2: #c3c8d1; --muted: #9aa1ad;
+      --line: #2a2f3a; --brand: #f97316; --ok: #4ade80; --ok-bg: #14301f; --bad: #f87171; --bad-bg: #3a1717;
+      --warn: #fbbf24; --warn-bg: #3a2c0d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { background: var(--surface); border-bottom: 1px solid var(--line); padding: 14px 16px; }
+  header h1 { margin: 0; font-size: 1.15rem; }
+  header p { margin: 2px 0 0; color: var(--muted); font-size: .9rem; }
+  main { max-width: 1180px; margin: 0 auto; padding: 16px; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); }
+  @media (max-width: 900px) { main { grid-template-columns: minmax(0, 1fr); } }
+  .col { display: grid; gap: 16px; align-content: start; min-width: 0; }
+  section { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; min-width: 0; }
+  h2 { margin: 0 0 12px; font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+  h2 .step { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--brand); color: var(--brand-ink); font-size: .75rem; }
+  label { display: block; font-size: .82rem; font-weight: 600; color: var(--ink-2); margin-bottom: 4px; }
+  input, select, textarea { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font: inherit; }
+  input[type=checkbox] { width: auto; }
+  .grid2 { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .row > select, .row > input:not([type=checkbox]) { flex: 1; width: auto; min-width: 0; }
+  .field { margin-bottom: 10px; }
+  button { padding: 9px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; }
+  button.primary { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+  button.small { padding: 5px 10px; font-size: .82rem; }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  .note { padding: 10px 12px; border-radius: 8px; background: var(--warn-bg); color: var(--warn); font-size: .88rem; }
+  .muted { color: var(--muted); font-size: .85rem; }
+  .cat { margin-top: 12px; }
+  .cat h3 { margin: 0 0 6px; font-size: .9rem; color: var(--ink-2); }
+  .item { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+  .item.na { opacity: .5; }
+  .item-top { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+  .item-top input[type=number] { width: 72px; }
+  .opts { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .85rem; }
+  .opts label { display: inline-flex; gap: 6px; align-items: center; font-weight: 400; margin: 0; }
+  .price { font-variant-numeric: tabular-nums; font-weight: 700; }
+  .cart-total { display: flex; justify-content: space-between; font-weight: 700; padding-top: 8px; border-top: 1px solid var(--line); margin-top: 8px; }
+  .order { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+  .pill { display: inline-block; padding: 1px 9px; border-radius: 999px; font-size: .75rem; font-weight: 700; background: var(--surface-2); border: 1px solid var(--line); }
+  .pill.ok { background: var(--ok-bg); color: var(--ok); border-color: transparent; }
+  .pill.bad { background: var(--bad-bg); color: var(--bad); border-color: transparent; }
+  .log { display: grid; gap: 8px; max-height: 70vh; overflow-y: auto; }
+  .log-entry { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .log-head { display: flex; gap: 8px; align-items: center; padding: 8px 10px; background: var(--surface-2); font-family: var(--mono); font-size: .8rem; cursor: pointer; }
+  .log-head .path { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  pre { margin: 0; padding: 10px; font: .78rem/1.45 var(--mono); white-space: pre-wrap; word-break: break-word; background: var(--surface); }
+  .empty { color: var(--muted); font-size: .9rem; padding: 6px 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>QR Menu · Ordering API tester</h1>
+  <p>A stand-alone page that calls the Ordering API from the browser, like an external ordering website would.</p>
+</header>
+
+<main>
+  <div class="col">
+    <section>
+      <h2><span class="step">1</span> Connect</h2>
+      <div class="field"><label for="base">API base URL</label><input id="base" value="https://qrmenu.timorstore.com/api/ordering/v1"></div>
+      <div class="field"><label for="key">API key</label><input id="key" type="password" placeholder="qrm_test_… (Dashboard → Ordering API)" autocomplete="off"></div>
+      <div class="row"><label style="display:inline-flex;gap:6px;align-items:center;font-weight:400;margin:0"><input type="checkbox" id="showkey"> Show key</label>
+        <span style="flex:1"></span><button class="primary" id="connect">Load branches</button></div>
+      <p class="note" style="margin:12px 0 0">Use a <strong>test key</strong> (qrm_test_…): its orders are simulated, never reach the kitchen and never count as revenue. Never put a live key in a public web page: anyone could read it from the page source.</p>
+    </section>
+
+    <section>
+      <h2><span class="step">2</span> Branch &amp; menu</h2>
+      <div class="row"><select id="branch" disabled><option>Load branches first</option></select><button id="loadmenu" disabled>Load menu</button></div>
+      <div id="menu"><p class="empty">The menu appears here.</p></div>
+    </section>
+
+    <section>
+      <h2><span class="step">3</span> Place an order</h2>
+      <div id="cart"><p class="empty">Set a quantity on menu items to add them.</p></div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field"><label for="cname">Customer name</label><input id="cname" placeholder="Maria"></div>
+        <div class="field"><label for="cphone">Customer phone</label><input id="cphone" placeholder="+670 7712 3456"></div>
+        <div class="field"><label for="pay">Payment method</label><select id="pay">
+          <option value="pay_at_counter">pay_at_counter</option><option value="cash">cash</option><option value="card">card</option>
+          <option value="bank_transfer">bank_transfer</option><option value="online">online</option><option value="qr">qr</option></select></div>
+        <div class="field"><label for="ref">External ref (your order no.)</label><input id="ref" placeholder="WEB-1001"></div>
+      </div>
+      <div class="field"><label for="note">Note</label><input id="note" placeholder="Pick-up at 12:30"></div>
+      <div class="row">
+        <label style="display:inline-flex;gap:6px;align-items:center;font-weight:400;margin:0"><input type="checkbox" id="paid"> Already paid</label>
+        <label style="display:inline-flex;gap:6px;align-items:center;font-weight:400;margin:0"><input type="checkbox" id="sendtotal" checked> Send total (checked by the server)</label>
+        <span style="flex:1"></span><button class="primary" id="place" disabled>Place order</button>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="step">4</span> Orders &amp; status</h2>
+      <div class="row" style="margin-bottom:10px"><input id="lookup" placeholder="Order id (uuid) to look up"><button id="lookupbtn">Get order</button></div>
+      <div id="orders"><p class="empty">Orders you place here are listed with buttons to change their status.</p></div>
+    </section>
+  </div>
+
+  <div class="col">
+    <section>
+      <h2>Requests &amp; responses <span style="flex:1"></span><button class="small" id="clearlog">Clear</button></h2>
+      <div class="log" id="log"><p class="empty">Every API call shows up here with its JSON.</p></div>
+    </section>
+  </div>
+</main>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const state = { branches: [], menu: null, cart: {}, orders: new Map() };
+
+  // Remember the base URL in this browser; the key only for this tab.
+  try { const b = localStorage.getItem("qrapi.base"); if (b) $("base").value = b; } catch (e) {}
+  try { const k = sessionStorage.getItem("qrapi.key"); if (k) $("key").value = k; } catch (e) {}
+  $("showkey").onchange = () => { $("key").type = $("showkey").checked ? "text" : "password"; };
+
+  async function api(method, path, body) {
+    const base = $("base").value.trim().replace(/\/+$/, "");
+    const key = $("key").value.trim();
+    try { localStorage.setItem("qrapi.base", base); sessionStorage.setItem("qrapi.key", key); } catch (e) {}
+    const url = base + path;
+    const opts = { method, headers: { Authorization: "Bearer " + key } };
+    if (body !== undefined) { opts.headers["Content-Type"] = "application/json"; opts.body = JSON.stringify(body); }
+    const started = performance.now();
+    let status = 0, data = null, err = "";
+    try {
+      const resp = await fetch(url, opts);
+      status = resp.status;
+      const text = await resp.text();
+      try { data = JSON.parse(text); } catch (e) { data = text; }
+    } catch (e) {
+      err = "Network error: " + e.message + " (wrong URL, no internet, or the server doesn't allow this origin)";
+    }
+    logEntry(method, url, body, status, data, err, Math.round(performance.now() - started));
+    if (err) throw new Error(err);
+    if (status >= 400) throw new Error((data && data.error && data.error.message) || ("HTTP " + status));
+    return data;
+  }
+
+  function logEntry(method, url, body, status, data, err, ms) {
+    const log = $("log");
+    if (log.querySelector(".empty")) log.innerHTML = "";
+    const ok = status && status < 400;
+    const el = document.createElement("div");
+    el.className = "log-entry";
+    el.innerHTML = `<div class="log-head"><span class="pill ${ok ? "ok" : "bad"}">${status || "ERR"}</span><strong>${method}</strong><span class="path">${esc(url)}</span><span class="muted">${ms} ms</span></div>` +
+      (body !== undefined ? `<pre><strong>Request</strong>\n${esc(JSON.stringify(body, null, 2))}</pre>` : "") +
+      `<pre><strong>Response</strong>\n${esc(err || (typeof data === "string" ? data : JSON.stringify(data, null, 2)))}</pre>`;
+    el.querySelector(".log-head").onclick = () => el.querySelectorAll("pre").forEach((p) => p.hidden = !p.hidden);
+    log.prepend(el);
+  }
+  $("clearlog").onclick = () => { $("log").innerHTML = '<p class="empty">Every API call shows up here with its JSON.</p>'; };
+
+  // 1. Branches
+  $("connect").onclick = async () => {
+    try {
+      const res = await api("GET", "/branches");
+      state.branches = res.data;
+      $("branch").innerHTML = res.data.map((b) => `<option value="${b.id}">${esc(b.name)}${b.is_main_branch ? " (main)" : ""}${b.accepting_orders ? "" : " · not accepting"}</option>`).join("") || "<option>No branches</option>";
+      $("branch").disabled = $("loadmenu").disabled = !res.data.length;
+      if (res.data.length) $("loadmenu").click();
+    } catch (e) { alert(e.message); }
+  };
+
+  // 2. Menu
+  $("loadmenu").onclick = async () => {
+    try {
+      state.menu = await api("GET", "/menu?branch=" + encodeURIComponent($("branch").value));
+      state.cart = {};
+      renderMenu();
+      renderCart();
+    } catch (e) { alert(e.message); }
+  };
+  $("branch").onchange = () => $("loadmenu").click();
+
+  const money = (v) => (state.menu ? state.menu.currency + " " : "") + Number(v).toFixed(2);
+
+  function renderMenu() {
+    const cats = state.menu.categories;
+    $("menu").innerHTML = cats.length ? cats.map((c) => `<div class="cat"><h3>${esc(c.name)}</h3>${c.items.map((i) => `
+      <div class="item ${i.available ? "" : "na"}" data-id="${i.id}">
+        <div class="item-top"><div><strong>${esc(i.name)}</strong> <span class="muted">#${i.id}</span>${i.available ? "" : ' <span class="pill bad">sold out</span>'}</div>
+          <div class="row"><span class="price">${money(i.price)}</span><input type="number" min="0" max="50" value="0" aria-label="Quantity of ${esc(i.name)}"></div></div>
+        ${i.options.length ? `<div class="opts">${i.options.map((o) => `<label><input type="checkbox" value="${o.id}"${o.available ? "" : " disabled"}> ${esc(o.name)} +${Number(o.price).toFixed(2)}</label>`).join("")}</div>` : ""}
+      </div>`).join("")}</div>`).join("") : '<p class="empty">This branch has no menu yet.</p>';
+    $("menu").querySelectorAll(".item").forEach((el) => {
+      const update = () => {
+        const qty = parseInt(el.querySelector("input[type=number]").value, 10) || 0;
+        const options = [...el.querySelectorAll(".opts input:checked")].map((x) => +x.value);
+        if (qty > 0) state.cart[el.dataset.id] = { menu_item: +el.dataset.id, quantity: qty, options };
+        else delete state.cart[el.dataset.id];
+        renderCart();
+      };
+      el.querySelectorAll("input").forEach((inp) => inp.addEventListener("input", update));
+    });
+  }
+
+  function findItem(id) {
+    for (const c of state.menu.categories) for (const i of c.items) if (i.id === id) return i;
+    return null;
+  }
+
+  function cartTotal() {
+    // Local estimate (items + add-ons). The server adds service charge / VAT and checks the total.
+    return Object.values(state.cart).reduce((sum, l) => {
+      const i = findItem(l.menu_item);
+      const extra = l.options.reduce((s, oid) => s + Number((i.options.find((o) => o.id === oid) || {}).price || 0), 0);
+      return sum + (Number(i.price) + extra) * l.quantity;
+    }, 0);
+  }
+
+  function renderCart() {
+    const lines = Object.values(state.cart);
+    $("place").disabled = !lines.length;
+    if (!lines.length) { $("cart").innerHTML = '<p class="empty">Set a quantity on menu items to add them.</p>'; return; }
+    $("cart").innerHTML = lines.map((l) => { const i = findItem(l.menu_item);
+      return `<div class="item-top"><span>${l.quantity} × ${esc(i.name)}${l.options.length ? ` <span class="muted">+ ${l.options.length} add-on(s)</span>` : ""}</span></div>`; }).join("") +
+      `<div class="cart-total"><span>Items total</span><span>${money(cartTotal())}</span></div>
+       <p class="muted" style="margin:4px 0 0">Service charge and VAT are added by the server. With "Send total" on, a wrong total is refused with the correct amount (try it to see the 409 error).</p>`;
+  }
+
+  // 3. Place order
+  $("place").onclick = async () => {
+    const body = { branch: +$("branch").value, items: Object.values(state.cart), payment_method: $("pay").value, paid: $("paid").checked };
+    for (const [k, id] of [["customer_name", "cname"], ["customer_phone", "cphone"], ["note", "note"], ["external_ref", "ref"]])
+      if ($(id).value.trim()) body[k] = $(id).value.trim();
+    if ($("sendtotal").checked) body.total = cartTotal().toFixed(2);
+    try {
+      const order = await api("POST", "/orders", body);
+      state.orders.set(order.id, order);
+      renderOrders();
+    } catch (e) { alert(e.message); }
+  };
+
+  // 4. Orders
+  const NEXT = { received: ["preparing", "cancelled"], preparing: ["ready", "cancelled"], ready: ["completed", "preparing"], completed: [], cancelled: [] };
+
+  function renderOrders() {
+    const list = [...state.orders.values()].reverse();
+    $("orders").innerHTML = list.length ? list.map((o) => `
+      <div class="order">
+        <div class="row" style="justify-content:space-between">
+          <span><strong>#${o.number}</strong> · ${esc(o.branch.name)} ${o.sandbox ? '<span class="pill">test</span>' : '<span class="pill ok">live</span>'}</span>
+          <span class="pill ${o.status === "cancelled" ? "bad" : o.status === "completed" ? "ok" : ""}">${o.status}</span></div>
+        <div class="muted">${esc(o.id)} · total ${esc(o.currency)} ${esc(o.total)}${o.paid ? " · paid" : ""}</div>
+        <div class="row" style="margin-top:8px">${NEXT[o.status].map((s) => `<button class="small" data-id="${o.id}" data-status="${s}">→ ${s}</button>`).join("")}
+          <button class="small" data-id="${o.id}" data-refresh="1">Refresh</button></div>
+      </div>`).join("") : '<p class="empty">Orders you place here are listed with buttons to change their status.</p>';
+    $("orders").querySelectorAll("button").forEach((b) => b.onclick = async () => {
+      try {
+        const o = b.dataset.refresh ? await api("GET", "/orders/" + b.dataset.id)
+          : await api("PATCH", "/orders/" + b.dataset.id, b.dataset.status === "cancelled" ? { status: "cancelled", reason: "Cancelled from the API tester" } : { status: b.dataset.status });
+        state.orders.set(o.id, o);
+        renderOrders();
+      } catch (e) { alert(e.message); }
+    });
+  }
+
+  $("lookupbtn").onclick = async () => {
+    const id = $("lookup").value.trim();
+    if (!id) return;
+    try { const o = await api("GET", "/orders/" + encodeURIComponent(id)); state.orders.set(o.id, o); renderOrders(); }
+    catch (e) { alert(e.message); }
+  };
+})();
+</script>
+</body>
+</html>

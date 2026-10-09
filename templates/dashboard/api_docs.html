@@ -1,0 +1,118 @@
+{% extends "dashboard/base.html" %}
+{% load i18n ui_icons %}
+{% block title %}{% translate "API documentation" %}{% endblock %}
+{% block content %}
+{% with r=request.restaurant b=branches.0 %}
+<a class="back-link" href="{% url 'dashboard:api' r.slug %}">{% icon "arrow-left" %} {% translate "Ordering API" %}</a>
+<div class="page-head">
+  <div>
+    <h1>{% translate "API documentation" %}</h1>
+    <p class="page-sub">{% translate "REST API with JSON, for your website, ordering app or delivery partner." %} {% translate "Base URL" %}: <code>{{ base_url }}</code></p>
+  </div>
+</div>
+
+<article class="card api-doc">
+  <h2>{% translate "Authentication" %}</h2>
+  <p>{% translate "Send your API key in the Authorization header of every request. Requests must use HTTPS." %}</p>
+<pre>Authorization: Bearer qrm_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</pre>
+  <p>{% blocktranslate trimmed %}Keys starting with <code>qrm_test_</code> are test (sandbox) keys: every endpoint works the same, but orders are simulated. They are not sent to the kitchen and never count as revenue.{% endblocktranslate %}</p>
+  <p>{% blocktranslate trimmed with rate=rate %}Each key may make {{ rate }} requests per minute. Above that you get HTTP 429 with a Retry-After header. Every request is logged on the Ordering API page.{% endblocktranslate %}</p>
+
+  <h2>{% translate "Errors" %}</h2>
+  <p>{% translate "Errors use the HTTP status code and a JSON body with a code and a message:" %}</p>
+<pre>HTTP/1.1 403 Forbidden
+{"error": {"code": "branch_not_allowed", "message": "This API key can't access that branch."}}</pre>
+  <div class="table-wrap"><table class="table">
+    <thead><tr><th>{% translate "Status" %}</th><th>{% translate "Code" %}</th><th>{% translate "Meaning" %}</th></tr></thead>
+    <tbody>
+      <tr><td>401</td><td><code>missing_api_key</code> <code>invalid_api_key</code> <code>revoked_api_key</code></td><td>{% translate "No key, wrong key, or the key was revoked." %}</td></tr>
+      <tr><td>403</td><td><code>https_required</code></td><td>{% translate "The request was not made over HTTPS." %}</td></tr>
+      <tr><td>403</td><td><code>plan_required</code> <code>subscription_inactive</code> <code>profile_not_verified</code></td><td>{% translate "The account is not on an active Pro plan, or the business profile is not verified. API access is switched off automatically." %}</td></tr>
+      <tr><td>403</td><td><code>branch_not_allowed</code></td><td>{% translate "The branch is not one this key may use." %}</td></tr>
+      <tr><td>404</td><td><code>not_found</code></td><td>{% translate "Unknown order or endpoint." %}</td></tr>
+      <tr><td>409</td><td><code>unavailable</code> <code>total_mismatch</code> <code>not_accepting</code> <code>invalid_transition</code></td><td>{% translate "The order can't be placed or changed: sold-out items, a total that doesn't match the menu prices, a branch that is closed, or a status change that isn't allowed." %}</td></tr>
+      <tr><td>429</td><td><code>rate_limited</code></td><td>{% translate "Too many requests; wait a minute." %}</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2><span class="endpoint">GET /branches</span></h2>
+  <p>{% translate "The branches this key can use (only live branches)." %}</p>
+<pre>curl -H "Authorization: Bearer $KEY" {{ base_url }}branches
+
+{"data": [{"id": {{ b.pk|default:1 }}, "name": "{{ b.name|default:'Cafe Atsabe'|escapejs }}", "is_main_branch": true,
+           "address": "{{ b.address|escapejs }}", "phone": "{{ b.phone|escapejs }}", "accepting_orders": true, "currency": "{{ b.currency|default:'USD' }}"}]}</pre>
+
+  <h2><span class="endpoint">GET /menu?branch=&lt;id&gt;</span></h2>
+  <p>{% translate "Menu categories, items, add-ons and prices of one branch. Use the item and add-on ids in orders." %}</p>
+<pre>curl -H "Authorization: Bearer $KEY" "{{ base_url }}menu?branch={{ b.pk|default:1 }}"
+
+{"branch": {...}, "currency": "USD", "categories": [
+  {"id": 3, "name": "Rice", "items": [
+    {"id": {{ example_item.pk|default:12 }}, "name": "{{ example_item.name|default:'Chicken Fried Rice'|escapejs }}", "description": "", "price": "{{ example_item.price|default:'3.50' }}", "available": true,
+     "options": [{"id": 7, "name": "Fried Egg", "price": "0.50", "available": true}]}]}]}</pre>
+
+  <h2><span class="endpoint">POST /orders</span></h2>
+  <p>{% translate "Create an order. Prices always come from the menu; if you send a total and it doesn't match, the order is refused with the correct total. The order appears immediately on the branch's dashboard with a notification." %}</p>
+<pre>curl -X POST -H "Authorization: Bearer $KEY" -H "Content-Type: application/json" {{ base_url }}orders -d '{
+  "branch": {{ b.pk|default:1 }},
+  "items": [{"menu_item": {{ example_item.pk|default:12 }}, "quantity": 2, "options": [], "note": "no chili"}],
+  "total": "{{ example_item.price|default:'3.50' }}",
+  "payment_method": "cash",
+  "paid": false,
+  "customer_name": "Maria",
+  "customer_phone": "+670 7712 3456",
+  "note": "Pick-up at 12:30",
+  "external_ref": "WEB-10045"
+}'
+
+HTTP/1.1 201 Created
+{"id": "6f1c2a8e-3b0d-4c55-9a51-0d6f3c1e2b7a", "number": 1042, "sandbox": false,
+ "branch": {"id": {{ b.pk|default:1 }}, "name": "{{ b.name|default:'Cafe Atsabe'|escapejs }}"}, "status": "received", "source": "api",
+ "items": [{"name": "...", "quantity": 2, "unit_price": "...", "line_total": "...", "note": "no chili", "options": []}],
+ "subtotal": "...", "service_charge": "0.00", "vat": "0.00", "total": "...", "currency": "USD",
+ "payment_method": "cash", "paid": false, "customer_name": "Maria", "customer_phone": "+670 7712 3456",
+ "note": "Pick-up at 12:30", "external_ref": "WEB-10045", "cancel_reason": "",
+ "created_at": "2026-10-09T12:01:15+09:00", "updated_at": "2026-10-09T12:01:15+09:00"}</pre>
+  <div class="table-wrap"><table class="table">
+    <thead><tr><th>{% translate "Field" %}</th><th>{% translate "Description" %}</th></tr></thead>
+    <tbody>
+      <tr><td><code>branch</code></td><td>{% translate "Branch id (optional when the key can use only one branch)." %}</td></tr>
+      <tr><td><code>items</code></td><td>{% translate "1–50 lines: menu_item (id), quantity (1–50), options (add-on ids, optional), note (optional)." %}</td></tr>
+      <tr><td><code>total</code></td><td>{% translate "Optional. The total you expect; checked against the menu prices." %}</td></tr>
+      <tr><td><code>payment_method</code></td><td><code>pay_at_counter</code> <code>cash</code> <code>card</code> <code>bank_transfer</code> <code>online</code> <code>qr</code></td></tr>
+      <tr><td><code>paid</code></td><td>{% translate "true when the customer already paid in your app (the order is recorded as paid)." %}</td></tr>
+      <tr><td><code>customer_name</code>, <code>customer_phone</code>, <code>note</code></td><td>{% translate "Optional." %}</td></tr>
+      <tr><td><code>external_ref</code></td><td>{% translate "Optional: your own order number. Sending the same reference again returns the existing order instead of creating a duplicate, so retries are safe." %}</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2><span class="endpoint">GET /orders/&lt;id&gt;</span></h2>
+  <p>{% translate "Order details and current status." %}</p>
+<pre>curl -H "Authorization: Bearer $KEY" {{ base_url }}orders/6f1c2a8e-3b0d-4c55-9a51-0d6f3c1e2b7a</pre>
+
+  <h2><span class="endpoint">PATCH /orders/&lt;id&gt;</span></h2>
+  <p>{% translate "Change the status. Statuses: received → preparing → ready → completed; an order can be cancelled until it is ready. Only completed orders count as revenue; cancelled orders never do." %}</p>
+<pre>curl -X PATCH -H "Authorization: Bearer $KEY" -H "Content-Type: application/json" \
+     {{ base_url }}orders/6f1c2a8e-3b0d-4c55-9a51-0d6f3c1e2b7a -d '{"status": "cancelled", "reason": "Customer cancelled"}'</pre>
+
+  <h2>{% translate "Webhooks" %}</h2>
+  <p>{% translate "Add a webhook URL on the Ordering API page. When an order is created or its status changes, we POST this JSON to your URL (timeout 5 seconds, no redirects):" %}</p>
+<pre>POST https://your-app.example/qrmenu-webhook
+Content-Type: application/json
+X-QRMenu-Event: order.status_changed
+X-QRMenu-Timestamp: 1791529200
+X-QRMenu-Signature: sha256=5d41402abc4b2a76b9719d911017c592...
+
+{"event": "order.status_changed", "sent_at": "2026-10-09T12:20:00+09:00", "sandbox": false,
+ "data": { ...the same order object as GET /orders/&lt;id&gt;... }}</pre>
+  <p>{% translate "Events: order.created, order.status_changed, and ping (the Send test button). To check that a request really comes from us, compute HMAC-SHA256 of the timestamp, a dot and the raw body with your signing secret, and compare it with the signature:" %}</p>
+<pre># Python
+import hashlib, hmac
+expected = "sha256=" + hmac.new(SECRET.encode(), (timestamp + ".").encode() + raw_body, hashlib.sha256).hexdigest()
+valid = hmac.compare_digest(expected, request.headers["X-QRMenu-Signature"])</pre>
+
+  <h2>{% translate "Revenue" %}</h2>
+  <p>{% translate "When an API order is completed, it is added to the branch's revenue as an entry with the source “API – key name”. On the Branches page you can filter revenue by source." %}</p>
+</article>
+{% endwith %}
+{% endblock %}

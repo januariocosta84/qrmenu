@@ -8,13 +8,13 @@ class PlanForm(forms.ModelForm):
         model = Plan
         fields = ["name", "description", "price_monthly", "currency", "max_tables", "max_menu_items", "max_staff",
                   "feature_analytics", "feature_cash_register", "feature_quotations", "feature_expenses", "feature_branches",
-                  "included_branches", "extra_branch_price", "is_active", "is_public", "position"]
+                  "feature_api", "included_branches", "extra_branch_price", "is_active", "is_public", "position"]
         widgets = {"price_monthly": forms.NumberInput(attrs={"step": "0.01", "min": "0"}),
                    "extra_branch_price": forms.NumberInput(attrs={"step": "0.01", "min": "0"})}
         labels = {"price_monthly": "Price per month", "max_menu_items": "Max dishes",
                   "feature_analytics": "Includes Analytics", "feature_cash_register": "Includes Cash register",
                   "feature_quotations": "Includes Quotations", "feature_expenses": "Includes Expenses & profit",
-                  "feature_branches": "Includes Branches", "included_branches": "Branches included",
+                  "feature_branches": "Includes Branches", "feature_api": "Includes Ordering API", "included_branches": "Branches included",
                   "extra_branch_price": "Price per extra branch (monthly)"}
 
 

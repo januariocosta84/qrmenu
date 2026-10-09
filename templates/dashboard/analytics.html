@@ -98,6 +98,7 @@
     <div class="mini-stats">
       <div class="mini-stat"><span>{% translate "Customer's phone (QR)" %}</span><strong>{{ a.source.qr_pct }}%</strong> <small class="muted">({{ a.source.qr }})</small></div>
       <div class="mini-stat"><span>{% translate "Entered by waiter" %}</span><strong>{{ a.source.staff_pct }}%</strong> <small class="muted">({{ a.source.staff }})</small></div>
+      {% if a.source.api %}<div class="mini-stat"><span>{% translate "Ordering API" %}</span><strong>{{ a.source.api_pct }}%</strong> <small class="muted">({{ a.source.api }})</small></div>{% endif %}
       <div class="mini-stat"><span>{% translate "At a table" %}</span><strong>{{ a.source.table_pct }}%</strong> <small class="muted">({{ a.source.table }})</small></div>
       <div class="mini-stat"><span>{% translate "Counter / takeaway" %}</span><strong>{{ a.source.counter_pct }}%</strong> <small class="muted">({{ a.source.counter }})</small></div>
     </div>

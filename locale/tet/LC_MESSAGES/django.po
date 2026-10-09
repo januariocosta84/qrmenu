@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-09 16:59+0900\n"
+"POT-Creation-Date: 2026-10-09 21:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,8 +36,11 @@ msgstr "Telefone (opsionál)"
 msgid "Password"
 msgstr "Liafuan-pase"
 
-msgid "I confirm I own or manage this restaurant, and I accept the terms of service."
-msgstr "Ha'u konfirma ha'u na'in ka jere restaurante ne'e, no ha'u aseita termu servisu."
+msgid ""
+"I confirm I own or manage this restaurant, and I accept the terms of service."
+msgstr ""
+"Ha'u konfirma ha'u na'in ka jere restaurante ne'e, no ha'u aseita termu "
+"servisu."
 
 msgid ""
 "An account with this email already exists. Try logging in or resetting your "
@@ -118,6 +121,9 @@ msgstr "Despeza loron-loron no lukru kada loron, semana, fulan no tinan."
 
 msgid "Several branches under one owner, with an all-branches overview."
 msgstr "Filiál barak ho na'in ida, ho rezumu filiál hotu."
+
+msgid "Ordering API for websites, apps and delivery partners."
+msgstr "API orden ba website, aplikasaun no parseiru entrega."
 
 msgid "Trial"
 msgstr "Períodu esperimentál"
@@ -635,8 +641,11 @@ msgstr "Naran filial tenke uza ita-nia naran marka, ez.: “%(example)s”."
 msgid "Branch name"
 msgstr "Naran filiál"
 
-msgid "Must use your brand name, e.g. Kafe Atauro – Comoro. Customers see this name."
-msgstr "Tenke uza ita-nia naran marka, ez.: Kafe Atauro – Comoro. Kliente sira haree naran ne'e."
+msgid ""
+"Must use your brand name, e.g. Kafe Atauro – Comoro. Customers see this name."
+msgstr ""
+"Tenke uza ita-nia naran marka, ez.: Kafe Atauro – Comoro. Kliente sira haree "
+"naran ne'e."
 
 msgid "Branch address"
 msgstr "Enderesu filial"
@@ -653,8 +662,11 @@ msgstr "Foto filial husi liur, ne'ebé hatudu naran marka."
 msgid "Business registration number"
 msgstr "Númeru rejistu negósiu"
 
-msgid "All branches must belong to the same business registration as the main branch."
-msgstr "Filial hotu tenke pertense ba rejistu negósiu hanesan ho filial prinsipál."
+msgid ""
+"All branches must belong to the same business registration as the main "
+"branch."
+msgstr ""
+"Filial hotu tenke pertense ba rejistu negósiu hanesan ho filial prinsipál."
 
 msgid "Owner name"
 msgstr "Naran na'in"
@@ -957,18 +969,38 @@ msgid "Staff account “%(username)s” created."
 msgstr "Konta funsionáriu “%(username)s” kria ona."
 
 #, python-format
-msgid "Branch “%(name)s” requested. The platform team will review it; meanwhile you can set up its menu and staff."
-msgstr "Filial “%(name)s” husu ona. Ekipa plataforma sei revee; entretantu ita bele prepara ninia menu no ekipa."
+msgid ""
+"Branch “%(name)s” requested. The platform team will review it; meanwhile you "
+"can set up its menu and staff."
+msgstr ""
+"Filial “%(name)s” husu ona. Ekipa plataforma sei revee; entretantu ita bele "
+"prepara ninia menu no ekipa."
 
 #, python-format
-msgid "Invoice %(number)s created for an extra branch. The slot is added as soon as it is paid."
-msgstr "Fatura %(number)s kria ona ba filial extra ida. Fatin sei aumenta kedas bainhira selu ona."
+msgid ""
+"Invoice %(number)s created for an extra branch. The slot is added as soon as "
+"it is paid."
+msgstr ""
+"Fatura %(number)s kria ona ba filial extra ida. Fatin sei aumenta kedas "
+"bainhira selu ona."
 
 msgid "One unused extra branch removed from your subscription."
 msgstr "Filial extra ida ne'ebé la uza hasai ona husi ita-nia subskrisaun."
 
 msgid "Every extra branch is in use. Deactivate a branch first."
 msgstr "Filial extra hotu uza hela. Dezativa filial ida uluk."
+
+msgid "All sources"
+msgstr "Orijen hotu"
+
+msgid "Orders (QR & waiter)"
+msgstr "Orden (QR no empregadu)"
+
+msgid "Manual entries"
+msgstr "Rejistu manuál"
+
+msgid "Ordering API (all keys)"
+msgstr "API orden (xave hotu)"
 
 msgid "Branch details saved."
 msgstr "Detalle filial rai ona."
@@ -981,8 +1013,12 @@ msgstr ""
 "%(name)s la ativu ona: kliente sira labele husu no ninia ekipa labele tama. "
 "Istória sei rai."
 
-msgid "No free branch slot: all branches in your plan are in use. Add an extra branch on the Branches page first."
-msgstr "La iha fatin mamuk: filial hotu iha ita-nia planu uza hela. Aumenta uluk filial extra iha pájina Filial sira."
+msgid ""
+"No free branch slot: all branches in your plan are in use. Add an extra "
+"branch on the Branches page first."
+msgstr ""
+"La iha fatin mamuk: filial hotu iha ita-nia planu uza hela. Aumenta uluk "
+"filial extra iha pájina Filial sira."
 
 #, python-format
 msgid "%(name)s is active again."
@@ -1106,6 +1142,12 @@ msgstr "Transferénsia banku"
 msgid "Transfer"
 msgstr "Transferénsia"
 
+msgid "Manual"
+msgstr "Manuál"
+
+msgid "API"
+msgstr "API"
+
 #, python-format
 msgid "Expense saved: %(what)s, %(amount)s."
 msgstr "Despeza rai ona: %(what)s, %(amount)s."
@@ -1125,6 +1167,57 @@ msgstr "Rendimentu rejistu ona: %(amount)s."
 
 msgid "Revenue entry deleted."
 msgstr "Rejistu rendimentu hamoos ona."
+
+msgid "e.g. Website, Mobile app, Delivery partner"
+msgstr "ez.: Website, Aplikasaun telemóvel, Parseiru entrega"
+
+msgid "Test (sandbox) key"
+msgstr "Xave teste (sandbox)"
+
+msgid "Test orders are not sent to the kitchen and never count as revenue."
+msgstr "Orden teste la ba kozinha no nunka konta hanesan rendimentu."
+
+msgid "Branches"
+msgstr "Filiál"
+
+msgid "Leave all unticked to allow every branch."
+msgstr "Husik hotu la marka atu permite filial hotu."
+
+msgid "Webhook URL"
+msgstr "URL webhook"
+
+msgid "Must start with https://"
+msgstr "Tenke hahú ho https://"
+
+msgid "Also send orders not placed through the API"
+msgstr "Haruka mós orden ne'ebé la mai husi API"
+
+msgid "Off: only orders created with your API keys. On: every order of your branches (QR, waiter, API)."
+msgstr "Mate: orden ne'ebé kria ho ita-nia xave API de'it. Moris: orden hotu husi ita-nia filial (QR, empregadu, API)."
+
+#, python-format
+msgid "You can have up to %(n)s active API keys."
+msgstr "Ita bele iha xave API ativu to'o %(n)s."
+
+#, python-format
+msgid "API key “%(name)s” revoked. Requests with it are now refused."
+msgstr "Xave API “%(name)s” kansela ona. Pedidu ho xave ne'e sei rejeita."
+
+msgid "API key saved."
+msgstr "Xave API rai ona."
+
+#, python-format
+msgid "You can have up to %(n)s webhooks."
+msgstr "Ita bele iha webhook to'o %(n)s."
+
+msgid "Webhook added. Its signing secret is shown below."
+msgstr "Webhook aumenta ona. Ninia segredu asinatura iha okos."
+
+msgid "Webhook removed."
+msgstr "Webhook hasai ona."
+
+msgid "Test event sent. Refresh in a few seconds to see the result."
+msgstr "Eventu teste haruka ona. Atualiza iha segundu balun nia laran atu haree rezultadu."
 
 msgid "Lower numbers appear first."
 msgstr "Númeru ki'ik mosu uluk."
@@ -1183,17 +1276,14 @@ msgstr "Kódigu QR"
 msgid "Staff"
 msgstr "Funsionáriu"
 
+msgid "Ordering API"
+msgstr "API orden"
+
 msgid "New order"
 msgstr "Pedidu foun"
 
 msgid "Order cancelled"
 msgstr "Pedidu kansela ona"
-
-msgid "This restaurant is not accepting orders right now."
-msgstr "Restaurante ne'e la simu pedidu agora."
-
-msgid "Invalid table."
-msgstr "Meza la válidu."
 
 msgid "Your cart is empty."
 msgstr "Ita-nia karriñu mamuk."
@@ -1206,6 +1296,12 @@ msgstr "Hili aumentu ne'ebé la válidu."
 
 msgid "Some items are no longer available."
 msgstr "Hahán balu la iha ona."
+
+msgid "This restaurant is not accepting orders right now."
+msgstr "Restaurante ne'e la simu pedidu agora."
+
+msgid "Invalid table."
+msgstr "Meza la válidu."
 
 #, python-format
 msgid "Cannot change order from %(from)s to %(to)s."
@@ -1958,14 +2054,257 @@ msgstr "Pedidu ne'ebé sukat"
 msgid "No orders marked ready in this period."
 msgstr "La iha pedidu marka prontu iha períodu ne'e."
 
+msgid "Let your website, mobile ordering app or delivery partners send orders to your branches. Orders appear live on the branch's dashboard and count as revenue when completed."
+msgstr "Permite ita-nia website, aplikasaun orden ka parseiru entrega haruka orden ba ita-nia filial. Orden mosu kedas iha painel filial no konta hanesan rendimentu bainhira remata."
+
+msgid "API documentation"
+msgstr "Dokumentasaun API"
+
+msgid "API access is disabled."
+msgstr "Asesu API la ativu."
+
+msgid "Business profile"
+msgstr "Perfil negósiu"
+
+msgid "Your new API key"
+msgstr "Ita-nia xave API foun"
+
+msgid "Copy it now: for your security it is shown only once."
+msgstr "Kopia agora: ba seguransa, nia mosu dala ida de'it."
+
+msgid "Afterwards only its last 4 characters are visible. If you lose it, revoke it and create a new one."
+msgstr "Depois karakter 4 ikus de'it mak bele haree. Se lakon, kansela no kria foun."
+
+msgid "Copied"
+msgstr "Kopia ona"
+
+msgid "Copy"
+msgstr "Kopia"
+
+msgid "API keys"
+msgstr "Xave API"
+
+msgid "Key"
+msgstr "Xave"
+
+msgid "Last used"
+msgstr "Uza ikus"
+
+msgid "Live"
+msgstr "Ativu"
+
+msgid "Revoked"
+msgstr "Kansela ona"
+
+#, python-format
+msgid "Created %(d)s"
+msgstr "Kria iha %(d)s"
+
+msgid "All branches"
+msgstr "Filiál hotu"
+
+msgid "Edit"
+msgstr "Edita"
+
+#, python-format
+msgid "Revoke “%(n)s”? Apps using it stop working immediately."
+msgstr "Kansela “%(n)s”? Aplikasaun ne'ebé uza sei para kedas."
+
+msgid "Revoke"
+msgstr "Kansela"
+
+msgid "No API keys yet."
+msgstr "Seidauk iha xave API."
+
+msgid "Create an API key"
+msgstr "Kria xave API"
+
+msgid "Create key"
+msgstr "Kria xave"
+
+msgid "API keys can be created once your business profile is verified."
+msgstr "Ita bele kria xave API bainhira perfil negósiu verifika ona."
+
+msgid "Webhooks"
+msgstr "Webhook"
+
+msgid "We send a POST request to your URL whenever an order is created or changes status (received, preparing, ready, completed, cancelled). Check the X-QRMenu-Signature header with the signing secret."
+msgstr "Ami haruka pedidu POST ba ita-nia URL bainhira orden kria ka muda estadu (simu, prepara hela, prontu, remata, kansela). Verifika header X-QRMenu-Signature ho segredu asinatura."
+
+msgid "On"
+msgstr "Moris"
+
+msgid "Off"
+msgstr "Mate"
+
+msgid "All orders"
+msgstr "Pedidu hotu"
+
+msgid "API orders"
+msgstr "Orden API"
+
+msgid "Send test"
+msgstr "Haruka teste"
+
+msgid "Turn off"
+msgstr "Hamate"
+
+msgid "Turn on"
+msgstr "Hamoris"
+
+msgid "Remove this webhook?"
+msgstr "Hasai webhook ne'e?"
+
+msgid "Remove"
+msgstr "Hasai"
+
+msgid "Signing secret"
+msgstr "Segredu asinatura"
+
+msgid "test"
+msgstr "teste"
+
+msgid "Add a webhook"
+msgstr "Aumenta webhook"
+
+msgid "Add webhook"
+msgstr "Aumenta webhook"
+
+msgid "Test orders"
+msgstr "Orden teste"
+
+msgid "Orders made with a test key. They are not sent to the kitchen and never count as revenue."
+msgstr "Orden ne'ebé halo ho xave teste. La ba kozinha no nunka konta hanesan rendimentu."
+
+msgid "Request log"
+msgstr "Rejistu pedidu"
+
+msgid "All keys"
+msgstr "Xave hotu"
+
+msgid "Result"
+msgstr "Rezultadu"
+
+msgid "All"
+msgstr "Hotu"
+
+msgid "Success"
+msgstr "Susesu"
+
+msgid "Errors"
+msgstr "Erru"
+
+msgid "Filter"
+msgstr "Filtra"
+
+msgid "Request"
+msgstr "Pedidu"
+
+msgid "The last 100 requests are shown; the log is kept for 90 days."
+msgstr "Pedidu 100 ikus mak hatudu; rejistu rai ba loron 90."
+
+msgid "No requests yet."
+msgstr "Seidauk iha pedidu."
+
+msgid "REST API with JSON, for your website, ordering app or delivery partner."
+msgstr "API REST ho JSON, ba ita-nia website, aplikasaun orden ka parseiru entrega."
+
+msgid "Base URL"
+msgstr "URL baze"
+
+msgid "Authentication"
+msgstr "Autentikasaun"
+
+msgid "Send your API key in the Authorization header of every request. Requests must use HTTPS."
+msgstr "Haruka ita-nia xave API iha header Authorization iha pedidu ida-idak. Pedidu tenke uza HTTPS."
+
+msgid "Keys starting with <code>qrm_test_</code> are test (sandbox) keys: every endpoint works the same, but orders are simulated. They are not sent to the kitchen and never count as revenue."
+msgstr "Xave ne'ebé hahú ho <code>qrm_test_</code> mak xave teste (sandbox): endpoint hotu funsiona hanesan, maibé orden simuladu. La ba kozinha no nunka konta hanesan rendimentu."
+
+#, python-format
+msgid "Each key may make %(rate)s requests per minute. Above that you get HTTP 429 with a Retry-After header. Every request is logged on the Ordering API page."
+msgstr "Xave ida-idak bele halo pedidu %(rate)s kada minutu. Liu ida ne'e ita simu HTTP 429 ho header Retry-After. Pedidu hotu rejistu iha pájina API orden."
+
+msgid "Errors use the HTTP status code and a JSON body with a code and a message:"
+msgstr "Erru uza kódigu estadu HTTP no JSON ho kódigu no mensajen:"
+
+msgid "Code"
+msgstr "Kódigu"
+
+msgid "Meaning"
+msgstr "Signifikadu"
+
+msgid "No key, wrong key, or the key was revoked."
+msgstr "La iha xave, xave sala, ka xave kansela ona."
+
+msgid "The request was not made over HTTPS."
+msgstr "Pedidu la halo liu husi HTTPS."
+
+msgid "The account is not on an active Pro plan, or the business profile is not verified. API access is switched off automatically."
+msgstr "Konta la iha planu Pro ativu, ka perfil negósiu seidauk verifika. Asesu API mate automátiku."
+
+msgid "The branch is not one this key may use."
+msgstr "Filial ne'e la'ós ida ne'ebé xave ne'e bele uza."
+
+msgid "Unknown order or endpoint."
+msgstr "Orden ka endpoint la koñesidu."
+
+msgid "The order can't be placed or changed: sold-out items, a total that doesn't match the menu prices, a branch that is closed, or a status change that isn't allowed."
+msgstr "Orden labele halo ka muda: item ne'ebé hotu ona, totál ne'ebé la tuir presu menu, filial ne'ebé taka, ka mudansa estadu ne'ebé la permite."
+
+msgid "Too many requests; wait a minute."
+msgstr "Pedidu barak liu; hein minutu ida."
+
+msgid "The branches this key can use (only live branches)."
+msgstr "Filial sira ne'ebé xave ne'e bele uza (filial ativu de'it)."
+
+msgid "Menu categories, items, add-ons and prices of one branch. Use the item and add-on ids in orders."
+msgstr "Kategoria menu, item, add-on no presu husi filial ida. Uza id item no add-on iha orden."
+
+msgid "Create an order. Prices always come from the menu; if you send a total and it doesn't match, the order is refused with the correct total. The order appears immediately on the branch's dashboard with a notification."
+msgstr "Kria orden. Presu mai husi menu nafatin; se ita haruka totál ne'ebé la loos, orden rejeita ho totál loos. Orden mosu kedas iha painel filial ho notifikasaun."
+
+msgid "Field"
+msgstr "Kampu"
+
+msgid "Branch id (optional when the key can use only one branch)."
+msgstr "Id filial (opsionál bainhira xave bele uza filial ida de'it)."
+
+msgid "1–50 lines: menu_item (id), quantity (1–50), options (add-on ids, optional), note (optional)."
+msgstr "Liña 1–50: menu_item (id), quantity (1–50), options (id add-on, opsionál), note (opsionál)."
+
+msgid "Optional. The total you expect; checked against the menu prices."
+msgstr "Opsionál. Totál ne'ebé ita hein; verifika ho presu menu."
+
+msgid "true when the customer already paid in your app (the order is recorded as paid)."
+msgstr "true bainhira kliente selu ona iha ita-nia aplikasaun (orden rejistu hanesan selu ona)."
+
+msgid "Optional."
+msgstr "Opsionál."
+
+msgid "Optional: your own order number. Sending the same reference again returns the existing order instead of creating a duplicate, so retries are safe."
+msgstr "Opsionál: ita-nia númeru orden rasik. Haruka referénsia hanesan fali sei fó fila orden ne'ebé iha ona, la kria duplikadu, nune'e koko fali seguru."
+
+msgid "Order details and current status."
+msgstr "Detalle orden no estadu atuál."
+
+msgid "Change the status. Statuses: received → preparing → ready → completed; an order can be cancelled until it is ready. Only completed orders count as revenue; cancelled orders never do."
+msgstr "Muda estadu. Estadu: received → preparing → ready → completed; orden bele kansela to'o prontu. Orden remata de'it mak konta hanesan rendimentu; orden kansela nunka."
+
+msgid "Add a webhook URL on the Ordering API page. When an order is created or its status changes, we POST this JSON to your URL (timeout 5 seconds, no redirects):"
+msgstr "Aumenta URL webhook iha pájina API orden. Bainhira orden kria ka muda estadu, ami POST JSON ne'e ba ita-nia URL (timeout segundu 5, la iha redirect):"
+
+msgid "Events: order.created, order.status_changed, and ping (the Send test button). To check that a request really comes from us, compute HMAC-SHA256 of the timestamp, a dot and the raw body with your signing secret, and compare it with the signature:"
+msgstr "Eventu: order.created, order.status_changed, no ping (butaun Haruka teste). Atu verifika katak pedidu mai husi ami duni, kalkula HMAC-SHA256 husi timestamp, pontu ida no body orijinál ho ita-nia segredu asinatura, no kompara ho asinatura:"
+
+msgid "When an API order is completed, it is added to the branch's revenue as an entry with the source “API – key name”. On the Branches page you can filter revenue by source."
+msgstr "Bainhira orden API remata, nia tama ba rendimentu filial nian hanesan rejistu ho orijen “API – naran xave”. Iha pájina Filial sira ita bele filtra rendimentu tuir orijen."
+
 msgid "Dashboard"
 msgstr "Painél"
 
 msgid "Main navigation"
 msgstr "Navegasaun prinsipál"
-
-msgid "Live"
-msgstr "Ativu"
 
 msgid "Not public yet"
 msgstr "Seidauk públiku"
@@ -2011,9 +2350,6 @@ msgstr "Restaurante"
 
 msgid "Billing"
 msgstr "Faturasaun"
-
-msgid "Branches"
-msgstr "Filiál"
 
 msgid "View public menu"
 msgstr "Haree menu públiku"
@@ -2077,8 +2413,13 @@ msgstr "Haruka fali email"
 msgid "Branch waiting for approval."
 msgstr "Filial hein aprovasaun."
 
-msgid "The platform team checks every new branch. Until it is approved, the branch is hidden and can't record revenue. You can set up its menu and tables in the meantime."
-msgstr "Ekipa plataforma verifika filial foun ida-idak. To'o aprova, filial subar no labele rejistu rendimentu. Entretantu ita bele prepara ninia menu no meza."
+msgid ""
+"The platform team checks every new branch. Until it is approved, the branch "
+"is hidden and can't record revenue. You can set up its menu and tables in "
+"the meantime."
+msgstr ""
+"Ekipa plataforma verifika filial foun ida-idak. To'o aprova, filial subar no "
+"labele rejistu rendimentu. Entretantu ita bele prepara ninia menu no meza."
 
 msgid "Branch request not approved."
 msgstr "Pedidu filial la aprova."
@@ -2151,8 +2492,12 @@ msgstr "Ita-nia perfil negósiu presiza muda."
 msgid "Complete your business profile."
 msgstr "Kompleta ita-nia perfil negósiu."
 
-msgid "We verify every business before it can add branches. It takes two minutes: registration number, owner, address and phone."
-msgstr "Ami verifika negósiu ida-idak antes bele aumenta filial. Presiza minutu rua de'it: númeru rejistu, na'in, enderesu no telefone."
+msgid ""
+"We verify every business before it can add branches. It takes two minutes: "
+"registration number, owner, address and phone."
+msgstr ""
+"Ami verifika negósiu ida-idak antes bele aumenta filial. Presiza minutu rua "
+"de'it: númeru rejistu, na'in, enderesu no telefone."
 
 msgid "Complete now"
 msgstr "Kompleta agora"
@@ -2160,8 +2505,14 @@ msgstr "Kompleta agora"
 msgid "Complete your business profile"
 msgstr "Kompleta ita-nia perfil negósiu"
 
-msgid "Please add your business registration number (e.g. SERVE certificate or tax number), the owner's name, your address and phone number. Our team verifies it, and then you can add branches."
-msgstr "Favór aumenta ita-nia númeru rejistu negósiu (ez.: sertifikadu SERVE ka NIF), naran na'in, enderesu no númeru telefone. Ami-nia ekipa verifika, depois ita bele aumenta filial."
+msgid ""
+"Please add your business registration number (e.g. SERVE certificate or tax "
+"number), the owner's name, your address and phone number. Our team verifies "
+"it, and then you can add branches."
+msgstr ""
+"Favór aumenta ita-nia númeru rejistu negósiu (ez.: sertifikadu SERVE ka "
+"NIF), naran na'in, enderesu no númeru telefone. Ami-nia ekipa verifika, "
+"depois ita bele aumenta filial."
 
 msgid "Remind me later"
 msgstr "Fó hanoin fali depois"
@@ -2276,9 +2627,12 @@ msgstr "fulan"
 
 #, python-format
 msgid "Main branch + %(n)s branch; extra branches $%(price)s/month each"
-msgid_plural "Main branch + %(n)s branches; extra branches $%(price)s/month each"
-msgstr[0] "Filial prinsipál + filial %(n)s; filial extra $%(price)s/fulan ida-idak"
-msgstr[1] "Filial prinsipál + filial %(n)s; filial extra $%(price)s/fulan ida-idak"
+msgid_plural ""
+"Main branch + %(n)s branches; extra branches $%(price)s/month each"
+msgstr[0] ""
+"Filial prinsipál + filial %(n)s; filial extra $%(price)s/fulan ida-idak"
+msgstr[1] ""
+"Filial prinsipál + filial %(n)s; filial extra $%(price)s/fulan ida-idak"
 
 #, python-format
 msgid "%(t)s tables · %(d)s dishes · %(s)s staff"
@@ -2314,11 +2668,18 @@ msgstr ""
 msgid "Waiting for approval"
 msgstr "Hein aprovasaun"
 
-msgid "This new branch is being reviewed by the platform team. You can use it once it is approved."
-msgstr "Filial foun ne'e ekipa plataforma revee hela. Ita bele uza bainhira aprova ona."
+msgid ""
+"This new branch is being reviewed by the platform team. You can use it once "
+"it is approved."
+msgstr ""
+"Filial foun ne'e ekipa plataforma revee hela. Ita bele uza bainhira aprova "
+"ona."
 
-msgid "This branch has been suspended or was not approved by the platform. Ask the owner for details."
-msgstr "Filial ne'e suspende ka la aprova husi plataforma. Husu detalle ba na'in."
+msgid ""
+"This branch has been suspended or was not approved by the platform. Ask the "
+"owner for details."
+msgstr ""
+"Filial ne'e suspende ka la aprova husi plataforma. Husu detalle ba na'in."
 
 msgid "Deactivated"
 msgstr "La ativu"
@@ -2333,14 +2694,22 @@ msgstr "Sub-filial husi %(main)s."
 msgid "Open its dashboard"
 msgstr "Loke ninia painel"
 
-msgid "Waiting for approval by the platform team. Meanwhile you can set up its menu, tables and staff; it goes live and can record revenue once approved."
-msgstr "Hein aprovasaun husi ekipa plataforma. Entretantu ita bele prepara menu, meza no ekipa; sei ativu no bele rejistu rendimentu bainhira aprova ona."
+msgid ""
+"Waiting for approval by the platform team. Meanwhile you can set up its "
+"menu, tables and staff; it goes live and can record revenue once approved."
+msgstr ""
+"Hein aprovasaun husi ekipa plataforma. Entretantu ita bele prepara menu, "
+"meza no ekipa; sei ativu no bele rejistu rendimentu bainhira aprova ona."
 
 msgid "Request not approved"
 msgstr "Pedidu la aprova"
 
-msgid "Correct the branch details below if needed, optionally add a new storefront photo, and send it again."
-msgstr "Korrije detalle filial iha okos se presiza, bele aumenta foto fachada foun, no haruka fali."
+msgid ""
+"Correct the branch details below if needed, optionally add a new storefront "
+"photo, and send it again."
+msgstr ""
+"Korrije detalle filial iha okos se presiza, bele aumenta foto fachada foun, "
+"no haruka fali."
 
 msgid "Send again"
 msgstr "Haruka fali"
@@ -2423,12 +2792,15 @@ msgstr "Loron tuir mai"
 msgid "Today"
 msgstr "Ohin"
 
+msgid "Revenue source"
+msgstr "Orijen rendimentu"
+
 msgid "All branches · this day"
 msgstr "Filial hotu · loron ne'e"
 
 #, python-format
-msgid "Orders %(o)s · recorded %(m)s"
-msgstr "Orden %(o)s · rejistu %(m)s"
+msgid "Orders %(o)s · manual %(m)s · API %(a)s"
+msgstr "Orden %(o)s · manuál %(m)s · API %(a)s"
 
 #, python-format
 msgid "Week from %(d)s"
@@ -2456,9 +2828,6 @@ msgstr "Filial prinsipál"
 msgid "incl. %(m)s recorded"
 msgstr "inklui %(m)s rejistu"
 
-msgid "All branches"
-msgstr "Filiál hotu"
-
 msgid "This day compared"
 msgstr "Kompara loron ne'e"
 
@@ -2469,12 +2838,20 @@ msgid "Branch slots"
 msgstr "Fatin filial"
 
 #, python-format
-msgid "Your plan includes %(included)s branches besides the main branch; you have %(extra)s extra. Pending, rejected and deactivated branches don't use a slot."
-msgstr "Ita-nia planu inklui filial %(included)s aleinde filial prinsipál; ita iha %(extra)s extra. Filial pendente, rejeita no la ativu la uza fatin."
+msgid ""
+"Your plan includes %(included)s branches besides the main branch; you have "
+"%(extra)s extra. Pending, rejected and deactivated branches don't use a slot."
+msgstr ""
+"Ita-nia planu inklui filial %(included)s aleinde filial prinsipál; ita iha "
+"%(extra)s extra. Filial pendente, rejeita no la ativu la uza fatin."
 
 #, python-format
-msgid "Invoice %(number)s (%(amount)s) for an extra branch is waiting for payment. The slot is added once it is paid."
-msgstr "Fatura %(number)s (%(amount)s) ba filial extra hein pagamentu. Fatin sei aumenta bainhira selu ona."
+msgid ""
+"Invoice %(number)s (%(amount)s) for an extra branch is waiting for payment. "
+"The slot is added once it is paid."
+msgstr ""
+"Fatura %(number)s (%(amount)s) ba filial extra hein pagamentu. Fatin sei "
+"aumenta bainhira selu ona."
 
 #, python-format
 msgid "Add an extra branch (%(price)s/month)"
@@ -2486,14 +2863,19 @@ msgstr "Hasai filial extra ida ne'ebé la uza husi ita-nia subskrisaun?"
 msgid "Remove an unused extra branch"
 msgstr "Hasai filial extra ne'ebé la uza"
 
-msgid "Business profile"
-msgstr "Perfil negósiu"
+msgid ""
+"You can request branches once the platform team has verified your business "
+"profile."
+msgstr ""
+"Ita bele husu filial bainhira ekipa plataforma verifika ona ita-nia perfil "
+"negósiu."
 
-msgid "You can request branches once the platform team has verified your business profile."
-msgstr "Ita bele husu filial bainhira ekipa plataforma verifika ona ita-nia perfil negósiu."
-
-msgid "To request branches, first complete your business profile. The platform team verifies it."
-msgstr "Atu husu filial, kompleta uluk ita-nia perfil negósiu. Ekipa plataforma sei verifika."
+msgid ""
+"To request branches, first complete your business profile. The platform team "
+"verifies it."
+msgstr ""
+"Atu husu filial, kompleta uluk ita-nia perfil negósiu. Ekipa plataforma sei "
+"verifika."
 
 msgid "View"
 msgstr "Haree"
@@ -2501,11 +2883,22 @@ msgstr "Haree"
 msgid "Request a new branch"
 msgstr "Husu filial foun"
 
-msgid "The platform team reviews every new branch: it must be the same business, using your brand name. Until it is approved, the branch is hidden and can't record revenue. It gets its own QR codes, tables and staff; you stay the owner, with the same login."
-msgstr "Ekipa plataforma revee filial foun ida-idak: tenke negósiu hanesan, uza ita-nia naran marka. To'o aprova, filial subar no labele rejistu rendimentu. Nia iha kódigu QR, meza no ekipa rasik; ita kontinua na'in, ho login hanesan."
+msgid ""
+"The platform team reviews every new branch: it must be the same business, "
+"using your brand name. Until it is approved, the branch is hidden and can't "
+"record revenue. It gets its own QR codes, tables and staff; you stay the "
+"owner, with the same login."
+msgstr ""
+"Ekipa plataforma revee filial foun ida-idak: tenke negósiu hanesan, uza ita-"
+"nia naran marka. To'o aprova, filial subar no labele rejistu rendimentu. Nia "
+"iha kódigu QR, meza no ekipa rasik; ita kontinua na'in, ho login hanesan."
 
-msgid "All branch slots in your plan are in use. You can still send the request; it is activated once you add an extra branch."
-msgstr "Fatin filial hotu iha ita-nia planu uza hela. Ita bele nafatin haruka pedidu; sei ativa bainhira ita aumenta filial extra."
+msgid ""
+"All branch slots in your plan are in use. You can still send the request; it "
+"is activated once you add an extra branch."
+msgstr ""
+"Fatin filial hotu iha ita-nia planu uza hela. Ita bele nafatin haruka "
+"pedidu; sei ativa bainhira ita aumenta filial extra."
 
 msgid "Send request"
 msgstr "Haruka pedidu"
@@ -2513,17 +2906,29 @@ msgstr "Haruka pedidu"
 msgid "Needs changes"
 msgstr "Presiza muda"
 
-msgid "The legal details of your business. The platform team verifies them before you can add branches; all branches must belong to this same business."
-msgstr "Detalle legál ita-nia negósiu. Ekipa plataforma verifika antes ita bele aumenta filial; filial hotu tenke pertense ba negósiu ida ne'e."
+msgid ""
+"The legal details of your business. The platform team verifies them before "
+"you can add branches; all branches must belong to this same business."
+msgstr ""
+"Detalle legál ita-nia negósiu. Ekipa plataforma verifika antes ita bele "
+"aumenta filial; filial hotu tenke pertense ba negósiu ida ne'e."
 
-msgid "Thank you! We are checking your details, usually within one working day. You can keep using QR Menu and recording revenue in the meantime."
-msgstr "Obrigadu! Ami verifika hela ita-nia detalle, baibain iha loron servisu ida nia laran. Entretantu ita bele kontinua uza QR Menu no rejistu rendimentu."
+msgid ""
+"Thank you! We are checking your details, usually within one working day. You "
+"can keep using QR Menu and recording revenue in the meantime."
+msgstr ""
+"Obrigadu! Ami verifika hela ita-nia detalle, baibain iha loron servisu ida "
+"nia laran. Entretantu ita bele kontinua uza QR Menu no rejistu rendimentu."
 
 msgid "Please correct your details and send them again."
 msgstr "Favór korrije ita-nia detalle no haruka fali."
 
-msgid "Your business is verified. You can request branches on the Branches page. Changing these details sends them for review again."
-msgstr "Ita-nia negósiu verifika ona. Ita bele husu filial iha pájina Filial sira. Muda detalle hirak ne'e sei haruka fali ba revizaun."
+msgid ""
+"Your business is verified. You can request branches on the Branches page. "
+"Changing these details sends them for review again."
+msgstr ""
+"Ita-nia negósiu verifika ona. Ita bele husu filial iha pájina Filial sira. "
+"Muda detalle hirak ne'e sei haruka fali ba revizaun."
 
 msgid "Save and send for review"
 msgstr "Rai no haruka ba revizaun"
@@ -2706,9 +3111,6 @@ msgstr "Rai despeza"
 msgid "Expenses in this period"
 msgstr "Despeza iha períodu ne'e"
 
-msgid "Edit"
-msgstr "Edita"
-
 msgid "Delete this expense?"
 msgstr "Hamoos despeza ne'e?"
 
@@ -2768,9 +3170,6 @@ msgid ""
 msgstr ""
 "Estra opsionál ne'ebé kliente bele hili, ez. “Manutolun sona +$0.50”. Uza "
 "folin 0 ba opsaun gratuitu hanesan “La ho liis”."
-
-msgid "Remove"
-msgstr "Hasai"
 
 msgid "Translations"
 msgstr "Tradusaun"
@@ -3007,17 +3406,11 @@ msgstr "Pedidu hotu husi kódigu QR no serbidór sira."
 msgid "Filter by status"
 msgstr "Filtra tuir estadu"
 
-msgid "All"
-msgstr "Hotu"
-
 msgid "Order # or name"
 msgstr "Nú. pedidu ka naran"
 
 msgid "Order number or customer name"
 msgstr "Númeru pedidu ka naran kliente"
-
-msgid "Filter"
-msgstr "Filtra"
 
 #, python-format
 msgid "Page %(n)s of %(total)s"
@@ -3084,9 +3477,6 @@ msgstr "Meza okupadu"
 
 msgid "Latest orders"
 msgstr "Pedidu foun liu"
-
-msgid "All orders"
-msgstr "Pedidu hotu"
 
 msgid "New quotation"
 msgstr "Kotasaun foun"
@@ -3269,6 +3659,9 @@ msgstr "Rendimentu ohin"
 msgid "Recorded entries"
 msgstr "Rejistu sira"
 
+msgid "Source"
+msgstr "Orijen"
+
 msgid "Delete this entry?"
 msgstr "Hamoos rejistu ne'e?"
 
@@ -3284,8 +3677,12 @@ msgstr "Rejistu rendimentu"
 msgid "This branch is deactivated."
 msgstr "Filial ne'e la ativu."
 
-msgid "This branch is waiting for approval by the platform team. It can record revenue once approved."
-msgstr "Filial ne'e hein aprovasaun husi ekipa plataforma. Bele rejistu rendimentu bainhira aprova ona."
+msgid ""
+"This branch is waiting for approval by the platform team. It can record "
+"revenue once approved."
+msgstr ""
+"Filial ne'e hein aprovasaun husi ekipa plataforma. Bele rejistu rendimentu "
+"bainhira aprova ona."
 
 msgid "This branch is not active, so it can't record revenue."
 msgstr "Filial ne'e la ativu, nune'e labele rejistu rendimentu."
@@ -3323,9 +3720,6 @@ msgstr "Imprime slip teste"
 
 msgid "By"
 msgstr "Husi"
-
-msgid "Result"
-msgstr "Rezultadu"
 
 msgid "Slip printed"
 msgstr "Slip imprime ona"
@@ -3523,6 +3917,9 @@ msgstr ""
 "Loke filiál barak liu ho login hanesan, kopia ita-nia menu ba sira ho klik "
 "ida, no haree rendimentu no lukru ba filiál ida-idak no ba negósiu tomak."
 
+msgid "Connect your own website, mobile ordering app or delivery partners. Their orders arrive live in the right branch, are counted as revenue when completed, and you get API keys, webhooks, a request log and a test key."
+msgstr "Liga ita-nia website, aplikasaun orden ka parseiru entrega. Sira-nia orden to'o kedas ba filial loos, konta hanesan rendimentu bainhira remata, no ita hetan xave API, webhook, rejistu pedidu no xave teste."
+
 msgid ""
 "Write down what you spend each day and see your real profit for today, this "
 "week, this month and this year."
@@ -3543,6 +3940,9 @@ msgstr "Iha iha:"
 
 msgid "Not included in your current plan."
 msgstr "La inklui iha ita-nia planu atuál."
+
+msgid "Upgrade to Pro"
+msgstr "Muda ba Pro"
 
 msgid "See plans & upgrade"
 msgstr "Haree planu no hasa'e"
@@ -3685,6 +4085,9 @@ msgid_plural "Main branch + %(n)s branches, one login"
 msgstr[0] "Filial prinsipál + filial %(n)s, login ida de'it"
 msgstr[1] "Filial prinsipál + filial %(n)s, login ida de'it"
 
+msgid "Ordering API for your website, apps & delivery partners"
+msgstr "API orden ba ita-nia website, aplikasaun & parseiru entrega"
+
 msgid "Get started"
 msgstr "Hahú"
 
@@ -3711,47 +4114,95 @@ msgid "1. The service"
 msgstr "1. Servisu"
 
 #, python-format
-msgid "%(name)s provides QR code menus, table ordering and restaurant management tools to food businesses (\"you\"). By registering, you accept these terms on behalf of your business."
-msgstr "%(name)s fornese menu ho kódigu QR, orden iha meza no ferramenta jestaun ba negósiu ai-han (\"ita\"). Ho rejistu, ita aseita termu hirak ne'e ba ita-nia negósiu."
+msgid ""
+"%(name)s provides QR code menus, table ordering and restaurant management "
+"tools to food businesses (\"you\"). By registering, you accept these terms "
+"on behalf of your business."
+msgstr ""
+"%(name)s fornese menu ho kódigu QR, orden iha meza no ferramenta jestaun ba "
+"negósiu ai-han (\"ita\"). Ho rejistu, ita aseita termu hirak ne'e ba ita-nia "
+"negósiu."
 
 msgid "2. Your account"
 msgstr "2. Ita-nia konta"
 
-msgid "You must give correct information about your business and keep your login details secret. You are responsible for everything done with your account and your staff accounts. We may ask you to verify your business (for example with your business registration or tax number) before you can use some features."
-msgstr "Ita tenke fó informasaun loos kona-ba ita-nia negósiu no rai ita-nia detalle login sekretu. Ita responsável ba buat hotu ne'ebé halo ho ita-nia konta no konta ekipa. Ami bele husu verifika ita-nia negósiu (ez. ho rejistu negósiu ka númeru impostu) antes ita bele uza funsaun balun."
+msgid ""
+"You must give correct information about your business and keep your login "
+"details secret. You are responsible for everything done with your account "
+"and your staff accounts. We may ask you to verify your business (for example "
+"with your business registration or tax number) before you can use some "
+"features."
+msgstr ""
+"Ita tenke fó informasaun loos kona-ba ita-nia negósiu no rai ita-nia detalle "
+"login sekretu. Ita responsável ba buat hotu ne'ebé halo ho ita-nia konta no "
+"konta ekipa. Ami bele husu verifika ita-nia negósiu (ez. ho rejistu negósiu "
+"ka númeru impostu) antes ita bele uza funsaun balun."
 
 msgid "3. Branches"
 msgstr "3. Filial sira"
 
-msgid "All branches in one account must be owned and operated by the same business, under the same business registration and brand name."
-msgstr "Filial hotu iha konta ida tenke na'in no jere husi negósiu hanesan, ho rejistu negósiu no naran marka hanesan."
+msgid ""
+"All branches in one account must be owned and operated by the same business, "
+"under the same business registration and brand name."
+msgstr ""
+"Filial hotu iha konta ida tenke na'in no jere husi negósiu hanesan, ho "
+"rejistu negósiu no naran marka hanesan."
 
-msgid "Each new branch is reviewed by our team before it is activated. A branch that belongs to a different business is not allowed: we may suspend it, or move it to a separate account that is billed separately."
-msgstr "Ami-nia ekipa revee filial foun ida-idak antes ativa. Filial husi negósiu seluk la permite: ami bele suspende ka muda ba konta separadu ne'ebé fatura separadu."
+msgid ""
+"Each new branch is reviewed by our team before it is activated. A branch "
+"that belongs to a different business is not allowed: we may suspend it, or "
+"move it to a separate account that is billed separately."
+msgstr ""
+"Ami-nia ekipa revee filial foun ida-idak antes ativa. Filial husi negósiu "
+"seluk la permite: ami bele suspende ka muda ba konta separadu ne'ebé fatura "
+"separadu."
 
 msgid "4. Plans and payment"
 msgstr "4. Planu no pagamentu"
 
-msgid "Plans are billed monthly in US dollars. Each plan includes a fixed number of branches; extra branches are a monthly add-on. If an invoice is not paid after the grace period, ordering is switched off until it is paid. Prices may change with 30 days' notice."
-msgstr "Planu sira fatura kada fulan iha dólar amerikanu. Planu ida-idak inklui númeru filial fixu; filial extra mak add-on kada fulan. Se fatura la selu depois períodu toleránsia, orden sei mate to'o selu. Presu bele muda ho avizu loron 30."
+msgid ""
+"Plans are billed monthly in US dollars. Each plan includes a fixed number of "
+"branches; extra branches are a monthly add-on. If an invoice is not paid "
+"after the grace period, ordering is switched off until it is paid. Prices "
+"may change with 30 days' notice."
+msgstr ""
+"Planu sira fatura kada fulan iha dólar amerikanu. Planu ida-idak inklui "
+"númeru filial fixu; filial extra mak add-on kada fulan. Se fatura la selu "
+"depois períodu toleránsia, orden sei mate to'o selu. Presu bele muda ho "
+"avizu loron 30."
 
 msgid "5. Your data"
 msgstr "5. Ita-nia dadus"
 
-msgid "Your menus, orders and revenue records belong to you. We use them only to provide the service and keep each branch's data separate. We don't sell your data."
-msgstr "Ita-nia menu, orden no rejistu rendimentu mak ita-nian. Ami uza de'it atu fó servisu no rai dadus filial ida-idak separadu. Ami la fa'an ita-nia dadus."
+msgid ""
+"Your menus, orders and revenue records belong to you. We use them only to "
+"provide the service and keep each branch's data separate. We don't sell your "
+"data."
+msgstr ""
+"Ita-nia menu, orden no rejistu rendimentu mak ita-nian. Ami uza de'it atu fó "
+"servisu no rai dadus filial ida-idak separadu. Ami la fa'an ita-nia dadus."
 
 msgid "6. Acceptable use"
 msgstr "6. Uza ne'ebé permite"
 
-msgid "Don't use the service for anything illegal, to mislead customers, or to disrupt the platform. We may suspend accounts that break these terms."
-msgstr "Labele uza servisu ba buat ilegál, atu bosok kliente, ka atu estraga plataforma. Ami bele suspende konta ne'ebé viola termu hirak ne'e."
+msgid ""
+"Don't use the service for anything illegal, to mislead customers, or to "
+"disrupt the platform. We may suspend accounts that break these terms."
+msgstr ""
+"Labele uza servisu ba buat ilegál, atu bosok kliente, ka atu estraga "
+"plataforma. Ami bele suspende konta ne'ebé viola termu hirak ne'e."
 
 msgid "7. Liability"
 msgstr "7. Responsabilidade"
 
-msgid "We work hard to keep the service available, but we can't guarantee it will always be uninterrupted. To the extent the law allows, we are not liable for indirect losses such as lost sales."
-msgstr "Ami servisu maka'as atu servisu disponível, maibé ami labele garante katak nunka para. Tuir lei permite, ami la responsável ba lakon indiretu hanesan fa'an ne'ebé lakon."
+msgid ""
+"We work hard to keep the service available, but we can't guarantee it will "
+"always be uninterrupted. To the extent the law allows, we are not liable for "
+"indirect losses such as lost sales."
+msgstr ""
+"Ami servisu maka'as atu servisu disponível, maibé ami labele garante katak "
+"nunka para. Tuir lei permite, ami la responsável ba lakon indiretu hanesan "
+"fa'an ne'ebé lakon."
 
 msgid "8. Contact"
 msgstr "8. Kontaktu"
@@ -3762,9 +4213,6 @@ msgstr "Pergunta kona-ba termu hirak ne'e:"
 #, python-format
 #~ msgid "Branch “%(name)s” created. Add its staff accounts here."
 #~ msgstr "Filial “%(name)s” kria ona. Aumenta konta ekipa iha ne'e."
-
-#~ msgid "Add a branch"
-#~ msgstr "Aumenta filiál"
 
 #~ msgid ""
 #~ "A new sub-branch gets its own QR codes, tables, staff and subscription. "

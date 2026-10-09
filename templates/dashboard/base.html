@@ -42,6 +42,7 @@
     {% if can.manage_restaurant %}<a href="{% url 'dashboard:settings' r.slug %}" class="{% if '/settings/' in request.path %}active{% endif %}">{% icon "store" %}<span>{% translate "Restaurant" %}</span></a>{% endif %}
     {% if can.manage_billing %}<a href="{% url 'dashboard:billing' r.slug %}" class="{% if '/billing/' in request.path %}active{% endif %}">{% icon "cash" %}<span>{% translate "Billing" %}</span></a>{% endif %}
     {% if can.manage_staff and r.is_main_branch %}<a href="{% url 'dashboard:branches' r.slug %}" class="{% if '/branches/' in request.path %}active{% endif %}">{% icon "store" %}<span>{% translate "Branches" %}</span>{% if not request.features.branches %}<span class="pro-badge">PRO</span>{% endif %}</a>{% endif %}
+    {% if can.manage_staff and r.is_main_branch %}<a href="{% url 'dashboard:api' r.slug %}" class="{% if '/api/' in request.path %}active{% endif %}">{% icon "code" %}<span>{% translate "Ordering API" %}</span>{% if not request.features.api %}<span class="pro-badge">PRO</span>{% endif %}</a>{% endif %}
     {% if can.manage_staff %}<a href="{% url 'dashboard:staff' r.slug %}" class="{% if '/staff/' in request.path %}active{% endif %}">{% icon "users" %}<span>{% translate "Staff" %}</span></a>{% endif %}
     {% endif %}
   </nav>

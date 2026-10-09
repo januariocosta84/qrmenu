@@ -958,11 +958,21 @@ def branches(request):
     month_from = day.replace(day=1)
     month_to = (month_from.replace(day=28) + timedelta(days=4)).replace(day=1) - timedelta(days=1)
     rows = []
-    zero = {"revenue": Decimal("0"), "orders_revenue": Decimal("0"), "recorded_revenue": Decimal("0")}
+    zero = {f: Decimal("0") for f in ("revenue", "orders_revenue", "recorded_revenue", "manual_revenue", "api_revenue")}
     total = {"day": dict(zero), "week": dict(zero), "month": dict(zero)}
+    # Revenue source filter: all, QR & waiter orders, manual entries, the Ordering API, or one API key.
+    from apps.integrations.models import ApiKey
+
+    api_keys = list(ApiKey.objects.filter(restaurant=r, is_sandbox=False).order_by("name"))
+    sources = [("", _("All sources")), ("orders", _("Orders (QR & waiter)")), ("manual", _("Manual entries")),
+               ("api", _("Ordering API (all keys)"))] + [(f"key:{k.pk}", k.source_label) for k in api_keys]
+    source = request.GET.get("source", "")
+    if source not in dict(sources):
+        source = ""
     for b in family:
-        cells = {"day": report.totals(b, day, day), "week": report.totals(b, week_from, week_from + timedelta(days=6)),
-                 "month": report.totals(b, month_from, month_to)}
+        cells = {"day": report.totals(b, day, day, source),
+                 "week": report.totals(b, week_from, week_from + timedelta(days=6), source),
+                 "month": report.totals(b, month_from, month_to, source)}
         if not b.is_closed or any(c["revenue"] for c in cells.values()):
             for k, c in cells.items():
                 for f in zero:
@@ -973,7 +983,7 @@ def branches(request):
         row["pct"] = round(float(row["day"]["revenue"] * 100 / peak), 1)
     return render(request, "dashboard/branches.html", {
         "rows": rows, "total": total, "form": form, "day": day, "is_today": day == today,
-        "profile": profile, "slots": branch_slots(r),
+        "profile": profile, "slots": branch_slots(r), "sources": sources, "source": source,
         "prev_day": day - timedelta(days=1), "next_day": day + timedelta(days=1) if day < today else None,
         "week_from": week_from, "month_from": month_from,
     })

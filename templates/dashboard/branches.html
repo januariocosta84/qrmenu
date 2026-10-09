@@ -12,16 +12,17 @@
 
 {# Day picker: today by default, any past day #}
 <form method="get" class="range-bar day-bar">
-  <a class="btn" href="?date={{ prev_day|date:'Y-m-d' }}" aria-label="{% translate "Previous day" %}">{% icon "chevron-left" %}</a>
+  <a class="btn" href="?date={{ prev_day|date:'Y-m-d' }}&amp;source={{ source|urlencode }}" aria-label="{% translate "Previous day" %}">{% icon "chevron-left" %}</a>
   <input type="date" name="date" value="{{ day|date:'Y-m-d' }}" max="{% now 'Y-m-d' %}" aria-label="{% translate "Day" %}" onchange="this.form.submit()">
-  {% if next_day %}<a class="btn" href="?date={{ next_day|date:'Y-m-d' }}" aria-label="{% translate "Next day" %}">{% icon "chevron-right" %}</a>{% endif %}
-  {% if not is_today %}<a class="btn btn-ghost" href="?">{% translate "Today" %}</a>{% endif %}
+  {% if next_day %}<a class="btn" href="?date={{ next_day|date:'Y-m-d' }}&amp;source={{ source|urlencode }}" aria-label="{% translate "Next day" %}">{% icon "chevron-right" %}</a>{% endif %}
+  {% if not is_today %}<a class="btn btn-ghost" href="?source={{ source|urlencode }}">{% translate "Today" %}</a>{% endif %}
   <strong class="day-title">{% if is_today %}{% translate "Today" %} · {% endif %}{{ day|date:"l j F Y" }}</strong>
+  <select name="source" aria-label="{% translate "Revenue source" %}" onchange="this.form.submit()">{% for value, label in sources %}<option value="{{ value }}"{% if value == source %} selected{% endif %}>{{ label }}</option>{% endfor %}</select>
 </form>
 
 <div class="kpi-row">
   <div class="kpi"><span class="kpi-label">{% translate "All branches · this day" %}</span><strong class="kpi-value">{{ total.day.revenue|money:sym }}</strong>
-    <span class="kpi-delta is-flat"><small>{% blocktranslate trimmed with o=total.day.orders_revenue|money:sym m=total.day.recorded_revenue|money:sym %}Orders {{ o }} · recorded {{ m }}{% endblocktranslate %}</small></span></div>
+    <span class="kpi-delta is-flat"><small>{% blocktranslate trimmed with o=total.day.orders_revenue|money:sym m=total.day.manual_revenue|money:sym a=total.day.api_revenue|money:sym %}Orders {{ o }} · manual {{ m }} · API {{ a }}{% endblocktranslate %}</small></span></div>
   <div class="kpi"><span class="kpi-label">{% blocktranslate trimmed with d=week_from|date:"j M" %}Week from {{ d }}{% endblocktranslate %}</span><strong class="kpi-value">{{ total.week.revenue|money:sym }}</strong></div>
   <div class="kpi"><span class="kpi-label">{{ month_from|date:"F Y" }}</span><strong class="kpi-value">{{ total.month.revenue|money:sym }}</strong></div>
 </div>

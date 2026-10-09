@@ -57,10 +57,23 @@ class RevenueEntry(models.Model):
     note = models.CharField(max_length=200, blank=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
     created_at = models.DateTimeField(auto_now_add=True)
+    # "manual" = typed in by staff; "api" = a completed order from the Ordering API (added automatically).
+    MANUAL, API = "manual", "api"
+    source = models.CharField(max_length=10, choices=[(MANUAL, _("Manual")), (API, _("API"))], default=MANUAL)
+    api_key = models.ForeignKey("integrations.ApiKey", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    api_key_name = models.CharField(max_length=60, blank=True)
+    order = models.OneToOneField("orders.Order", null=True, blank=True, on_delete=models.SET_NULL,
+                                 related_name="revenue_entry")
 
     class Meta:
         ordering = ["-date", "-id"]
         indexes = [models.Index(fields=["restaurant", "date"])]
+
+    @property
+    def source_label(self) -> str:
+        if self.source == self.API:
+            return f"API – {self.api_key.name if self.api_key else self.api_key_name}"
+        return str(_("Manual"))
 
     def __str__(self):
         return f"{self.date} {self.amount} ({self.method})"

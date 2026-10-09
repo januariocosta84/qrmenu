@@ -34,6 +34,7 @@ class Plan(TimeStampedModel):
     feature_quotations = models.BooleanField(default=False, help_text=_("Quotations for catering and procurement bids."))
     feature_expenses = models.BooleanField(default=False, help_text=_("Daily expenses and profit per day, week, month and year."))
     feature_branches = models.BooleanField(default=False, help_text=_("Several branches under one owner, with an all-branches overview."))
+    feature_api = models.BooleanField(default=False, help_text=_("Ordering API for websites, apps and delivery partners."))
 
     included_branches = models.PositiveSmallIntegerField(
         default=0, validators=[MaxValueValidator(100)],
@@ -44,7 +45,7 @@ class Plan(TimeStampedModel):
         help_text="Monthly price of each extra branch above the included ones.",
     )
 
-    FEATURES = ("analytics", "cash_register", "quotations", "expenses", "branches")
+    FEATURES = ("analytics", "cash_register", "quotations", "expenses", "branches", "api")
 
     class Meta:
         ordering = ["position", "price_monthly", "name"]

@@ -12,6 +12,7 @@ urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),  # set_language: dashboard language switcher
     path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),  # gettext() for dashboard JS
     path("platform/", include("apps.console.urls")),
+    path("api/ordering/v1/", include("apps.integrations.urls")),
     path("", include("apps.dashboard.urls")),
     path("", include("apps.storefront.urls")),
 ]

@@ -12,9 +12,9 @@
 
 <div class="kpi-row">
   <div class="kpi"><span class="kpi-label">{% translate "Today's revenue" %}</span><strong class="kpi-value">{{ today.revenue|money:sym }}</strong>
-    <span class="kpi-delta is-flat"><small>{% blocktranslate trimmed with o=today.orders_revenue|money:sym m=today.recorded_revenue|money:sym %}Orders {{ o }} · recorded {{ m }}{% endblocktranslate %}</small></span></div>
+    <span class="kpi-delta is-flat"><small>{% blocktranslate trimmed with o=today.orders_revenue|money:sym m=today.manual_revenue|money:sym a=today.api_revenue|money:sym %}Orders {{ o }} · manual {{ m }} · API {{ a }}{% endblocktranslate %}</small></span></div>
   {% if not is_today %}<div class="kpi"><span class="kpi-label">{% blocktranslate trimmed with a=date_from|date:"j M" b=date_to|date:"j M Y" %}{{ a }} – {{ b }}{% endblocktranslate %}</span><strong class="kpi-value">{{ period.revenue|money:sym }}</strong>
-    <span class="kpi-delta is-flat"><small>{% blocktranslate trimmed with o=period.orders_revenue|money:sym m=period.recorded_revenue|money:sym %}Orders {{ o }} · recorded {{ m }}{% endblocktranslate %}</small></span></div>{% endif %}
+    <span class="kpi-delta is-flat"><small>{% blocktranslate trimmed with o=period.orders_revenue|money:sym m=period.manual_revenue|money:sym a=period.api_revenue|money:sym %}Orders {{ o }} · manual {{ m }} · API {{ a }}{% endblocktranslate %}</small></span></div>{% endif %}
 </div>
 
 <div class="cols">
@@ -25,26 +25,28 @@
     <form method="get" class="filters">
       <label>{% translate "From" %} <input type="date" name="from" value="{{ date_from|date:'Y-m-d' }}"></label>
       <label>{% translate "To" %} <input type="date" name="to" value="{{ date_to|date:'Y-m-d' }}"></label>
+      <label>{% translate "Source" %} <select name="source"><option value="">{% translate "All sources" %}</option><option value="manual"{% if source == "manual" %} selected{% endif %}>{% translate "Manual" %}</option><option value="api"{% if source == "api" %} selected{% endif %}>{% translate "API" %}</option></select></label>
       <button class="btn" type="submit">{% icon "filter" %} {% translate "Filter" %}</button>
       {% if not is_today %}<a class="btn btn-ghost" href="?">{% translate "Today" %}</a>{% endif %}
     </form>
     {% if entries %}
     <div class="table-wrap">
     <table class="table rtable">
-      <thead><tr><th>{% translate "Date" %}</th><th>{% translate "Payment method" %}</th><th>{% translate "Note" %}</th><th class="num">{% translate "Amount" %}</th><th></th></tr></thead>
+      <thead><tr><th>{% translate "Date" %}</th><th>{% translate "Source" %}</th><th>{% translate "Payment method" %}</th><th>{% translate "Note" %}</th><th class="num">{% translate "Amount" %}</th><th></th></tr></thead>
       <tbody>{% for e in entries %}
         <tr>
           <td class="rt-title nowrap" data-label="">{{ e.date|date:"D j M" }} <span class="muted small">{{ e.created_at|date:"H:i" }}</span></td>
+          <td data-label="{% translate "Source" %}">{% if e.source == "api" %}<span class="tag tag-api">{{ e.source_label }}</span>{% else %}{{ e.source_label }}{% endif %}</td>
           <td data-label="{% translate "Payment method" %}">{{ e.get_method_display }}</td>
           <td data-label="{% translate "Note" %}">{{ e.note|default:"—" }}{% if e.created_by %} <span class="muted small">· {{ e.created_by.username }}</span>{% endif %}</td>
           <td data-label="{% translate "Amount" %}" class="num"><strong>{{ e.amount|money:sym }}</strong></td>
-          <td data-label="" class="num">{% if request.role == "owner" or request.role == "manager" or e.created_by_id == user.pk %}
+          <td data-label="" class="num">{% if e.source == "manual" %}{% if request.role == "owner" or request.role == "manager" or e.created_by_id == user.pk %}
             <form method="post" action="{% url 'dashboard:revenue_entry_delete' r.slug e.pk %}" class="inline-form" onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% translate "Delete this entry?" %}">
               {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
-              <button class="btn btn-sm btn-ghost" type="submit" aria-label="{% translate "Delete" %}">{% icon "trash" %}</button></form>{% endif %}</td>
+              <button class="btn btn-sm btn-ghost" type="submit" aria-label="{% translate "Delete" %}">{% icon "trash" %}</button></form>{% endif %}{% elif e.order_id %}<a class="btn btn-sm btn-ghost" href="{% url 'dashboard:order_detail' r.slug e.order_id %}">#{{ e.order.number }}</a>{% endif %}</td>
         </tr>{% endfor %}
       </tbody>
-      <tfoot><tr class="grand"><td colspan="3">{% translate "Total recorded" %}{% for m in by_method %} <span class="muted small">· {% for k, v in method_labels.items %}{% if k == m.method %}{{ v }}{% endif %}{% endfor %} {{ m.s|money:sym }}</span>{% endfor %}</td><td class="num">{{ period.recorded_revenue|money:sym }}</td><td></td></tr></tfoot>
+      <tfoot><tr class="grand"><td colspan="4">{% translate "Total recorded" %}{% for m in by_method %} <span class="muted small">· {% for k, v in method_labels.items %}{% if k == m.method %}{{ v }}{% endif %}{% endfor %} {{ m.s|money:sym }}</span>{% endfor %}</td><td class="num">{{ entries_total|money:sym }}</td><td></td></tr></tfoot>
     </table>
     </div>
     {% else %}<p class="muted small">{% translate "No recorded entries for these dates." %}</p>{% endif %}

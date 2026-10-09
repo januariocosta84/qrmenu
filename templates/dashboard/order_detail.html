@@ -17,7 +17,7 @@
       <dl class="meta">
         <div><dt>{% translate "Table" %}</dt><dd>{% if order.table %}<a href="{% url 'dashboard:table_detail' r.slug order.table_id %}">{{ order.table_number }}</a>{% elif order.table_number %}{{ order.table_number }}{% else %}{% translate "Counter" %}{% endif %}</dd></div>
         <div><dt>{% translate "Customer" %}</dt><dd>{{ order.customer_name|default:"—" }}</dd></div>
-        <div><dt>{% translate "Ordered via" %}</dt><dd>{% if order.source == "staff" %}{% icon "pen" %} {% translate "Waiter" %}{% if order.placed_by %} · {{ order.placed_by.get_full_name|default:order.placed_by.username }}{% endif %}{% else %}{% icon "phone" %} {% translate "QR code" %}{% endif %}</dd></div>
+        <div><dt>{% translate "Ordered via" %}</dt><dd>{% if order.source == "staff" %}{% icon "pen" %} {% translate "Waiter" %}{% if order.placed_by %} · {{ order.placed_by.get_full_name|default:order.placed_by.username }}{% endif %}{% elif order.source == "api" %}{% icon "external" %} {% translate "Ordering API" %}{% if order.api_key %} · {{ order.api_key.name }}{% endif %}{% if order.external_ref %} · {{ order.external_ref }}{% endif %}{% else %}{% icon "phone" %} {% translate "QR code" %}{% endif %}</dd></div>
         <div><dt>{% translate "Phone" %}</dt><dd>{% if order.customer_phone %}<a href="tel:{{ order.customer_phone }}">{{ order.customer_phone }}</a>{% else %}—{% endif %}</dd></div>
         <div><dt>{% translate "Est. prep" %}</dt><dd>{% if order.estimated_minutes %}{% blocktranslate trimmed with m=order.estimated_minutes %}{{ m }} min{% endblocktranslate %}{% else %}—{% endif %}</dd></div>
         <div><dt>{% translate "Language" %}</dt><dd>{{ order.language|upper }}</dd></div>

@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     "apps.console",
     "apps.quotations",
     "apps.expenses",
+    "apps.integrations",
 ]
 
 MIDDLEWARE = [
@@ -274,6 +275,13 @@ CSRF_COOKIE_SAMESITE = "Lax"
 X_FRAME_OPTIONS = "DENY"
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_REFERRER_POLICY = "same-origin"
+
+# Ordering API (Pro): HTTPS only (plain-HTTP requests are refused, not redirected), per-key rate limit.
+ORDERING_API_REQUIRE_HTTPS = env_bool("ORDERING_API_REQUIRE_HTTPS", True)
+ORDERING_API_RATE_PER_MINUTE = int(os.environ.get("ORDERING_API_RATE_PER_MINUTE", "60"))
+ORDERING_API_LOG_DAYS = 90
+WEBHOOKS_ASYNC = env_bool("WEBHOOKS_ASYNC", True)  # deliver webhooks in a background thread
+SECURE_REDIRECT_EXEMPT = [r"^api/ordering/"]
 
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")

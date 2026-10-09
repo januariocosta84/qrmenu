@@ -6,7 +6,7 @@
   <tbody>
   {% for o in orders %}
     <tr>
-      <td class="rt-title" data-label=""><a href="{% url 'dashboard:order_detail' request.restaurant.slug o.pk %}"><strong>#{{ o.number }}</strong></a>{% if o.source == "staff" %} <span class="kby">{% icon "pen" %}{% translate "waiter" %}</span>{% endif %}</td>
+      <td class="rt-title" data-label=""><a href="{% url 'dashboard:order_detail' request.restaurant.slug o.pk %}"><strong>#{{ o.number }}</strong></a>{% if o.source == "staff" %} <span class="kby">{% icon "pen" %}{% translate "waiter" %}</span>{% elif o.source == "api" %} <span class="kby">{% icon "external" %}API</span>{% endif %}</td>
       <td data-label="{% translate "Table" %}">{% if o.table_number %}{{ o.table_number }}{% else %}{% translate "Counter" %}{% endif %}</td>
       <td data-label="{% translate "Customer" %}">{{ o.customer_name|default:"—" }}</td>
       <td data-label="{% translate "Items" %}" class="muted small">{% for i in o.items.all %}{{ i.name }} × {{ i.quantity }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>

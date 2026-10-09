@@ -119,8 +119,13 @@ class Order(TimeStampedModel):
 
     placed_ip = models.GenericIPAddressField(null=True, blank=True)
     # "qr" = customer's phone, "staff" = entered by a waiter (guest without a smartphone).
-    SOURCE_QR, SOURCE_STAFF = "qr", "staff"
-    source = models.CharField(max_length=10, choices=[(SOURCE_QR, _("QR code")), (SOURCE_STAFF, _("Staff"))], default=SOURCE_QR)
+    SOURCE_QR, SOURCE_STAFF, SOURCE_API = "qr", "staff", "api"
+    source = models.CharField(max_length=10, choices=[(SOURCE_QR, _("QR code")), (SOURCE_STAFF, _("Staff")),
+                                                      (SOURCE_API, _("Ordering API"))], default=SOURCE_QR)
+    # Orders from the Ordering API: which key placed it, and the ordering app's own reference.
+    api_key = models.ForeignKey("integrations.ApiKey", null=True, blank=True, on_delete=models.SET_NULL,
+                                related_name="orders")
+    external_ref = models.CharField(max_length=64, blank=True)
     placed_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+"
     )

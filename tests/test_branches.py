@@ -147,4 +147,4 @@ class BranchesProOnlyTests(TestCase):
         self.assertTemplateUsed(resp, "dashboard/upgrade.html")
         self.client.post(url, {"name": "Sneaky branch"})
         self.assertFalse(Restaurant.objects.filter(name="Sneaky branch").exists())
-        self.assertContains(self.client.get(reverse("dashboard:overview", args=["alpha"])), "PRO", count=6)
+        self.assertContains(self.client.get(reverse("dashboard:overview", args=["alpha"])), "PRO", count=7)

@@ -43,7 +43,7 @@ class ProFeatureTests(TestCase):
 
     def test_sidebar_marks_pro_features(self):
         resp = self.client.get(reverse("dashboard:overview", args=["alpha"]))
-        self.assertContains(resp, "PRO", count=6)  # revenue, cash register, analytics, expenses, quotations, branches
+        self.assertContains(resp, "PRO", count=7)  # revenue, cash register, analytics, expenses, quotations, branches, API
         self.assertNotContains(resp, "Before selling starts")  # no cash-register reminder without the feature
         make_pro(self.r)
         resp = self.client.get(reverse("dashboard:overview", args=["alpha"]))

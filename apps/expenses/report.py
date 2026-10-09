@@ -1,8 +1,8 @@
 """
 Profit = revenue − expenses, for today / this week / this month / this year or any dates.
 
-Revenue = completed orders (by the day they were placed, as on Reports and Analytics)
-+ sales recorded by hand (RevenueEntry, by their date). Expenses count by their own date.
+Revenue = completed QR/waiter orders (by the day they were placed, as on Reports and Analytics)
++ revenue entries (by their date): sales recorded by hand, and completed Ordering API orders. Expenses count by their own date.
 """
 from datetime import date, timedelta
 from decimal import Decimal
@@ -39,23 +39,45 @@ def _bounds(date_from: date, date_to: date):
 
 
 def _completed(restaurant, date_from, date_to):
+    """Completed QR and waiter orders. API orders are counted through their revenue entries instead."""
     start, end = _bounds(date_from, date_to)
-    return Order.objects.filter(restaurant=restaurant, status=OrderStatus.COMPLETED, created_at__gte=start, created_at__lt=end)
+    return Order.objects.filter(restaurant=restaurant, status=OrderStatus.COMPLETED, created_at__gte=start,
+                                created_at__lt=end).exclude(source=Order.SOURCE_API)
 
 
 def _entries(restaurant, date_from, date_to):
     return RevenueEntry.objects.filter(restaurant=restaurant, date__gte=date_from, date__lte=date_to)
 
 
-def totals(restaurant, date_from: date, date_to: date) -> dict:
-    orders = _completed(restaurant, date_from, date_to).aggregate(s=Sum("total"))["s"] or ZERO
-    recorded = _entries(restaurant, date_from, date_to).aggregate(s=Sum("amount"))["s"] or ZERO
+# Revenue sources for filters: all, orders (QR & waiter), manual entries, API (all keys), or one API key ("key:<id>").
+SOURCES = ("orders", "manual", "api")
+
+
+def totals(restaurant, date_from: date, date_to: date, source: str = "") -> dict:
+    entries = _entries(restaurant, date_from, date_to)
+    if source in ("orders", "manual", "api") or source.startswith("key:"):
+        orders = ZERO
+        if source == "orders":
+            orders = _completed(restaurant, date_from, date_to).aggregate(s=Sum("total"))["s"] or ZERO
+        if source == "manual":
+            entries = entries.filter(source=RevenueEntry.MANUAL)
+        elif source == "api":
+            entries = entries.filter(source=RevenueEntry.API)
+        elif source.startswith("key:"):
+            entries = entries.filter(source=RevenueEntry.API, api_key_id=source[4:] if source[4:].isdigit() else 0)
+        else:
+            entries = entries.none()
+    else:
+        orders = _completed(restaurant, date_from, date_to).aggregate(s=Sum("total"))["s"] or ZERO
+    split = {r["source"]: r["s"] for r in entries.values("source").annotate(s=Sum("amount"))}
+    recorded = sum(split.values(), ZERO)
     revenue = orders + recorded
     expenses = (Expense.objects.filter(restaurant=restaurant, date__gte=date_from, date__lte=date_to)
                 .aggregate(s=Sum("amount"))["s"] or ZERO)
     profit = revenue - expenses
     return {
         "revenue": revenue, "orders_revenue": orders, "recorded_revenue": recorded,
+        "manual_revenue": split.get(RevenueEntry.MANUAL, ZERO), "api_revenue": split.get(RevenueEntry.API, ZERO),
         "expenses": expenses, "profit": profit,
         "margin": round(float(profit * 100 / revenue), 1) if revenue else None,
     }

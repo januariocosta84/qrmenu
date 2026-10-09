@@ -3,6 +3,8 @@ from django.urls import path
 from apps.expenses import views as expenses
 from apps.quotations import views as quotes
 
+from apps.integrations import views as integrations
+
 from . import api, views
 
 app_name = "dashboard"
@@ -50,6 +52,8 @@ urlpatterns = [
     path(f"dashboard/{R}branches/<int:pk>/", views.branch_manage, name="branch_manage"),
     path(f"dashboard/{R}business-profile/", views.business_profile, name="business_profile"),
     path(f"dashboard/{R}business-profile/later/", views.profile_prompt_later, name="profile_prompt_later"),
+    path(f"dashboard/{R}api/", integrations.api_page, name="api"),
+    path(f"dashboard/{R}api/docs/", integrations.api_docs, name="api_docs"),
     path(f"dashboard/{R}staff/<int:pk>/", views.staff_edit, name="staff_edit"),
     path(f"dashboard/{R}reports/", views.reports, name="reports"),
     path(f"dashboard/{R}analytics/", views.analytics_page, name="analytics"),

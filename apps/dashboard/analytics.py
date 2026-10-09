@@ -137,9 +137,10 @@ def build(restaurant, date_from: date, date_to: date) -> dict:
     # ---- Where orders come from
     src = orders.exclude(status=OrderStatus.CANCELLED).aggregate(
         qr=Count("id", filter=Q(source=Order.SOURCE_QR)), staff=Count("id", filter=Q(source=Order.SOURCE_STAFF)),
+        api=Count("id", filter=Q(source=Order.SOURCE_API)),
         table=Count("id", filter=~Q(table_number="")), counter=Count("id", filter=Q(table_number="")),
     )
-    total_src = (src["qr"] + src["staff"]) or 1
+    total_src = (src["qr"] + src["staff"] + src["api"]) or 1
 
     # ---- Kitchen speed: order placed → ready
     times = [(o["ready_at"] - o["created_at"]).total_seconds() / 60 for o in
@@ -174,6 +175,7 @@ def build(restaurant, date_from: date, date_to: date) -> dict:
         "categories": categories, "top_items": top_items, "not_sold": not_sold,
         "payments": payments, "pay_total": pay_total,
         "source": {**src, "qr_pct": round(100 * src["qr"] / total_src), "staff_pct": round(100 * src["staff"] / total_src),
+                   "api_pct": round(100 * src["api"] / total_src),
                    "table_pct": round(100 * src["table"] / total_src), "counter_pct": round(100 * src["counter"] / total_src)},
         "kitchen": kitchen,
     }
