@@ -824,3 +824,5 @@ details.guide > summary { cursor: pointer; font-weight: 700; color: var(--brand-
 .api-doc h2 { margin-top: 28px; }
 .api-doc .endpoint { display: inline-block; font-weight: 700; font-family: ui-monospace, monospace; }
 .api-doc table code { white-space: nowrap; }
+a.auth-brand { width: fit-content; text-decoration: none; }
+a.auth-brand:hover { opacity: .8; }

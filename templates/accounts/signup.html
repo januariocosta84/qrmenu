@@ -4,7 +4,7 @@
 {% block body_class %}auth{% endblock %}
 {% block content %}
 <div class="auth-card wide">
-  <div class="auth-brand">{% icon "qr" "i-lg" %} {{ platform_name }}</div>
+  <a class="auth-brand" href="{% url 'storefront:home' %}">{% icon "qr" "i-lg" %} {{ platform_name }}</a>
   <h1>{% translate "Register your restaurant" %}</h1>
   <p class="muted">{% translate "Free to start. Set up your menu, print a QR code for each table, and start taking orders. Your customers don't need an app or an account." %}</p>
   <form method="post" class="form" novalidate>

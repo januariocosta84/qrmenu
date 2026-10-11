@@ -42,8 +42,6 @@
     <div class="notice notice-warn">{{ ui.not_accepting }}</div>
   {% elif not can_order and access_ended == "paid" %}
     <div class="notice notice-info notice-icon">{% icon "check-circle" %}<span>{{ ui.paid_scan_again }}</span></div>
-  {% elif not can_order %}
-    <div class="notice notice-warn">{{ ui.scan_to_order }}</div>
   {% endif %}
 </div>
 

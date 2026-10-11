@@ -4,7 +4,7 @@
 {% block body_class %}auth{% endblock %}
 {% block content %}
 <div class="auth-card wide">
-  <div class="auth-brand">{% icon "qr" "i-lg" %} {{ platform_name }}</div>
+  <a class="auth-brand" href="{% url 'storefront:home' %}">{% icon "qr" "i-lg" %} {{ platform_name }}</a>
   <h1>{% translate "Choose a restaurant" %}</h1>
   <p class="muted">{% blocktranslate trimmed with name=user.get_full_name|default:user.username %}Signed in as {{ name }}{% endblocktranslate %}</p>
   {% if restaurants %}
