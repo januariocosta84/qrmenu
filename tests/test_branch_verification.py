@@ -230,3 +230,22 @@ class TermsTests(TestCase):
         resp = self.client.get(reverse("storefront:terms"))
         self.assertContains(resp, "must be owned and operated by the same business")
         self.assertContains(self.client.get("/"), reverse("storefront:terms"))
+
+
+class FriendlyNotFoundTests(TestCase):
+    def test_restaurant_not_live_yet(self):
+        r, *_ = make_restaurant("tuqr")
+        r.name, r.is_active = "Tuqr", False
+        r.save()
+        resp = self.client.get(reverse("storefront:menu", args=["tuqr"]))
+        self.assertEqual(resp.status_code, 404)
+        self.assertContains(resp, "Tuqr", status_code=404)
+        self.assertContains(resp, "available right now", status_code=404)
+        tet = self.client.get(reverse("storefront:menu", args=["tuqr"]) + "?lang=tet")
+        self.assertContains(tet, "seidauk disponivel agora", status_code=404)
+
+    def test_unknown_link(self):
+        resp = self.client.get("/r/no-such-place/")
+        self.assertContains(resp, "find this page", status_code=404)
+        self.assertNotContains(resp, "The requested resource was not found", status_code=404)
+        self.assertEqual(self.client.get("/api/ordering/v1/nope").status_code, 404)

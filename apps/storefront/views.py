@@ -1,13 +1,13 @@
 from django.conf import settings
 
 from apps.billing.services import subscription_allows_orders
-from django.http import Http404
+from django.http import JsonResponse, Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_GET
 
-from apps.core.i18n import ui_strings
+from apps.core.i18n import LANGUAGES, ui_strings
 from apps.menu.queries import public_menu
 from apps.menu.serializers import PublicItemSerializer
 from apps.orders.models import Order, OrderStatus
@@ -22,12 +22,34 @@ def _apply_restaurant_language(request, restaurant):
         request.ui_lang = restaurant.default_language
 
 
+class RestaurantUnavailable(Http404):
+    """The restaurant exists but isn't public (not approved yet, suspended, or a deactivated branch)."""
+
+    def __init__(self, restaurant):
+        super().__init__("Restaurant not available")
+        self.restaurant = restaurant
+
+
 def _visible_restaurant(request, slug):
     """Live restaurants for everyone; not-yet-live ones only for their own staff (preview)."""
     restaurant = get_object_or_404(Restaurant, slug=slug)
     if (not restaurant.is_active or restaurant.is_closed) and not restaurant.staff_role(request.user):
-        raise Http404  # not live yet, or a sub-branch deactivated by its main branch
+        raise RestaurantUnavailable(restaurant)  # not live yet, or a sub-branch deactivated by its main branch
     return restaurant
+
+
+def page_not_found(request, exception=None):
+    """Friendly 404 (in the visitor's language) instead of Django's plain "Not Found"."""
+    if request.path.startswith("/api/"):
+        return JsonResponse({"error": {"code": "not_found", "message": "Not found."}}, status=404)
+    lang = getattr(request, "ui_lang", "en")
+    strings = ui_strings(lang)
+    restaurant = getattr(exception, "restaurant", None)
+    return render(request, "storefront/not_found.html", {
+        "t": strings, "ui_lang": lang, "restaurant": restaurant,
+        "body": strings["unavailable_body"] % {"name": restaurant.name} if restaurant else strings["not_found_body"],
+        "languages": LANGUAGES,
+    }, status=404)
 
 
 @require_GET

@@ -1,5 +1,5 @@
 {% extends "storefront/base.html" %}
-{% load i18n ui_icons %}
+{% load i18n static ui_icons %}
 {% block html_lang %}{% get_current_language as LANG %}{{ LANG }}{% endblock %}
 {% block title %}{{ platform_name }} · {% translate "QR menu & table ordering for restaurants" %}{% endblock %}
 {% block body_class %}landing{% endblock %}
@@ -30,13 +30,23 @@
 </header>
 
 <main class="land">
-  <section>
+  <section class="land-how">
     <h2>{% translate "How it works" %}</h2>
+    <div class="land-how-grid">
     <ol class="land-steps">
       <li><strong>{% translate "Create your menu" %}</strong><span>{% translate "Add dishes, photos, prices and add-ons in English, Tetum and Bahasa Indonesia." %}</span></li>
       <li><strong>{% translate "Print your QR codes" %}</strong><span>{% translate "One code per table. Print them and place one on each table." %}</span></li>
       <li><strong>{% translate "Receive orders live" %}</strong><span>{% translate "Orders appear instantly on the kitchen screen with a sound alert. Customers can follow their order on their phone." %}</span></li>
     </ol>
+    <figure class="land-video">
+      <video controls playsinline preload="none" width="720" height="1280"
+             poster="{% static 'video/QR-Menu-How-It-Works.jpg' %}?v={{ static_v }}"
+             aria-label="{% translate "Video: how customers order with QR Menu" %}">
+        <source src="{% static 'video/QR-Menu-How-It-Works.mp4' %}?v={{ static_v }}" type="video/mp4">
+      </video>
+      <figcaption>{% translate "Watch how a customer orders, from scanning the table's QR code to the kitchen (50 seconds)." %}</figcaption>
+    </figure>
+    </div>
   </section>
 
   <section class="land-features">

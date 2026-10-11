@@ -77,6 +77,11 @@ UI_STRINGS = {
         "paid": "Paid",
         "item_unavailable_error": "Some items are no longer available. Please review your order.",
         "paid_scan_again": "Your bill is paid. Thank you! To order again, please scan the QR code on your table.",
+        "unavailable_title": "This menu isn't available right now",
+        "unavailable_body": "%(name)s is still getting its menu ready, or the page is offline for a while. Please ask the staff, or try again later.",
+        "not_found_title": "We couldn't find this page",
+        "not_found_body": "The link may be wrong or the page may have moved. If you are at a restaurant, please scan the QR code on your table again.",
+        "go_home": "Go to the home page",
     },
     "tet": {
         "menu": "Menu",
@@ -135,6 +140,11 @@ UI_STRINGS = {
         "paid": "Selu ona",
         "item_unavailable_error": "Item balun la disponivel ona. Favór haree fali Ita-nia pedidu.",
         "paid_scan_again": "Ita-nia konta selu ona. Obrigadu! Atu halo pedidu tan, favór scan fali kódigu QR iha Ita-nia meza.",
+        "unavailable_title": "Menu ne'e seidauk disponivel agora",
+        "unavailable_body": "%(name)s sei prepara hela ninia menu, ka pájina ne'e offline ba tempu badak. Favór husu ba funsionáriu sira, ka koko fali depois.",
+        "not_found_title": "Ami la hetan pájina ne'e",
+        "not_found_body": "Link ne'e karik sala ka pájina muda ona. Se Ita iha restaurante, favór scan fali kódigu QR iha Ita-nia meza.",
+        "go_home": "Ba pájina inísiu",
     },
     "id": {
         "menu": "Menu",
@@ -193,6 +203,11 @@ UI_STRINGS = {
         "paid": "Lunas",
         "item_unavailable_error": "Beberapa item tidak lagi tersedia. Silakan periksa pesanan Anda.",
         "paid_scan_again": "Tagihan Anda sudah dibayar. Terima kasih! Untuk memesan lagi, silakan pindai kode QR di meja Anda.",
+        "unavailable_title": "Menu ini belum tersedia saat ini",
+        "unavailable_body": "%(name)s masih menyiapkan menunya, atau halaman ini sedang offline sementara. Silakan tanya staf, atau coba lagi nanti.",
+        "not_found_title": "Halaman ini tidak ditemukan",
+        "not_found_body": "Tautan mungkin salah atau halaman sudah dipindahkan. Jika Anda berada di restoran, silakan pindai lagi kode QR di meja Anda.",
+        "go_home": "Ke halaman utama",
     },
 }
 

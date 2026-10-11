@@ -1,0 +1,18 @@
+{% extends "storefront/base.html" %}
+{% block html_lang %}{{ ui_lang }}{% endblock %}
+{% block title %}{% if restaurant %}{{ restaurant.name }}{% else %}{{ t.not_found_title }}{% endif %}{% endblock %}
+{% block head %}<meta name="robots" content="noindex">{% endblock %}
+{% block body_class %}nf-page{% endblock %}
+{% block content %}
+<main class="nf">
+  <div class="nf-card">
+    {% if restaurant and restaurant.logo %}<img class="nf-logo" src="{{ restaurant.logo.url }}" alt="" width="72" height="72">
+    {% else %}<div class="nf-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{% if restaurant %}<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>{% else %}<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>{% endif %}</svg></div>{% endif %}
+    {% if restaurant %}<p class="nf-name">{{ restaurant.name }}</p>{% endif %}
+    <h1>{% if restaurant %}{{ t.unavailable_title }}{% else %}{{ t.not_found_title }}{% endif %}</h1>
+    <p class="nf-body">{{ body }}</p>
+    <a class="nf-btn" href="/">{{ t.go_home }}</a>
+    <nav class="nf-langs" aria-label="{{ t.language }}">{% for code, name in languages %}<a href="?lang={{ code }}"{% if code == ui_lang %} aria-current="true"{% endif %}>{{ name }}</a>{% endfor %}</nav>
+  </div>
+</main>
+{% endblock %}
