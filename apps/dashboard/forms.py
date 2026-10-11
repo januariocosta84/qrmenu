@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 from apps.core.i18n import TRANSLATED_LANGUAGES
 from apps.core.images import process_image
+from apps.menu import service_types
 from apps.core.permissions import Role
 from apps.menu.models import MenuCategory, MenuItem, MenuItemOption
 from apps.payments.drawer import validate_printer_host
@@ -93,6 +94,7 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
             "cash_drawer_enabled", "printer_host", "printer_port", "drawer_pin",
             "receipt_prompt", "receipt_printer", "receipt_width", "receipt_footer", "cash_drawer_via_printer",
             "vat_enabled", "vat_percent", "vat_inclusive", "vat_label", "vat_number",
+            "bill_print_mode", "car_wash_enabled", "car_wash_name", "car_wash_auto_print",
         ]
         widgets = {
             "description": forms.Textarea(attrs={"rows": 3}),
@@ -114,11 +116,13 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
             "vat_enabled": _("Charge VAT"), "vat_percent": _("VAT rate (%)"),
             "vat_label": _("Tax name"),
             "vat_number": _("Tax ID"),
+            "bill_print_mode": _("Default bill print mode"), "car_wash_enabled": _("Car wash"),
+            "car_wash_name": _("Car wash name"), "car_wash_auto_print": _("Print a car wash ticket automatically"),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for name in ("vat_label", "vat_percent"):  # optional: blank means "VAT" / 0
+        for name in ("vat_label", "vat_percent", "bill_print_mode"):  # optional: blank means "VAT" / 0 / combined
             self.fields[name].required = False
         if not settings.CASH_DRAWER_NETWORK_ENABLED:  # not available on this deployment
             for name in ("cash_drawer_enabled", "printer_host", "printer_port", "drawer_pin",
@@ -127,6 +131,12 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
 
     def clean_vat_label(self):
         return (self.cleaned_data.get("vat_label") or "").strip() or "VAT"
+
+    def clean_bill_print_mode(self):
+        return self.cleaned_data.get("bill_print_mode") or Restaurant.BILL_COMBINED
+
+    def clean_car_wash_name(self):
+        return (self.cleaned_data.get("car_wash_name") or "").strip() or "Car Wash"
 
     def clean_vat_percent(self):
         return self.cleaned_data.get("vat_percent") or 0
@@ -148,12 +158,21 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
 class CategoryForm(TranslationFormMixin, forms.ModelForm):
     class Meta:
         model = MenuCategory
-        fields = ["name", "position", "is_active"]
-        labels = {"name": _("Name"), "position": _("Position"), "is_active": _("Visible to customers")}
+        fields = ["name", "service_type", "position", "is_active"]
+        labels = {"name": _("Name"), "service_type": _("Service"), "position": _("Position"),
+                  "is_active": _("Visible to customers")}
 
     def __init__(self, *args, restaurant, **kwargs):
         self.restaurant = restaurant
         super().__init__(*args, **kwargs)
+        enabled = service_types.enabled_codes(restaurant)
+        current = self.instance.service_type if self.instance.pk else service_types.CAFE
+        choices = [(c, service_types.display_name(restaurant, c)) for c in service_types.SERVICE_TYPES
+                   if c in enabled or c == current]
+        if len(choices) < 2:  # only the café: nothing to choose
+            self.fields.pop("service_type")
+        else:
+            self.fields["service_type"].choices = choices
 
     def clean_name(self):
         name = self.cleaned_data["name"].strip()
@@ -182,14 +201,38 @@ class MenuItemForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
             "prep_minutes": _("Preparation time (minutes)"), "position": _("Position"),
         }
 
+    VEHICLE_FIELDS = {"price_motorbike": service_types.MOTORBIKE, "price_pickup": service_types.PICKUP}
+    price_motorbike = forms.DecimalField(
+        label=_("Price for a motorbike"), required=False, min_value=0, max_digits=10, decimal_places=2,
+        widget=forms.NumberInput(attrs={"step": "0.01", "min": "0", "inputmode": "decimal"}),
+        help_text=_("Car wash packages only. Leave empty to use the normal price (cars)."))
+    price_pickup = forms.DecimalField(
+        label=_("Price for a pickup / SUV"), required=False, min_value=0, max_digits=10, decimal_places=2,
+        widget=forms.NumberInput(attrs={"step": "0.01", "min": "0", "inputmode": "decimal"}),
+        help_text=_("Car wash packages only. Leave empty to use the normal price (cars)."))
+
     def __init__(self, *args, restaurant, **kwargs):
         self.restaurant = restaurant
         super().__init__(*args, **kwargs)
         # Only this restaurant's categories can be chosen.
         self.fields["category"].queryset = MenuCategory.objects.filter(restaurant=restaurant)
+        if restaurant.car_wash_enabled or (self.instance.pk and self.instance.vehicle_prices):
+            for name, code in self.VEHICLE_FIELDS.items():
+                self.initial.setdefault(name, (self.instance.vehicle_prices or {}).get(code))
+        else:
+            for name in self.VEHICLE_FIELDS:
+                self.fields.pop(name)
 
     def save(self, commit=True):
         self.instance.restaurant = self.restaurant
+        if any(name in self.fields for name in self.VEHICLE_FIELDS):
+            prices = {}
+            if service_types.get(self.cleaned_data["category"].service_type).needs_vehicle:
+                for name, code in self.VEHICLE_FIELDS.items():
+                    value = self.cleaned_data.get(name)
+                    if value is not None:
+                        prices[code] = f"{value:.2f}"
+            self.instance.vehicle_prices = prices
         return super().save(commit)
 
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-08 10:18+0900\n"
+"POT-Creation-Date: 2026-10-12 01:05+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,8 +84,59 @@ msgstr "OK · imprime resibu"
 msgid "OK"
 msgstr "OK"
 
+msgid "Print bill"
+msgstr "Imprime konta"
+
+msgid "Nothing to bill: everything here is paid."
+msgstr "La iha buat ida atu fatura: hotu selu ona."
+
+msgid "Reprint a bill from the list of printed bills."
+msgstr "Imprime fali konta husi lista konta ne'ebé imprime ona."
+
+msgid "What to bill (unpaid only)"
+msgstr "Saida mak fatura (seidauk selu de'it)"
+
+msgid "Print mode"
+msgstr "Modu imprime"
+
+msgid "One combined bill"
+msgstr "Konta ida hamutuk"
+
+msgid "Separate bill per service"
+msgstr "Konta separadu ba servisu ida-idak"
+
+msgid "Paper"
+msgstr "Papél"
+
+msgid "Copies"
+msgstr "Kópia"
+
+msgid "Total"
+msgstr "Totál"
+
+msgid "Plate"
+msgstr "Xapa"
+
 msgid "Cash payment"
 msgstr "Pagamentu osan-kontadu"
+
+msgid "Bill printed."
+msgstr "Konta imprime ona."
+
+msgid "Bill not printed: %(reason)s"
+msgstr "Konta la imprime: %(reason)s"
+
+msgid "Printed: %(numbers)s"
+msgstr "Imprime ona: %(numbers)s"
+
+msgid "Done"
+msgstr "Remata"
+
+msgid "Preview"
+msgstr "Haree uluk"
+
+msgid "Paid (cash) & print"
+msgstr "Selu ona (osan) & imprime"
 
 msgid "Live: new orders appear automatically"
 msgstr "Direta: pedidu foun sira mosu automatikamente"
@@ -98,6 +149,9 @@ msgstr "Meza %(n)s"
 
 msgid "Counter"
 msgstr "Balkaun"
+
+msgid "Car wash #%(number)s · %(where)s · Plate %(plate)s"
+msgstr "Fase karreta #%(number)s · %(where)s · Xapa %(plate)s"
 
 msgid "New order #%(number)s · %(where)s"
 msgstr "Pedidu foun #%(number)s · %(where)s"
@@ -144,6 +198,9 @@ msgstr "Kansela pedidu #%(number)s? Razaun (opsionál):"
 msgid "Could not update the order."
 msgstr "La konsege atualiza pedidu."
 
+msgid "Order %(numbers)s · paid together"
+msgstr "Pedidu %(numbers)s · selu hamutuk"
+
 msgid "Order #%(number)s · cash payment"
 msgstr "Pedidu #%(number)s · selu ho osan-kontadu"
 
@@ -174,17 +231,29 @@ msgstr "Bainaka foun"
 msgid "Sold out"
 msgstr "Hotu ona"
 
+msgid "+ plate number"
+msgstr "+ númeru xapa"
+
 msgid "No dishes."
 msgstr "La iha hahán."
 
 msgid "sold out"
 msgstr "hotu ona"
 
+msgid "Send order"
+msgstr "Haruka pedidu"
+
 msgid "Send to kitchen"
 msgstr "Haruka ba kozinha"
 
-msgid "Order #%(number)s sent to the kitchen · %(where)s"
-msgstr "Pedidu #%(number)s haruka ona ba kozinha · %(where)s"
+msgid "Order %(numbers)s sent · %(where)s"
+msgstr "Pedidu %(numbers)s haruka ona · %(where)s"
+
+msgid "Last order %(numbers)s · %(where)s"
+msgstr "Pedidu ikus %(numbers)s · %(where)s"
+
+msgid "Print bill · %(where)s"
+msgstr "Imprime konta · %(where)s"
 
 msgid "Guest %(n)s"
 msgstr "Bainaka %(n)s"
@@ -194,3 +263,6 @@ msgstr "La konsege haruka pedidu."
 
 msgid "Ordering is switched off in Restaurant settings."
 msgstr "Pedidu dezativa hela iha Konfigurasaun restaurante."
+
+#~ msgid "Order #%(number)s sent to the kitchen · %(where)s"
+#~ msgstr "Pedidu #%(number)s haruka ona ba kozinha · %(where)s"

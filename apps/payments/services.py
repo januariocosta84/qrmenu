@@ -22,6 +22,34 @@ def balance_due(order: Order) -> Decimal:
     return max(order.total - amount_paid(order), Decimal("0"))
 
 
+def payable_group(order: Order) -> list[Order]:
+    """
+    Everything still to pay from the same customer order: a QR scan with café + car wash
+    becomes one order per service, but the customer pays them together (one sum, change once).
+    """
+    if not order.order_group:
+        return [order]
+    group = list(Order.objects.filter(restaurant_id=order.restaurant_id, order_group=order.order_group)
+                 .exclude(status=OrderStatus.CANCELLED).exclude(payment_status=PaymentStatus.PAID)
+                 .order_by("created_at", "pk"))
+    return group or [order]
+
+
+def group_due(orders) -> Decimal:
+    return sum((balance_due(o) for o in orders), Decimal("0"))
+
+
+def attach_group_due(orders) -> None:
+    """For order lists: o.pay_due / o.pay_numbers when the order is paid together with its group."""
+    for o in orders:
+        if o.order_group and o.payment_status != PaymentStatus.PAID and o.status != OrderStatus.CANCELLED:
+            group = payable_group(o)
+            if len(group) > 1:
+                o.pay_due = group_due(group)
+                o.pay_numbers = " + ".join(f"#{g.number}" for g in group)
+                o.pay_leader = group[0]  # one pay button per group, on its first order
+
+
 def close_bill_if_settled(table_session, user=None) -> bool:
     """Close the table's bill once every (non-cancelled) order on it is paid."""
     if table_session is None or table_session.status != TableSession.OPEN:

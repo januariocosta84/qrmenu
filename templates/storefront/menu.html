@@ -12,7 +12,7 @@
   {% if restaurant.cover_image %}style="background-image:url('{{ restaurant.cover_image.url }}')"{% endif %}>
   <div class="hero-inner">
     <div class="hero-top">
-      {% if table %}<span class="table-badge">{{ ui.table }} {{ table.number }}</span>{% else %}<span></span>{% endif %}
+      {% if table %}<span class="table-badge">{{ ui.table }} {{ table.number }}</span>{% elif walk_in %}<span class="table-badge">{{ walk_in_name }}</span>{% else %}<span></span>{% endif %}
       <form method="get" class="lang-form">
         <label class="sr-only" for="lang">{{ ui.language }}</label>
         <select id="lang" name="lang" onchange="this.form.submit()">
@@ -38,6 +38,9 @@
       {% for o in active_orders %}#{{ o.number }} · {{ o.status_label }}{% if not forloop.last %}, {% endif %}{% endfor %} →
     </a>
   {% endif %}
+  {% if invalid_qr %}
+    <div class="notice notice-warn">{% if walk_in %}{{ ui.scan_car_wash }}{% else %}{{ ui.scan_to_order }}{% endif %}</div>
+  {% endif %}
   {% if not accepting %}
     <div class="notice notice-warn">{{ ui.not_accepting }}</div>
   {% elif not can_order and access_ended == "paid" %}
@@ -46,8 +49,9 @@
 </div>
 
 <nav class="cat-nav" aria-label="{{ ui.menu }}">
+  {% if tabs %}<div class="svc-tabs" role="tablist">{% for code, label in tabs %}<button type="button" role="tab" data-svc-tab="{{ code }}"{% if forloop.first %} class="active" aria-selected="true"{% else %} aria-selected="false"{% endif %}>{{ label }}</button>{% endfor %}</div>{% endif %}
   <div class="cat-scroll">
-    {% for c in categories %}{% if c.items.all %}<a href="#cat-{{ c.id }}" data-cat="{{ c.id }}">{% tr c "name" %}</a>{% endif %}{% endfor %}
+    {% for c in categories %}{% if c.items.all %}<a href="#cat-{{ c.id }}" data-cat="{{ c.id }}" data-svc="{{ c.service_type }}">{% tr c "name" %}</a>{% endif %}{% endfor %}
   </div>
   <div class="search-wrap">
     <input type="search" id="search" placeholder="{{ ui.search }}" autocomplete="off" aria-label="{{ ui.search }}">
@@ -56,7 +60,7 @@
 
 <main class="menu" id="menu">
   {% for c in categories %}{% if c.items.all %}
-  <section class="cat" id="cat-{{ c.id }}" data-cat="{{ c.id }}">
+  <section class="cat" id="cat-{{ c.id }}" data-cat="{{ c.id }}" data-svc="{{ c.service_type }}">
     <h2>{% tr c "name" %}</h2>
     <div class="grid">
       {% for item in c.items.all %}
@@ -126,6 +130,17 @@
         <legend>{{ ui.add_ons }}</legend>
         <div id="item-sheet-option-list"></div>
       </fieldset>
+      <div id="item-sheet-vehicle" class="vehicle-form" hidden>
+        <label class="field">
+          <span>{{ ui.plate_number }} *</span>
+          <input type="text" id="item-sheet-plate" maxlength="20" autocomplete="off" autocapitalize="characters" placeholder="{{ ui.plate_placeholder }}">
+        </label>
+        <fieldset class="options">
+          <legend>{{ ui.vehicle_type }}</legend>
+          <div id="item-sheet-vehicles"></div>
+        </fieldset>
+        <p class="error small" id="item-sheet-plate-error" hidden>{{ ui.plate_required }}</p>
+      </div>
       <label class="field">
         <span>{{ ui.special_instructions }}</span>
         <input type="text" id="item-sheet-note" maxlength="200" placeholder="{{ ui.instructions_placeholder }}">
@@ -148,7 +163,7 @@
   <div class="sheet-panel tall">
     <button type="button" class="sheet-close" data-close aria-label="{{ ui.close }}">×</button>
     <div class="sheet-body">
-      <h2 id="cart-title">{{ ui.cart }} <small class="muted">· {{ ui.table }} {{ table.number }}</small></h2>
+      <h2 id="cart-title">{{ ui.cart }} <small class="muted">· {% if table %}{{ ui.table }} {{ table.number }}{% else %}{{ walk_in_name }}{% endif %}</small></h2>
       <p class="muted" id="cart-empty" hidden>{{ ui.empty_cart }}</p>
       <ul class="cart-lines" id="cart-lines"></ul>
       <dl class="totals" id="cart-totals">

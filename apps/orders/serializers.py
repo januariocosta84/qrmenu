@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from apps.menu.service_types import VEHICLE_CODES
+
 from .models import MAX_QUANTITY, Order, OrderItem, OrderStatus, PaymentMethod
 
 
@@ -8,7 +10,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = ["name", "quantity", "unit_price", "line_total", "note", "options"]
+        fields = ["name", "quantity", "unit_price", "line_total", "note", "options", "plate_number", "vehicle_type"]
 
     def get_options(self, obj):
         return [{"name": o.name, "price": str(o.price)} for o in obj.options.all()]
@@ -17,6 +19,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 class StaffOrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
     placed_by_name = serializers.SerializerMethodField()
+    pay_group = serializers.SerializerMethodField()
     status_display = serializers.CharField(source="get_status_display", read_only=True)
     payment_method_display = serializers.CharField(source="get_payment_method_display", read_only=True)
 
@@ -24,13 +27,26 @@ class StaffOrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = [
             "id", "number", "status", "status_display", "table_number", "table_session", "source", "placed_by_name",
+            "service_type", "plate_number", "order_group",
             "customer_name", "customer_phone", "note", "items",
             "subtotal", "service_charge", "vat_label", "vat_percent", "vat_inclusive", "vat_amount", "total", "currency",
             "payment_method", "payment_method_display", "payment_status",
             "estimated_minutes", "created_at", "accepted_at", "preparing_at",
-            "ready_at", "completed_at", "cancelled_at", "cancel_reason",
+            "ready_at", "completed_at", "cancelled_at", "cancel_reason", "pay_group",
         ]
         read_only_fields = fields
+
+    def get_pay_group(self, obj):
+        """Café + car wash from one order are paid together: the unpaid sum of the whole group."""
+        if not obj.order_group or obj.payment_status == "paid":
+            return None
+        from apps.payments.services import group_due, payable_group
+
+        group = payable_group(obj)
+        if len(group) < 2:
+            return None
+        return {"due": f"{group_due(group):.2f}", "numbers": " + ".join(f"#{o.number}" for o in group),
+                "ids": [o.pk for o in group]}
 
     def get_placed_by_name(self, obj):
         u = obj.placed_by
@@ -61,6 +77,9 @@ class CartLineSerializer(serializers.Serializer):
     quantity = serializers.IntegerField(min_value=1, max_value=MAX_QUANTITY)
     options = serializers.ListField(child=serializers.IntegerField(min_value=1), required=False, max_length=20)
     note = serializers.CharField(required=False, allow_blank=True, max_length=200)
+    # Car wash packages: the vehicle (required by the service; ignored for café items)
+    plate_number = serializers.CharField(required=False, allow_blank=True, max_length=20)
+    vehicle_type = serializers.ChoiceField(choices=VEHICLE_CODES, required=False, allow_blank=True)
 
 
 class PlaceOrderSerializer(serializers.Serializer):
@@ -76,6 +95,8 @@ class PlaceOrderSerializer(serializers.Serializer):
     payment_method = serializers.ChoiceField(
         choices=PaymentMethod.CUSTOMER_CHOICES, required=False, default=PaymentMethod.PAY_AT_COUNTER
     )
+    walk_in = serializers.BooleanField(required=False, default=False,
+                                       help_text="Ordered from the walk-in car wash QR (no table).")
 
 
 class StatusChangeSerializer(serializers.Serializer):

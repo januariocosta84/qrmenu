@@ -92,7 +92,9 @@
     if (CFG.canPay && !paid) {
       const pay = el("button", "btn btn-sm");
       pay.innerHTML = D.icon("cash");
-      pay.appendChild(document.createTextNode(` ${_("Mark paid")} · ${money(o.total)}`));
+      const group = o.pay_group;  // café + car wash from one order: paid together
+      pay.appendChild(document.createTextNode(group ? ` ${_("Mark paid")} · ${group.numbers} · ${money(group.due)}`
+                                                    : ` ${_("Mark paid")} · ${money(o.total)}`));
       pay.type = "button";
       pay.addEventListener("click", () => markPaid(o, pay));
       foot.appendChild(pay);
@@ -119,8 +121,11 @@
   }
 
   async function markPaid(order, button) {
-    const dueCents = Math.round(parseFloat(order.total) * 100);
-    const tendered = await D.cashDialog({ title: _("Order #%(number)s · cash payment", { number: order.number }), dueCents });
+    const group = order.pay_group;
+    const dueCents = Math.round(parseFloat(group ? group.due : order.total) * 100);
+    const title = group ? _("Order %(numbers)s · paid together", { numbers: group.numbers })
+                        : _("Order #%(number)s · cash payment", { number: order.number });
+    const tendered = await D.cashDialog({ title, dueCents });
     if (tendered === null) return;
     button.disabled = true;
     try {
@@ -144,6 +149,7 @@
   }
 
   function upsert(o, isNew) {
+    if (o.service_type && !(CFG.kitchenServices || ["cafe"]).includes(o.service_type)) return; // car wash: counter, not kitchen
     if (!ACTIVE.includes(o.status)) orders.delete(o.id);
     else orders.set(o.id, Object.assign(o, isNew ? { _new: Date.now() } : {}));
     render();

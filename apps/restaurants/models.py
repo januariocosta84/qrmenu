@@ -94,6 +94,26 @@ class Restaurant(TranslatableMixin, TimeStampedModel):
         help_text=_("Paper width of the network receipt printer."),
     )
     receipt_footer = models.CharField(max_length=200, blank=True, default="Thank you! Obrigadu! Terima kasih!")
+    BILL_COMBINED, BILL_SEPARATE = "combined", "separate"
+    BILL_MODE_CHOICES = [(BILL_COMBINED, _("One combined bill")), (BILL_SEPARATE, _("Separate bill per service"))]
+    bill_print_mode = models.CharField(
+        _("Default bill print mode"), max_length=10, choices=BILL_MODE_CHOICES, default=BILL_COMBINED,
+        help_text=_("Used when a table has orders for several services (e.g. café and car wash)."),
+    )
+
+    # Car wash (optional second service sold from the same table QR)
+    car_wash_enabled = models.BooleanField(
+        _("Car wash"), default=False,
+        help_text=_("Customers can order car wash packages from the table QR, together with café items."),
+    )
+    car_wash_name = models.CharField(_("Car wash name"), max_length=80, default="Car Wash", blank=True,
+                                     help_text=_("Shown to customers and on car wash bills, e.g. Timor Car Wash."))
+    car_wash_auto_print = models.BooleanField(
+        _("Print a car wash ticket automatically"), default=False,
+        help_text=_("For each new car wash order: on the network receipt printer if set up, otherwise from the "
+                    "Car wash screen when it is open."),
+    )
+    car_wash_qr_token = models.CharField(max_length=32, blank=True, editable=False)
 
     # Branches: a sub-branch belongs to exactly one main branch (one level; main branches have no parent).
     parent = models.ForeignKey(

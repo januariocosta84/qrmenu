@@ -178,4 +178,27 @@ def build(restaurant, date_from: date, date_to: date) -> dict:
                    "api_pct": round(100 * src["api"] / total_src),
                    "table_pct": round(100 * src["table"] / total_src), "counter_pct": round(100 * src["counter"] / total_src)},
         "kitchen": kitchen,
+        "services": _services(restaurant, completed),
     }
+
+
+def _services(restaurant, completed):
+    """Revenue per service type (café, car wash) with its best sellers; empty when there is only one."""
+    from apps.menu import service_types
+    from apps.orders.models import OrderItem
+
+    rows = list(completed.values("service_type").annotate(n=Count("id"), revenue=Sum("total")))
+    if len(rows) < 2:
+        return []
+    total = sum((r["revenue"] or ZERO for r in rows), ZERO) or 1
+    out = []
+    for code in service_types.SERVICE_TYPES:
+        row = next((r for r in rows if r["service_type"] == code), None)
+        if row:
+            out.append({
+                "code": code, "name": service_types.display_name(restaurant, code), "n": row["n"],
+                "revenue": row["revenue"] or ZERO, "share": round(float((row["revenue"] or ZERO) * 100 / total), 1),
+                "top": list(OrderItem.objects.filter(order__in=completed.filter(service_type=code)).values("name")
+                            .annotate(qty=Sum("quantity"), revenue=Sum("line_total")).order_by("-revenue")[:5]),
+            })
+    return out

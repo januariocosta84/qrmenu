@@ -90,11 +90,20 @@
       {% endfor %}
       {% if not is_paid and request.can.payments and order.status != "cancelled" %}
       {% if amount_paid %}<p class="small">{% blocktranslate trimmed with paid=amount_paid|money:sym due=balance_due|money:sym %}Paid so far {{ paid }} · <strong>Still due {{ due }}</strong>{% endblocktranslate %}</p>{% endif %}
+      {% if pay_group %}
+      <p class="small">{% blocktranslate trimmed with n=pay_group_numbers %}Ordered together ({{ n }}): paid as one sum, change given once.{% endblocktranslate %}</p>
+      <form method="post" action="{% url 'dashboard:order_mark_paid' r.slug order.pk %}"
+            data-cash-due="{{ pay_group_due|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=pay_group_numbers %}Order {{ n }} · paid together{% endblocktranslate %}">
+        {% csrf_token %}
+        <button class="btn btn-success btn-lg btn-block" type="submit">{% icon "cash" %} {% translate "Cash received" %} · {{ pay_group_numbers }} · {{ pay_group_due|money:sym }}</button>
+      </form>
+      {% else %}
       <form method="post" action="{% url 'dashboard:order_mark_paid' r.slug order.pk %}"
             data-cash-due="{{ balance_due|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=order.number %}Order #{{ n }} · cash payment{% endblocktranslate %}">
         {% csrf_token %}
         <button class="btn btn-success btn-lg btn-block" type="submit">{% icon "cash" %} {% translate "Cash received" %} · {{ balance_due|money:sym }}</button>
       </form>
+      {% endif %}
       <details class="pay-other">
         <summary class="small">{% translate "Other method or partial payment" %}</summary>
         <form method="post" class="form compact" style="margin-top: 12px">

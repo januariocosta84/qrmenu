@@ -20,7 +20,7 @@
     search.addEventListener("input", () => {
       const q = search.value.trim().toLowerCase();
       let any = false;
-      $$(".cat").forEach((sec) => {
+      $$(".cat:not(.svc-off)").forEach((sec) => {
         let visible = 0;
         $$(".card", sec).forEach((card) => {
           const hit = !q || card.dataset.search.toLowerCase().includes(q);
@@ -32,6 +32,26 @@
       });
       $("#no-results").hidden = any;
     });
+  }
+
+  // ---------- Service tabs (Café / Car wash) ----------
+  // Sections and category links carry data-svc; the active tab shows only its own.
+  const svcTabs = $$("[data-svc-tab]");
+  function showService(code) {
+    svcTabs.forEach((b) => {
+      const on = b.dataset.svcTab === code;
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-selected", String(on));
+    });
+    $$(".cat, .cat-scroll a").forEach((el) => el.classList.toggle("svc-off", el.dataset.svc !== code));
+    try { sessionStorage.setItem(CONFIG.cartKey + ":svc", code); } catch (_) { /* ignore */ }
+    window.scrollTo({ top: 0 });
+  }
+  if (svcTabs.length) {
+    svcTabs.forEach((b) => b.addEventListener("click", () => showService(b.dataset.svcTab)));
+    let saved = null;
+    try { saved = sessionStorage.getItem(CONFIG.cartKey + ":svc"); } catch (_) { /* ignore */ }
+    showService(svcTabs.some((b) => b.dataset.svcTab === saved) ? saved : svcTabs[0].dataset.svcTab);
   }
 
   // Category tabs. We scroll the page ourselves (instead of relying on the
@@ -58,7 +78,7 @@
   }
 
   function currentSection() {
-    const visible = $$(".cat").filter((s) => !s.hidden);
+    const visible = $$(".cat").filter((s) => !s.hidden && !s.classList.contains("svc-off"));
     const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
     if (atBottom && visible.length) {
       // Short last categories can never reach the top; at the bottom, pick the
@@ -69,9 +89,9 @@
     const line = navHeight() + 12;
     let current = null;
     $$(".cat").forEach((sec) => {
-      if (!sec.hidden && sec.getBoundingClientRect().top <= line) current = sec;
+      if (!sec.hidden && !sec.classList.contains("svc-off") && sec.getBoundingClientRect().top <= line) current = sec;
     });
-    return current || $$(".cat").find((s) => !s.hidden);
+    return current || visible[0];
   }
 
   navLinks.forEach((link) => {
@@ -179,23 +199,31 @@
   let cart = storage.get().filter((l) => ITEMS[String(l.id)]);
   let submitting = false;
 
-  const lineKey = (id, options, note) => [id, options.slice().sort().join("."), note].join("|");
+  const lineKey = (id, options, note, plate = "", vehicle = "") =>
+    [id, options.slice().sort().join("."), note, plate, vehicle].join("|");
+  const needsVehicle = (item) => item && (CONFIG.vehicleServices || []).includes(item.service_type);
+  const vehicleLabel = (code) => ((CONFIG.vehicleTypes || []).find((v) => v[0] === code) || [code, code])[1];
+
+  function basePriceCents(item, vehicle) {
+    const byVehicle = item.vehicle_prices || {};
+    return cents(vehicle && byVehicle[vehicle] ? byVehicle[vehicle] : item.price);
+  }
 
   function lineUnitCents(line) {
     const item = ITEMS[String(line.id)];
     if (!item) return 0;
     const byId = Object.fromEntries(item.options.map((o) => [o.id, o]));
-    return cents(item.price) + line.options.reduce((s, oid) => s + (byId[oid] ? cents(byId[oid].price) : 0), 0);
+    return basePriceCents(item, line.vehicle) + line.options.reduce((s, oid) => s + (byId[oid] ? cents(byId[oid].price) : 0), 0);
   }
 
-  function addToCart(id, qty, options = [], note = "") {
+  function addToCart(id, qty, options = [], note = "", plate = "", vehicle = "") {
     note = note.trim().slice(0, 200);
-    const key = lineKey(id, options, note);
+    const key = lineKey(id, options, note, plate, vehicle);
     const existing = cart.find((l) => l.key === key);
     if (existing) existing.qty = Math.min(MAX_QTY, existing.qty + qty);
-    else cart.push({ key, id, qty, options, note });
+    else cart.push({ key, id, qty, options, note, plate, vehicle });
     save();
-    toast(`${ITEMS[String(id)].name} × ${qty}`, true);
+    toast(`${ITEMS[String(id)].name}${plate ? " · " + plate : ""} × ${qty}`, true);
   }
 
   function save() {
@@ -237,7 +265,7 @@
         const item = ITEMS[id];
         if (!item || !item.is_available) return;
         const qty = stepper ? stepper.get() : 1;
-        if (item.options.length) openItem(id, qty); // let the customer pick add-ons
+        if (item.options.length || needsVehicle(item)) openItem(id, qty); // add-ons / plate number first
         else {
           addToCart(Number(id), qty);
           if (stepper) stepper.set(1);
@@ -278,8 +306,10 @@
   function selectedOptions() {
     return $$("#item-sheet-option-list input:checked").map((i) => Number(i.value));
   }
+  const selectedVehicle = () => { const v = $("#item-sheet-vehicles input:checked"); return v ? v.value : ""; };
   function updateSheetPrice() {
-    const unit = lineUnitCents({ id: sheetItemId, options: selectedOptions() });
+    const unit = lineUnitCents({ id: sheetItemId, options: selectedOptions(), vehicle: selectedVehicle() });
+    $("#item-sheet-price").textContent = money(unit / 100);
     $("#item-sheet-add").textContent = `${T.add_to_cart} · ${money((unit * sheetStepper.get()) / 100)}`;
   }
 
@@ -319,7 +349,33 @@
     });
     $("#item-sheet-options").hidden = item.options.length === 0;
     $("#item-sheet-note").value = "";
-    sheetStepper.set(qty);
+    // Car wash: plate number (required) + vehicle type with its price; one vehicle per line.
+    const vehicle = needsVehicle(item);
+    $("#item-sheet-vehicle").hidden = !vehicle;
+    $("#item-sheet-stepper").hidden = vehicle;
+    $("#item-sheet-plate-error").hidden = true;
+    const vlist = $("#item-sheet-vehicles");
+    vlist.innerHTML = "";
+    if (vehicle) {
+      (CONFIG.vehicleTypes || []).forEach(([code, label], i) => {
+        const row = document.createElement("label");
+        row.className = "check";
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "vehicle";
+        input.value = code;
+        input.checked = i === 0;
+        input.addEventListener("change", updateSheetPrice);
+        const name = document.createElement("span");
+        name.textContent = label;
+        const price = document.createElement("span");
+        price.className = "muted";
+        price.textContent = money(basePriceCents(item, code) / 100);
+        row.append(input, name, price);
+        vlist.appendChild(row);
+      });
+    }
+    sheetStepper.set(vehicle ? 1 : qty);
     const addBtn = $("#item-sheet-add");
     addBtn.disabled = !item.is_available;
     if (!item.is_available) addBtn.textContent = T.sold_out;
@@ -327,8 +383,23 @@
     openSheet(itemSheet);
   }
 
+  $("#item-sheet-plate").addEventListener("input", (e) => {
+    e.target.value = e.target.value.toUpperCase();
+    $("#item-sheet-plate-error").hidden = true;
+  });
   $("#item-sheet-add").addEventListener("click", () => {
-    addToCart(sheetItemId, sheetStepper.get(), selectedOptions(), $("#item-sheet-note").value);
+    const item = ITEMS[String(sheetItemId)];
+    let plate = "", vehicle = "";
+    if (needsVehicle(item)) {
+      plate = $("#item-sheet-plate").value.trim().replace(/\s+/g, " ").toUpperCase().slice(0, 20);
+      if (!plate) {
+        $("#item-sheet-plate-error").hidden = false;
+        $("#item-sheet-plate").focus();
+        return;
+      }
+      vehicle = selectedVehicle();
+    }
+    addToCart(sheetItemId, sheetStepper.get(), selectedOptions(), $("#item-sheet-note").value, plate, vehicle);
     const cardStepper = $(`.card[data-item="${sheetItemId}"] [data-qty]`);
     if (cardStepper) cardStepper.textContent = "1";
     closeSheet(itemSheet);
@@ -371,6 +442,12 @@
         opts.textContent = "+ " + line.options.map((oid) => (byId[oid] ? byId[oid].name : "")).filter(Boolean).join(", ");
         info.appendChild(opts);
       }
+      if (line.plate) {
+        const car = document.createElement("div");
+        car.className = "muted small";
+        car.textContent = `${T.plate}: ${line.plate}` + (line.vehicle ? ` · ${vehicleLabel(line.vehicle)}` : "");
+        info.appendChild(car);
+      }
       if (line.note) {
         const note = document.createElement("div");
         note.className = "muted small";
@@ -409,6 +486,7 @@
         cart.splice(idx, 1);
         save();
       });
+      if (line.plate) stepper.hidden = true; // one vehicle per line
       right.append(price, stepper, remove);
       li.append(info, right);
       list.appendChild(li);
@@ -446,7 +524,9 @@
     errorEl.hidden = true;
 
     const payload = {
-      items: cart.map((l) => ({ menu_item: l.id, quantity: l.qty, options: l.options, note: l.note })),
+      items: cart.map((l) => ({ menu_item: l.id, quantity: l.qty, options: l.options, note: l.note,
+                                plate_number: l.plate || "", vehicle_type: l.vehicle || "" })),
+      walk_in: !!CONFIG.walkIn,
       customer_name: form.customer_name.value.trim(),
       customer_phone: form.customer_phone.value.trim(),
       note: form.note.value.trim(),

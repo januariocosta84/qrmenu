@@ -18,7 +18,7 @@
     <div class="card-head">
       <h2>{% translate "Current bill" %}</h2>
       <span class="btn-row">
-      {% if session_receipt_ids %}<a class="btn btn-sm" href="{% url 'dashboard:receipt' r.slug %}?orders={{ session_receipt_ids }}" data-print-receipt="{{ session_receipt_ids }}" target="_blank" rel="noopener">{% icon "printer" %} {% translate "Print bill" %}</a>{% endif %}
+      {% if session %}<button class="btn btn-sm" type="button" data-bill-dialog='{"session": "{{ session.pk }}"}' data-bill-title="{% blocktranslate trimmed with n=table.number %}Print bill · Table {{ n }}{% endblocktranslate %}">{% icon "printer" %} {% translate "Print bill" %}</button>{% endif %}
       {% if session and request.can.table_sessions %}
       <form method="post" action="{% url 'dashboard:table_session_close' r.slug table.pk %}"
             onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% translate "Free this table? Everyone who scanned it must scan again to order." %}">
@@ -62,14 +62,18 @@
             <a href="{% url 'dashboard:order_detail' r.slug o.pk %}"><strong>#{{ o.number }}</strong></a>
             <span class="btn-row"><span class="pill pill-{{ o.status }}">{{ o.get_status_display }}</span><span class="pill pill-pay-{{ o.payment_status }}">{{ o.get_payment_status_display }}</span></span>
           </div>
+          {% if o.service_type == "car_wash" %}<span class="tag">{% icon "drawer" %} {{ r.car_wash_name|default:_("Car wash") }}{% if o.plate_number %} · {{ o.plate_number }}{% endif %}</span>{% endif %}
           <ul class="plain small">{% for i in o.items.all %}<li>{{ i.name }} × {{ i.quantity }}{% for op in i.options.all %} <span class="muted">+{{ op.name }}</span>{% endfor %}</li>{% endfor %}</ul>
           <div class="card-head" style="margin: 6px 0 0">
             <span class="small"><strong>{{ o.total|money:sym }}</strong>{% if o.customer_name %} · {{ o.customer_name }}{% endif %} · {{ o.created_at|date:"H:i" }}{% if o.source == "staff" %} · <span class="kby">{% icon "pen" %}{% translate "waiter" %}</span>{% endif %}</span>
-            {% if o.payment_status == "unpaid" and o.status != "cancelled" and request.can.payments %}
+            {% if o.pay_due and o.pay_leader.pk != o.pk %}
+            <span class="muted small">{% blocktranslate trimmed with n=o.pay_leader.number %}Paid with #{{ n }}{% endblocktranslate %}</span>
+            {% elif o.payment_status == "unpaid" and o.status != "cancelled" and request.can.payments %}
             <form method="post" action="{% url 'dashboard:order_mark_paid' r.slug o.pk %}"
-                  data-cash-due="{{ o.total|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=o.number %}Order #{{ n }} · cash payment{% endblocktranslate %}">
+                  {% if o.pay_due %}data-cash-due="{{ o.pay_due|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=o.pay_numbers %}Order {{ n }} · paid together{% endblocktranslate %}"
+                  {% else %}data-cash-due="{{ o.total|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=o.number %}Order #{{ n }} · cash payment{% endblocktranslate %}"{% endif %}>
               {% csrf_token %}<input type="hidden" name="next" value="{{ request.path }}">
-              <button class="btn btn-sm" type="submit">{% icon "cash" %} {% translate "Mark paid" %}</button>
+              <button class="btn btn-sm" type="submit">{% icon "cash" %} {% translate "Mark paid" %}{% if o.pay_due %} · {{ o.pay_numbers }} · {{ o.pay_due|money:sym }}{% endif %}</button>
             </form>
             {% endif %}
           </div>
@@ -81,6 +85,14 @@
       {% endfor %}
     {% else %}
       <div class="empty">{% icon "table" %}<p>{% translate "This table is free. A bill starts when a customer scans the QR code or a waiter adds an order." %}</p></div>
+    {% endif %}
+
+    {% if printed_bills %}
+    <h3>{% translate "Printed bills" %}</h3>
+    <ul class="plain">{% for x in printed_bills %}
+      <li class="usage-row"><span><strong>{{ x.number }}</strong> <span class="muted small">{{ x.created_at|date:"H:i" }} · {{ x.data.total }}</span>{% if x.paid %} <span class="pill pill-pay-paid">{% translate "Paid" %}</span>{% endif %}</span>
+        <a class="btn btn-sm btn-ghost" href="{% url 'dashboard:bill_receipts' r.slug %}?ids={{ x.pk }}&reprint=1" data-reprint="{% url 'dashboard:bill_receipts' r.slug %}?ids={{ x.pk }}&reprint=1&autoprint=1">{% icon "printer" %} {% translate "Reprint (COPY)" %}</a></li>
+    {% endfor %}</ul>
     {% endif %}
 
     {% if past_sessions %}

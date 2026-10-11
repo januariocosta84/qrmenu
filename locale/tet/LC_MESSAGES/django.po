@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 13:24+0900\n"
+"POT-Creation-Date: 2026-10-12 01:13+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -484,6 +484,53 @@ msgstr "Ita-nia knaar la bele kansela pedidu."
 msgid "No orders to print."
 msgstr "La iha pedidu atu imprime."
 
+#, python-format
+msgid "Table %(n)s"
+msgstr "Meza %(n)s"
+
+msgid "walk-in"
+msgstr "la iha meza"
+
+#, python-format
+msgid "Car wash #%(number)s for %(plate)s (%(where)s) added."
+msgstr "Fase karreta #%(number)s ba %(plate)s (%(where)s) aumenta ona."
+
+msgid "Choose a package."
+msgstr "Hili pakote ida."
+
+msgid "Only unpaid car wash orders can be moved to a table."
+msgstr "Pedidu fase karreta ne'ebé seidauk selu de'it mak bele muda ba meza."
+
+#, python-format
+msgid ""
+"Car wash for %(plate)s added to the bill of table %(n)s (%(count)s order(s))."
+msgstr ""
+"Fase karreta ba %(plate)s aumenta ona ba konta meza %(n)s (pedidu %(count)s)."
+
+#, python-format
+msgid "Car wash #%(number)s cancelled."
+msgstr "Fase karreta #%(number)s kansela ona."
+
+msgid ""
+"New car wash QR code made. Old printouts no longer work — print the new one."
+msgstr ""
+"Kódigu QR fase karreta foun kria ona. Kódigu imprime tuan la funsiona ona — "
+"imprime ida foun."
+
+msgid "Café"
+msgstr "Kafé"
+
+msgid "Bill preview"
+msgstr "Haree uluk konta"
+
+msgid "Nothing left to bill: these orders are paid. Reprint from the history."
+msgstr ""
+"La iha buat ida atu fatura: pedidu hirak ne'e selu ona. Imprime fali husi "
+"istória."
+
+msgid "Your role cannot take payments."
+msgstr "Ita-nia knaar labele simu pagamentu."
+
 msgid "How VAT is charged"
 msgstr "Oinsá kobra IVA"
 
@@ -571,6 +618,18 @@ msgstr "Naran impostu"
 msgid "Tax ID"
 msgstr "Númeru impostu (NIF)"
 
+msgid "Default bill print mode"
+msgstr "Modu imprime konta padraun"
+
+msgid "Car wash"
+msgstr "Fase karreta"
+
+msgid "Car wash name"
+msgstr "Naran fase karreta"
+
+msgid "Print a car wash ticket automatically"
+msgstr "Imprime tiket fase karreta automátiku"
+
 msgid "Enter the receipt printer's IP address to print receipts on it."
 msgstr "Hakerek enderesu IP imprimidora resibu nian atu imprime iha ne'ebá."
 
@@ -579,6 +638,9 @@ msgstr "Hakerek taxa IVA, ez. 10."
 
 msgid "Enter the receipt printer's IP address to use the cash drawer."
 msgstr "Hakerek enderesu IP imprimidora resibu nian atu uza gaveta osan."
+
+msgid "Service"
+msgstr "Servisu"
 
 msgid "Position"
 msgstr "Pozisaun"
@@ -603,6 +665,16 @@ msgstr "Iha (hasai marka = Hotu ona)"
 
 msgid "Preparation time (minutes)"
 msgstr "Tempu prepara (minutu)"
+
+msgid "Price for a motorbike"
+msgstr "Presu ba motorizada"
+
+msgid "Car wash packages only. Leave empty to use the normal price (cars)."
+msgstr ""
+"Ba pakote fase karreta de'it. Husik mamuk atu uza presu normál (karreta)."
+
+msgid "Price for a pickup / SUV"
+msgstr "Presu ba pickup / SUV"
 
 msgid "Available"
 msgstr "Iha"
@@ -800,8 +872,8 @@ msgid "Cash movement recorded."
 msgstr "Movimentu osan rejista ona."
 
 #, python-format
-msgid "Order #%(number)s marked as paid."
-msgstr "Pedidu #%(number)s marka ona katak selu ona."
+msgid "Marked as paid: %(numbers)s."
+msgstr "Marka ona katak selu ona: %(numbers)s."
 
 msgid "Your role cannot manage tables."
 msgstr "Ita-nia knaar la bele jere meza."
@@ -827,10 +899,6 @@ msgstr "Meza %(number)s kria ona."
 #, python-format
 msgid "Guest %(n)s"
 msgstr "Bainaka %(n)s"
-
-#, python-format
-msgid "Marked as paid: %(numbers)s."
-msgstr "Marka ona katak selu ona: %(numbers)s."
 
 msgid "This guest has nothing left to pay."
 msgstr "Bainaka ne'e la iha buat ida atu selu tan."
@@ -944,6 +1012,15 @@ msgstr "Resibu"
 
 msgid "What happens after a payment is recorded."
 msgstr "Saida mak akontese hafoin rejista pagamentu."
+
+msgid ""
+"Sell car wash packages from the same table QR as your café. Car wash orders "
+"go to the Car wash screen (and a printed ticket), not to the kitchen. Add a "
+"menu category with the service “Car wash” for your packages."
+msgstr ""
+"Fa'an pakote fase karreta ho kódigu QR meza hanesan ho kafé. Pedidu fase "
+"karreta ba ekran Fase karreta (no tiket imprime), la'ós ba kozinha. Aumenta "
+"kategoria menu ho servisu “Fase karreta” ba ita-nia pakote."
 
 msgid "Receipt printer & cash drawer"
 msgstr "Imprimidora resibu no gaveta osan"
@@ -1231,11 +1308,23 @@ msgstr "Númeru ki'ik mosu uluk."
 msgid "Hidden categories are not shown to customers."
 msgstr "Kategoria subar la mosu ba kliente sira."
 
+msgid "Café items go to the kitchen; car wash packages go to the counter."
+msgstr "Item kafé ba kozinha; pakote fase karreta ba balkaun."
+
 msgid "Untick to mark as Sold Out."
 msgstr "Hasai marka atu marka Hotu ona."
 
 msgid "Typical preparation time; leave blank to use the restaurant default."
 msgstr "Tempu prepara normál; husik mamuk atu uza tempu restaurante nian."
+
+msgid "Car"
+msgstr "Karreta"
+
+msgid "Motorbike"
+msgstr "Motorizada"
+
+msgid "Pickup / SUV"
+msgstr "Pickup / SUV"
 
 msgid "New"
 msgstr "Foun"
@@ -1299,6 +1388,13 @@ msgstr "Kuantidade la válidu."
 
 msgid "Invalid add-on selected."
 msgstr "Hili aumentu ne'ebé la válidu."
+
+#, python-format
+msgid "Enter the plate number for %(item)s."
+msgstr "Hakerek númeru xapa ba %(item)s."
+
+msgid "Invalid vehicle type."
+msgstr "Tipu karreta la válidu."
 
 msgid "Some items are no longer available."
 msgstr "Hahán balu la iha ona."
@@ -1394,11 +1490,11 @@ msgstr "Kartaun (terminál esterna)"
 msgid "QR payment (manual check)"
 msgstr "Pagamentu QR (verifika manuál)"
 
-msgid "Network receipt printer is not set up."
-msgstr "Imprimidora resibu iha rede seidauk konfigura."
-
 msgid "Nothing to print."
 msgstr "La iha buat ida atu imprime."
+
+msgid "Network receipt printer is not set up."
+msgstr "Imprimidora resibu iha rede seidauk konfigura."
 
 #, python-format
 msgid "Printer at %(target)s did not respond. Is it switched on?"
@@ -1581,6 +1677,34 @@ msgstr "Surat-tahan 58 mm"
 
 msgid "Paper width of the network receipt printer."
 msgstr "Luan surat-tahan imprimidora resibu nian."
+
+msgid "One combined bill"
+msgstr "Konta ida hamutuk"
+
+msgid "Separate bill per service"
+msgstr "Konta separadu ba servisu ida-idak"
+
+msgid ""
+"Used when a table has orders for several services (e.g. café and car wash)."
+msgstr ""
+"Uza bainhira meza ida iha pedidu ba servisu barak (ez. kafé no fase karreta)."
+
+msgid ""
+"Customers can order car wash packages from the table QR, together with café "
+"items."
+msgstr ""
+"Kliente sira bele husu pakote fase karreta husi QR meza, hamutuk ho item "
+"kafé."
+
+msgid "Shown to customers and on car wash bills, e.g. Timor Car Wash."
+msgstr "Hatudu ba kliente no iha konta fase karreta, ez. Timor Car Wash."
+
+msgid ""
+"For each new car wash order: on the network receipt printer if set up, "
+"otherwise from the Car wash screen when it is open."
+msgstr ""
+"Ba pedidu fase karreta foun ida-idak: iha imprimidora rede se iha; se lae, "
+"husi ekran Fase karreta bainhira loke."
 
 msgid "The main branch this sub-branch belongs to."
 msgstr "Filial prinsipál ne'ebé sub-filial ne'e pertense ba."
@@ -1776,6 +1900,14 @@ msgstr "serbidór"
 
 msgid "Counter"
 msgstr "Balkaun"
+
+#, python-format
+msgid "Paid with #%(n)s"
+msgstr "Selu hamutuk ho #%(n)s"
+
+#, python-format
+msgid "Order %(n)s · paid together"
+msgstr "Pedidu %(n)s · selu hamutuk"
 
 #, python-format
 msgid "Order #%(n)s · cash payment"
@@ -2003,6 +2135,12 @@ msgstr "Iha meza"
 
 msgid "Counter / takeaway"
 msgstr "Balkaun / lori ba uma"
+
+msgid "Revenue by service"
+msgstr "Rendimentu tuir servisu"
+
+msgid "Café and car wash, from completed orders."
+msgstr "Kafé no fase karreta, husi pedidu ne'ebé remata."
 
 msgid "Sales by category"
 msgstr "Fa'an tuir kategoria"
@@ -2409,9 +2547,6 @@ msgstr "Seidauk públiku"
 
 msgid "Close menu"
 msgstr "Taka menu"
-
-msgid "Service"
-msgstr "Servisu"
 
 msgid "Overview"
 msgstr "Rezumu"
@@ -3035,6 +3170,135 @@ msgid "Send for verification"
 msgstr "Haruka ba verifikasaun"
 
 msgid ""
+"Car wash orders from tables and walk-in customers. They don't go to the "
+"kitchen: give the ticket to the car wash team. They are completed "
+"automatically once paid."
+msgstr ""
+"Pedidu fase karreta husi meza no kliente la iha meza. La ba kozinha: fó "
+"tiket ba ekipa fase karreta. Sei remata automátiku bainhira selu ona."
+
+msgid "Today & unpaid"
+msgstr "Ohin no seidauk selu"
+
+msgid "All, incl. cancelled"
+msgstr "Hotu, inklui kansela"
+
+msgid "Refresh"
+msgstr "Atualiza"
+
+msgid "Walk-in cars waiting to pay"
+msgstr "Karreta la iha meza hein selu"
+
+#, python-format
+msgid "Walk-in · %(p)s"
+msgstr "La iha meza · %(p)s"
+
+msgid "Bill / pay"
+msgstr "Konta / selu"
+
+msgid "Car wash orders"
+msgstr "Pedidu fase karreta"
+
+msgid "Plate"
+msgstr "Xapa"
+
+msgid "Package"
+msgstr "Pakote"
+
+msgid "Where"
+msgstr "Iha ne'ebé"
+
+msgid "Walk-in"
+msgstr "La iha meza"
+
+msgid "Ticket"
+msgstr "Tiket"
+
+msgid "Add to bill"
+msgstr "Aumenta ba konta"
+
+#, python-format
+msgid "Cancel car wash #%(n)s?"
+msgstr "Kansela fase karreta #%(n)s?"
+
+msgid "Cancel"
+msgstr "Kansela"
+
+msgid "No car wash orders yet today."
+msgstr "Ohin seidauk iha pedidu fase karreta."
+
+msgid "Printed bills"
+msgstr "Konta ne'ebé imprime ona"
+
+msgid "Reprint (COPY)"
+msgstr "Imprime fali (KÓPIA)"
+
+msgid "New car wash order"
+msgstr "Pedidu fase karreta foun"
+
+msgid ""
+"For a car dropped off at the counter. Choose a table to put it on that "
+"table's bill, or leave it as walk-in (the bill is under the plate number)."
+msgstr ""
+"Ba karreta ne'ebé husik iha balkaun. Hili meza atu tau iha konta meza ne'e, "
+"ka husik la iha meza (konta tuir númeru xapa)."
+
+msgid "Plate number"
+msgstr "Númeru xapa"
+
+msgid "No car wash packages yet"
+msgstr "Seidauk iha pakote fase karreta"
+
+msgid "Vehicle type"
+msgstr "Tipu karreta"
+
+msgid "Walk-in (no table)"
+msgstr "La iha meza"
+
+msgid "Customer name"
+msgstr "Naran kliente"
+
+msgid "Add car wash"
+msgstr "Aumenta fase karreta"
+
+msgid ""
+"Add a menu category with the service “Car wash” and your packages first."
+msgstr ""
+"Aumenta uluk kategoria menu ho servisu “Fase karreta” no ita-nia pakote."
+
+msgid "Walk-in car wash QR"
+msgstr "QR fase karreta (la iha meza)"
+
+msgid ""
+"Put this QR code at the wash bay or counter. It opens only the car wash "
+"menu; orders are billed under the plate number."
+msgstr ""
+"Tau kódigu QR ne'e iha fatin fase ka balkaun. Nia loke menu fase karreta "
+"de'it; pedidu tama ba konta tuir númeru xapa."
+
+msgid "Open the customer link"
+msgstr "Loke link kliente nian"
+
+msgid "Make a new QR code? The printed one will STOP working."
+msgstr "Kria kódigu QR foun? Ida ne'ebé imprime ona sei PARA funsiona."
+
+msgid "New code"
+msgstr "Kódigu foun"
+
+msgid "Tickets print on the network receipt printer."
+msgstr "Tiket sira imprime iha imprimidora rede."
+
+msgid "Keep this screen open: new car wash tickets print here automatically."
+msgstr ""
+"Husik ekran ne'e loke: tiket fase karreta foun sei imprime iha ne'e "
+"automátiku."
+
+msgid "Tip: switch on automatic tickets in Restaurant settings → Car wash."
+msgstr ""
+"Sujestaun: ativa tiket automátiku iha Konfigurasaun restaurante → Fase "
+"karreta."
+
+msgid ""
 "Enter the change in the drawer before selling starts. At the end, count the "
 "drawer and compare it with what the system expects."
 msgstr ""
@@ -3278,9 +3542,6 @@ msgstr "Presiza liña barak liu? Rai, no liña mamuk foun rua sei mosu."
 msgid "Save dish"
 msgstr "Rai hahán"
 
-msgid "Cancel"
-msgstr "Kansela"
-
 #, python-format
 msgid "Delete %(name)s? Past orders are kept."
 msgstr "Hamoos %(name)s? Pedidu uluk sira sei rai nafatin."
@@ -3362,15 +3623,11 @@ msgstr ""
 "prinsipál, Hemu)."
 
 msgid ""
-"For guests without a smartphone. Choose the table and guest, tap dishes, "
-"then send."
+"For guests without a smartphone. Choose the table and guest, tap dishes (and "
+"car wash packages), then send: everything goes on one bill."
 msgstr ""
-"Ba bainaka sira ne'ebé la iha telemovel. Hili meza no bainaka, toka hahán, "
-"depois haruka."
-
-#, python-format
-msgid "Table %(n)s"
-msgstr "Meza %(n)s"
+"Ba kliente ne'ebé la iha smartphone. Hili meza no kliente, hili hahán (no "
+"pakote fase karreta), depois haruka: hotu tama iha konta ida."
 
 msgid "Guest"
 msgstr "Bainaka"
@@ -3407,6 +3664,12 @@ msgstr "Nota ba kozinha (opsionál)"
 
 msgid "Send to kitchen"
 msgstr "Haruka ba kozinha"
+
+msgid "Print one bill for this order"
+msgstr "Imprime konta ida ba pedidu ne'e"
+
+msgid "Enter the plate number."
+msgstr "Hakerek númeru xapa."
 
 msgid "Note"
 msgstr "Nota"
@@ -3491,6 +3754,11 @@ msgstr "ref. %(ref)s"
 #, python-format
 msgid "Paid so far %(paid)s · <strong>Still due %(due)s</strong>"
 msgstr "Selu ona %(paid)s · <strong>Sei tenke selu %(due)s</strong>"
+
+#, python-format
+msgid "Ordered together (%(n)s): paid as one sum, change given once."
+msgstr ""
+"Pedidu hamutuk (%(n)s): selu hanesan totál ida, fó osan susuk dala ida de'it."
 
 msgid "Other method or partial payment"
 msgstr "Métodu seluk ka selu balun"
@@ -3734,14 +4002,18 @@ msgstr "To'o"
 msgid "VAT collected"
 msgstr "IVA ne'ebé kobra ona"
 
+#, python-format
+msgid "Best sellers · %(name)s"
+msgstr "Fa'an barak liu · %(name)s"
+
+msgid "No data yet."
+msgstr "Seidauk iha dadus."
+
 msgid "Best sellers"
 msgstr "Fa'an barak liu"
 
 msgid "Sold"
 msgstr "Fa'an ona"
-
-msgid "No data yet."
-msgstr "Seidauk iha dadus."
 
 #, python-format
 msgid ""
@@ -3879,6 +4151,10 @@ msgstr "Aumenta pedidu"
 msgid "Current bill"
 msgstr "Konta atuál"
 
+#, python-format
+msgid "Print bill · Table %(n)s"
+msgstr "Imprime konta · Meza %(n)s"
+
 msgid "Print bill"
 msgstr "Imprime konta"
 
@@ -3921,9 +4197,6 @@ msgstr ""
 
 msgid "Recent bills"
 msgstr "Konta foin daudaun"
-
-msgid "Open the customer link"
-msgstr "Loke link kliente nian"
 
 msgid "Generate a new QR code? The currently printed code will STOP working."
 msgstr "Kria kódigu QR foun? Kódigu ne'ebé imprime ona sei LA FUNSIONA tan."
@@ -4103,8 +4376,12 @@ msgstr ""
 msgid "Video: how customers order with QR Menu"
 msgstr "Vídeo: oinsá kliente sira halo orden ho QR Menu"
 
-msgid "Watch how a customer orders, from scanning the table's QR code to the kitchen (50 seconds)."
-msgstr "Haree oinsá kliente ida halo orden, husi scan kódigu QR iha meza to'o kozinha (segundu 50)."
+msgid ""
+"Watch how a customer orders, from scanning the table's QR code to the "
+"kitchen (50 seconds)."
+msgstr ""
+"Haree oinsá kliente ida halo orden, husi scan kódigu QR iha meza to'o "
+"kozinha (segundu 50)."
 
 msgid "Works on any phone"
 msgstr "Funsiona iha telemovel hotu"
@@ -4319,6 +4596,10 @@ msgstr "8. Kontaktu"
 
 msgid "Questions about these terms:"
 msgstr "Pergunta kona-ba termu hirak ne'e:"
+
+#, python-format
+#~ msgid "Order #%(number)s marked as paid."
+#~ msgstr "Pedidu #%(number)s marka ona katak selu ona."
 
 #, python-format
 #~ msgid "Branch “%(name)s” created. Add its staff accounts here."

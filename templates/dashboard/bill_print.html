@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <style>
+    /*
+     * The text is already laid out for the paper (apps/payments/bills.receipt_lines): 48 columns on
+     * 80 mm paper (72 mm printable), 32 on 58 mm (48 mm). One column = 1.5 mm, like the printer's Font A.
+     */
+    :root { --paper: {% if width == 32 %}58mm{% else %}80mm{% endif %}; --print: {% if width == 32 %}48mm{% else %}72mm{% endif %}; }
+    @page { size: var(--paper) 297mm; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: #e5e7eb; color: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .paper { width: var(--paper); margin: 16px auto; padding: 3mm calc((var(--paper) - var(--print)) / 2) 8mm; background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+    .l { font: 2.5mm/3.4mm ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, "Courier New", monospace; white-space: pre; min-height: 3.4mm; overflow: hidden; }
+    .l.bold, .l.big { font-weight: 800; }
+    .l.big { font-size: 5mm; line-height: 6mm; letter-spacing: 0; }
+    .bar { display: flex; gap: 8px; justify-content: center; margin: 16px; font: 15px system-ui, sans-serif; }
+    .bar button { padding: 10px 18px; font: inherit; font-weight: 700; border-radius: 8px; border: 1px solid #d1d5db; background: #fff; cursor: pointer; }
+    .bar .primary { background: #ea580c; border-color: #ea580c; color: #fff; }
+    @media print {
+      body { background: #fff; }
+      .paper { margin: 0; box-shadow: none; break-after: page; }
+      .paper:last-child { break-after: auto; }
+      .bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <button class="primary" type="button" onclick="window.print()">Print</button>
+    <button type="button" onclick="window.close()">Close</button>
+  </div>
+  {% for page in pages %}
+  <div class="paper">{% for text, style in page %}<div class="l {{ style }}">{{ text }}</div>{% endfor %}</div>
+  {% endfor %}
+  <script>
+    // Page height = the longest receipt, so the roll is cut right after the footer.
+    (function () {
+      const style = document.createElement("style");
+      document.head.appendChild(style);
+      const fit = () => {
+        const papers = [...document.querySelectorAll(".paper")];
+        const width = getComputedStyle(document.documentElement).getPropertyValue("--paper").trim();
+        const mm = Math.ceil(Math.max(...papers.map((p) => p.getBoundingClientRect().height)) * 25.4 / 96) + 2;
+        style.textContent = `@page { size: ${width} ${mm}mm; margin: 0; }`;
+      };
+      window.addEventListener("load", fit);
+      window.addEventListener("beforeprint", fit);
+    })();
+  </script>
+  {% if autoprint %}
+  <script>
+    if (window.self === window.top) {
+      window.addEventListener("load", () => setTimeout(() => window.print(), 250));
+      window.addEventListener("afterprint", () => window.close());
+    }
+  </script>
+  {% endif %}
+</body>
+</html>

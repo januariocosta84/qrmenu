@@ -17,6 +17,7 @@ from rest_framework.views import APIView
 
 from apps.core.api import RestaurantScopedMixin
 from apps.menu.models import MenuItem
+from apps.menu.service_types import KITCHEN_SERVICES
 from apps.menu.serializers import StaffItemSerializer
 from apps.orders import realtime
 from apps.orders.models import Notification, Order, OrderStatus, PaymentMethod
@@ -28,7 +29,7 @@ from apps.payments.providers import STAFF_RECORDABLE_METHODS
 from apps.payments.drawer import NOT_CONFIGURED, open_cash_drawer
 from apps.payments.receipts import network_printing_available, parse_order_ids, print_receipt_network, receipt_orders
 from apps.payments.models import CashDrawerOpening
-from apps.payments.services import receive_cash, receive_payment
+from apps.payments.services import payable_group, receive_cash, receive_payment
 
 
 class StaffAPIView(RestaurantScopedMixin, APIView):
@@ -47,6 +48,8 @@ class OrderListAPI(StaffAPIView):
         p = request.query_params
         if p.get("active") in {"1", "true"}:
             qs = qs.filter(status__in=OrderStatus.ACTIVE)
+        if p.get("kitchen") in {"1", "true"}:  # Kitchen Display: only services the kitchen prepares
+            qs = qs.filter(service_type__in=KITCHEN_SERVICES)
         if p.get("status"):
             qs = qs.filter(status__in=p["status"].split(","))
         if p.get("table"):
@@ -99,7 +102,10 @@ class StaffCreateOrderAPI(StaffAPIView):
         except OrderError as exc:
             return Response({"error": exc.code, "message": str(exc), **exc.details}, status=status.HTTP_409_CONFLICT)
         data = StaffOrderSerializer(get_object_or_404(self.orders(), pk=order.pk)).data
-        return Response({**data, "guest": guest}, status=status.HTTP_201_CREATED)
+        # Café + car wash in one go: every part, so the waiter can print them as one bill.
+        group = [{"id": o.pk, "number": o.number, "service_type": o.service_type, "table_number": o.table_number}
+                 for o in order.group_orders]
+        return Response({**data, "guest": guest, "group": group}, status=status.HTTP_201_CREATED)
 
 
 class OrderDetailAPI(StaffAPIView):
@@ -117,6 +123,8 @@ class OrderStatusAPI(StaffAPIView):
         to_status = s.validated_data["status"]
         if to_status == OrderStatus.CANCELLED and not self.restaurant.user_can(request.user, "cancel_orders"):
             return Response({"error": "forbidden", "message": _("Your role cannot cancel orders.")}, status=403)
+        if to_status != OrderStatus.CANCELLED and order.service_type not in KITCHEN_SERVICES:
+            return Response({"error": "no_workflow", "message": "Car wash orders are completed when paid."}, status=409)
         try:
             order = change_status(order, to_status, user=request.user, note=s.validated_data.get("note", ""))
         except OrderError as exc:
@@ -145,10 +153,13 @@ class RecordPaymentAPI(StaffAPIView):
         s.is_valid(raise_exception=True)
         d = s.validated_data
         change = None
+        paid_ids = [order.pk]
         try:
             if d["method"] == PaymentMethod.CASH and not d.get("amount"):
-                result = receive_cash([order], tendered=d.get("tendered"), user=request.user)
-                payment, change = result.payments[0], result.change
+                # Café + car wash from one order: one cash payment for the sum, change given once.
+                result = receive_cash(payable_group(order), tendered=d.get("tendered"), user=request.user)
+                payment, change = result.payments[-1], result.change
+                paid_ids = [o.pk for o in result.orders]
             else:
                 payment = receive_payment(
                     order, user=request.user, method=d["method"],
@@ -161,11 +172,11 @@ class RecordPaymentAPI(StaffAPIView):
             drawer = open_cash_drawer(self.restaurant, user=request.user, order=order)
         order.refresh_from_db()
         r = self.restaurant
-        receipt = {"mode": r.receipt_prompt, "orders": [order.pk], "printed": None}
+        receipt = {"mode": r.receipt_prompt, "orders": paid_ids, "printed": None}
         if order.payment_status != "paid" or r.receipt_prompt == r.RECEIPT_NEVER:
             receipt["mode"] = r.RECEIPT_NEVER
         elif r.receipt_prompt == r.RECEIPT_ALWAYS and network_printing_available(r):
-            receipt["printed"] = print_receipt_network(r, receipt_orders(r, [order.pk])).as_dict()
+            receipt["printed"] = print_receipt_network(r, receipt_orders(r, paid_ids)).as_dict()
         return Response(
             {
                 "payment_id": payment.id,

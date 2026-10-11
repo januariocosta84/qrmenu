@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 13:24+0900\n"
+"POT-Creation-Date: 2026-10-12 01:13+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -477,6 +477,52 @@ msgstr "Peran Anda tidak dapat membatalkan pesanan."
 msgid "No orders to print."
 msgstr "Tidak ada pesanan untuk dicetak."
 
+#, python-format
+msgid "Table %(n)s"
+msgstr "Meja %(n)s"
+
+msgid "walk-in"
+msgstr "tanpa meja"
+
+#, python-format
+msgid "Car wash #%(number)s for %(plate)s (%(where)s) added."
+msgstr "Cuci kendaraan #%(number)s untuk %(plate)s (%(where)s) ditambahkan."
+
+msgid "Choose a package."
+msgstr "Pilih paket."
+
+msgid "Only unpaid car wash orders can be moved to a table."
+msgstr "Hanya pesanan cuci yang belum dibayar yang bisa dipindah ke meja."
+
+#, python-format
+msgid ""
+"Car wash for %(plate)s added to the bill of table %(n)s (%(count)s order(s))."
+msgstr ""
+"Cuci untuk %(plate)s ditambahkan ke tagihan meja %(n)s (%(count)s pesanan)."
+
+#, python-format
+msgid "Car wash #%(number)s cancelled."
+msgstr "Cuci #%(number)s dibatalkan."
+
+msgid ""
+"New car wash QR code made. Old printouts no longer work — print the new one."
+msgstr ""
+"Kode QR cuci baru dibuat. Cetakan lama tidak berlaku — cetak yang baru."
+
+msgid "Café"
+msgstr "Kafe"
+
+msgid "Bill preview"
+msgstr "Pratinjau tagihan"
+
+msgid "Nothing left to bill: these orders are paid. Reprint from the history."
+msgstr ""
+"Tidak ada yang perlu ditagih: pesanan ini sudah dibayar. Cetak ulang dari "
+"riwayat."
+
+msgid "Your role cannot take payments."
+msgstr "Peran Anda tidak bisa menerima pembayaran."
+
 msgid "How VAT is charged"
 msgstr "Cara PPN dikenakan"
 
@@ -564,6 +610,18 @@ msgstr "Nama pajak"
 msgid "Tax ID"
 msgstr "NPWP"
 
+msgid "Default bill print mode"
+msgstr "Mode cetak tagihan bawaan"
+
+msgid "Car wash"
+msgstr "Cuci kendaraan"
+
+msgid "Car wash name"
+msgstr "Nama cuci kendaraan"
+
+msgid "Print a car wash ticket automatically"
+msgstr "Cetak tiket cuci otomatis"
+
 msgid "Enter the receipt printer's IP address to print receipts on it."
 msgstr "Masukkan alamat IP printer struk untuk mencetak struk."
 
@@ -572,6 +630,9 @@ msgstr "Masukkan tarif PPN, mis. 10."
 
 msgid "Enter the receipt printer's IP address to use the cash drawer."
 msgstr "Masukkan alamat IP printer struk untuk menggunakan laci kas."
+
+msgid "Service"
+msgstr "Layanan"
 
 msgid "Position"
 msgstr "Urutan"
@@ -596,6 +657,15 @@ msgstr "Tersedia (hapus centang = Habis)"
 
 msgid "Preparation time (minutes)"
 msgstr "Waktu persiapan (menit)"
+
+msgid "Price for a motorbike"
+msgstr "Harga untuk motor"
+
+msgid "Car wash packages only. Leave empty to use the normal price (cars)."
+msgstr "Hanya paket cuci. Kosongkan untuk memakai harga normal (mobil)."
+
+msgid "Price for a pickup / SUV"
+msgstr "Harga untuk pickup / SUV"
 
 msgid "Available"
 msgstr "Tersedia"
@@ -794,8 +864,8 @@ msgid "Cash movement recorded."
 msgstr "Pergerakan kas dicatat."
 
 #, python-format
-msgid "Order #%(number)s marked as paid."
-msgstr "Pesanan #%(number)s ditandai lunas."
+msgid "Marked as paid: %(numbers)s."
+msgstr "Ditandai lunas: %(numbers)s."
 
 msgid "Your role cannot manage tables."
 msgstr "Peran Anda tidak dapat mengelola meja."
@@ -820,10 +890,6 @@ msgstr "Meja %(number)s dibuat."
 #, python-format
 msgid "Guest %(n)s"
 msgstr "Tamu %(n)s"
-
-#, python-format
-msgid "Marked as paid: %(numbers)s."
-msgstr "Ditandai lunas: %(numbers)s."
 
 msgid "This guest has nothing left to pay."
 msgstr "Tamu ini tidak memiliki sisa tagihan."
@@ -938,6 +1004,15 @@ msgstr "Struk"
 
 msgid "What happens after a payment is recorded."
 msgstr "Apa yang terjadi setelah pembayaran dicatat."
+
+msgid ""
+"Sell car wash packages from the same table QR as your café. Car wash orders "
+"go to the Car wash screen (and a printed ticket), not to the kitchen. Add a "
+"menu category with the service “Car wash” for your packages."
+msgstr ""
+"Jual paket cuci kendaraan dari QR meja yang sama dengan kafe Anda. Pesanan "
+"cuci masuk ke layar Cuci kendaraan (dan tiket cetak), bukan ke dapur. "
+"Tambahkan kategori menu dengan layanan “Cuci kendaraan” untuk paket Anda."
 
 msgid "Receipt printer & cash drawer"
 msgstr "Printer struk & laci kas"
@@ -1226,11 +1301,23 @@ msgstr "Angka lebih kecil tampil lebih dulu."
 msgid "Hidden categories are not shown to customers."
 msgstr "Kategori tersembunyi tidak ditampilkan kepada pelanggan."
 
+msgid "Café items go to the kitchen; car wash packages go to the counter."
+msgstr "Item kafe ke dapur; paket cuci ke kasir."
+
 msgid "Untick to mark as Sold Out."
 msgstr "Hapus centang untuk menandai Habis."
 
 msgid "Typical preparation time; leave blank to use the restaurant default."
 msgstr "Waktu persiapan biasa; kosongkan untuk memakai bawaan restoran."
+
+msgid "Car"
+msgstr "Mobil"
+
+msgid "Motorbike"
+msgstr "Motor"
+
+msgid "Pickup / SUV"
+msgstr "Pickup / SUV"
 
 msgid "New"
 msgstr "Baru"
@@ -1294,6 +1381,13 @@ msgstr "Jumlah tidak valid."
 
 msgid "Invalid add-on selected."
 msgstr "Tambahan yang dipilih tidak valid."
+
+#, python-format
+msgid "Enter the plate number for %(item)s."
+msgstr "Masukkan nomor polisi untuk %(item)s."
+
+msgid "Invalid vehicle type."
+msgstr "Jenis kendaraan tidak valid."
 
 msgid "Some items are no longer available."
 msgstr "Beberapa item sudah tidak tersedia."
@@ -1390,11 +1484,11 @@ msgstr "Kartu (terminal eksternal)"
 msgid "QR payment (manual check)"
 msgstr "Pembayaran QR (cek manual)"
 
-msgid "Network receipt printer is not set up."
-msgstr "Printer struk jaringan belum diatur."
-
 msgid "Nothing to print."
 msgstr "Tidak ada yang dicetak."
+
+msgid "Network receipt printer is not set up."
+msgstr "Printer struk jaringan belum diatur."
 
 #, python-format
 msgid "Printer at %(target)s did not respond. Is it switched on?"
@@ -1577,6 +1671,32 @@ msgstr "Kertas 58 mm"
 
 msgid "Paper width of the network receipt printer."
 msgstr "Lebar kertas printer struk."
+
+msgid "One combined bill"
+msgstr "Satu tagihan gabungan"
+
+msgid "Separate bill per service"
+msgstr "Tagihan terpisah per layanan"
+
+msgid ""
+"Used when a table has orders for several services (e.g. café and car wash)."
+msgstr ""
+"Dipakai saat satu meja punya pesanan beberapa layanan (mis. kafe dan cuci)."
+
+msgid ""
+"Customers can order car wash packages from the table QR, together with café "
+"items."
+msgstr "Pelanggan bisa memesan paket cuci dari QR meja, bersama item kafe."
+
+msgid "Shown to customers and on car wash bills, e.g. Timor Car Wash."
+msgstr "Ditampilkan ke pelanggan dan di tagihan cuci, mis. Timor Car Wash."
+
+msgid ""
+"For each new car wash order: on the network receipt printer if set up, "
+"otherwise from the Car wash screen when it is open."
+msgstr ""
+"Untuk setiap pesanan cuci baru: di printer jaringan bila ada, jika tidak "
+"dari layar Cuci kendaraan saat terbuka."
 
 msgid "The main branch this sub-branch belongs to."
 msgstr "Cabang utama tempat sub-cabang ini berada."
@@ -1772,6 +1892,14 @@ msgstr "pelayan"
 
 msgid "Counter"
 msgstr "Kasir"
+
+#, python-format
+msgid "Paid with #%(n)s"
+msgstr "Dibayar bersama #%(n)s"
+
+#, python-format
+msgid "Order %(n)s · paid together"
+msgstr "Pesanan %(n)s · dibayar bersama"
 
 #, python-format
 msgid "Order #%(n)s · cash payment"
@@ -1998,6 +2126,12 @@ msgstr "Di meja"
 
 msgid "Counter / takeaway"
 msgstr "Kasir / bawa pulang"
+
+msgid "Revenue by service"
+msgstr "Pendapatan per layanan"
+
+msgid "Café and car wash, from completed orders."
+msgstr "Kafe dan cuci, dari pesanan selesai."
 
 msgid "Sales by category"
 msgstr "Penjualan per kategori"
@@ -2406,9 +2540,6 @@ msgstr "Belum publik"
 
 msgid "Close menu"
 msgstr "Tutup menu"
-
-msgid "Service"
-msgstr "Layanan"
 
 msgid "Overview"
 msgstr "Ringkasan"
@@ -3041,6 +3172,131 @@ msgid "Send for verification"
 msgstr "Kirim untuk verifikasi"
 
 msgid ""
+"Car wash orders from tables and walk-in customers. They don't go to the "
+"kitchen: give the ticket to the car wash team. They are completed "
+"automatically once paid."
+msgstr ""
+"Pesanan cuci dari meja dan pelanggan tanpa meja. Tidak ke dapur: berikan "
+"tiket ke tim cuci. Otomatis selesai setelah dibayar."
+
+msgid "Today & unpaid"
+msgstr "Hari ini & belum bayar"
+
+msgid "All, incl. cancelled"
+msgstr "Semua, termasuk batal"
+
+msgid "Refresh"
+msgstr "Muat ulang"
+
+msgid "Walk-in cars waiting to pay"
+msgstr "Kendaraan tanpa meja menunggu bayar"
+
+#, python-format
+msgid "Walk-in · %(p)s"
+msgstr "Tanpa meja · %(p)s"
+
+msgid "Bill / pay"
+msgstr "Tagihan / bayar"
+
+msgid "Car wash orders"
+msgstr "Pesanan cuci"
+
+msgid "Plate"
+msgstr "Nopol"
+
+msgid "Package"
+msgstr "Paket"
+
+msgid "Where"
+msgstr "Di mana"
+
+msgid "Walk-in"
+msgstr "Tanpa meja"
+
+msgid "Ticket"
+msgstr "Tiket"
+
+msgid "Add to bill"
+msgstr "Tambah ke tagihan"
+
+#, python-format
+msgid "Cancel car wash #%(n)s?"
+msgstr "Batalkan cuci #%(n)s?"
+
+msgid "Cancel"
+msgstr "Batal"
+
+msgid "No car wash orders yet today."
+msgstr "Belum ada pesanan cuci hari ini."
+
+msgid "Printed bills"
+msgstr "Tagihan tercetak"
+
+msgid "Reprint (COPY)"
+msgstr "Cetak ulang (SALINAN)"
+
+msgid "New car wash order"
+msgstr "Pesanan cuci baru"
+
+msgid ""
+"For a car dropped off at the counter. Choose a table to put it on that "
+"table's bill, or leave it as walk-in (the bill is under the plate number)."
+msgstr ""
+"Untuk kendaraan yang dititipkan di kasir. Pilih meja agar masuk tagihan meja "
+"itu, atau biarkan tanpa meja (tagihan atas nomor polisi)."
+
+msgid "Plate number"
+msgstr "Nomor polisi"
+
+msgid "No car wash packages yet"
+msgstr "Belum ada paket cuci"
+
+msgid "Vehicle type"
+msgstr "Jenis kendaraan"
+
+msgid "Walk-in (no table)"
+msgstr "Tanpa meja"
+
+msgid "Customer name"
+msgstr "Nama pelanggan"
+
+msgid "Add car wash"
+msgstr "Tambah cuci"
+
+msgid ""
+"Add a menu category with the service “Car wash” and your packages first."
+msgstr ""
+"Tambahkan dulu kategori menu dengan layanan “Cuci kendaraan” dan paket Anda."
+
+msgid "Walk-in car wash QR"
+msgstr "QR cuci (tanpa meja)"
+
+msgid ""
+"Put this QR code at the wash bay or counter. It opens only the car wash "
+"menu; orders are billed under the plate number."
+msgstr ""
+"Pasang kode QR ini di tempat cuci atau kasir. Hanya membuka menu cuci; "
+"pesanan ditagih atas nomor polisi."
+
+msgid "Open the customer link"
+msgstr "Buka tautan pelanggan"
+
+msgid "Make a new QR code? The printed one will STOP working."
+msgstr "Buat kode QR baru? Yang sudah dicetak akan TIDAK berlaku."
+
+msgid "New code"
+msgstr "Kode baru"
+
+msgid "Tickets print on the network receipt printer."
+msgstr "Tiket dicetak di printer jaringan."
+
+msgid "Keep this screen open: new car wash tickets print here automatically."
+msgstr "Biarkan layar ini terbuka: tiket cuci baru tercetak otomatis di sini."
+
+msgid "Tip: switch on automatic tickets in Restaurant settings → Car wash."
+msgstr "Tips: aktifkan tiket otomatis di Pengaturan restoran → Cuci kendaraan."
+
+msgid ""
 "Enter the change in the drawer before selling starts. At the end, count the "
 "drawer and compare it with what the system expects."
 msgstr ""
@@ -3285,9 +3541,6 @@ msgstr "Butuh baris lagi? Simpan, lalu dua baris kosong baru akan muncul."
 msgid "Save dish"
 msgstr "Simpan hidangan"
 
-msgid "Cancel"
-msgstr "Batal"
-
 #, python-format
 msgid "Delete %(name)s? Past orders are kept."
 msgstr "Hapus %(name)s? Pesanan sebelumnya tetap disimpan."
@@ -3368,15 +3621,11 @@ msgstr ""
 "Utama, Minuman)."
 
 msgid ""
-"For guests without a smartphone. Choose the table and guest, tap dishes, "
-"then send."
+"For guests without a smartphone. Choose the table and guest, tap dishes (and "
+"car wash packages), then send: everything goes on one bill."
 msgstr ""
-"Untuk tamu tanpa ponsel pintar. Pilih meja dan tamu, ketuk hidangan, lalu "
-"kirim."
-
-#, python-format
-msgid "Table %(n)s"
-msgstr "Meja %(n)s"
+"Untuk tamu tanpa smartphone. Pilih meja dan tamu, ketuk hidangan (dan paket "
+"cuci), lalu kirim: semuanya masuk satu tagihan."
 
 msgid "Guest"
 msgstr "Tamu"
@@ -3413,6 +3662,12 @@ msgstr "Catatan untuk dapur (opsional)"
 
 msgid "Send to kitchen"
 msgstr "Kirim ke dapur"
+
+msgid "Print one bill for this order"
+msgstr "Cetak satu tagihan untuk pesanan ini"
+
+msgid "Enter the plate number."
+msgstr "Masukkan nomor polisi."
 
 msgid "Note"
 msgstr "Catatan"
@@ -3497,6 +3752,11 @@ msgstr "ref %(ref)s"
 #, python-format
 msgid "Paid so far %(paid)s · <strong>Still due %(due)s</strong>"
 msgstr "Sudah dibayar %(paid)s · <strong>Sisa %(due)s</strong>"
+
+#, python-format
+msgid "Ordered together (%(n)s): paid as one sum, change given once."
+msgstr ""
+"Dipesan bersama (%(n)s): dibayar sebagai satu jumlah, kembalian sekali."
 
 msgid "Other method or partial payment"
 msgstr "Metode lain atau pembayaran sebagian"
@@ -3744,14 +4004,18 @@ msgstr "Sampai"
 msgid "VAT collected"
 msgstr "PPN terkumpul"
 
+#, python-format
+msgid "Best sellers · %(name)s"
+msgstr "Terlaris · %(name)s"
+
+msgid "No data yet."
+msgstr "Belum ada data."
+
 msgid "Best sellers"
 msgstr "Terlaris"
 
 msgid "Sold"
 msgstr "Terjual"
-
-msgid "No data yet."
-msgstr "Belum ada data."
 
 #, python-format
 msgid ""
@@ -3890,6 +4154,10 @@ msgstr "Tambah pesanan"
 msgid "Current bill"
 msgstr "Tagihan saat ini"
 
+#, python-format
+msgid "Print bill · Table %(n)s"
+msgstr "Cetak tagihan · Meja %(n)s"
+
 msgid "Print bill"
 msgstr "Cetak tagihan"
 
@@ -3933,9 +4201,6 @@ msgstr ""
 
 msgid "Recent bills"
 msgstr "Tagihan terbaru"
-
-msgid "Open the customer link"
-msgstr "Buka tautan pelanggan"
 
 msgid "Generate a new QR code? The currently printed code will STOP working."
 msgstr ""
@@ -4119,8 +4384,12 @@ msgstr ""
 msgid "Video: how customers order with QR Menu"
 msgstr "Video: cara pelanggan memesan dengan QR Menu"
 
-msgid "Watch how a customer orders, from scanning the table's QR code to the kitchen (50 seconds)."
-msgstr "Lihat cara pelanggan memesan, dari memindai kode QR di meja hingga ke dapur (50 detik)."
+msgid ""
+"Watch how a customer orders, from scanning the table's QR code to the "
+"kitchen (50 seconds)."
+msgstr ""
+"Lihat cara pelanggan memesan, dari memindai kode QR di meja hingga ke dapur "
+"(50 detik)."
 
 msgid "Works on any phone"
 msgstr "Bisa di ponsel apa saja"
@@ -4337,6 +4606,10 @@ msgstr "8. Kontak"
 
 msgid "Questions about these terms:"
 msgstr "Pertanyaan tentang ketentuan ini:"
+
+#, python-format
+#~ msgid "Order #%(number)s marked as paid."
+#~ msgstr "Pesanan #%(number)s ditandai lunas."
 
 #, python-format
 #~ msgid "Branch “%(name)s” created. Add its staff accounts here."

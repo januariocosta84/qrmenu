@@ -126,6 +126,11 @@ class Order(TimeStampedModel):
     api_key = models.ForeignKey("integrations.ApiKey", null=True, blank=True, on_delete=models.SET_NULL,
                                 related_name="orders")
     external_ref = models.CharField(max_length=64, blank=True)
+    # One customer order is split per service (café → kitchen, car wash → counter); the parts share a group.
+    service_type = models.CharField(max_length=20, default="cafe", db_index=True)
+    order_group = models.UUIDField(null=True, blank=True, db_index=True)
+    plate_number = models.CharField(max_length=60, blank=True, db_index=True,
+                                    help_text="Car wash: plate number(s) on this order.")
     placed_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+"
     )
@@ -175,6 +180,9 @@ class OrderItem(models.Model):
     quantity = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(MAX_QUANTITY)])
     note = models.CharField(max_length=200, blank=True)
     line_total = models.DecimalField(**MONEY_KW, help_text="(unit price + add-ons) × quantity")
+    # Car wash lines: the vehicle this package is for.
+    plate_number = models.CharField(max_length=20, blank=True)
+    vehicle_type = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
         return f"{self.name} × {self.quantity}"

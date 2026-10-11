@@ -24,6 +24,7 @@ from django.views.decorators.http import require_POST
 
 from apps.billing.services import plan_limit, subscription_allows_orders
 from apps.core.permissions import Role
+from apps.menu import service_types
 from apps.menu.models import MenuCategory, MenuItem
 from apps.menu.queries import public_menu
 from apps.menu.serializers import PublicItemSerializer
@@ -35,8 +36,10 @@ from apps.payments.drawer import open_cash_drawer
 from apps.payments.receipts import (
     network_printing_available, parse_order_ids, print_receipt_network, receipt_data, receipt_orders,
 )
-from apps.payments.models import CashDrawerOpening, CashMovement, CashSession
-from apps.payments.services import balance_due, receive_cash, receive_payment
+from apps.payments.models import CashDrawerOpening, CashMovement, CashSession, Receipt
+from apps.payments.services import (
+    attach_group_due, balance_due, group_due, payable_group, receive_cash, receive_payment,
+)
 from apps.restaurants.models import BusinessProfile, Restaurant, RestaurantStaff, Table, TableSession
 from apps.restaurants.qr import qr_png, qr_svg, site_link
 
@@ -90,12 +93,14 @@ def overview(request):
         Order.objects.filter(restaurant=r, status__in=OrderStatus.ACTIVE)
         .values("status").annotate(n=Count("id"))
     )
+    recent = list(Order.objects.filter(restaurant=r).prefetch_related("items").annotate(
+        paid_sum=Sum("payments__amount", filter=Q(payments__status="succeeded"))
+    ).order_by("-created_at")[:8])
+    attach_group_due(recent)
     return render(request, "dashboard/overview.html", {
         "stats": stats,
         "active": {row["status"]: row["n"] for row in active},
-        "recent": Order.objects.filter(restaurant=r).prefetch_related("items").annotate(
-            paid_sum=Sum("payments__amount", filter=Q(payments__status="succeeded"))
-        ).order_by("-created_at")[:8],
+        "recent": recent,
         "open_sessions": TableSession.objects.filter(restaurant=r, status=TableSession.OPEN).count(),
         "sold_out": MenuItem.objects.filter(restaurant=r, is_available=False).count(),
         "setup_steps": _setup_steps(r),
@@ -133,7 +138,8 @@ def _setup_steps(r):
 def kitchen(request):
     return render(request, "dashboard/kitchen.html", {
         "kds_config": {
-            "ordersUrl": reverse("dashboard:api_orders", args=[request.restaurant.slug]) + "?active=1",
+            "ordersUrl": reverse("dashboard:api_orders", args=[request.restaurant.slug]) + "?active=1&kitchen=1",
+            "kitchenServices": service_types.KITCHEN_SERVICES,
             "statusUrl": reverse("dashboard:api_order_status", args=[request.restaurant.slug, 0]),
             "canCancel": request.can["cancel_orders"],
             "canPay": request.can["payments"],
@@ -170,6 +176,7 @@ def orders(request):
         Order.objects.filter(restaurant=r).values_list("status").annotate(n=Count("id")).values_list("status", "n")
     )
     page = Paginator(qs.order_by("-created_at"), 30).get_page(request.GET.get("page"))
+    attach_group_due(page.object_list)  # café + car wash from one order: paid together
     params = request.GET.copy()
     params.pop("page", None)
     return render(request, "dashboard/orders.html", {
@@ -195,9 +202,10 @@ def new_order(request):
             guests_by_table[str(t.id)] = [
                 {"ref": g["ref"], "label": g["label"]} for g in _guest_bills(orders) if g["ref"]
             ]
-    categories = list(public_menu(r))
+    categories = list(public_menu(r))  # café and (if enabled) car wash packages: one order, one bill
     menu = [
-        {"id": c.id, "name": c.name,
+        {"id": c.id, "name": c.name, "service": c.service_type,
+         "serviceName": service_types.display_name(r, c.service_type) if c.service_type != service_types.CAFE else "",
          "items": [PublicItemSerializer(i, context={"lang": "en"}).data for i in c.items.all()]}
         for c in categories
     ]
@@ -218,6 +226,8 @@ def new_order(request):
             "vatPercent": str(r.vat_percent) if r.vat_enabled else "0",
             "vatInclusive": r.vat_inclusive,
             "acceptingOrders": r.is_accepting_orders and r.is_active and subscription_allows_orders(r),
+            "vehicleTypes": [[code, str(label)] for code, label in service_types.VEHICLE_TYPES],
+            "vehicleServices": [c for c, s in service_types.SERVICE_TYPES.items() if s.needs_vehicle],
         },
     })
 
@@ -238,6 +248,8 @@ def order_detail(request, pk):
             to_status = request.POST.get("status", "")
             if to_status == OrderStatus.CANCELLED and not request.can["cancel_orders"]:
                 messages.error(request, _("Your role cannot cancel orders."))
+            elif to_status != OrderStatus.CANCELLED and not service_types.get(order.service_type).kitchen:
+                pass  # car wash: no kitchen workflow; it is completed when paid
             elif to_status in dict(OrderStatus.CHOICES):
                 try:
                     change_status(order, to_status, user=request.user, note=request.POST.get("note", ""))
@@ -272,9 +284,16 @@ def order_detail(request, pk):
         OrderStatus.READY: _("Mark ready"), OrderStatus.COMPLETED: _("Complete"), OrderStatus.CANCELLED: _("Cancel order"),
     }
     transitions = [(code, action_labels[code]) for code, _label in OrderStatus.CHOICES if order.can_transition(code)]
+    if not service_types.get(order.service_type).kitchen:
+        # Car wash: no preparing/ready workflow (completed automatically once paid); only cancelling.
+        transitions = [(c, label) for c, label in transitions if c == OrderStatus.CANCELLED]
+    group = payable_group(order) if order.payment_status != PaymentStatus.PAID else [order]
     return render(request, "dashboard/order_detail.html", {
         "order": order,
         "transitions": transitions,
+        "pay_group": group if len(group) > 1 else None,
+        "pay_group_due": group_due(group) if len(group) > 1 else None,
+        "pay_group_numbers": " + ".join(f"#{o.number}" for o in group),
         "payment_form": payment_form,
         "is_paid": order.payment_status == PaymentStatus.PAID,
         "balance_due": due,
@@ -481,8 +500,10 @@ def order_mark_paid(request, pk):
     order = get_object_or_404(Order, restaurant=request.restaurant, pk=pk)
     try:
         tendered = _tendered(request)
-        result = receive_cash([order], tendered=tendered, user=request.user)
-        messages.success(request, _("Order #%(number)s marked as paid.") % {"number": order.number})
+        # Café + car wash from one QR order: one payment for the sum, change given once.
+        result = receive_cash(payable_group(order), tendered=tendered, user=request.user)
+        messages.success(request, _("Marked as paid: %(numbers)s.") % {
+            "numbers": ", ".join(f"#{o.number}" for o in result.orders)})
         _change_message(request, result)
         _drawer_message(request, open_cash_drawer(request.restaurant, user=request.user, order=order), result.orders)
         _receipt_after_payment(request, result.orders)
@@ -552,10 +573,11 @@ def table_detail(request, pk):
     r = request.restaurant
     table = get_object_or_404(Table, restaurant=r, pk=pk)
     session = table.current_session()
-    session_orders = (
+    session_orders = list(
         Order.objects.filter(table_session=session).prefetch_related("items__options").order_by("created_at")
         if session else Order.objects.none()
     )
+    attach_group_due(session_orders)
     session_total = sum((o.total for o in session_orders if o.status != OrderStatus.CANCELLED), 0)
     session_unpaid = sum(
         (o.total for o in session_orders
@@ -568,6 +590,7 @@ def table_detail(request, pk):
         "session_orders": session_orders,
         "guests": _guest_bills(session_orders),
         "session_receipt_ids": ",".join(str(o.pk) for o in session_orders if o.status != OrderStatus.CANCELLED),
+        "printed_bills": Receipt.objects.filter(orders__table_session=session).distinct()[:20] if session else [],
         "session_total": session_total,
         "session_unpaid": session_unpaid,
         "past_sessions": table.sessions.filter(status=TableSession.CLOSED).annotate(
@@ -844,13 +867,18 @@ SETTINGS_SECTIONS = [  # (key, title, icon, description, fields)
      gettext_lazy("Customers can switch language on the menu; untranslated text falls back to English."),
      ["default_language", "description_tet", "description_id"]),
     ("receipts", gettext_lazy("Receipts"), "printer", gettext_lazy("What happens after a payment is recorded."),
-     ["receipt_prompt", "receipt_printer", "receipt_width", "receipt_footer"]),
+     ["receipt_prompt", "receipt_printer", "receipt_width", "receipt_footer", "bill_print_mode"]),
+    ("car_wash", gettext_lazy("Car wash"), "drawer",
+     gettext_lazy("Sell car wash packages from the same table QR as your café. Car wash orders go to the Car wash "
+                  "screen (and a printed ticket), not to the kitchen. Add a menu category with the service "
+                  "“Car wash” for your packages."),
+     ["car_wash_enabled", "car_wash_name", "car_wash_auto_print"]),
     ("drawer", gettext_lazy("Receipt printer & cash drawer"), "drawer",
      gettext_lazy("Print receipts on the receipt printer of the cashier computer. "
                   "A cash drawer plugged into that printer opens automatically on cash payments."),
      ["cash_drawer_via_printer", "printer_host", "printer_port", "cash_drawer_enabled", "drawer_pin"]),
 ]
-WIDE_FIELDS = {"cash_drawer_via_printer", "vat_enabled", "vat_inclusive", "name", "description", "address", "opening_hours", "description_tet", "description_id",
+WIDE_FIELDS = {"car_wash_enabled", "car_wash_auto_print", "bill_print_mode", "cash_drawer_via_printer", "vat_enabled", "vat_inclusive", "name", "description", "address", "opening_hours", "description_tet", "description_id",
                "is_accepting_orders", "cash_drawer_enabled", "receipt_prompt", "receipt_footer"}
 
 
@@ -1196,13 +1224,19 @@ def reports(request):
         resp["Content-Disposition"] = f'attachment; filename="orders-{r.slug}-{date_from}-{date_to}.csv"'
         writer = csv.writer(resp)
         writer.writerow(["Order", "Created", "Table", "Customer", "Status", "Payment", "Subtotal", "Service",
-                         "VAT", "VAT rate", "VAT included", "Total"])
+                         "VAT", "VAT rate", "VAT included", "Total", "Service type", "Plate"])
         for o in qs.order_by("created_at"):
             writer.writerow([
                 o.number, timezone.localtime(o.created_at).strftime("%Y-%m-%d %H:%M"), o.table_number,
                 o.customer_name, o.status, o.payment_status, o.subtotal, o.service_charge,
                 o.vat_amount, o.vat_percent, "yes" if o.vat_inclusive else "no", o.total,
+                service_types.display_name(r, o.service_type), o.plate_number,
             ])
+        # Totals per service (completed orders = revenue), e.g. Café vs Car wash.
+        writer.writerow([])
+        writer.writerow(["Revenue by service type", "Completed orders", "Revenue"])
+        for row in _by_service(r, qs):
+            writer.writerow([row["name"], row["completed"], f"{row['revenue']:.2f}"])
         return resp
 
     completed = qs.filter(status=OrderStatus.COMPLETED)
@@ -1223,10 +1257,30 @@ def reports(request):
         .values("day").annotate(n=Count("id"), revenue=Sum("total")).order_by("day")
     )
     max_rev = max((d["revenue"] for d in daily), default=0) or 1
+    services = _by_service(r, qs)
+    for row in services:
+        row["top_items"] = list(
+            OrderItem.objects.filter(order__in=completed.filter(service_type=row["code"]))
+            .values("name").annotate(qty=Sum("quantity"), revenue=Sum("line_total")).order_by("-qty")[:10])
     return render(request, "dashboard/reports.html", {
+        "services": services if len(services) > 1 else [],
         "date_from": date_from, "date_to": date_to, "summary": summary, "top_items": top_items,
         "daily": [{**d, "pct": int(d["revenue"] * 100 / max_rev)} for d in daily],
     })
+
+
+def _by_service(restaurant, qs):
+    """Revenue (completed orders) per service type, for every service that has orders in `qs`."""
+    rows = {r["service_type"]: r for r in qs.values("service_type").annotate(
+        orders=Count("id"), completed=Count("id", filter=Q(status=OrderStatus.COMPLETED)),
+        revenue=Sum("total", filter=Q(status=OrderStatus.COMPLETED)))}
+    out = []
+    for code in service_types.SERVICE_TYPES:
+        if code in rows:
+            row = rows[code]
+            out.append({"code": code, "name": service_types.display_name(restaurant, code),
+                        "orders": row["orders"], "completed": row["completed"], "revenue": row["revenue"] or 0})
+    return out
 
 
 @staff_view("view_orders")

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 13:24+0900\n"
+"POT-Creation-Date: 2026-10-12 01:13+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -484,6 +484,52 @@ msgstr "A sua função não permite cancelar pedidos."
 msgid "No orders to print."
 msgstr "Não há pedidos para imprimir."
 
+#, python-format
+msgid "Table %(n)s"
+msgstr "Mesa %(n)s"
+
+msgid "walk-in"
+msgstr "sem mesa"
+
+#, python-format
+msgid "Car wash #%(number)s for %(plate)s (%(where)s) added."
+msgstr "Lavagem #%(number)s para %(plate)s (%(where)s) adicionada."
+
+msgid "Choose a package."
+msgstr "Escolha um pacote."
+
+msgid "Only unpaid car wash orders can be moved to a table."
+msgstr "Só lavagens não pagas podem ser passadas para uma mesa."
+
+#, python-format
+msgid ""
+"Car wash for %(plate)s added to the bill of table %(n)s (%(count)s order(s))."
+msgstr ""
+"Lavagem de %(plate)s adicionada à conta da mesa %(n)s (%(count)s pedido(s))."
+
+#, python-format
+msgid "Car wash #%(number)s cancelled."
+msgstr "Lavagem #%(number)s cancelada."
+
+msgid ""
+"New car wash QR code made. Old printouts no longer work — print the new one."
+msgstr ""
+"Novo código QR da lavagem criado. Os impressos antigos deixam de funcionar — "
+"imprima o novo."
+
+msgid "Café"
+msgstr "Café"
+
+msgid "Bill preview"
+msgstr "Pré-visualização da conta"
+
+msgid "Nothing left to bill: these orders are paid. Reprint from the history."
+msgstr ""
+"Nada a faturar: estes pedidos estão pagos. Reimprima a partir do histórico."
+
+msgid "Your role cannot take payments."
+msgstr "A sua função não pode receber pagamentos."
+
 msgid "How VAT is charged"
 msgstr "Como o IVA é cobrado"
 
@@ -571,6 +617,18 @@ msgstr "Nome do imposto"
 msgid "Tax ID"
 msgstr "NIF"
 
+msgid "Default bill print mode"
+msgstr "Modo de impressão da conta"
+
+msgid "Car wash"
+msgstr "Lavagem de carros"
+
+msgid "Car wash name"
+msgstr "Nome da lavagem"
+
+msgid "Print a car wash ticket automatically"
+msgstr "Imprimir talão de lavagem automaticamente"
+
 msgid "Enter the receipt printer's IP address to print receipts on it."
 msgstr "Introduza o endereço IP da impressora de recibos para imprimir nela."
 
@@ -581,6 +639,9 @@ msgid "Enter the receipt printer's IP address to use the cash drawer."
 msgstr ""
 "Introduza o endereço IP da impressora de recibos para usar a gaveta de "
 "dinheiro."
+
+msgid "Service"
+msgstr "Serviço"
 
 msgid "Position"
 msgstr "Posição"
@@ -605,6 +666,16 @@ msgstr "Disponível (desmarcar = Esgotado)"
 
 msgid "Preparation time (minutes)"
 msgstr "Tempo de preparação (minutos)"
+
+msgid "Price for a motorbike"
+msgstr "Preço para mota"
+
+msgid "Car wash packages only. Leave empty to use the normal price (cars)."
+msgstr ""
+"Só para pacotes de lavagem. Deixe vazio para usar o preço normal (carros)."
+
+msgid "Price for a pickup / SUV"
+msgstr "Preço para pickup / SUV"
 
 msgid "Available"
 msgstr "Disponível"
@@ -804,8 +875,8 @@ msgid "Cash movement recorded."
 msgstr "Movimento de dinheiro registado."
 
 #, python-format
-msgid "Order #%(number)s marked as paid."
-msgstr "Pedido n.º %(number)s marcado como pago."
+msgid "Marked as paid: %(numbers)s."
+msgstr "Marcados como pagos: %(numbers)s."
 
 msgid "Your role cannot manage tables."
 msgstr "A sua função não permite gerir mesas."
@@ -831,10 +902,6 @@ msgstr "Mesa %(number)s criada."
 #, python-format
 msgid "Guest %(n)s"
 msgstr "Cliente %(n)s"
-
-#, python-format
-msgid "Marked as paid: %(numbers)s."
-msgstr "Marcados como pagos: %(numbers)s."
 
 msgid "This guest has nothing left to pay."
 msgstr "Este cliente não tem nada por pagar."
@@ -950,6 +1017,16 @@ msgstr "Recibos"
 
 msgid "What happens after a payment is recorded."
 msgstr "O que acontece depois de registar um pagamento."
+
+msgid ""
+"Sell car wash packages from the same table QR as your café. Car wash orders "
+"go to the Car wash screen (and a printed ticket), not to the kitchen. Add a "
+"menu category with the service “Car wash” for your packages."
+msgstr ""
+"Venda pacotes de lavagem com o mesmo QR da mesa do café. Os pedidos de "
+"lavagem vão para o ecrã Lavagem (e um talão impresso), não para a cozinha. "
+"Crie uma categoria do menu com o serviço “Lavagem de carros” para os seus "
+"pacotes."
 
 msgid "Receipt printer & cash drawer"
 msgstr "Impressora de recibos e gaveta de dinheiro"
@@ -1237,6 +1314,11 @@ msgstr "Os números mais baixos aparecem primeiro."
 msgid "Hidden categories are not shown to customers."
 msgstr "As categorias ocultas não são mostradas aos clientes."
 
+msgid "Café items go to the kitchen; car wash packages go to the counter."
+msgstr ""
+"Os artigos do café vão para a cozinha; os pacotes de lavagem vão para o "
+"balcão."
+
 msgid "Untick to mark as Sold Out."
 msgstr "Desmarque para marcar como Esgotado."
 
@@ -1244,6 +1326,15 @@ msgid "Typical preparation time; leave blank to use the restaurant default."
 msgstr ""
 "Tempo de preparação habitual; deixe em branco para usar o predefinido do "
 "restaurante."
+
+msgid "Car"
+msgstr "Carro"
+
+msgid "Motorbike"
+msgstr "Mota"
+
+msgid "Pickup / SUV"
+msgstr "Pickup / SUV"
 
 msgid "New"
 msgstr "Novo"
@@ -1307,6 +1398,13 @@ msgstr "Quantidade inválida."
 
 msgid "Invalid add-on selected."
 msgstr "Extra inválido selecionado."
+
+#, python-format
+msgid "Enter the plate number for %(item)s."
+msgstr "Introduza a matrícula para %(item)s."
+
+msgid "Invalid vehicle type."
+msgstr "Tipo de veículo inválido."
 
 msgid "Some items are no longer available."
 msgstr "Alguns artigos já não estão disponíveis."
@@ -1403,11 +1501,11 @@ msgstr "Cartão (terminal externo)"
 msgid "QR payment (manual check)"
 msgstr "Pagamento por QR (verificação manual)"
 
-msgid "Network receipt printer is not set up."
-msgstr "A impressora de recibos de rede não está configurada."
-
 msgid "Nothing to print."
 msgstr "Nada para imprimir."
+
+msgid "Network receipt printer is not set up."
+msgstr "A impressora de recibos de rede não está configurada."
 
 #, python-format
 msgid "Printer at %(target)s did not respond. Is it switched on?"
@@ -1594,6 +1692,33 @@ msgstr "Papel de 58 mm"
 
 msgid "Paper width of the network receipt printer."
 msgstr "Largura do papel da impressora de recibos."
+
+msgid "One combined bill"
+msgstr "Uma conta conjunta"
+
+msgid "Separate bill per service"
+msgstr "Conta separada por serviço"
+
+msgid ""
+"Used when a table has orders for several services (e.g. café and car wash)."
+msgstr ""
+"Usado quando uma mesa tem pedidos de vários serviços (ex.: café e lavagem)."
+
+msgid ""
+"Customers can order car wash packages from the table QR, together with café "
+"items."
+msgstr ""
+"Os clientes podem pedir pacotes de lavagem pelo QR da mesa, junto com o café."
+
+msgid "Shown to customers and on car wash bills, e.g. Timor Car Wash."
+msgstr "Mostrado aos clientes e nas contas de lavagem, ex.: Timor Car Wash."
+
+msgid ""
+"For each new car wash order: on the network receipt printer if set up, "
+"otherwise from the Car wash screen when it is open."
+msgstr ""
+"Para cada nova lavagem: na impressora de rede se estiver configurada; caso "
+"contrário, a partir do ecrã Lavagem quando estiver aberto."
 
 msgid "The main branch this sub-branch belongs to."
 msgstr "A filial principal a que esta sub-filial pertence."
@@ -1788,6 +1913,14 @@ msgstr "empregado"
 
 msgid "Counter"
 msgstr "Balcão"
+
+#, python-format
+msgid "Paid with #%(n)s"
+msgstr "Pago com o #%(n)s"
+
+#, python-format
+msgid "Order %(n)s · paid together"
+msgstr "Pedido %(n)s · pago em conjunto"
 
 #, python-format
 msgid "Order #%(n)s · cash payment"
@@ -2018,6 +2151,12 @@ msgstr "Numa mesa"
 
 msgid "Counter / takeaway"
 msgstr "Balcão / para levar"
+
+msgid "Revenue by service"
+msgstr "Receita por serviço"
+
+msgid "Café and car wash, from completed orders."
+msgstr "Café e lavagem, dos pedidos concluídos."
 
 msgid "Sales by category"
 msgstr "Vendas por categoria"
@@ -2431,9 +2570,6 @@ msgstr "Ainda não é público"
 
 msgid "Close menu"
 msgstr "Fechar menu"
-
-msgid "Service"
-msgstr "Serviço"
 
 msgid "Overview"
 msgstr "Resumo"
@@ -3064,6 +3200,137 @@ msgid "Send for verification"
 msgstr "Enviar para verificação"
 
 msgid ""
+"Car wash orders from tables and walk-in customers. They don't go to the "
+"kitchen: give the ticket to the car wash team. They are completed "
+"automatically once paid."
+msgstr ""
+"Lavagens pedidas nas mesas e por clientes sem mesa. Não vão para a cozinha: "
+"entregue o talão à equipa da lavagem. Ficam concluídas automaticamente "
+"quando pagas."
+
+msgid "Today & unpaid"
+msgstr "Hoje e por pagar"
+
+msgid "All, incl. cancelled"
+msgstr "Todas, incl. canceladas"
+
+msgid "Refresh"
+msgstr "Atualizar"
+
+msgid "Walk-in cars waiting to pay"
+msgstr "Carros sem mesa por pagar"
+
+#, python-format
+msgid "Walk-in · %(p)s"
+msgstr "Sem mesa · %(p)s"
+
+msgid "Bill / pay"
+msgstr "Conta / pagar"
+
+msgid "Car wash orders"
+msgstr "Pedidos de lavagem"
+
+msgid "Plate"
+msgstr "Matrícula"
+
+msgid "Package"
+msgstr "Pacote"
+
+msgid "Where"
+msgstr "Onde"
+
+msgid "Walk-in"
+msgstr "Sem mesa"
+
+msgid "Ticket"
+msgstr "Talão"
+
+msgid "Add to bill"
+msgstr "Adicionar à conta"
+
+#, python-format
+msgid "Cancel car wash #%(n)s?"
+msgstr "Cancelar a lavagem #%(n)s?"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "No car wash orders yet today."
+msgstr "Ainda não há lavagens hoje."
+
+msgid "Printed bills"
+msgstr "Contas impressas"
+
+msgid "Reprint (COPY)"
+msgstr "Reimprimir (CÓPIA)"
+
+msgid "New car wash order"
+msgstr "Nova lavagem"
+
+msgid ""
+"For a car dropped off at the counter. Choose a table to put it on that "
+"table's bill, or leave it as walk-in (the bill is under the plate number)."
+msgstr ""
+"Para um carro deixado no balcão. Escolha uma mesa para o pôr na conta dessa "
+"mesa, ou deixe sem mesa (a conta fica na matrícula)."
+
+msgid "Plate number"
+msgstr "Matrícula"
+
+msgid "No car wash packages yet"
+msgstr "Ainda não há pacotes de lavagem"
+
+msgid "Vehicle type"
+msgstr "Tipo de veículo"
+
+msgid "Walk-in (no table)"
+msgstr "Sem mesa"
+
+msgid "Customer name"
+msgstr "Nome do cliente"
+
+msgid "Add car wash"
+msgstr "Adicionar lavagem"
+
+msgid ""
+"Add a menu category with the service “Car wash” and your packages first."
+msgstr ""
+"Crie primeiro uma categoria do menu com o serviço “Lavagem de carros” e os "
+"seus pacotes."
+
+msgid "Walk-in car wash QR"
+msgstr "QR da lavagem (sem mesa)"
+
+msgid ""
+"Put this QR code at the wash bay or counter. It opens only the car wash "
+"menu; orders are billed under the plate number."
+msgstr ""
+"Coloque este código QR na zona de lavagem ou no balcão. Abre só o menu de "
+"lavagem; os pedidos ficam na matrícula."
+
+msgid "Open the customer link"
+msgstr "Abrir o link do cliente"
+
+msgid "Make a new QR code? The printed one will STOP working."
+msgstr "Criar um novo código QR? O impresso deixa de FUNCIONAR."
+
+msgid "New code"
+msgstr "Novo código"
+
+msgid "Tickets print on the network receipt printer."
+msgstr "Os talões imprimem na impressora de rede."
+
+msgid "Keep this screen open: new car wash tickets print here automatically."
+msgstr ""
+"Mantenha este ecrã aberto: os talões de lavagem imprimem aqui "
+"automaticamente."
+
+msgid "Tip: switch on automatic tickets in Restaurant settings → Car wash."
+msgstr ""
+"Dica: ative os talões automáticos em Definições do restaurante → Lavagem de "
+"carros."
+
+msgid ""
 "Enter the change in the drawer before selling starts. At the end, count the "
 "drawer and compare it with what the system expects."
 msgstr ""
@@ -3308,9 +3575,6 @@ msgstr "Precisa de mais linhas? Guarde e aparecerão duas linhas vazias novas."
 msgid "Save dish"
 msgstr "Guardar prato"
 
-msgid "Cancel"
-msgstr "Cancelar"
-
 #, python-format
 msgid "Delete %(name)s? Past orders are kept."
 msgstr "Eliminar %(name)s? Os pedidos anteriores são mantidos."
@@ -3392,15 +3656,11 @@ msgstr ""
 "Pratos principais, Bebidas)."
 
 msgid ""
-"For guests without a smartphone. Choose the table and guest, tap dishes, "
-"then send."
+"For guests without a smartphone. Choose the table and guest, tap dishes (and "
+"car wash packages), then send: everything goes on one bill."
 msgstr ""
-"Para clientes sem smartphone. Escolha a mesa e o cliente, toque nos pratos e "
-"envie."
-
-#, python-format
-msgid "Table %(n)s"
-msgstr "Mesa %(n)s"
+"Para clientes sem smartphone. Escolha a mesa e o cliente, toque nos pratos "
+"(e pacotes de lavagem) e envie: fica tudo numa só conta."
 
 msgid "Guest"
 msgstr "Cliente"
@@ -3437,6 +3697,12 @@ msgstr "Nota para a cozinha (opcional)"
 
 msgid "Send to kitchen"
 msgstr "Enviar para a cozinha"
+
+msgid "Print one bill for this order"
+msgstr "Imprimir uma conta para este pedido"
+
+msgid "Enter the plate number."
+msgstr "Introduza a matrícula."
 
 msgid "Note"
 msgstr "Nota"
@@ -3521,6 +3787,10 @@ msgstr "ref. %(ref)s"
 #, python-format
 msgid "Paid so far %(paid)s · <strong>Still due %(due)s</strong>"
 msgstr "Pago até agora %(paid)s · <strong>Falta pagar %(due)s</strong>"
+
+#, python-format
+msgid "Ordered together (%(n)s): paid as one sum, change given once."
+msgstr "Pedidos juntos (%(n)s): pagos como um só valor, troco dado uma vez."
 
 msgid "Other method or partial payment"
 msgstr "Outro método ou pagamento parcial"
@@ -3766,14 +4036,18 @@ msgstr "Até"
 msgid "VAT collected"
 msgstr "IVA cobrado"
 
+#, python-format
+msgid "Best sellers · %(name)s"
+msgstr "Mais vendidos · %(name)s"
+
+msgid "No data yet."
+msgstr "Ainda não há dados."
+
 msgid "Best sellers"
 msgstr "Mais vendidos"
 
 msgid "Sold"
 msgstr "Vendidos"
-
-msgid "No data yet."
-msgstr "Ainda não há dados."
 
 #, python-format
 msgid ""
@@ -3915,6 +4189,10 @@ msgstr "Adicionar pedido"
 msgid "Current bill"
 msgstr "Conta atual"
 
+#, python-format
+msgid "Print bill · Table %(n)s"
+msgstr "Imprimir conta · Mesa %(n)s"
+
 msgid "Print bill"
 msgstr "Imprimir conta"
 
@@ -3957,9 +4235,6 @@ msgstr ""
 
 msgid "Recent bills"
 msgstr "Contas recentes"
-
-msgid "Open the customer link"
-msgstr "Abrir o link do cliente"
 
 msgid "Generate a new QR code? The currently printed code will STOP working."
 msgstr "Gerar um novo código QR? O código impresso atual DEIXARÁ de funcionar."
@@ -4142,8 +4417,12 @@ msgstr ""
 msgid "Video: how customers order with QR Menu"
 msgstr "Vídeo: como os clientes fazem pedidos com o QR Menu"
 
-msgid "Watch how a customer orders, from scanning the table's QR code to the kitchen (50 seconds)."
-msgstr "Veja como um cliente faz o pedido, desde ler o código QR da mesa até à cozinha (50 segundos)."
+msgid ""
+"Watch how a customer orders, from scanning the table's QR code to the "
+"kitchen (50 seconds)."
+msgstr ""
+"Veja como um cliente faz o pedido, desde ler o código QR da mesa até à "
+"cozinha (50 segundos)."
 
 msgid "Works on any phone"
 msgstr "Funciona em qualquer telemóvel"
@@ -4359,6 +4638,10 @@ msgstr "8. Contacto"
 
 msgid "Questions about these terms:"
 msgstr "Questões sobre estes termos:"
+
+#, python-format
+#~ msgid "Order #%(number)s marked as paid."
+#~ msgstr "Pedido n.º %(number)s marcado como pago."
 
 #, python-format
 #~ msgid "Branch “%(name)s” created. Add its staff accounts here."

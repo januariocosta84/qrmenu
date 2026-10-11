@@ -16,7 +16,11 @@
 
   const items = {};
   CFG.menu.forEach((c) => c.items.forEach((i) => (items[i.id] = i)));
-  let lines = []; // {id, qty, options:[ids], note}
+  CFG.menu.forEach((c) => c.items.forEach((i) => (i.service = c.service)));
+  let lines = []; // {id, qty, options:[ids], note, plate, vehicle}
+  const needsVehicle = (i) => (CFG.vehicleServices || []).includes(i.service);
+  const vehicleLabel = (code) => ((CFG.vehicleTypes || []).find((v) => v[0] === code) || [code, code])[1];
+  const basePrice = (i, vehicle) => cents((vehicle && (i.vehicle_prices || {})[vehicle]) || i.price);
   let sending = false;
   let activeCat = CFG.menu.length ? CFG.menu[0].id : null;
 
@@ -64,7 +68,8 @@
       b.appendChild(el("strong", null, i.name));
       b.appendChild(el("span", null, i.is_available ? money(cents(i.price)) : _("Sold out")));
       if (i.options.length) b.appendChild(el("small", "muted", "+ add-ons"));
-      b.addEventListener("click", () => (i.options.length ? openItem(i) : addLine(i.id, 1, [], "")));
+      if (needsVehicle(i)) b.appendChild(el("small", "muted", _("+ plate number")));
+      b.addEventListener("click", () => (i.options.length || needsVehicle(i) ? openItem(i) : addLine(i.id, 1, [], "")));
       return b;
     }));
     if (!list.length) box.appendChild(el("p", "muted", _("No dishes.")));
@@ -82,6 +87,23 @@
     $("#pim-price").textContent = money(cents(i.price));
     $("#pim-note").value = "";
     $("#pim-qty").textContent = "1";
+    // Car wash package: plate number (required) + vehicle type with its price; one car per line.
+    const vehicle = needsVehicle(i);
+    $("#pim-vehicle").hidden = !vehicle;
+    $(".pim-qty").hidden = vehicle;
+    $("#pim-plate").value = "";
+    $("#pim-plate-err").hidden = true;
+    $("#pim-vehicles").replaceChildren(...(vehicle ? CFG.vehicleTypes : []).map(([code, label], n) => {
+      const row = el("label", "pim-opt");
+      const rb = el("input");
+      rb.type = "radio";
+      rb.name = "pim-vehicle";
+      rb.value = code;
+      rb.checked = n === 0;
+      rb.addEventListener("change", () => ($("#pim-price").textContent = money(basePrice(i, code))));
+      row.append(rb, el("span", null, label), el("span", "muted", money(basePrice(i, code))));
+      return row;
+    }));
     const box = $("#pim-options");
     box.replaceChildren(...i.options.map((o) => {
       const label = el("label", "pim-opt");
@@ -101,7 +123,14 @@
   modal.addEventListener("click", (e) => { if (e.target === modal) modal.hidden = true; });
   $("#pim-add").addEventListener("click", () => {
     const opts = [...document.querySelectorAll("#pim-options input:checked")].map((c) => Number(c.value));
-    addLine(modalItem.id, modalQty, opts, $("#pim-note").value.trim());
+    let plate = "", vehicle = "";
+    if (needsVehicle(modalItem)) {
+      plate = $("#pim-plate").value.trim().replace(/\s+/g, " ").toUpperCase().slice(0, 20);
+      if (!plate) { $("#pim-plate-err").hidden = false; $("#pim-plate").focus(); return; }
+      const v = document.querySelector("#pim-vehicles input:checked");
+      vehicle = v ? v.value : "";
+    }
+    addLine(modalItem.id, modalQty, opts, $("#pim-note").value.trim(), plate, vehicle);
     modal.hidden = true;
   });
 
@@ -109,13 +138,13 @@
   function lineUnit(l) {
     const i = items[l.id];
     const byId = Object.fromEntries(i.options.map((o) => [o.id, o]));
-    return cents(i.price) + l.options.reduce((s, oid) => s + (byId[oid] ? cents(byId[oid].price) : 0), 0);
+    return basePrice(i, l.vehicle) + l.options.reduce((s, oid) => s + (byId[oid] ? cents(byId[oid].price) : 0), 0);
   }
-  function addLine(id, qty, options, note) {
-    const key = [id, options.slice().sort().join("."), note].join("|");
+  function addLine(id, qty, options, note, plate = "", vehicle = "") {
+    const key = [id, options.slice().sort().join("."), note, plate, vehicle].join("|");
     const found = lines.find((l) => l.key === key);
     if (found) found.qty = Math.min(50, found.qty + qty);
-    else lines.push({ key, id, qty, options, note });
+    else lines.push({ key, id, qty, options, note, plate, vehicle });
     renderTicket();
   }
   function renderTicket() {
@@ -127,6 +156,7 @@
       const info = el("div", "pos-line-info");
       info.appendChild(el("strong", null, i.name));
       if (l.options.length) info.appendChild(el("div", "muted small", "+ " + l.options.map((o) => byId[o] && byId[o].name).join(", ")));
+      if (l.plate) info.appendChild(el("div", "muted small", `${_("Plate")}: ${l.plate}` + (l.vehicle ? ` · ${vehicleLabel(l.vehicle)}` : "")));
       if (l.note) info.appendChild(el("div", "knote", `“${l.note}”`));
       const qty = el("div", "pos-qty");
       const dec = el("button", "btn btn-sm", "−");
@@ -135,6 +165,7 @@
       dec.addEventListener("click", () => { if (--l.qty < 1) lines.splice(idx, 1); renderTicket(); });
       inc.addEventListener("click", () => { l.qty = Math.min(50, l.qty + 1); renderTicket(); });
       qty.append(dec, el("span", null, String(l.qty)), inc);
+      if (l.plate) inc.hidden = true; // one car per line
       li.append(info, qty, el("span", "pos-line-total", money(lineUnit(l) * l.qty)));
       return li;
     }));
@@ -152,7 +183,9 @@
     $("#pos-vat-row").hidden = vat === 0;
     $("#pos-total").textContent = money(total);
     $("#pos-send").disabled = !lines.length || sending || !CFG.acceptingOrders;
-    $("#pos-send").innerHTML = D.icon("flame") + " " + _("Send to kitchen") + (lines.length ? ` · ${money(total)}` : "");
+    const hasCar = lines.some((l) => l.plate);
+    const label = hasCar ? _("Send order") : _("Send to kitchen");
+    $("#pos-send").innerHTML = D.icon("flame") + " " + label + (lines.length ? ` · ${money(total)}` : "");
   }
 
   // ---------- Send ----------
@@ -168,10 +201,20 @@
         guest: guestSel.value,
         customer_name: $("#pos-name").value.trim(),
         note: $("#pos-note").value.trim(),
-        items: lines.map((l) => ({ menu_item: l.id, quantity: l.qty, options: l.options, note: l.note })),
+        items: lines.map((l) => ({ menu_item: l.id, quantity: l.qty, options: l.options, note: l.note,
+                                   plate_number: l.plate || "", vehicle_type: l.vehicle || "" })),
       });
       const where = order.table_number ? _("Table %(n)s", { n: order.table_number }) : _("Counter");
-      D.toast(_("Order #%(number)s sent to the kitchen · %(where)s", { number: order.number, where }), CFG.orderUrl.replace("/0/", `/${order.id}/`), "new");
+      const parts = order.group || [{ id: order.id, number: order.number }];
+      const numbers = parts.map((p) => `#${p.number}`).join(" + ");
+      D.toast(_("Order %(numbers)s sent · %(where)s", { numbers, where }), CFG.orderUrl.replace("/0/", `/${order.id}/`), "new");
+      // One bill for everything just ordered (café + car wash): the table's bill, or these orders at the counter.
+      $("#pos-last").hidden = false;
+      $("#pos-last-text").textContent = _("Last order %(numbers)s · %(where)s", { numbers, where });
+      const billBtn = $("#pos-last-bill");
+      billBtn.dataset.billDialog = JSON.stringify(order.table_session ? { session: String(order.table_session) }
+                                                                       : { orders: parts.map((p) => p.id).join(",") });
+      billBtn.dataset.billTitle = _("Print bill · %(where)s", { where });
       // Keep adding for the same guest if the waiter wants more.
       if (tableSel.value) {
         const list = (CFG.guests[tableSel.value] = CFG.guests[tableSel.value] || []);

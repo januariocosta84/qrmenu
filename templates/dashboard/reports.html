@@ -28,6 +28,28 @@
   {% if summary.vat %}<div class="stat"><span class="stat-icon info">{% icon "receipt" %}</span><div><span>{% translate "VAT collected" %}</span><strong>{{ summary.vat|money:sym }}</strong></div></div>{% endif %}
 </div>
 
+{% if services %}
+<section class="card">
+  <h2>{% translate "Revenue by service" %}</h2>
+  <div class="table-wrap">
+  <table class="table rtable">
+    <thead><tr><th>{% translate "Service" %}</th><th class="num">{% translate "Orders" %}</th><th class="num">{% translate "Completed" %}</th><th class="num">{% translate "Revenue" %}</th></tr></thead>
+    <tbody>{% for s in services %}<tr><td class="rt-title" data-label=""><strong>{% if s.code == "cafe" %}{% translate "Café" %}{% else %}{{ s.name }}{% endif %}</strong></td><td data-label="{% translate "Orders" %}" class="num">{{ s.orders }}</td><td data-label="{% translate "Completed" %}" class="num">{{ s.completed }}</td><td data-label="{% translate "Revenue" %}" class="num"><strong>{{ s.revenue|money:sym }}</strong></td></tr>{% endfor %}</tbody>
+    <tfoot><tr class="grand"><td>{% translate "Total" %}</td><td></td><td></td><td class="num">{{ summary.revenue|default:0|money:sym }}</td></tr></tfoot>
+  </table>
+  </div>
+  <div class="cols-even" style="margin-top:12px">
+    {% for s in services %}
+    <div>
+      <h3>{% blocktranslate trimmed with name=s.name %}Best sellers · {{ name }}{% endblocktranslate %}</h3>
+      {% if s.top_items %}<ol class="plain small">{% for i in s.top_items %}<li class="usage-row"><span>{{ forloop.counter }}. {{ i.name }} × {{ i.qty }}</span><span>{{ i.revenue|money:sym }}</span></li>{% endfor %}</ol>
+      {% else %}<p class="muted small">{% translate "No data yet." %}</p>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
 <div class="cols-even">
   <section class="card">
     <h2>{% translate "Revenue per day" %}</h2>

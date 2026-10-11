@@ -136,3 +136,40 @@ class CashMovement(models.Model):
 
     def __str__(self):
         return f"{self.get_kind_display()} {self.amount}: {self.reason}"
+
+
+class ReceiptSequence(models.Model):
+    """Next receipt number per restaurant and series (e.g. "R" combined, "C" café, "W" car wash)."""
+
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="+")
+    series = models.CharField(max_length=4)
+    last = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["restaurant", "series"], name="one_sequence_per_series")]
+
+
+class Receipt(models.Model):
+    """
+    A printed bill or receipt (from the Print bill dialog). `data` is a snapshot of
+    what was printed, so a reprint looks exactly the same, marked COPY.
+    """
+
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="receipts")
+    number = models.CharField(max_length=20)
+    service_type = models.CharField(max_length=20, blank=True, help_text="Empty = combined bill for several services.")
+    orders = models.ManyToManyField(Order, related_name="receipts")
+    data = models.JSONField(default=dict)
+    width = models.PositiveSmallIntegerField(default=48, help_text="Characters per line: 48 = 80 mm, 32 = 58 mm.")
+    paid = models.BooleanField(default=False)
+    reprints = models.PositiveIntegerField(default=0)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL,
+                                   related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        ordering = ["-created_at", "-id"]
+        constraints = [models.UniqueConstraint(fields=["restaurant", "number"], name="unique_receipt_number")]
+
+    def __str__(self):
+        return self.number

@@ -7,7 +7,7 @@
 <div class="page-head">
   <div>
     <h1>{% translate "New order" %}</h1>
-    <p class="page-sub">{% translate "For guests without a smartphone. Choose the table and guest, tap dishes, then send." %}</p>
+    <p class="page-sub">{% translate "For guests without a smartphone. Choose the table and guest, tap dishes (and car wash packages), then send: everything goes on one bill." %}</p>
   </div>
 </div>
 
@@ -46,6 +46,10 @@
     <textarea id="pos-note" rows="2" maxlength="500" placeholder="{% translate "Note for the kitchen (optional)" %}"></textarea>
     <p class="err" id="pos-error" hidden></p>
     <button class="btn btn-primary btn-lg btn-block" id="pos-send" disabled>{% icon "flame" %} {% translate "Send to kitchen" %}</button>
+    <div class="pos-last" id="pos-last" hidden>
+      <p class="small" id="pos-last-text"></p>
+      <button class="btn btn-block" type="button" id="pos-last-bill">{% icon "printer" %} {% translate "Print one bill for this order" %}</button>
+    </div>
   </aside>
 </div>
 
@@ -54,6 +58,13 @@
   <div class="cash-box">
     <h2 id="pim-title"></h2>
     <p class="muted" id="pim-price"></p>
+    <div id="pim-vehicle" hidden>
+      <label class="cash-label" for="pim-plate">{% translate "Plate number" %} *</label>
+      <input id="pim-plate" maxlength="20" autocomplete="off" class="pim-note" style="text-transform:uppercase" placeholder="12-345 TL">
+      <p class="err" id="pim-plate-err" hidden>{% translate "Enter the plate number." %}</p>
+      <p class="cash-label">{% translate "Vehicle type" %}</p>
+      <div id="pim-vehicles" class="pim-options"></div>
+    </div>
     <div id="pim-options" class="pim-options"></div>
     <label class="cash-label" for="pim-note">{% translate "Note" %}</label>
     <input id="pim-note" maxlength="200" placeholder="{% translate "e.g. no spicy" %}" class="pim-note">

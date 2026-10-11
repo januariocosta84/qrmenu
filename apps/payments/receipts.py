@@ -182,12 +182,16 @@ def network_printing_available(restaurant) -> bool:
 
 
 def print_receipt_network(restaurant, orders) -> PrintResult:
-    if not network_printing_available(restaurant):
-        return PrintResult(False, _("Network receipt printer is not set up."), attempted=False)
     if not orders:
         return PrintResult(False, _("Nothing to print."), attempted=False)
+    return send_escpos(restaurant, escpos_receipt(receipt_data(restaurant, orders), restaurant.receipt_width))
+
+
+def send_escpos(restaurant, payload: bytes) -> PrintResult:
+    """Send ready-made ESC/POS bytes to the restaurant's network receipt printer."""
+    if not network_printing_available(restaurant):
+        return PrintResult(False, _("Network receipt printer is not set up."), attempted=False)
     target = f"{restaurant.printer_host}:{restaurant.printer_port}"
-    payload = escpos_receipt(receipt_data(restaurant, orders), restaurant.receipt_width)
     try:
         validate_printer_host(restaurant.printer_host)
         with socket.create_connection((restaurant.printer_host, restaurant.printer_port), timeout=CONNECT_TIMEOUT) as s:

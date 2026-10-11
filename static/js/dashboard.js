@@ -317,6 +317,154 @@
     else if (orderIds.length) D.paymentDone({ orderIds });
   }
 
+  /**
+   * Print bill dialog (table bills with café + car wash): choose the services to bill, one combined
+   * bill or one per service, paper 58/80 mm and copies; Preview, Print bill, or take cash and print.
+   * scope: {session} (a table's open bill), {plate} (walk-in car) or {orders: "1,2"}.
+   */
+  D.billDialog = async function (scope, title) {
+    let opts;
+    try {
+      opts = await D.api(`${D.billOptionsUrl}?${new URLSearchParams(scope)}`);
+    } catch (err) {
+      D.toast(err.message, null, "error");
+      return;
+    }
+    const money = (v) => opts.currency + Number(v).toFixed(2);
+    const wrap = document.createElement("div");
+    wrap.className = "cash-modal";
+    wrap.innerHTML = `<div class="cash-box bill-box" role="dialog" aria-modal="true" aria-labelledby="bill-title">
+      <h2 id="bill-title"></h2>
+      <div data-body></div>
+      <p class="err" data-err hidden></p>
+      <div class="cash-actions" data-actions></div></div>`;
+    const $w = (sel) => wrap.querySelector(sel);
+    $w("#bill-title").innerHTML = D.icon("printer") + " ";
+    $w("#bill-title").appendChild(document.createTextNode(title || _("Print bill")));
+    const close = () => { wrap.remove(); document.removeEventListener("keydown", onKey); };
+    const onKey = (e) => { if (e.key === "Escape") close(); };
+    document.addEventListener("keydown", onKey);
+    wrap.addEventListener("click", (e) => { if (e.target === wrap) close(); });
+    const body = $w("[data-body]");
+    const actions = $w("[data-actions]");
+
+    if (!opts.services.length) {
+      body.innerHTML = `<p>${_("Nothing to bill: everything here is paid.")}</p><p class="muted small">${_("Reprint a bill from the list of printed bills.")}</p>`;
+      const ok = document.createElement("button");
+      ok.type = "button"; ok.className = "btn btn-primary btn-lg btn-block"; ok.textContent = _("OK");
+      ok.addEventListener("click", close);
+      actions.appendChild(ok);
+      document.body.appendChild(wrap);
+      ok.focus();
+      return;
+    }
+
+    const rows = opts.services.map((s) => `<label class="bill-svc"><input type="checkbox" data-svc value="${s.code}" checked>
+        <span><strong></strong><small class="muted"></small></span><span class="bill-amt">${money(s.total)}</span></label>`).join("");
+    body.innerHTML = `
+      <fieldset class="bill-group"><legend>${_("What to bill (unpaid only)")}</legend>${rows}</fieldset>
+      <fieldset class="bill-group" data-mode-box><legend>${_("Print mode")}</legend>
+        <label class="radio"><input type="radio" name="bill-mode" value="combined"> ${_("One combined bill")}</label>
+        <label class="radio"><input type="radio" name="bill-mode" value="separate"> ${_("Separate bill per service")}</label></fieldset>
+      <div class="bill-row">
+        <fieldset class="bill-group"><legend>${_("Paper")}</legend>
+          <label class="radio"><input type="radio" name="bill-width" value="32"> 58 mm</label>
+          <label class="radio"><input type="radio" name="bill-width" value="48"> 80 mm</label></fieldset>
+        <label class="bill-group bill-copies">${_("Copies")} <input type="number" min="1" max="5" value="1" data-copies></label>
+      </div>
+      <div class="cash-due"><span>${_("Total")}</span><strong data-total></strong></div>`;
+    opts.services.forEach((s, i) => {
+      const row = body.querySelectorAll(".bill-svc")[i];
+      row.querySelector("strong").textContent = s.name;
+      row.querySelector("small").textContent = s.plates.length ? ` · ${_("Plate")}: ${s.plates.join(", ")}` : "";
+    });
+    body.querySelector(`[name=bill-mode][value=${opts.mode}]`).checked = true;
+    (body.querySelector(`[name=bill-width][value="${opts.width}"]`) || body.querySelector("[name=bill-width][value='48']")).checked = true;
+
+    const chosen = () => opts.services.filter((s) => body.querySelector(`[data-svc][value=${s.code}]`).checked);
+    const params = () => {
+      const svc = chosen();
+      return {
+        orders: svc.flatMap((s) => s.orders),
+        mode: body.querySelector("[name=bill-mode]:checked").value,
+        width: body.querySelector("[name=bill-width]:checked").value,
+        copies: Math.max(1, Math.min(5, parseInt(body.querySelector("[data-copies]").value, 10) || 1)),
+        totalCents: svc.reduce((t, s) => t + Math.round(Number(s.total) * 100), 0),
+      };
+    };
+    const refresh = () => {
+      const p = params();
+      $w("[data-total]").textContent = money(p.totalCents / 100);
+      body.querySelector("[data-mode-box]").hidden = chosen().length < 2;
+      actions.querySelectorAll("[data-needs-orders]").forEach((b) => (b.disabled = !p.orders.length));
+    };
+    body.addEventListener("change", refresh);
+
+    const button = (cls, html, fn, needsOrders = true) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = `btn btn-lg ${cls}`;
+      b.innerHTML = html;
+      if (needsOrders) b.dataset.needsOrders = "1";
+      b.addEventListener("click", fn);
+      actions.appendChild(b);
+      return b;
+    };
+    const showError = (msg) => { const e = $w("[data-err]"); e.textContent = msg; e.hidden = false; };
+
+    async function submit(pay) {
+      const p = params();
+      let tendered = null;
+      if (pay) {
+        tendered = await D.cashDialog({ title: title || _("Cash payment"), dueCents: p.totalCents });
+        if (tendered === null) return;
+      }
+      actions.querySelectorAll("button").forEach((b) => (b.disabled = true));
+      try {
+        const res = await D.api(opts.printUrl, "POST", { orders: p.orders, mode: p.mode, width: p.width, copies: p.copies, pay, tendered });
+        if (res.printed) D.toast(res.printed.printed ? _("Bill printed.") : _("Bill not printed: %(reason)s", { reason: res.printed.message }), null, res.printed.printed ? "info" : "error");
+        else D.printPage(res.printUrl, { fromClick: true });
+        const numbers = res.receipts.map((x) => x.number).join(", ");
+        body.innerHTML = res.change
+          ? `<div class="cash-change has-change"><span>${Number(res.change.change) > 0 ? _("GIVE CHANGE") : _("EXACT AMOUNT")}</span><strong>${Number(res.change.change) > 0 ? money(res.change.change) : "✓"}</strong></div>
+             <p class="muted">${_("Received %(received)s · Total %(total)s", { received: money(res.change.tendered), total: money(res.change.due) })}</p>`
+          : "";
+        body.insertAdjacentHTML("beforeend", `<p>${D.icon("check-circle")} ${_("Printed: %(numbers)s", { numbers })}</p>`);
+        actions.innerHTML = "";
+        button("btn-primary btn-block", _("Done"), () => { close(); location.reload(); }, false).focus();
+      } catch (err) {
+        showError(err.message);
+        actions.querySelectorAll("button").forEach((b) => (b.disabled = false));
+      }
+    }
+
+    button("", `${D.icon("search")} ${_("Preview")}`, () => {
+      const p = params();
+      const q = new URLSearchParams({ orders: p.orders.join(","), mode: p.mode, width: p.width });
+      window.open(`${opts.previewUrl}?${q}`, "_blank");
+    });
+    const printBtn = button("btn-primary", `${D.icon("printer")} ${_("Print bill")}`, () => submit(false));
+    if (opts.canPay) button("btn-success", `${D.icon("cash")} ${_("Paid (cash) & print")}`, () => submit(true));
+    document.body.appendChild(wrap);
+    refresh();
+    printBtn.focus();
+  };
+
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest("[data-bill-dialog]");
+    if (!el) return;
+    e.preventDefault();
+    D.billDialog(JSON.parse(el.dataset.billDialog), el.dataset.billTitle);
+  });
+
+  /** Reprint a stored bill (marked COPY). */
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest("[data-reprint]");
+    if (!el) return;
+    e.preventDefault();
+    D.printPage(el.dataset.reprint, { fromClick: true });
+  });
+
   // Any element with data-print-receipt="12,13" prints that receipt on click.
   document.addEventListener("click", (e) => {
     const el = e.target.closest("[data-print-receipt]");
@@ -400,7 +548,12 @@
       if (msg.event === "new_order") {
         const o = msg.data;
         const where = o.table_number ? _("Table %(n)s", { n: o.table_number }) : _("Counter");
-        D.toast(_("New order #%(number)s · %(where)s", { number: o.number, where }), `${D.ordersBase}${o.id}/`, "new");
+        if (o.service_type === "car_wash") {
+          D.toast(_("Car wash #%(number)s · %(where)s · Plate %(plate)s", { number: o.number, where, plate: o.plate_number }),
+                  `${D.ordersBase}${o.id}/`, "new");
+        } else {
+          D.toast(_("New order #%(number)s · %(where)s", { number: o.number, where }), `${D.ordersBase}${o.id}/`, "new");
+        }
         setUnread(unread + 1);
         if (D.soundEnabled()) D.beep();
         flashTitle("🔔 " + _("New order #%(number)s", { number: o.number }));

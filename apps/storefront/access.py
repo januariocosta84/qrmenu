@@ -116,3 +116,21 @@ def my_orders(request, restaurant):
     if not tokens:
         return Order.objects.none()
     return Order.objects.filter(restaurant=restaurant, public_token__in=tokens).order_by("-created_at")
+
+
+# ---------------------------------------------------------------- walk-in car wash
+
+WALK_IN_KEY = "walk_in_access"
+
+
+def grant_walk_in(request, restaurant) -> None:
+    """The walk-in car wash QR was scanned: this phone may order car wash packages (no table)."""
+    customer_ref(request)
+    access = dict(request.session.get(WALK_IN_KEY, {}))
+    access[str(restaurant.id)] = time.time()
+    request.session[WALK_IN_KEY] = access
+
+
+def walk_in_access(request, restaurant) -> bool:
+    at = request.session.get(WALK_IN_KEY, {}).get(str(restaurant.id))
+    return bool(at) and time.time() - at < settings.TABLE_ACCESS_HOURS * 3600 and restaurant.car_wash_enabled

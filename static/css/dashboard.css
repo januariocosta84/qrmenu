@@ -826,3 +826,22 @@ details.guide > summary { cursor: pointer; font-weight: 700; color: var(--brand-
 .api-doc table code { white-space: nowrap; }
 a.auth-brand { width: fit-content; text-decoration: none; }
 a.auth-brand:hover { opacity: .8; }
+
+/* ---------- Print bill dialog ---------- */
+.bill-box { max-width: 480px; }
+.bill-group { border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; margin: 0 0 10px; }
+.bill-group legend { padding: 0 4px; font-size: .8rem; font-weight: 700; color: var(--ink-2); }
+.bill-group .radio { display: flex; gap: 8px; align-items: center; padding: 4px 0; }
+.bill-svc { display: flex; gap: 10px; align-items: center; padding: 6px 0; cursor: pointer; }
+.bill-svc span:nth-child(2) { flex: 1; }
+.bill-svc small { display: inline; font-weight: 400; }
+.bill-amt { font-variant-numeric: tabular-nums; font-weight: 700; }
+.bill-row { display: flex; gap: 10px; }
+.bill-row > * { flex: 1; }
+.bill-copies { display: flex; flex-direction: column; gap: 6px; font-size: .8rem; font-weight: 700; color: var(--ink-2); }
+.bill-copies input { width: 100%; }
+.cw-plate { font-family: ui-monospace, Menlo, Consolas, monospace; font-weight: 800; letter-spacing: .04em; background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+.bill-box .cash-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.bill-box .cash-actions .btn { flex: 1 1 140px; white-space: nowrap; }
+.pos-last { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.pos-last p { margin: 0 0 6px; }

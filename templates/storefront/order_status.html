@@ -12,6 +12,14 @@
     {% if order.table_number %}<p class="table-badge">{{ ui.table }} {{ order.table_number }}</p>{% endif %}
   </header>
 
+  {% if not tracked %}
+  <section class="status-card">
+    {% if order.status == "cancelled" %}<p class="cancelled-pill">{{ ui.status_cancelled }}</p>
+    {% else %}<p class="status-msg big">{{ ui.car_wash_ordered }}</p>
+    <p class="muted">{{ ui.car_wash_ordered_msg }}</p>{% endif %}
+    <p class="small"><strong>{{ service_name }}</strong>{% if order.plate_number %} · {{ ui.plate }}: {{ order.plate_number }}{% endif %}</p>
+  </section>
+  {% else %}
   <section class="status-card" id="status-card" data-status="{{ order.customer_status }}">
     <p class="status-msg" id="status-msg">
       {% if order.status == "cancelled" %}{{ ui.cancelled_msg }}
@@ -36,6 +44,14 @@
     {% endif %}
     <p class="muted small live-note">{{ ui.live_updates }}</p>
   </section>
+  {% endif %}
+
+  {% for o in service_siblings %}
+  <section class="svc-done">
+    <div><strong>{{ ui.car_wash_ordered }}</strong>
+      <span class="muted small">#{{ o.number }}{% if o.plate_number %} · {{ ui.plate }}: {{ o.plate_number }}{% endif %} · {% for i in o.items.all %}{{ i.name }}{% if not forloop.last %}, {% endif %}{% endfor %} · {{ o.total|money:restaurant.currency_symbol }}</span></div>
+  </section>
+  {% endfor %}
 
   <section class="receipt">
     <ul>
@@ -44,6 +60,7 @@
         <div>
           <strong>{{ item.name }}</strong> × {{ item.quantity }}
           {% for o in item.options.all %}<div class="muted small">+ {{ o.name }}</div>{% endfor %}
+          {% if item.plate_number %}<div class="muted small">{{ ui.plate }}: {{ item.plate_number }}</div>{% endif %}
           {% if item.note %}<div class="muted small">“{{ item.note }}”</div>{% endif %}
         </div>
         <span>{{ item.line_total|money:restaurant.currency_symbol }}</span>
@@ -76,7 +93,9 @@
 {% endblock %}
 
 {% block scripts %}
+{% if tracked %}
 {{ config|json_script:"status-config" }}
 {{ ui|json_script:"ui-strings" }}
 <script src="{% static 'js/order_status.js' %}" defer></script>
+{% endif %}
 {% endblock %}

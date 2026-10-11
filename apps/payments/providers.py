@@ -70,7 +70,29 @@ class ManualProvider(PaymentProvider):
         if paid >= order.total and order.payment_status != PaymentStatus.PAID:
             order.payment_status = PaymentStatus.PAID
             order.save(update_fields=["payment_status", "updated_at"])
+            complete_if_service_done(order, user)
         return payment
+
+
+def complete_if_service_done(order: Order, user=None) -> None:
+    """
+    Services without a kitchen workflow (car wash) have no staff status buttons: once paid
+    they are Completed, so they count as revenue like café orders do.
+    """
+    from apps.menu import service_types
+    from apps.orders.models import OrderStatus, OrderStatusHistory
+
+    if not service_types.get(order.service_type).complete_on_paid or order.status in OrderStatus.FINAL:
+        return
+    from_status = order.status
+    order.status, order.completed_at = OrderStatus.COMPLETED, timezone.now()
+    order.save(update_fields=["status", "completed_at", "updated_at"])
+    OrderStatusHistory.objects.create(order=order, from_status=from_status, to_status=OrderStatus.COMPLETED,
+                                      changed_by=user, note="Paid")
+    if order.source == "api":  # API orders count as revenue through their revenue entry
+        from apps.integrations.services import record_api_revenue
+
+        record_api_revenue(order)
 
 
 PROVIDERS: dict[str, PaymentProvider] = {

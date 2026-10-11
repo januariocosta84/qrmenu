@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-08 10:18+0900\n"
+"POT-Creation-Date: 2026-10-12 01:05+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,8 +84,59 @@ msgstr "OK · imprimir recibo"
 msgid "OK"
 msgstr "OK"
 
+msgid "Print bill"
+msgstr "Imprimir conta"
+
+msgid "Nothing to bill: everything here is paid."
+msgstr "Nada a faturar: está tudo pago."
+
+msgid "Reprint a bill from the list of printed bills."
+msgstr "Reimprima uma conta a partir da lista de contas impressas."
+
+msgid "What to bill (unpaid only)"
+msgstr "O que faturar (só por pagar)"
+
+msgid "Print mode"
+msgstr "Modo de impressão"
+
+msgid "One combined bill"
+msgstr "Uma conta conjunta"
+
+msgid "Separate bill per service"
+msgstr "Conta separada por serviço"
+
+msgid "Paper"
+msgstr "Papel"
+
+msgid "Copies"
+msgstr "Cópias"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Plate"
+msgstr "Matrícula"
+
 msgid "Cash payment"
 msgstr "Pagamento em dinheiro"
+
+msgid "Bill printed."
+msgstr "Conta impressa."
+
+msgid "Bill not printed: %(reason)s"
+msgstr "Conta não impressa: %(reason)s"
+
+msgid "Printed: %(numbers)s"
+msgstr "Impresso: %(numbers)s"
+
+msgid "Done"
+msgstr "Concluído"
+
+msgid "Preview"
+msgstr "Pré-visualizar"
+
+msgid "Paid (cash) & print"
+msgstr "Pago (dinheiro) e imprimir"
 
 msgid "Live: new orders appear automatically"
 msgstr "Em direto: os novos pedidos aparecem automaticamente"
@@ -98,6 +149,9 @@ msgstr "Mesa %(n)s"
 
 msgid "Counter"
 msgstr "Balcão"
+
+msgid "Car wash #%(number)s · %(where)s · Plate %(plate)s"
+msgstr "Lavagem #%(number)s · %(where)s · Matrícula %(plate)s"
 
 msgid "New order #%(number)s · %(where)s"
 msgstr "Novo pedido n.º %(number)s · %(where)s"
@@ -144,6 +198,9 @@ msgstr "Cancelar o pedido n.º %(number)s? Motivo (opcional):"
 msgid "Could not update the order."
 msgstr "Não foi possível atualizar o pedido."
 
+msgid "Order %(numbers)s · paid together"
+msgstr "Pedido %(numbers)s · pago em conjunto"
+
 msgid "Order #%(number)s · cash payment"
 msgstr "Pedido n.º %(number)s · pagamento em dinheiro"
 
@@ -174,17 +231,29 @@ msgstr "Novo cliente"
 msgid "Sold out"
 msgstr "Esgotado"
 
+msgid "+ plate number"
+msgstr "+ matrícula"
+
 msgid "No dishes."
 msgstr "Sem pratos."
 
 msgid "sold out"
 msgstr "esgotado"
 
+msgid "Send order"
+msgstr "Enviar pedido"
+
 msgid "Send to kitchen"
 msgstr "Enviar para a cozinha"
 
-msgid "Order #%(number)s sent to the kitchen · %(where)s"
-msgstr "Pedido n.º %(number)s enviado para a cozinha · %(where)s"
+msgid "Order %(numbers)s sent · %(where)s"
+msgstr "Pedido %(numbers)s enviado · %(where)s"
+
+msgid "Last order %(numbers)s · %(where)s"
+msgstr "Último pedido %(numbers)s · %(where)s"
+
+msgid "Print bill · %(where)s"
+msgstr "Imprimir conta · %(where)s"
 
 msgid "Guest %(n)s"
 msgstr "Cliente %(n)s"
@@ -194,3 +263,6 @@ msgstr "Não foi possível enviar o pedido."
 
 msgid "Ordering is switched off in Restaurant settings."
 msgstr "Os pedidos estão desativados nas Definições do restaurante."
+
+#~ msgid "Order #%(number)s sent to the kitchen · %(where)s"
+#~ msgstr "Pedido n.º %(number)s enviado para a cozinha · %(where)s"

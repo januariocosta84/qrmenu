@@ -1,3 +1,5 @@
+import secrets
+
 from django.conf import settings
 
 from apps.billing.services import subscription_allows_orders
@@ -8,12 +10,13 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_GET
 
 from apps.core.i18n import LANGUAGES, ui_strings
+from apps.menu import service_types
 from apps.menu.queries import public_menu
 from apps.menu.serializers import PublicItemSerializer
 from apps.orders.models import Order, OrderStatus
 from apps.restaurants.models import QRCode, Restaurant, Table
 
-from .access import grant_table_access, my_orders, table_access
+from .access import grant_table_access, grant_walk_in, my_orders, table_access, walk_in_access
 
 
 def _apply_restaurant_language(request, restaurant):
@@ -100,6 +103,22 @@ def table_menu(request, slug, number):
     return _render_menu(request, restaurant, table=table, can_order=can_order, access_ended=reason)
 
 
+@require_GET
+@ensure_csrf_cookie
+def car_wash_menu(request, slug):
+    """Walk-in car wash QR (at the counter / wash bay): /r/<slug>/carwash/?k=<token>. Only the car wash tab; no table."""
+    restaurant = _visible_restaurant(request, slug)
+    if not restaurant.car_wash_enabled:
+        raise Http404
+    token = request.GET.get("k")
+    if token:
+        if restaurant.car_wash_qr_token and secrets.compare_digest(token, restaurant.car_wash_qr_token):
+            grant_walk_in(request, restaurant)
+            return redirect("storefront:car_wash", slug=slug)
+        return _render_menu(request, restaurant, table=None, can_order=False, invalid_qr=True, walk_in=True)
+    return _render_menu(request, restaurant, table=None, can_order=walk_in_access(request, restaurant), walk_in=True)
+
+
 def legacy_table_menu(request, slug, number):
     """Long-form alias: /restaurant/<slug>/table/<number>/ (keeps the ?k= token)."""
     url = reverse("storefront:table", args=[slug, number])
@@ -107,10 +126,15 @@ def legacy_table_menu(request, slug, number):
     return redirect(f"{url}?{query}" if query else url)
 
 
-def _render_menu(request, restaurant, *, table, can_order, invalid_qr=False, access_ended=None):
+def _render_menu(request, restaurant, *, table, can_order, invalid_qr=False, access_ended=None, walk_in=False):
     _apply_restaurant_language(request, restaurant)
     lang = request.ui_lang
-    categories = list(public_menu(restaurant))
+    categories = list(public_menu(restaurant, services=[service_types.CAR_WASH] if walk_in else None))
+    present = [code for code in service_types.SERVICE_TYPES
+               if any(c.service_type == code and c.items.all() for c in categories)]
+    strings_ = ui_strings(lang)
+    tabs = [(code, strings_["cafe_tab"] if code == service_types.CAFE else service_types.display_name(restaurant, code))
+            for code in present] if len(present) > 1 else []
     items = {
         str(item.id): PublicItemSerializer(item, context={"lang": lang}).data
         for category in categories
@@ -119,7 +143,8 @@ def _render_menu(request, restaurant, *, table, can_order, invalid_qr=False, acc
     strings = ui_strings(lang)
     active_orders = list(my_orders(request, restaurant).filter(status__in=OrderStatus.ACTIVE)[:5])
     for o in active_orders:
-        o.status_label = strings[f"status_{o.customer_status}"]
+        o.status_label = (strings["car_wash_ordered"] if not service_types.get(o.service_type).kitchen
+                          else strings[f"status_{o.customer_status}"])
     config = {
         "slug": restaurant.slug,
         "table": table.number if table else None,
@@ -133,8 +158,11 @@ def _render_menu(request, restaurant, *, table, can_order, invalid_qr=False, acc
         "accessUrl": reverse("storefront:api_access", args=[restaurant.slug]),
         "menuUrl": reverse("storefront:api_menu", args=[restaurant.slug]),
         "wsPath": f"/ws/menu/{restaurant.slug}/",
-        "cartKey": f"cart:{restaurant.slug}:{table.number if table else '-'}",
+        "cartKey": f"cart:{restaurant.slug}:{table.number if table else ('carwash' if walk_in else '-')}",
         "lang": lang,
+        "walkIn": walk_in,
+        "vehicleTypes": [[code, strings[f"vehicle_{code}"]] for code in service_types.VEHICLE_CODES],
+        "vehicleServices": [c for c, s in service_types.SERVICE_TYPES.items() if s.needs_vehicle],
     }
     return render(request, "storefront/menu.html", {
         "restaurant": restaurant,
@@ -149,6 +177,9 @@ def _render_menu(request, restaurant, *, table, can_order, invalid_qr=False, acc
         "active_orders": active_orders,
         "items_json": items,
         "config": config,
+        "tabs": tabs,
+        "walk_in": walk_in,
+        "walk_in_name": service_types.display_name(restaurant, service_types.CAR_WASH) if walk_in else "",
     })
 
 
@@ -159,19 +190,27 @@ def order_status(request, token):
     )
     restaurant = order.restaurant
     _apply_restaurant_language(request, restaurant)
+    tracked = service_types.get(order.service_type).kitchen  # car wash: "ordered ✅", no live tracking
+    siblings = (Order.objects.filter(order_group=order.order_group).exclude(pk=order.pk).prefetch_related("items")
+                if order.order_group else Order.objects.none())
     steps = [OrderStatus.NEW, OrderStatus.PREPARING, OrderStatus.READY, OrderStatus.COMPLETED]
     current = order.customer_status
     current_index = steps.index(current) if current in steps else -1
     back_url = (
-        reverse("storefront:table", args=[restaurant.slug, order.table_number])
-        if order.table_number else reverse("storefront:menu", args=[restaurant.slug])
+        reverse("storefront:table", args=[restaurant.slug, order.table_number]) if order.table_number
+        else reverse("storefront:car_wash", args=[restaurant.slug]) if not tracked
+        else reverse("storefront:menu", args=[restaurant.slug])
     )
     return render(request, "storefront/order_status.html", {
         "order": order,
         "restaurant": restaurant,
         "steps": [(s, ui_strings(request.ui_lang)[f"status_{s}"], i <= current_index) for i, s in enumerate(steps)],
         "back_url": back_url,
-        "other_orders": my_orders(request, restaurant).exclude(pk=order.pk)[:10],
+        "other_orders": my_orders(request, restaurant).exclude(pk=order.pk).exclude(
+            pk__in=[o.pk for o in siblings])[:10],
+        "tracked": tracked,
+        "service_siblings": [o for o in siblings if not service_types.get(o.service_type).kitchen],
+        "service_name": service_types.display_name(restaurant, order.service_type),
         "config": {
             "token": str(order.public_token),
             "status": current,

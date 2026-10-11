@@ -105,6 +105,21 @@
   </section>
 </div>
 
+{% if a.services %}
+<section class="card viz-card">
+  <h2>{% translate "Revenue by service" %}</h2>
+  <p class="viz-sub">{% translate "Café and car wash, from completed orders." %}</p>
+  <div class="cols-even">
+    {% for s in a.services %}
+    <div>
+      <div class="mini-stat"><span>{% if s.code == "cafe" %}{% translate "Café" %}{% else %}{{ s.name }}{% endif %}</span><strong>{{ s.revenue|money:request.restaurant.currency_symbol }}</strong> <small class="muted">{{ s.share|unlocalize }}% · {% blocktranslate trimmed count n=s.n %}{{ n }} order{% plural %}{{ n }} orders{% endblocktranslate %}</small></div>
+      <ol class="plain small">{% for i in s.top %}<li class="usage-row"><span>{{ forloop.counter }}. {{ i.name }} × {{ i.qty }}</span><span>{{ i.revenue|money:request.restaurant.currency_symbol }}</span></li>{% endfor %}</ol>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
 <div class="cols-even">
   <section class="card viz-card">
     <h2>{% translate "Sales by category" %}</h2>

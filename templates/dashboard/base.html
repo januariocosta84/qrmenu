@@ -30,6 +30,7 @@
     <a href="{% url 'dashboard:orders' r.slug %}" class="{% if '/orders/' in request.path and '/orders/new/' not in request.path %}active{% endif %}">{% icon "receipt" %}<span>{% translate "Orders" %}</span></a>
     <a href="{% url 'dashboard:tables' r.slug %}" class="{% if '/tables/' in request.path %}active{% endif %}">{% icon "table" %}<span>{% translate "Tables &amp; QR" %}</span></a>
     {% if can.record_revenue %}<a href="{% url 'dashboard:revenue' r.slug %}" class="{% if '/revenue/' in request.path %}active{% endif %}">{% icon "chart" %}<span>{% translate "Revenue" %}</span>{% if not request.features.branches %}<span class="pro-badge">PRO</span>{% endif %}</a>{% endif %}
+    {% if r.car_wash_enabled %}<a href="{% url 'dashboard:car_wash' r.slug %}" class="{% if '/car-wash/' in request.path %}active{% endif %}">{% icon "drawer" %}<span>{{ r.car_wash_name|default:_("Car wash") }}</span></a>{% endif %}
     {% if can.payments %}<a href="{% url 'dashboard:cash_register' r.slug %}" class="{% if '/cash-register/' in request.path %}active{% endif %}">{% icon "drawer" %}<span>{% translate "Cash register" %}</span>{% if not request.features.cash_register %}<span class="pro-badge">PRO</span>{% endif %}</a>{% endif %}
 
     {% if can.toggle_availability or can.reports or can.manage_restaurant or can.manage_staff or can.quotations or can.expenses %}
@@ -172,6 +173,7 @@
     receiptNetwork: {{ receipt_network|yesno:"true,false" }},
     receiptUrl: "{% url 'dashboard:receipt' request.restaurant.slug %}",
     receiptPrintApi: "{% url 'dashboard:api_receipt_print' request.restaurant.slug %}",
+    billOptionsUrl: "{% url 'dashboard:bill_options' request.restaurant.slug %}",
     drawerSlipUrl: "{% url 'dashboard:drawer_slip' request.restaurant.slug %}",
     wsPath: "/ws/kitchen/{{ request.restaurant.slug|escapejs }}/",
     notificationsUrl: "{% url 'dashboard:api_notifications' request.restaurant.slug %}",

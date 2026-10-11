@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-08 10:18+0900\n"
+"POT-Creation-Date: 2026-10-12 01:05+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,8 +84,59 @@ msgstr "OK · cetak struk"
 msgid "OK"
 msgstr "OK"
 
+msgid "Print bill"
+msgstr "Cetak tagihan"
+
+msgid "Nothing to bill: everything here is paid."
+msgstr "Tidak ada yang ditagih: semuanya sudah dibayar."
+
+msgid "Reprint a bill from the list of printed bills."
+msgstr "Cetak ulang tagihan dari daftar tagihan tercetak."
+
+msgid "What to bill (unpaid only)"
+msgstr "Yang ditagih (hanya yang belum dibayar)"
+
+msgid "Print mode"
+msgstr "Mode cetak"
+
+msgid "One combined bill"
+msgstr "Satu tagihan gabungan"
+
+msgid "Separate bill per service"
+msgstr "Tagihan terpisah per layanan"
+
+msgid "Paper"
+msgstr "Kertas"
+
+msgid "Copies"
+msgstr "Salinan"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Plate"
+msgstr "Nopol"
+
 msgid "Cash payment"
 msgstr "Pembayaran tunai"
+
+msgid "Bill printed."
+msgstr "Tagihan dicetak."
+
+msgid "Bill not printed: %(reason)s"
+msgstr "Tagihan tidak tercetak: %(reason)s"
+
+msgid "Printed: %(numbers)s"
+msgstr "Tercetak: %(numbers)s"
+
+msgid "Done"
+msgstr "Selesai"
+
+msgid "Preview"
+msgstr "Pratinjau"
+
+msgid "Paid (cash) & print"
+msgstr "Lunas (tunai) & cetak"
 
 msgid "Live: new orders appear automatically"
 msgstr "Langsung: pesanan baru muncul otomatis"
@@ -98,6 +149,9 @@ msgstr "Meja %(n)s"
 
 msgid "Counter"
 msgstr "Kasir"
+
+msgid "Car wash #%(number)s · %(where)s · Plate %(plate)s"
+msgstr "Cuci #%(number)s · %(where)s · Nopol %(plate)s"
 
 msgid "New order #%(number)s · %(where)s"
 msgstr "Pesanan baru #%(number)s · %(where)s"
@@ -144,6 +198,9 @@ msgstr "Batalkan pesanan #%(number)s? Alasan (opsional):"
 msgid "Could not update the order."
 msgstr "Tidak dapat memperbarui pesanan."
 
+msgid "Order %(numbers)s · paid together"
+msgstr "Pesanan %(numbers)s · dibayar bersama"
+
 msgid "Order #%(number)s · cash payment"
 msgstr "Pesanan #%(number)s · pembayaran tunai"
 
@@ -174,17 +231,29 @@ msgstr "Tamu baru"
 msgid "Sold out"
 msgstr "Habis"
 
+msgid "+ plate number"
+msgstr "+ nomor polisi"
+
 msgid "No dishes."
 msgstr "Tidak ada hidangan."
 
 msgid "sold out"
 msgstr "habis"
 
+msgid "Send order"
+msgstr "Kirim pesanan"
+
 msgid "Send to kitchen"
 msgstr "Kirim ke dapur"
 
-msgid "Order #%(number)s sent to the kitchen · %(where)s"
-msgstr "Pesanan #%(number)s dikirim ke dapur · %(where)s"
+msgid "Order %(numbers)s sent · %(where)s"
+msgstr "Pesanan %(numbers)s terkirim · %(where)s"
+
+msgid "Last order %(numbers)s · %(where)s"
+msgstr "Pesanan terakhir %(numbers)s · %(where)s"
+
+msgid "Print bill · %(where)s"
+msgstr "Cetak tagihan · %(where)s"
 
 msgid "Guest %(n)s"
 msgstr "Tamu %(n)s"
@@ -194,3 +263,6 @@ msgstr "Tidak dapat mengirim pesanan."
 
 msgid "Ordering is switched off in Restaurant settings."
 msgstr "Pemesanan dinonaktifkan di Pengaturan restoran."
+
+#~ msgid "Order #%(number)s sent to the kitchen · %(where)s"
+#~ msgstr "Pesanan #%(number)s dikirim ke dapur · %(where)s"

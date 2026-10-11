@@ -19,7 +19,7 @@
 {% for c in categories %}
 <section class="card">
   <div class="card-head">
-    <h2>{{ c.name }} <span class="count">{{ c.items.all|length }}</span>{% if not c.is_active %} <span class="pill pill-cancelled">{% translate "Hidden" %}</span>{% endif %}</h2>
+    <h2>{{ c.name }} <span class="count">{{ c.items.all|length }}</span>{% if c.service_type == "car_wash" %} <span class="tag">{% icon "drawer" %} {{ r.car_wash_name|default:_("Car wash") }}</span>{% endif %}{% if not c.is_active %} <span class="pill pill-cancelled">{% translate "Hidden" %}</span>{% endif %}</h2>
     {% if can_edit %}
     <div class="btn-row">
       <a class="btn btn-sm" href="{% url 'dashboard:item_create' r.slug %}?category={{ c.pk }}">{% icon "plus" %} {% translate "Dish" %}</a>

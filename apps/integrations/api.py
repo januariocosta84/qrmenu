@@ -186,7 +186,10 @@ def _lines(data) -> list:
             qty = int(line["quantity"])
             options = [int(o) for o in line.get("options") or []][:20]
             lines.append({"menu_item": int(line["menu_item"]), "quantity": qty, "options": options,
-                          "note": str(line.get("note") or "")[:200]})
+                          "note": str(line.get("note") or "")[:200],
+                          # car wash packages: the vehicle's plate (required) and type (car/motorbike/pickup)
+                          "plate_number": str(line.get("plate_number") or "")[:20],
+                          "vehicle_type": str(line.get("vehicle_type") or "")[:10]})
         except (KeyError, TypeError, ValueError, AttributeError):
             raise ApiError(400, "invalid_items", f"Line {n + 1}: give menu_item (id) and quantity (number).")
         if not 1 <= qty <= MAX_QUANTITY:
@@ -248,11 +251,11 @@ def _sandbox_order(key, branch, lines, data, method, paid, customer, external_re
     _check_total(data, priced["total"])
     items = [{"name": i.name, "quantity": q, "unit_price": str(i.price), "line_total": str(t), "note": note,
               "options": [{"name": o.name, "price": str(o.price)} for o in opts]}
-             for i, q, opts, note, t in priced["prepared"]]
+             for i, q, opts, note, t, *_rest in priced["prepared"]]
     number = SandboxOrder.objects.filter(api_key__restaurant=key.restaurant).count() + 1
     s = SandboxOrder.objects.create(api_key=key, branch=branch, number=number, status="received", data={
         "items": items, "subtotal": str(priced["subtotal"]), "service_charge": str(priced["service_charge"]),
-        "vat": f'{priced["vat"]["vat_amount"]:.2f}', "total": str(priced["total"]), "currency": branch.currency,
+        "vat": f'{sum(g["vat"]["vat_amount"] for g in priced["groups"].values()):.2f}', "total": str(priced["total"]), "currency": branch.currency,
         "payment_method": method, "paid": paid, "external_ref": external_ref, "cancel_reason": "", **customer,
     })
     webhooks.sandbox_event(s, "order.created")

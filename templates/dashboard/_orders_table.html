@@ -13,11 +13,14 @@
       <td data-label="{% translate "Total" %}" class="num"><strong>{{ o.total|money:request.restaurant.currency_symbol }}</strong></td>
       <td data-label="{% translate "Status" %}"><span class="pill pill-{{ o.status }}">{{ o.get_status_display }}</span></td>
       <td data-label="{% translate "Payment" %}" class="nowrap">
-        {% if o.payment_status == "unpaid" and o.status != "cancelled" and request.can.payments %}
+        {% if o.pay_due and o.pay_leader.pk != o.pk %}
+        <span class="muted small">{% blocktranslate trimmed with n=o.pay_leader.number %}Paid with #{{ n }}{% endblocktranslate %}</span>
+        {% elif o.payment_status == "unpaid" and o.status != "cancelled" and request.can.payments %}
         <form method="post" action="{% url 'dashboard:order_mark_paid' request.restaurant.slug o.pk %}" class="inline-form"
-              data-cash-due="{{ o.total|unlocalize }}" data-cash-paid="{{ o.paid_sum|default:0|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=o.number %}Order #{{ n }} · cash payment{% endblocktranslate %}">
+              {% if o.pay_due %}data-cash-due="{{ o.pay_due|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=o.pay_numbers %}Order {{ n }} · paid together{% endblocktranslate %}"
+              {% else %}data-cash-due="{{ o.total|unlocalize }}" data-cash-paid="{{ o.paid_sum|default:0|unlocalize }}" data-cash-title="{% blocktranslate trimmed with n=o.number %}Order #{{ n }} · cash payment{% endblocktranslate %}"{% endif %}>
           {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
-          <button class="btn btn-sm btn-success" type="submit" title="{% translate "Cash received" %}">{% icon "cash" %} {% translate "Mark paid" %}</button>
+          <button class="btn btn-sm btn-success" type="submit" title="{% translate "Cash received" %}">{% icon "cash" %} {% translate "Mark paid" %}{% if o.pay_due %} · {{ o.pay_numbers }} · {{ o.pay_due|money:request.restaurant.currency_symbol }}{% endif %}</button>
         </form>
         {% else %}
         <span class="pill pill-pay-{{ o.payment_status }}">{{ o.get_payment_status_display }}</span>

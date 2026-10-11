@@ -1,0 +1,130 @@
+{% extends "dashboard/base.html" %}
+{% load i18n menu_tags ui_icons %}
+{% block title %}{{ request.restaurant.car_wash_name|default:_("Car wash") }}{% endblock %}
+{% block content %}
+{% with r=request.restaurant sym=request.restaurant.currency_symbol %}
+<div class="page-head">
+  <div>
+    <h1>{{ r.car_wash_name|default:_("Car wash") }}</h1>
+    <p class="page-sub">{% translate "Car wash orders from tables and walk-in customers. They don't go to the kitchen: give the ticket to the car wash team. They are completed automatically once paid." %}</p>
+  </div>
+  <div class="page-actions">
+    {% if show_all %}<a class="btn" href="?">{% translate "Today & unpaid" %}</a>{% else %}<a class="btn" href="?show=all">{% translate "All, incl. cancelled" %}</a>{% endif %}
+    <button class="btn" type="button" onclick="location.reload()">{% icon "refresh" %} {% translate "Refresh" %}</button>
+  </div>
+</div>
+
+<div class="cols">
+  <div>
+    {% if walk_ins %}
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "user" %} {% translate "Walk-in cars waiting to pay" %}</h2>
+      <ul class="plain">{% for g in walk_ins %}
+        <li class="usage-row"><span><span class="cw-plate">{{ g.plate }}</span> <span class="muted small">{% for o in g.orders %}#{{ o.number }}{% if not forloop.last %} + {% endif %}{% endfor %}</span></span>
+          <span class="btn-row"><strong>{{ g.total|money:sym }}</strong>
+            <button class="btn btn-sm btn-primary" type="button" data-bill-dialog='{"plate": "{{ g.plate|escapejs }}"}' data-bill-title="{% blocktranslate trimmed with p=g.plate %}Walk-in · {{ p }}{% endblocktranslate %}">{% icon "printer" %} {% translate "Bill / pay" %}</button></span></li>
+      {% endfor %}</ul>
+    </section>
+    {% endif %}
+
+    <section class="card">
+      <div class="card-head"><h2>{% translate "Car wash orders" %} <span class="count">{{ orders|length }}</span></h2></div>
+      {% if orders %}
+      <div class="table-wrap">
+      <table class="table rtable">
+        <thead><tr><th>{% translate "Order" %}</th><th>{% translate "Plate" %}</th><th>{% translate "Package" %}</th><th>{% translate "Where" %}</th><th class="num">{% translate "Total" %}</th><th></th></tr></thead>
+        <tbody>{% for o in orders %}
+          <tr class="{% if o.status == 'cancelled' %}is-closed{% endif %}">
+            <td class="rt-title" data-label=""><a href="{% url 'dashboard:order_detail' r.slug o.pk %}"><strong>#{{ o.number }}</strong></a> <span class="muted small">{{ o.created_at|date:"H:i" }}</span>
+              {% if o.status == "cancelled" %}<span class="pill pill-cancelled">{% translate "Cancelled" %}</span>{% else %}<span class="pill pill-pay-{{ o.payment_status }}">{{ o.get_payment_status_display }}</span>{% endif %}</td>
+            <td data-label="{% translate "Plate" %}"><span class="cw-plate">{{ o.plate_number|default:"—" }}</span></td>
+            <td data-label="{% translate "Package" %}">{% for i in o.items.all %}{{ i.name }}{% if i.vehicle_type and i.vehicle_type != "car" %} <span class="muted small">({% for code, label in vehicle_types %}{% if code == i.vehicle_type %}{{ label }}{% endif %}{% endfor %})</span>{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}{% if o.customer_name %}<div class="muted small">{{ o.customer_name }}</div>{% endif %}</td>
+            <td data-label="{% translate "Where" %}">{% if o.table_number %}{% blocktranslate trimmed with n=o.table_number %}Table {{ n }}{% endblocktranslate %}{% else %}{% translate "Walk-in" %}{% endif %}</td>
+            <td data-label="{% translate "Total" %}" class="num">{{ o.total|money:sym }}</td>
+            <td data-label="" class="num nowrap">
+              <a class="btn btn-sm" href="{% url 'dashboard:car_wash_ticket' r.slug o.pk %}?autoprint=1" data-reprint="{% url 'dashboard:car_wash_ticket' r.slug o.pk %}?autoprint=1">{% icon "printer" %} {% translate "Ticket" %}</a>
+              {% if o.payment_status == "unpaid" and o.status != "cancelled" %}
+                {% if request.can.take_orders %}
+                <details class="pay-other inline-details"><summary class="btn btn-sm btn-ghost">{% icon "table" %} {% translate "To table" %}</summary>
+                  <form method="post" action="{% url 'dashboard:car_wash_link' r.slug o.pk %}" class="btn-row" style="margin-top:6px">{% csrf_token %}
+                    <select name="table" required aria-label="{% translate "Table" %}">{% for t in tables %}<option value="{{ t.pk }}"{% if t.number == o.table_number %} selected{% endif %}>{% blocktranslate trimmed with n=t.number %}Table {{ n }}{% endblocktranslate %}</option>{% endfor %}</select>
+                    <button class="btn btn-sm btn-primary" type="submit">{% translate "Add to bill" %}</button>
+                  </form>
+                </details>
+                {% endif %}
+                {% if request.can.cancel_orders %}
+                <form method="post" action="{% url 'dashboard:car_wash_cancel' r.slug o.pk %}" class="inline-form" onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% blocktranslate trimmed with n=o.number %}Cancel car wash #{{ n }}?{% endblocktranslate %}">{% csrf_token %}<button class="btn btn-sm link-danger" type="submit">{% translate "Cancel" %}</button></form>
+                {% endif %}
+              {% endif %}
+            </td>
+          </tr>{% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}<div class="empty">{% icon "drawer" %}<p>{% translate "No car wash orders yet today." %}</p></div>{% endif %}
+    </section>
+
+    {% if receipts %}
+    <section class="card">
+      <h2 class="fieldset-title">{% icon "receipt" %} {% translate "Printed bills" %}</h2>
+      <ul class="plain">{% for x in receipts %}
+        <li class="usage-row"><span><strong>{{ x.number }}</strong> <span class="muted small">{{ x.created_at|date:"d M H:i" }} · {{ x.data.table|default:x.data.orders }}</span>{% if x.paid %} <span class="pill pill-pay-paid">{% translate "Paid" %}</span>{% endif %}</span>
+          <a class="btn btn-sm btn-ghost" href="{% url 'dashboard:bill_receipts' r.slug %}?ids={{ x.pk }}&reprint=1" data-reprint="{% url 'dashboard:bill_receipts' r.slug %}?ids={{ x.pk }}&reprint=1&autoprint=1">{% icon "printer" %} {% translate "Reprint (COPY)" %}</a></li>
+      {% endfor %}</ul>
+    </section>
+    {% endif %}
+  </div>
+
+  <aside>
+    {% if request.can.take_orders %}
+    <form method="post" class="card form compact">
+      {% csrf_token %}
+      <h2 class="fieldset-title">{% icon "plus" %} {% translate "New car wash order" %}</h2>
+      <p class="fieldset-desc">{% translate "For a car dropped off at the counter. Choose a table to put it on that table's bill, or leave it as walk-in (the bill is under the plate number)." %}</p>
+      <div class="field"><label for="cw-plate">{% translate "Plate number" %} *</label><input id="cw-plate" name="plate" maxlength="20" required autocomplete="off" style="text-transform:uppercase" placeholder="12-345 TL"></div>
+      <div class="field"><label for="cw-package">{% translate "Package" %} *</label>
+        <select id="cw-package" name="package" required>{% for p in packages %}<option value="{{ p.pk }}">{{ p.name }} · {{ p.price|money:sym }}</option>{% empty %}<option value="">{% translate "No car wash packages yet" %}</option>{% endfor %}</select></div>
+      <div class="field"><label for="cw-vehicle">{% translate "Vehicle type" %}</label>
+        <select id="cw-vehicle" name="vehicle_type">{% for code, label in vehicle_types %}<option value="{{ code }}">{{ label }}</option>{% endfor %}</select></div>
+      <div class="field"><label for="cw-table">{% translate "Table" %}</label>
+        <select id="cw-table" name="table"><option value="">{% translate "Walk-in (no table)" %}</option>{% for t in tables %}<option value="{{ t.pk }}">{% blocktranslate trimmed with n=t.number %}Table {{ n }}{% endblocktranslate %}</option>{% endfor %}</select></div>
+      <div class="field"><label for="cw-name">{% translate "Customer name" %}</label><input id="cw-name" name="customer_name" maxlength="80"></div>
+      <button class="btn btn-primary btn-block" type="submit"{% if not packages %} disabled{% endif %}>{% icon "check" %} {% translate "Add car wash" %}</button>
+      {% if not packages %}<p class="help">{% translate "Add a menu category with the service “Car wash” and your packages first." %} <a href="{% url 'dashboard:menu' r.slug %}">{% translate "Menu" %}</a></p>{% endif %}
+    </form>
+    {% endif %}
+
+    <section class="card qr-panel">
+      <h2 class="fieldset-title">{% icon "qr" %} {% translate "Walk-in car wash QR" %}</h2>
+      <p class="fieldset-desc">{% translate "Put this QR code at the wash bay or counter. It opens only the car wash menu; orders are billed under the plate number." %}</p>
+      <div class="qr-box">{{ walk_in_svg|safe }}</div>
+      <p class="small break muted"><a href="{{ walk_in_url }}" target="_blank" rel="noopener">{% translate "Open the customer link" %}</a></p>
+      <div class="btn-row">
+        <a class="btn btn-sm" href="{% url 'dashboard:car_wash_qr' r.slug %}">{% icon "download" %} PNG</a>
+        {% if request.can.manage_tables %}
+        <form method="post" action="{% url 'dashboard:car_wash_qr' r.slug %}" onsubmit="return confirm(this.dataset.confirm)" data-confirm="{% translate "Make a new QR code? The printed one will STOP working." %}">{% csrf_token %}<button class="btn btn-sm" type="submit">{% icon "refresh" %} {% translate "New code" %}</button></form>
+        {% endif %}
+      </div>
+      <p class="help">{% if network_tickets %}{% translate "Tickets print on the network receipt printer." %}{% elif r.car_wash_auto_print %}{% translate "Keep this screen open: new car wash tickets print here automatically." %}{% else %}{% translate "Tip: switch on automatic tickets in Restaurant settings → Car wash." %}{% endif %}</p>
+    </section>
+  </aside>
+</div>
+{% endwith %}
+{% endblock %}
+{% block scripts %}
+{{ car_wash_config|json_script:"car-wash-config" }}
+<script>
+  // New car wash orders: refresh this screen and, if set, print the ticket from this device.
+  document.addEventListener("dash:message", (e) => {
+    const { event, data } = e.detail;
+    if (event !== "new_order" || data.service_type !== "car_wash") return;
+    const cfg = JSON.parse(document.getElementById("car-wash-config").textContent);
+    if (cfg.autoPrint) {
+      window.DASH.printPage(cfg.ticketUrl.replace("/0/ticket/", `/${data.id}/ticket/`) + "?autoprint=1");
+      setTimeout(() => location.reload(), 8000);
+    } else {
+      setTimeout(() => location.reload(), 1500);
+    }
+  });
+</script>
+{% endblock %}

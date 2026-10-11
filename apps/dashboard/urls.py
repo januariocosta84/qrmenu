@@ -5,7 +5,7 @@ from apps.quotations import views as quotes
 
 from apps.integrations import views as integrations
 
-from . import api, views
+from . import api, carwash, views
 
 app_name = "dashboard"
 
@@ -52,6 +52,15 @@ urlpatterns = [
     path(f"dashboard/{R}branches/<int:pk>/", views.branch_manage, name="branch_manage"),
     path(f"dashboard/{R}business-profile/", views.business_profile, name="business_profile"),
     path(f"dashboard/{R}business-profile/later/", views.profile_prompt_later, name="profile_prompt_later"),
+    path(f"dashboard/{R}car-wash/", carwash.car_wash, name="car_wash"),
+    path(f"dashboard/{R}car-wash/qr/", carwash.car_wash_qr, name="car_wash_qr"),
+    path(f"dashboard/{R}car-wash/<int:pk>/link/", carwash.car_wash_link, name="car_wash_link"),
+    path(f"dashboard/{R}car-wash/<int:pk>/cancel/", carwash.car_wash_cancel, name="car_wash_cancel"),
+    path(f"dashboard/{R}car-wash/<int:pk>/ticket/", carwash.car_wash_ticket, name="car_wash_ticket"),
+    path(f"dashboard/{R}bills/options/", carwash.bill_options, name="bill_options"),
+    path(f"dashboard/{R}bills/preview/", carwash.bill_preview, name="bill_preview"),
+    path(f"dashboard/{R}bills/print/", carwash.bill_print, name="bill_print"),
+    path(f"dashboard/{R}bills/", carwash.bill_receipts, name="bill_receipts"),
     path(f"dashboard/{R}api/", integrations.api_page, name="api"),
     path(f"dashboard/{R}api/docs/", integrations.api_docs, name="api_docs"),
     path(f"dashboard/{R}staff/<int:pk>/", views.staff_edit, name="staff_edit"),

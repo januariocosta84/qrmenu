@@ -16,7 +16,10 @@ from apps.orders.models import Order
 from apps.orders.serializers import PlaceOrderSerializer, PublicOrderSerializer
 from apps.orders.services import OrderError, place_order
 
-from .access import PAID, customer_ref, record_scan_order, remember_order, table_access
+from apps.menu.models import MenuItem
+from apps.menu.service_types import SERVICE_TYPES
+
+from .access import PAID, customer_ref, record_scan_order, remember_order, table_access, walk_in_access
 
 
 class PublicAPIView(APIView):
@@ -59,16 +62,28 @@ class PlaceOrderAPI(PublicAPIView):
     def post(self, request, slug):
         restaurant = get_public_restaurant(slug)
         lang = request.ui_lang
-        table, reason = table_access(request, restaurant)
-        if table is None:
-            key = "paid_scan_again" if reason == PAID else "scan_to_order"
-            return Response(
-                {"error": "scan_required", "reason": reason, "message": ui_text(key, lang)},
-                status=status.HTTP_403_FORBIDDEN,
-            )
         serializer = PlaceOrderSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
+        if data.get("walk_in"):
+            # Walk-in car wash QR: no table, car wash packages only; the bill is under the plate number.
+            table = None
+            if not walk_in_access(request, restaurant):
+                return Response({"error": "scan_required", "message": ui_text("scan_car_wash", lang)},
+                                status=status.HTTP_403_FORBIDDEN)
+            ids = {line["menu_item"] for line in data["items"]}
+            if MenuItem.objects.filter(restaurant=restaurant, id__in=ids).exclude(
+                    category__service_type__in=[c for c, s in SERVICE_TYPES.items() if not s.kitchen]).exists():
+                return Response({"error": "walk_in_only", "message": ui_text("scan_to_order", lang)},
+                                status=status.HTTP_403_FORBIDDEN)
+        else:
+            table, reason = table_access(request, restaurant)
+            if table is None:
+                key = "paid_scan_again" if reason == PAID else "scan_to_order"
+                return Response(
+                    {"error": "scan_required", "reason": reason, "message": ui_text(key, lang)},
+                    status=status.HTTP_403_FORBIDDEN,
+                )
         try:
             order = place_order(
                 restaurant=restaurant,
@@ -86,10 +101,12 @@ class PlaceOrderAPI(PublicAPIView):
             message = {
                 "unavailable": ui_text("item_unavailable_error", lang),
                 "not_accepting": ui_text("not_accepting", lang),
+                "plate_required": ui_text("plate_required", lang),
             }.get(exc.code, str(exc))
             return Response({"error": exc.code, "message": message, **exc.details}, status=status.HTTP_409_CONFLICT)
-        remember_order(request, order)
-        record_scan_order(request, order)
+        for part in reversed(order.group_orders):  # café + car wash parts: all on this phone's bill
+            remember_order(request, part)
+            record_scan_order(request, part)
         return Response(
             {
                 "token": str(order.public_token),
