@@ -30,7 +30,8 @@ from apps.restaurants import branches as branch_service
 from apps.restaurants.models import BusinessProfile, Restaurant
 
 from .forms import BillingSettingsForm, MarkPaidForm, NewInvoiceForm, PlanForm
-from .models import AuditLog
+from . import geo
+from .models import AuditLog, CallbackRequest, PageViewDay, VisitorLog
 
 User = get_user_model()
 
@@ -86,6 +87,8 @@ def overview(request):
         "recent": Restaurant.objects.order_by("-created_at")[:8],
         "paid_30d": Invoice.objects.filter(status=Invoice.PAID, paid_at__gte=since).aggregate(s=Sum("amount"))["s"] or 0,
         "to_review": _review_counts(),
+        "callbacks_new": CallbackRequest.objects.filter(status=CallbackRequest.NEW).count(),
+        "visitors_today": PageViewDay.objects.filter(date=today, page=PageViewDay.HOME).values_list("visitors", flat=True).first() or 0,
     })
 
 
@@ -519,3 +522,68 @@ def billing_settings(request):
 def audit_log(request):
     page = Paginator(AuditLog.objects.select_related("user"), 50).get_page(request.GET.get("page"))
     return render(request, "console/audit.html", {"page": page})
+
+
+# ---------------------------------------------------------------- visitors
+
+@platform_admin
+def visitors(request):
+    """How many people open the home page, the sign-up page and restaurant menus, per day."""
+    today = timezone.localdate()
+    try:
+        days = max(1, min(int(request.GET.get("days", "14")), 365))
+    except ValueError:
+        days = 14
+    start = today - timedelta(days=days - 1)
+    rows = PageViewDay.objects.filter(date__gte=start)
+    per_day = {start + timedelta(days=i): {"home": [0, 0], "signup": [0, 0], "menu": [0, 0]} for i in range(days)}
+    for r in rows.values("date", "page").annotate(v=Sum("visitors"), n=Sum("views")):
+        per_day[r["date"]][r["page"]] = [r["v"], r["n"]]
+    peak = max((d["home"][0] for d in per_day.values()), default=0) or 1
+    table = [{"date": d, **v, "pct": round(v["home"][0] * 100 / peak)} for d, v in sorted(per_day.items(), reverse=True)]
+    totals = {page: [sum(d[page][0] for d in per_day.values()), sum(d[page][1] for d in per_day.values())]
+              for page in ("home", "signup", "menu")}
+    top = (rows.filter(page=PageViewDay.MENU).values("restaurant_id", "restaurant__name", "restaurant__slug")
+           .annotate(v=Sum("visitors"), n=Sum("views")).order_by("-v")[:15])
+    logs = VisitorLog.objects.filter(created_at__date__gte=start)
+    countries = [{"code": r["country"], "name": geo.name(r["country"]), "n": r["n"]}
+                 for r in logs.values("country").annotate(n=Count("id")).order_by("-n")]
+    country_peak = max((c["n"] for c in countries), default=1)
+    for c in countries:
+        c["pct"] = round(c["n"] * 100 / country_peak)
+    recent = list(logs.select_related("restaurant")[:100])
+    for v in recent:
+        v.country_name = geo.name(v.country)
+    return render(request, "console/visitors.html", {
+        "countries": countries, "recent": recent,
+        "days": days, "table": table, "totals": totals, "top": top,
+        "today": per_day.get(today), "first_day": PageViewDay.objects.order_by("date").values_list("date", flat=True).first(),
+    })
+
+
+# ---------------------------------------------------------------- call-back requests
+
+@platform_admin
+def callbacks(request):
+    """Owners who asked to be called back from the home page: call them, then mark the result."""
+    if request.method == "POST":
+        cb = get_object_or_404(CallbackRequest, pk=request.POST.get("pk"))
+        status = request.POST.get("status")
+        if status in dict(CallbackRequest.STATUS_CHOICES):
+            cb.status = status
+        cb.notes = request.POST.get("notes", cb.notes)[:2000]
+        cb.handled_by, cb.handled_at = request.user, timezone.now()
+        cb.save()
+        audit(request, "callback.update", f"callback:{cb.pk} {cb.restaurant_name}", cb.get_status_display())
+        messages.success(request, f"{cb.restaurant_name}: {cb.get_status_display()}.")
+        return redirect(f"{reverse('console:callbacks')}?status={request.GET.get('status', '')}")
+    status = request.GET.get("status", "")
+    qs = CallbackRequest.objects.select_related("handled_by")
+    if status in dict(CallbackRequest.STATUS_CHOICES):
+        qs = qs.filter(status=status)
+    counts = dict(CallbackRequest.objects.values_list("status").annotate(n=Count("id")))
+    return render(request, "console/callbacks.html", {
+        "page": Paginator(qs, 50).get_page(request.GET.get("page")), "status": status,
+        "tabs": [(code, label, counts.get(code, 0)) for code, label in CallbackRequest.STATUS_CHOICES],
+        "status_choices": CallbackRequest.STATUS_CHOICES,
+    })

@@ -16,6 +16,7 @@
   <div class="stat"><span class="stat-icon">{% icon "store" %}</span><div><span>Restaurants</span><strong>{{ restaurants.total }}</strong></div></div>
   <div class="stat"><span class="stat-icon ok">{% icon "check-circle" %}</span><div><span>Live · hidden</span><strong>{{ restaurants.live }} · {{ restaurants.hidden }}</strong></div></div>
   <div class="stat"><span class="stat-icon info">{% icon "users" %}</span><div><span>Users</span><strong>{{ users }}</strong></div></div>
+  <a class="stat" href="{% url 'console:visitors' %}"><span class="stat-icon info">{% icon "chart" %}</span><div><span>Home page visitors today</span><strong>{{ visitors_today }}</strong></div></a>
   <div class="stat"><span class="stat-icon ok">{% icon "cash" %}</span><div><span>Monthly recurring revenue</span><strong>${{ mrr|floatformat:2 }}</strong></div></div>
   <div class="stat"><span class="stat-icon ok">{% icon "receipt" %}</span><div><span>Collected (30 days)</span><strong>${{ paid_30d|floatformat:2 }}</strong></div></div>
   <div class="stat{% if open_count %} stat-warn{% endif %}"><span class="stat-icon warn">{% icon "hourglass" %}</span><div><span>Open invoices</span><strong>{{ open_count }} · ${{ open_total|floatformat:2 }}</strong></div></div>
@@ -41,13 +42,16 @@
     {% if to_review.branches or to_review.profiles or to_review.signups %}
       <div class="note">{% icon "check-circle" %}<div><a href="{% url 'console:verification' %}"><strong>To verify:</strong></a> {{ to_review.branches }} branch request(s){% if to_review.flagged %} (<strong>{{ to_review.flagged }} flagged</strong>){% endif %}, {{ to_review.profiles }} business profile(s), {{ to_review.signups }} sign-up(s)</div></div>
     {% endif %}
+    {% if callbacks_new %}
+      <div class="note">{% icon "phone-call" %}<div><a href="{% url 'console:callbacks' %}?status=new"><strong>{{ callbacks_new }} owner{{ callbacks_new|pluralize }} asked to be called back</strong></a></div></div>
+    {% endif %}
     {% for s in requests %}
       <div class="note">{% icon "info" %}<div><a href="{% url 'console:restaurant' s.restaurant_id %}"><strong>{{ s.restaurant.name }}</strong></a> asked to change {{ s.plan.name }} → <strong>{{ s.requested_plan.name }}</strong></div></div>
     {% endfor %}
     {% for inv in overdue %}
       <div class="note">{% icon "alert" %}<div><a href="{% url 'console:invoice' inv.pk %}">{{ inv.number }}</a> · {{ inv.restaurant.name }} · ${{ inv.amount }} overdue since {{ inv.due_date|date:"d M" }}</div></div>
     {% endfor %}
-    {% if not requests and not overdue and not to_review.branches and not to_review.profiles and not to_review.signups %}<div class="empty">{% icon "check-circle" %}<p>Nothing needs your attention.</p></div>{% endif %}
+    {% if not callbacks_new and not requests and not overdue and not to_review.branches and not to_review.profiles and not to_review.signups %}<div class="empty">{% icon "check-circle" %}<p>Nothing needs your attention.</p></div>{% endif %}
   </section>
 </div>
 

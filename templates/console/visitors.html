@@ -1,0 +1,87 @@
+{% extends "console/base.html" %}
+{% load ui_icons l10n %}
+{% block title %}Visitors{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>Visitors</h1>
+    <p class="page-sub">People opening the website, per day. A person = one device and browser per day. Bots and logged-in staff are not counted; no personal data is stored.{% if first_day %} Counting since {{ first_day|date:"j M Y" }}.{% endif %}</p>
+  </div>
+  <div class="page-actions">
+    <a class="btn{% if days == 7 %} btn-primary{% endif %}" href="?days=7">7 days</a>
+    <a class="btn{% if days == 14 %} btn-primary{% endif %}" href="?days=14">14 days</a>
+    <a class="btn{% if days == 30 %} btn-primary{% endif %}" href="?days=30">30 days</a>
+    <a class="btn{% if days == 90 %} btn-primary{% endif %}" href="?days=90">90 days</a>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><span class="stat-icon ok">{% icon "users" %}</span><div><span>Home page today</span><strong>{{ today.home.0|default:0 }}</strong><small class="muted">{{ today.home.1|default:0 }} views</small></div></div>
+  <div class="stat"><span class="stat-icon info">{% icon "store" %}</span><div><span>Menus today</span><strong>{{ today.menu.0|default:0 }}</strong><small class="muted">{{ today.menu.1|default:0 }} views</small></div></div>
+  <div class="stat"><span class="stat-icon">{% icon "chart" %}</span><div><span>Home page · {{ days }} days</span><strong>{{ totals.home.0 }}</strong><small class="muted">{{ totals.home.1 }} views</small></div></div>
+  <div class="stat"><span class="stat-icon">{% icon "receipt" %}</span><div><span>Sign-up page · {{ days }} days</span><strong>{{ totals.signup.0 }}</strong><small class="muted">{{ totals.signup.1 }} views</small></div></div>
+  <div class="stat"><span class="stat-icon">{% icon "qr" %}</span><div><span>Menus · {{ days }} days</span><strong>{{ totals.menu.0 }}</strong><small class="muted">{{ totals.menu.1 }} views</small></div></div>
+</div>
+<p class="muted small">Totals over several days add up each day's people, so someone who comes back on another day counts again.</p>
+
+<div class="cols">
+  <section class="card">
+    <h2>Per day</h2>
+    <div class="table-wrap">
+    <table class="table rtable bars">
+      <thead><tr><th>Day</th><th>Home page</th><th class="num">People</th><th class="num">Views</th><th class="num">Sign-up</th><th class="num">Menus</th></tr></thead>
+      <tbody>{% for d in table %}
+        <tr>
+          <td class="rt-title nowrap" data-label="">{{ d.date|date:"D j M" }}</td>
+          <td class="bar-cell" data-label=""><span class="bar" style="width: {{ d.pct|unlocalize }}%"></span></td>
+          <td data-label="People" class="num"><strong>{{ d.home.0 }}</strong></td>
+          <td data-label="Views" class="num muted">{{ d.home.1 }}</td>
+          <td data-label="Sign-up" class="num">{{ d.signup.0 }}{% if d.signup.1 %} <span class="muted small">({{ d.signup.1 }})</span>{% endif %}</td>
+          <td data-label="Menus" class="num">{{ d.menu.0 }}{% if d.menu.1 %} <span class="muted small">({{ d.menu.1 }})</span>{% endif %}</td>
+        </tr>{% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </section>
+  <aside class="card">
+    <h2>Restaurant menus · {{ days }} days</h2>
+    {% if top %}
+    <ol class="plain">{% for t in top %}
+      <li class="usage-row"><a href="{% url 'console:restaurant' t.restaurant_id %}">{{ t.restaurant__name }}</a><span><strong>{{ t.v }}</strong> <span class="muted small">people · {{ t.n }} views</span></span></li>
+    {% endfor %}</ol>
+    {% else %}<p class="muted">No menu visits yet.</p>{% endif %}
+  </aside>
+</div>
+<div class="cols">
+  <section class="card">
+    <h2>Recent visitors</h2>
+    <p class="muted small">Each person once per page per day. IP addresses are partly hidden on purpose.</p>
+    {% if recent %}
+    <div class="table-wrap">
+    <table class="table rtable">
+      <thead><tr><th>When</th><th>Page</th><th>Country</th><th>IP</th></tr></thead>
+      <tbody>{% for v in recent %}
+        <tr>
+          <td class="rt-title nowrap" data-label="">{{ v.created_at|date:"D j M H:i" }}</td>
+          <td data-label="Page">{% if v.page == "menu" and v.restaurant %}Menu · <a href="{% url 'console:restaurant' v.restaurant_id %}">{{ v.restaurant.name }}</a>{% else %}{{ v.get_page_display }}{% endif %}</td>
+          <td data-label="Country">{{ v.country_name }}</td>
+          <td data-label="IP"><code>{{ v.ip_masked|default:"—" }}</code></td>
+        </tr>{% endfor %}
+      </tbody>
+    </table>
+    </div>
+    {% else %}<p class="muted">No visitors recorded yet.</p>{% endif %}
+  </section>
+  <aside class="card">
+    <h2>Countries · {{ days }} days</h2>
+    {% if countries %}
+    <table class="table bars">
+      <tbody>{% for c in countries %}
+        <tr><td class="nowrap">{{ c.name }}</td><td class="bar-cell"><span class="bar" style="width: {{ c.pct|unlocalize }}%"></span></td><td class="num"><strong>{{ c.n }}</strong></td></tr>
+      {% endfor %}</tbody>
+    </table>
+    {% else %}<p class="muted">No data yet.</p>{% endif %}
+    <p class="muted small" style="margin-top:12px"><a href="https://db-ip.com" target="_blank" rel="noopener">IP Geolocation by DB-IP</a> (country only, worked out on this server).</p>
+  </aside>
+</div>
+{% endblock %}

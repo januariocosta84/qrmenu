@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 01:13+0900\n"
+"POT-Creation-Date: 2026-10-12 23:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1750,6 +1750,37 @@ msgstr "O proprietário legal da empresa."
 msgid "Phone number"
 msgstr "Número de telefone"
 
+msgid "Restaurant / café name"
+msgstr "Nome do restaurante / café"
+
+msgid "WhatsApp or phone number"
+msgstr "WhatsApp ou telefone"
+
+msgid "Best time to call"
+msgstr "Melhor hora para ligar"
+
+msgid "Please set up my menu for me (I'll send photos of my menu on WhatsApp)"
+msgstr "Por favor, configurem o meu menu (envio fotos do menu pelo WhatsApp)"
+
+msgid "Any time"
+msgstr "A qualquer hora"
+
+msgid "Morning"
+msgstr "Manhã"
+
+msgid "Afternoon"
+msgstr "Tarde"
+
+msgid "Evening"
+msgstr "Noite"
+
+msgid "Enter a phone number we can call, e.g. +670 7712 3456."
+msgstr "Introduza um número para onde possamos ligar, ex.: +670 7712 3456."
+
+msgid "Something went wrong. Please try again."
+msgstr "Algo correu mal. Tente novamente."
+
+msgctxt "login page"
 msgid "Log in"
 msgstr "Iniciar sessão"
 
@@ -1808,6 +1839,9 @@ msgstr "Palavra-passe alterada"
 
 msgid "You can now log in with your new password."
 msgstr "Já pode iniciar sessão com a nova palavra-passe."
+
+msgid "Log in"
+msgstr "Iniciar sessão"
 
 msgid "Choose a new password"
 msgstr "Escolha uma nova palavra-passe"
@@ -4385,6 +4419,9 @@ msgstr ""
 msgid "Open dashboard"
 msgstr "Abrir painel"
 
+msgid "Rather talk to us? We call you back and set up your menu for you →"
+msgstr "Prefere falar connosco? Ligamos-lhe e configuramos o seu menu →"
+
 msgid "How it works"
 msgstr "Como funciona"
 
@@ -4461,6 +4498,50 @@ msgstr "Os menus dos clientes atualizam-se de imediato."
 
 msgid "Daily revenue, best sellers and CSV export."
 msgstr "Receita diária, mais vendidos e exportação CSV."
+
+msgid "We call you back"
+msgstr "Nós ligamos-lhe"
+
+msgid ""
+"No time to set it up? Leave your number. We call you, answer your questions, "
+"and if you like we set up your menu for you: just send us photos of your "
+"menu on WhatsApp. Free, no obligation."
+msgstr ""
+"Sem tempo para configurar? Deixe o seu número. Ligamos-lhe, respondemos às "
+"suas perguntas e, se quiser, configuramos o seu menu: basta enviar fotos do "
+"menu pelo WhatsApp. Grátis, sem compromisso."
+
+msgid "We enter your dishes, prices and photos"
+msgstr "Inserimos os seus pratos, preços e fotos"
+
+msgid "We help you print the QR codes for your tables"
+msgstr "Ajudamos a imprimir os códigos QR das mesas"
+
+msgid "In English, Tetum or Bahasa Indonesia"
+msgstr "Em inglês, tétum ou indonésio"
+
+msgid "Thank you! We will call you soon."
+msgstr "Obrigado! Vamos ligar-lhe em breve."
+
+msgid ""
+"Usually the same day. You can already send photos of your menu to our "
+"WhatsApp."
+msgstr ""
+"Normalmente no mesmo dia. Já pode enviar fotos do seu menu para o nosso "
+"WhatsApp."
+
+msgid ""
+"Too many requests from this network. Please try again later or message us on "
+"WhatsApp."
+msgstr ""
+"Demasiados pedidos desta rede. Tente mais tarde ou envie-nos mensagem pelo "
+"WhatsApp."
+
+msgid "Call me back"
+msgstr "Liguem-me"
+
+msgid "We only use your number to contact you about QR Menu."
+msgstr "Só usamos o seu número para o contactar sobre o QR Menu."
 
 msgid "Pricing"
 msgstr "Preços"

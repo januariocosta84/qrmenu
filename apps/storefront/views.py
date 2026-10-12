@@ -57,16 +57,61 @@ def page_not_found(request, exception=None):
 
 @require_GET
 def home(request):
+    from .forms import CallbackForm
+
+    return render(request, "storefront/home.html", {
+        **_home_context(), "callback_form": CallbackForm(), "callback_status": request.GET.get("callback", ""),
+    })
+
+
+def _home_context():
     from apps.billing.models import BillingSettings, Plan
 
     billing = BillingSettings.load()
-    return render(request, "storefront/home.html", {
+    return {
         "signup_open": settings.SIGNUP_MODE != "closed",
         "platform_name": settings.PLATFORM_NAME,
         "plans": Plan.objects.filter(is_active=True, is_public=True),
         "default_plan_id": billing.default_plan_id,
         "trial_days": billing.trial_days,
-    })
+    }
+
+
+def call_me_back(request):
+    """Home page form: a restaurant owner asks to be called back (we can set up the menu for them)."""
+    import logging
+
+    from django.core.cache import cache
+    from django.core.mail import mail_admins
+
+    from apps.core.utils import client_ip
+
+    from .forms import CallbackForm
+
+    if request.method != "POST":
+        return redirect("/#call-me")
+    key = f"callback:{client_ip(request)}"
+    if cache.get(key, 0) >= 5:  # a few per hour per network is plenty
+        return redirect("/?callback=limit#call-me")
+    form = CallbackForm(request.POST)
+    if not form.is_valid():
+        return render(request, "storefront/home.html", {**_home_context(), "callback_form": form}, status=400)
+    cb = form.save(commit=False)
+    cb.language = (getattr(request, "LANGUAGE_CODE", "") or "")[:5]
+    cb.save()
+    cache.set(key, cache.get(key, 0) + 1, 3600)
+    try:
+        mail_admins(
+            f"Call back: {cb.restaurant_name} ({cb.name})",
+            f"{cb.name} from {cb.restaurant_name} asked to be called back.\n\n"
+            f"Phone / WhatsApp: {cb.phone}\nWhatsApp: https://wa.me/{cb.whatsapp_number}\n"
+            f"Best time: {cb.get_best_time_display()}\n"
+            f"Set up the menu for them: {'yes' if cb.setup_help else 'no'}\n\n"
+            "See all requests in the platform console → Call requests.",
+        )
+    except Exception:
+        logging.getLogger(__name__).exception("Could not email platform admins about a call-back request")
+    return redirect("/?callback=sent#call-me")
 
 
 def terms(request):

@@ -90,6 +90,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "apps.core.middleware.UILanguageMiddleware",
     "apps.core.middleware.StaffLanguageMiddleware",
+    "apps.console.visits.VisitCounterMiddleware",  # daily visitors per public page (platform console)
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -280,6 +281,8 @@ SECURE_REFERRER_POLICY = "same-origin"
 ORDERING_API_REQUIRE_HTTPS = env_bool("ORDERING_API_REQUIRE_HTTPS", True)
 ORDERING_API_RATE_PER_MINUTE = int(os.environ.get("ORDERING_API_RATE_PER_MINUTE", "60"))
 ORDERING_API_LOG_DAYS = 90
+# Visitor countries (platform console → Visitors): offline IP → country file built by `manage.py update_geoip`.
+GEOIP_DB = os.environ.get("GEOIP_DB", str(BASE_DIR.parent / "geoip" / "countries.sqlite3"))
 WEBHOOKS_ASYNC = env_bool("WEBHOOKS_ASYNC", True)  # deliver webhooks in a background thread
 SECURE_REDIRECT_EXEMPT = [r"^api/ordering/"]
 

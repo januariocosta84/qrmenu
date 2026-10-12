@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 01:13+0900\n"
+"POT-Creation-Date: 2026-10-12 23:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1728,6 +1728,37 @@ msgstr "Pemilik sah usaha ini."
 msgid "Phone number"
 msgstr "Nomor telepon"
 
+msgid "Restaurant / café name"
+msgstr "Nama restoran / kafe"
+
+msgid "WhatsApp or phone number"
+msgstr "WhatsApp atau nomor telepon"
+
+msgid "Best time to call"
+msgstr "Waktu terbaik untuk ditelepon"
+
+msgid "Please set up my menu for me (I'll send photos of my menu on WhatsApp)"
+msgstr "Tolong siapkan menu saya (saya kirim foto menu lewat WhatsApp)"
+
+msgid "Any time"
+msgstr "Kapan saja"
+
+msgid "Morning"
+msgstr "Pagi"
+
+msgid "Afternoon"
+msgstr "Siang/sore"
+
+msgid "Evening"
+msgstr "Malam"
+
+msgid "Enter a phone number we can call, e.g. +670 7712 3456."
+msgstr "Masukkan nomor yang bisa kami telepon, mis. +670 7712 3456."
+
+msgid "Something went wrong. Please try again."
+msgstr "Terjadi kesalahan. Silakan coba lagi."
+
+msgctxt "login page"
 msgid "Log in"
 msgstr "Masuk"
 
@@ -1786,6 +1817,9 @@ msgstr "Kata sandi diubah"
 
 msgid "You can now log in with your new password."
 msgstr "Sekarang Anda dapat masuk dengan kata sandi baru."
+
+msgid "Log in"
+msgstr "Masuk"
 
 msgid "Choose a new password"
 msgstr "Pilih kata sandi baru"
@@ -4352,6 +4386,9 @@ msgstr ""
 msgid "Open dashboard"
 msgstr "Buka dasbor"
 
+msgid "Rather talk to us? We call you back and set up your menu for you →"
+msgstr "Lebih suka bicara langsung? Kami telepon balik dan siapkan menu Anda →"
+
 msgid "How it works"
 msgstr "Cara kerjanya"
 
@@ -4432,6 +4469,50 @@ msgstr "Menu pelanggan langsung diperbarui."
 
 msgid "Daily revenue, best sellers and CSV export."
 msgstr "Pendapatan harian, menu terlaris, dan ekspor CSV."
+
+msgid "We call you back"
+msgstr "Kami telepon balik"
+
+msgid ""
+"No time to set it up? Leave your number. We call you, answer your questions, "
+"and if you like we set up your menu for you: just send us photos of your "
+"menu on WhatsApp. Free, no obligation."
+msgstr ""
+"Tidak sempat menyiapkan? Tinggalkan nomor Anda. Kami telepon, jawab "
+"pertanyaan Anda, dan bila mau kami siapkan menu Anda: cukup kirim foto menu "
+"lewat WhatsApp. Gratis, tanpa kewajiban."
+
+msgid "We enter your dishes, prices and photos"
+msgstr "Kami masukkan hidangan, harga, dan foto Anda"
+
+msgid "We help you print the QR codes for your tables"
+msgstr "Kami bantu cetak kode QR untuk meja Anda"
+
+msgid "In English, Tetum or Bahasa Indonesia"
+msgstr "Dalam bahasa Inggris, Tetun, atau Indonesia"
+
+msgid "Thank you! We will call you soon."
+msgstr "Terima kasih! Kami akan segera menelepon Anda."
+
+msgid ""
+"Usually the same day. You can already send photos of your menu to our "
+"WhatsApp."
+msgstr ""
+"Biasanya di hari yang sama. Anda sudah bisa mengirim foto menu ke WhatsApp "
+"kami."
+
+msgid ""
+"Too many requests from this network. Please try again later or message us on "
+"WhatsApp."
+msgstr ""
+"Terlalu banyak permintaan dari jaringan ini. Coba lagi nanti atau kirim "
+"pesan lewat WhatsApp."
+
+msgid "Call me back"
+msgstr "Telepon saya"
+
+msgid "We only use your number to contact you about QR Menu."
+msgstr "Kami hanya memakai nomor Anda untuk menghubungi soal QR Menu."
 
 msgid "Pricing"
 msgstr "Harga"

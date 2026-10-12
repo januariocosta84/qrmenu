@@ -313,3 +313,23 @@ h1, h2, h3 { line-height: 1.2; margin: 0; }
 .svc-done { display: flex; gap: 10px; align-items: flex-start; padding: 14px; border-radius: var(--radius); background: var(--card); box-shadow: var(--shadow); margin: 12px 0; }
 .svc-done strong { display: block; font-size: 1.05rem; }
 .svc-done .big { font-size: 1.5rem; line-height: 1.3; }
+
+/* ---------- Landing: call me back ---------- */
+.land-callme-link { margin-top: 14px; }
+.land-callme-link a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.land-callme { display: grid; gap: 20px; align-items: start; background: var(--brand-soft); border-radius: var(--radius); padding: 22px 18px; }
+@media (min-width: 760px) { .land-callme { grid-template-columns: 1fr 1fr; padding: 28px; } }
+.land-callme h2 { margin-top: 0; }
+.land-callme-points { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 8px; }
+.land-callme-points li { display: flex; gap: 8px; align-items: center; font-weight: 600; }
+.land-callme-points .i { color: var(--brand); }
+.land-callme-form { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; display: grid; gap: 10px; }
+.land-callme-form .field { display: grid; gap: 4px; }
+.land-callme-form .field span { font-weight: 700; font-size: .9rem; }
+.land-callme-form input, .land-callme-form select { width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 10px; font: inherit; background: var(--card); color: var(--ink); }
+.land-callme-form .check { display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; }
+.land-callme-form .check input { width: auto; margin-top: 3px; }
+.land-callme-form .error { color: var(--err); margin: 0; }
+.land-callme-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.land-callme-done { text-align: center; }
+.land-callme-done h3 { margin: 6px 0; }

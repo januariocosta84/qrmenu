@@ -1,0 +1,42 @@
+{% extends "console/base.html" %}
+{% load ui_icons %}
+{% block title %}Call requests{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>Call requests</h1>
+    <p class="page-sub">Restaurant owners who asked to be called back from the home page. Call or WhatsApp them, help them register (and set up their menu if they ticked it), then mark the result.</p>
+  </div>
+</div>
+
+<div class="tabs" role="tablist">
+  <a class="{% if not status %}active{% endif %}" href="?">All</a>
+  {% for code, label, n in tabs %}<a class="{% if status == code %}active{% endif %}" href="?status={{ code }}">{{ label }} <span class="count">{{ n }}</span></a>{% endfor %}
+</div>
+
+{% for cb in page %}
+<section class="card callback{% if cb.status == 'new' %} is-new{% endif %}">
+  <div class="card-head">
+    <div>
+      <h2>{{ cb.restaurant_name }} <span class="muted small">· {{ cb.name }}</span></h2>
+      <p class="muted small">{{ cb.created_at|date:"D j M Y H:i" }} · best time: {{ cb.get_best_time_display|lower }}{% if cb.language %} · page language {{ cb.language }}{% endif %}</p>
+    </div>
+    <span class="pill {% if cb.status == 'new' %}pill-new{% elif cb.status == 'registered' %}pill-ready{% elif cb.status == 'no' %}pill-cancelled{% else %}pill-preparing{% endif %}">{{ cb.get_status_display }}</span>
+  </div>
+  <div class="btn-row">
+    <a class="btn btn-success" href="https://wa.me/{{ cb.whatsapp_number }}?text={{ "Hello "|add:cb.name|add:", this is QR Menu. Thank you for your interest!"|urlencode }}" target="_blank" rel="noopener">WhatsApp {{ cb.phone }}</a>
+    <a class="btn" href="tel:{{ cb.phone|cut:' ' }}">{% icon "phone-call" %} Call</a>
+    {% if cb.setup_help %}<span class="tag">{% icon "book" %} Wants us to set up the menu</span>{% endif %}
+  </div>
+  <form method="post" class="callback-form">{% csrf_token %}<input type="hidden" name="pk" value="{{ cb.pk }}">
+    <select name="status" aria-label="Status">{% for code, label in status_choices %}<option value="{{ code }}"{% if code == cb.status %} selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+    <input name="notes" value="{{ cb.notes }}" placeholder="Notes, e.g. called Monday, will send menu photos" maxlength="2000">
+    <button class="btn" type="submit">Save</button>
+  </form>
+  {% if cb.handled_by %}<p class="muted small">Last update {{ cb.handled_at|date:"j M H:i" }} by {{ cb.handled_by.username }}</p>{% endif %}
+</section>
+{% empty %}
+<div class="card empty">{% icon "phone-call" %}<p>No call requests{% if status %} with this status{% endif %} yet.</p></div>
+{% endfor %}
+{% if page.has_other_pages %}<p class="btn-row">{% if page.has_previous %}<a class="btn btn-sm" href="?status={{ status }}&page={{ page.previous_page_number }}">← Newer</a>{% endif %}{% if page.has_next %}<a class="btn btn-sm" href="?status={{ status }}&page={{ page.next_page_number }}">Older →</a>{% endif %}</p>{% endif %}
+{% endblock %}

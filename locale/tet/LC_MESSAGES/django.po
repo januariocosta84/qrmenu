@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 01:13+0900\n"
+"POT-Creation-Date: 2026-10-12 23:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1736,8 +1736,39 @@ msgstr "Na'in legál ba negósiu."
 msgid "Phone number"
 msgstr "Númeru telefone"
 
+msgid "Restaurant / café name"
+msgstr "Naran restaurante / kafé"
+
+msgid "WhatsApp or phone number"
+msgstr "WhatsApp ka númeru telefone"
+
+msgid "Best time to call"
+msgstr "Oras di'ak atu telefone"
+
+msgid "Please set up my menu for me (I'll send photos of my menu on WhatsApp)"
+msgstr "Favór prepara ha'u-nia menu (ha'u haruka foto menu liu husi WhatsApp)"
+
+msgid "Any time"
+msgstr "Oras naran de'it"
+
+msgid "Morning"
+msgstr "Dadeer"
+
+msgid "Afternoon"
+msgstr "Lorokraik"
+
+msgid "Evening"
+msgstr "Kalan"
+
+msgid "Enter a phone number we can call, e.g. +670 7712 3456."
+msgstr "Hakerek númeru telefone ne'ebé ami bele bolu, ez. +670 7712 3456."
+
+msgid "Something went wrong. Please try again."
+msgstr "Iha problema. Favór koko fali."
+
+msgctxt "login page"
 msgid "Log in"
-msgstr "Tama"
+msgstr "Login"
 
 msgid "Wrong email/username or password."
 msgstr "Email/naran uzuáriu ka palavra-pase sala."
@@ -1794,6 +1825,9 @@ msgstr "Palavra-pase troka ona"
 
 msgid "You can now log in with your new password."
 msgstr "Agora ita bele tama ho palavra-pase foun."
+
+msgid "Log in"
+msgstr "Tama"
 
 msgid "Choose a new password"
 msgstr "Hili palavra-pase foun"
@@ -4331,7 +4365,7 @@ msgid "QR menu & table ordering for restaurants"
 msgstr "Menu QR no pedidu iha meza ba restaurante"
 
 msgid "Scan. Order. Enjoy."
-msgstr "Scan. Pedir. Bom apetite."
+msgstr "Scan, halo pedidu, Enjoy"
 
 msgid ""
 "A QR code menu and table ordering for your restaurant. Customers scan the "
@@ -4339,11 +4373,14 @@ msgid ""
 "your kitchen. They don't need an app or an account."
 msgstr ""
 "Menu ho kódigu QR no pedidu iha meza ba ita-nia restaurante. Kliente sira "
-"scan kódigu iha meza, pede husi sira-nia telemovel, no pedidu ba direta ba "
-"ita-nia kozinha. Sira la presiza aplikasaun ka konta."
+"scan kódigu iha meza, pedidu liu husi kliente sira-nia telemovel, no pedidu "
+"ba direta ba ita-nia kozinha. Sira la presiza aplikasaun ka konta."
 
 msgid "Open dashboard"
 msgstr "Loke painél"
+
+msgid "Rather talk to us? We call you back and set up your menu for you →"
+msgstr "Prefere ko'alia ho ami? Ami telefone Ita no prepara Ita-nia menu →"
 
 msgid "How it works"
 msgstr "Oinsá nia funsiona"
@@ -4420,6 +4457,49 @@ msgstr "Menu kliente sira nian atualiza kedas."
 
 msgid "Daily revenue, best sellers and CSV export."
 msgstr "Rendimentu loron-loron, buat ne'ebé fa'an barak liu no esporta CSV."
+
+msgid "We call you back"
+msgstr "Ami telefone fali Ita"
+
+msgid ""
+"No time to set it up? Leave your number. We call you, answer your questions, "
+"and if you like we set up your menu for you: just send us photos of your "
+"menu on WhatsApp. Free, no obligation."
+msgstr ""
+"La iha tempu atu prepara? Husik Ita-nia númeru. Ami telefone Ita, hatán Ita-"
+"nia pergunta, no se Ita hakarak ami prepara Ita-nia menu: haruka de'it foto "
+"menu liu husi WhatsApp. Grátis, la iha obrigasaun."
+
+msgid "We enter your dishes, prices and photos"
+msgstr "Ami tau Ita-nia hahán, presu no foto"
+
+msgid "We help you print the QR codes for your tables"
+msgstr "Ami ajuda imprime kódigu QR ba Ita-nia meza"
+
+msgid "In English, Tetum or Bahasa Indonesia"
+msgstr "Iha Inglés, Tetun ka Bahasa Indonézia"
+
+msgid "Thank you! We will call you soon."
+msgstr "Obrigadu! Ami sei telefone Ita lalais."
+
+msgid ""
+"Usually the same day. You can already send photos of your menu to our "
+"WhatsApp."
+msgstr ""
+"Baibain iha loron hanesan. Ita bele haruka ona foto menu ba ami-nia WhatsApp."
+
+msgid ""
+"Too many requests from this network. Please try again later or message us on "
+"WhatsApp."
+msgstr ""
+"Pedidu barak liu husi rede ne'e. Favór koko fali depois ka haruka mensajen "
+"ba ami liu husi WhatsApp."
+
+msgid "Call me back"
+msgstr "Telefone fali ha'u"
+
+msgid "We only use your number to contact you about QR Menu."
+msgstr "Ami uza Ita-nia númeru de'it atu kontaktu kona-ba QR Menu."
 
 msgid "Pricing"
 msgstr "Folin"

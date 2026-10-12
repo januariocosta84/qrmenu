@@ -845,3 +845,7 @@ a.auth-brand:hover { opacity: .8; }
 .bill-box .cash-actions .btn { flex: 1 1 140px; white-space: nowrap; }
 .pos-last { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
 .pos-last p { margin: 0 0 6px; }
+.callback.is-new { border-left: 4px solid var(--brand-600, #ea580c); }
+.callback h2 { margin: 0; font-size: 1.05rem; }
+.callback-form { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.callback-form input { flex: 1 1 260px; }

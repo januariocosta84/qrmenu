@@ -19,4 +19,6 @@ urlpatterns = [
     path("invoices/<int:pk>/", views.invoice_detail, name="invoice"),
     path("settings/", views.billing_settings, name="settings"),
     path("audit/", views.audit_log, name="audit"),
+    path("visitors/", views.visitors, name="visitors"),
+    path("call-requests/", views.callbacks, name="callbacks"),
 ]

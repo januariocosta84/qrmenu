@@ -25,6 +25,7 @@
       <a class="btn btn-light btn-lg" href="{% url 'accounts:signup' %}">{% translate "Register your restaurant" %}</a>
       <a class="btn btn-ghost-light btn-lg" href="{% url 'accounts:login' %}">{% translate "Log in" %}</a>
     </div>
+    <p class="land-callme-link"><a href="#call-me">{% translate "Rather talk to us? We call you back and set up your menu for you →" %}</a></p>
     {% endif %}
   </div>
 </header>
@@ -59,6 +60,39 @@
   </section>
 
   {% if plans %}
+  {% if not user.is_authenticated %}
+  <section class="land-callme" id="call-me">
+    <div class="land-callme-text">
+      <h2>{% translate "We call you back" %}</h2>
+      <p>{% translate "No time to set it up? Leave your number. We call you, answer your questions, and if you like we set up your menu for you: just send us photos of your menu on WhatsApp. Free, no obligation." %}</p>
+      <ul class="land-callme-points">
+        <li>{% icon "check" %}{% translate "We enter your dishes, prices and photos" %}</li>
+        <li>{% icon "check" %}{% translate "We help you print the QR codes for your tables" %}</li>
+        <li>{% icon "check" %}{% translate "In English, Tetum or Bahasa Indonesia" %}</li>
+      </ul>
+    </div>
+    {% if callback_status == "sent" %}
+    <div class="land-callme-form land-callme-done" role="status">
+      <span class="land-ico">{% icon "check-circle" %}</span>
+      <h3>{% translate "Thank you! We will call you soon." %}</h3>
+      <p>{% translate "Usually the same day. You can already send photos of your menu to our WhatsApp." %}</p>
+      {% if support_whatsapp %}<a class="btn btn-primary" href="https://wa.me/{{ support_whatsapp }}" target="_blank" rel="noopener">WhatsApp +{{ support_whatsapp }}</a>{% endif %}
+    </div>
+    {% else %}
+    <form method="post" action="{% url 'storefront:call_me_back' %}" class="land-callme-form" novalidate>
+      {% csrf_token %}
+      {% if callback_status == "limit" %}<p class="error">{% translate "Too many requests from this network. Please try again later or message us on WhatsApp." %}</p>{% endif %}
+      {% for e in callback_form.non_field_errors %}<p class="error">{{ e }}</p>{% endfor %}
+      {% for field in callback_form %}{% if field.name == "website" %}<div class="hp" aria-hidden="true">{{ field }}</div>
+      {% elif field.name == "setup_help" %}<label class="check">{{ field }} <span>{{ field.label }}</span></label>
+      {% else %}<label class="field"><span>{{ field.label }}</span>{{ field }}{% for e in field.errors %}<small class="error">{{ e }}</small>{% endfor %}</label>{% endif %}{% endfor %}
+      <button class="btn btn-primary btn-lg btn-block" type="submit">{% icon "phone-call" %} {% translate "Call me back" %}</button>
+      <p class="muted small">{% translate "We only use your number to contact you about QR Menu." %}</p>
+    </form>
+    {% endif %}
+  </section>
+  {% endif %}
+
   <section id="pricing">
     <h2>{% translate "Pricing" %}</h2>
     <p class="land-pricing-sub">{% translate "Simple monthly plans. No setup fees." %}{% if trial_days %} {% blocktranslate trimmed count days=trial_days %}New restaurants get a {{ days }}-day free trial.{% plural %}New restaurants get a {{ days }}-day free trial.{% endblocktranslate %}{% endif %}</p>
