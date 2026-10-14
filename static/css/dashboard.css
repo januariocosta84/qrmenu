@@ -849,3 +849,11 @@ a.auth-brand:hover { opacity: .8; }
 .callback h2 { margin: 0; font-size: 1.05rem; }
 .callback-form { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
 .callback-form input { flex: 1 1 260px; }
+
+/* New order: dish photos on the item buttons */
+.pos-item { padding: 0 0 12px; overflow: hidden; }
+.pos-item > strong, .pos-item > span:not(.pos-item-pic), .pos-item > small { padding: 0 12px; }
+.pos-item-pic { display: block; width: 100%; aspect-ratio: 4 / 3; background: var(--surface-2); margin-bottom: 6px; overflow: hidden; }
+.pos-item-pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pos-item-pic.no-img { display: grid; place-items: center; font-size: 2rem; font-weight: 800; color: var(--ink-3, #9ca3af); background: linear-gradient(135deg, var(--surface-2), var(--line)); }
+.pos-item.soldout .pos-item-pic img { filter: grayscale(1); }

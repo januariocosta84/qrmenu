@@ -65,6 +65,20 @@
       const b = el("button", "pos-item" + (i.is_available ? "" : " soldout"));
       b.type = "button";
       b.disabled = !i.is_available;
+      // Photo on top (or the dish's first letter) so waiters find dishes at a glance.
+      const pic = el("span", "pos-item-pic");
+      if (i.image) {
+        const img = el("img");
+        img.src = i.image;
+        img.alt = "";
+        img.loading = "lazy";
+        img.decoding = "async";
+        pic.appendChild(img);
+      } else {
+        pic.classList.add("no-img");
+        pic.textContent = (i.name || "?").trim().charAt(0).toUpperCase();
+      }
+      b.appendChild(pic);
       b.appendChild(el("strong", null, i.name));
       b.appendChild(el("span", null, i.is_available ? money(cents(i.price)) : _("Sold out")));
       if (i.options.length) b.appendChild(el("small", "muted", "+ add-ons"));

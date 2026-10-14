@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 23:23+0900\n"
+"POT-Creation-Date: 2026-10-14 15:55+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -578,6 +578,9 @@ msgstr "Tempu prepara ne'ebé uza beibeik (minutu)"
 
 msgid "Accepting orders"
 msgstr "Simu pedidu"
+
+msgid "Show my menu on Google"
+msgstr "Hatudu ha'u-nia menu iha Google"
 
 msgid "Cash drawer enabled"
 msgstr "Gaveta osan ativu"
@@ -1628,6 +1631,9 @@ msgstr "Naran ne'ebé imprime iha konta, ez. VAT ka IVA."
 
 msgid "Tax ID printed on receipts."
 msgstr "NIF ne'ebé imprime iha resibu."
+
+msgid "Let Google and other search engines list your restaurant, menu, prices and dish photos."
+msgstr "Husik Google no motor buka seluk hatudu ita-nia restaurante, menu, presu no foto hahán."
 
 msgid "Pin 2 (most drawers)"
 msgstr "Pinu 2 (gaveta barak liu)"
@@ -4363,6 +4369,12 @@ msgstr "Husu restaurante na'in atu hasa'e planu."
 
 msgid "QR menu & table ordering for restaurants"
 msgstr "Menu QR no pedidu iha meza ba restaurante"
+
+msgid "QR code menu and table ordering for restaurants and cafés in Timor-Leste. Customers scan, order from their phone, and the order goes straight to your kitchen. 30 days free."
+msgstr "Menu ho kódigu QR no pedidu iha meza ba restaurante no kafé iha Timor-Leste. Kliente sira scan, halo pedidu liu husi telemovel, no pedidu ba direta ba kozinha. Loron 30 grátis."
+
+msgid "Customers scan the QR code on the table, order from their phone, and the order goes straight to your kitchen."
+msgstr "Kliente sira scan kódigu QR iha meza, halo pedidu liu husi telemovel, no pedidu ba direta ba ita-nia kozinha."
 
 msgid "Scan. Order. Enjoy."
 msgstr "Scan, halo pedidu, Enjoy"

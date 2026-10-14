@@ -90,7 +90,7 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
         fields = [
             "name", "description", "logo", "cover_image", "address", "phone", "email", "opening_hours",
             "currency", "currency_symbol", "service_charge_percent", "default_language",
-            "default_prep_minutes", "is_accepting_orders",
+            "default_prep_minutes", "is_accepting_orders", "show_in_search",
             "cash_drawer_enabled", "printer_host", "printer_port", "drawer_pin",
             "receipt_prompt", "receipt_printer", "receipt_width", "receipt_footer", "cash_drawer_via_printer",
             "vat_enabled", "vat_percent", "vat_inclusive", "vat_label", "vat_number",
@@ -108,7 +108,7 @@ class RestaurantForm(ImageFormMixin, TranslationFormMixin, forms.ModelForm):
             "currency": _("Currency"), "currency_symbol": _("Currency symbol"),
             "service_charge_percent": _("Service charge (%)"), "default_language": _("Default menu language"),
             "default_prep_minutes": _("Default preparation time (minutes)"),
-            "is_accepting_orders": _("Accepting orders"), "cash_drawer_enabled": _("Cash drawer enabled"),
+            "is_accepting_orders": _("Accepting orders"), "show_in_search": _("Show my menu on Google"), "cash_drawer_enabled": _("Cash drawer enabled"),
             "printer_host": _("Printer IP address"), "printer_port": _("Printer port"), "drawer_pin": _("Drawer pin"),
             "receipt_prompt": _("After a payment"), "receipt_printer": _("Receipt printer"),
             "receipt_width": _("Paper width"), "receipt_footer": _("Receipt footer"),

@@ -53,6 +53,10 @@ class Restaurant(TranslatableMixin, TimeStampedModel):
     default_prep_minutes = models.PositiveSmallIntegerField(default=15, validators=[MaxValueValidator(240)])
 
     is_active = models.BooleanField(default=True, help_text="Inactive restaurants are hidden from the public.")
+    show_in_search = models.BooleanField(
+        _("Show my menu on Google"), default=True,
+        help_text=_("Let Google and other search engines list your restaurant, menu, prices and dish photos."),
+    )
     is_accepting_orders = models.BooleanField(default=True)
 
     # Cash drawer, connected to a network (ESC/POS) receipt printer.

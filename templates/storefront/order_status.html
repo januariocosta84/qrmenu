@@ -1,6 +1,7 @@
 {% extends "storefront/base.html" %}
 {% load static menu_tags ui_icons %}
 {% block title %}{{ ui.order }} #{{ order.number }} · {{ restaurant.name }}{% endblock %}
+{% block head %}<meta name="robots" content="noindex">{% endblock %}
 {% block body_class %}status-page{% endblock %}
 
 {% block content %}

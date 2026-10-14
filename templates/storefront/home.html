@@ -2,6 +2,18 @@
 {% load i18n static ui_icons %}
 {% block html_lang %}{% get_current_language as LANG %}{{ LANG }}{% endblock %}
 {% block title %}{{ platform_name }} · {% translate "QR menu & table ordering for restaurants" %}{% endblock %}
+{% block head %}
+  <meta name="description" content="{% translate "QR code menu and table ordering for restaurants and cafés in Timor-Leste. Customers scan, order from their phone, and the order goes straight to your kitchen. 30 days free." %}">
+  <link rel="canonical" href="{{ seo_base }}/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ platform_name }}">
+  <meta property="og:title" content="{{ platform_name }} · {% translate "QR menu & table ordering for restaurants" %}">
+  <meta property="og:description" content="{% translate "Customers scan the QR code on the table, order from their phone, and the order goes straight to your kitchen." %}">
+  <meta property="og:url" content="{{ seo_base }}/">
+  <meta property="og:image" content="{{ seo_base }}{% static 'video/QR-Menu-How-It-Works.jpg' %}">
+  {% if google_site_verification %}<meta name="google-site-verification" content="{{ google_site_verification }}">{% endif %}
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "{{ platform_name|escapejs }}", "url": "{{ seo_base }}/"}</script>
+{% endblock %}
 {% block body_class %}landing{% endblock %}
 {% block content %}
 {% icon_sprite %}

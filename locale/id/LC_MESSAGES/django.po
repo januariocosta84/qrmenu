@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 23:23+0900\n"
+"POT-Creation-Date: 2026-10-14 15:55+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -570,6 +570,9 @@ msgstr "Waktu persiapan bawaan (menit)"
 
 msgid "Accepting orders"
 msgstr "Menerima pesanan"
+
+msgid "Show my menu on Google"
+msgstr "Tampilkan menu saya di Google"
 
 msgid "Cash drawer enabled"
 msgstr "Laci kas aktif"
@@ -1623,6 +1626,9 @@ msgstr "Nama yang dicetak di tagihan, mis. VAT atau PPN."
 
 msgid "Tax ID printed on receipts."
 msgstr "NPWP yang dicetak di struk."
+
+msgid "Let Google and other search engines list your restaurant, menu, prices and dish photos."
+msgstr "Izinkan Google dan mesin pencari lain menampilkan restoran, menu, harga, dan foto hidangan Anda."
 
 msgid "Pin 2 (most drawers)"
 msgstr "Pin 2 (kebanyakan laci)"
@@ -4370,6 +4376,12 @@ msgstr "Minta pemilik restoran untuk meningkatkan paket."
 
 msgid "QR menu & table ordering for restaurants"
 msgstr "Menu QR & pemesanan di meja untuk restoran"
+
+msgid "QR code menu and table ordering for restaurants and cafés in Timor-Leste. Customers scan, order from their phone, and the order goes straight to your kitchen. 30 days free."
+msgstr "Menu kode QR dan pemesanan di meja untuk restoran dan kafe di Timor-Leste. Pelanggan memindai, memesan dari ponsel, dan pesanan langsung ke dapur. Gratis 30 hari."
+
+msgid "Customers scan the QR code on the table, order from their phone, and the order goes straight to your kitchen."
+msgstr "Pelanggan memindai kode QR di meja, memesan dari ponsel, dan pesanan langsung ke dapur Anda."
 
 msgid "Scan. Order. Enjoy."
 msgstr "Scan. Pesan. Nikmati."

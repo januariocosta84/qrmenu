@@ -33,7 +33,7 @@ from apps.payments.receipts import network_printing_available, parse_order_ids, 
 from apps.payments.services import balance_due, payable_group, receive_cash
 from apps.payments.tickets import ticket_lines
 from apps.restaurants.models import Table
-from apps.restaurants.qr import qr_png, qr_svg, site_link
+from apps.restaurants.qr import qr_badge, qr_png, qr_svg, site_link
 
 from .decorators import staff_view
 
@@ -108,7 +108,7 @@ def car_wash(request):
         "tables": Table.objects.filter(restaurant=r, is_active=True).order_by("number"),
         "vehicle_types": service_types.VEHICLE_TYPES,
         "receipts": Receipt.objects.filter(restaurant=r, orders__service_type=CAR_WASH).distinct()[:15],
-        "walk_in_url": url, "walk_in_svg": qr_svg(url),
+        "walk_in_url": url, "walk_in_svg": qr_svg(url, badge=qr_badge(r)),
         "network_tickets": network_printing_available(r),
         "car_wash_config": {"autoPrint": r.car_wash_auto_print and not network_printing_available(r),
                             "ticketUrl": reverse("dashboard:car_wash_ticket", args=[r.slug, 0])},
@@ -178,7 +178,7 @@ def car_wash_qr(request):
         messages.success(request, _("New car wash QR code made. Old printouts no longer work — print the new one."))
         return redirect("dashboard:car_wash", r.slug)
     url = walk_in_url(request, r)
-    resp = HttpResponse(qr_png(url, caption=site_link(request)), content_type="image/png")
+    resp = HttpResponse(qr_png(url, caption=site_link(request), badge=qr_badge(r)), content_type="image/png")
     resp["Content-Disposition"] = f'attachment; filename="{r.slug}-car-wash-qr.png"'
     return resp
 

@@ -1,8 +1,19 @@
 {% extends "storefront/base.html" %}
 {% load static menu_tags ui_icons %}
-{% block title %}{{ restaurant.name }}{% if table %} · {{ ui.table }} {{ table.number }}{% endif %}{% endblock %}
+{% block title %}{% if table %}{{ restaurant.name }} · {{ ui.table }} {{ table.number }}{% else %}{{ seo.title }}{% endif %}{% endblock %}
 {% block head %}
   {% if restaurant.cover_image %}<link rel="preload" as="image" href="{{ restaurant.cover_image.url }}">{% endif %}
+  <meta name="description" content="{{ seo.description }}">
+  <link rel="canonical" href="{{ seo.canonical }}">
+  {% if seo.noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+  <meta property="og:type" content="restaurant.restaurant">
+  <meta property="og:site_name" content="QR Menu">
+  <meta property="og:title" content="{{ seo.title }}">
+  <meta property="og:description" content="{{ seo.description }}">
+  <meta property="og:url" content="{{ seo.canonical }}">
+  {% if seo.image %}<meta property="og:image" content="{{ seo.image }}">
+  <meta name="twitter:card" content="summary_large_image">{% endif %}
+  {% if seo.jsonld %}<script type="application/ld+json">{{ seo.jsonld|safe }}</script>{% endif %}
 {% endblock %}
 {% block body_class %}menu-page{% if can_order %} can-order{% endif %}{% endblock %}
 
@@ -21,7 +32,7 @@
       </form>
     </div>
     <div class="brand">
-      {% if restaurant.logo %}<img class="logo" src="{{ restaurant.logo.url }}" alt="" width="64" height="64">{% endif %}
+      {% if restaurant.logo %}<img class="logo" src="{{ restaurant.logo.url }}" alt="{{ restaurant.name }} logo" width="64" height="64">{% endif %}
       <div>
         <h1>{{ restaurant.name }}</h1>
         {% if description %}<p class="hero-desc">{{ description }}</p>{% endif %}
@@ -69,7 +80,7 @@
         {% if item.image %}
         <button type="button" class="card-open" data-open="{{ item.id }}" aria-label="{% tr item 'name' %}">
           <div class="card-img">
-            <img src="{{ item.image.url }}" alt="" loading="lazy" decoding="async" width="600" height="400">
+            <img src="{{ item.image.url }}" alt="{% tr item 'name' %} – {{ restaurant.name }}" loading="lazy" decoding="async" width="600" height="400">
             <span class="badge-sold">{{ ui.sold_out }}</span>
           </div>
         </button>

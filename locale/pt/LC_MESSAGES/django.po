@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 23:23+0900\n"
+"POT-Creation-Date: 2026-10-14 15:55+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -577,6 +577,9 @@ msgstr "Tempo de preparação predefinido (minutos)"
 
 msgid "Accepting orders"
 msgstr "Aceitar pedidos"
+
+msgid "Show my menu on Google"
+msgstr "Mostrar o meu menu no Google"
 
 msgid "Cash drawer enabled"
 msgstr "Gaveta de dinheiro ativa"
@@ -1640,6 +1643,9 @@ msgstr "Nome impresso nas contas, ex.: VAT ou IVA."
 
 msgid "Tax ID printed on receipts."
 msgstr "NIF impresso nos recibos."
+
+msgid "Let Google and other search engines list your restaurant, menu, prices and dish photos."
+msgstr "Permitir que o Google e outros motores de busca mostrem o seu restaurante, menu, preços e fotos dos pratos."
 
 msgid "Pin 2 (most drawers)"
 msgstr "Pino 2 (a maioria das gavetas)"
@@ -4403,6 +4409,12 @@ msgstr "Peça ao proprietário do restaurante para mudar de plano."
 
 msgid "QR menu & table ordering for restaurants"
 msgstr "Menu QR e pedidos à mesa para restaurantes"
+
+msgid "QR code menu and table ordering for restaurants and cafés in Timor-Leste. Customers scan, order from their phone, and the order goes straight to your kitchen. 30 days free."
+msgstr "Menu com código QR e pedidos à mesa para restaurantes e cafés em Timor-Leste. Os clientes leem o código, pedem pelo telemóvel e o pedido vai direto para a cozinha. 30 dias grátis."
+
+msgid "Customers scan the QR code on the table, order from their phone, and the order goes straight to your kitchen."
+msgstr "Os clientes leem o código QR na mesa, pedem pelo telemóvel e o pedido vai direto para a sua cozinha."
 
 msgid "Scan. Order. Enjoy."
 msgstr "Scan. Pedir. Bom apetite."

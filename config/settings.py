@@ -281,6 +281,8 @@ SECURE_REFERRER_POLICY = "same-origin"
 ORDERING_API_REQUIRE_HTTPS = env_bool("ORDERING_API_REQUIRE_HTTPS", True)
 ORDERING_API_RATE_PER_MINUTE = int(os.environ.get("ORDERING_API_RATE_PER_MINUTE", "60"))
 ORDERING_API_LOG_DAYS = 90
+# Google Search Console "HTML tag" verification code (the content="…" value), shown on the home page.
+GOOGLE_SITE_VERIFICATION = os.environ.get("GOOGLE_SITE_VERIFICATION", "")
 # Visitor countries (platform console → Visitors): offline IP → country file built by `manage.py update_geoip`.
 GEOIP_DB = os.environ.get("GEOIP_DB", str(BASE_DIR.parent / "geoip" / "countries.sqlite3"))
 WEBHOOKS_ASYNC = env_bool("WEBHOOKS_ASYNC", True)  # deliver webhooks in a background thread

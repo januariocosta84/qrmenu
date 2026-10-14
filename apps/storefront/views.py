@@ -16,6 +16,7 @@ from apps.menu.serializers import PublicItemSerializer
 from apps.orders.models import Order, OrderStatus
 from apps.restaurants.models import QRCode, Restaurant, Table
 
+from .seo import menu_seo
 from .access import grant_table_access, grant_walk_in, my_orders, table_access, walk_in_access
 
 
@@ -69,6 +70,8 @@ def _home_context():
 
     billing = BillingSettings.load()
     return {
+        "seo_base": (settings.PUBLIC_BASE_URL or "").rstrip("/"),
+        "google_site_verification": settings.GOOGLE_SITE_VERIFICATION,
         "signup_open": settings.SIGNUP_MODE != "closed",
         "platform_name": settings.PLATFORM_NAME,
         "plans": Plan.objects.filter(is_active=True, is_public=True),
@@ -223,6 +226,7 @@ def _render_menu(request, restaurant, *, table, can_order, invalid_qr=False, acc
         "items_json": items,
         "config": config,
         "tabs": tabs,
+        "seo": menu_seo(request, restaurant, categories, lang, table=table, walk_in=walk_in),
         "walk_in": walk_in,
         "walk_in_name": service_types.display_name(restaurant, service_types.CAR_WASH) if walk_in else "",
     })

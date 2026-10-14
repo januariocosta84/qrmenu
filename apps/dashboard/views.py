@@ -41,7 +41,7 @@ from apps.payments.services import (
     attach_group_due, balance_due, group_due, payable_group, receive_cash, receive_payment,
 )
 from apps.restaurants.models import BusinessProfile, Restaurant, RestaurantStaff, Table, TableSession
-from apps.restaurants.qr import qr_png, qr_svg, site_link
+from apps.restaurants.qr import qr_badge, qr_png, qr_svg, site_link
 
 from .decorators import plan_feature, staff_view
 from .forms import (
@@ -598,7 +598,7 @@ def table_detail(request, pk):
         )[:10],
         "qr_url": qr.get_url(request),
         "site_link": site_link(request),
-        "qr_svg": mark_safe(qr_svg(qr.get_url(request))),  # generated locally from our own URL
+        "qr_svg": mark_safe(qr_svg(qr.get_url(request), badge=qr_badge(r))),  # generated locally from our own URL
     })
 
 
@@ -715,10 +715,10 @@ def table_qr_image(request, pk):
     filename = f"{request.restaurant.slug}-table-{table.number}"
     link = site_link(request)  # printed under the code
     if request.GET.get("format") == "svg":
-        resp = HttpResponse(qr_svg(url, caption=link), content_type="image/svg+xml")
+        resp = HttpResponse(qr_svg(url, caption=link, badge=qr_badge(request.restaurant)), content_type="image/svg+xml")
         resp["Content-Disposition"] = f'attachment; filename="{filename}.svg"'
     else:
-        resp = HttpResponse(qr_png(url, caption=link), content_type="image/png")
+        resp = HttpResponse(qr_png(url, caption=link, badge=qr_badge(request.restaurant)), content_type="image/png")
         if request.GET.get("download"):
             resp["Content-Disposition"] = f'attachment; filename="{filename}.png"'
     resp["Cache-Control"] = "private, no-store"
@@ -733,9 +733,10 @@ def tables_print(request):
     if ids:
         qs = qs.filter(pk__in=[i for i in ids if i.isdigit()])
     cards = []
+    badge = qr_badge(r)  # restaurant logo + name in the middle of every code
     for table in sorted(qs, key=lambda t: t.sort_key):
         url = table.active_qr().get_url(request)
-        cards.append({"table": table, "url": url, "svg": mark_safe(qr_svg(url))})
+        cards.append({"table": table, "url": url, "svg": mark_safe(qr_svg(url, badge=badge))})
     return render(request, "dashboard/tables_print.html", {"cards": cards, "site_link": site_link(request)})
 
 
@@ -852,7 +853,7 @@ def restaurant_settings(request):
 
 SETTINGS_SECTIONS = [  # (key, title, icon, description, fields)
     ("profile", gettext_lazy("Profile"), "store", gettext_lazy("How your restaurant appears to customers."),
-     ["name", "description", "address", "phone", "email", "opening_hours"]),
+     ["name", "description", "address", "phone", "email", "opening_hours", "show_in_search"]),
     ("branding", gettext_lazy("Branding"), "image",
      gettext_lazy("Shown at the top of your menu. JPEG, PNG or WebP up to 5 MB."),
      ["logo", "cover_image"]),
@@ -878,7 +879,7 @@ SETTINGS_SECTIONS = [  # (key, title, icon, description, fields)
                   "A cash drawer plugged into that printer opens automatically on cash payments."),
      ["cash_drawer_via_printer", "printer_host", "printer_port", "cash_drawer_enabled", "drawer_pin"]),
 ]
-WIDE_FIELDS = {"car_wash_enabled", "car_wash_auto_print", "bill_print_mode", "cash_drawer_via_printer", "vat_enabled", "vat_inclusive", "name", "description", "address", "opening_hours", "description_tet", "description_id",
+WIDE_FIELDS = {"show_in_search", "car_wash_enabled", "car_wash_auto_print", "bill_print_mode", "cash_drawer_via_printer", "vat_enabled", "vat_inclusive", "name", "description", "address", "opening_hours", "description_tet", "description_id",
                "is_accepting_orders", "cash_drawer_enabled", "receipt_prompt", "receipt_footer"}
 
 

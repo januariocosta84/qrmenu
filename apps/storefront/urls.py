@@ -1,11 +1,13 @@
 from django.urls import path
 
-from . import api, views
+from . import api, seo, views
 
 app_name = "storefront"
 
 urlpatterns = [
     path("", views.home, name="home"),
+    path("robots.txt", seo.robots_txt, name="robots"),
+    path("sitemap.xml", seo.sitemap_xml, name="sitemap"),
     path("terms/", views.terms, name="terms"),
     path("call-me-back/", views.call_me_back, name="call_me_back"),
     path("r/<slug:slug>/", views.restaurant_menu, name="menu"),
