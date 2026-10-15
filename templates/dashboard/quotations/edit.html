@@ -42,6 +42,8 @@
         {% include "dashboard/_field.html" with field=form.valid_until %}
         {% include "dashboard/_field.html" with field=form.language %}
         {% include "dashboard/_field.html" with field=form.status %}
+        {% if r.signature %}{% include "dashboard/_field.html" with field=form.signed wide=True %}
+        {% else %}<p class="help span-2">{% icon "pen" %} <a href="{% url 'dashboard:quotation_profile' r.slug %}#signature">{% translate "Add your digital signature" %}</a> {% translate "to sign quotations without printing them." %}</p>{% endif %}
       </div>
     </section>
   </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 15:23+0900\n"
+"POT-Creation-Date: 2026-10-15 16:51+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,7 +160,7 @@ msgid "Trial"
 msgstr "Períodu esperimentál"
 
 #: apps/billing/models.py:98 apps/dashboard/forms.py:256
-#: apps/dashboard/forms.py:403 apps/restaurants/models.py:135
+#: apps/dashboard/forms.py:403 apps/restaurants/models.py:147
 #: templates/dashboard/branch_manage.html:9
 #: templates/dashboard/branch_manage.html:49 templates/dashboard/staff.html:23
 msgid "Active"
@@ -262,6 +262,7 @@ msgid "Change"
 msgstr "Troka"
 
 #: apps/core/django_strings.py:27
+#: templates/dashboard/quotations/profile.html:49
 msgid "Clear"
 msgstr "Hamoos"
 
@@ -714,10 +715,10 @@ msgstr "Naran"
 
 #: apps/dashboard/forms.py:106 apps/dashboard/forms.py:199
 #: templates/dashboard/api_docs.html:77
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/edit.html:71
-#: templates/dashboard/quotations/edit.html:120
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/edit.html:73
+#: templates/dashboard/quotations/edit.html:122
+#: templates/dashboard/quotations/print.html:155
 msgid "Description"
 msgstr "Deskrisaun"
 
@@ -730,17 +731,17 @@ msgid "Cover image"
 msgstr "Imajen kapa"
 
 #: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
-#: apps/quotations/forms.py:31 apps/restaurants/models.py:345
+#: apps/quotations/forms.py:36 apps/restaurants/models.py:357
 msgid "Address"
 msgstr "Enderesu"
 
 #: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
 #: templates/dashboard/order_detail.html:21
-#: templates/dashboard/quotations/print.html:163
+#: templates/dashboard/quotations/print.html:103
 msgid "Phone"
 msgstr "Telefone"
 
-#: apps/dashboard/forms.py:107 templates/dashboard/quotations/print.html:165
+#: apps/dashboard/forms.py:107 templates/dashboard/quotations/print.html:105
 msgid "Opening hours"
 msgstr "Oras loke"
 
@@ -768,7 +769,7 @@ msgstr "Tempu prepara ne'ebé uza beibeik (minutu)"
 msgid "Accepting orders"
 msgstr "Simu pedidu"
 
-#: apps/dashboard/forms.py:111 apps/restaurants/models.py:59
+#: apps/dashboard/forms.py:111 apps/restaurants/models.py:71
 msgid "Show my menu on Google"
 msgstr "Hatudu ha'u-nia menu iha Google"
 
@@ -820,28 +821,28 @@ msgstr "Taxa IVA (%)"
 msgid "Tax name"
 msgstr "Naran impostu"
 
-#: apps/dashboard/forms.py:118 templates/dashboard/quotations/print.html:87
-#: templates/dashboard/quotations/print.html:167
+#: apps/dashboard/forms.py:118 templates/dashboard/quotations/print.html:107
+#: templates/dashboard/quotations/print.html:122
 msgid "Tax ID"
 msgstr "Númeru impostu (NIF)"
 
-#: apps/dashboard/forms.py:119 apps/restaurants/models.py:106
+#: apps/dashboard/forms.py:119 apps/restaurants/models.py:118
 msgid "Default bill print mode"
 msgstr "Modu imprime konta padraun"
 
 #: apps/dashboard/forms.py:119 apps/dashboard/views.py:872
-#: apps/menu/service_types.py:32 apps/restaurants/models.py:112
+#: apps/menu/service_types.py:32 apps/restaurants/models.py:124
 #: templates/dashboard/base.html:33 templates/dashboard/car_wash.html:3
 #: templates/dashboard/car_wash.html:8 templates/dashboard/menu.html:22
 #: templates/dashboard/table_detail.html:65
 msgid "Car wash"
 msgstr "Fase karreta"
 
-#: apps/dashboard/forms.py:120 apps/restaurants/models.py:115
+#: apps/dashboard/forms.py:120 apps/restaurants/models.py:127
 msgid "Car wash name"
 msgstr "Naran fase karreta"
 
-#: apps/dashboard/forms.py:120 apps/restaurants/models.py:118
+#: apps/dashboard/forms.py:120 apps/restaurants/models.py:130
 msgid "Print a car wash ticket automatically"
 msgstr "Imprime tiket fase karreta automátiku"
 
@@ -987,7 +988,7 @@ msgstr "Foto fachada"
 msgid "A photo of the branch from outside, showing the brand name."
 msgstr "Foto filial husi liur, ne'ebé hatudu naran marka."
 
-#: apps/dashboard/forms.py:323 apps/restaurants/models.py:340
+#: apps/dashboard/forms.py:323 apps/restaurants/models.py:352
 msgid "Business registration number"
 msgstr "Númeru rejistu negósiu"
 
@@ -998,7 +999,7 @@ msgid ""
 msgstr ""
 "Filial hotu tenke pertense ba rejistu negósiu hanesan ho filial prinsipál."
 
-#: apps/dashboard/forms.py:325 apps/restaurants/models.py:343
+#: apps/dashboard/forms.py:325 apps/restaurants/models.py:355
 msgid "Owner name"
 msgstr "Naran na'in"
 
@@ -1042,13 +1043,13 @@ msgstr "Métodu"
 #: templates/dashboard/billing.html:53 templates/dashboard/billing.html:59
 #: templates/dashboard/cash_register.html:53
 #: templates/dashboard/expenses.html:91 templates/dashboard/expenses.html:98
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/print.html:155
 #: templates/dashboard/revenue.html:35 templates/dashboard/revenue.html:42
 msgid "Amount"
 msgstr "Montante"
 
-#: apps/dashboard/forms.py:409 templates/dashboard/quotations/print.html:96
+#: apps/dashboard/forms.py:409 templates/dashboard/quotations/print.html:131
 msgid "Reference"
 msgstr "Referénsia"
 
@@ -1550,7 +1551,7 @@ msgstr "ez. Foos 25 kg, gas, modo husi merkadu"
 #: templates/dashboard/expenses.html:91
 #: templates/dashboard/quotations/list.html:26
 #: templates/dashboard/quotations/list.html:32
-#: templates/dashboard/quotations/print.html:94
+#: templates/dashboard/quotations/print.html:129
 #: templates/dashboard/revenue.html:35
 msgid "Date"
 msgstr "Data"
@@ -1958,7 +1959,7 @@ msgstr "Imprimidora iha %(target)s la responde. Nia moris no liga ona?"
 msgid "Could not reach the printer at %(target)s (%(error)s)."
 msgstr "La konsege liga ba imprimidora iha %(target)s (%(error)s)."
 
-#: apps/payments/models.py:23 apps/restaurants/models.py:135
+#: apps/payments/models.py:23 apps/restaurants/models.py:147
 #: templates/dashboard/branch_manage.html:9
 #: templates/dashboard/branches.html:42
 msgid "Pending"
@@ -2049,48 +2050,48 @@ msgstr "Osan la to'o: simu %(received)s maibé tenke selu %(due)s."
 msgid "Amount must be greater than zero."
 msgstr "Montante tenke boot liu zero."
 
-#: apps/quotations/forms.py:30
+#: apps/quotations/forms.py:35
 msgid "Client contact person"
 msgstr "Ema ba kontaktu"
 
-#: apps/quotations/forms.py:30
+#: apps/quotations/forms.py:35
 msgid "Organisation"
 msgstr "Organizasaun"
 
-#: apps/quotations/forms.py:31
+#: apps/quotations/forms.py:36
 msgid "Phone / email"
 msgstr "Telefone / email"
 
-#: apps/quotations/forms.py:32
+#: apps/quotations/forms.py:37
 msgid "Tender / procurement reference"
 msgstr "Referénsia konkursu / aprovizionamentu"
 
-#: apps/quotations/forms.py:32 templates/dashboard/quotations/list.html:26
+#: apps/quotations/forms.py:37 templates/dashboard/quotations/list.html:26
 #: templates/dashboard/quotations/list.html:31
 msgid "Subject"
 msgstr "Asuntu"
 
-#: apps/quotations/forms.py:33 templates/dashboard/quotations/print.html:113
+#: apps/quotations/forms.py:38 templates/dashboard/quotations/print.html:148
 msgid "Event / delivery date"
 msgstr "Data eventu / entrega"
 
-#: apps/quotations/forms.py:33 templates/dashboard/quotations/print.html:114
+#: apps/quotations/forms.py:38 templates/dashboard/quotations/print.html:149
 msgid "Number of guests"
 msgstr "Númeru konvidadu"
 
-#: apps/quotations/forms.py:34
+#: apps/quotations/forms.py:39
 msgid "Quotation date"
 msgstr "Data kotasaun"
 
-#: apps/quotations/forms.py:34 templates/dashboard/quotations/print.html:95
+#: apps/quotations/forms.py:39 templates/dashboard/quotations/print.html:130
 msgid "Valid until"
 msgstr "Válidu to'o"
 
-#: apps/quotations/forms.py:35
+#: apps/quotations/forms.py:40
 msgid "Document language"
 msgstr "Lian dokumentu"
 
-#: apps/quotations/forms.py:35 templates/dashboard/_orders_table.html:5
+#: apps/quotations/forms.py:40 templates/dashboard/_orders_table.html:5
 #: templates/dashboard/_orders_table.html:14
 #: templates/dashboard/api_docs.html:26 templates/dashboard/billing.html:53
 #: templates/dashboard/billing.html:60
@@ -2102,46 +2103,58 @@ msgstr "Lian dokumentu"
 msgid "Status"
 msgstr "Estadu"
 
-#: apps/quotations/forms.py:36
+#: apps/quotations/forms.py:41
 msgid "Discount (amount)"
 msgstr "Deskontu (montante)"
 
-#: apps/quotations/forms.py:36
+#: apps/quotations/forms.py:41
 msgid "VAT (%)"
 msgstr "IVA (%)"
 
-#: apps/quotations/forms.py:37
+#: apps/quotations/forms.py:42
 msgid "Terms, payment & bank details"
 msgstr "Kondisaun, pagamentu no dadus banku"
 
-#: apps/quotations/forms.py:40
+#: apps/quotations/forms.py:43
+msgid "Apply my digital signature and stamp"
+msgstr "Aplika ha'u-nia asinatura dijitál no karimbu"
+
+#: apps/quotations/forms.py:46
 msgid "e.g. Lunch catering for training workshop"
 msgstr "ez. Hahán meiudia ba workshop formasaun"
 
-#: apps/quotations/forms.py:41
+#: apps/quotations/forms.py:47
 msgid "0 = no VAT."
 msgstr "0 = la iha IVA."
 
-#: apps/quotations/forms.py:48
+#: apps/quotations/forms.py:54
 msgid "Must be on or after the quotation date."
 msgstr "Tenke hanesan ka depois data kotasaun."
 
-#: apps/quotations/forms.py:72
+#: apps/quotations/forms.py:84
+msgid "The drawn signature could not be read. Please draw it again."
+msgstr "La bele lee asinatura ne'ebé dezeña. Favor dezeña fali."
+
+#: apps/quotations/forms.py:90
+msgid "The image is too large (max 2 MB)."
+msgstr "Imajen boot liu (máx. 2 MB)."
+
+#: apps/quotations/forms.py:120
 #, python-format
 msgid "Line %(n)s: enter numbers for quantity and price."
 msgstr "Liña %(n)s: hakerek númeru ba kuantidade no folin."
 
-#: apps/quotations/forms.py:75
+#: apps/quotations/forms.py:123
 #, python-format
 msgid "Line %(n)s: enter a description."
 msgstr "Liña %(n)s: hakerek deskrisaun."
 
-#: apps/quotations/forms.py:78
+#: apps/quotations/forms.py:126
 #, python-format
 msgid "Line %(n)s: quantity and price must be valid positive numbers."
 msgstr "Liña %(n)s: kuantidade no folin tenke númeru pozitivu ne'ebé válidu."
 
-#: apps/quotations/forms.py:87
+#: apps/quotations/forms.py:135
 msgid "Add at least one line."
 msgstr "Aumenta pelumenus liña ida."
 
@@ -2153,8 +2166,8 @@ msgstr "Rascunho"
 msgid "Sent"
 msgstr "Haruka ona"
 
-#: apps/quotations/models.py:28 apps/restaurants/models.py:136
-#: apps/restaurants/models.py:335 templates/dashboard/branch_manage.html:9
+#: apps/quotations/models.py:28 apps/restaurants/models.py:148
+#: apps/restaurants/models.py:347 templates/dashboard/branch_manage.html:9
 #: templates/dashboard/branches.html:43
 #: templates/dashboard/quotations/list.html:19
 msgid "Rejected"
@@ -2164,42 +2177,55 @@ msgstr "Rejeita ona"
 msgid "Company profile saved."
 msgstr "Perfil kompañia rai ona."
 
-#: apps/quotations/views.py:105
+#: apps/quotations/views.py:71
+msgid "Signature saved."
+msgstr "Asinatura rai ona."
+
+#: apps/quotations/views.py:132
 #, python-format
 msgid "Quotation %(number)s saved."
 msgstr "Kotasaun %(number)s rai ona."
 
-#: apps/quotations/views.py:142
+#: apps/quotations/views.py:169
 #, python-format
 msgid "Copied as %(number)s. Update the dates and prices if needed."
 msgstr "Kopia ona hanesan %(number)s. Atualiza data no folin se presiza."
 
-#: apps/quotations/views.py:153
+#: apps/quotations/views.py:180
 #, python-format
 msgid "Quotation %(number)s deleted."
 msgstr "Kotasaun %(number)s hamoos ona."
 
-#: apps/restaurants/models.py:17
+#: apps/restaurants/models.py:24
 msgid "Use letters, numbers and dashes only (max 20), e.g. 12 or A-3."
 msgstr "Uza letra, númeru no tasi (-) de'it (másimu 20), ez. 12 ka A-3."
 
-#: apps/restaurants/models.py:32
+#: apps/restaurants/models.py:39
 msgid "e.g. Mon–Sat 08:00–22:00"
 msgstr "ez. Seg–Sáb 08:00–22:00"
 
-#: apps/restaurants/models.py:34 templates/dashboard/quotations/list.html:11
-#: templates/dashboard/quotations/print.html:149
+#: apps/restaurants/models.py:41 templates/dashboard/quotations/list.html:11
+#: templates/dashboard/quotations/print.html:89
 #: templates/dashboard/quotations/profile.html:3
 #: templates/dashboard/quotations/profile.html:9
 #: templates/dashboard/quotations/profile.html:20
 msgid "Company profile"
 msgstr "Perfil kompañia"
 
-#: apps/restaurants/models.py:43
+#: apps/restaurants/models.py:45 templates/dashboard/quotations/profile.html:39
+msgid "Name of the person signing"
+msgstr "Naran ema ne'ebé asina"
+
+#: apps/restaurants/models.py:46 templates/dashboard/quotations/profile.html:40
+msgctxt "job title"
+msgid "Position"
+msgstr "Kargu"
+
+#: apps/restaurants/models.py:55
 msgid "Charge VAT on orders."
 msgstr "Kobra IVA ba pedidu sira."
 
-#: apps/restaurants/models.py:49
+#: apps/restaurants/models.py:61
 msgid ""
 "Add on top: the bill total goes up by the VAT. Already included: totals stay "
 "the same and receipts show the VAT part."
@@ -2207,15 +2233,15 @@ msgstr ""
 "Aumenta: totál konta sobu ho IVA. Inklui ona: totál la muda no resibu hatudu "
 "parte IVA."
 
-#: apps/restaurants/models.py:52
+#: apps/restaurants/models.py:64
 msgid "Name printed on bills, e.g. VAT or IVA."
 msgstr "Naran ne'ebé imprime iha konta, ez. VAT ka IVA."
 
-#: apps/restaurants/models.py:53
+#: apps/restaurants/models.py:65
 msgid "Tax ID printed on receipts."
 msgstr "NIF ne'ebé imprime iha resibu."
 
-#: apps/restaurants/models.py:60
+#: apps/restaurants/models.py:72
 msgid ""
 "Let Google and other search engines list your restaurant, menu, prices and "
 "dish photos."
@@ -2223,30 +2249,30 @@ msgstr ""
 "Husik Google no motor buka seluk hatudu ita-nia restaurante, menu, presu no "
 "foto hahán."
 
-#: apps/restaurants/models.py:65
+#: apps/restaurants/models.py:77
 msgid "Pin 2 (most drawers)"
 msgstr "Pinu 2 (gaveta barak liu)"
 
-#: apps/restaurants/models.py:65
+#: apps/restaurants/models.py:77
 msgid "Pin 5"
 msgstr "Pinu 5"
 
-#: apps/restaurants/models.py:67
+#: apps/restaurants/models.py:79
 msgid "Open the cash drawer automatically when a cash payment is recorded."
 msgstr ""
 "Loke gaveta osan automatikamente bainhira rejista pagamentu osan-kontadu."
 
-#: apps/restaurants/models.py:70
+#: apps/restaurants/models.py:82
 msgid ""
 "IP address of the receipt printer the drawer is plugged into, e.g. "
 "192.168.1.50"
 msgstr "Enderesu IP imprimidora resibu ne'ebé gaveta liga ba, ez. 192.168.1.50"
 
-#: apps/restaurants/models.py:74
+#: apps/restaurants/models.py:86
 msgid "Raw printing port; 9100 for almost all network receipt printers."
 msgstr "Porta imprime direta; 9100 ba kuaze imprimidora resibu rede hotu."
 
-#: apps/restaurants/models.py:81
+#: apps/restaurants/models.py:93
 msgid ""
 "The cash drawer is plugged into the receipt printer of this computer. A "
 "small slip prints to open it."
@@ -2254,53 +2280,53 @@ msgstr ""
 "Gaveta osan liga ba imprimidora resibu komputadór ida ne'e nian. Slip ki'ik "
 "ida imprime atu loke nia."
 
-#: apps/restaurants/models.py:87
+#: apps/restaurants/models.py:99
 msgid "Ask \"Print receipt?\" after each payment"
 msgstr "Husu “Imprime resibu?” hafoin pagamentu ida-idak"
 
-#: apps/restaurants/models.py:88
+#: apps/restaurants/models.py:100
 msgid "Always print after payment"
 msgstr "Imprime beibeik hafoin pagamentu"
 
-#: apps/restaurants/models.py:89
+#: apps/restaurants/models.py:101
 msgid "Never print automatically"
 msgstr "Labele imprime automatikamente"
 
-#: apps/restaurants/models.py:93
+#: apps/restaurants/models.py:105
 msgid "This device's printer (print dialog)"
 msgstr "Imprimidora aparellu ida ne'e (janela imprime)"
 
-#: apps/restaurants/models.py:94
+#: apps/restaurants/models.py:106
 msgid "Network receipt printer (prints directly)"
 msgstr "Imprimidora resibu iha rede (imprime direta)"
 
-#: apps/restaurants/models.py:99
+#: apps/restaurants/models.py:111
 msgid "80 mm paper"
 msgstr "Surat-tahan 80 mm"
 
-#: apps/restaurants/models.py:99
+#: apps/restaurants/models.py:111
 msgid "58 mm paper"
 msgstr "Surat-tahan 58 mm"
 
-#: apps/restaurants/models.py:100
+#: apps/restaurants/models.py:112
 msgid "Paper width of the network receipt printer."
 msgstr "Luan surat-tahan imprimidora resibu nian."
 
-#: apps/restaurants/models.py:104
+#: apps/restaurants/models.py:116
 msgid "One combined bill"
 msgstr "Konta ida hamutuk"
 
-#: apps/restaurants/models.py:104
+#: apps/restaurants/models.py:116
 msgid "Separate bill per service"
 msgstr "Konta separadu ba servisu ida-idak"
 
-#: apps/restaurants/models.py:107
+#: apps/restaurants/models.py:119
 msgid ""
 "Used when a table has orders for several services (e.g. café and car wash)."
 msgstr ""
 "Uza bainhira meza ida iha pedidu ba servisu barak (ez. kafé no fase karreta)."
 
-#: apps/restaurants/models.py:113
+#: apps/restaurants/models.py:125
 msgid ""
 "Customers can order car wash packages from the table QR, together with café "
 "items."
@@ -2308,11 +2334,11 @@ msgstr ""
 "Kliente sira bele husu pakote fase karreta husi QR meza, hamutuk ho item "
 "kafé."
 
-#: apps/restaurants/models.py:116
+#: apps/restaurants/models.py:128
 msgid "Shown to customers and on car wash bills, e.g. Timor Car Wash."
 msgstr "Hatudu ba kliente no iha konta fase karreta, ez. Timor Car Wash."
 
-#: apps/restaurants/models.py:119
+#: apps/restaurants/models.py:131
 msgid ""
 "For each new car wash order: on the network receipt printer if set up, "
 "otherwise from the Car wash screen when it is open."
@@ -2320,46 +2346,46 @@ msgstr ""
 "Ba pedidu fase karreta foun ida-idak: iha imprimidora rede se iha; se lae, "
 "husi ekran Fase karreta bainhira loke."
 
-#: apps/restaurants/models.py:127
+#: apps/restaurants/models.py:139
 msgid "The main branch this sub-branch belongs to."
 msgstr "Filial prinsipál ne'ebé sub-filial ne'e pertense ba."
 
-#: apps/restaurants/models.py:130
+#: apps/restaurants/models.py:142
 msgid "Set when the main branch deactivates this sub-branch."
 msgstr "Define bainhira filial prinsipál halo sub-filial ne'e la ativu."
 
-#: apps/restaurants/models.py:136 templates/dashboard/branch_manage.html:9
+#: apps/restaurants/models.py:148 templates/dashboard/branch_manage.html:9
 #: templates/dashboard/branches.html:44
 msgid "Suspended"
 msgstr "Suspende"
 
-#: apps/restaurants/models.py:217
+#: apps/restaurants/models.py:229
 msgid "Optional, e.g. 'Terrace' or 'Window'."
 msgstr "Opsionál, ez. 'Teraza' ka 'Janela'."
 
-#: apps/restaurants/models.py:335 templates/dashboard/business_profile.html:11
+#: apps/restaurants/models.py:347 templates/dashboard/business_profile.html:11
 msgid "Incomplete"
 msgstr "Seidauk kompletu"
 
-#: apps/restaurants/models.py:335 templates/dashboard/branches.html:97
+#: apps/restaurants/models.py:347 templates/dashboard/branches.html:97
 #: templates/dashboard/business_profile.html:9
 msgid "Under review"
 msgstr "Iha revizaun"
 
-#: apps/restaurants/models.py:335 templates/dashboard/branches.html:95
+#: apps/restaurants/models.py:347 templates/dashboard/branches.html:95
 #: templates/dashboard/business_profile.html:8
 msgid "Verified"
 msgstr "Verifika ona"
 
-#: apps/restaurants/models.py:341
+#: apps/restaurants/models.py:353
 msgid "e.g. your SERVE certificate number or tax number (NIF)."
 msgstr "ez.: númeru sertifikadu SERVE ka númeru impostu (NIF)."
 
-#: apps/restaurants/models.py:344
+#: apps/restaurants/models.py:356
 msgid "The legal owner of the business."
 msgstr "Na'in legál ba negósiu."
 
-#: apps/restaurants/models.py:346
+#: apps/restaurants/models.py:358
 msgid "Phone number"
 msgstr "Númeru telefone"
 
@@ -2637,7 +2663,7 @@ msgstr "Kliente"
 
 #: templates/dashboard/_orders_table.html:5
 #: templates/dashboard/_orders_table.html:12
-#: templates/dashboard/quotations/edit.html:51
+#: templates/dashboard/quotations/edit.html:53
 msgid "Items"
 msgstr "Item"
 
@@ -3543,7 +3569,7 @@ msgstr "Jestaun"
 #: templates/dashboard/base.html:38 templates/dashboard/car_wash.html:93
 #: templates/dashboard/item_form.html:6 templates/dashboard/menu.html:3
 #: templates/dashboard/menu.html:8
-#: templates/dashboard/quotations/print.html:178
+#: templates/dashboard/quotations/print.html:189
 msgid "Menu"
 msgstr "Menu"
 
@@ -4389,7 +4415,7 @@ msgstr "Kansela fase karreta #%(n)s?"
 
 #: templates/dashboard/car_wash.html:56 templates/dashboard/item_form.html:47
 #: templates/dashboard/new_order.html:77
-#: templates/dashboard/quotations/edit.html:107
+#: templates/dashboard/quotations/edit.html:109
 #: templates/dashboard/quotations/profile.html:29
 #: templates/dashboard/simple_form.html:10
 msgid "Cancel"
@@ -4967,8 +4993,8 @@ msgstr "Toka hahán atu aumenta."
 
 #: templates/dashboard/new_order.html:41
 #: templates/dashboard/order_detail.html:44
-#: templates/dashboard/quotations/edit.html:90
-#: templates/dashboard/quotations/print.html:128
+#: templates/dashboard/quotations/edit.html:92
+#: templates/dashboard/quotations/print.html:163
 msgid "Subtotal"
 msgstr "Subtotál"
 
@@ -5065,19 +5091,19 @@ msgid "Item"
 msgstr "Item"
 
 #: templates/dashboard/order_detail.html:29
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/edit.html:73
-#: templates/dashboard/quotations/edit.html:122
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/edit.html:75
+#: templates/dashboard/quotations/edit.html:124
+#: templates/dashboard/quotations/print.html:155
 #: templates/dashboard/reports.html:71
 msgid "Qty"
 msgstr "Kuant."
 
 #: templates/dashboard/order_detail.html:29
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/edit.html:72
-#: templates/dashboard/quotations/edit.html:121
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/edit.html:74
+#: templates/dashboard/quotations/edit.html:123
+#: templates/dashboard/quotations/print.html:155
 msgid "Unit"
 msgstr "Unidade"
 
@@ -5266,23 +5292,31 @@ msgstr "Kliente"
 
 #: templates/dashboard/quotations/edit.html:36
 #: templates/dashboard/quotations/print.html:6
-#: templates/dashboard/quotations/print.html:180
+#: templates/dashboard/quotations/print.html:191
 msgid "Quotation"
 msgstr "Kotasaun"
 
-#: templates/dashboard/quotations/edit.html:53
+#: templates/dashboard/quotations/edit.html:46
+msgid "Add your digital signature"
+msgstr "Aumenta ita-nia asinatura dijitál"
+
+#: templates/dashboard/quotations/edit.html:46
+msgid "to sign quotations without printing them."
+msgstr "atu asina kotasaun la presiza imprime."
+
+#: templates/dashboard/quotations/edit.html:55
 msgid "Dish from your menu"
 msgstr "Hahán husi menu"
 
-#: templates/dashboard/quotations/edit.html:54
+#: templates/dashboard/quotations/edit.html:56
 msgid "Choose a dish from your menu…"
 msgstr "Hili hahán husi menu…"
 
-#: templates/dashboard/quotations/edit.html:59
+#: templates/dashboard/quotations/edit.html:61
 msgid "Add from menu"
 msgstr "Aumenta husi menu"
 
-#: templates/dashboard/quotations/edit.html:60
+#: templates/dashboard/quotations/edit.html:62
 msgid ""
 "Add every dish on your menu as a line? You can change or remove each line "
 "afterwards."
@@ -5290,78 +5324,78 @@ msgstr ""
 "Aumenta hahán hotu iha ita-nia menu hanesan liña? Depois ita bele troka ka "
 "hasai liña ida-idak."
 
-#: templates/dashboard/quotations/edit.html:60
+#: templates/dashboard/quotations/edit.html:62
 msgid "Add all menu items"
 msgstr "Aumenta menu hotu"
 
-#: templates/dashboard/quotations/edit.html:61
+#: templates/dashboard/quotations/edit.html:63
 msgid "Add custom line"
 msgstr "Aumenta liña rasik"
 
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/edit.html:74
-#: templates/dashboard/quotations/edit.html:123
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/edit.html:76
+#: templates/dashboard/quotations/edit.html:125
+#: templates/dashboard/quotations/print.html:155
 msgid "Unit price"
 msgstr "Folin unidade"
 
-#: templates/dashboard/quotations/edit.html:76
-#: templates/dashboard/quotations/edit.html:125
+#: templates/dashboard/quotations/edit.html:78
+#: templates/dashboard/quotations/edit.html:127
 msgid "Remove line"
 msgstr "Hasai liña"
 
-#: templates/dashboard/quotations/edit.html:82
+#: templates/dashboard/quotations/edit.html:84
 msgid "Remove all lines from this quotation?"
 msgstr "Hasai liña hotu husi kotasaun ida-ne'e?"
 
-#: templates/dashboard/quotations/edit.html:82
+#: templates/dashboard/quotations/edit.html:84
 msgid "Remove all lines"
 msgstr "Hasai liña hotu"
 
-#: templates/dashboard/quotations/edit.html:83
+#: templates/dashboard/quotations/edit.html:85
 msgid "No lines yet. Add dishes from your menu or a custom line."
 msgstr "Seidauk iha liña. Aumenta hahán husi menu ka liña rasik."
 
-#: templates/dashboard/quotations/edit.html:85
-#: templates/dashboard/quotations/edit.html:136
+#: templates/dashboard/quotations/edit.html:87
+#: templates/dashboard/quotations/edit.html:138
 msgid "pax"
 msgstr "ema"
 
-#: templates/dashboard/quotations/edit.html:85
+#: templates/dashboard/quotations/edit.html:87
 msgid "plate"
 msgstr "pratu"
 
-#: templates/dashboard/quotations/edit.html:85
+#: templates/dashboard/quotations/edit.html:87
 msgid "box"
 msgstr "kaixa"
 
-#: templates/dashboard/quotations/edit.html:86
+#: templates/dashboard/quotations/edit.html:88
 msgid "pcs"
 msgstr "unid."
 
-#: templates/dashboard/quotations/edit.html:86
+#: templates/dashboard/quotations/edit.html:88
 msgid "set"
 msgstr "konjuntu"
 
-#: templates/dashboard/quotations/edit.html:86
+#: templates/dashboard/quotations/edit.html:88
 msgid "day"
 msgstr "loron"
 
-#: templates/dashboard/quotations/edit.html:86
+#: templates/dashboard/quotations/edit.html:88
 msgid "trip"
 msgstr "viajen"
 
-#: templates/dashboard/quotations/edit.html:93
-#: templates/dashboard/quotations/print.html:130
+#: templates/dashboard/quotations/edit.html:95
+#: templates/dashboard/quotations/print.html:165
 msgid "VAT"
 msgstr "IVA"
 
-#: templates/dashboard/quotations/edit.html:94
-#: templates/dashboard/quotations/print.html:131
+#: templates/dashboard/quotations/edit.html:96
+#: templates/dashboard/quotations/print.html:166
 msgid "Grand total"
 msgstr "Totál jerál"
 
-#: templates/dashboard/quotations/edit.html:101
+#: templates/dashboard/quotations/edit.html:103
 #, python-format
 msgid ""
 "Printed at the bottom, e.g. 50%% deposit on confirmation, payment within 14 "
@@ -5371,16 +5405,16 @@ msgstr ""
 "Imprime iha rohan, ez. 50%% sinal bainhira konfirma, selu iha loron 14 nia "
 "laran, dadus banku. Kotasaun foun hahú ho kondisaun husi ida ikus."
 
-#: templates/dashboard/quotations/edit.html:106
+#: templates/dashboard/quotations/edit.html:108
 msgid "Save quotation"
 msgstr "Rai kotasaun"
 
-#: templates/dashboard/quotations/edit.html:112
+#: templates/dashboard/quotations/edit.html:114
 #, python-format
 msgid "Delete quotation %(n)s?"
 msgstr "Hamoos kotasaun %(n)s?"
 
-#: templates/dashboard/quotations/edit.html:113
+#: templates/dashboard/quotations/edit.html:115
 msgid "Delete this quotation"
 msgstr "Hamoos kotasaun ne'e"
 
@@ -5391,7 +5425,7 @@ msgstr ""
 "Proposta folin ba catering, eventu no konkursu. Imprime ka rai hanesan PDF."
 
 #: templates/dashboard/quotations/list.html:26
-#: templates/dashboard/quotations/print.html:93
+#: templates/dashboard/quotations/print.html:128
 msgid "Number"
 msgstr "Númeru"
 
@@ -5408,96 +5442,115 @@ msgstr "Seidauk iha kotasaun."
 msgid "Create your first quotation"
 msgstr "Kria ita-nia kotasaun dahuluk"
 
-#: templates/dashboard/quotations/print.html:74
+#: templates/dashboard/quotations/print.html:79
 msgid "Print / save as PDF"
 msgstr "Imprime / rai hanesan PDF"
 
-#: templates/dashboard/quotations/print.html:75
+#: templates/dashboard/quotations/print.html:80
 msgid "Close"
 msgstr "Taka"
 
-#: templates/dashboard/quotations/print.html:76
-#, fuzzy
-#| msgid "Add many tables"
+#: templates/dashboard/quotations/print.html:81
 msgid "Add company profile"
-msgstr "Aumenta meza barak"
+msgstr "Aumenta perfil kompañia"
 
-#: templates/dashboard/quotations/print.html:77
+#: templates/dashboard/quotations/print.html:82
 msgid "Add menu pages with photos"
 msgstr "Aumenta pájina menu ho foto"
 
-#: templates/dashboard/quotations/print.html:91
+#: templates/dashboard/quotations/print.html:100
+msgid "Contact"
+msgstr "Kontaktu"
+
+#: templates/dashboard/quotations/print.html:106
+msgid "Registration no."
+msgstr "Nú. rejistu"
+
+#: templates/dashboard/quotations/print.html:126
 msgid "QUOTATION"
 msgstr "KOTASAUN"
 
-#: templates/dashboard/quotations/print.html:103
+#: templates/dashboard/quotations/print.html:138
 msgctxt "recipient"
 msgid "To"
 msgstr "Ba"
 
-#: templates/dashboard/quotations/print.html:105
+#: templates/dashboard/quotations/print.html:140
 msgid "Attn."
 msgstr "Ba atensaun"
 
-#: templates/dashboard/quotations/print.html:111
+#: templates/dashboard/quotations/print.html:146
 msgid "Details"
 msgstr "Detallu"
 
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/print.html:155
 msgid "No."
 msgstr "Nú."
 
-#: templates/dashboard/quotations/print.html:129
+#: templates/dashboard/quotations/print.html:164
 msgid "Discount"
 msgstr "Deskontu"
 
-#: templates/dashboard/quotations/print.html:134
+#: templates/dashboard/quotations/print.html:169
 msgid "Amount in words"
 msgstr "Montante ho liafuan"
 
-#: templates/dashboard/quotations/print.html:136
+#: templates/dashboard/quotations/print.html:171
 msgid "Terms & conditions"
 msgstr "Termu no kondisaun"
 
-#: templates/dashboard/quotations/print.html:139
+#: templates/dashboard/quotations/print.html:174
 msgid "For"
 msgstr "Ba"
 
-#: templates/dashboard/quotations/print.html:139
+#: templates/dashboard/quotations/print.html:176
+#: templates/dashboard/quotations/profile.html:44
+msgid "Signature"
+msgstr "Asinatura"
+
+#: templates/dashboard/quotations/print.html:176
+msgid "Stamp"
+msgstr "Karimbu"
+
+#: templates/dashboard/quotations/print.html:177
+msgid "Signed digitally on"
+msgstr "Asina dijitál iha"
+
+#: templates/dashboard/quotations/print.html:178
 msgid "Name, signature & stamp"
 msgstr "Naran, asinatura no karimbu"
 
-#: templates/dashboard/quotations/print.html:140
+#: templates/dashboard/quotations/print.html:180
 msgid "Accepted by the client"
 msgstr "Kliente simu ona"
 
-#: templates/dashboard/quotations/print.html:140
+#: templates/dashboard/quotations/print.html:180
 msgid "Name, signature, stamp & date"
 msgstr "Naran, asinatura, karimbu no data"
 
-#: templates/dashboard/quotations/print.html:160
-#, fuzzy
-#| msgid "8. Contact"
-msgid "Contact"
-msgstr "8. Kontaktu"
-
-#: templates/dashboard/quotations/print.html:166
-msgid "Registration no."
-msgstr "Nú. rejistu"
-
 #: templates/dashboard/quotations/profile.html:10
-msgid "Write it once: it is printed as its own page in every quotation, after the prices and before the menu pages."
-msgstr "Hakerek dala ida de'it: ida-ne'e imprime iha pájina rasik iha kotasaun hotu, depois folin sira no antes pájina menu."
+msgid ""
+"Write it once: it is printed as the first page of every quotation, before "
+"the prices and the menu pages."
+msgstr ""
+"Hakerek dala ida de'it: ida-ne'e imprime hanesan pájina primeiru iha "
+"kotasaun hotu, antes folin sira no pájina menu."
 
 #: templates/dashboard/quotations/profile.html:17
-#, fuzzy
-#| msgid "Complete your business profile"
 msgid "About your business"
-msgstr "Kompleta ita-nia perfil negósiu"
+msgstr "Kona-ba ita-nia negósiu"
 
 #: templates/dashboard/quotations/profile.html:18
-msgid "Tips: leave an empty line between sections. A line starting with ## (or a short line ending with :) becomes a heading; lines starting with - become a list. Your logo, cover photo, address, phone, email and opening hours are added automatically."
-msgstr "Sujestaun: husik liña mamuk ida entre seksaun. Liña ne'ebé komesa ho ## (ka liña badak ne'ebé remata ho :) sai títulu; liña ne'ebé komesa ho - sai lista. Ita-nia logo, foto kapa, enderesu, telefone, email no oráriu aumenta automátiku."
+msgid ""
+"Tips: leave an empty line between sections. A line starting with ## (or a "
+"short line ending with :) becomes a heading; lines starting with - become a "
+"list. Your logo, cover photo, address, phone, email and opening hours are "
+"added automatically."
+msgstr ""
+"Sujestaun: husik liña mamuk ida entre seksaun. Liña ne'ebé komesa ho ## (ka "
+"liña badak ne'ebé remata ho :) sai títulu; liña ne'ebé komesa ho - sai "
+"lista. Ita-nia logo, foto kapa, enderesu, telefone, email no oráriu aumenta "
+"automátiku."
 
 #: templates/dashboard/quotations/profile.html:24
 msgid "Replace the text with the example? You can edit it afterwards."
@@ -5511,58 +5564,124 @@ msgstr "Komesa ho ezemplu"
 msgid "Save company profile"
 msgstr "Rai perfil kompañia"
 
-#: templates/dashboard/quotations/profile.html:33
-#, python-format
-msgid "%(name)s is a restaurant and catering service. We cook fresh local and international food every day and deliver it on time, from small meetings to large events."
-msgstr "%(name)s mak restaurante no servisu katering. Ami te'in hahán foun lokál no internasionál loron-loron no entrega ho tempu, husi enkontru ki'ik to'o eventu boot."
-
-#: templates/dashboard/quotations/profile.html:35
-#, fuzzy
-#| msgid "Terms of service"
-msgid "Our services"
-msgstr "Termu servisu"
-
 #: templates/dashboard/quotations/profile.html:36
+msgid "Digital signature & stamp"
+msgstr "Asinatura dijitál no karimbu"
+
+#: templates/dashboard/quotations/profile.html:37
+msgid ""
+"Draw your signature or upload a photo of it (dark ink on white paper works "
+"best). Tick “Apply my digital signature and stamp” on a quotation to place "
+"them on the signature line."
+msgstr ""
+"Dezeña ita-nia asinatura ka upload foto husi asinatura (tinta metan iha "
+"papél mutin di'ak liu). Marka “Aplika ha'u-nia asinatura dijitál no karimbu” "
+"iha kotasaun ida atu tau sira iha liña asinatura."
+
+#: templates/dashboard/quotations/profile.html:40
+msgid "e.g. Director"
+msgstr "ez.: Diretór"
+
+#: templates/dashboard/quotations/profile.html:45
+msgid "Current signature"
+msgstr "Asinatura atuál"
+
+#: templates/dashboard/quotations/profile.html:46
+msgid "Remove signature"
+msgstr "Hasai asinatura"
+
+#: templates/dashboard/quotations/profile.html:47
+msgid "To replace it, draw a new one or upload an image:"
+msgstr "Atu troka, dezeña foun ida ka upload imajen:"
+
+#: templates/dashboard/quotations/profile.html:47
+msgid "Draw it here with your mouse or finger:"
+msgstr "Dezeña iha ne'e ho rato ka liman-fuan:"
+
+#: templates/dashboard/quotations/profile.html:48
+msgid "Signature pad"
+msgstr "Fatin asinatura"
+
+#: templates/dashboard/quotations/profile.html:51
+msgid "…or upload an image"
+msgstr "…ka upload imajen ida"
+
+#: templates/dashboard/quotations/profile.html:54
+msgid "Company stamp (optional)"
+msgstr "Karimbu kompañia (opsionál)"
+
+#: templates/dashboard/quotations/profile.html:55
+msgid "Current stamp"
+msgstr "Karimbu atuál"
+
+#: templates/dashboard/quotations/profile.html:56
+msgid "Remove stamp"
+msgstr "Hasai karimbu"
+
+#: templates/dashboard/quotations/profile.html:57
+msgid "Upload the stamp image (PNG with a transparent background looks best)"
+msgstr "Upload imajen karimbu (PNG ho fundu transparente di'ak liu)"
+
+#: templates/dashboard/quotations/profile.html:60
+msgid "Save signature"
+msgstr "Rai asinatura"
+
+#: templates/dashboard/quotations/profile.html:64
+#, python-format
+msgid ""
+"%(name)s is a restaurant and catering service. We cook fresh local and "
+"international food every day and deliver it on time, from small meetings to "
+"large events."
+msgstr ""
+"%(name)s mak restaurante no servisu katering. Ami te'in hahán foun lokál no "
+"internasionál loron-loron no entrega ho tempu, husi enkontru ki'ik to'o "
+"eventu boot."
+
+#: templates/dashboard/quotations/profile.html:66
+msgid "Our services"
+msgstr "Ami-nia servisu sira"
+
+#: templates/dashboard/quotations/profile.html:67
 msgid "Lunch and dinner catering for offices, workshops and trainings"
 msgstr "Katering ba han meiudia no kalan ba eskritóriu, workshop no formasaun"
 
-#: templates/dashboard/quotations/profile.html:37
+#: templates/dashboard/quotations/profile.html:68
 msgid "Coffee breaks and snack boxes"
 msgstr "Coffee break no kaixa lanche"
 
-#: templates/dashboard/quotations/profile.html:38
+#: templates/dashboard/quotations/profile.html:69
 msgid "Weddings, parties and private events"
 msgstr "Kazamentu, festa no eventu privadu"
 
-#: templates/dashboard/quotations/profile.html:39
+#: templates/dashboard/quotations/profile.html:70
 msgid "Delivery, setup, serving staff and equipment"
 msgstr "Entrega, prepara fatin, pesoál servisu no ekipamentu"
 
-#: templates/dashboard/quotations/profile.html:41
+#: templates/dashboard/quotations/profile.html:72
 msgid "Why choose us"
 msgstr "Tanba sa mak hili ami"
 
-#: templates/dashboard/quotations/profile.html:42
+#: templates/dashboard/quotations/profile.html:73
 msgid "Fresh ingredients bought locally every day"
 msgstr "Ingrediente foun sosa iha merkadu lokál loron-loron"
 
-#: templates/dashboard/quotations/profile.html:43
+#: templates/dashboard/quotations/profile.html:74
 msgid "Clean kitchen and trained staff"
 msgstr "Dapur moos no pesoál ne'ebé hetan formasaun"
 
-#: templates/dashboard/quotations/profile.html:44
+#: templates/dashboard/quotations/profile.html:75
 msgid "Menus adapted to your budget and number of guests"
 msgstr "Menu tuir ita-nia orsamentu no konvidadu nia númeru"
 
-#: templates/dashboard/quotations/profile.html:45
+#: templates/dashboard/quotations/profile.html:76
 msgid "Experience with government offices, NGOs and companies"
 msgstr "Esperiénsia ho servisu governu, ONG no kompañia sira"
 
-#: templates/dashboard/quotations/profile.html:47
+#: templates/dashboard/quotations/profile.html:78
 msgid "Our clients"
 msgstr "Ami-nia kliente sira"
 
-#: templates/dashboard/quotations/profile.html:48
+#: templates/dashboard/quotations/profile.html:79
 msgid "[List some clients or events you have served.]"
 msgstr "[Hakerek kliente ka eventu balun ne'ebé ita serbí ona.]"
 

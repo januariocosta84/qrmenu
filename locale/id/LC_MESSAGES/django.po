@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 15:23+0900\n"
+"POT-Creation-Date: 2026-10-15 16:51+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -163,7 +163,7 @@ msgid "Trial"
 msgstr "Uji coba"
 
 #: apps/billing/models.py:98 apps/dashboard/forms.py:256
-#: apps/dashboard/forms.py:403 apps/restaurants/models.py:135
+#: apps/dashboard/forms.py:403 apps/restaurants/models.py:147
 #: templates/dashboard/branch_manage.html:9
 #: templates/dashboard/branch_manage.html:49 templates/dashboard/staff.html:23
 msgid "Active"
@@ -264,8 +264,9 @@ msgid "Change"
 msgstr ""
 
 #: apps/core/django_strings.py:27
+#: templates/dashboard/quotations/profile.html:49
 msgid "Clear"
-msgstr ""
+msgstr "Bersihkan"
 
 #: apps/core/django_strings.py:28
 msgid "Yes"
@@ -706,10 +707,10 @@ msgstr "Nama"
 
 #: apps/dashboard/forms.py:106 apps/dashboard/forms.py:199
 #: templates/dashboard/api_docs.html:77
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/edit.html:71
-#: templates/dashboard/quotations/edit.html:120
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/edit.html:73
+#: templates/dashboard/quotations/edit.html:122
+#: templates/dashboard/quotations/print.html:155
 msgid "Description"
 msgstr "Deskripsi"
 
@@ -722,17 +723,17 @@ msgid "Cover image"
 msgstr "Gambar sampul"
 
 #: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
-#: apps/quotations/forms.py:31 apps/restaurants/models.py:345
+#: apps/quotations/forms.py:36 apps/restaurants/models.py:357
 msgid "Address"
 msgstr "Alamat"
 
 #: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
 #: templates/dashboard/order_detail.html:21
-#: templates/dashboard/quotations/print.html:163
+#: templates/dashboard/quotations/print.html:103
 msgid "Phone"
 msgstr "Telepon"
 
-#: apps/dashboard/forms.py:107 templates/dashboard/quotations/print.html:165
+#: apps/dashboard/forms.py:107 templates/dashboard/quotations/print.html:105
 msgid "Opening hours"
 msgstr "Jam buka"
 
@@ -760,7 +761,7 @@ msgstr "Waktu persiapan bawaan (menit)"
 msgid "Accepting orders"
 msgstr "Menerima pesanan"
 
-#: apps/dashboard/forms.py:111 apps/restaurants/models.py:59
+#: apps/dashboard/forms.py:111 apps/restaurants/models.py:71
 msgid "Show my menu on Google"
 msgstr "Tampilkan menu saya di Google"
 
@@ -812,28 +813,28 @@ msgstr "Tarif PPN (%)"
 msgid "Tax name"
 msgstr "Nama pajak"
 
-#: apps/dashboard/forms.py:118 templates/dashboard/quotations/print.html:87
-#: templates/dashboard/quotations/print.html:167
+#: apps/dashboard/forms.py:118 templates/dashboard/quotations/print.html:107
+#: templates/dashboard/quotations/print.html:122
 msgid "Tax ID"
 msgstr "NPWP"
 
-#: apps/dashboard/forms.py:119 apps/restaurants/models.py:106
+#: apps/dashboard/forms.py:119 apps/restaurants/models.py:118
 msgid "Default bill print mode"
 msgstr "Mode cetak tagihan bawaan"
 
 #: apps/dashboard/forms.py:119 apps/dashboard/views.py:872
-#: apps/menu/service_types.py:32 apps/restaurants/models.py:112
+#: apps/menu/service_types.py:32 apps/restaurants/models.py:124
 #: templates/dashboard/base.html:33 templates/dashboard/car_wash.html:3
 #: templates/dashboard/car_wash.html:8 templates/dashboard/menu.html:22
 #: templates/dashboard/table_detail.html:65
 msgid "Car wash"
 msgstr "Cuci kendaraan"
 
-#: apps/dashboard/forms.py:120 apps/restaurants/models.py:115
+#: apps/dashboard/forms.py:120 apps/restaurants/models.py:127
 msgid "Car wash name"
 msgstr "Nama cuci kendaraan"
 
-#: apps/dashboard/forms.py:120 apps/restaurants/models.py:118
+#: apps/dashboard/forms.py:120 apps/restaurants/models.py:130
 msgid "Print a car wash ticket automatically"
 msgstr "Cetak tiket cuci otomatis"
 
@@ -978,7 +979,7 @@ msgstr "Foto tampak depan"
 msgid "A photo of the branch from outside, showing the brand name."
 msgstr "Foto cabang dari luar yang menampilkan nama merek."
 
-#: apps/dashboard/forms.py:323 apps/restaurants/models.py:340
+#: apps/dashboard/forms.py:323 apps/restaurants/models.py:352
 msgid "Business registration number"
 msgstr "Nomor registrasi usaha"
 
@@ -990,7 +991,7 @@ msgstr ""
 "Semua cabang harus berada di bawah registrasi usaha yang sama dengan cabang "
 "utama."
 
-#: apps/dashboard/forms.py:325 apps/restaurants/models.py:343
+#: apps/dashboard/forms.py:325 apps/restaurants/models.py:355
 msgid "Owner name"
 msgstr "Nama pemilik"
 
@@ -1034,13 +1035,13 @@ msgstr "Metode"
 #: templates/dashboard/billing.html:53 templates/dashboard/billing.html:59
 #: templates/dashboard/cash_register.html:53
 #: templates/dashboard/expenses.html:91 templates/dashboard/expenses.html:98
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/print.html:155
 #: templates/dashboard/revenue.html:35 templates/dashboard/revenue.html:42
 msgid "Amount"
 msgstr "Jumlah"
 
-#: apps/dashboard/forms.py:409 templates/dashboard/quotations/print.html:96
+#: apps/dashboard/forms.py:409 templates/dashboard/quotations/print.html:131
 msgid "Reference"
 msgstr "Referensi"
 
@@ -1542,7 +1543,7 @@ msgstr "mis. Beras 25 kg, isi ulang gas, sayur pasar"
 #: templates/dashboard/expenses.html:91
 #: templates/dashboard/quotations/list.html:26
 #: templates/dashboard/quotations/list.html:32
-#: templates/dashboard/quotations/print.html:94
+#: templates/dashboard/quotations/print.html:129
 #: templates/dashboard/revenue.html:35
 msgid "Date"
 msgstr "Tanggal"
@@ -1952,7 +1953,7 @@ msgstr ""
 msgid "Could not reach the printer at %(target)s (%(error)s)."
 msgstr "Tidak dapat menghubungi printer di %(target)s (%(error)s)."
 
-#: apps/payments/models.py:23 apps/restaurants/models.py:135
+#: apps/payments/models.py:23 apps/restaurants/models.py:147
 #: templates/dashboard/branch_manage.html:9
 #: templates/dashboard/branches.html:42
 msgid "Pending"
@@ -2043,48 +2044,48 @@ msgstr "Uang tunai kurang: diterima %(received)s tetapi tagihan %(due)s."
 msgid "Amount must be greater than zero."
 msgstr "Jumlah harus lebih dari nol."
 
-#: apps/quotations/forms.py:30
+#: apps/quotations/forms.py:35
 msgid "Client contact person"
 msgstr "Narahubung klien"
 
-#: apps/quotations/forms.py:30
+#: apps/quotations/forms.py:35
 msgid "Organisation"
 msgstr "Organisasi"
 
-#: apps/quotations/forms.py:31
+#: apps/quotations/forms.py:36
 msgid "Phone / email"
 msgstr "Telepon / email"
 
-#: apps/quotations/forms.py:32
+#: apps/quotations/forms.py:37
 msgid "Tender / procurement reference"
 msgstr "Referensi tender / pengadaan"
 
-#: apps/quotations/forms.py:32 templates/dashboard/quotations/list.html:26
+#: apps/quotations/forms.py:37 templates/dashboard/quotations/list.html:26
 #: templates/dashboard/quotations/list.html:31
 msgid "Subject"
 msgstr "Perihal"
 
-#: apps/quotations/forms.py:33 templates/dashboard/quotations/print.html:113
+#: apps/quotations/forms.py:38 templates/dashboard/quotations/print.html:148
 msgid "Event / delivery date"
 msgstr "Tanggal acara / pengantaran"
 
-#: apps/quotations/forms.py:33 templates/dashboard/quotations/print.html:114
+#: apps/quotations/forms.py:38 templates/dashboard/quotations/print.html:149
 msgid "Number of guests"
 msgstr "Jumlah tamu"
 
-#: apps/quotations/forms.py:34
+#: apps/quotations/forms.py:39
 msgid "Quotation date"
 msgstr "Tanggal penawaran"
 
-#: apps/quotations/forms.py:34 templates/dashboard/quotations/print.html:95
+#: apps/quotations/forms.py:39 templates/dashboard/quotations/print.html:130
 msgid "Valid until"
 msgstr "Berlaku sampai"
 
-#: apps/quotations/forms.py:35
+#: apps/quotations/forms.py:40
 msgid "Document language"
 msgstr "Bahasa dokumen"
 
-#: apps/quotations/forms.py:35 templates/dashboard/_orders_table.html:5
+#: apps/quotations/forms.py:40 templates/dashboard/_orders_table.html:5
 #: templates/dashboard/_orders_table.html:14
 #: templates/dashboard/api_docs.html:26 templates/dashboard/billing.html:53
 #: templates/dashboard/billing.html:60
@@ -2096,46 +2097,58 @@ msgstr "Bahasa dokumen"
 msgid "Status"
 msgstr "Status"
 
-#: apps/quotations/forms.py:36
+#: apps/quotations/forms.py:41
 msgid "Discount (amount)"
 msgstr "Diskon (jumlah)"
 
-#: apps/quotations/forms.py:36
+#: apps/quotations/forms.py:41
 msgid "VAT (%)"
 msgstr "PPN (%)"
 
-#: apps/quotations/forms.py:37
+#: apps/quotations/forms.py:42
 msgid "Terms, payment & bank details"
 msgstr "Syarat, pembayaran & rekening bank"
 
-#: apps/quotations/forms.py:40
+#: apps/quotations/forms.py:43
+msgid "Apply my digital signature and stamp"
+msgstr "Terapkan tanda tangan digital dan stempel saya"
+
+#: apps/quotations/forms.py:46
 msgid "e.g. Lunch catering for training workshop"
 msgstr "mis. Katering makan siang untuk lokakarya pelatihan"
 
-#: apps/quotations/forms.py:41
+#: apps/quotations/forms.py:47
 msgid "0 = no VAT."
 msgstr "0 = tanpa PPN."
 
-#: apps/quotations/forms.py:48
+#: apps/quotations/forms.py:54
 msgid "Must be on or after the quotation date."
 msgstr "Harus pada atau setelah tanggal penawaran."
 
-#: apps/quotations/forms.py:72
+#: apps/quotations/forms.py:84
+msgid "The drawn signature could not be read. Please draw it again."
+msgstr "Tanda tangan yang digambar tidak dapat dibaca. Silakan gambar lagi."
+
+#: apps/quotations/forms.py:90
+msgid "The image is too large (max 2 MB)."
+msgstr "Gambar terlalu besar (maks. 2 MB)."
+
+#: apps/quotations/forms.py:120
 #, python-format
 msgid "Line %(n)s: enter numbers for quantity and price."
 msgstr "Baris %(n)s: masukkan angka untuk jumlah dan harga."
 
-#: apps/quotations/forms.py:75
+#: apps/quotations/forms.py:123
 #, python-format
 msgid "Line %(n)s: enter a description."
 msgstr "Baris %(n)s: masukkan deskripsi."
 
-#: apps/quotations/forms.py:78
+#: apps/quotations/forms.py:126
 #, python-format
 msgid "Line %(n)s: quantity and price must be valid positive numbers."
 msgstr "Baris %(n)s: jumlah dan harga harus angka positif yang valid."
 
-#: apps/quotations/forms.py:87
+#: apps/quotations/forms.py:135
 msgid "Add at least one line."
 msgstr "Tambahkan minimal satu baris."
 
@@ -2147,8 +2160,8 @@ msgstr "Draf"
 msgid "Sent"
 msgstr "Terkirim"
 
-#: apps/quotations/models.py:28 apps/restaurants/models.py:136
-#: apps/restaurants/models.py:335 templates/dashboard/branch_manage.html:9
+#: apps/quotations/models.py:28 apps/restaurants/models.py:148
+#: apps/restaurants/models.py:347 templates/dashboard/branch_manage.html:9
 #: templates/dashboard/branches.html:43
 #: templates/dashboard/quotations/list.html:19
 msgid "Rejected"
@@ -2158,43 +2171,56 @@ msgstr "Ditolak"
 msgid "Company profile saved."
 msgstr "Profil perusahaan disimpan."
 
-#: apps/quotations/views.py:105
+#: apps/quotations/views.py:71
+msgid "Signature saved."
+msgstr "Tanda tangan disimpan."
+
+#: apps/quotations/views.py:132
 #, python-format
 msgid "Quotation %(number)s saved."
 msgstr "Penawaran %(number)s disimpan."
 
-#: apps/quotations/views.py:142
+#: apps/quotations/views.py:169
 #, python-format
 msgid "Copied as %(number)s. Update the dates and prices if needed."
 msgstr "Disalin sebagai %(number)s. Perbarui tanggal dan harga bila perlu."
 
-#: apps/quotations/views.py:153
+#: apps/quotations/views.py:180
 #, python-format
 msgid "Quotation %(number)s deleted."
 msgstr "Penawaran %(number)s dihapus."
 
-#: apps/restaurants/models.py:17
+#: apps/restaurants/models.py:24
 msgid "Use letters, numbers and dashes only (max 20), e.g. 12 or A-3."
 msgstr ""
 "Gunakan huruf, angka, dan tanda hubung saja (maks. 20), mis. 12 atau A-3."
 
-#: apps/restaurants/models.py:32
+#: apps/restaurants/models.py:39
 msgid "e.g. Mon–Sat 08:00–22:00"
 msgstr "mis. Sen–Sab 08:00–22:00"
 
-#: apps/restaurants/models.py:34 templates/dashboard/quotations/list.html:11
-#: templates/dashboard/quotations/print.html:149
+#: apps/restaurants/models.py:41 templates/dashboard/quotations/list.html:11
+#: templates/dashboard/quotations/print.html:89
 #: templates/dashboard/quotations/profile.html:3
 #: templates/dashboard/quotations/profile.html:9
 #: templates/dashboard/quotations/profile.html:20
 msgid "Company profile"
 msgstr "Profil perusahaan"
 
-#: apps/restaurants/models.py:43
+#: apps/restaurants/models.py:45 templates/dashboard/quotations/profile.html:39
+msgid "Name of the person signing"
+msgstr "Nama penanda tangan"
+
+#: apps/restaurants/models.py:46 templates/dashboard/quotations/profile.html:40
+msgctxt "job title"
+msgid "Position"
+msgstr "Jabatan"
+
+#: apps/restaurants/models.py:55
 msgid "Charge VAT on orders."
 msgstr "Kenakan PPN pada pesanan."
 
-#: apps/restaurants/models.py:49
+#: apps/restaurants/models.py:61
 msgid ""
 "Add on top: the bill total goes up by the VAT. Already included: totals stay "
 "the same and receipts show the VAT part."
@@ -2202,15 +2228,15 @@ msgstr ""
 "Tambahkan: total tagihan naik sebesar PPN. Sudah termasuk: total tidak "
 "berubah dan struk menampilkan bagian PPN."
 
-#: apps/restaurants/models.py:52
+#: apps/restaurants/models.py:64
 msgid "Name printed on bills, e.g. VAT or IVA."
 msgstr "Nama yang dicetak di tagihan, mis. VAT atau PPN."
 
-#: apps/restaurants/models.py:53
+#: apps/restaurants/models.py:65
 msgid "Tax ID printed on receipts."
 msgstr "NPWP yang dicetak di struk."
 
-#: apps/restaurants/models.py:60
+#: apps/restaurants/models.py:72
 msgid ""
 "Let Google and other search engines list your restaurant, menu, prices and "
 "dish photos."
@@ -2218,29 +2244,29 @@ msgstr ""
 "Izinkan Google dan mesin pencari lain menampilkan restoran, menu, harga, dan "
 "foto hidangan Anda."
 
-#: apps/restaurants/models.py:65
+#: apps/restaurants/models.py:77
 msgid "Pin 2 (most drawers)"
 msgstr "Pin 2 (kebanyakan laci)"
 
-#: apps/restaurants/models.py:65
+#: apps/restaurants/models.py:77
 msgid "Pin 5"
 msgstr "Pin 5"
 
-#: apps/restaurants/models.py:67
+#: apps/restaurants/models.py:79
 msgid "Open the cash drawer automatically when a cash payment is recorded."
 msgstr "Buka laci kas otomatis saat pembayaran tunai dicatat."
 
-#: apps/restaurants/models.py:70
+#: apps/restaurants/models.py:82
 msgid ""
 "IP address of the receipt printer the drawer is plugged into, e.g. "
 "192.168.1.50"
 msgstr "Alamat IP printer struk tempat laci tersambung, mis. 192.168.1.50"
 
-#: apps/restaurants/models.py:74
+#: apps/restaurants/models.py:86
 msgid "Raw printing port; 9100 for almost all network receipt printers."
 msgstr "Port cetak langsung; 9100 untuk hampir semua printer struk jaringan."
 
-#: apps/restaurants/models.py:81
+#: apps/restaurants/models.py:93
 msgid ""
 "The cash drawer is plugged into the receipt printer of this computer. A "
 "small slip prints to open it."
@@ -2248,63 +2274,63 @@ msgstr ""
 "Laci kas tersambung ke printer struk komputer ini. Slip kecil dicetak untuk "
 "membukanya."
 
-#: apps/restaurants/models.py:87
+#: apps/restaurants/models.py:99
 msgid "Ask \"Print receipt?\" after each payment"
 msgstr "Tanya “Cetak struk?” setelah setiap pembayaran"
 
-#: apps/restaurants/models.py:88
+#: apps/restaurants/models.py:100
 msgid "Always print after payment"
 msgstr "Selalu cetak setelah pembayaran"
 
-#: apps/restaurants/models.py:89
+#: apps/restaurants/models.py:101
 msgid "Never print automatically"
 msgstr "Jangan pernah cetak otomatis"
 
-#: apps/restaurants/models.py:93
+#: apps/restaurants/models.py:105
 msgid "This device's printer (print dialog)"
 msgstr "Printer perangkat ini (dialog cetak)"
 
-#: apps/restaurants/models.py:94
+#: apps/restaurants/models.py:106
 msgid "Network receipt printer (prints directly)"
 msgstr "Printer struk jaringan (cetak langsung)"
 
-#: apps/restaurants/models.py:99
+#: apps/restaurants/models.py:111
 msgid "80 mm paper"
 msgstr "Kertas 80 mm"
 
-#: apps/restaurants/models.py:99
+#: apps/restaurants/models.py:111
 msgid "58 mm paper"
 msgstr "Kertas 58 mm"
 
-#: apps/restaurants/models.py:100
+#: apps/restaurants/models.py:112
 msgid "Paper width of the network receipt printer."
 msgstr "Lebar kertas printer struk."
 
-#: apps/restaurants/models.py:104
+#: apps/restaurants/models.py:116
 msgid "One combined bill"
 msgstr "Satu tagihan gabungan"
 
-#: apps/restaurants/models.py:104
+#: apps/restaurants/models.py:116
 msgid "Separate bill per service"
 msgstr "Tagihan terpisah per layanan"
 
-#: apps/restaurants/models.py:107
+#: apps/restaurants/models.py:119
 msgid ""
 "Used when a table has orders for several services (e.g. café and car wash)."
 msgstr ""
 "Dipakai saat satu meja punya pesanan beberapa layanan (mis. kafe dan cuci)."
 
-#: apps/restaurants/models.py:113
+#: apps/restaurants/models.py:125
 msgid ""
 "Customers can order car wash packages from the table QR, together with café "
 "items."
 msgstr "Pelanggan bisa memesan paket cuci dari QR meja, bersama item kafe."
 
-#: apps/restaurants/models.py:116
+#: apps/restaurants/models.py:128
 msgid "Shown to customers and on car wash bills, e.g. Timor Car Wash."
 msgstr "Ditampilkan ke pelanggan dan di tagihan cuci, mis. Timor Car Wash."
 
-#: apps/restaurants/models.py:119
+#: apps/restaurants/models.py:131
 msgid ""
 "For each new car wash order: on the network receipt printer if set up, "
 "otherwise from the Car wash screen when it is open."
@@ -2312,46 +2338,46 @@ msgstr ""
 "Untuk setiap pesanan cuci baru: di printer jaringan bila ada, jika tidak "
 "dari layar Cuci kendaraan saat terbuka."
 
-#: apps/restaurants/models.py:127
+#: apps/restaurants/models.py:139
 msgid "The main branch this sub-branch belongs to."
 msgstr "Cabang utama tempat sub-cabang ini berada."
 
-#: apps/restaurants/models.py:130
+#: apps/restaurants/models.py:142
 msgid "Set when the main branch deactivates this sub-branch."
 msgstr "Diisi saat cabang utama menonaktifkan sub-cabang ini."
 
-#: apps/restaurants/models.py:136 templates/dashboard/branch_manage.html:9
+#: apps/restaurants/models.py:148 templates/dashboard/branch_manage.html:9
 #: templates/dashboard/branches.html:44
 msgid "Suspended"
 msgstr "Ditangguhkan"
 
-#: apps/restaurants/models.py:217
+#: apps/restaurants/models.py:229
 msgid "Optional, e.g. 'Terrace' or 'Window'."
 msgstr "Opsional, mis. 'Teras' atau 'Jendela'."
 
-#: apps/restaurants/models.py:335 templates/dashboard/business_profile.html:11
+#: apps/restaurants/models.py:347 templates/dashboard/business_profile.html:11
 msgid "Incomplete"
 msgstr "Belum lengkap"
 
-#: apps/restaurants/models.py:335 templates/dashboard/branches.html:97
+#: apps/restaurants/models.py:347 templates/dashboard/branches.html:97
 #: templates/dashboard/business_profile.html:9
 msgid "Under review"
 msgstr "Sedang ditinjau"
 
-#: apps/restaurants/models.py:335 templates/dashboard/branches.html:95
+#: apps/restaurants/models.py:347 templates/dashboard/branches.html:95
 #: templates/dashboard/business_profile.html:8
 msgid "Verified"
 msgstr "Terverifikasi"
 
-#: apps/restaurants/models.py:341
+#: apps/restaurants/models.py:353
 msgid "e.g. your SERVE certificate number or tax number (NIF)."
 msgstr "mis. nomor sertifikat SERVE atau nomor pajak (NIF)."
 
-#: apps/restaurants/models.py:344
+#: apps/restaurants/models.py:356
 msgid "The legal owner of the business."
 msgstr "Pemilik sah usaha ini."
 
-#: apps/restaurants/models.py:346
+#: apps/restaurants/models.py:358
 msgid "Phone number"
 msgstr "Nomor telepon"
 
@@ -2629,7 +2655,7 @@ msgstr "Pelanggan"
 
 #: templates/dashboard/_orders_table.html:5
 #: templates/dashboard/_orders_table.html:12
-#: templates/dashboard/quotations/edit.html:51
+#: templates/dashboard/quotations/edit.html:53
 msgid "Items"
 msgstr "Item"
 
@@ -3536,7 +3562,7 @@ msgstr "Kelola"
 #: templates/dashboard/base.html:38 templates/dashboard/car_wash.html:93
 #: templates/dashboard/item_form.html:6 templates/dashboard/menu.html:3
 #: templates/dashboard/menu.html:8
-#: templates/dashboard/quotations/print.html:178
+#: templates/dashboard/quotations/print.html:189
 msgid "Menu"
 msgstr "Menu"
 
@@ -4391,7 +4417,7 @@ msgstr "Batalkan cuci #%(n)s?"
 
 #: templates/dashboard/car_wash.html:56 templates/dashboard/item_form.html:47
 #: templates/dashboard/new_order.html:77
-#: templates/dashboard/quotations/edit.html:107
+#: templates/dashboard/quotations/edit.html:109
 #: templates/dashboard/quotations/profile.html:29
 #: templates/dashboard/simple_form.html:10
 msgid "Cancel"
@@ -4965,8 +4991,8 @@ msgstr "Ketuk hidangan untuk menambahkannya."
 
 #: templates/dashboard/new_order.html:41
 #: templates/dashboard/order_detail.html:44
-#: templates/dashboard/quotations/edit.html:90
-#: templates/dashboard/quotations/print.html:128
+#: templates/dashboard/quotations/edit.html:92
+#: templates/dashboard/quotations/print.html:163
 msgid "Subtotal"
 msgstr "Subtotal"
 
@@ -5063,19 +5089,19 @@ msgid "Item"
 msgstr "Item"
 
 #: templates/dashboard/order_detail.html:29
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/edit.html:73
-#: templates/dashboard/quotations/edit.html:122
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/edit.html:75
+#: templates/dashboard/quotations/edit.html:124
+#: templates/dashboard/quotations/print.html:155
 #: templates/dashboard/reports.html:71
 msgid "Qty"
 msgstr "Jml"
 
 #: templates/dashboard/order_detail.html:29
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/edit.html:72
-#: templates/dashboard/quotations/edit.html:121
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/edit.html:74
+#: templates/dashboard/quotations/edit.html:123
+#: templates/dashboard/quotations/print.html:155
 msgid "Unit"
 msgstr "Satuan"
 
@@ -5266,23 +5292,31 @@ msgstr "Klien"
 
 #: templates/dashboard/quotations/edit.html:36
 #: templates/dashboard/quotations/print.html:6
-#: templates/dashboard/quotations/print.html:180
+#: templates/dashboard/quotations/print.html:191
 msgid "Quotation"
 msgstr "Penawaran"
 
-#: templates/dashboard/quotations/edit.html:53
+#: templates/dashboard/quotations/edit.html:46
+msgid "Add your digital signature"
+msgstr "Tambahkan tanda tangan digital Anda"
+
+#: templates/dashboard/quotations/edit.html:46
+msgid "to sign quotations without printing them."
+msgstr "untuk menandatangani penawaran tanpa mencetaknya."
+
+#: templates/dashboard/quotations/edit.html:55
 msgid "Dish from your menu"
 msgstr "Hidangan dari menu"
 
-#: templates/dashboard/quotations/edit.html:54
+#: templates/dashboard/quotations/edit.html:56
 msgid "Choose a dish from your menu…"
 msgstr "Pilih hidangan dari menu…"
 
-#: templates/dashboard/quotations/edit.html:59
+#: templates/dashboard/quotations/edit.html:61
 msgid "Add from menu"
 msgstr "Tambah dari menu"
 
-#: templates/dashboard/quotations/edit.html:60
+#: templates/dashboard/quotations/edit.html:62
 msgid ""
 "Add every dish on your menu as a line? You can change or remove each line "
 "afterwards."
@@ -5290,78 +5324,78 @@ msgstr ""
 "Tambahkan semua hidangan di menu sebagai baris? Anda bisa mengubah atau "
 "menghapus setiap baris setelahnya."
 
-#: templates/dashboard/quotations/edit.html:60
+#: templates/dashboard/quotations/edit.html:62
 msgid "Add all menu items"
 msgstr "Tambah semua menu"
 
-#: templates/dashboard/quotations/edit.html:61
+#: templates/dashboard/quotations/edit.html:63
 msgid "Add custom line"
 msgstr "Tambah baris manual"
 
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/edit.html:74
-#: templates/dashboard/quotations/edit.html:123
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/edit.html:76
+#: templates/dashboard/quotations/edit.html:125
+#: templates/dashboard/quotations/print.html:155
 msgid "Unit price"
 msgstr "Harga satuan"
 
-#: templates/dashboard/quotations/edit.html:76
-#: templates/dashboard/quotations/edit.html:125
+#: templates/dashboard/quotations/edit.html:78
+#: templates/dashboard/quotations/edit.html:127
 msgid "Remove line"
 msgstr "Hapus baris"
 
-#: templates/dashboard/quotations/edit.html:82
+#: templates/dashboard/quotations/edit.html:84
 msgid "Remove all lines from this quotation?"
 msgstr "Hapus semua baris dari penawaran ini?"
 
-#: templates/dashboard/quotations/edit.html:82
+#: templates/dashboard/quotations/edit.html:84
 msgid "Remove all lines"
 msgstr "Hapus semua baris"
 
-#: templates/dashboard/quotations/edit.html:83
+#: templates/dashboard/quotations/edit.html:85
 msgid "No lines yet. Add dishes from your menu or a custom line."
 msgstr "Belum ada baris. Tambahkan hidangan dari menu atau baris manual."
 
-#: templates/dashboard/quotations/edit.html:85
-#: templates/dashboard/quotations/edit.html:136
+#: templates/dashboard/quotations/edit.html:87
+#: templates/dashboard/quotations/edit.html:138
 msgid "pax"
 msgstr "pax"
 
-#: templates/dashboard/quotations/edit.html:85
+#: templates/dashboard/quotations/edit.html:87
 msgid "plate"
 msgstr "piring"
 
-#: templates/dashboard/quotations/edit.html:85
+#: templates/dashboard/quotations/edit.html:87
 msgid "box"
 msgstr "kotak"
 
-#: templates/dashboard/quotations/edit.html:86
+#: templates/dashboard/quotations/edit.html:88
 msgid "pcs"
 msgstr "pcs"
 
-#: templates/dashboard/quotations/edit.html:86
+#: templates/dashboard/quotations/edit.html:88
 msgid "set"
 msgstr "set"
 
-#: templates/dashboard/quotations/edit.html:86
+#: templates/dashboard/quotations/edit.html:88
 msgid "day"
 msgstr "hari"
 
-#: templates/dashboard/quotations/edit.html:86
+#: templates/dashboard/quotations/edit.html:88
 msgid "trip"
 msgstr "perjalanan"
 
-#: templates/dashboard/quotations/edit.html:93
-#: templates/dashboard/quotations/print.html:130
+#: templates/dashboard/quotations/edit.html:95
+#: templates/dashboard/quotations/print.html:165
 msgid "VAT"
 msgstr "PPN"
 
-#: templates/dashboard/quotations/edit.html:94
-#: templates/dashboard/quotations/print.html:131
+#: templates/dashboard/quotations/edit.html:96
+#: templates/dashboard/quotations/print.html:166
 msgid "Grand total"
 msgstr "Total keseluruhan"
 
-#: templates/dashboard/quotations/edit.html:101
+#: templates/dashboard/quotations/edit.html:103
 #, python-format
 msgid ""
 "Printed at the bottom, e.g. 50%% deposit on confirmation, payment within 14 "
@@ -5372,16 +5406,16 @@ msgstr ""
 "dalam 14 hari, rekening bank. Penawaran baru memakai syarat dari penawaran "
 "terakhir."
 
-#: templates/dashboard/quotations/edit.html:106
+#: templates/dashboard/quotations/edit.html:108
 msgid "Save quotation"
 msgstr "Simpan penawaran"
 
-#: templates/dashboard/quotations/edit.html:112
+#: templates/dashboard/quotations/edit.html:114
 #, python-format
 msgid "Delete quotation %(n)s?"
 msgstr "Hapus penawaran %(n)s?"
 
-#: templates/dashboard/quotations/edit.html:113
+#: templates/dashboard/quotations/edit.html:115
 msgid "Delete this quotation"
 msgstr "Hapus penawaran ini"
 
@@ -5393,7 +5427,7 @@ msgstr ""
 "simpan sebagai PDF."
 
 #: templates/dashboard/quotations/list.html:26
-#: templates/dashboard/quotations/print.html:93
+#: templates/dashboard/quotations/print.html:128
 msgid "Number"
 msgstr "Nomor"
 
@@ -5410,96 +5444,115 @@ msgstr "Belum ada penawaran."
 msgid "Create your first quotation"
 msgstr "Buat penawaran pertama"
 
-#: templates/dashboard/quotations/print.html:74
+#: templates/dashboard/quotations/print.html:79
 msgid "Print / save as PDF"
 msgstr "Cetak / simpan sebagai PDF"
 
-#: templates/dashboard/quotations/print.html:75
+#: templates/dashboard/quotations/print.html:80
 msgid "Close"
 msgstr "Tutup"
 
-#: templates/dashboard/quotations/print.html:76
-#, fuzzy
-#| msgid "Add many tables"
+#: templates/dashboard/quotations/print.html:81
 msgid "Add company profile"
-msgstr "Tambah banyak meja"
+msgstr "Tambahkan profil perusahaan"
 
-#: templates/dashboard/quotations/print.html:77
+#: templates/dashboard/quotations/print.html:82
 msgid "Add menu pages with photos"
 msgstr "Tambahkan halaman menu dengan foto"
 
-#: templates/dashboard/quotations/print.html:91
+#: templates/dashboard/quotations/print.html:100
+msgid "Contact"
+msgstr "Kontak"
+
+#: templates/dashboard/quotations/print.html:106
+msgid "Registration no."
+msgstr "No. registrasi"
+
+#: templates/dashboard/quotations/print.html:126
 msgid "QUOTATION"
 msgstr "PENAWARAN HARGA"
 
-#: templates/dashboard/quotations/print.html:103
+#: templates/dashboard/quotations/print.html:138
 msgctxt "recipient"
 msgid "To"
 msgstr "Kepada"
 
-#: templates/dashboard/quotations/print.html:105
+#: templates/dashboard/quotations/print.html:140
 msgid "Attn."
 msgstr "U.p."
 
-#: templates/dashboard/quotations/print.html:111
+#: templates/dashboard/quotations/print.html:146
 msgid "Details"
 msgstr "Rincian"
 
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/print.html:155
 msgid "No."
 msgstr "No."
 
-#: templates/dashboard/quotations/print.html:129
+#: templates/dashboard/quotations/print.html:164
 msgid "Discount"
 msgstr "Diskon"
 
-#: templates/dashboard/quotations/print.html:134
+#: templates/dashboard/quotations/print.html:169
 msgid "Amount in words"
 msgstr "Terbilang"
 
-#: templates/dashboard/quotations/print.html:136
+#: templates/dashboard/quotations/print.html:171
 msgid "Terms & conditions"
 msgstr "Syarat & ketentuan"
 
-#: templates/dashboard/quotations/print.html:139
+#: templates/dashboard/quotations/print.html:174
 msgid "For"
 msgstr "Untuk"
 
-#: templates/dashboard/quotations/print.html:139
+#: templates/dashboard/quotations/print.html:176
+#: templates/dashboard/quotations/profile.html:44
+msgid "Signature"
+msgstr "Tanda tangan"
+
+#: templates/dashboard/quotations/print.html:176
+msgid "Stamp"
+msgstr "Stempel"
+
+#: templates/dashboard/quotations/print.html:177
+msgid "Signed digitally on"
+msgstr "Ditandatangani secara digital pada"
+
+#: templates/dashboard/quotations/print.html:178
 msgid "Name, signature & stamp"
 msgstr "Nama, tanda tangan & stempel"
 
-#: templates/dashboard/quotations/print.html:140
+#: templates/dashboard/quotations/print.html:180
 msgid "Accepted by the client"
 msgstr "Disetujui oleh klien"
 
-#: templates/dashboard/quotations/print.html:140
+#: templates/dashboard/quotations/print.html:180
 msgid "Name, signature, stamp & date"
 msgstr "Nama, tanda tangan, stempel & tanggal"
 
-#: templates/dashboard/quotations/print.html:160
-#, fuzzy
-#| msgid "8. Contact"
-msgid "Contact"
-msgstr "8. Kontak"
-
-#: templates/dashboard/quotations/print.html:166
-msgid "Registration no."
-msgstr "No. registrasi"
-
 #: templates/dashboard/quotations/profile.html:10
-msgid "Write it once: it is printed as its own page in every quotation, after the prices and before the menu pages."
-msgstr "Tulis sekali saja: dicetak di halaman tersendiri di setiap penawaran, setelah harga dan sebelum halaman menu."
+msgid ""
+"Write it once: it is printed as the first page of every quotation, before "
+"the prices and the menu pages."
+msgstr ""
+"Tulis sekali saja: dicetak sebagai halaman pertama di setiap penawaran, "
+"sebelum harga dan halaman menu."
 
 #: templates/dashboard/quotations/profile.html:17
-#, fuzzy
-#| msgid "Complete your business profile"
 msgid "About your business"
-msgstr "Lengkapi profil usaha Anda"
+msgstr "Tentang usaha Anda"
 
 #: templates/dashboard/quotations/profile.html:18
-msgid "Tips: leave an empty line between sections. A line starting with ## (or a short line ending with :) becomes a heading; lines starting with - become a list. Your logo, cover photo, address, phone, email and opening hours are added automatically."
-msgstr "Tips: beri satu baris kosong di antara bagian. Baris yang diawali ## (atau baris pendek yang diakhiri :) menjadi judul; baris yang diawali - menjadi daftar. Logo, foto sampul, alamat, telepon, email dan jam buka ditambahkan otomatis."
+msgid ""
+"Tips: leave an empty line between sections. A line starting with ## (or a "
+"short line ending with :) becomes a heading; lines starting with - become a "
+"list. Your logo, cover photo, address, phone, email and opening hours are "
+"added automatically."
+msgstr ""
+"Tips: beri satu baris kosong di antara bagian. Baris yang diawali ## (atau "
+"baris pendek yang diakhiri :) menjadi judul; baris yang diawali - menjadi "
+"daftar. Logo, foto sampul, alamat, telepon, email dan jam buka ditambahkan "
+"otomatis."
 
 #: templates/dashboard/quotations/profile.html:24
 msgid "Replace the text with the example? You can edit it afterwards."
@@ -5513,58 +5566,124 @@ msgstr "Mulai dari contoh"
 msgid "Save company profile"
 msgstr "Simpan profil perusahaan"
 
-#: templates/dashboard/quotations/profile.html:33
-#, python-format
-msgid "%(name)s is a restaurant and catering service. We cook fresh local and international food every day and deliver it on time, from small meetings to large events."
-msgstr "%(name)s adalah restoran dan layanan katering. Kami memasak makanan lokal dan internasional yang segar setiap hari dan mengantarnya tepat waktu, dari rapat kecil hingga acara besar."
-
-#: templates/dashboard/quotations/profile.html:35
-#, fuzzy
-#| msgid "Terms of service"
-msgid "Our services"
-msgstr "Ketentuan layanan"
-
 #: templates/dashboard/quotations/profile.html:36
+msgid "Digital signature & stamp"
+msgstr "Tanda tangan digital & stempel"
+
+#: templates/dashboard/quotations/profile.html:37
+msgid ""
+"Draw your signature or upload a photo of it (dark ink on white paper works "
+"best). Tick “Apply my digital signature and stamp” on a quotation to place "
+"them on the signature line."
+msgstr ""
+"Gambar tanda tangan Anda atau unggah fotonya (tinta gelap di kertas putih "
+"paling bagus). Centang “Terapkan tanda tangan digital dan stempel saya” pada "
+"penawaran untuk menempatkannya di baris tanda tangan."
+
+#: templates/dashboard/quotations/profile.html:40
+msgid "e.g. Director"
+msgstr "mis. Direktur"
+
+#: templates/dashboard/quotations/profile.html:45
+msgid "Current signature"
+msgstr "Tanda tangan saat ini"
+
+#: templates/dashboard/quotations/profile.html:46
+msgid "Remove signature"
+msgstr "Hapus tanda tangan"
+
+#: templates/dashboard/quotations/profile.html:47
+msgid "To replace it, draw a new one or upload an image:"
+msgstr "Untuk menggantinya, gambar yang baru atau unggah gambar:"
+
+#: templates/dashboard/quotations/profile.html:47
+msgid "Draw it here with your mouse or finger:"
+msgstr "Gambar di sini dengan mouse atau jari Anda:"
+
+#: templates/dashboard/quotations/profile.html:48
+msgid "Signature pad"
+msgstr "Area tanda tangan"
+
+#: templates/dashboard/quotations/profile.html:51
+msgid "…or upload an image"
+msgstr "…atau unggah gambar"
+
+#: templates/dashboard/quotations/profile.html:54
+msgid "Company stamp (optional)"
+msgstr "Stempel perusahaan (opsional)"
+
+#: templates/dashboard/quotations/profile.html:55
+msgid "Current stamp"
+msgstr "Stempel saat ini"
+
+#: templates/dashboard/quotations/profile.html:56
+msgid "Remove stamp"
+msgstr "Hapus stempel"
+
+#: templates/dashboard/quotations/profile.html:57
+msgid "Upload the stamp image (PNG with a transparent background looks best)"
+msgstr "Unggah gambar stempel (PNG dengan latar transparan paling bagus)"
+
+#: templates/dashboard/quotations/profile.html:60
+msgid "Save signature"
+msgstr "Simpan tanda tangan"
+
+#: templates/dashboard/quotations/profile.html:64
+#, python-format
+msgid ""
+"%(name)s is a restaurant and catering service. We cook fresh local and "
+"international food every day and deliver it on time, from small meetings to "
+"large events."
+msgstr ""
+"%(name)s adalah restoran dan layanan katering. Kami memasak makanan lokal "
+"dan internasional yang segar setiap hari dan mengantarnya tepat waktu, dari "
+"rapat kecil hingga acara besar."
+
+#: templates/dashboard/quotations/profile.html:66
+msgid "Our services"
+msgstr "Layanan kami"
+
+#: templates/dashboard/quotations/profile.html:67
 msgid "Lunch and dinner catering for offices, workshops and trainings"
 msgstr "Katering makan siang dan malam untuk kantor, lokakarya dan pelatihan"
 
-#: templates/dashboard/quotations/profile.html:37
+#: templates/dashboard/quotations/profile.html:68
 msgid "Coffee breaks and snack boxes"
 msgstr "Coffee break dan kotak snack"
 
-#: templates/dashboard/quotations/profile.html:38
+#: templates/dashboard/quotations/profile.html:69
 msgid "Weddings, parties and private events"
 msgstr "Pernikahan, pesta dan acara pribadi"
 
-#: templates/dashboard/quotations/profile.html:39
+#: templates/dashboard/quotations/profile.html:70
 msgid "Delivery, setup, serving staff and equipment"
 msgstr "Pengantaran, penataan, staf pelayan dan peralatan"
 
-#: templates/dashboard/quotations/profile.html:41
+#: templates/dashboard/quotations/profile.html:72
 msgid "Why choose us"
 msgstr "Mengapa memilih kami"
 
-#: templates/dashboard/quotations/profile.html:42
+#: templates/dashboard/quotations/profile.html:73
 msgid "Fresh ingredients bought locally every day"
 msgstr "Bahan segar dibeli dari pasar lokal setiap hari"
 
-#: templates/dashboard/quotations/profile.html:43
+#: templates/dashboard/quotations/profile.html:74
 msgid "Clean kitchen and trained staff"
 msgstr "Dapur bersih dan staf terlatih"
 
-#: templates/dashboard/quotations/profile.html:44
+#: templates/dashboard/quotations/profile.html:75
 msgid "Menus adapted to your budget and number of guests"
 msgstr "Menu disesuaikan dengan anggaran dan jumlah tamu Anda"
 
-#: templates/dashboard/quotations/profile.html:45
+#: templates/dashboard/quotations/profile.html:76
 msgid "Experience with government offices, NGOs and companies"
 msgstr "Berpengalaman dengan kantor pemerintah, LSM dan perusahaan"
 
-#: templates/dashboard/quotations/profile.html:47
+#: templates/dashboard/quotations/profile.html:78
 msgid "Our clients"
 msgstr "Klien kami"
 
-#: templates/dashboard/quotations/profile.html:48
+#: templates/dashboard/quotations/profile.html:79
 msgid "[List some clients or events you have served.]"
 msgstr "[Sebutkan beberapa klien atau acara yang pernah Anda layani.]"
 

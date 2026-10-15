@@ -1,8 +1,13 @@
+import base64
+import io
 from decimal import Decimal, InvalidOperation
 
 from django import forms
+from django.core.files.base import ContentFile
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
+
+from PIL import Image
 
 from .models import Quotation
 
@@ -15,7 +20,7 @@ class QuotationForm(forms.ModelForm):
         fields = [
             "client_name", "client_organization", "client_contact", "client_address", "reference",
             "title", "event_date", "guests", "issue_date", "valid_until", "language", "status",
-            "discount", "vat_percent", "terms",
+            "discount", "vat_percent", "terms", "signed",
         ]
         widgets = {
             "client_address": forms.Textarea(attrs={"rows": 2}),
@@ -35,6 +40,7 @@ class QuotationForm(forms.ModelForm):
             "language": gettext_lazy("Document language"), "status": gettext_lazy("Status"),
             "discount": gettext_lazy("Discount (amount)"), "vat_percent": gettext_lazy("VAT (%)"),
             "terms": gettext_lazy("Terms, payment & bank details"),
+            "signed": gettext_lazy("Apply my digital signature and stamp"),
         }
         help_texts = {
             "title": gettext_lazy("e.g. Lunch catering for training workshop"),
@@ -47,6 +53,48 @@ class QuotationForm(forms.ModelForm):
         if issue and valid and valid < issue:
             self.add_error("valid_until", _("Must be on or after the quotation date."))
         return cleaned
+
+
+SIGNATURE_MAX_BYTES = 2 * 1024 * 1024
+
+
+class SignatureForm(forms.Form):
+    """Signature drawn on the pad (PNG data URL) or uploaded, plus an optional company stamp."""
+    signatory_name = forms.CharField(max_length=120, required=False)
+    signatory_title = forms.CharField(max_length=120, required=False)
+    signature_data = forms.CharField(required=False, widget=forms.HiddenInput)
+    signature_file = forms.ImageField(required=False)
+    stamp_file = forms.ImageField(required=False)
+    remove_signature = forms.BooleanField(required=False)
+    remove_stamp = forms.BooleanField(required=False)
+
+    def clean_signature_data(self):
+        data = self.cleaned_data["signature_data"].strip()
+        if not data:
+            return None
+        prefix = "data:image/png;base64,"
+        try:
+            if not data.startswith(prefix):
+                raise ValueError
+            raw = base64.b64decode(data[len(prefix):], validate=True)
+            if len(raw) > SIGNATURE_MAX_BYTES:
+                raise ValueError
+            Image.open(io.BytesIO(raw)).verify()
+        except Exception:
+            raise forms.ValidationError(_("The drawn signature could not be read. Please draw it again."))
+        return ContentFile(raw, name="signature.png")
+
+    def _small(self, name):
+        f = self.cleaned_data.get(name)
+        if f and f.size > SIGNATURE_MAX_BYTES:
+            raise forms.ValidationError(_("The image is too large (max 2 MB)."))
+        return f
+
+    def clean_signature_file(self):
+        return self._small("signature_file")
+
+    def clean_stamp_file(self):
+        return self._small("stamp_file")
 
 
 def parse_lines(post) -> tuple[list[dict], list[str]]:

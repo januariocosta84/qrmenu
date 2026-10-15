@@ -92,12 +92,58 @@ class QuotationTests(TestCase):
         self.assertIn("<h3>Our services</h3>", html)
         self.assertIn("<li>Coffee breaks</li>", html)
         self.assertIn("<h3>Clients</h3>", html)
-        self.assertLess(html.index('class="sheet profile-page"'), html.index('class="sheet menu-pages"'))
+        # company profile first, then the quotation, then the menu pages
+        self.assertLess(html.index('class="sheet profile-page"'), html.index('<header class="head">'))
+        self.assertLess(html.index('<header class="head">'), html.index('class="sheet menu-pages"'))
 
     def test_no_company_profile_page_when_empty(self):
         self.post()
         html = self.client.get(reverse("dashboard:quotation_print", args=["alpha", Quotation.objects.get().pk])).content.decode()
         self.assertNotIn('class="sheet profile-page"', html)
+
+    def test_drawn_signature_and_stamp_are_placed_on_signed_quotations(self):
+        import base64, io
+        from PIL import Image
+        from django.core.files.uploadedfile import SimpleUploadedFile
+
+        def png(color):
+            buf = io.BytesIO()
+            Image.new("RGBA", (60, 20), color).save(buf, "PNG")
+            return buf.getvalue()
+
+        url = reverse("dashboard:quotation_signature", args=["alpha"])
+        resp = self.client.post(url, {
+            "signatory_name": "Ana Soares", "signatory_title": "Director",
+            "signature_data": "data:image/png;base64," + base64.b64encode(png((0, 0, 80, 255))).decode(),
+            "stamp_file": SimpleUploadedFile("stamp.png", png((200, 0, 0, 255)), content_type="image/png"),
+        })
+        self.assertRedirects(resp, reverse("dashboard:quotation_profile", args=["alpha"]))
+        self.r.refresh_from_db()
+        self.assertTrue(self.r.signature.name.startswith("restaurants/signatures/"))
+        self.assertTrue(self.r.company_stamp)
+
+        self.post()  # not signed: empty signature line
+        q = Quotation.objects.get()
+        print_url = reverse("dashboard:quotation_print", args=["alpha", q.pk])
+        self.assertNotIn('class="sig-img"', self.client.get(print_url).content.decode())
+
+        self.post(reverse("dashboard:quotation_edit", args=["alpha", q.pk]), signed="on")
+        html = self.client.get(print_url).content.decode()
+        self.assertIn(f'class="sig-img" src="{self.r.signature.url}"', html)
+        self.assertIn(f'class="stamp-img" src="{self.r.company_stamp.url}"', html)
+        self.assertIn("<strong>Ana Soares</strong>,<br>Director<br>", html)
+
+        self.client.post(url, {"remove_signature": "1", "remove_stamp": "1"})
+        self.r.refresh_from_db()
+        self.assertFalse(self.r.signature)
+        self.assertFalse(self.r.company_stamp)
+        self.assertNotIn('class="sig-img"', self.client.get(print_url).content.decode())
+
+    def test_bad_drawn_signature_is_rejected(self):
+        url = reverse("dashboard:quotation_signature", args=["alpha"])
+        self.client.post(url, {"signature_data": "data:image/png;base64,bm90IGFuIGltYWdl"})
+        self.r.refresh_from_db()
+        self.assertFalse(self.r.signature)
 
     def test_numbers_count_up_per_year(self):
         self.post()

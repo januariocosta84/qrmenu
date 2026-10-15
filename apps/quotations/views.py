@@ -13,7 +13,7 @@ from apps.dashboard.decorators import plan_feature, staff_view
 from apps.menu import service_types
 from apps.menu.models import MenuCategory, MenuItem
 
-from .forms import MAX_LINES, QuotationForm, parse_lines
+from .forms import MAX_LINES, QuotationForm, SignatureForm, parse_lines
 from .models import Quotation, QuotationItem
 from .words import amount_in_words
 
@@ -42,7 +42,34 @@ def quotation_profile(request):
         r.save(update_fields=["company_profile", "updated_at"])
         messages.success(request, _("Company profile saved."))
         return redirect("dashboard:quotation_profile", r.slug)
-    return render(request, "dashboard/quotations/profile.html", {"profile_max": PROFILE_MAX})
+    return render(request, "dashboard/quotations/profile.html", {"profile_max": PROFILE_MAX, "sig_form": SignatureForm()})
+
+
+@staff_view("quotations")
+@plan_feature("quotations")
+@require_POST
+def quotation_signature(request):
+    """Save the digital signature (drawn or uploaded), the company stamp and who signs."""
+    r = request.restaurant
+    form = SignatureForm(request.POST, request.FILES)
+    if not form.is_valid():
+        for errors in form.errors.values():
+            for e in errors:
+                messages.error(request, e)
+        return redirect("dashboard:quotation_profile", r.slug)
+    d = form.cleaned_data
+    r.signatory_name, r.signatory_title = d["signatory_name"].strip(), d["signatory_title"].strip()
+    new_signature = d["signature_file"] or d["signature_data"]
+    for field, new, remove in (("signature", new_signature, d["remove_signature"]),
+                               ("company_stamp", d["stamp_file"], d["remove_stamp"])):
+        old = getattr(r, field)
+        if (new or remove) and old:
+            old.delete(save=False)
+        if new:
+            getattr(r, field).save(new.name, new, save=False)
+    r.save(update_fields=["signature", "company_stamp", "signatory_name", "signatory_title", "updated_at"])
+    messages.success(request, _("Signature saved."))
+    return redirect("dashboard:quotation_profile", r.slug)
 
 
 PROFILE_MAX = 6000

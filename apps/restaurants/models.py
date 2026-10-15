@@ -8,10 +8,17 @@ from django.db.models import Q
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import pgettext_lazy
 
 from apps.core.i18n import LANGUAGES
 from apps.core.models import TimeStampedModel, TranslatableMixin
 from apps.core.permissions import Role, role_can
+
+def signature_path(instance, filename):
+    """Signatures and stamps get unguessable file names."""
+    ext = (filename.rsplit(".", 1)[-1] if "." in filename else "png").lower()[:5]
+    return f"restaurants/signatures/{secrets.token_hex(16)}.{ext}"
+
 
 table_number_validator = RegexValidator(
     r"^[A-Za-z0-9-]{1,20}$", _("Use letters, numbers and dashes only (max 20), e.g. 12 or A-3.")
@@ -32,6 +39,11 @@ class Restaurant(TranslatableMixin, TimeStampedModel):
     opening_hours = models.TextField(blank=True, help_text=_("e.g. Mon–Sat 08:00–22:00"))
     # Printed as its own page in quotations (about us, services, experience, clients).
     company_profile = models.TextField(_("Company profile"), blank=True)
+    # Digital signature and company stamp, placed on the signature line of quotations that apply them.
+    signature = models.ImageField(upload_to=signature_path, blank=True)
+    company_stamp = models.ImageField(upload_to=signature_path, blank=True)
+    signatory_name = models.CharField(_("Name of the person signing"), max_length=120, blank=True)
+    signatory_title = models.CharField(pgettext_lazy("job title", "Position"), max_length=120, blank=True)
 
     currency = models.CharField(max_length=3, default="USD")
     currency_symbol = models.CharField(max_length=5, default="$")

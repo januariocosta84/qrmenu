@@ -50,6 +50,7 @@ class Quotation(models.Model):
         max_digits=5, decimal_places=2, default=0, validators=[MinValueValidator(0), MaxValueValidator(50)]
     )
     terms = models.TextField(blank=True, max_length=3000)
+    signed = models.BooleanField(default=False)  # print the saved digital signature and stamp
 
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
     created_at = models.DateTimeField(auto_now_add=True)

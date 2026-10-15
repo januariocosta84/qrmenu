@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 15:23+0900\n"
+"POT-Creation-Date: 2026-10-15 16:51+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -163,7 +163,7 @@ msgid "Trial"
 msgstr "Período experimental"
 
 #: apps/billing/models.py:98 apps/dashboard/forms.py:256
-#: apps/dashboard/forms.py:403 apps/restaurants/models.py:135
+#: apps/dashboard/forms.py:403 apps/restaurants/models.py:147
 #: templates/dashboard/branch_manage.html:9
 #: templates/dashboard/branch_manage.html:49 templates/dashboard/staff.html:23
 msgid "Active"
@@ -264,8 +264,9 @@ msgid "Change"
 msgstr ""
 
 #: apps/core/django_strings.py:27
+#: templates/dashboard/quotations/profile.html:49
 msgid "Clear"
-msgstr ""
+msgstr "Limpar"
 
 #: apps/core/django_strings.py:28
 msgid "Yes"
@@ -713,10 +714,10 @@ msgstr "Nome"
 
 #: apps/dashboard/forms.py:106 apps/dashboard/forms.py:199
 #: templates/dashboard/api_docs.html:77
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/edit.html:71
-#: templates/dashboard/quotations/edit.html:120
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/edit.html:73
+#: templates/dashboard/quotations/edit.html:122
+#: templates/dashboard/quotations/print.html:155
 msgid "Description"
 msgstr "Descrição"
 
@@ -729,17 +730,17 @@ msgid "Cover image"
 msgstr "Imagem de capa"
 
 #: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
-#: apps/quotations/forms.py:31 apps/restaurants/models.py:345
+#: apps/quotations/forms.py:36 apps/restaurants/models.py:357
 msgid "Address"
 msgstr "Morada"
 
 #: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
 #: templates/dashboard/order_detail.html:21
-#: templates/dashboard/quotations/print.html:163
+#: templates/dashboard/quotations/print.html:103
 msgid "Phone"
 msgstr "Telefone"
 
-#: apps/dashboard/forms.py:107 templates/dashboard/quotations/print.html:165
+#: apps/dashboard/forms.py:107 templates/dashboard/quotations/print.html:105
 msgid "Opening hours"
 msgstr "Horário"
 
@@ -767,7 +768,7 @@ msgstr "Tempo de preparação predefinido (minutos)"
 msgid "Accepting orders"
 msgstr "Aceitar pedidos"
 
-#: apps/dashboard/forms.py:111 apps/restaurants/models.py:59
+#: apps/dashboard/forms.py:111 apps/restaurants/models.py:71
 msgid "Show my menu on Google"
 msgstr "Mostrar o meu menu no Google"
 
@@ -819,28 +820,28 @@ msgstr "Taxa de IVA (%)"
 msgid "Tax name"
 msgstr "Nome do imposto"
 
-#: apps/dashboard/forms.py:118 templates/dashboard/quotations/print.html:87
-#: templates/dashboard/quotations/print.html:167
+#: apps/dashboard/forms.py:118 templates/dashboard/quotations/print.html:107
+#: templates/dashboard/quotations/print.html:122
 msgid "Tax ID"
 msgstr "NIF"
 
-#: apps/dashboard/forms.py:119 apps/restaurants/models.py:106
+#: apps/dashboard/forms.py:119 apps/restaurants/models.py:118
 msgid "Default bill print mode"
 msgstr "Modo de impressão da conta"
 
 #: apps/dashboard/forms.py:119 apps/dashboard/views.py:872
-#: apps/menu/service_types.py:32 apps/restaurants/models.py:112
+#: apps/menu/service_types.py:32 apps/restaurants/models.py:124
 #: templates/dashboard/base.html:33 templates/dashboard/car_wash.html:3
 #: templates/dashboard/car_wash.html:8 templates/dashboard/menu.html:22
 #: templates/dashboard/table_detail.html:65
 msgid "Car wash"
 msgstr "Lavagem de carros"
 
-#: apps/dashboard/forms.py:120 apps/restaurants/models.py:115
+#: apps/dashboard/forms.py:120 apps/restaurants/models.py:127
 msgid "Car wash name"
 msgstr "Nome da lavagem"
 
-#: apps/dashboard/forms.py:120 apps/restaurants/models.py:118
+#: apps/dashboard/forms.py:120 apps/restaurants/models.py:130
 msgid "Print a car wash ticket automatically"
 msgstr "Imprimir talão de lavagem automaticamente"
 
@@ -989,7 +990,7 @@ msgstr "Foto da fachada"
 msgid "A photo of the branch from outside, showing the brand name."
 msgstr "Uma foto da filial vista de fora, com o nome da marca visível."
 
-#: apps/dashboard/forms.py:323 apps/restaurants/models.py:340
+#: apps/dashboard/forms.py:323 apps/restaurants/models.py:352
 msgid "Business registration number"
 msgstr "Número de registo da empresa"
 
@@ -1001,7 +1002,7 @@ msgstr ""
 "Todas as filiais devem pertencer ao mesmo registo comercial da filial "
 "principal."
 
-#: apps/dashboard/forms.py:325 apps/restaurants/models.py:343
+#: apps/dashboard/forms.py:325 apps/restaurants/models.py:355
 msgid "Owner name"
 msgstr "Nome do proprietário"
 
@@ -1045,13 +1046,13 @@ msgstr "Método"
 #: templates/dashboard/billing.html:53 templates/dashboard/billing.html:59
 #: templates/dashboard/cash_register.html:53
 #: templates/dashboard/expenses.html:91 templates/dashboard/expenses.html:98
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/print.html:155
 #: templates/dashboard/revenue.html:35 templates/dashboard/revenue.html:42
 msgid "Amount"
 msgstr "Montante"
 
-#: apps/dashboard/forms.py:409 templates/dashboard/quotations/print.html:96
+#: apps/dashboard/forms.py:409 templates/dashboard/quotations/print.html:131
 msgid "Reference"
 msgstr "Referência"
 
@@ -1555,7 +1556,7 @@ msgstr "ex.: Arroz 25 kg, gás, legumes do mercado"
 #: templates/dashboard/expenses.html:91
 #: templates/dashboard/quotations/list.html:26
 #: templates/dashboard/quotations/list.html:32
-#: templates/dashboard/quotations/print.html:94
+#: templates/dashboard/quotations/print.html:129
 #: templates/dashboard/revenue.html:35
 msgid "Date"
 msgstr "Data"
@@ -1969,7 +1970,7 @@ msgstr "A impressora em %(target)s não respondeu. Está ligada e conectada?"
 msgid "Could not reach the printer at %(target)s (%(error)s)."
 msgstr "Não foi possível contactar a impressora em %(target)s (%(error)s)."
 
-#: apps/payments/models.py:23 apps/restaurants/models.py:135
+#: apps/payments/models.py:23 apps/restaurants/models.py:147
 #: templates/dashboard/branch_manage.html:9
 #: templates/dashboard/branches.html:42
 msgid "Pending"
@@ -2060,48 +2061,48 @@ msgstr "Dinheiro insuficiente: recebido %(received)s, mas são devidos %(due)s."
 msgid "Amount must be greater than zero."
 msgstr "O montante tem de ser maior que zero."
 
-#: apps/quotations/forms.py:30
+#: apps/quotations/forms.py:35
 msgid "Client contact person"
 msgstr "Pessoa de contacto"
 
-#: apps/quotations/forms.py:30
+#: apps/quotations/forms.py:35
 msgid "Organisation"
 msgstr "Organização"
 
-#: apps/quotations/forms.py:31
+#: apps/quotations/forms.py:36
 msgid "Phone / email"
 msgstr "Telefone / email"
 
-#: apps/quotations/forms.py:32
+#: apps/quotations/forms.py:37
 msgid "Tender / procurement reference"
 msgstr "Referência do concurso / aprovisionamento"
 
-#: apps/quotations/forms.py:32 templates/dashboard/quotations/list.html:26
+#: apps/quotations/forms.py:37 templates/dashboard/quotations/list.html:26
 #: templates/dashboard/quotations/list.html:31
 msgid "Subject"
 msgstr "Assunto"
 
-#: apps/quotations/forms.py:33 templates/dashboard/quotations/print.html:113
+#: apps/quotations/forms.py:38 templates/dashboard/quotations/print.html:148
 msgid "Event / delivery date"
 msgstr "Data do evento / entrega"
 
-#: apps/quotations/forms.py:33 templates/dashboard/quotations/print.html:114
+#: apps/quotations/forms.py:38 templates/dashboard/quotations/print.html:149
 msgid "Number of guests"
 msgstr "Número de convidados"
 
-#: apps/quotations/forms.py:34
+#: apps/quotations/forms.py:39
 msgid "Quotation date"
 msgstr "Data da cotação"
 
-#: apps/quotations/forms.py:34 templates/dashboard/quotations/print.html:95
+#: apps/quotations/forms.py:39 templates/dashboard/quotations/print.html:130
 msgid "Valid until"
 msgstr "Válida até"
 
-#: apps/quotations/forms.py:35
+#: apps/quotations/forms.py:40
 msgid "Document language"
 msgstr "Língua do documento"
 
-#: apps/quotations/forms.py:35 templates/dashboard/_orders_table.html:5
+#: apps/quotations/forms.py:40 templates/dashboard/_orders_table.html:5
 #: templates/dashboard/_orders_table.html:14
 #: templates/dashboard/api_docs.html:26 templates/dashboard/billing.html:53
 #: templates/dashboard/billing.html:60
@@ -2113,47 +2114,59 @@ msgstr "Língua do documento"
 msgid "Status"
 msgstr "Estado"
 
-#: apps/quotations/forms.py:36
+#: apps/quotations/forms.py:41
 msgid "Discount (amount)"
 msgstr "Desconto (valor)"
 
-#: apps/quotations/forms.py:36
+#: apps/quotations/forms.py:41
 msgid "VAT (%)"
 msgstr "IVA (%)"
 
-#: apps/quotations/forms.py:37
+#: apps/quotations/forms.py:42
 msgid "Terms, payment & bank details"
 msgstr "Condições, pagamento e dados bancários"
 
-#: apps/quotations/forms.py:40
+#: apps/quotations/forms.py:43
+msgid "Apply my digital signature and stamp"
+msgstr "Aplicar a minha assinatura digital e carimbo"
+
+#: apps/quotations/forms.py:46
 msgid "e.g. Lunch catering for training workshop"
 msgstr "ex.: Almoço para workshop de formação"
 
-#: apps/quotations/forms.py:41
+#: apps/quotations/forms.py:47
 msgid "0 = no VAT."
 msgstr "0 = sem IVA."
 
-#: apps/quotations/forms.py:48
+#: apps/quotations/forms.py:54
 msgid "Must be on or after the quotation date."
 msgstr "Tem de ser igual ou posterior à data da cotação."
 
-#: apps/quotations/forms.py:72
+#: apps/quotations/forms.py:84
+msgid "The drawn signature could not be read. Please draw it again."
+msgstr "Não foi possível ler a assinatura desenhada. Desenhe-a novamente."
+
+#: apps/quotations/forms.py:90
+msgid "The image is too large (max 2 MB)."
+msgstr "A imagem é demasiado grande (máx. 2 MB)."
+
+#: apps/quotations/forms.py:120
 #, python-format
 msgid "Line %(n)s: enter numbers for quantity and price."
 msgstr "Linha %(n)s: introduza números na quantidade e no preço."
 
-#: apps/quotations/forms.py:75
+#: apps/quotations/forms.py:123
 #, python-format
 msgid "Line %(n)s: enter a description."
 msgstr "Linha %(n)s: introduza uma descrição."
 
-#: apps/quotations/forms.py:78
+#: apps/quotations/forms.py:126
 #, python-format
 msgid "Line %(n)s: quantity and price must be valid positive numbers."
 msgstr ""
 "Linha %(n)s: a quantidade e o preço têm de ser números positivos válidos."
 
-#: apps/quotations/forms.py:87
+#: apps/quotations/forms.py:135
 msgid "Add at least one line."
 msgstr "Adicione pelo menos uma linha."
 
@@ -2165,8 +2178,8 @@ msgstr "Rascunho"
 msgid "Sent"
 msgstr "Enviada"
 
-#: apps/quotations/models.py:28 apps/restaurants/models.py:136
-#: apps/restaurants/models.py:335 templates/dashboard/branch_manage.html:9
+#: apps/quotations/models.py:28 apps/restaurants/models.py:148
+#: apps/restaurants/models.py:347 templates/dashboard/branch_manage.html:9
 #: templates/dashboard/branches.html:43
 #: templates/dashboard/quotations/list.html:19
 msgid "Rejected"
@@ -2176,42 +2189,55 @@ msgstr "Rejeitada"
 msgid "Company profile saved."
 msgstr "Perfil da empresa guardado."
 
-#: apps/quotations/views.py:105
+#: apps/quotations/views.py:71
+msgid "Signature saved."
+msgstr "Assinatura guardada."
+
+#: apps/quotations/views.py:132
 #, python-format
 msgid "Quotation %(number)s saved."
 msgstr "Cotação %(number)s guardada."
 
-#: apps/quotations/views.py:142
+#: apps/quotations/views.py:169
 #, python-format
 msgid "Copied as %(number)s. Update the dates and prices if needed."
 msgstr "Copiada como %(number)s. Atualize as datas e os preços se necessário."
 
-#: apps/quotations/views.py:153
+#: apps/quotations/views.py:180
 #, python-format
 msgid "Quotation %(number)s deleted."
 msgstr "Cotação %(number)s eliminada."
 
-#: apps/restaurants/models.py:17
+#: apps/restaurants/models.py:24
 msgid "Use letters, numbers and dashes only (max 20), e.g. 12 or A-3."
 msgstr "Use apenas letras, números e hífenes (máx. 20), ex.: 12 ou A-3."
 
-#: apps/restaurants/models.py:32
+#: apps/restaurants/models.py:39
 msgid "e.g. Mon–Sat 08:00–22:00"
 msgstr "ex.: Seg–Sáb 08:00–22:00"
 
-#: apps/restaurants/models.py:34 templates/dashboard/quotations/list.html:11
-#: templates/dashboard/quotations/print.html:149
+#: apps/restaurants/models.py:41 templates/dashboard/quotations/list.html:11
+#: templates/dashboard/quotations/print.html:89
 #: templates/dashboard/quotations/profile.html:3
 #: templates/dashboard/quotations/profile.html:9
 #: templates/dashboard/quotations/profile.html:20
 msgid "Company profile"
 msgstr "Perfil da empresa"
 
-#: apps/restaurants/models.py:43
+#: apps/restaurants/models.py:45 templates/dashboard/quotations/profile.html:39
+msgid "Name of the person signing"
+msgstr "Nome de quem assina"
+
+#: apps/restaurants/models.py:46 templates/dashboard/quotations/profile.html:40
+msgctxt "job title"
+msgid "Position"
+msgstr "Cargo"
+
+#: apps/restaurants/models.py:55
 msgid "Charge VAT on orders."
 msgstr "Cobrar IVA nos pedidos."
 
-#: apps/restaurants/models.py:49
+#: apps/restaurants/models.py:61
 msgid ""
 "Add on top: the bill total goes up by the VAT. Already included: totals stay "
 "the same and receipts show the VAT part."
@@ -2219,15 +2245,15 @@ msgstr ""
 "Somar: o total da conta aumenta com o IVA. Já incluído: os totais não mudam "
 "e os recibos mostram a parte do IVA."
 
-#: apps/restaurants/models.py:52
+#: apps/restaurants/models.py:64
 msgid "Name printed on bills, e.g. VAT or IVA."
 msgstr "Nome impresso nas contas, ex.: VAT ou IVA."
 
-#: apps/restaurants/models.py:53
+#: apps/restaurants/models.py:65
 msgid "Tax ID printed on receipts."
 msgstr "NIF impresso nos recibos."
 
-#: apps/restaurants/models.py:60
+#: apps/restaurants/models.py:72
 msgid ""
 "Let Google and other search engines list your restaurant, menu, prices and "
 "dish photos."
@@ -2235,19 +2261,19 @@ msgstr ""
 "Permitir que o Google e outros motores de busca mostrem o seu restaurante, "
 "menu, preços e fotos dos pratos."
 
-#: apps/restaurants/models.py:65
+#: apps/restaurants/models.py:77
 msgid "Pin 2 (most drawers)"
 msgstr "Pino 2 (a maioria das gavetas)"
 
-#: apps/restaurants/models.py:65
+#: apps/restaurants/models.py:77
 msgid "Pin 5"
 msgstr "Pino 5"
 
-#: apps/restaurants/models.py:67
+#: apps/restaurants/models.py:79
 msgid "Open the cash drawer automatically when a cash payment is recorded."
 msgstr "Abrir a gaveta automaticamente ao registar um pagamento em dinheiro."
 
-#: apps/restaurants/models.py:70
+#: apps/restaurants/models.py:82
 msgid ""
 "IP address of the receipt printer the drawer is plugged into, e.g. "
 "192.168.1.50"
@@ -2255,13 +2281,13 @@ msgstr ""
 "Endereço IP da impressora de recibos onde a gaveta está ligada, ex.: "
 "192.168.1.50"
 
-#: apps/restaurants/models.py:74
+#: apps/restaurants/models.py:86
 msgid "Raw printing port; 9100 for almost all network receipt printers."
 msgstr ""
 "Porta de impressão direta; 9100 para quase todas as impressoras de recibos "
 "de rede."
 
-#: apps/restaurants/models.py:81
+#: apps/restaurants/models.py:93
 msgid ""
 "The cash drawer is plugged into the receipt printer of this computer. A "
 "small slip prints to open it."
@@ -2269,64 +2295,64 @@ msgstr ""
 "A gaveta está ligada à impressora de recibos deste computador. Imprime-se um "
 "pequeno talão para a abrir."
 
-#: apps/restaurants/models.py:87
+#: apps/restaurants/models.py:99
 msgid "Ask \"Print receipt?\" after each payment"
 msgstr "Perguntar “Imprimir recibo?” após cada pagamento"
 
-#: apps/restaurants/models.py:88
+#: apps/restaurants/models.py:100
 msgid "Always print after payment"
 msgstr "Imprimir sempre após o pagamento"
 
-#: apps/restaurants/models.py:89
+#: apps/restaurants/models.py:101
 msgid "Never print automatically"
 msgstr "Nunca imprimir automaticamente"
 
-#: apps/restaurants/models.py:93
+#: apps/restaurants/models.py:105
 msgid "This device's printer (print dialog)"
 msgstr "Impressora deste dispositivo (janela de impressão)"
 
-#: apps/restaurants/models.py:94
+#: apps/restaurants/models.py:106
 msgid "Network receipt printer (prints directly)"
 msgstr "Impressora de recibos de rede (imprime diretamente)"
 
-#: apps/restaurants/models.py:99
+#: apps/restaurants/models.py:111
 msgid "80 mm paper"
 msgstr "Papel de 80 mm"
 
-#: apps/restaurants/models.py:99
+#: apps/restaurants/models.py:111
 msgid "58 mm paper"
 msgstr "Papel de 58 mm"
 
-#: apps/restaurants/models.py:100
+#: apps/restaurants/models.py:112
 msgid "Paper width of the network receipt printer."
 msgstr "Largura do papel da impressora de recibos."
 
-#: apps/restaurants/models.py:104
+#: apps/restaurants/models.py:116
 msgid "One combined bill"
 msgstr "Uma conta conjunta"
 
-#: apps/restaurants/models.py:104
+#: apps/restaurants/models.py:116
 msgid "Separate bill per service"
 msgstr "Conta separada por serviço"
 
-#: apps/restaurants/models.py:107
+#: apps/restaurants/models.py:119
 msgid ""
 "Used when a table has orders for several services (e.g. café and car wash)."
 msgstr ""
 "Usado quando uma mesa tem pedidos de vários serviços (ex.: café e lavagem)."
 
-#: apps/restaurants/models.py:113
+#: apps/restaurants/models.py:125
 msgid ""
 "Customers can order car wash packages from the table QR, together with café "
 "items."
 msgstr ""
 "Os clientes podem pedir pacotes de lavagem pelo QR da mesa, junto com o café."
 
-#: apps/restaurants/models.py:116
+#: apps/restaurants/models.py:128
 msgid "Shown to customers and on car wash bills, e.g. Timor Car Wash."
 msgstr "Mostrado aos clientes e nas contas de lavagem, ex.: Timor Car Wash."
 
-#: apps/restaurants/models.py:119
+#: apps/restaurants/models.py:131
 msgid ""
 "For each new car wash order: on the network receipt printer if set up, "
 "otherwise from the Car wash screen when it is open."
@@ -2334,46 +2360,46 @@ msgstr ""
 "Para cada nova lavagem: na impressora de rede se estiver configurada; caso "
 "contrário, a partir do ecrã Lavagem quando estiver aberto."
 
-#: apps/restaurants/models.py:127
+#: apps/restaurants/models.py:139
 msgid "The main branch this sub-branch belongs to."
 msgstr "A filial principal a que esta sub-filial pertence."
 
-#: apps/restaurants/models.py:130
+#: apps/restaurants/models.py:142
 msgid "Set when the main branch deactivates this sub-branch."
 msgstr "Definido quando a filial principal desativa esta sub-filial."
 
-#: apps/restaurants/models.py:136 templates/dashboard/branch_manage.html:9
+#: apps/restaurants/models.py:148 templates/dashboard/branch_manage.html:9
 #: templates/dashboard/branches.html:44
 msgid "Suspended"
 msgstr "Suspensa"
 
-#: apps/restaurants/models.py:217
+#: apps/restaurants/models.py:229
 msgid "Optional, e.g. 'Terrace' or 'Window'."
 msgstr "Opcional, ex.: 'Esplanada' ou 'Janela'."
 
-#: apps/restaurants/models.py:335 templates/dashboard/business_profile.html:11
+#: apps/restaurants/models.py:347 templates/dashboard/business_profile.html:11
 msgid "Incomplete"
 msgstr "Incompleto"
 
-#: apps/restaurants/models.py:335 templates/dashboard/branches.html:97
+#: apps/restaurants/models.py:347 templates/dashboard/branches.html:97
 #: templates/dashboard/business_profile.html:9
 msgid "Under review"
 msgstr "Em análise"
 
-#: apps/restaurants/models.py:335 templates/dashboard/branches.html:95
+#: apps/restaurants/models.py:347 templates/dashboard/branches.html:95
 #: templates/dashboard/business_profile.html:8
 msgid "Verified"
 msgstr "Verificado"
 
-#: apps/restaurants/models.py:341
+#: apps/restaurants/models.py:353
 msgid "e.g. your SERVE certificate number or tax number (NIF)."
 msgstr "ex.: o número do certificado SERVE ou o número de contribuinte (NIF)."
 
-#: apps/restaurants/models.py:344
+#: apps/restaurants/models.py:356
 msgid "The legal owner of the business."
 msgstr "O proprietário legal da empresa."
 
-#: apps/restaurants/models.py:346
+#: apps/restaurants/models.py:358
 msgid "Phone number"
 msgstr "Número de telefone"
 
@@ -2650,7 +2676,7 @@ msgstr "Cliente"
 
 #: templates/dashboard/_orders_table.html:5
 #: templates/dashboard/_orders_table.html:12
-#: templates/dashboard/quotations/edit.html:51
+#: templates/dashboard/quotations/edit.html:53
 msgid "Items"
 msgstr "Artigos"
 
@@ -3566,7 +3592,7 @@ msgstr "Gestão"
 #: templates/dashboard/base.html:38 templates/dashboard/car_wash.html:93
 #: templates/dashboard/item_form.html:6 templates/dashboard/menu.html:3
 #: templates/dashboard/menu.html:8
-#: templates/dashboard/quotations/print.html:178
+#: templates/dashboard/quotations/print.html:189
 msgid "Menu"
 msgstr "Menu"
 
@@ -4420,7 +4446,7 @@ msgstr "Cancelar a lavagem #%(n)s?"
 
 #: templates/dashboard/car_wash.html:56 templates/dashboard/item_form.html:47
 #: templates/dashboard/new_order.html:77
-#: templates/dashboard/quotations/edit.html:107
+#: templates/dashboard/quotations/edit.html:109
 #: templates/dashboard/quotations/profile.html:29
 #: templates/dashboard/simple_form.html:10
 msgid "Cancel"
@@ -5000,8 +5026,8 @@ msgstr "Toque nos pratos para os adicionar."
 
 #: templates/dashboard/new_order.html:41
 #: templates/dashboard/order_detail.html:44
-#: templates/dashboard/quotations/edit.html:90
-#: templates/dashboard/quotations/print.html:128
+#: templates/dashboard/quotations/edit.html:92
+#: templates/dashboard/quotations/print.html:163
 msgid "Subtotal"
 msgstr "Subtotal"
 
@@ -5098,19 +5124,19 @@ msgid "Item"
 msgstr "Artigo"
 
 #: templates/dashboard/order_detail.html:29
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/edit.html:73
-#: templates/dashboard/quotations/edit.html:122
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/edit.html:75
+#: templates/dashboard/quotations/edit.html:124
+#: templates/dashboard/quotations/print.html:155
 #: templates/dashboard/reports.html:71
 msgid "Qty"
 msgstr "Qtd."
 
 #: templates/dashboard/order_detail.html:29
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/edit.html:72
-#: templates/dashboard/quotations/edit.html:121
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/edit.html:74
+#: templates/dashboard/quotations/edit.html:123
+#: templates/dashboard/quotations/print.html:155
 msgid "Unit"
 msgstr "Unid."
 
@@ -5299,23 +5325,31 @@ msgstr "Cliente"
 
 #: templates/dashboard/quotations/edit.html:36
 #: templates/dashboard/quotations/print.html:6
-#: templates/dashboard/quotations/print.html:180
+#: templates/dashboard/quotations/print.html:191
 msgid "Quotation"
 msgstr "Cotação"
 
-#: templates/dashboard/quotations/edit.html:53
+#: templates/dashboard/quotations/edit.html:46
+msgid "Add your digital signature"
+msgstr "Adicione a sua assinatura digital"
+
+#: templates/dashboard/quotations/edit.html:46
+msgid "to sign quotations without printing them."
+msgstr "para assinar cotações sem as imprimir."
+
+#: templates/dashboard/quotations/edit.html:55
 msgid "Dish from your menu"
 msgstr "Prato do menu"
 
-#: templates/dashboard/quotations/edit.html:54
+#: templates/dashboard/quotations/edit.html:56
 msgid "Choose a dish from your menu…"
 msgstr "Escolha um prato do menu…"
 
-#: templates/dashboard/quotations/edit.html:59
+#: templates/dashboard/quotations/edit.html:61
 msgid "Add from menu"
 msgstr "Adicionar do menu"
 
-#: templates/dashboard/quotations/edit.html:60
+#: templates/dashboard/quotations/edit.html:62
 msgid ""
 "Add every dish on your menu as a line? You can change or remove each line "
 "afterwards."
@@ -5323,78 +5357,78 @@ msgstr ""
 "Adicionar todos os pratos do menu como linhas? Depois pode alterar ou "
 "remover cada linha."
 
-#: templates/dashboard/quotations/edit.html:60
+#: templates/dashboard/quotations/edit.html:62
 msgid "Add all menu items"
 msgstr "Adicionar todo o menu"
 
-#: templates/dashboard/quotations/edit.html:61
+#: templates/dashboard/quotations/edit.html:63
 msgid "Add custom line"
 msgstr "Adicionar linha própria"
 
-#: templates/dashboard/quotations/edit.html:66
-#: templates/dashboard/quotations/edit.html:74
-#: templates/dashboard/quotations/edit.html:123
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/edit.html:68
+#: templates/dashboard/quotations/edit.html:76
+#: templates/dashboard/quotations/edit.html:125
+#: templates/dashboard/quotations/print.html:155
 msgid "Unit price"
 msgstr "Preço unitário"
 
-#: templates/dashboard/quotations/edit.html:76
-#: templates/dashboard/quotations/edit.html:125
+#: templates/dashboard/quotations/edit.html:78
+#: templates/dashboard/quotations/edit.html:127
 msgid "Remove line"
 msgstr "Remover linha"
 
-#: templates/dashboard/quotations/edit.html:82
+#: templates/dashboard/quotations/edit.html:84
 msgid "Remove all lines from this quotation?"
 msgstr "Remover todas as linhas desta cotação?"
 
-#: templates/dashboard/quotations/edit.html:82
+#: templates/dashboard/quotations/edit.html:84
 msgid "Remove all lines"
 msgstr "Remover todas as linhas"
 
-#: templates/dashboard/quotations/edit.html:83
+#: templates/dashboard/quotations/edit.html:85
 msgid "No lines yet. Add dishes from your menu or a custom line."
 msgstr "Ainda sem linhas. Adicione pratos do menu ou uma linha própria."
 
-#: templates/dashboard/quotations/edit.html:85
-#: templates/dashboard/quotations/edit.html:136
+#: templates/dashboard/quotations/edit.html:87
+#: templates/dashboard/quotations/edit.html:138
 msgid "pax"
 msgstr "pax"
 
-#: templates/dashboard/quotations/edit.html:85
+#: templates/dashboard/quotations/edit.html:87
 msgid "plate"
 msgstr "prato"
 
-#: templates/dashboard/quotations/edit.html:85
+#: templates/dashboard/quotations/edit.html:87
 msgid "box"
 msgstr "caixa"
 
-#: templates/dashboard/quotations/edit.html:86
+#: templates/dashboard/quotations/edit.html:88
 msgid "pcs"
 msgstr "unid."
 
-#: templates/dashboard/quotations/edit.html:86
+#: templates/dashboard/quotations/edit.html:88
 msgid "set"
 msgstr "conjunto"
 
-#: templates/dashboard/quotations/edit.html:86
+#: templates/dashboard/quotations/edit.html:88
 msgid "day"
 msgstr "dia"
 
-#: templates/dashboard/quotations/edit.html:86
+#: templates/dashboard/quotations/edit.html:88
 msgid "trip"
 msgstr "viagem"
 
-#: templates/dashboard/quotations/edit.html:93
-#: templates/dashboard/quotations/print.html:130
+#: templates/dashboard/quotations/edit.html:95
+#: templates/dashboard/quotations/print.html:165
 msgid "VAT"
 msgstr "IVA"
 
-#: templates/dashboard/quotations/edit.html:94
-#: templates/dashboard/quotations/print.html:131
+#: templates/dashboard/quotations/edit.html:96
+#: templates/dashboard/quotations/print.html:166
 msgid "Grand total"
 msgstr "Total geral"
 
-#: templates/dashboard/quotations/edit.html:101
+#: templates/dashboard/quotations/edit.html:103
 #, python-format
 msgid ""
 "Printed at the bottom, e.g. 50%% deposit on confirmation, payment within 14 "
@@ -5404,16 +5438,16 @@ msgstr ""
 "Impresso no fim, ex.: 50%% de sinal na confirmação, pagamento em 14 dias, "
 "dados bancários. As novas cotações começam com as condições da última."
 
-#: templates/dashboard/quotations/edit.html:106
+#: templates/dashboard/quotations/edit.html:108
 msgid "Save quotation"
 msgstr "Guardar cotação"
 
-#: templates/dashboard/quotations/edit.html:112
+#: templates/dashboard/quotations/edit.html:114
 #, python-format
 msgid "Delete quotation %(n)s?"
 msgstr "Eliminar a cotação %(n)s?"
 
-#: templates/dashboard/quotations/edit.html:113
+#: templates/dashboard/quotations/edit.html:115
 msgid "Delete this quotation"
 msgstr "Eliminar esta cotação"
 
@@ -5425,7 +5459,7 @@ msgstr ""
 "PDF."
 
 #: templates/dashboard/quotations/list.html:26
-#: templates/dashboard/quotations/print.html:93
+#: templates/dashboard/quotations/print.html:128
 msgid "Number"
 msgstr "Número"
 
@@ -5442,96 +5476,115 @@ msgstr "Ainda não há cotações."
 msgid "Create your first quotation"
 msgstr "Criar a primeira cotação"
 
-#: templates/dashboard/quotations/print.html:74
+#: templates/dashboard/quotations/print.html:79
 msgid "Print / save as PDF"
 msgstr "Imprimir / guardar em PDF"
 
-#: templates/dashboard/quotations/print.html:75
+#: templates/dashboard/quotations/print.html:80
 msgid "Close"
 msgstr "Fechar"
 
-#: templates/dashboard/quotations/print.html:76
-#, fuzzy
-#| msgid "Add many tables"
+#: templates/dashboard/quotations/print.html:81
 msgid "Add company profile"
-msgstr "Adicionar várias mesas"
+msgstr "Juntar perfil da empresa"
 
-#: templates/dashboard/quotations/print.html:77
+#: templates/dashboard/quotations/print.html:82
 msgid "Add menu pages with photos"
 msgstr "Juntar páginas do menu com fotos"
 
-#: templates/dashboard/quotations/print.html:91
+#: templates/dashboard/quotations/print.html:100
+msgid "Contact"
+msgstr "Contacto"
+
+#: templates/dashboard/quotations/print.html:106
+msgid "Registration no."
+msgstr "N.º de registo"
+
+#: templates/dashboard/quotations/print.html:126
 msgid "QUOTATION"
 msgstr "COTAÇÃO"
 
-#: templates/dashboard/quotations/print.html:103
+#: templates/dashboard/quotations/print.html:138
 msgctxt "recipient"
 msgid "To"
 msgstr "Para"
 
-#: templates/dashboard/quotations/print.html:105
+#: templates/dashboard/quotations/print.html:140
 msgid "Attn."
 msgstr "A/C"
 
-#: templates/dashboard/quotations/print.html:111
+#: templates/dashboard/quotations/print.html:146
 msgid "Details"
 msgstr "Detalhes"
 
-#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/quotations/print.html:155
 msgid "No."
 msgstr "N.º"
 
-#: templates/dashboard/quotations/print.html:129
+#: templates/dashboard/quotations/print.html:164
 msgid "Discount"
 msgstr "Desconto"
 
-#: templates/dashboard/quotations/print.html:134
+#: templates/dashboard/quotations/print.html:169
 msgid "Amount in words"
 msgstr "Valor por extenso"
 
-#: templates/dashboard/quotations/print.html:136
+#: templates/dashboard/quotations/print.html:171
 msgid "Terms & conditions"
 msgstr "Termos e condições"
 
-#: templates/dashboard/quotations/print.html:139
+#: templates/dashboard/quotations/print.html:174
 msgid "For"
 msgstr "Por"
 
-#: templates/dashboard/quotations/print.html:139
+#: templates/dashboard/quotations/print.html:176
+#: templates/dashboard/quotations/profile.html:44
+msgid "Signature"
+msgstr "Assinatura"
+
+#: templates/dashboard/quotations/print.html:176
+msgid "Stamp"
+msgstr "Carimbo"
+
+#: templates/dashboard/quotations/print.html:177
+msgid "Signed digitally on"
+msgstr "Assinado digitalmente em"
+
+#: templates/dashboard/quotations/print.html:178
 msgid "Name, signature & stamp"
 msgstr "Nome, assinatura e carimbo"
 
-#: templates/dashboard/quotations/print.html:140
+#: templates/dashboard/quotations/print.html:180
 msgid "Accepted by the client"
 msgstr "Aceite pelo cliente"
 
-#: templates/dashboard/quotations/print.html:140
+#: templates/dashboard/quotations/print.html:180
 msgid "Name, signature, stamp & date"
 msgstr "Nome, assinatura, carimbo e data"
 
-#: templates/dashboard/quotations/print.html:160
-#, fuzzy
-#| msgid "8. Contact"
-msgid "Contact"
-msgstr "8. Contacto"
-
-#: templates/dashboard/quotations/print.html:166
-msgid "Registration no."
-msgstr "N.º de registo"
-
 #: templates/dashboard/quotations/profile.html:10
-msgid "Write it once: it is printed as its own page in every quotation, after the prices and before the menu pages."
-msgstr "Escreva-o uma vez: é impresso numa página própria em todas as cotações, depois dos preços e antes das páginas do menu."
+msgid ""
+"Write it once: it is printed as the first page of every quotation, before "
+"the prices and the menu pages."
+msgstr ""
+"Escreva-o uma vez: é impresso como a primeira página de todas as cotações, "
+"antes dos preços e das páginas do menu."
 
 #: templates/dashboard/quotations/profile.html:17
-#, fuzzy
-#| msgid "Complete your business profile"
 msgid "About your business"
-msgstr "Complete o perfil da sua empresa"
+msgstr "Sobre a sua empresa"
 
 #: templates/dashboard/quotations/profile.html:18
-msgid "Tips: leave an empty line between sections. A line starting with ## (or a short line ending with :) becomes a heading; lines starting with - become a list. Your logo, cover photo, address, phone, email and opening hours are added automatically."
-msgstr "Dicas: deixe uma linha vazia entre secções. Uma linha que começa com ## (ou uma linha curta que termina com :) torna-se um título; linhas que começam com - tornam-se uma lista. O logótipo, a foto de capa, a morada, o telefone, o email e o horário são adicionados automaticamente."
+msgid ""
+"Tips: leave an empty line between sections. A line starting with ## (or a "
+"short line ending with :) becomes a heading; lines starting with - become a "
+"list. Your logo, cover photo, address, phone, email and opening hours are "
+"added automatically."
+msgstr ""
+"Dicas: deixe uma linha vazia entre secções. Uma linha que começa com ## (ou "
+"uma linha curta que termina com :) torna-se um título; linhas que começam "
+"com - tornam-se uma lista. O logótipo, a foto de capa, a morada, o telefone, "
+"o email e o horário são adicionados automaticamente."
 
 #: templates/dashboard/quotations/profile.html:24
 msgid "Replace the text with the example? You can edit it afterwards."
@@ -5545,58 +5598,124 @@ msgstr "Começar com um exemplo"
 msgid "Save company profile"
 msgstr "Guardar perfil da empresa"
 
-#: templates/dashboard/quotations/profile.html:33
-#, python-format
-msgid "%(name)s is a restaurant and catering service. We cook fresh local and international food every day and deliver it on time, from small meetings to large events."
-msgstr "%(name)s é um restaurante e serviço de catering. Cozinhamos comida fresca, local e internacional, todos os dias e entregamos a horas, desde pequenas reuniões a grandes eventos."
-
-#: templates/dashboard/quotations/profile.html:35
-#, fuzzy
-#| msgid "Terms of service"
-msgid "Our services"
-msgstr "Termos de serviço"
-
 #: templates/dashboard/quotations/profile.html:36
+msgid "Digital signature & stamp"
+msgstr "Assinatura digital e carimbo"
+
+#: templates/dashboard/quotations/profile.html:37
+msgid ""
+"Draw your signature or upload a photo of it (dark ink on white paper works "
+"best). Tick “Apply my digital signature and stamp” on a quotation to place "
+"them on the signature line."
+msgstr ""
+"Desenhe a sua assinatura ou carregue uma foto dela (tinta escura em papel "
+"branco fica melhor). Marque “Aplicar a minha assinatura digital e carimbo” "
+"numa cotação para os colocar na linha de assinatura."
+
+#: templates/dashboard/quotations/profile.html:40
+msgid "e.g. Director"
+msgstr "ex.: Diretor"
+
+#: templates/dashboard/quotations/profile.html:45
+msgid "Current signature"
+msgstr "Assinatura atual"
+
+#: templates/dashboard/quotations/profile.html:46
+msgid "Remove signature"
+msgstr "Remover assinatura"
+
+#: templates/dashboard/quotations/profile.html:47
+msgid "To replace it, draw a new one or upload an image:"
+msgstr "Para a substituir, desenhe uma nova ou carregue uma imagem:"
+
+#: templates/dashboard/quotations/profile.html:47
+msgid "Draw it here with your mouse or finger:"
+msgstr "Desenhe-a aqui com o rato ou o dedo:"
+
+#: templates/dashboard/quotations/profile.html:48
+msgid "Signature pad"
+msgstr "Área de assinatura"
+
+#: templates/dashboard/quotations/profile.html:51
+msgid "…or upload an image"
+msgstr "…ou carregue uma imagem"
+
+#: templates/dashboard/quotations/profile.html:54
+msgid "Company stamp (optional)"
+msgstr "Carimbo da empresa (opcional)"
+
+#: templates/dashboard/quotations/profile.html:55
+msgid "Current stamp"
+msgstr "Carimbo atual"
+
+#: templates/dashboard/quotations/profile.html:56
+msgid "Remove stamp"
+msgstr "Remover carimbo"
+
+#: templates/dashboard/quotations/profile.html:57
+msgid "Upload the stamp image (PNG with a transparent background looks best)"
+msgstr "Carregue a imagem do carimbo (PNG com fundo transparente fica melhor)"
+
+#: templates/dashboard/quotations/profile.html:60
+msgid "Save signature"
+msgstr "Guardar assinatura"
+
+#: templates/dashboard/quotations/profile.html:64
+#, python-format
+msgid ""
+"%(name)s is a restaurant and catering service. We cook fresh local and "
+"international food every day and deliver it on time, from small meetings to "
+"large events."
+msgstr ""
+"%(name)s é um restaurante e serviço de catering. Cozinhamos comida fresca, "
+"local e internacional, todos os dias e entregamos a horas, desde pequenas "
+"reuniões a grandes eventos."
+
+#: templates/dashboard/quotations/profile.html:66
+msgid "Our services"
+msgstr "Os nossos serviços"
+
+#: templates/dashboard/quotations/profile.html:67
 msgid "Lunch and dinner catering for offices, workshops and trainings"
 msgstr "Catering de almoço e jantar para escritórios, workshops e formações"
 
-#: templates/dashboard/quotations/profile.html:37
+#: templates/dashboard/quotations/profile.html:68
 msgid "Coffee breaks and snack boxes"
 msgstr "Coffee breaks e caixas de lanche"
 
-#: templates/dashboard/quotations/profile.html:38
+#: templates/dashboard/quotations/profile.html:69
 msgid "Weddings, parties and private events"
 msgstr "Casamentos, festas e eventos privados"
 
-#: templates/dashboard/quotations/profile.html:39
+#: templates/dashboard/quotations/profile.html:70
 msgid "Delivery, setup, serving staff and equipment"
 msgstr "Entrega, montagem, pessoal de serviço e equipamento"
 
-#: templates/dashboard/quotations/profile.html:41
+#: templates/dashboard/quotations/profile.html:72
 msgid "Why choose us"
 msgstr "Porquê escolher-nos"
 
-#: templates/dashboard/quotations/profile.html:42
+#: templates/dashboard/quotations/profile.html:73
 msgid "Fresh ingredients bought locally every day"
 msgstr "Ingredientes frescos comprados localmente todos os dias"
 
-#: templates/dashboard/quotations/profile.html:43
+#: templates/dashboard/quotations/profile.html:74
 msgid "Clean kitchen and trained staff"
 msgstr "Cozinha limpa e pessoal formado"
 
-#: templates/dashboard/quotations/profile.html:44
+#: templates/dashboard/quotations/profile.html:75
 msgid "Menus adapted to your budget and number of guests"
 msgstr "Menus adaptados ao seu orçamento e número de convidados"
 
-#: templates/dashboard/quotations/profile.html:45
+#: templates/dashboard/quotations/profile.html:76
 msgid "Experience with government offices, NGOs and companies"
 msgstr "Experiência com serviços do governo, ONG e empresas"
 
-#: templates/dashboard/quotations/profile.html:47
+#: templates/dashboard/quotations/profile.html:78
 msgid "Our clients"
 msgstr "Os nossos clientes"
 
-#: templates/dashboard/quotations/profile.html:48
+#: templates/dashboard/quotations/profile.html:79
 msgid "[List some clients or events you have served.]"
 msgstr "[Indique alguns clientes ou eventos que já serviu.]"
 
