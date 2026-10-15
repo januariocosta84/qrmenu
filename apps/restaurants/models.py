@@ -211,7 +211,7 @@ class Restaurant(TranslatableMixin, TimeStampedModel):
 class RestaurantStaff(TimeStampedModel):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="staff")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="memberships")
-    role = models.CharField(max_length=20, choices=Role.CHOICES, default=Role.WAITER)
+    role = models.CharField(max_length=20, choices=Role.ALL_CHOICES, default=Role.WAITER)
     is_active = models.BooleanField(default=True)
 
     class Meta:

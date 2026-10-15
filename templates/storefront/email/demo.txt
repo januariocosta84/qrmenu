@@ -1,0 +1,16 @@
+{% load i18n %}{% autoescape off %}{% blocktranslate with name=dr.name %}Hello {{ name }},{% endblocktranslate %}
+
+{% blocktranslate trimmed with platform=platform_name restaurant=restaurant.name %}Thank you for your interest in {{ platform }}. Open the demo of {{ restaurant }} with this link:{% endblocktranslate %}
+
+{{ link }}
+
+{% blocktranslate trimmed count days=days %}The link works for {{ days }} day. The demo is view only: you can open every page, but changes are not saved.{% plural %}The link works for {{ days }} days. The demo is view only: you can open every page, but changes are not saved.{% endblocktranslate %}
+
+{% translate "See the menu as your customers see it:" %}
+{{ menu_link }}
+
+{% translate "Ready to start with your own restaurant?" %}
+{{ signup_link }}
+
+— {{ platform_name }}
+{% endautoescape %}

@@ -1,0 +1,34 @@
+{% extends "console/base.html" %}
+{% load ui_icons %}
+{% block title %}Demo requests{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>Demo requests</h1>
+    <p class="page-sub">People who asked to try the demo on the home page. Each got an emailed link (valid 7 days) to the view-only demo dashboard. {{ opened }} of {{ total }} opened it.</p>
+  </div>
+</div>
+<form method="get" class="btn-row" style="margin-bottom:12px"><input name="q" value="{{ q }}" placeholder="Search name, email, job, address" aria-label="Search"><button class="btn" type="submit">{% icon "search" %} Search</button>{% if q %}<a class="btn btn-ghost" href="?">Clear</a>{% endif %}</form>
+<section class="card">
+  {% if page %}
+  <div class="table-wrap">
+  <table class="table rtable">
+    <thead><tr><th>Requested</th><th>Name</th><th>Job title</th><th>Address</th><th>Email</th><th class="num">Opened</th><th>Last opened</th><th>Link</th></tr></thead>
+    <tbody>{% for d in page %}
+      <tr>
+        <td data-label="Requested" class="nowrap">{{ d.created_at|date:"d M Y H:i" }}</td>
+        <td data-label="Name" class="rt-title"><strong>{{ d.name }}</strong></td>
+        <td data-label="Job title">{{ d.job_title }}</td>
+        <td data-label="Address">{{ d.address }}</td>
+        <td data-label="Email"><a href="mailto:{{ d.email }}">{{ d.email }}</a></td>
+        <td data-label="Opened" class="num">{{ d.opened_count }}×</td>
+        <td data-label="Last opened" class="nowrap">{{ d.last_opened_at|date:"d M H:i"|default:"—" }}</td>
+        <td data-label="Link">{% if d.expires_at > now %}<span class="pill pill-ready">valid until {{ d.expires_at|date:"d M" }}</span>{% else %}<span class="pill">expired</span>{% endif %}</td>
+      </tr>{% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% if page.has_other_pages %}<div class="btn-row">{% if page.has_previous %}<a class="btn" href="?q={{ q|urlencode }}&page={{ page.previous_page_number }}">Newer</a>{% endif %}{% if page.has_next %}<a class="btn" href="?q={{ q|urlencode }}&page={{ page.next_page_number }}">Older</a>{% endif %}</div>{% endif %}
+  {% else %}<div class="empty">{% icon "mail" %}<p>No demo requests yet.</p></div>{% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "storefront/base.html" %}
+{% load i18n ui_icons %}
+{% block html_lang %}{% get_current_language as LANG %}{{ LANG }}{% endblock %}
+{% block title %}{% translate "Try the demo" %} · {{ platform_name }}{% endblock %}
+{% block body_class %}landing{% endblock %}
+{% block content %}
+<header class="land-hero land-hero-slim">
+  <nav class="land-nav">
+    <a class="land-brand" href="{% url 'storefront:home' %}">▦ {{ platform_name }}</a>
+    <span class="land-nav-right">{% include "storefront/_landing_language.html" %}</span>
+  </nav>
+</header>
+<main class="land-main terms demo-page">
+  <h1>{% translate "Try the demo" %}</h1>
+  <p class="land-lead-dark">{% blocktranslate trimmed count days=days %}See {{ platform_name }} working in a real café: the dashboard, kitchen screen, orders, menu, reports and quotations. Fill in the form and we email you a link to open the demo. It works for {{ days }} day.{% plural %}See {{ platform_name }} working in a real café: the dashboard, kitchen screen, orders, menu, reports and quotations. Fill in the form and we email you a link to open the demo. It works for {{ days }} days.{% endblocktranslate %}</p>
+
+  {% if not available %}
+    <div class="land-callme-form land-callme-done" role="status"><h3>{% translate "The demo is not available right now." %}</h3>
+      <p><a href="{% url 'storefront:home' %}#call-me">{% translate "Ask us to call you back instead →" %}</a></p></div>
+  {% elif status == "sent" %}
+    <div class="land-callme-form land-callme-done" role="status">
+      <span class="land-ico">{% icon "mail" %}</span>
+      <h3>{% translate "Check your email" %}</h3>
+      <p>{% translate "We sent you the link to open the demo. If it is not in your inbox after a few minutes, look in the spam folder." %}</p>
+    </div>
+  {% else %}
+    {% if status == "expired" %}<p class="demo-note">{% translate "That demo link has expired or is not valid. Fill in the form to get a new one." %}</p>{% endif %}
+    <form method="post" action="{% url 'storefront:demo' %}" class="land-callme-form" novalidate>
+      {% csrf_token %}
+      {% if status == "limit" %}<p class="error">{% translate "Too many requests. Please try again later." %}</p>{% endif %}
+      {% if status == "mail_failed" %}<p class="error">{% translate "We could not send the email to this address. Please check it and try again." %}</p>{% endif %}
+      {% for e in form.non_field_errors %}<p class="error">{{ e }}</p>{% endfor %}
+      {% for field in form %}{% if field.name == "website" %}<div class="hp" aria-hidden="true">{{ field }}</div>
+      {% else %}<label class="field"><span>{{ field.label }} *</span>{{ field }}{% if field.help_text %}<small class="muted">{{ field.help_text }}</small>{% endif %}{% for e in field.errors %}<small class="error">{{ e }}</small>{% endfor %}</label>{% endif %}{% endfor %}
+      <button class="btn btn-primary btn-lg btn-block" type="submit">{% icon "mail" %} {% translate "Email me the demo link" %}</button>
+      <p class="muted small">{% translate "The demo is view only: you can open every page, but changes are not saved. We only use your details to contact you about QR Menu." %}</p>
+    </form>
+  {% endif %}
+</main>
+{% endblock %}

@@ -13,33 +13,36 @@ class Role:
     MANAGER = "manager"
     KITCHEN = "kitchen"
     WAITER = "waiter"
+    DEMO = "demo"  # demo visitors (emailed link): see everything except staff/billing, change nothing
 
+    # Roles an owner can give to staff.
     CHOICES = [
         (OWNER, _("Owner")),
         (MANAGER, _("Manager")),
         (KITCHEN, _("Kitchen")),
         (WAITER, _("Waiter / Cashier")),
     ]
+    ALL_CHOICES = CHOICES + [(DEMO, _("Demo (view only)"))]
 
 
-ALL_ROLES = {Role.OWNER, Role.MANAGER, Role.KITCHEN, Role.WAITER}
+ALL_ROLES = {Role.OWNER, Role.MANAGER, Role.KITCHEN, Role.WAITER, Role.DEMO}
 
 CAPABILITIES = {
     "view_dashboard": ALL_ROLES,
     "view_orders": ALL_ROLES,
     "kitchen": ALL_ROLES,  # KDS + order status changes
-    "cancel_orders": {Role.OWNER, Role.MANAGER, Role.WAITER},
-    "take_orders": {Role.OWNER, Role.MANAGER, Role.WAITER},  # enter orders for guests without a phone
+    "cancel_orders": {Role.OWNER, Role.MANAGER, Role.DEMO, Role.WAITER},
+    "take_orders": {Role.OWNER, Role.MANAGER, Role.DEMO, Role.WAITER},  # enter orders for guests without a phone
     "toggle_availability": ALL_ROLES,  # mark items sold out
-    "payments": {Role.OWNER, Role.MANAGER, Role.WAITER},
-    "table_sessions": {Role.OWNER, Role.MANAGER, Role.WAITER},
-    "manage_menu": {Role.OWNER, Role.MANAGER},
-    "manage_tables": {Role.OWNER, Role.MANAGER},
-    "manage_restaurant": {Role.OWNER, Role.MANAGER},
-    "reports": {Role.OWNER, Role.MANAGER},
-    "quotations": {Role.OWNER, Role.MANAGER},  # price offers for catering / procurement bids
-    "expenses": {Role.OWNER, Role.MANAGER},  # daily expenses and profit
-    "record_revenue": {Role.OWNER, Role.MANAGER, Role.WAITER},  # manual sales entries for their own branch
+    "payments": {Role.OWNER, Role.MANAGER, Role.DEMO, Role.WAITER},
+    "table_sessions": {Role.OWNER, Role.MANAGER, Role.DEMO, Role.WAITER},
+    "manage_menu": {Role.OWNER, Role.MANAGER, Role.DEMO},
+    "manage_tables": {Role.OWNER, Role.MANAGER, Role.DEMO},
+    "manage_restaurant": {Role.OWNER, Role.MANAGER, Role.DEMO},
+    "reports": {Role.OWNER, Role.MANAGER, Role.DEMO},
+    "quotations": {Role.OWNER, Role.MANAGER, Role.DEMO},  # price offers for catering / procurement bids
+    "expenses": {Role.OWNER, Role.MANAGER, Role.DEMO},  # daily expenses and profit
+    "record_revenue": {Role.OWNER, Role.MANAGER, Role.DEMO, Role.WAITER},  # manual sales entries for their own branch
     "manage_staff": {Role.OWNER},
     "manage_billing": {Role.OWNER},
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 16:51+0900\n"
+"POT-Creation-Date: 2026-10-15 21:21+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,12 +22,13 @@ msgstr ""
 msgid "Restaurant name"
 msgstr "Nome do restaurante"
 
-#: apps/accounts/forms.py:12 apps/storefront/forms.py:19
+#: apps/accounts/forms.py:12 apps/storefront/demo.py:73
+#: apps/storefront/forms.py:19
 msgid "Your name"
 msgstr "O seu nome"
 
 #: apps/accounts/forms.py:13 apps/dashboard/forms.py:107
-#: apps/dashboard/forms.py:364
+#: apps/dashboard/forms.py:364 apps/storefront/demo.py:74
 msgid "Email"
 msgstr "Email"
 
@@ -595,22 +596,26 @@ msgstr "As dimensões da imagem são demasiado grandes."
 msgid "Upload a valid image file."
 msgstr "Carregue um ficheiro de imagem válido."
 
-#: apps/core/permissions.py:18 templates/dashboard/staff.html:32
+#: apps/core/permissions.py:20 templates/dashboard/staff.html:32
 msgid "Owner"
 msgstr "Proprietário"
 
-#: apps/core/permissions.py:19 templates/dashboard/staff.html:33
+#: apps/core/permissions.py:21 templates/dashboard/staff.html:33
 msgid "Manager"
 msgstr "Gerente"
 
-#: apps/core/permissions.py:20 templates/dashboard/base.html:92
+#: apps/core/permissions.py:22 templates/dashboard/base.html:92
 #: templates/dashboard/staff.html:34
 msgid "Kitchen"
 msgstr "Cozinha"
 
-#: apps/core/permissions.py:21 templates/dashboard/staff.html:35
+#: apps/core/permissions.py:23 templates/dashboard/staff.html:35
 msgid "Waiter / Cashier"
 msgstr "Empregado / Caixa"
+
+#: apps/core/permissions.py:25
+msgid "Demo (view only)"
+msgstr "Demonstração (só ver)"
 
 #: apps/dashboard/api.py:87
 msgid "Unknown table."
@@ -731,6 +736,7 @@ msgstr "Imagem de capa"
 
 #: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
 #: apps/quotations/forms.py:36 apps/restaurants/models.py:357
+#: apps/storefront/demo.py:74
 msgid "Address"
 msgstr "Morada"
 
@@ -2403,6 +2409,31 @@ msgstr "O proprietário legal da empresa."
 msgid "Phone number"
 msgstr "Número de telefone"
 
+#: apps/storefront/demo.py:73
+msgid "Job title"
+msgstr "Cargo"
+
+#: apps/storefront/demo.py:76
+msgid "We send the demo link to this address."
+msgstr "Enviamos o link da demonstração para este endereço."
+
+#: apps/storefront/demo.py:80
+msgid "e.g. Restaurant owner, Manager"
+msgstr "ex.: Dono de restaurante, Gerente"
+
+#: apps/storefront/demo.py:96 apps/storefront/forms.py:42
+msgid "Something went wrong. Please try again."
+msgstr "Algo correu mal. Tente novamente."
+
+#: apps/storefront/demo.py:149
+#, python-format
+msgid "Your %(platform)s demo"
+msgstr "A sua demonstração do %(platform)s"
+
+#: apps/storefront/demo.py:194
+msgid "This is a demo: changes are not saved. Register your restaurant to use it for real."
+msgstr "Isto é uma demonstração: as alterações não são guardadas. Registe o seu restaurante para o usar a sério."
+
 #: apps/storefront/forms.py:19
 msgid "Restaurant / café name"
 msgstr "Nome do restaurante / café"
@@ -2438,10 +2469,6 @@ msgstr "Noite"
 #: apps/storefront/forms.py:36
 msgid "Enter a phone number we can call, e.g. +670 7712 3456."
 msgstr "Introduza um número para onde possamos ligar, ex.: +670 7712 3456."
-
-#: apps/storefront/forms.py:42
-msgid "Something went wrong. Please try again."
-msgstr "Algo correu mal. Tente novamente."
 
 #: templates/accounts/login.html:3 templates/accounts/login.html:8
 #: templates/accounts/login.html:15
@@ -2529,7 +2556,7 @@ msgstr "Já pode iniciar sessão com a nova palavra-passe."
 
 #: templates/accounts/password_reset_complete.html:10
 #: templates/accounts/signup.html:29 templates/storefront/home.html:24
-#: templates/storefront/home.html:38
+#: templates/storefront/home.html:39
 msgid "Log in"
 msgstr "Iniciar sessão"
 
@@ -2556,6 +2583,7 @@ msgstr "Peça um novo"
 
 #: templates/accounts/password_reset_done.html:3
 #: templates/accounts/password_reset_done.html:8
+#: templates/storefront/demo.html:23
 msgid "Check your email"
 msgstr "Verifique o seu email"
 
@@ -2568,6 +2596,7 @@ msgstr ""
 "passe. Pode demorar alguns minutos; verifique também a pasta de spam."
 
 #: templates/accounts/signup.html:3 templates/accounts/signup.html:8
+#: templates/dashboard/base.html:107 templates/storefront/email/demo.html:10
 #: templates/storefront/home.html:37
 msgid "Register your restaurant"
 msgstr "Registe o seu restaurante"
@@ -3597,7 +3626,7 @@ msgid "Menu"
 msgstr "Menu"
 
 #: templates/dashboard/base.html:40 templates/dashboard/reports.html:3
-#: templates/dashboard/reports.html:8 templates/storefront/home.html:71
+#: templates/dashboard/reports.html:8 templates/storefront/home.html:72
 msgid "Reports"
 msgstr "Relatórios"
 
@@ -3682,15 +3711,23 @@ msgstr "Navegação rápida"
 msgid "Home"
 msgstr "Início"
 
-#: templates/dashboard/base.html:112
+#: templates/dashboard/base.html:107
+msgid "Demo, view only."
+msgstr "Demonstração, só para ver."
+
+#: templates/dashboard/base.html:107
+msgid "Look around every page; changes are not saved."
+msgstr "Veja todas as páginas; as alterações não são guardadas."
+
+#: templates/dashboard/base.html:113
 msgid "the owner's email"
 msgstr "o email do proprietário"
 
-#: templates/dashboard/base.html:112
+#: templates/dashboard/base.html:113
 msgid "Confirm your email to go live."
 msgstr "Confirme o seu email para ficar ativo."
 
-#: templates/dashboard/base.html:112
+#: templates/dashboard/base.html:113
 #, python-format
 msgid ""
 "We sent a link to <strong>%(email)s</strong>. Until then only your staff can "
@@ -3699,15 +3736,15 @@ msgstr ""
 "Enviámos um link para <strong>%(email)s</strong>. Até lá só os seus "
 "funcionários veem o menu; entretanto, configure o menu e as mesas."
 
-#: templates/dashboard/base.html:114
+#: templates/dashboard/base.html:115
 msgid "Resend email"
 msgstr "Reenviar email"
 
-#: templates/dashboard/base.html:118
+#: templates/dashboard/base.html:119
 msgid "Branch waiting for approval."
 msgstr "Filial a aguardar aprovação."
 
-#: templates/dashboard/base.html:118
+#: templates/dashboard/base.html:119
 msgid ""
 "The platform team checks every new branch. Until it is approved, the branch "
 "is hidden and can't record revenue. You can set up its menu and tables in "
@@ -3717,32 +3754,32 @@ msgstr ""
 "fica oculta e não pode registar receita. Entretanto pode preparar o menu e "
 "as mesas."
 
-#: templates/dashboard/base.html:121
+#: templates/dashboard/base.html:122
 msgid "Branch request not approved."
 msgstr "Pedido de filial não aprovado."
 
-#: templates/dashboard/base.html:121
+#: templates/dashboard/base.html:122
 msgid "Correct the details and send it again from Branches."
 msgstr "Corrija os dados e envie novamente a partir de Filiais."
 
-#: templates/dashboard/base.html:124
+#: templates/dashboard/base.html:125
 msgid "Branch suspended by the platform."
 msgstr "Filial suspensa pela plataforma."
 
-#: templates/dashboard/base.html:124
+#: templates/dashboard/base.html:125
 msgid "Customers can't see its menu and it can't record revenue."
 msgstr "Os clientes não veem o menu e não pode registar receita."
 
-#: templates/dashboard/base.html:124 templates/dashboard/base.html:130
+#: templates/dashboard/base.html:125 templates/dashboard/base.html:131
 #, python-format
 msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
 msgstr "Contacte <a href=\"mailto:%(email)s\">%(email)s</a>."
 
-#: templates/dashboard/base.html:127
+#: templates/dashboard/base.html:128
 msgid "Waiting for approval."
 msgstr "A aguardar aprovação."
 
-#: templates/dashboard/base.html:127
+#: templates/dashboard/base.html:128
 msgid ""
 "Our team reviews new restaurants before they go public. You can keep setting "
 "up your menu and tables."
@@ -3750,68 +3787,68 @@ msgstr ""
 "A nossa equipa revê os novos restaurantes antes de ficarem públicos. Pode "
 "continuar a configurar o menu e as mesas."
 
-#: templates/dashboard/base.html:130
+#: templates/dashboard/base.html:131
 msgid "This restaurant is not public."
 msgstr "Este restaurante não é público."
 
-#: templates/dashboard/base.html:130
+#: templates/dashboard/base.html:131
 msgid ""
 "It has been suspended by the platform. Customers can't see the menu or order."
 msgstr ""
 "Foi suspenso pela plataforma. Os clientes não podem ver o menu nem fazer "
 "pedidos."
 
-#: templates/dashboard/base.html:137
+#: templates/dashboard/base.html:138
 #, python-format
 msgid "Your free trial ends in %(days)s day."
 msgid_plural "Your free trial ends in %(days)s days."
 msgstr[0] "O seu período experimental termina dentro de %(days)s dia."
 msgstr[1] "O seu período experimental termina dentro de %(days)s dias."
 
-#: templates/dashboard/base.html:137
+#: templates/dashboard/base.html:138
 msgid "Pay the invoice to keep taking orders."
 msgstr "Pague a fatura para continuar a receber pedidos."
 
-#: templates/dashboard/base.html:138
+#: templates/dashboard/base.html:139
 msgid "Payment due."
 msgstr "Pagamento em atraso."
 
-#: templates/dashboard/base.html:138
+#: templates/dashboard/base.html:139
 #, python-format
 msgid ""
 "Your subscription ended on %(date)s; ordering will be switched off soon."
 msgstr ""
 "A sua subscrição terminou em %(date)s; os pedidos serão desativados em breve."
 
-#: templates/dashboard/base.html:139
+#: templates/dashboard/base.html:140
 msgid "Subscription expired."
 msgstr "Subscrição expirada."
 
-#: templates/dashboard/base.html:139
+#: templates/dashboard/base.html:140
 msgid "Customers can't place orders until the invoice is paid."
 msgstr "Os clientes não podem fazer pedidos até a fatura ser paga."
 
-#: templates/dashboard/base.html:140
+#: templates/dashboard/base.html:141
 msgid "Subscription cancelled."
 msgstr "Subscrição cancelada."
 
-#: templates/dashboard/base.html:140
+#: templates/dashboard/base.html:141
 msgid "Customers can't place orders."
 msgstr "Os clientes não podem fazer pedidos."
 
-#: templates/dashboard/base.html:141 templates/dashboard/branches.html:79
+#: templates/dashboard/base.html:142 templates/dashboard/branches.html:79
 msgid "View billing"
 msgstr "Ver faturação"
 
-#: templates/dashboard/base.html:148
+#: templates/dashboard/base.html:149
 msgid "Your business profile needs changes."
 msgstr "O perfil da sua empresa precisa de alterações."
 
-#: templates/dashboard/base.html:148
+#: templates/dashboard/base.html:149
 msgid "Complete your business profile."
 msgstr "Complete o perfil da sua empresa."
 
-#: templates/dashboard/base.html:148
+#: templates/dashboard/base.html:149
 msgid ""
 "We verify every business before it can add branches. It takes two minutes: "
 "registration number, owner, address and phone."
@@ -3819,16 +3856,16 @@ msgstr ""
 "Verificamos cada empresa antes de poder adicionar filiais. Demora dois "
 "minutos: número de registo, proprietário, morada e telefone."
 
-#: templates/dashboard/base.html:149 templates/dashboard/base.html:157
+#: templates/dashboard/base.html:150 templates/dashboard/base.html:158
 #: templates/dashboard/branches.html:102
 msgid "Complete now"
 msgstr "Completar agora"
 
-#: templates/dashboard/base.html:154
+#: templates/dashboard/base.html:155
 msgid "Complete your business profile"
 msgstr "Complete o perfil da sua empresa"
 
-#: templates/dashboard/base.html:155
+#: templates/dashboard/base.html:156
 msgid ""
 "Please add your business registration number (e.g. SERVE certificate or tax "
 "number), the owner's name, your address and phone number. Our team verifies "
@@ -3838,7 +3875,7 @@ msgstr ""
 "nome do proprietário, a morada e o telefone. A nossa equipa verifica e "
 "depois pode adicionar filiais."
 
-#: templates/dashboard/base.html:158
+#: templates/dashboard/base.html:159
 msgid "Remind me later"
 msgstr "Lembrar mais tarde"
 
@@ -3855,12 +3892,12 @@ msgid "Current plan"
 msgstr "Plano atual"
 
 #: templates/dashboard/billing.html:22 templates/dashboard/billing.html:81
-#: templates/dashboard/upgrade.html:28 templates/storefront/home.html:116
+#: templates/dashboard/upgrade.html:28 templates/storefront/home.html:117
 msgid "Free"
 msgstr "Grátis"
 
 #: templates/dashboard/billing.html:22 templates/dashboard/upgrade.html:28
-#: templates/storefront/home.html:116
+#: templates/storefront/home.html:117
 msgid "month"
 msgstr "mês"
 
@@ -6148,6 +6185,84 @@ msgstr "Ver planos e fazer upgrade"
 msgid "Ask the restaurant owner to upgrade the plan."
 msgstr "Peça ao proprietário do restaurante para mudar de plano."
 
+#: templates/storefront/demo.html:4 templates/storefront/demo.html:14
+#: templates/storefront/home.html:38
+msgid "Try the demo"
+msgstr "Experimentar a demonstração"
+
+#: templates/storefront/demo.html:15
+#, python-format
+msgid "See %(platform_name)s working in a real café: the dashboard, kitchen screen, orders, menu, reports and quotations. Fill in the form and we email you a link to open the demo. It works for %(days)s day."
+msgid_plural "See %(platform_name)s working in a real café: the dashboard, kitchen screen, orders, menu, reports and quotations. Fill in the form and we email you a link to open the demo. It works for %(days)s days."
+msgstr[0] "Veja o %(platform_name)s a funcionar num café real: o painel, o ecrã da cozinha, os pedidos, o menu, os relatórios e as cotações. Preencha o formulário e enviamos-lhe por email um link para abrir a demonstração. Funciona durante %(days)s dia."
+msgstr[1] "Veja o %(platform_name)s a funcionar num café real: o painel, o ecrã da cozinha, os pedidos, o menu, os relatórios e as cotações. Preencha o formulário e enviamos-lhe por email um link para abrir a demonstração. Funciona durante %(days)s dias."
+
+#: templates/storefront/demo.html:18
+msgid "The demo is not available right now."
+msgstr "A demonstração não está disponível neste momento."
+
+#: templates/storefront/demo.html:19
+msgid "Ask us to call you back instead →"
+msgstr "Peça-nos para lhe ligarmos →"
+
+#: templates/storefront/demo.html:24
+msgid "We sent you the link to open the demo. If it is not in your inbox after a few minutes, look in the spam folder."
+msgstr "Enviámos-lhe o link para abrir a demonstração. Se não estiver na caixa de entrada daqui a alguns minutos, veja na pasta de spam."
+
+#: templates/storefront/demo.html:27
+msgid "That demo link has expired or is not valid. Fill in the form to get a new one."
+msgstr "Esse link de demonstração expirou ou não é válido. Preencha o formulário para receber um novo."
+
+#: templates/storefront/demo.html:30
+msgid "Too many requests. Please try again later."
+msgstr "Demasiados pedidos. Tente novamente mais tarde."
+
+#: templates/storefront/demo.html:31
+msgid "We could not send the email to this address. Please check it and try again."
+msgstr "Não foi possível enviar o email para este endereço. Verifique-o e tente novamente."
+
+#: templates/storefront/demo.html:35
+msgid "Email me the demo link"
+msgstr "Enviar-me o link da demonstração"
+
+#: templates/storefront/demo.html:36
+msgid "The demo is view only: you can open every page, but changes are not saved. We only use your details to contact you about QR Menu."
+msgstr "A demonstração é só para ver: pode abrir todas as páginas, mas as alterações não são guardadas. Só usamos os seus dados para o contactar sobre o QR Menu."
+
+#: templates/storefront/email/demo.html:5 templates/storefront/email/demo.txt:1
+#, python-format
+msgid "Hello %(name)s,"
+msgstr "Olá %(name)s,"
+
+#: templates/storefront/email/demo.html:6 templates/storefront/email/demo.txt:3
+#, python-format
+msgid "Thank you for your interest in %(platform)s. Open the demo of %(restaurant)s with this link:"
+msgstr "Obrigado pelo seu interesse no %(platform)s. Abra a demonstração do %(restaurant)s com este link:"
+
+#: templates/storefront/email/demo.html:7
+msgid "Open the demo"
+msgstr "Abrir a demonstração"
+
+#: templates/storefront/email/demo.html:8 templates/storefront/email/demo.txt:7
+#, python-format
+msgid "The link works for %(days)s day. The demo is view only: you can open every page, but changes are not saved."
+msgid_plural "The link works for %(days)s days. The demo is view only: you can open every page, but changes are not saved."
+msgstr[0] "O link funciona durante %(days)s dia. A demonstração é só para ver: pode abrir todas as páginas, mas as alterações não são guardadas."
+msgstr[1] "O link funciona durante %(days)s dias. A demonstração é só para ver: pode abrir todas as páginas, mas as alterações não são guardadas."
+
+#: templates/storefront/email/demo.html:9 templates/storefront/email/demo.txt:9
+msgid "See the menu as your customers see it:"
+msgstr "Veja o menu como os seus clientes o veem:"
+
+#: templates/storefront/email/demo.html:10
+#: templates/storefront/email/demo.txt:12
+msgid "Ready to start with your own restaurant?"
+msgstr "Pronto para começar com o seu próprio restaurante?"
+
+#: templates/storefront/email/demo.html:11
+msgid "If the button does not work, copy this link into your browser:"
+msgstr "Se o botão não funcionar, copie este link para o navegador:"
+
 #: templates/storefront/home.html:4 templates/storefront/home.html:10
 msgid "QR menu & table ordering for restaurants"
 msgstr "Menu QR e pedidos à mesa para restaurantes"
@@ -6184,23 +6299,23 @@ msgstr ""
 "leem o código na mesa, pedem pelo telemóvel e o pedido vai diretamente para "
 "a cozinha. Não precisam de app nem de conta."
 
-#: templates/storefront/home.html:33 templates/storefront/home.html:129
+#: templates/storefront/home.html:33 templates/storefront/home.html:130
 msgid "Open dashboard"
 msgstr "Abrir painel"
 
-#: templates/storefront/home.html:40
+#: templates/storefront/home.html:41
 msgid "Rather talk to us? We call you back and set up your menu for you →"
 msgstr "Prefere falar connosco? Ligamos-lhe e configuramos o seu menu →"
 
-#: templates/storefront/home.html:47
+#: templates/storefront/home.html:48
 msgid "How it works"
 msgstr "Como funciona"
 
-#: templates/storefront/home.html:50
+#: templates/storefront/home.html:51
 msgid "Create your menu"
 msgstr "Crie o seu menu"
 
-#: templates/storefront/home.html:50
+#: templates/storefront/home.html:51
 msgid ""
 "Add dishes, photos, prices and add-ons in English, Tetum and Bahasa "
 "Indonesia."
@@ -6208,19 +6323,19 @@ msgstr ""
 "Adicione pratos, fotografias, preços e extras em inglês, tétum e bahasa "
 "indonésio."
 
-#: templates/storefront/home.html:51
+#: templates/storefront/home.html:52
 msgid "Print your QR codes"
 msgstr "Imprima os seus códigos QR"
 
-#: templates/storefront/home.html:51
+#: templates/storefront/home.html:52
 msgid "One code per table. Print them and place one on each table."
 msgstr "Um código por mesa. Imprima-os e coloque um em cada mesa."
 
-#: templates/storefront/home.html:52
+#: templates/storefront/home.html:53
 msgid "Receive orders live"
 msgstr "Receba pedidos em direto"
 
-#: templates/storefront/home.html:52
+#: templates/storefront/home.html:53
 msgid ""
 "Orders appear instantly on the kitchen screen with a sound alert. Customers "
 "can follow their order on their phone."
@@ -6228,11 +6343,11 @@ msgstr ""
 "Os pedidos aparecem de imediato no ecrã da cozinha com um alerta sonoro. Os "
 "clientes podem acompanhar o pedido no telemóvel."
 
-#: templates/storefront/home.html:57
+#: templates/storefront/home.html:58
 msgid "Video: how customers order with QR Menu"
 msgstr "Vídeo: como os clientes fazem pedidos com o QR Menu"
 
-#: templates/storefront/home.html:60
+#: templates/storefront/home.html:61
 msgid ""
 "Watch how a customer orders, from scanning the table's QR code to the "
 "kitchen (50 seconds)."
@@ -6240,11 +6355,11 @@ msgstr ""
 "Veja como um cliente faz o pedido, desde ler o código QR da mesa até à "
 "cozinha (50 segundos)."
 
-#: templates/storefront/home.html:66
+#: templates/storefront/home.html:67
 msgid "Works on any phone"
 msgstr "Funciona em qualquer telemóvel"
 
-#: templates/storefront/home.html:66
+#: templates/storefront/home.html:67
 msgid ""
 "Customers scan with the phone camera. No app, no account, and it loads fast "
 "on slow connections."
@@ -6252,48 +6367,48 @@ msgstr ""
 "Os clientes leem com a câmara do telemóvel. Sem app, sem conta, e carrega "
 "depressa mesmo com ligações lentas."
 
-#: templates/storefront/home.html:67
+#: templates/storefront/home.html:68
 msgid "Kitchen screen"
 msgstr "Ecrã da cozinha"
 
-#: templates/storefront/home.html:67
+#: templates/storefront/home.html:68
 msgid "New → Preparing → Ready → Completed, with timers and notes."
 msgstr "Novo → Em preparação → Pronto → Concluído, com temporizadores e notas."
 
-#: templates/storefront/home.html:68
+#: templates/storefront/home.html:69
 msgid "Tables & sessions"
 msgstr "Mesas e sessões"
 
-#: templates/storefront/home.html:68
+#: templates/storefront/home.html:69
 msgid ""
 "Several people can order from one table, and you see one bill per table."
 msgstr "Várias pessoas podem pedir da mesma mesa, e vê uma conta por mesa."
 
-#: templates/storefront/home.html:69
+#: templates/storefront/home.html:70
 msgid "Cash & change"
 msgstr "Dinheiro e troco"
 
-#: templates/storefront/home.html:69
+#: templates/storefront/home.html:70
 msgid "Mark orders paid in one tap, and see the change to give back."
 msgstr "Marque pedidos como pagos com um toque e veja o troco a dar."
 
-#: templates/storefront/home.html:70
+#: templates/storefront/home.html:71
 msgid "Sold out in one tap"
 msgstr "Esgotado com um toque"
 
-#: templates/storefront/home.html:70
+#: templates/storefront/home.html:71
 msgid "Customers' menus update immediately."
 msgstr "Os menus dos clientes atualizam-se de imediato."
 
-#: templates/storefront/home.html:71
+#: templates/storefront/home.html:72
 msgid "Daily revenue, best sellers and CSV export."
 msgstr "Receita diária, mais vendidos e exportação CSV."
 
-#: templates/storefront/home.html:78
+#: templates/storefront/home.html:79
 msgid "We call you back"
 msgstr "Nós ligamos-lhe"
 
-#: templates/storefront/home.html:79
+#: templates/storefront/home.html:80
 msgid ""
 "No time to set it up? Leave your number. We call you, answer your questions, "
 "and if you like we set up your menu for you: just send us photos of your "
@@ -6303,23 +6418,23 @@ msgstr ""
 "suas perguntas e, se quiser, configuramos o seu menu: basta enviar fotos do "
 "menu pelo WhatsApp. Grátis, sem compromisso."
 
-#: templates/storefront/home.html:81
+#: templates/storefront/home.html:82
 msgid "We enter your dishes, prices and photos"
 msgstr "Inserimos os seus pratos, preços e fotos"
 
-#: templates/storefront/home.html:82
+#: templates/storefront/home.html:83
 msgid "We help you print the QR codes for your tables"
 msgstr "Ajudamos a imprimir os códigos QR das mesas"
 
-#: templates/storefront/home.html:83
+#: templates/storefront/home.html:84
 msgid "In English, Tetum or Bahasa Indonesia"
 msgstr "Em inglês, tétum ou indonésio"
 
-#: templates/storefront/home.html:89
+#: templates/storefront/home.html:90
 msgid "Thank you! We will call you soon."
 msgstr "Obrigado! Vamos ligar-lhe em breve."
 
-#: templates/storefront/home.html:90
+#: templates/storefront/home.html:91
 msgid ""
 "Usually the same day. You can already send photos of your menu to our "
 "WhatsApp."
@@ -6327,7 +6442,7 @@ msgstr ""
 "Normalmente no mesmo dia. Já pode enviar fotos do seu menu para o nosso "
 "WhatsApp."
 
-#: templates/storefront/home.html:96
+#: templates/storefront/home.html:97
 msgid ""
 "Too many requests from this network. Please try again later or message us on "
 "WhatsApp."
@@ -6335,104 +6450,104 @@ msgstr ""
 "Demasiados pedidos desta rede. Tente mais tarde ou envie-nos mensagem pelo "
 "WhatsApp."
 
-#: templates/storefront/home.html:101
+#: templates/storefront/home.html:102
 msgid "Call me back"
 msgstr "Liguem-me"
 
-#: templates/storefront/home.html:102
+#: templates/storefront/home.html:103
 msgid "We only use your number to contact you about QR Menu."
 msgstr "Só usamos o seu número para o contactar sobre o QR Menu."
 
-#: templates/storefront/home.html:109
+#: templates/storefront/home.html:110
 msgid "Pricing"
 msgstr "Preços"
 
-#: templates/storefront/home.html:110
+#: templates/storefront/home.html:111
 msgid "Simple monthly plans. No setup fees."
 msgstr "Planos mensais simples. Sem custos de instalação."
 
-#: templates/storefront/home.html:110
+#: templates/storefront/home.html:111
 #, python-format
 msgid "New restaurants get a %(days)s-day free trial."
 msgid_plural "New restaurants get a %(days)s-day free trial."
 msgstr[0] "Os novos restaurantes têm %(days)s dia de teste grátis."
 msgstr[1] "Os novos restaurantes têm %(days)s dias de teste grátis."
 
-#: templates/storefront/home.html:114
+#: templates/storefront/home.html:115
 msgid "Most popular"
 msgstr "Mais popular"
 
-#: templates/storefront/home.html:119
+#: templates/storefront/home.html:120
 #, python-format
 msgid "Up to %(n)s table"
 msgid_plural "Up to %(n)s tables"
 msgstr[0] "Até %(n)s mesa"
 msgstr[1] "Até %(n)s mesas"
 
-#: templates/storefront/home.html:120
+#: templates/storefront/home.html:121
 #, python-format
 msgid "Up to %(n)s dish"
 msgid_plural "Up to %(n)s dishes"
 msgstr[0] "Até %(n)s prato"
 msgstr[1] "Até %(n)s pratos"
 
-#: templates/storefront/home.html:121
+#: templates/storefront/home.html:122
 #, python-format
 msgid "Up to %(n)s staff account"
 msgid_plural "Up to %(n)s staff accounts"
 msgstr[0] "Até %(n)s conta de funcionário"
 msgstr[1] "Até %(n)s contas de funcionários"
 
-#: templates/storefront/home.html:122
+#: templates/storefront/home.html:123
 msgid "Sales analytics"
 msgstr "Análise de vendas"
 
-#: templates/storefront/home.html:123
+#: templates/storefront/home.html:124
 msgid "Cash register & end-of-day reconciliation"
 msgstr "Caixa e conferência no fim do dia"
 
-#: templates/storefront/home.html:124
+#: templates/storefront/home.html:125
 msgid "Quotations for catering & tenders"
 msgstr "Cotações para catering e concursos"
 
-#: templates/storefront/home.html:125
+#: templates/storefront/home.html:126
 msgid "Daily expenses & profit"
 msgstr "Despesas diárias e lucro"
 
-#: templates/storefront/home.html:126
+#: templates/storefront/home.html:127
 #, python-format
 msgid "Main branch + %(n)s branch, one login"
 msgid_plural "Main branch + %(n)s branches, one login"
 msgstr[0] "Filial principal + %(n)s filial, um só login"
 msgstr[1] "Filial principal + %(n)s filiais, um só login"
 
-#: templates/storefront/home.html:127
+#: templates/storefront/home.html:128
 msgid "Ordering API for your website, apps & delivery partners"
 msgstr "API de pedidos para o seu site, apps e parceiros de entrega"
 
-#: templates/storefront/home.html:130
+#: templates/storefront/home.html:131
 msgid "Get started"
 msgstr "Começar"
 
-#: templates/storefront/home.html:138
+#: templates/storefront/home.html:139
 msgid "Are you a customer?"
 msgstr "É cliente?"
 
-#: templates/storefront/home.html:139
+#: templates/storefront/home.html:140
 msgid "To order, please scan the QR code on your table."
 msgstr "Para pedir, leia o código QR na sua mesa."
 
-#: templates/storefront/home.html:142
+#: templates/storefront/home.html:143
 #, python-format
 msgid "Hello! I'd like to know more about %(name)s."
 msgstr "Olá! Gostaria de saber mais sobre o %(name)s."
 
-#: templates/storefront/home.html:144 templates/storefront/terms.html:4
+#: templates/storefront/home.html:145 templates/storefront/terms.html:4
 #: templates/storefront/terms.html:14
 msgid "Terms of service"
 msgstr "Termos de serviço"
 
-#: templates/storefront/home.html:152
+#: templates/storefront/home.html:153
 msgid "Chat with us on WhatsApp"
 msgstr "Fale connosco no WhatsApp"
 

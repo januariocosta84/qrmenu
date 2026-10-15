@@ -333,3 +333,6 @@ h1, h2, h3 { line-height: 1.2; margin: 0; }
 .land-callme-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .land-callme-done { text-align: center; }
 .land-callme-done h3 { margin: 6px 0; }
+.demo-page .land-callme-form { max-width: 520px; }
+.demo-page .land-lead-dark { color: var(--ink); font-size: 1.05rem; }
+.demo-note { background: var(--brand-soft); border-radius: 10px; padding: 10px 14px; font-weight: 600; max-width: 520px; }

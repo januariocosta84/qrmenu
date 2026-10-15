@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 16:51+0900\n"
+"POT-Creation-Date: 2026-10-15 21:21+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,12 +22,13 @@ msgstr ""
 msgid "Restaurant name"
 msgstr "Naran restaurante"
 
-#: apps/accounts/forms.py:12 apps/storefront/forms.py:19
+#: apps/accounts/forms.py:12 apps/storefront/demo.py:73
+#: apps/storefront/forms.py:19
 msgid "Your name"
 msgstr "Ita-nia naran"
 
 #: apps/accounts/forms.py:13 apps/dashboard/forms.py:107
-#: apps/dashboard/forms.py:364
+#: apps/dashboard/forms.py:364 apps/storefront/demo.py:74
 msgid "Email"
 msgstr "Email"
 
@@ -595,22 +596,26 @@ msgstr "Medida imajen nian boot liu."
 msgid "Upload a valid image file."
 msgstr "Tau arkivu imajen ida ne'ebé válidu."
 
-#: apps/core/permissions.py:18 templates/dashboard/staff.html:32
+#: apps/core/permissions.py:20 templates/dashboard/staff.html:32
 msgid "Owner"
 msgstr "Na'in"
 
-#: apps/core/permissions.py:19 templates/dashboard/staff.html:33
+#: apps/core/permissions.py:21 templates/dashboard/staff.html:33
 msgid "Manager"
 msgstr "Jerente"
 
-#: apps/core/permissions.py:20 templates/dashboard/base.html:92
+#: apps/core/permissions.py:22 templates/dashboard/base.html:92
 #: templates/dashboard/staff.html:34
 msgid "Kitchen"
 msgstr "Kozinha"
 
-#: apps/core/permissions.py:21 templates/dashboard/staff.html:35
+#: apps/core/permissions.py:23 templates/dashboard/staff.html:35
 msgid "Waiter / Cashier"
 msgstr "Serbidór / Kaixa"
+
+#: apps/core/permissions.py:25
+msgid "Demo (view only)"
+msgstr "Demo (haree de'it)"
 
 #: apps/dashboard/api.py:87
 msgid "Unknown table."
@@ -732,6 +737,7 @@ msgstr "Imajen kapa"
 
 #: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
 #: apps/quotations/forms.py:36 apps/restaurants/models.py:357
+#: apps/storefront/demo.py:74
 msgid "Address"
 msgstr "Enderesu"
 
@@ -2389,6 +2395,31 @@ msgstr "Na'in legál ba negósiu."
 msgid "Phone number"
 msgstr "Númeru telefone"
 
+#: apps/storefront/demo.py:73
+msgid "Job title"
+msgstr "Kargu"
+
+#: apps/storefront/demo.py:76
+msgid "We send the demo link to this address."
+msgstr "Ami haruka link demo ba enderesu ida-ne'e."
+
+#: apps/storefront/demo.py:80
+msgid "e.g. Restaurant owner, Manager"
+msgstr "ez.: Na'in restaurante, Jerente"
+
+#: apps/storefront/demo.py:96 apps/storefront/forms.py:42
+msgid "Something went wrong. Please try again."
+msgstr "Iha problema. Favór koko fali."
+
+#: apps/storefront/demo.py:149
+#, python-format
+msgid "Your %(platform)s demo"
+msgstr "Ita-nia demo %(platform)s"
+
+#: apps/storefront/demo.py:194
+msgid "This is a demo: changes are not saved. Register your restaurant to use it for real."
+msgstr "Ida-ne'e demo: mudansa la rai. Rejista ita-nia restaurante atu uza duni."
+
 #: apps/storefront/forms.py:19
 msgid "Restaurant / café name"
 msgstr "Naran restaurante / kafé"
@@ -2424,10 +2455,6 @@ msgstr "Kalan"
 #: apps/storefront/forms.py:36
 msgid "Enter a phone number we can call, e.g. +670 7712 3456."
 msgstr "Hakerek númeru telefone ne'ebé ami bele bolu, ez. +670 7712 3456."
-
-#: apps/storefront/forms.py:42
-msgid "Something went wrong. Please try again."
-msgstr "Iha problema. Favór koko fali."
 
 #: templates/accounts/login.html:3 templates/accounts/login.html:8
 #: templates/accounts/login.html:15
@@ -2515,7 +2542,7 @@ msgstr "Agora ita bele tama ho palavra-pase foun."
 
 #: templates/accounts/password_reset_complete.html:10
 #: templates/accounts/signup.html:29 templates/storefront/home.html:24
-#: templates/storefront/home.html:38
+#: templates/storefront/home.html:39
 msgid "Log in"
 msgstr "Tama"
 
@@ -2542,6 +2569,7 @@ msgstr "Husu ida foun"
 
 #: templates/accounts/password_reset_done.html:3
 #: templates/accounts/password_reset_done.html:8
+#: templates/storefront/demo.html:23
 msgid "Check your email"
 msgstr "Haree ita-nia email"
 
@@ -2554,6 +2582,7 @@ msgstr ""
 "Bele demora minutu balu; haree mós pasta spam."
 
 #: templates/accounts/signup.html:3 templates/accounts/signup.html:8
+#: templates/dashboard/base.html:107 templates/storefront/email/demo.html:10
 #: templates/storefront/home.html:37
 msgid "Register your restaurant"
 msgstr "Rejistu ita-nia restaurante"
@@ -3574,7 +3603,7 @@ msgid "Menu"
 msgstr "Menu"
 
 #: templates/dashboard/base.html:40 templates/dashboard/reports.html:3
-#: templates/dashboard/reports.html:8 templates/storefront/home.html:71
+#: templates/dashboard/reports.html:8 templates/storefront/home.html:72
 msgid "Reports"
 msgstr "Relatóriu"
 
@@ -3659,15 +3688,23 @@ msgstr "Navegasaun lalais"
 msgid "Home"
 msgstr "Uma"
 
-#: templates/dashboard/base.html:112
+#: templates/dashboard/base.html:107
+msgid "Demo, view only."
+msgstr "Demo, haree de'it."
+
+#: templates/dashboard/base.html:107
+msgid "Look around every page; changes are not saved."
+msgstr "Haree pájina hotu; mudansa la rai."
+
+#: templates/dashboard/base.html:113
 msgid "the owner's email"
 msgstr "email na'in nian"
 
-#: templates/dashboard/base.html:112
+#: templates/dashboard/base.html:113
 msgid "Confirm your email to go live."
 msgstr "Konfirma ita-nia email atu ativu."
 
-#: templates/dashboard/base.html:112
+#: templates/dashboard/base.html:113
 #, python-format
 msgid ""
 "We sent a link to <strong>%(email)s</strong>. Until then only your staff can "
@@ -3676,15 +3713,15 @@ msgstr ""
 "Ami haruka ona link ba <strong>%(email)s</strong>. To'o ne'ebá funsionáriu "
 "sira de'it mak bele haree menu, entaun prepara uluk menu no meza sira."
 
-#: templates/dashboard/base.html:114
+#: templates/dashboard/base.html:115
 msgid "Resend email"
 msgstr "Haruka fali email"
 
-#: templates/dashboard/base.html:118
+#: templates/dashboard/base.html:119
 msgid "Branch waiting for approval."
 msgstr "Filial hein aprovasaun."
 
-#: templates/dashboard/base.html:118
+#: templates/dashboard/base.html:119
 msgid ""
 "The platform team checks every new branch. Until it is approved, the branch "
 "is hidden and can't record revenue. You can set up its menu and tables in "
@@ -3693,32 +3730,32 @@ msgstr ""
 "Ekipa plataforma verifika filial foun ida-idak. To'o aprova, filial subar no "
 "labele rejistu rendimentu. Entretantu ita bele prepara ninia menu no meza."
 
-#: templates/dashboard/base.html:121
+#: templates/dashboard/base.html:122
 msgid "Branch request not approved."
 msgstr "Pedidu filial la aprova."
 
-#: templates/dashboard/base.html:121
+#: templates/dashboard/base.html:122
 msgid "Correct the details and send it again from Branches."
 msgstr "Korrije detalle no haruka fali husi Filial sira."
 
-#: templates/dashboard/base.html:124
+#: templates/dashboard/base.html:125
 msgid "Branch suspended by the platform."
 msgstr "Filial suspende husi plataforma."
 
-#: templates/dashboard/base.html:124
+#: templates/dashboard/base.html:125
 msgid "Customers can't see its menu and it can't record revenue."
 msgstr "Kliente sira labele haree ninia menu no labele rejistu rendimentu."
 
-#: templates/dashboard/base.html:124 templates/dashboard/base.html:130
+#: templates/dashboard/base.html:125 templates/dashboard/base.html:131
 #, python-format
 msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
 msgstr "Kontaktu <a href=\"mailto:%(email)s\">%(email)s</a>."
 
-#: templates/dashboard/base.html:127
+#: templates/dashboard/base.html:128
 msgid "Waiting for approval."
 msgstr "Hein hela aprovasaun."
 
-#: templates/dashboard/base.html:127
+#: templates/dashboard/base.html:128
 msgid ""
 "Our team reviews new restaurants before they go public. You can keep setting "
 "up your menu and tables."
@@ -3726,65 +3763,65 @@ msgstr ""
 "Ami-nia ekipa haree restaurante foun sira molok sira sai públiku. Ita bele "
 "kontinua prepara menu no meza sira."
 
-#: templates/dashboard/base.html:130
+#: templates/dashboard/base.html:131
 msgid "This restaurant is not public."
 msgstr "Restaurante ne'e la públiku."
 
-#: templates/dashboard/base.html:130
+#: templates/dashboard/base.html:131
 msgid ""
 "It has been suspended by the platform. Customers can't see the menu or order."
 msgstr "Plataforma suspende ona. Kliente sira labele haree menu ka pede."
 
-#: templates/dashboard/base.html:137
+#: templates/dashboard/base.html:138
 #, python-format
 msgid "Your free trial ends in %(days)s day."
 msgid_plural "Your free trial ends in %(days)s days."
 msgstr[0] "Ita-nia períodu esperimentál remata iha loron %(days)s."
 msgstr[1] "Ita-nia períodu esperimentál remata iha loron %(days)s."
 
-#: templates/dashboard/base.html:137
+#: templates/dashboard/base.html:138
 msgid "Pay the invoice to keep taking orders."
 msgstr "Selu fatura atu kontinua simu pedidu."
 
-#: templates/dashboard/base.html:138
+#: templates/dashboard/base.html:139
 msgid "Payment due."
 msgstr "Tenke selu."
 
-#: templates/dashboard/base.html:138
+#: templates/dashboard/base.html:139
 #, python-format
 msgid ""
 "Your subscription ended on %(date)s; ordering will be switched off soon."
 msgstr "Ita-nia asinatura remata iha %(date)s; pedidu sei dezativa lalais."
 
-#: templates/dashboard/base.html:139
+#: templates/dashboard/base.html:140
 msgid "Subscription expired."
 msgstr "Asinatura liu ona prazu."
 
-#: templates/dashboard/base.html:139
+#: templates/dashboard/base.html:140
 msgid "Customers can't place orders until the invoice is paid."
 msgstr "Kliente sira labele pede to'o fatura selu ona."
 
-#: templates/dashboard/base.html:140
+#: templates/dashboard/base.html:141
 msgid "Subscription cancelled."
 msgstr "Asinatura kansela ona."
 
-#: templates/dashboard/base.html:140
+#: templates/dashboard/base.html:141
 msgid "Customers can't place orders."
 msgstr "Kliente sira labele pede."
 
-#: templates/dashboard/base.html:141 templates/dashboard/branches.html:79
+#: templates/dashboard/base.html:142 templates/dashboard/branches.html:79
 msgid "View billing"
 msgstr "Haree faturasaun"
 
-#: templates/dashboard/base.html:148
+#: templates/dashboard/base.html:149
 msgid "Your business profile needs changes."
 msgstr "Ita-nia perfil negósiu presiza muda."
 
-#: templates/dashboard/base.html:148
+#: templates/dashboard/base.html:149
 msgid "Complete your business profile."
 msgstr "Kompleta ita-nia perfil negósiu."
 
-#: templates/dashboard/base.html:148
+#: templates/dashboard/base.html:149
 msgid ""
 "We verify every business before it can add branches. It takes two minutes: "
 "registration number, owner, address and phone."
@@ -3792,16 +3829,16 @@ msgstr ""
 "Ami verifika negósiu ida-idak antes bele aumenta filial. Presiza minutu rua "
 "de'it: númeru rejistu, na'in, enderesu no telefone."
 
-#: templates/dashboard/base.html:149 templates/dashboard/base.html:157
+#: templates/dashboard/base.html:150 templates/dashboard/base.html:158
 #: templates/dashboard/branches.html:102
 msgid "Complete now"
 msgstr "Kompleta agora"
 
-#: templates/dashboard/base.html:154
+#: templates/dashboard/base.html:155
 msgid "Complete your business profile"
 msgstr "Kompleta ita-nia perfil negósiu"
 
-#: templates/dashboard/base.html:155
+#: templates/dashboard/base.html:156
 msgid ""
 "Please add your business registration number (e.g. SERVE certificate or tax "
 "number), the owner's name, your address and phone number. Our team verifies "
@@ -3811,7 +3848,7 @@ msgstr ""
 "NIF), naran na'in, enderesu no númeru telefone. Ami-nia ekipa verifika, "
 "depois ita bele aumenta filial."
 
-#: templates/dashboard/base.html:158
+#: templates/dashboard/base.html:159
 msgid "Remind me later"
 msgstr "Fó hanoin fali depois"
 
@@ -3828,12 +3865,12 @@ msgid "Current plan"
 msgstr "Planu atuál"
 
 #: templates/dashboard/billing.html:22 templates/dashboard/billing.html:81
-#: templates/dashboard/upgrade.html:28 templates/storefront/home.html:116
+#: templates/dashboard/upgrade.html:28 templates/storefront/home.html:117
 msgid "Free"
 msgstr "Gratuitu"
 
 #: templates/dashboard/billing.html:22 templates/dashboard/upgrade.html:28
-#: templates/storefront/home.html:116
+#: templates/storefront/home.html:117
 msgid "month"
 msgstr "fulan"
 
@@ -6108,6 +6145,84 @@ msgstr "Haree planu no hasa'e"
 msgid "Ask the restaurant owner to upgrade the plan."
 msgstr "Husu restaurante na'in atu hasa'e planu."
 
+#: templates/storefront/demo.html:4 templates/storefront/demo.html:14
+#: templates/storefront/home.html:38
+msgid "Try the demo"
+msgstr "Koko demo"
+
+#: templates/storefront/demo.html:15
+#, python-format
+msgid "See %(platform_name)s working in a real café: the dashboard, kitchen screen, orders, menu, reports and quotations. Fill in the form and we email you a link to open the demo. It works for %(days)s day."
+msgid_plural "See %(platform_name)s working in a real café: the dashboard, kitchen screen, orders, menu, reports and quotations. Fill in the form and we email you a link to open the demo. It works for %(days)s days."
+msgstr[0] "Haree %(platform_name)s servisu iha kafé loos ida: painel, ekran dapur, pedidu, menu, relatóriu no kotasaun. Prenxe formuláriu no ami haruka link liu husi email atu loke demo. Funsiona ba loron %(days)s."
+msgstr[1] "Haree %(platform_name)s servisu iha kafé loos ida: painel, ekran dapur, pedidu, menu, relatóriu no kotasaun. Prenxe formuláriu no ami haruka link liu husi email atu loke demo. Funsiona ba loron %(days)s."
+
+#: templates/storefront/demo.html:18
+msgid "The demo is not available right now."
+msgstr "Demo la disponivel agora."
+
+#: templates/storefront/demo.html:19
+msgid "Ask us to call you back instead →"
+msgstr "Husu ami atu telefone ita →"
+
+#: templates/storefront/demo.html:24
+msgid "We sent you the link to open the demo. If it is not in your inbox after a few minutes, look in the spam folder."
+msgstr "Ami haruka ona link atu loke demo. Se la iha ita-nia inbox depois minutu balun, haree iha pasta spam."
+
+#: templates/storefront/demo.html:27
+msgid "That demo link has expired or is not valid. Fill in the form to get a new one."
+msgstr "Link demo ne'e la válidu ona. Prenxe formuláriu atu simu foun ida."
+
+#: templates/storefront/demo.html:30
+msgid "Too many requests. Please try again later."
+msgstr "Pedidu barak liu. Favor koko fali depois."
+
+#: templates/storefront/demo.html:31
+msgid "We could not send the email to this address. Please check it and try again."
+msgstr "La konsege haruka email ba enderesu ida-ne'e. Favor verifika no koko fali."
+
+#: templates/storefront/demo.html:35
+msgid "Email me the demo link"
+msgstr "Haruka link demo mai ha'u"
+
+#: templates/storefront/demo.html:36
+msgid "The demo is view only: you can open every page, but changes are not saved. We only use your details to contact you about QR Menu."
+msgstr "Demo ne'e haree de'it: ita bele loke pájina hotu, maibé mudansa la rai. Ami uza ita-nia dadus de'it atu kontaktu ita kona-ba QR Menu."
+
+#: templates/storefront/email/demo.html:5 templates/storefront/email/demo.txt:1
+#, python-format
+msgid "Hello %(name)s,"
+msgstr "Olá %(name)s,"
+
+#: templates/storefront/email/demo.html:6 templates/storefront/email/demo.txt:3
+#, python-format
+msgid "Thank you for your interest in %(platform)s. Open the demo of %(restaurant)s with this link:"
+msgstr "Obrigadu ba ita-nia interese iha %(platform)s. Loke demo %(restaurant)s ho link ida-ne'e:"
+
+#: templates/storefront/email/demo.html:7
+msgid "Open the demo"
+msgstr "Loke demo"
+
+#: templates/storefront/email/demo.html:8 templates/storefront/email/demo.txt:7
+#, python-format
+msgid "The link works for %(days)s day. The demo is view only: you can open every page, but changes are not saved."
+msgid_plural "The link works for %(days)s days. The demo is view only: you can open every page, but changes are not saved."
+msgstr[0] "Link funsiona ba loron %(days)s. Demo ne'e haree de'it: ita bele loke pájina hotu, maibé mudansa la rai."
+msgstr[1] "Link funsiona ba loron %(days)s. Demo ne'e haree de'it: ita bele loke pájina hotu, maibé mudansa la rai."
+
+#: templates/storefront/email/demo.html:9 templates/storefront/email/demo.txt:9
+msgid "See the menu as your customers see it:"
+msgstr "Haree menu hanesan ita-nia kliente sira haree:"
+
+#: templates/storefront/email/demo.html:10
+#: templates/storefront/email/demo.txt:12
+msgid "Ready to start with your own restaurant?"
+msgstr "Prontu ona atu komesa ho ita-nia restaurante rasik?"
+
+#: templates/storefront/email/demo.html:11
+msgid "If the button does not work, copy this link into your browser:"
+msgstr "Se butaun la funsiona, kopia link ida-ne'e ba browser:"
+
 #: templates/storefront/home.html:4 templates/storefront/home.html:10
 msgid "QR menu & table ordering for restaurants"
 msgstr "Menu QR no pedidu iha meza ba restaurante"
@@ -6144,42 +6259,42 @@ msgstr ""
 "scan kódigu iha meza, pedidu liu husi kliente sira-nia telemovel, no pedidu "
 "ba direta ba ita-nia kozinha. Sira la presiza aplikasaun ka konta."
 
-#: templates/storefront/home.html:33 templates/storefront/home.html:129
+#: templates/storefront/home.html:33 templates/storefront/home.html:130
 msgid "Open dashboard"
 msgstr "Loke painél"
 
-#: templates/storefront/home.html:40
+#: templates/storefront/home.html:41
 msgid "Rather talk to us? We call you back and set up your menu for you →"
 msgstr "Prefere ko'alia ho ami? Ami telefone Ita no prepara Ita-nia menu →"
 
-#: templates/storefront/home.html:47
+#: templates/storefront/home.html:48
 msgid "How it works"
 msgstr "Oinsá nia funsiona"
 
-#: templates/storefront/home.html:50
+#: templates/storefront/home.html:51
 msgid "Create your menu"
 msgstr "Kria ita-nia menu"
 
-#: templates/storefront/home.html:50
+#: templates/storefront/home.html:51
 msgid ""
 "Add dishes, photos, prices and add-ons in English, Tetum and Bahasa "
 "Indonesia."
 msgstr ""
 "Aumenta hahán, foto, folin no estra iha Inglés, Tetun no Bahasa Indonézia."
 
-#: templates/storefront/home.html:51
+#: templates/storefront/home.html:52
 msgid "Print your QR codes"
 msgstr "Imprime ita-nia kódigu QR"
 
-#: templates/storefront/home.html:51
+#: templates/storefront/home.html:52
 msgid "One code per table. Print them and place one on each table."
 msgstr "Kódigu ida ba meza ida. Imprime no tau ida iha meza ida-idak."
 
-#: templates/storefront/home.html:52
+#: templates/storefront/home.html:53
 msgid "Receive orders live"
 msgstr "Simu pedidu direta"
 
-#: templates/storefront/home.html:52
+#: templates/storefront/home.html:53
 msgid ""
 "Orders appear instantly on the kitchen screen with a sound alert. Customers "
 "can follow their order on their phone."
@@ -6187,11 +6302,11 @@ msgstr ""
 "Pedidu sira mosu kedas iha ekran kozinha ho son alerta. Kliente sira bele "
 "tuir sira-nia pedidu iha telemovel."
 
-#: templates/storefront/home.html:57
+#: templates/storefront/home.html:58
 msgid "Video: how customers order with QR Menu"
 msgstr "Vídeo: oinsá kliente sira halo orden ho QR Menu"
 
-#: templates/storefront/home.html:60
+#: templates/storefront/home.html:61
 msgid ""
 "Watch how a customer orders, from scanning the table's QR code to the "
 "kitchen (50 seconds)."
@@ -6199,11 +6314,11 @@ msgstr ""
 "Haree oinsá kliente ida halo orden, husi scan kódigu QR iha meza to'o "
 "kozinha (segundu 50)."
 
-#: templates/storefront/home.html:66
+#: templates/storefront/home.html:67
 msgid "Works on any phone"
 msgstr "Funsiona iha telemovel hotu"
 
-#: templates/storefront/home.html:66
+#: templates/storefront/home.html:67
 msgid ""
 "Customers scan with the phone camera. No app, no account, and it loads fast "
 "on slow connections."
@@ -6211,48 +6326,48 @@ msgstr ""
 "Kliente sira scan ho kámara telemovel. La presiza aplikasaun ka konta, no "
 "loke lalais maski internet neineik."
 
-#: templates/storefront/home.html:67
+#: templates/storefront/home.html:68
 msgid "Kitchen screen"
 msgstr "Ekran kozinha"
 
-#: templates/storefront/home.html:67
+#: templates/storefront/home.html:68
 msgid "New → Preparing → Ready → Completed, with timers and notes."
 msgstr "Foun → Prepara hela → Prontu → Remata ona, ho relójiu no nota."
 
-#: templates/storefront/home.html:68
+#: templates/storefront/home.html:69
 msgid "Tables & sessions"
 msgstr "Meza no sesaun"
 
-#: templates/storefront/home.html:68
+#: templates/storefront/home.html:69
 msgid ""
 "Several people can order from one table, and you see one bill per table."
 msgstr "Ema barak bele pede husi meza ida, no ita haree konta ida ba meza ida."
 
-#: templates/storefront/home.html:69
+#: templates/storefront/home.html:70
 msgid "Cash & change"
 msgstr "Osan no troku"
 
-#: templates/storefront/home.html:69
+#: templates/storefront/home.html:70
 msgid "Mark orders paid in one tap, and see the change to give back."
 msgstr "Marka pedidu selu ona ho toka ida, no haree troku atu fó fali."
 
-#: templates/storefront/home.html:70
+#: templates/storefront/home.html:71
 msgid "Sold out in one tap"
 msgstr "Hotu ona ho toka ida"
 
-#: templates/storefront/home.html:70
+#: templates/storefront/home.html:71
 msgid "Customers' menus update immediately."
 msgstr "Menu kliente sira nian atualiza kedas."
 
-#: templates/storefront/home.html:71
+#: templates/storefront/home.html:72
 msgid "Daily revenue, best sellers and CSV export."
 msgstr "Rendimentu loron-loron, buat ne'ebé fa'an barak liu no esporta CSV."
 
-#: templates/storefront/home.html:78
+#: templates/storefront/home.html:79
 msgid "We call you back"
 msgstr "Ami telefone fali Ita"
 
-#: templates/storefront/home.html:79
+#: templates/storefront/home.html:80
 msgid ""
 "No time to set it up? Leave your number. We call you, answer your questions, "
 "and if you like we set up your menu for you: just send us photos of your "
@@ -6262,30 +6377,30 @@ msgstr ""
 "nia pergunta, no se Ita hakarak ami prepara Ita-nia menu: haruka de'it foto "
 "menu liu husi WhatsApp. Grátis, la iha obrigasaun."
 
-#: templates/storefront/home.html:81
+#: templates/storefront/home.html:82
 msgid "We enter your dishes, prices and photos"
 msgstr "Ami tau Ita-nia hahán, presu no foto"
 
-#: templates/storefront/home.html:82
+#: templates/storefront/home.html:83
 msgid "We help you print the QR codes for your tables"
 msgstr "Ami ajuda imprime kódigu QR ba Ita-nia meza"
 
-#: templates/storefront/home.html:83
+#: templates/storefront/home.html:84
 msgid "In English, Tetum or Bahasa Indonesia"
 msgstr "Iha Inglés, Tetun ka Bahasa Indonézia"
 
-#: templates/storefront/home.html:89
+#: templates/storefront/home.html:90
 msgid "Thank you! We will call you soon."
 msgstr "Obrigadu! Ami sei telefone Ita lalais."
 
-#: templates/storefront/home.html:90
+#: templates/storefront/home.html:91
 msgid ""
 "Usually the same day. You can already send photos of your menu to our "
 "WhatsApp."
 msgstr ""
 "Baibain iha loron hanesan. Ita bele haruka ona foto menu ba ami-nia WhatsApp."
 
-#: templates/storefront/home.html:96
+#: templates/storefront/home.html:97
 msgid ""
 "Too many requests from this network. Please try again later or message us on "
 "WhatsApp."
@@ -6293,104 +6408,104 @@ msgstr ""
 "Pedidu barak liu husi rede ne'e. Favór koko fali depois ka haruka mensajen "
 "ba ami liu husi WhatsApp."
 
-#: templates/storefront/home.html:101
+#: templates/storefront/home.html:102
 msgid "Call me back"
 msgstr "Telefone fali ha'u"
 
-#: templates/storefront/home.html:102
+#: templates/storefront/home.html:103
 msgid "We only use your number to contact you about QR Menu."
 msgstr "Ami uza Ita-nia númeru de'it atu kontaktu kona-ba QR Menu."
 
-#: templates/storefront/home.html:109
+#: templates/storefront/home.html:110
 msgid "Pricing"
 msgstr "Folin"
 
-#: templates/storefront/home.html:110
+#: templates/storefront/home.html:111
 msgid "Simple monthly plans. No setup fees."
 msgstr "Planu fulan-fulan ne'ebé simples. La iha kustu instalasaun."
 
-#: templates/storefront/home.html:110
+#: templates/storefront/home.html:111
 #, python-format
 msgid "New restaurants get a %(days)s-day free trial."
 msgid_plural "New restaurants get a %(days)s-day free trial."
 msgstr[0] "Restaurante foun sira hetan loron %(days)s esperimentál gratuitu."
 msgstr[1] "Restaurante foun sira hetan loron %(days)s esperimentál gratuitu."
 
-#: templates/storefront/home.html:114
+#: templates/storefront/home.html:115
 msgid "Most popular"
 msgstr "Popular liu"
 
-#: templates/storefront/home.html:119
+#: templates/storefront/home.html:120
 #, python-format
 msgid "Up to %(n)s table"
 msgid_plural "Up to %(n)s tables"
 msgstr[0] "Meza to'o %(n)s"
 msgstr[1] "Meza to'o %(n)s"
 
-#: templates/storefront/home.html:120
+#: templates/storefront/home.html:121
 #, python-format
 msgid "Up to %(n)s dish"
 msgid_plural "Up to %(n)s dishes"
 msgstr[0] "Hahán to'o %(n)s"
 msgstr[1] "Hahán to'o %(n)s"
 
-#: templates/storefront/home.html:121
+#: templates/storefront/home.html:122
 #, python-format
 msgid "Up to %(n)s staff account"
 msgid_plural "Up to %(n)s staff accounts"
 msgstr[0] "Konta funsionáriu to'o %(n)s"
 msgstr[1] "Konta funsionáriu to'o %(n)s"
 
-#: templates/storefront/home.html:122
+#: templates/storefront/home.html:123
 msgid "Sales analytics"
 msgstr "Análize fa'an"
 
-#: templates/storefront/home.html:123
+#: templates/storefront/home.html:124
 msgid "Cash register & end-of-day reconciliation"
 msgstr "Kaixa no konfere iha loron nia rohan"
 
-#: templates/storefront/home.html:124
+#: templates/storefront/home.html:125
 msgid "Quotations for catering & tenders"
 msgstr "Kotasaun ba catering no konkursu"
 
-#: templates/storefront/home.html:125
+#: templates/storefront/home.html:126
 msgid "Daily expenses & profit"
 msgstr "Despeza loron-loron no lukru"
 
-#: templates/storefront/home.html:126
+#: templates/storefront/home.html:127
 #, python-format
 msgid "Main branch + %(n)s branch, one login"
 msgid_plural "Main branch + %(n)s branches, one login"
 msgstr[0] "Filial prinsipál + filial %(n)s, login ida de'it"
 msgstr[1] "Filial prinsipál + filial %(n)s, login ida de'it"
 
-#: templates/storefront/home.html:127
+#: templates/storefront/home.html:128
 msgid "Ordering API for your website, apps & delivery partners"
 msgstr "API orden ba ita-nia website, aplikasaun & parseiru entrega"
 
-#: templates/storefront/home.html:130
+#: templates/storefront/home.html:131
 msgid "Get started"
 msgstr "Hahú"
 
-#: templates/storefront/home.html:138
+#: templates/storefront/home.html:139
 msgid "Are you a customer?"
 msgstr "Ita kliente?"
 
-#: templates/storefront/home.html:139
+#: templates/storefront/home.html:140
 msgid "To order, please scan the QR code on your table."
 msgstr "Atu pede, favór scan kódigu QR iha ita-nia meza."
 
-#: templates/storefront/home.html:142
+#: templates/storefront/home.html:143
 #, python-format
 msgid "Hello! I'd like to know more about %(name)s."
 msgstr "Olá! Ha'u hakarak hatene liu tan kona-ba %(name)s."
 
-#: templates/storefront/home.html:144 templates/storefront/terms.html:4
+#: templates/storefront/home.html:145 templates/storefront/terms.html:4
 #: templates/storefront/terms.html:14
 msgid "Terms of service"
 msgstr "Termu servisu"
 
-#: templates/storefront/home.html:152
+#: templates/storefront/home.html:153
 msgid "Chat with us on WhatsApp"
 msgstr "Ko'alia ho ami iha WhatsApp"
 

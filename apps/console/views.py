@@ -31,7 +31,7 @@ from apps.restaurants.models import BusinessProfile, Restaurant
 
 from .forms import BillingSettingsForm, MarkPaidForm, NewInvoiceForm, PlanForm
 from . import geo
-from .models import AuditLog, CallbackRequest, PageViewDay, VisitorLog
+from .models import AuditLog, CallbackRequest, DemoRequest, PageViewDay, VisitorLog
 
 User = get_user_model()
 
@@ -586,4 +586,19 @@ def callbacks(request):
         "page": Paginator(qs, 50).get_page(request.GET.get("page")), "status": status,
         "tabs": [(code, label, counts.get(code, 0)) for code, label in CallbackRequest.STATUS_CHOICES],
         "status_choices": CallbackRequest.STATUS_CHOICES,
+    })
+
+
+# ---------------------------------------------------------------- demo requests
+
+@platform_admin
+def demo_requests(request):
+    """People who asked for the demo link: who they are, and whether (and how often) they opened it."""
+    qs = DemoRequest.objects.all()
+    q = request.GET.get("q", "").strip()
+    if q:
+        qs = qs.filter(Q(name__icontains=q) | Q(email__icontains=q) | Q(job_title__icontains=q) | Q(address__icontains=q))
+    return render(request, "console/demo_requests.html", {
+        "page": Paginator(qs, 50).get_page(request.GET.get("page")), "q": q, "now": timezone.now(),
+        "total": DemoRequest.objects.count(), "opened": DemoRequest.objects.filter(opened_count__gt=0).count(),
     })

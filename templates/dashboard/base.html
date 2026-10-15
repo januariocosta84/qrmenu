@@ -104,6 +104,7 @@
 </details>
 {% endif %}
 <main class="content{% if not request.restaurant %} solo{% endif %}" id="content">
+  {% if request.role == "demo" %}<div class="banner banner-demo">{% icon "info" %}<div><strong>{% translate "Demo, view only." %}</strong> {% translate "Look around every page; changes are not saved." %}</div><a class="btn btn-sm btn-primary" href="{% url 'accounts:signup' %}">{% translate "Register your restaurant" %}</a></div>{% endif %}
   {% if messages %}<div class="messages">{% for m in messages %}{% if "receipt" in m.extra_tags %}<span hidden data-receipt-orders="{{ m }}"></span>{% elif "change-data" in m.extra_tags %}<span hidden data-change-amounts="{{ m }}"></span>{% elif "drawer-slip" in m.extra_tags %}<span hidden data-drawer-slip="{{ m }}"></span>{% else %}<div class="msg msg-{{ m.level_tag }} {{ m.extra_tags }}" role="status">{% if m.level_tag == "success" %}{% icon "check-circle" %}{% elif m.level_tag == "error" %}{% icon "alert" %}{% else %}{% icon "info" %}{% endif %}<span>{{ m }}</span></div>{% endif %}{% endfor %}</div>{% endif %}
   {% if request.go_live and request.go_live != "live" %}
   <div class="banner banner-{{ request.go_live }}">
@@ -164,6 +165,7 @@
   {% block content %}{% endblock %}
 </main>
 <div class="toasts" id="toasts" aria-live="polite"></div>
+<div class="order-alarm" id="order-alarm" hidden aria-live="assertive"></div>
 {% if request.restaurant %}
 <script>
   window.DASH = {
@@ -178,6 +180,11 @@
     wsPath: "/ws/kitchen/{{ request.restaurant.slug|escapejs }}/",
     notificationsUrl: "{% url 'dashboard:api_notifications' request.restaurant.slug %}",
     ordersBase: "{% url 'dashboard:orders' request.restaurant.slug %}",
+    alarmOrdersUrl: "{% url 'dashboard:api_orders' request.restaurant.slug %}?kitchen=1&status=new,ready",
+    statusUrl: "{% url 'dashboard:api_order_status' request.restaurant.slug 0 %}",
+    kitchenUrl: "{% url 'dashboard:kitchen' request.restaurant.slug %}",
+    kitchenServices: [{% for s in kitchen_services %}"{{ s }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+    role: "{{ request.role|default:'' }}",
     lang: "{{ LANG }}"
   };
 </script>

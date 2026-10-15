@@ -21,4 +21,5 @@ urlpatterns = [
     path("audit/", views.audit_log, name="audit"),
     path("visitors/", views.visitors, name="visitors"),
     path("call-requests/", views.callbacks, name="callbacks"),
+    path("demo-requests/", views.demo_requests, name="demo_requests"),
 ]

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import api, seo, views
+from . import api, demo, seo, views
 
 app_name = "storefront"
 
@@ -10,6 +10,8 @@ urlpatterns = [
     path("sitemap.xml", seo.sitemap_xml, name="sitemap"),
     path("terms/", views.terms, name="terms"),
     path("call-me-back/", views.call_me_back, name="call_me_back"),
+    path("demo/", demo.demo_page, name="demo"),
+    path("demo/<str:token>/", demo.demo_open, name="demo_open"),
     path("r/<slug:slug>/", views.restaurant_menu, name="menu"),
     path("r/<slug:slug>/carwash/", views.car_wash_menu, name="car_wash"),
     path("r/<slug:slug>/t/<str:number>/", views.table_menu, name="table"),

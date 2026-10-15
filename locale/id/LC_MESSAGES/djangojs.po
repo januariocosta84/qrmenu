@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 01:05+0900\n"
+"POT-Creation-Date: 2026-10-15 21:44+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,249 +18,369 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: static/js/dashboard.js:119
 msgid "Total due"
 msgstr "Total tagihan"
 
+#: static/js/dashboard.js:120
 msgid "Cash received from customer"
 msgstr "Uang tunai dari pelanggan"
 
+#: static/js/dashboard.js:123
 msgid "Exact"
 msgstr "Uang pas"
 
+#: static/js/dashboard.js:125
 msgid "Change to give"
 msgstr "Kembalian"
 
+#: static/js/dashboard.js:128 static/js/kds.js:85 static/js/kds.js:88
 msgid "Cancel"
 msgstr "Batal"
 
+#: static/js/dashboard.js:129
 msgid "Paid"
 msgstr "Lunas"
 
+#: static/js/dashboard.js:156
 msgid "Not enough: %(amount)s short."
 msgstr "Kurang: masih kurang %(amount)s."
 
+#: static/js/dashboard.js:157
 msgid "Enter the amount received."
 msgstr "Masukkan jumlah yang diterima."
 
+#: static/js/dashboard.js:159
 msgid "Paid · give %(amount)s change"
 msgstr "Lunas · beri kembalian %(amount)s"
 
+#: static/js/dashboard.js:159
 msgid "Paid · exact amount"
 msgstr "Lunas · uang pas"
 
+#: static/js/dashboard.js:193 static/js/dashboard.js:284
 msgid "Receipt printed."
 msgstr "Struk dicetak."
 
+#: static/js/dashboard.js:195 static/js/dashboard.js:284
 msgid "Receipt not printed: %(reason)s"
 msgstr "Struk tidak dicetak: %(reason)s"
 
+#: static/js/dashboard.js:218
 msgid "Receipt"
 msgstr "Struk"
 
+#: static/js/dashboard.js:251 static/js/kds.js:39
 msgid "PAID"
 msgstr "LUNAS"
 
+#: static/js/dashboard.js:252
 msgid "Print receipt?"
 msgstr "Cetak struk?"
 
+#: static/js/dashboard.js:257 static/js/dashboard.js:429
 msgid "GIVE CHANGE"
 msgstr "BERI KEMBALIAN"
 
+#: static/js/dashboard.js:257 static/js/dashboard.js:429
 msgid "EXACT AMOUNT"
 msgstr "UANG PAS"
 
+#: static/js/dashboard.js:259 static/js/dashboard.js:430
 msgid "Received %(received)s · Total %(total)s"
 msgstr "Diterima %(received)s · Total %(total)s"
 
+#: static/js/dashboard.js:277
 msgid "No"
 msgstr "Tidak"
 
+#: static/js/dashboard.js:278
 msgid "Yes, print"
 msgstr "Ya, cetak"
 
+#: static/js/dashboard.js:280
 msgid "OK · print receipt"
 msgstr "OK · cetak struk"
 
+#: static/js/dashboard.js:282 static/js/dashboard.js:354
 msgid "OK"
 msgstr "OK"
 
+#: static/js/dashboard.js:343 static/js/dashboard.js:446
 msgid "Print bill"
 msgstr "Cetak tagihan"
 
+#: static/js/dashboard.js:352
 msgid "Nothing to bill: everything here is paid."
 msgstr "Tidak ada yang ditagih: semuanya sudah dibayar."
 
+#: static/js/dashboard.js:352
 msgid "Reprint a bill from the list of printed bills."
 msgstr "Cetak ulang tagihan dari daftar tagihan tercetak."
 
+#: static/js/dashboard.js:365
 msgid "What to bill (unpaid only)"
 msgstr "Yang ditagih (hanya yang belum dibayar)"
 
+#: static/js/dashboard.js:366
 msgid "Print mode"
 msgstr "Mode cetak"
 
+#: static/js/dashboard.js:367
 msgid "One combined bill"
 msgstr "Satu tagihan gabungan"
 
+#: static/js/dashboard.js:368
 msgid "Separate bill per service"
 msgstr "Tagihan terpisah per layanan"
 
+#: static/js/dashboard.js:370
 msgid "Paper"
 msgstr "Kertas"
 
+#: static/js/dashboard.js:373
 msgid "Copies"
 msgstr "Salinan"
 
+#: static/js/dashboard.js:375
 msgid "Total"
 msgstr "Total"
 
+#: static/js/dashboard.js:379 static/js/pos.js:173
 msgid "Plate"
 msgstr "Nopol"
 
+#: static/js/dashboard.js:419 static/js/dashboard.js:482
 msgid "Cash payment"
 msgstr "Pembayaran tunai"
 
+#: static/js/dashboard.js:425
 msgid "Bill printed."
 msgstr "Tagihan dicetak."
 
+#: static/js/dashboard.js:425
 msgid "Bill not printed: %(reason)s"
 msgstr "Tagihan tidak tercetak: %(reason)s"
 
+#: static/js/dashboard.js:432
 msgid "Printed: %(numbers)s"
 msgstr "Tercetak: %(numbers)s"
 
+#: static/js/dashboard.js:434
 msgid "Done"
 msgstr "Selesai"
 
+#: static/js/dashboard.js:441
 msgid "Preview"
 msgstr "Pratinjau"
 
+#: static/js/dashboard.js:447
 msgid "Paid (cash) & print"
 msgstr "Lunas (tunai) & cetak"
 
+#: static/js/dashboard.js:537
 msgid "Live: new orders appear automatically"
 msgstr "Langsung: pesanan baru muncul otomatis"
 
+#: static/js/dashboard.js:539
 msgid "Live"
 msgstr "Aktif"
 
+#: static/js/dashboard.js:550 static/js/dashboard.js:590 static/js/kds.js:37
+#: static/js/pos.js:221
 msgid "Table %(n)s"
 msgstr "Meja %(n)s"
 
+#: static/js/dashboard.js:550 static/js/dashboard.js:590 static/js/kds.js:37
+#: static/js/pos.js:221
 msgid "Counter"
 msgstr "Kasir"
 
+#: static/js/dashboard.js:552
 msgid "Car wash #%(number)s · %(where)s · Plate %(plate)s"
 msgstr "Cuci #%(number)s · %(where)s · Nopol %(plate)s"
 
+#: static/js/dashboard.js:555
 msgid "New order #%(number)s · %(where)s"
 msgstr "Pesanan baru #%(number)s · %(where)s"
 
+#: static/js/dashboard.js:559
 msgid "New order #%(number)s"
 msgstr "Pesanan baru #%(number)s"
 
+#: static/js/dashboard.js:567
 msgid "Reconnecting…"
 msgstr "Menghubungkan ulang…"
 
+#: static/js/dashboard.js:569
 msgid "Offline"
 msgstr "Luring"
 
+#: static/js/dashboard.js:620
+msgid "Order #%(number)s · %(where)s is ready. Please pick it up."
+msgstr "Pesanan #%(number)s · %(where)s sudah siap. Silakan diambil."
+
+#: static/js/dashboard.js:622
+msgid "Ready: #%(number)s"
+msgstr "Siap: #%(number)s"
+
+#: static/js/dashboard.js:642 static/js/kds.js:117
+msgid "Could not update the order."
+msgstr "Pesanan tidak dapat diperbarui."
+
+#: static/js/dashboard.js:654
+msgid "1 new order is waiting to be accepted"
+msgstr "1 pesanan baru menunggu diterima"
+
+#: static/js/dashboard.js:655
+msgid "%(n)s new orders are waiting to be accepted"
+msgstr "%(n)s pesanan baru menunggu diterima"
+
+#: static/js/dashboard.js:657
+msgid "Accept"
+msgstr "Terima"
+
+#: static/js/dashboard.js:661
+msgid "Open the kitchen screen"
+msgstr "Buka layar dapur"
+
+#: static/js/dashboard.js:669
+msgid "Ready to pick up"
+msgstr "Siap diambil"
+
+#: static/js/dashboard.js:671
+msgid "Picked up"
+msgstr "Sudah diambil"
+
+#: static/js/dashboard.js:678
+msgid "Turn on the sound"
+msgstr "Nyalakan suara"
+
+#: static/js/kds.js:39
 msgid "UNPAID"
 msgstr "BELUM DIBAYAR"
 
+#: static/js/kds.js:56
 msgid "by waiter %(name)s"
 msgstr "oleh pelayan %(name)s"
 
+#: static/js/kds.js:56
 msgid "by waiter"
 msgstr "oleh pelayan"
 
+#: static/js/kds.js:71
 msgid "Customer note:"
 msgstr "Catatan pelanggan:"
 
+#: static/js/kds.js:84
 msgid "ACCEPT ORDER"
 msgstr "TERIMA PESANAN"
 
+#: static/js/kds.js:87
 msgid "MARK AS READY"
 msgstr "TANDAI SIAP"
 
+#: static/js/kds.js:90
 msgid "COMPLETED"
 msgstr "SELESAI"
 
+#: static/js/kds.js:96 static/js/kds.js:97
 msgid "Mark paid"
 msgstr "Tandai lunas"
 
+#: static/js/kds.js:102
 msgid "%(n)s items"
 msgstr "%(n)s item"
 
+#: static/js/kds.js:110
 msgid "Cancel order #%(number)s? Reason (optional):"
 msgstr "Batalkan pesanan #%(number)s? Alasan (opsional):"
 
-msgid "Could not update the order."
-msgstr "Tidak dapat memperbarui pesanan."
-
+#: static/js/kds.js:126
 msgid "Order %(numbers)s · paid together"
 msgstr "Pesanan %(numbers)s · dibayar bersama"
 
+#: static/js/kds.js:127
 msgid "Order #%(number)s · cash payment"
 msgstr "Pesanan #%(number)s · pembayaran tunai"
 
+#: static/js/kds.js:143
 msgid "Cash drawer opened · #%(number)s paid"
 msgstr "Laci kas terbuka · #%(number)s lunas"
 
+#: static/js/kds.js:144
 msgid "Paid, but the drawer did not open: %(reason)s"
 msgstr "Lunas, tetapi laci tidak terbuka: %(reason)s"
 
+#: static/js/kds.js:146
 msgid "Could not record the payment."
 msgstr "Tidak dapat mencatat pembayaran."
 
+#: static/js/kds.js:181
 msgid "Updated %(time)s · new orders appear automatically."
 msgstr "Diperbarui %(time)s · pesanan baru muncul otomatis."
 
+#: static/js/kds.js:183
 msgid "Could not load orders — retrying…"
 msgstr "Tidak dapat memuat pesanan — mencoba lagi…"
 
+#: static/js/kds.js:210
 msgid "Sound on"
 msgstr "Suara aktif"
 
+#: static/js/kds.js:210
 msgid "Enable sound"
 msgstr "Aktifkan suara"
 
+#: static/js/pos.js:33
 msgid "New guest"
 msgstr "Tamu baru"
 
+#: static/js/pos.js:83
 msgid "Sold out"
 msgstr "Habis"
 
+#: static/js/pos.js:85
 msgid "+ plate number"
 msgstr "+ nomor polisi"
 
+#: static/js/pos.js:89
 msgid "No dishes."
 msgstr "Tidak ada hidangan."
 
+#: static/js/pos.js:128
 msgid "sold out"
 msgstr "habis"
 
+#: static/js/pos.js:201
 msgid "Send order"
 msgstr "Kirim pesanan"
 
+#: static/js/pos.js:201
 msgid "Send to kitchen"
 msgstr "Kirim ke dapur"
 
+#: static/js/pos.js:224
 msgid "Order %(numbers)s sent · %(where)s"
 msgstr "Pesanan %(numbers)s terkirim · %(where)s"
 
+#: static/js/pos.js:227
 msgid "Last order %(numbers)s · %(where)s"
 msgstr "Pesanan terakhir %(numbers)s · %(where)s"
 
+#: static/js/pos.js:231
 msgid "Print bill · %(where)s"
 msgstr "Cetak tagihan · %(where)s"
 
+#: static/js/pos.js:237
 msgid "Guest %(n)s"
 msgstr "Tamu %(n)s"
 
+#: static/js/pos.js:244
 msgid "Could not send the order."
 msgstr "Tidak dapat mengirim pesanan."
 
+#: static/js/pos.js:257
 msgid "Ordering is switched off in Restaurant settings."
 msgstr "Pemesanan dinonaktifkan di Pengaturan restoran."
 

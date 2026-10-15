@@ -87,6 +87,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "apps.storefront.demo.DemoReadOnlyMiddleware",  # demo visitors: look, don't change
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "apps.core.middleware.UILanguageMiddleware",
     "apps.core.middleware.StaffLanguageMiddleware",
@@ -181,7 +182,9 @@ if REDIS_URL:
     CHANNEL_LAYERS = {
         "default": {
             "BACKEND": "channels_redis.core.RedisChannelLayer",
-            "CONFIG": {"hosts": [REDIS_URL]},
+            # redis-py 8 times out socket reads after 5 s by default, exactly as long as channels_redis
+            # waits for messages (BRPOP 5 s): idle sockets then crashed and reconnected every few seconds.
+            "CONFIG": {"hosts": [{"address": REDIS_URL, "socket_timeout": 30}]},
         }
     }
     CACHES = {
@@ -213,6 +216,8 @@ REST_FRAMEWORK = {
 
 # ---- Public platform (self-service restaurant sign-up) ----
 PLATFORM_NAME = os.environ.get("PLATFORM_NAME", "QR Menu")
+# Restaurant (slug) opened by "Try the demo" links, in the view-only Demo role. Empty = no demo.
+DEMO_RESTAURANT = os.environ.get("DEMO_RESTAURANT", "test-kafe-atauro")
 # Subject prefix for emails to platform admins (Django's default is "[Django] ").
 EMAIL_SUBJECT_PREFIX = os.environ.get("EMAIL_SUBJECT_PREFIX", f"[{PLATFORM_NAME}] ")
 SUPPORT_EMAIL = os.environ.get("SUPPORT_EMAIL", "")

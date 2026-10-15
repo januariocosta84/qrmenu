@@ -571,4 +571,146 @@
     };
   }
   if ("WebSocket" in window) connect(1000);
+
+  // ---- Order alarms ----
+  // New orders: the alarm repeats on every staff screen until someone accepts the order.
+  // Ready orders: waiters/cashiers hear a different chime until the food is picked up.
+  // Only for food the kitchen prepares (not car wash). The Kitchen screen has its own buttons.
+  (function () {
+    const box = $("#order-alarm");
+    if (!box || !D.alarmOrdersUrl) return;
+    const onKds = document.body.classList.contains("kds-page");
+    const wantsReady = D.role && D.role !== "kitchen" && !onKds;
+    const isKitchenFood = (o) => !o.service_type || (D.kitchenServices || ["cafe"]).includes(o.service_type);
+    const waiting = new Map(); // status "new"
+    const ready = new Map(); // status "ready"
+    const NEW_EVERY = 5000, READY_EVERY = 15000;
+    let lastNew = 0, lastReady = 0;
+    const statusUrl = (id) => D.statusUrl.replace("/0/status/", `/${id}/status/`);
+    const where = (o) => (o.table_number ? _("Table %(n)s", { n: o.table_number }) : _("Counter"));
+
+    D.chime = function () { // "ding-dong": lower and longer than the new-order beep
+      try {
+        audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+        const now = audioCtx.currentTime;
+        [[0, 784], [0.42, 523]].forEach(([t, f]) => {
+          const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+          osc.type = "triangle";
+          osc.frequency.value = f;
+          gain.gain.setValueAtTime(0.0001, now + t);
+          gain.gain.exponentialRampToValueAtTime(0.45, now + t + 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + t + 0.8);
+          osc.connect(gain).connect(audioCtx.destination);
+          osc.start(now + t);
+          osc.stop(now + t + 0.85);
+        });
+      } catch (err) { /* audio unavailable */ }
+    };
+
+    function track(o, fromSocket) {
+      if (!o || !o.id || !isKitchenFood(o)) return;
+      const wasReady = ready.has(o.id);
+      waiting.delete(o.id);
+      ready.delete(o.id);
+      if (o.status === "new") waiting.set(o.id, o);
+      if (o.status === "ready") ready.set(o.id, o);
+      if (fromSocket && o.status === "new") lastNew = Date.now(); // the socket handler already beeped
+      if (fromSocket && o.status === "ready" && !wasReady && wantsReady) {
+        D.toast(_("Order #%(number)s · %(where)s is ready. Please pick it up.", { number: o.number, where: where(o) }),
+                `${D.ordersBase}${o.id}/`, "new");
+        flashTitle("🍽 " + _("Ready: #%(number)s", { number: o.number }));
+        if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+        if (D.soundEnabled()) D.chime();
+        lastReady = Date.now();
+      }
+      render();
+    }
+
+    function row(o, label, status, cls) {
+      const li = document.createElement("li");
+      const text = document.createElement("a");
+      text.href = `${D.ordersBase}${o.id}/`;
+      text.textContent = `#${o.number} · ${where(o)}`;
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = `btn btn-sm ${cls}`;
+      b.textContent = label;
+      b.addEventListener("click", async () => {
+        b.disabled = true;
+        try { track(await D.api(statusUrl(o.id), "POST", { status })); }
+        catch (err) { D.toast(err.message || _("Could not update the order."), null, "error"); b.disabled = false; }
+      });
+      li.append(text, b);
+      return li;
+    }
+
+    function render() {
+      const parts = [];
+      if (waiting.size && !onKds) {
+        const sec = document.createElement("section");
+        sec.className = "alarm-new";
+        sec.innerHTML = `<p>${D.icon("bell")} <strong></strong></p><ul></ul>`;
+        sec.querySelector("strong").textContent = waiting.size === 1 ? _("1 new order is waiting to be accepted")
+          : _("%(n)s new orders are waiting to be accepted", { n: waiting.size });
+        const ul = sec.querySelector("ul");
+        [...waiting.values()].forEach((o) => ul.appendChild(row(o, _("Accept"), "preparing", "btn-primary")));
+        const k = document.createElement("a");
+        k.className = "alarm-link";
+        k.href = D.kitchenUrl;
+        k.textContent = _("Open the kitchen screen");
+        sec.appendChild(k);
+        parts.push(sec);
+      }
+      if (ready.size && wantsReady) {
+        const sec = document.createElement("section");
+        sec.className = "alarm-ready";
+        sec.innerHTML = `<p>${D.icon("check-circle")} <strong></strong></p><ul></ul>`;
+        sec.querySelector("strong").textContent = _("Ready to pick up");
+        const ul = sec.querySelector("ul");
+        [...ready.values()].forEach((o) => ul.appendChild(row(o, _("Picked up"), "completed", "btn-success")));
+        parts.push(sec);
+      }
+      if (parts.length && !D.soundEnabled()) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "btn btn-sm alarm-sound";
+        b.innerHTML = D.icon("volume") + " " + _("Turn on the sound");
+        b.addEventListener("click", () => { D.setSound(true); render(); });
+        parts.push(b);
+      }
+      box.replaceChildren(...parts);
+      box.hidden = !parts.length;
+      document.body.classList.toggle("has-alarm", !box.hidden);
+    }
+
+    setInterval(() => {
+      const now = Date.now();
+      if (!D.soundEnabled()) return;
+      if (waiting.size && now - lastNew >= NEW_EVERY) {
+        lastNew = now;
+        D.beep();
+        if (navigator.vibrate) navigator.vibrate(300);
+      } else if (ready.size && wantsReady && now - lastReady >= READY_EVERY) {
+        lastReady = now;
+        D.chime();
+      }
+    }, 1000);
+
+    async function load() {
+      try {
+        const list = await D.api(D.alarmOrdersUrl);
+        waiting.clear();
+        ready.clear();
+        list.forEach((o) => track(o, false));
+        render();
+      } catch (err) { /* try again on the next reconnect */ }
+    }
+    document.addEventListener("dash:message", (e) => {
+      const { event, data } = e.detail;
+      if (event === "new_order" || event === "order_updated") track(data, true);
+    });
+    document.addEventListener("dash:reconnect", load);
+    load();
+  })();
 })();

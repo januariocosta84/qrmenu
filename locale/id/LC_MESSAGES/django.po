@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 16:51+0900\n"
+"POT-Creation-Date: 2026-10-15 21:21+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,12 +22,13 @@ msgstr ""
 msgid "Restaurant name"
 msgstr "Nama restoran"
 
-#: apps/accounts/forms.py:12 apps/storefront/forms.py:19
+#: apps/accounts/forms.py:12 apps/storefront/demo.py:73
+#: apps/storefront/forms.py:19
 msgid "Your name"
 msgstr "Nama Anda"
 
 #: apps/accounts/forms.py:13 apps/dashboard/forms.py:107
-#: apps/dashboard/forms.py:364
+#: apps/dashboard/forms.py:364 apps/storefront/demo.py:74
 msgid "Email"
 msgstr "Email"
 
@@ -588,22 +589,26 @@ msgstr "Dimensi gambar terlalu besar."
 msgid "Upload a valid image file."
 msgstr "Unggah file gambar yang valid."
 
-#: apps/core/permissions.py:18 templates/dashboard/staff.html:32
+#: apps/core/permissions.py:20 templates/dashboard/staff.html:32
 msgid "Owner"
 msgstr "Pemilik"
 
-#: apps/core/permissions.py:19 templates/dashboard/staff.html:33
+#: apps/core/permissions.py:21 templates/dashboard/staff.html:33
 msgid "Manager"
 msgstr "Manajer"
 
-#: apps/core/permissions.py:20 templates/dashboard/base.html:92
+#: apps/core/permissions.py:22 templates/dashboard/base.html:92
 #: templates/dashboard/staff.html:34
 msgid "Kitchen"
 msgstr "Dapur"
 
-#: apps/core/permissions.py:21 templates/dashboard/staff.html:35
+#: apps/core/permissions.py:23 templates/dashboard/staff.html:35
 msgid "Waiter / Cashier"
 msgstr "Pelayan / Kasir"
+
+#: apps/core/permissions.py:25
+msgid "Demo (view only)"
+msgstr "Demo (hanya lihat)"
 
 #: apps/dashboard/api.py:87
 msgid "Unknown table."
@@ -724,6 +729,7 @@ msgstr "Gambar sampul"
 
 #: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
 #: apps/quotations/forms.py:36 apps/restaurants/models.py:357
+#: apps/storefront/demo.py:74
 msgid "Address"
 msgstr "Alamat"
 
@@ -2381,6 +2387,31 @@ msgstr "Pemilik sah usaha ini."
 msgid "Phone number"
 msgstr "Nomor telepon"
 
+#: apps/storefront/demo.py:73
+msgid "Job title"
+msgstr "Jabatan"
+
+#: apps/storefront/demo.py:76
+msgid "We send the demo link to this address."
+msgstr "Kami mengirim tautan demo ke alamat ini."
+
+#: apps/storefront/demo.py:80
+msgid "e.g. Restaurant owner, Manager"
+msgstr "mis. Pemilik restoran, Manajer"
+
+#: apps/storefront/demo.py:96 apps/storefront/forms.py:42
+msgid "Something went wrong. Please try again."
+msgstr "Terjadi kesalahan. Silakan coba lagi."
+
+#: apps/storefront/demo.py:149
+#, python-format
+msgid "Your %(platform)s demo"
+msgstr "Demo %(platform)s Anda"
+
+#: apps/storefront/demo.py:194
+msgid "This is a demo: changes are not saved. Register your restaurant to use it for real."
+msgstr "Ini demo: perubahan tidak disimpan. Daftarkan restoran Anda untuk memakainya sungguhan."
+
 #: apps/storefront/forms.py:19
 msgid "Restaurant / café name"
 msgstr "Nama restoran / kafe"
@@ -2416,10 +2447,6 @@ msgstr "Malam"
 #: apps/storefront/forms.py:36
 msgid "Enter a phone number we can call, e.g. +670 7712 3456."
 msgstr "Masukkan nomor yang bisa kami telepon, mis. +670 7712 3456."
-
-#: apps/storefront/forms.py:42
-msgid "Something went wrong. Please try again."
-msgstr "Terjadi kesalahan. Silakan coba lagi."
 
 #: templates/accounts/login.html:3 templates/accounts/login.html:8
 #: templates/accounts/login.html:15
@@ -2507,7 +2534,7 @@ msgstr "Sekarang Anda dapat masuk dengan kata sandi baru."
 
 #: templates/accounts/password_reset_complete.html:10
 #: templates/accounts/signup.html:29 templates/storefront/home.html:24
-#: templates/storefront/home.html:38
+#: templates/storefront/home.html:39
 msgid "Log in"
 msgstr "Masuk"
 
@@ -2534,6 +2561,7 @@ msgstr "Minta yang baru"
 
 #: templates/accounts/password_reset_done.html:3
 #: templates/accounts/password_reset_done.html:8
+#: templates/storefront/demo.html:23
 msgid "Check your email"
 msgstr "Periksa email Anda"
 
@@ -2547,6 +2575,7 @@ msgstr ""
 "spam."
 
 #: templates/accounts/signup.html:3 templates/accounts/signup.html:8
+#: templates/dashboard/base.html:107 templates/storefront/email/demo.html:10
 #: templates/storefront/home.html:37
 msgid "Register your restaurant"
 msgstr "Daftarkan restoran Anda"
@@ -3567,7 +3596,7 @@ msgid "Menu"
 msgstr "Menu"
 
 #: templates/dashboard/base.html:40 templates/dashboard/reports.html:3
-#: templates/dashboard/reports.html:8 templates/storefront/home.html:71
+#: templates/dashboard/reports.html:8 templates/storefront/home.html:72
 msgid "Reports"
 msgstr "Laporan"
 
@@ -3652,15 +3681,23 @@ msgstr "Navigasi cepat"
 msgid "Home"
 msgstr "Beranda"
 
-#: templates/dashboard/base.html:112
+#: templates/dashboard/base.html:107
+msgid "Demo, view only."
+msgstr "Demo, hanya lihat."
+
+#: templates/dashboard/base.html:107
+msgid "Look around every page; changes are not saved."
+msgstr "Lihat semua halaman; perubahan tidak disimpan."
+
+#: templates/dashboard/base.html:113
 msgid "the owner's email"
 msgstr "email pemilik"
 
-#: templates/dashboard/base.html:112
+#: templates/dashboard/base.html:113
 msgid "Confirm your email to go live."
 msgstr "Konfirmasi email Anda agar aktif."
 
-#: templates/dashboard/base.html:112
+#: templates/dashboard/base.html:113
 #, python-format
 msgid ""
 "We sent a link to <strong>%(email)s</strong>. Until then only your staff can "
@@ -3670,15 +3707,15 @@ msgstr ""
 "staf Anda yang dapat melihat menu, jadi siapkan menu dan meja Anda terlebih "
 "dahulu."
 
-#: templates/dashboard/base.html:114
+#: templates/dashboard/base.html:115
 msgid "Resend email"
 msgstr "Kirim ulang email"
 
-#: templates/dashboard/base.html:118
+#: templates/dashboard/base.html:119
 msgid "Branch waiting for approval."
 msgstr "Cabang menunggu persetujuan."
 
-#: templates/dashboard/base.html:118
+#: templates/dashboard/base.html:119
 msgid ""
 "The platform team checks every new branch. Until it is approved, the branch "
 "is hidden and can't record revenue. You can set up its menu and tables in "
@@ -3688,34 +3725,34 @@ msgstr ""
 "disembunyikan dan tidak bisa mencatat pendapatan. Sementara itu Anda bisa "
 "menyiapkan menu dan mejanya."
 
-#: templates/dashboard/base.html:121
+#: templates/dashboard/base.html:122
 msgid "Branch request not approved."
 msgstr "Pengajuan cabang tidak disetujui."
 
-#: templates/dashboard/base.html:121
+#: templates/dashboard/base.html:122
 msgid "Correct the details and send it again from Branches."
 msgstr "Perbaiki detailnya dan kirim lagi dari Cabang."
 
-#: templates/dashboard/base.html:124
+#: templates/dashboard/base.html:125
 msgid "Branch suspended by the platform."
 msgstr "Cabang ditangguhkan oleh platform."
 
-#: templates/dashboard/base.html:124
+#: templates/dashboard/base.html:125
 msgid "Customers can't see its menu and it can't record revenue."
 msgstr ""
 "Pelanggan tidak bisa melihat menunya dan cabang ini tidak bisa mencatat "
 "pendapatan."
 
-#: templates/dashboard/base.html:124 templates/dashboard/base.html:130
+#: templates/dashboard/base.html:125 templates/dashboard/base.html:131
 #, python-format
 msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
 msgstr "Hubungi <a href=\"mailto:%(email)s\">%(email)s</a>."
 
-#: templates/dashboard/base.html:127
+#: templates/dashboard/base.html:128
 msgid "Waiting for approval."
 msgstr "Menunggu persetujuan."
 
-#: templates/dashboard/base.html:127
+#: templates/dashboard/base.html:128
 msgid ""
 "Our team reviews new restaurants before they go public. You can keep setting "
 "up your menu and tables."
@@ -3723,67 +3760,67 @@ msgstr ""
 "Tim kami meninjau restoran baru sebelum dipublikasikan. Anda dapat terus "
 "menyiapkan menu dan meja."
 
-#: templates/dashboard/base.html:130
+#: templates/dashboard/base.html:131
 msgid "This restaurant is not public."
 msgstr "Restoran ini tidak publik."
 
-#: templates/dashboard/base.html:130
+#: templates/dashboard/base.html:131
 msgid ""
 "It has been suspended by the platform. Customers can't see the menu or order."
 msgstr ""
 "Restoran ini ditangguhkan oleh platform. Pelanggan tidak dapat melihat menu "
 "atau memesan."
 
-#: templates/dashboard/base.html:137
+#: templates/dashboard/base.html:138
 #, python-format
 msgid "Your free trial ends in %(days)s day."
 msgid_plural "Your free trial ends in %(days)s days."
 msgstr[0] "Uji coba gratis Anda berakhir dalam %(days)s hari."
 
-#: templates/dashboard/base.html:137
+#: templates/dashboard/base.html:138
 msgid "Pay the invoice to keep taking orders."
 msgstr "Bayar tagihan agar tetap dapat menerima pesanan."
 
-#: templates/dashboard/base.html:138
+#: templates/dashboard/base.html:139
 msgid "Payment due."
 msgstr "Pembayaran jatuh tempo."
 
-#: templates/dashboard/base.html:138
+#: templates/dashboard/base.html:139
 #, python-format
 msgid ""
 "Your subscription ended on %(date)s; ordering will be switched off soon."
 msgstr ""
 "Langganan Anda berakhir pada %(date)s; pemesanan akan segera dinonaktifkan."
 
-#: templates/dashboard/base.html:139
+#: templates/dashboard/base.html:140
 msgid "Subscription expired."
 msgstr "Langganan kedaluwarsa."
 
-#: templates/dashboard/base.html:139
+#: templates/dashboard/base.html:140
 msgid "Customers can't place orders until the invoice is paid."
 msgstr "Pelanggan tidak dapat memesan sampai tagihan dibayar."
 
-#: templates/dashboard/base.html:140
+#: templates/dashboard/base.html:141
 msgid "Subscription cancelled."
 msgstr "Langganan dibatalkan."
 
-#: templates/dashboard/base.html:140
+#: templates/dashboard/base.html:141
 msgid "Customers can't place orders."
 msgstr "Pelanggan tidak dapat memesan."
 
-#: templates/dashboard/base.html:141 templates/dashboard/branches.html:79
+#: templates/dashboard/base.html:142 templates/dashboard/branches.html:79
 msgid "View billing"
 msgstr "Lihat tagihan"
 
-#: templates/dashboard/base.html:148
+#: templates/dashboard/base.html:149
 msgid "Your business profile needs changes."
 msgstr "Profil usaha Anda perlu diperbaiki."
 
-#: templates/dashboard/base.html:148
+#: templates/dashboard/base.html:149
 msgid "Complete your business profile."
 msgstr "Lengkapi profil usaha Anda."
 
-#: templates/dashboard/base.html:148
+#: templates/dashboard/base.html:149
 msgid ""
 "We verify every business before it can add branches. It takes two minutes: "
 "registration number, owner, address and phone."
@@ -3791,16 +3828,16 @@ msgstr ""
 "Kami memverifikasi setiap usaha sebelum bisa menambah cabang. Hanya dua "
 "menit: nomor registrasi, pemilik, alamat, dan telepon."
 
-#: templates/dashboard/base.html:149 templates/dashboard/base.html:157
+#: templates/dashboard/base.html:150 templates/dashboard/base.html:158
 #: templates/dashboard/branches.html:102
 msgid "Complete now"
 msgstr "Lengkapi sekarang"
 
-#: templates/dashboard/base.html:154
+#: templates/dashboard/base.html:155
 msgid "Complete your business profile"
 msgstr "Lengkapi profil usaha Anda"
 
-#: templates/dashboard/base.html:155
+#: templates/dashboard/base.html:156
 msgid ""
 "Please add your business registration number (e.g. SERVE certificate or tax "
 "number), the owner's name, your address and phone number. Our team verifies "
@@ -3810,7 +3847,7 @@ msgstr ""
 "nama pemilik, alamat, dan nomor telepon. Tim kami memverifikasinya, lalu "
 "Anda bisa menambah cabang."
 
-#: templates/dashboard/base.html:158
+#: templates/dashboard/base.html:159
 msgid "Remind me later"
 msgstr "Ingatkan nanti"
 
@@ -3827,12 +3864,12 @@ msgid "Current plan"
 msgstr "Paket saat ini"
 
 #: templates/dashboard/billing.html:22 templates/dashboard/billing.html:81
-#: templates/dashboard/upgrade.html:28 templates/storefront/home.html:116
+#: templates/dashboard/upgrade.html:28 templates/storefront/home.html:117
 msgid "Free"
 msgstr "Gratis"
 
 #: templates/dashboard/billing.html:22 templates/dashboard/upgrade.html:28
-#: templates/storefront/home.html:116
+#: templates/storefront/home.html:117
 msgid "month"
 msgstr "bulan"
 
@@ -6115,6 +6152,82 @@ msgstr "Lihat paket & tingkatkan"
 msgid "Ask the restaurant owner to upgrade the plan."
 msgstr "Minta pemilik restoran untuk meningkatkan paket."
 
+#: templates/storefront/demo.html:4 templates/storefront/demo.html:14
+#: templates/storefront/home.html:38
+msgid "Try the demo"
+msgstr "Coba demo"
+
+#: templates/storefront/demo.html:15
+#, python-format
+msgid "See %(platform_name)s working in a real café: the dashboard, kitchen screen, orders, menu, reports and quotations. Fill in the form and we email you a link to open the demo. It works for %(days)s day."
+msgid_plural "See %(platform_name)s working in a real café: the dashboard, kitchen screen, orders, menu, reports and quotations. Fill in the form and we email you a link to open the demo. It works for %(days)s days."
+msgstr[0] "Lihat %(platform_name)s bekerja di kafe sungguhan: dasbor, layar dapur, pesanan, menu, laporan, dan penawaran. Isi formulir dan kami kirimkan tautan lewat email untuk membuka demo. Berlaku selama %(days)s hari."
+
+#: templates/storefront/demo.html:18
+msgid "The demo is not available right now."
+msgstr "Demo tidak tersedia saat ini."
+
+#: templates/storefront/demo.html:19
+msgid "Ask us to call you back instead →"
+msgstr "Minta kami menelepon Anda →"
+
+#: templates/storefront/demo.html:24
+msgid "We sent you the link to open the demo. If it is not in your inbox after a few minutes, look in the spam folder."
+msgstr "Kami telah mengirim tautan untuk membuka demo. Jika tidak ada di kotak masuk setelah beberapa menit, periksa folder spam."
+
+#: templates/storefront/demo.html:27
+msgid "That demo link has expired or is not valid. Fill in the form to get a new one."
+msgstr "Tautan demo itu sudah kedaluwarsa atau tidak valid. Isi formulir untuk mendapatkan yang baru."
+
+#: templates/storefront/demo.html:30
+msgid "Too many requests. Please try again later."
+msgstr "Terlalu banyak permintaan. Silakan coba lagi nanti."
+
+#: templates/storefront/demo.html:31
+msgid "We could not send the email to this address. Please check it and try again."
+msgstr "Kami tidak dapat mengirim email ke alamat ini. Periksa lalu coba lagi."
+
+#: templates/storefront/demo.html:35
+msgid "Email me the demo link"
+msgstr "Kirimkan tautan demo"
+
+#: templates/storefront/demo.html:36
+msgid "The demo is view only: you can open every page, but changes are not saved. We only use your details to contact you about QR Menu."
+msgstr "Demo ini hanya untuk dilihat: Anda bisa membuka semua halaman, tetapi perubahan tidak disimpan. Data Anda hanya kami pakai untuk menghubungi Anda tentang QR Menu."
+
+#: templates/storefront/email/demo.html:5 templates/storefront/email/demo.txt:1
+#, python-format
+msgid "Hello %(name)s,"
+msgstr "Halo %(name)s,"
+
+#: templates/storefront/email/demo.html:6 templates/storefront/email/demo.txt:3
+#, python-format
+msgid "Thank you for your interest in %(platform)s. Open the demo of %(restaurant)s with this link:"
+msgstr "Terima kasih atas minat Anda pada %(platform)s. Buka demo %(restaurant)s dengan tautan ini:"
+
+#: templates/storefront/email/demo.html:7
+msgid "Open the demo"
+msgstr "Buka demo"
+
+#: templates/storefront/email/demo.html:8 templates/storefront/email/demo.txt:7
+#, python-format
+msgid "The link works for %(days)s day. The demo is view only: you can open every page, but changes are not saved."
+msgid_plural "The link works for %(days)s days. The demo is view only: you can open every page, but changes are not saved."
+msgstr[0] "Tautan berlaku selama %(days)s hari. Demo ini hanya untuk dilihat: Anda bisa membuka semua halaman, tetapi perubahan tidak disimpan."
+
+#: templates/storefront/email/demo.html:9 templates/storefront/email/demo.txt:9
+msgid "See the menu as your customers see it:"
+msgstr "Lihat menu seperti yang dilihat pelanggan Anda:"
+
+#: templates/storefront/email/demo.html:10
+#: templates/storefront/email/demo.txt:12
+msgid "Ready to start with your own restaurant?"
+msgstr "Siap memulai dengan restoran Anda sendiri?"
+
+#: templates/storefront/email/demo.html:11
+msgid "If the button does not work, copy this link into your browser:"
+msgstr "Jika tombol tidak berfungsi, salin tautan ini ke browser Anda:"
+
 #: templates/storefront/home.html:4 templates/storefront/home.html:10
 msgid "QR menu & table ordering for restaurants"
 msgstr "Menu QR & pemesanan di meja untuk restoran"
@@ -6151,23 +6264,23 @@ msgstr ""
 "kode di meja, memesan dari ponsel, dan pesanan langsung masuk ke dapur. "
 "Mereka tidak perlu aplikasi atau akun."
 
-#: templates/storefront/home.html:33 templates/storefront/home.html:129
+#: templates/storefront/home.html:33 templates/storefront/home.html:130
 msgid "Open dashboard"
 msgstr "Buka dasbor"
 
-#: templates/storefront/home.html:40
+#: templates/storefront/home.html:41
 msgid "Rather talk to us? We call you back and set up your menu for you →"
 msgstr "Lebih suka bicara langsung? Kami telepon balik dan siapkan menu Anda →"
 
-#: templates/storefront/home.html:47
+#: templates/storefront/home.html:48
 msgid "How it works"
 msgstr "Cara kerjanya"
 
-#: templates/storefront/home.html:50
+#: templates/storefront/home.html:51
 msgid "Create your menu"
 msgstr "Buat menu Anda"
 
-#: templates/storefront/home.html:50
+#: templates/storefront/home.html:51
 msgid ""
 "Add dishes, photos, prices and add-ons in English, Tetum and Bahasa "
 "Indonesia."
@@ -6175,19 +6288,19 @@ msgstr ""
 "Tambahkan hidangan, foto, harga, dan tambahan dalam bahasa Inggris, Tetun, "
 "dan Bahasa Indonesia."
 
-#: templates/storefront/home.html:51
+#: templates/storefront/home.html:52
 msgid "Print your QR codes"
 msgstr "Cetak kode QR Anda"
 
-#: templates/storefront/home.html:51
+#: templates/storefront/home.html:52
 msgid "One code per table. Print them and place one on each table."
 msgstr "Satu kode per meja. Cetak dan letakkan satu di setiap meja."
 
-#: templates/storefront/home.html:52
+#: templates/storefront/home.html:53
 msgid "Receive orders live"
 msgstr "Terima pesanan secara langsung"
 
-#: templates/storefront/home.html:52
+#: templates/storefront/home.html:53
 msgid ""
 "Orders appear instantly on the kitchen screen with a sound alert. Customers "
 "can follow their order on their phone."
@@ -6195,11 +6308,11 @@ msgstr ""
 "Pesanan langsung muncul di layar dapur dengan bunyi peringatan. Pelanggan "
 "dapat memantau pesanan di ponsel."
 
-#: templates/storefront/home.html:57
+#: templates/storefront/home.html:58
 msgid "Video: how customers order with QR Menu"
 msgstr "Video: cara pelanggan memesan dengan QR Menu"
 
-#: templates/storefront/home.html:60
+#: templates/storefront/home.html:61
 msgid ""
 "Watch how a customer orders, from scanning the table's QR code to the "
 "kitchen (50 seconds)."
@@ -6207,11 +6320,11 @@ msgstr ""
 "Lihat cara pelanggan memesan, dari memindai kode QR di meja hingga ke dapur "
 "(50 detik)."
 
-#: templates/storefront/home.html:66
+#: templates/storefront/home.html:67
 msgid "Works on any phone"
 msgstr "Bisa di ponsel apa saja"
 
-#: templates/storefront/home.html:66
+#: templates/storefront/home.html:67
 msgid ""
 "Customers scan with the phone camera. No app, no account, and it loads fast "
 "on slow connections."
@@ -6219,52 +6332,52 @@ msgstr ""
 "Pelanggan memindai dengan kamera ponsel. Tanpa aplikasi, tanpa akun, dan "
 "cepat dimuat meski koneksi lambat."
 
-#: templates/storefront/home.html:67
+#: templates/storefront/home.html:68
 msgid "Kitchen screen"
 msgstr "Layar dapur"
 
-#: templates/storefront/home.html:67
+#: templates/storefront/home.html:68
 msgid "New → Preparing → Ready → Completed, with timers and notes."
 msgstr "Baru → Disiapkan → Siap → Selesai, dengan pengatur waktu dan catatan."
 
-#: templates/storefront/home.html:68
+#: templates/storefront/home.html:69
 msgid "Tables & sessions"
 msgstr "Meja & sesi"
 
-#: templates/storefront/home.html:68
+#: templates/storefront/home.html:69
 msgid ""
 "Several people can order from one table, and you see one bill per table."
 msgstr ""
 "Beberapa orang dapat memesan dari satu meja, dan Anda melihat satu tagihan "
 "per meja."
 
-#: templates/storefront/home.html:69
+#: templates/storefront/home.html:70
 msgid "Cash & change"
 msgstr "Tunai & kembalian"
 
-#: templates/storefront/home.html:69
+#: templates/storefront/home.html:70
 msgid "Mark orders paid in one tap, and see the change to give back."
 msgstr ""
 "Tandai pesanan lunas dengan sekali ketuk, dan lihat kembalian yang harus "
 "diberikan."
 
-#: templates/storefront/home.html:70
+#: templates/storefront/home.html:71
 msgid "Sold out in one tap"
 msgstr "Tandai habis sekali ketuk"
 
-#: templates/storefront/home.html:70
+#: templates/storefront/home.html:71
 msgid "Customers' menus update immediately."
 msgstr "Menu pelanggan langsung diperbarui."
 
-#: templates/storefront/home.html:71
+#: templates/storefront/home.html:72
 msgid "Daily revenue, best sellers and CSV export."
 msgstr "Pendapatan harian, menu terlaris, dan ekspor CSV."
 
-#: templates/storefront/home.html:78
+#: templates/storefront/home.html:79
 msgid "We call you back"
 msgstr "Kami telepon balik"
 
-#: templates/storefront/home.html:79
+#: templates/storefront/home.html:80
 msgid ""
 "No time to set it up? Leave your number. We call you, answer your questions, "
 "and if you like we set up your menu for you: just send us photos of your "
@@ -6274,23 +6387,23 @@ msgstr ""
 "pertanyaan Anda, dan bila mau kami siapkan menu Anda: cukup kirim foto menu "
 "lewat WhatsApp. Gratis, tanpa kewajiban."
 
-#: templates/storefront/home.html:81
+#: templates/storefront/home.html:82
 msgid "We enter your dishes, prices and photos"
 msgstr "Kami masukkan hidangan, harga, dan foto Anda"
 
-#: templates/storefront/home.html:82
+#: templates/storefront/home.html:83
 msgid "We help you print the QR codes for your tables"
 msgstr "Kami bantu cetak kode QR untuk meja Anda"
 
-#: templates/storefront/home.html:83
+#: templates/storefront/home.html:84
 msgid "In English, Tetum or Bahasa Indonesia"
 msgstr "Dalam bahasa Inggris, Tetun, atau Indonesia"
 
-#: templates/storefront/home.html:89
+#: templates/storefront/home.html:90
 msgid "Thank you! We will call you soon."
 msgstr "Terima kasih! Kami akan segera menelepon Anda."
 
-#: templates/storefront/home.html:90
+#: templates/storefront/home.html:91
 msgid ""
 "Usually the same day. You can already send photos of your menu to our "
 "WhatsApp."
@@ -6298,7 +6411,7 @@ msgstr ""
 "Biasanya di hari yang sama. Anda sudah bisa mengirim foto menu ke WhatsApp "
 "kami."
 
-#: templates/storefront/home.html:96
+#: templates/storefront/home.html:97
 msgid ""
 "Too many requests from this network. Please try again later or message us on "
 "WhatsApp."
@@ -6306,99 +6419,99 @@ msgstr ""
 "Terlalu banyak permintaan dari jaringan ini. Coba lagi nanti atau kirim "
 "pesan lewat WhatsApp."
 
-#: templates/storefront/home.html:101
+#: templates/storefront/home.html:102
 msgid "Call me back"
 msgstr "Telepon saya"
 
-#: templates/storefront/home.html:102
+#: templates/storefront/home.html:103
 msgid "We only use your number to contact you about QR Menu."
 msgstr "Kami hanya memakai nomor Anda untuk menghubungi soal QR Menu."
 
-#: templates/storefront/home.html:109
+#: templates/storefront/home.html:110
 msgid "Pricing"
 msgstr "Harga"
 
-#: templates/storefront/home.html:110
+#: templates/storefront/home.html:111
 msgid "Simple monthly plans. No setup fees."
 msgstr "Paket bulanan sederhana. Tanpa biaya pemasangan."
 
-#: templates/storefront/home.html:110
+#: templates/storefront/home.html:111
 #, python-format
 msgid "New restaurants get a %(days)s-day free trial."
 msgid_plural "New restaurants get a %(days)s-day free trial."
 msgstr[0] "Restoran baru mendapat uji coba gratis %(days)s hari."
 
-#: templates/storefront/home.html:114
+#: templates/storefront/home.html:115
 msgid "Most popular"
 msgstr "Paling populer"
 
-#: templates/storefront/home.html:119
+#: templates/storefront/home.html:120
 #, python-format
 msgid "Up to %(n)s table"
 msgid_plural "Up to %(n)s tables"
 msgstr[0] "Hingga %(n)s meja"
 
-#: templates/storefront/home.html:120
+#: templates/storefront/home.html:121
 #, python-format
 msgid "Up to %(n)s dish"
 msgid_plural "Up to %(n)s dishes"
 msgstr[0] "Hingga %(n)s hidangan"
 
-#: templates/storefront/home.html:121
+#: templates/storefront/home.html:122
 #, python-format
 msgid "Up to %(n)s staff account"
 msgid_plural "Up to %(n)s staff accounts"
 msgstr[0] "Hingga %(n)s akun staf"
 
-#: templates/storefront/home.html:122
+#: templates/storefront/home.html:123
 msgid "Sales analytics"
 msgstr "Analitik penjualan"
 
-#: templates/storefront/home.html:123
+#: templates/storefront/home.html:124
 msgid "Cash register & end-of-day reconciliation"
 msgstr "Kas & pencocokan akhir hari"
 
-#: templates/storefront/home.html:124
+#: templates/storefront/home.html:125
 msgid "Quotations for catering & tenders"
 msgstr "Penawaran untuk katering & tender"
 
-#: templates/storefront/home.html:125
+#: templates/storefront/home.html:126
 msgid "Daily expenses & profit"
 msgstr "Pengeluaran harian & laba"
 
-#: templates/storefront/home.html:126
+#: templates/storefront/home.html:127
 #, python-format
 msgid "Main branch + %(n)s branch, one login"
 msgid_plural "Main branch + %(n)s branches, one login"
 msgstr[0] "Cabang utama + %(n)s cabang, satu login"
 
-#: templates/storefront/home.html:127
+#: templates/storefront/home.html:128
 msgid "Ordering API for your website, apps & delivery partners"
 msgstr "API pemesanan untuk situs web, aplikasi & mitra pengantaran"
 
-#: templates/storefront/home.html:130
+#: templates/storefront/home.html:131
 msgid "Get started"
 msgstr "Mulai"
 
-#: templates/storefront/home.html:138
+#: templates/storefront/home.html:139
 msgid "Are you a customer?"
 msgstr "Anda pelanggan?"
 
-#: templates/storefront/home.html:139
+#: templates/storefront/home.html:140
 msgid "To order, please scan the QR code on your table."
 msgstr "Untuk memesan, silakan pindai kode QR di meja Anda."
 
-#: templates/storefront/home.html:142
+#: templates/storefront/home.html:143
 #, python-format
 msgid "Hello! I'd like to know more about %(name)s."
 msgstr "Halo! Saya ingin tahu lebih lanjut tentang %(name)s."
 
-#: templates/storefront/home.html:144 templates/storefront/terms.html:4
+#: templates/storefront/home.html:145 templates/storefront/terms.html:4
 #: templates/storefront/terms.html:14
 msgid "Terms of service"
 msgstr "Ketentuan layanan"
 
-#: templates/storefront/home.html:152
+#: templates/storefront/home.html:153
 msgid "Chat with us on WhatsApp"
 msgstr "Hubungi kami di WhatsApp"
 

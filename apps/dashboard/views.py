@@ -904,7 +904,7 @@ def staff(request):
     action = request.POST.get("action", "new") if request.method == "POST" else ""
     form = StaffCreateForm(request.POST if action == "new" else None)
     existing = ExistingStaffForm(request.POST if action == "existing" else None, candidates=candidates)
-    if action and r.staff.count() >= plan_limit(r, "max_staff"):
+    if action and r.staff.exclude(role=Role.DEMO).count() >= plan_limit(r, "max_staff"):
         messages.error(request, _("Limit reached: your plan allows %(n)s staff accounts.") % {"n": plan_limit(r, "max_staff")})
     elif action == "existing" and existing.is_valid():
         d = existing.cleaned_data
@@ -921,7 +921,7 @@ def staff(request):
         messages.success(request, _("Staff account “%(username)s” created.") % {"username": user.username})
         return _go(request, "staff")
     return render(request, "dashboard/staff.html", {
-        "members": r.staff.select_related("user").order_by("role", "user__username"),
+        "members": r.staff.exclude(role=Role.DEMO).select_related("user").order_by("role", "user__username"),
         "form": form, "existing_form": existing, "has_candidates": candidates.exists(),
     })
 

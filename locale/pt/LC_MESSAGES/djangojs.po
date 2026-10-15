@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 01:05+0900\n"
+"POT-Creation-Date: 2026-10-15 21:44+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,249 +18,369 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: static/js/dashboard.js:119
 msgid "Total due"
 msgstr "Total a pagar"
 
+#: static/js/dashboard.js:120
 msgid "Cash received from customer"
 msgstr "Dinheiro recebido do cliente"
 
+#: static/js/dashboard.js:123
 msgid "Exact"
 msgstr "Valor exato"
 
+#: static/js/dashboard.js:125
 msgid "Change to give"
 msgstr "Troco a dar"
 
+#: static/js/dashboard.js:128 static/js/kds.js:85 static/js/kds.js:88
 msgid "Cancel"
 msgstr "Cancelar"
 
+#: static/js/dashboard.js:129
 msgid "Paid"
 msgstr "Pago"
 
+#: static/js/dashboard.js:156
 msgid "Not enough: %(amount)s short."
 msgstr "Insuficiente: faltam %(amount)s."
 
+#: static/js/dashboard.js:157
 msgid "Enter the amount received."
 msgstr "Introduza o valor recebido."
 
+#: static/js/dashboard.js:159
 msgid "Paid · give %(amount)s change"
 msgstr "Pago · dar %(amount)s de troco"
 
+#: static/js/dashboard.js:159
 msgid "Paid · exact amount"
 msgstr "Pago · valor exato"
 
+#: static/js/dashboard.js:193 static/js/dashboard.js:284
 msgid "Receipt printed."
 msgstr "Recibo impresso."
 
+#: static/js/dashboard.js:195 static/js/dashboard.js:284
 msgid "Receipt not printed: %(reason)s"
 msgstr "Recibo não impresso: %(reason)s"
 
+#: static/js/dashboard.js:218
 msgid "Receipt"
 msgstr "Recibo"
 
+#: static/js/dashboard.js:251 static/js/kds.js:39
 msgid "PAID"
 msgstr "PAGO"
 
+#: static/js/dashboard.js:252
 msgid "Print receipt?"
 msgstr "Imprimir recibo?"
 
+#: static/js/dashboard.js:257 static/js/dashboard.js:429
 msgid "GIVE CHANGE"
 msgstr "DAR TROCO"
 
+#: static/js/dashboard.js:257 static/js/dashboard.js:429
 msgid "EXACT AMOUNT"
 msgstr "VALOR EXATO"
 
+#: static/js/dashboard.js:259 static/js/dashboard.js:430
 msgid "Received %(received)s · Total %(total)s"
 msgstr "Recebido %(received)s · Total %(total)s"
 
+#: static/js/dashboard.js:277
 msgid "No"
 msgstr "Não"
 
+#: static/js/dashboard.js:278
 msgid "Yes, print"
 msgstr "Sim, imprimir"
 
+#: static/js/dashboard.js:280
 msgid "OK · print receipt"
 msgstr "OK · imprimir recibo"
 
+#: static/js/dashboard.js:282 static/js/dashboard.js:354
 msgid "OK"
 msgstr "OK"
 
+#: static/js/dashboard.js:343 static/js/dashboard.js:446
 msgid "Print bill"
 msgstr "Imprimir conta"
 
+#: static/js/dashboard.js:352
 msgid "Nothing to bill: everything here is paid."
 msgstr "Nada a faturar: está tudo pago."
 
+#: static/js/dashboard.js:352
 msgid "Reprint a bill from the list of printed bills."
 msgstr "Reimprima uma conta a partir da lista de contas impressas."
 
+#: static/js/dashboard.js:365
 msgid "What to bill (unpaid only)"
 msgstr "O que faturar (só por pagar)"
 
+#: static/js/dashboard.js:366
 msgid "Print mode"
 msgstr "Modo de impressão"
 
+#: static/js/dashboard.js:367
 msgid "One combined bill"
 msgstr "Uma conta conjunta"
 
+#: static/js/dashboard.js:368
 msgid "Separate bill per service"
 msgstr "Conta separada por serviço"
 
+#: static/js/dashboard.js:370
 msgid "Paper"
 msgstr "Papel"
 
+#: static/js/dashboard.js:373
 msgid "Copies"
 msgstr "Cópias"
 
+#: static/js/dashboard.js:375
 msgid "Total"
 msgstr "Total"
 
+#: static/js/dashboard.js:379 static/js/pos.js:173
 msgid "Plate"
 msgstr "Matrícula"
 
+#: static/js/dashboard.js:419 static/js/dashboard.js:482
 msgid "Cash payment"
 msgstr "Pagamento em dinheiro"
 
+#: static/js/dashboard.js:425
 msgid "Bill printed."
 msgstr "Conta impressa."
 
+#: static/js/dashboard.js:425
 msgid "Bill not printed: %(reason)s"
 msgstr "Conta não impressa: %(reason)s"
 
+#: static/js/dashboard.js:432
 msgid "Printed: %(numbers)s"
 msgstr "Impresso: %(numbers)s"
 
+#: static/js/dashboard.js:434
 msgid "Done"
 msgstr "Concluído"
 
+#: static/js/dashboard.js:441
 msgid "Preview"
 msgstr "Pré-visualizar"
 
+#: static/js/dashboard.js:447
 msgid "Paid (cash) & print"
 msgstr "Pago (dinheiro) e imprimir"
 
+#: static/js/dashboard.js:537
 msgid "Live: new orders appear automatically"
 msgstr "Em direto: os novos pedidos aparecem automaticamente"
 
+#: static/js/dashboard.js:539
 msgid "Live"
 msgstr "Ativo"
 
+#: static/js/dashboard.js:550 static/js/dashboard.js:590 static/js/kds.js:37
+#: static/js/pos.js:221
 msgid "Table %(n)s"
 msgstr "Mesa %(n)s"
 
+#: static/js/dashboard.js:550 static/js/dashboard.js:590 static/js/kds.js:37
+#: static/js/pos.js:221
 msgid "Counter"
 msgstr "Balcão"
 
+#: static/js/dashboard.js:552
 msgid "Car wash #%(number)s · %(where)s · Plate %(plate)s"
 msgstr "Lavagem #%(number)s · %(where)s · Matrícula %(plate)s"
 
+#: static/js/dashboard.js:555
 msgid "New order #%(number)s · %(where)s"
 msgstr "Novo pedido n.º %(number)s · %(where)s"
 
+#: static/js/dashboard.js:559
 msgid "New order #%(number)s"
 msgstr "Novo pedido n.º %(number)s"
 
+#: static/js/dashboard.js:567
 msgid "Reconnecting…"
 msgstr "A religar…"
 
+#: static/js/dashboard.js:569
 msgid "Offline"
 msgstr "Sem ligação"
 
-msgid "UNPAID"
-msgstr "POR PAGAR"
+#: static/js/dashboard.js:620
+msgid "Order #%(number)s · %(where)s is ready. Please pick it up."
+msgstr "Pedido #%(number)s · %(where)s está pronto. Por favor, venha buscá-lo."
 
-msgid "by waiter %(name)s"
-msgstr "pelo empregado %(name)s"
+#: static/js/dashboard.js:622
+msgid "Ready: #%(number)s"
+msgstr "Pronto: #%(number)s"
 
-msgid "by waiter"
-msgstr "pelo empregado"
-
-msgid "Customer note:"
-msgstr "Nota do cliente:"
-
-msgid "ACCEPT ORDER"
-msgstr "ACEITAR PEDIDO"
-
-msgid "MARK AS READY"
-msgstr "MARCAR COMO PRONTO"
-
-msgid "COMPLETED"
-msgstr "CONCLUÍDO"
-
-msgid "Mark paid"
-msgstr "Marcar como pago"
-
-msgid "%(n)s items"
-msgstr "%(n)s artigos"
-
-msgid "Cancel order #%(number)s? Reason (optional):"
-msgstr "Cancelar o pedido n.º %(number)s? Motivo (opcional):"
-
+#: static/js/dashboard.js:642 static/js/kds.js:117
 msgid "Could not update the order."
 msgstr "Não foi possível atualizar o pedido."
 
+#: static/js/dashboard.js:654
+msgid "1 new order is waiting to be accepted"
+msgstr "1 pedido novo à espera de ser aceite"
+
+#: static/js/dashboard.js:655
+msgid "%(n)s new orders are waiting to be accepted"
+msgstr "%(n)s pedidos novos à espera de serem aceites"
+
+#: static/js/dashboard.js:657
+msgid "Accept"
+msgstr "Aceitar"
+
+#: static/js/dashboard.js:661
+msgid "Open the kitchen screen"
+msgstr "Abrir o ecrã da cozinha"
+
+#: static/js/dashboard.js:669
+msgid "Ready to pick up"
+msgstr "Pronto para levantar"
+
+#: static/js/dashboard.js:671
+msgid "Picked up"
+msgstr "Levantado"
+
+#: static/js/dashboard.js:678
+msgid "Turn on the sound"
+msgstr "Ligar o som"
+
+#: static/js/kds.js:39
+msgid "UNPAID"
+msgstr "POR PAGAR"
+
+#: static/js/kds.js:56
+msgid "by waiter %(name)s"
+msgstr "pelo empregado %(name)s"
+
+#: static/js/kds.js:56
+msgid "by waiter"
+msgstr "pelo empregado"
+
+#: static/js/kds.js:71
+msgid "Customer note:"
+msgstr "Nota do cliente:"
+
+#: static/js/kds.js:84
+msgid "ACCEPT ORDER"
+msgstr "ACEITAR PEDIDO"
+
+#: static/js/kds.js:87
+msgid "MARK AS READY"
+msgstr "MARCAR COMO PRONTO"
+
+#: static/js/kds.js:90
+msgid "COMPLETED"
+msgstr "CONCLUÍDO"
+
+#: static/js/kds.js:96 static/js/kds.js:97
+msgid "Mark paid"
+msgstr "Marcar como pago"
+
+#: static/js/kds.js:102
+msgid "%(n)s items"
+msgstr "%(n)s artigos"
+
+#: static/js/kds.js:110
+msgid "Cancel order #%(number)s? Reason (optional):"
+msgstr "Cancelar o pedido n.º %(number)s? Motivo (opcional):"
+
+#: static/js/kds.js:126
 msgid "Order %(numbers)s · paid together"
 msgstr "Pedido %(numbers)s · pago em conjunto"
 
+#: static/js/kds.js:127
 msgid "Order #%(number)s · cash payment"
 msgstr "Pedido n.º %(number)s · pagamento em dinheiro"
 
+#: static/js/kds.js:143
 msgid "Cash drawer opened · #%(number)s paid"
 msgstr "Gaveta aberta · n.º %(number)s pago"
 
+#: static/js/kds.js:144
 msgid "Paid, but the drawer did not open: %(reason)s"
 msgstr "Pago, mas a gaveta não abriu: %(reason)s"
 
+#: static/js/kds.js:146
 msgid "Could not record the payment."
 msgstr "Não foi possível registar o pagamento."
 
+#: static/js/kds.js:181
 msgid "Updated %(time)s · new orders appear automatically."
 msgstr "Atualizado às %(time)s · os novos pedidos aparecem automaticamente."
 
+#: static/js/kds.js:183
 msgid "Could not load orders — retrying…"
 msgstr "Não foi possível carregar os pedidos — a tentar de novo…"
 
+#: static/js/kds.js:210
 msgid "Sound on"
 msgstr "Som ligado"
 
+#: static/js/kds.js:210
 msgid "Enable sound"
 msgstr "Ativar som"
 
+#: static/js/pos.js:33
 msgid "New guest"
 msgstr "Novo cliente"
 
+#: static/js/pos.js:83
 msgid "Sold out"
 msgstr "Esgotado"
 
+#: static/js/pos.js:85
 msgid "+ plate number"
 msgstr "+ matrícula"
 
+#: static/js/pos.js:89
 msgid "No dishes."
 msgstr "Sem pratos."
 
+#: static/js/pos.js:128
 msgid "sold out"
 msgstr "esgotado"
 
+#: static/js/pos.js:201
 msgid "Send order"
 msgstr "Enviar pedido"
 
+#: static/js/pos.js:201
 msgid "Send to kitchen"
 msgstr "Enviar para a cozinha"
 
+#: static/js/pos.js:224
 msgid "Order %(numbers)s sent · %(where)s"
 msgstr "Pedido %(numbers)s enviado · %(where)s"
 
+#: static/js/pos.js:227
 msgid "Last order %(numbers)s · %(where)s"
 msgstr "Último pedido %(numbers)s · %(where)s"
 
+#: static/js/pos.js:231
 msgid "Print bill · %(where)s"
 msgstr "Imprimir conta · %(where)s"
 
+#: static/js/pos.js:237
 msgid "Guest %(n)s"
 msgstr "Cliente %(n)s"
 
+#: static/js/pos.js:244
 msgid "Could not send the order."
 msgstr "Não foi possível enviar o pedido."
 
+#: static/js/pos.js:257
 msgid "Ordering is switched off in Restaurant settings."
 msgstr "Os pedidos estão desativados nas Definições do restaurante."
 

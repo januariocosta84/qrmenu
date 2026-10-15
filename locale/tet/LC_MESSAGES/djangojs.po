@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 01:05+0900\n"
+"POT-Creation-Date: 2026-10-15 21:44+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,249 +18,369 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: static/js/dashboard.js:119
 msgid "Total due"
 msgstr "Totál atu selu"
 
+#: static/js/dashboard.js:120
 msgid "Cash received from customer"
 msgstr "Osan ne'ebé simu husi kliente"
 
+#: static/js/dashboard.js:123
 msgid "Exact"
 msgstr "Osan loos"
 
+#: static/js/dashboard.js:125
 msgid "Change to give"
 msgstr "Troku atu fó"
 
+#: static/js/dashboard.js:128 static/js/kds.js:85 static/js/kds.js:88
 msgid "Cancel"
 msgstr "Kansela"
 
+#: static/js/dashboard.js:129
 msgid "Paid"
 msgstr "Selu ona"
 
+#: static/js/dashboard.js:156
 msgid "Not enough: %(amount)s short."
 msgstr "La to'o: falta %(amount)s."
 
+#: static/js/dashboard.js:157
 msgid "Enter the amount received."
 msgstr "Hakerek montante ne'ebé simu."
 
+#: static/js/dashboard.js:159
 msgid "Paid · give %(amount)s change"
 msgstr "Selu ona · fó troku %(amount)s"
 
+#: static/js/dashboard.js:159
 msgid "Paid · exact amount"
 msgstr "Selu ona · osan loos"
 
+#: static/js/dashboard.js:193 static/js/dashboard.js:284
 msgid "Receipt printed."
 msgstr "Resibu imprime ona."
 
+#: static/js/dashboard.js:195 static/js/dashboard.js:284
 msgid "Receipt not printed: %(reason)s"
 msgstr "Resibu la imprime: %(reason)s"
 
+#: static/js/dashboard.js:218
 msgid "Receipt"
 msgstr "Resibu"
 
+#: static/js/dashboard.js:251 static/js/kds.js:39
 msgid "PAID"
 msgstr "SELU ONA"
 
+#: static/js/dashboard.js:252
 msgid "Print receipt?"
 msgstr "Imprime resibu?"
 
+#: static/js/dashboard.js:257 static/js/dashboard.js:429
 msgid "GIVE CHANGE"
 msgstr "FÓ TROKU"
 
+#: static/js/dashboard.js:257 static/js/dashboard.js:429
 msgid "EXACT AMOUNT"
 msgstr "OSAN LOOS"
 
+#: static/js/dashboard.js:259 static/js/dashboard.js:430
 msgid "Received %(received)s · Total %(total)s"
 msgstr "Simu %(received)s · Totál %(total)s"
 
+#: static/js/dashboard.js:277
 msgid "No"
 msgstr "Lae"
 
+#: static/js/dashboard.js:278
 msgid "Yes, print"
 msgstr "Sin, imprime"
 
+#: static/js/dashboard.js:280
 msgid "OK · print receipt"
 msgstr "OK · imprime resibu"
 
+#: static/js/dashboard.js:282 static/js/dashboard.js:354
 msgid "OK"
 msgstr "OK"
 
+#: static/js/dashboard.js:343 static/js/dashboard.js:446
 msgid "Print bill"
 msgstr "Imprime konta"
 
+#: static/js/dashboard.js:352
 msgid "Nothing to bill: everything here is paid."
 msgstr "La iha buat ida atu fatura: hotu selu ona."
 
+#: static/js/dashboard.js:352
 msgid "Reprint a bill from the list of printed bills."
 msgstr "Imprime fali konta husi lista konta ne'ebé imprime ona."
 
+#: static/js/dashboard.js:365
 msgid "What to bill (unpaid only)"
 msgstr "Saida mak fatura (seidauk selu de'it)"
 
+#: static/js/dashboard.js:366
 msgid "Print mode"
 msgstr "Modu imprime"
 
+#: static/js/dashboard.js:367
 msgid "One combined bill"
 msgstr "Konta ida hamutuk"
 
+#: static/js/dashboard.js:368
 msgid "Separate bill per service"
 msgstr "Konta separadu ba servisu ida-idak"
 
+#: static/js/dashboard.js:370
 msgid "Paper"
 msgstr "Papél"
 
+#: static/js/dashboard.js:373
 msgid "Copies"
 msgstr "Kópia"
 
+#: static/js/dashboard.js:375
 msgid "Total"
 msgstr "Totál"
 
+#: static/js/dashboard.js:379 static/js/pos.js:173
 msgid "Plate"
 msgstr "Xapa"
 
+#: static/js/dashboard.js:419 static/js/dashboard.js:482
 msgid "Cash payment"
 msgstr "Pagamentu osan-kontadu"
 
+#: static/js/dashboard.js:425
 msgid "Bill printed."
 msgstr "Konta imprime ona."
 
+#: static/js/dashboard.js:425
 msgid "Bill not printed: %(reason)s"
 msgstr "Konta la imprime: %(reason)s"
 
+#: static/js/dashboard.js:432
 msgid "Printed: %(numbers)s"
 msgstr "Imprime ona: %(numbers)s"
 
+#: static/js/dashboard.js:434
 msgid "Done"
 msgstr "Remata"
 
+#: static/js/dashboard.js:441
 msgid "Preview"
 msgstr "Haree uluk"
 
+#: static/js/dashboard.js:447
 msgid "Paid (cash) & print"
 msgstr "Selu ona (osan) & imprime"
 
+#: static/js/dashboard.js:537
 msgid "Live: new orders appear automatically"
 msgstr "Direta: pedidu foun sira mosu automatikamente"
 
+#: static/js/dashboard.js:539
 msgid "Live"
 msgstr "Ativu"
 
+#: static/js/dashboard.js:550 static/js/dashboard.js:590 static/js/kds.js:37
+#: static/js/pos.js:221
 msgid "Table %(n)s"
 msgstr "Meza %(n)s"
 
+#: static/js/dashboard.js:550 static/js/dashboard.js:590 static/js/kds.js:37
+#: static/js/pos.js:221
 msgid "Counter"
 msgstr "Balkaun"
 
+#: static/js/dashboard.js:552
 msgid "Car wash #%(number)s · %(where)s · Plate %(plate)s"
 msgstr "Fase karreta #%(number)s · %(where)s · Xapa %(plate)s"
 
+#: static/js/dashboard.js:555
 msgid "New order #%(number)s · %(where)s"
 msgstr "Pedidu foun #%(number)s · %(where)s"
 
+#: static/js/dashboard.js:559
 msgid "New order #%(number)s"
 msgstr "Pedidu foun #%(number)s"
 
+#: static/js/dashboard.js:567
 msgid "Reconnecting…"
 msgstr "Liga fali hela…"
 
+#: static/js/dashboard.js:569
 msgid "Offline"
 msgstr "La iha ligasaun"
 
-msgid "UNPAID"
-msgstr "SEIDAUK SELU"
+#: static/js/dashboard.js:620
+msgid "Order #%(number)s · %(where)s is ready. Please pick it up."
+msgstr "Pedidu #%(number)s · %(where)s prontu ona. Favor bá foti."
 
-msgid "by waiter %(name)s"
-msgstr "husi serbidór %(name)s"
+#: static/js/dashboard.js:622
+msgid "Ready: #%(number)s"
+msgstr "Prontu: #%(number)s"
 
-msgid "by waiter"
-msgstr "husi serbidór"
-
-msgid "Customer note:"
-msgstr "Nota kliente:"
-
-msgid "ACCEPT ORDER"
-msgstr "SIMU PEDIDU"
-
-msgid "MARK AS READY"
-msgstr "MARKA PRONTU"
-
-msgid "COMPLETED"
-msgstr "REMATA ONA"
-
-msgid "Mark paid"
-msgstr "Marka selu ona"
-
-msgid "%(n)s items"
-msgstr "item %(n)s"
-
-msgid "Cancel order #%(number)s? Reason (optional):"
-msgstr "Kansela pedidu #%(number)s? Razaun (opsionál):"
-
+#: static/js/dashboard.js:642 static/js/kds.js:117
 msgid "Could not update the order."
 msgstr "La konsege atualiza pedidu."
 
+#: static/js/dashboard.js:654
+msgid "1 new order is waiting to be accepted"
+msgstr "Pedidu foun 1 hein atu simu"
+
+#: static/js/dashboard.js:655
+msgid "%(n)s new orders are waiting to be accepted"
+msgstr "Pedidu foun %(n)s hein atu simu"
+
+#: static/js/dashboard.js:657
+msgid "Accept"
+msgstr "Simu"
+
+#: static/js/dashboard.js:661
+msgid "Open the kitchen screen"
+msgstr "Loke ekran dapur"
+
+#: static/js/dashboard.js:669
+msgid "Ready to pick up"
+msgstr "Prontu atu foti"
+
+#: static/js/dashboard.js:671
+msgid "Picked up"
+msgstr "Foti ona"
+
+#: static/js/dashboard.js:678
+msgid "Turn on the sound"
+msgstr "Liga son"
+
+#: static/js/kds.js:39
+msgid "UNPAID"
+msgstr "SEIDAUK SELU"
+
+#: static/js/kds.js:56
+msgid "by waiter %(name)s"
+msgstr "husi serbidór %(name)s"
+
+#: static/js/kds.js:56
+msgid "by waiter"
+msgstr "husi serbidór"
+
+#: static/js/kds.js:71
+msgid "Customer note:"
+msgstr "Nota kliente:"
+
+#: static/js/kds.js:84
+msgid "ACCEPT ORDER"
+msgstr "SIMU PEDIDU"
+
+#: static/js/kds.js:87
+msgid "MARK AS READY"
+msgstr "MARKA PRONTU"
+
+#: static/js/kds.js:90
+msgid "COMPLETED"
+msgstr "REMATA ONA"
+
+#: static/js/kds.js:96 static/js/kds.js:97
+msgid "Mark paid"
+msgstr "Marka selu ona"
+
+#: static/js/kds.js:102
+msgid "%(n)s items"
+msgstr "item %(n)s"
+
+#: static/js/kds.js:110
+msgid "Cancel order #%(number)s? Reason (optional):"
+msgstr "Kansela pedidu #%(number)s? Razaun (opsionál):"
+
+#: static/js/kds.js:126
 msgid "Order %(numbers)s · paid together"
 msgstr "Pedidu %(numbers)s · selu hamutuk"
 
+#: static/js/kds.js:127
 msgid "Order #%(number)s · cash payment"
 msgstr "Pedidu #%(number)s · selu ho osan-kontadu"
 
+#: static/js/kds.js:143
 msgid "Cash drawer opened · #%(number)s paid"
 msgstr "Gaveta osan loke ona · #%(number)s selu ona"
 
+#: static/js/kds.js:144
 msgid "Paid, but the drawer did not open: %(reason)s"
 msgstr "Selu ona, maibé gaveta la loke: %(reason)s"
 
+#: static/js/kds.js:146
 msgid "Could not record the payment."
 msgstr "La konsege rejista pagamentu."
 
+#: static/js/kds.js:181
 msgid "Updated %(time)s · new orders appear automatically."
 msgstr "Atualiza iha %(time)s · pedidu foun sira mosu automatikamente."
 
+#: static/js/kds.js:183
 msgid "Could not load orders — retrying…"
 msgstr "La konsege karrega pedidu — koko fali hela…"
 
+#: static/js/kds.js:210
 msgid "Sound on"
 msgstr "Son moris"
 
+#: static/js/kds.js:210
 msgid "Enable sound"
 msgstr "Ativa son"
 
+#: static/js/pos.js:33
 msgid "New guest"
 msgstr "Bainaka foun"
 
+#: static/js/pos.js:83
 msgid "Sold out"
 msgstr "Hotu ona"
 
+#: static/js/pos.js:85
 msgid "+ plate number"
 msgstr "+ númeru xapa"
 
+#: static/js/pos.js:89
 msgid "No dishes."
 msgstr "La iha hahán."
 
+#: static/js/pos.js:128
 msgid "sold out"
 msgstr "hotu ona"
 
+#: static/js/pos.js:201
 msgid "Send order"
 msgstr "Haruka pedidu"
 
+#: static/js/pos.js:201
 msgid "Send to kitchen"
 msgstr "Haruka ba kozinha"
 
+#: static/js/pos.js:224
 msgid "Order %(numbers)s sent · %(where)s"
 msgstr "Pedidu %(numbers)s haruka ona · %(where)s"
 
+#: static/js/pos.js:227
 msgid "Last order %(numbers)s · %(where)s"
 msgstr "Pedidu ikus %(numbers)s · %(where)s"
 
+#: static/js/pos.js:231
 msgid "Print bill · %(where)s"
 msgstr "Imprime konta · %(where)s"
 
+#: static/js/pos.js:237
 msgid "Guest %(n)s"
 msgstr "Bainaka %(n)s"
 
+#: static/js/pos.js:244
 msgid "Could not send the order."
 msgstr "La konsege haruka pedidu."
 
+#: static/js/pos.js:257
 msgid "Ordering is switched off in Restaurant settings."
 msgstr "Pedidu dezativa hela iha Konfigurasaun restaurante."
 

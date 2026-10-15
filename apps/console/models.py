@@ -99,3 +99,30 @@ class VisitorLog(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+
+
+class DemoRequest(models.Model):
+    """
+    Someone asked to try the demo (home page → /demo/). They get an emailed one-click link that
+    logs them into the demo restaurant's dashboard in the view-only Demo role until `expires_at`.
+    Only a working inbox receives the link, so the email address is confirmed by using it.
+    """
+
+    name = models.CharField(max_length=120)
+    address = models.CharField(max_length=255)
+    job_title = models.CharField(max_length=120)
+    email = models.EmailField(db_index=True)
+    language = models.CharField(max_length=5, blank=True)
+    ip_masked = models.CharField(max_length=40, blank=True)
+    token = models.CharField(max_length=64, unique=True)
+    expires_at = models.DateTimeField()
+    opened_count = models.PositiveIntegerField(default=0)
+    first_opened_at = models.DateTimeField(null=True, blank=True)
+    last_opened_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.name} <{self.email}>"

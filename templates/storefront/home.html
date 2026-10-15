@@ -35,6 +35,7 @@
     {% elif signup_open %}
     <div class="land-cta">
       <a class="btn btn-light btn-lg" href="{% url 'accounts:signup' %}">{% translate "Register your restaurant" %}</a>
+      <a class="btn btn-ghost-light btn-lg" href="{% url 'storefront:demo' %}">{% translate "Try the demo" %}</a>
       <a class="btn btn-ghost-light btn-lg" href="{% url 'accounts:login' %}">{% translate "Log in" %}</a>
     </div>
     <p class="land-callme-link"><a href="#call-me">{% translate "Rather talk to us? We call you back and set up your menu for you →" %}</a></p>
