@@ -53,10 +53,11 @@
         <select id="menu-pick" aria-label="{% translate "Dish from your menu" %}">
           <option value="">{% translate "Choose a dish from your menu…" %}</option>
           {% for c in categories %}{% if c.items.all %}<optgroup label="{{ c.name }}">
-            {% for m in c.items.all %}<option value="{{ m.pk }}" data-name="{{ m.name }}" data-price="{{ m.price|unlocalize }}">{{ m.name }} · {{ m.price|money:sym }}</option>{% endfor %}
+            {% for m in c.items.all %}<option value="{{ m.pk }}"{% if c.is_food %} data-all{% endif %} data-name="{{ m.name }}" data-price="{{ m.price|unlocalize }}">{{ m.name }} · {{ m.price|money:sym }}</option>{% endfor %}
           </optgroup>{% endif %}{% endfor %}
         </select>
         <button type="button" class="btn" id="add-menu">{% icon "plus" %} {% translate "Add from menu" %}</button>
+        <button type="button" class="btn" id="add-all" data-confirm="{% translate "Add every dish on your menu as a line? You can change or remove each line afterwards." %}">{% icon "book" %} {% translate "Add all menu items" %}</button>
         <button type="button" class="btn" id="add-custom">{% icon "pen" %} {% translate "Add custom line" %}</button>
       </div>
     </div>
@@ -78,6 +79,7 @@
       </tbody>
     </table>
     </div>
+    <p class="btn-row" id="clear-row" hidden><button type="button" class="btn btn-sm btn-ghost link-danger" id="clear-lines" data-confirm="{% translate "Remove all lines from this quotation?" %}">{% icon "trash" %} {% translate "Remove all lines" %}</button></p>
     <p class="muted small" id="no-lines"{% if lines %} hidden{% endif %}>{% translate "No lines yet. Add dishes from your menu or a custom line." %}</p>
     <datalist id="unit-list">
       <option value="{% translate "pax" %}"><option value="{% translate "plate" %}"><option value="{% translate "box" %}">
@@ -130,6 +132,7 @@
   // Quotation editor: add lines from the menu or by hand, keep totals live (the server recalculates on save).
   (function () {
     const sym = "{{ request.restaurant.currency_symbol|escapejs }}";
+    const MAX_LINES = {{ max_lines|default:200|unlocalize }};
     const defaultUnit = "{% filter escapejs %}{% translate "pax" %}{% endfilter %}";
     const $ = (s, r = document) => r.querySelector(s);
     const body = $("#lines"), tpl = $("#line-tpl");
@@ -151,6 +154,7 @@
       $("#t-vat").textContent = money(vat);
       $("#t-total").textContent = money(sub - discount + vat);
       $("#no-lines").hidden = body.querySelector(".qline") !== null;
+      $("#clear-row").hidden = body.querySelectorAll(".qline").length < 2;
     }
     function addLine(desc, price, menuId, focus = true) {
       const row = tpl.content.firstElementChild.cloneNode(true);
@@ -171,6 +175,27 @@
       if (!opt || !opt.value) { $("#menu-pick").focus(); return; }
       addLine(opt.dataset.name, opt.dataset.price, opt.value);
       $("#menu-pick").value = "";
+    });
+    // Every dish at once; lines already on the quotation are not added twice, empty lines are dropped.
+    $("#add-all").addEventListener("click", (e) => {
+      if (!confirm(e.currentTarget.dataset.confirm)) return;
+      body.querySelectorAll(".qline").forEach((tr) => {
+        const blank = !tr.querySelector('[name="line_description"]').value.trim() && !tr.querySelector('[name="line_menu_item"]').value;
+        if (blank) tr.remove();
+      });
+      const have = new Set([...body.querySelectorAll('[name="line_menu_item"]')].map((i) => i.value).filter(Boolean));
+      let room = MAX_LINES - body.querySelectorAll(".qline").length;
+      $("#menu-pick").querySelectorAll("option[data-all]").forEach((opt) => {
+        if (!opt.value || have.has(opt.value) || room <= 0) return;
+        addLine(opt.dataset.name, opt.dataset.price, opt.value, false);
+        room -= 1;
+      });
+      recalc();
+    });
+    $("#clear-lines").addEventListener("click", (e) => {
+      if (!confirm(e.currentTarget.dataset.confirm)) return;
+      body.querySelectorAll(".qline").forEach((tr) => tr.remove());
+      recalc();
     });
     $("#add-custom").addEventListener("click", () => addLine("", undefined, ""));
     body.addEventListener("click", (e) => {

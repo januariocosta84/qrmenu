@@ -10,9 +10,10 @@ from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.http import require_POST
 
 from apps.dashboard.decorators import plan_feature, staff_view
+from apps.menu import service_types
 from apps.menu.models import MenuCategory, MenuItem
 
-from .forms import QuotationForm, parse_lines
+from .forms import MAX_LINES, QuotationForm, parse_lines
 from .models import Quotation, QuotationItem
 from .words import amount_in_words
 
@@ -31,6 +32,22 @@ def quotation_list(request):
     return render(request, "dashboard/quotations/list.html", {"quotations": qs[:200], "status": status})
 
 
+@staff_view("quotations")
+@plan_feature("quotations")
+def quotation_profile(request):
+    """Company profile: written once, printed as its own page in every quotation."""
+    r = request.restaurant
+    if request.method == "POST":
+        r.company_profile = request.POST.get("company_profile", "").strip()[:PROFILE_MAX]
+        r.save(update_fields=["company_profile", "updated_at"])
+        messages.success(request, _("Company profile saved."))
+        return redirect("dashboard:quotation_profile", r.slug)
+    return render(request, "dashboard/quotations/profile.html", {"profile_max": PROFILE_MAX})
+
+
+PROFILE_MAX = 6000
+
+
 def _defaults(restaurant) -> dict:
     """New quotation: VAT from the restaurant setting, terms copied from the last quotation."""
     last = restaurant.quotations.exclude(terms="").order_by("-id").first()
@@ -44,10 +61,13 @@ def _defaults(restaurant) -> dict:
 
 
 def _menu_choices(restaurant):
-    """Menu for the "Add from menu" picker: categories with their dishes."""
-    return MenuCategory.objects.filter(restaurant=restaurant).prefetch_related(
+    """Menu for the "Add from menu" picker: categories with their dishes ("Add all" skips car wash packages)."""
+    categories = list(MenuCategory.objects.filter(restaurant=restaurant).prefetch_related(
         Prefetch("items", queryset=MenuItem.objects.filter(restaurant=restaurant).order_by("position", "name"))
-    )
+    ))
+    for c in categories:
+        c.is_food = service_types.get(c.service_type).kitchen
+    return categories
 
 
 def _save_lines(quotation, lines):
@@ -86,7 +106,7 @@ def _editor(request, quotation=None):
             return redirect("dashboard:quotation_edit", r.slug, quotation.pk)
     return render(request, "dashboard/quotations/edit.html", {
         "form": form, "quotation": quotation, "lines": lines, "line_errors": errors,
-        "categories": _menu_choices(r),
+        "categories": _menu_choices(r), "max_lines": MAX_LINES,
     })
 
 
@@ -144,4 +164,44 @@ def quotation_print(request, pk):
         return render(request, "dashboard/quotations/print.html", {
             "q": q, "r": request.restaurant, "doc_lang": q.language,
             "words": amount_in_words(q.total, q.language, request.restaurant.currency),
+            "menu_pages": _menu_pages(q),
+            "profile": _profile(request.restaurant),
         })
+
+
+def _profile(restaurant) -> dict | None:
+    """The company profile page: the text the owner wrote, with photo, contact and registration details."""
+    if not restaurant.company_profile.strip():
+        return None
+    bp = getattr(restaurant, "business_profile", None)
+    blocks = []
+    for chunk in restaurant.company_profile.replace("\r\n", "\n").split("\n\n"):
+        lines = [ln.strip() for ln in chunk.strip().split("\n") if ln.strip()]
+        if not lines:
+            continue
+        # "## Heading" or a short first line ending with ":" becomes a heading; "- item" lines become a list.
+        heading = ""
+        if lines[0].startswith("#") or (lines[0].endswith(":") and len(lines[0]) <= 60):
+            heading, lines = lines[0].lstrip("#").rstrip(":").strip(), lines[1:]
+        bullets = [ln.lstrip("-•* ").strip() for ln in lines if ln[:1] in "-•*"]
+        text = [ln for ln in lines if ln[:1] not in "-•*"]
+        blocks.append({"heading": heading, "text": "\n".join(text), "bullets": bullets})
+    return {
+        "blocks": blocks,
+        "registration": bp.registration_number if bp and bp.status == bp.VERIFIED else "",
+    }
+
+
+def _menu_pages(quotation):
+    """Dishes quoted from the menu, by category, for the extra pages with photos after the quotation."""
+    ids = [i.menu_item_id for i in quotation.items.all() if i.menu_item_id]
+    items = (MenuItem.objects.filter(pk__in=ids, restaurant=quotation.restaurant).select_related("category")
+             .order_by("category__position", "category_id", "position", "name"))
+    lang, sections = quotation.language, []
+    for item in items:
+        name = item.category.tr("name", lang) if item.category else ""
+        if not sections or sections[-1]["name"] != name:
+            sections.append({"name": name, "dishes": []})
+        sections[-1]["dishes"].append({"name": item.tr("name", lang), "description": item.tr("description", lang),
+                                       "image": item.image})
+    return sections

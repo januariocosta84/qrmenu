@@ -8,7 +8,7 @@
     <h1>{% translate "Quotations" %}</h1>
     <p class="page-sub">{% translate "Price offers for catering, events and procurement bids. Print or save as PDF." %}</p>
   </div>
-  <div class="page-actions"><a class="btn btn-primary" href="{% url 'dashboard:quotation_create' r.slug %}">{% icon "plus" %} {% translate "New quotation" %}</a></div>
+  <div class="page-actions"><a class="btn" href="{% url 'dashboard:quotation_profile' r.slug %}">{% icon "store" %} {% translate "Company profile" %}</a><a class="btn btn-primary" href="{% url 'dashboard:quotation_create' r.slug %}">{% icon "plus" %} {% translate "New quotation" %}</a></div>
 </div>
 
 <nav class="tabs" aria-label="{% translate "Filter by status" %}">

@@ -30,6 +30,8 @@ class Restaurant(TranslatableMixin, TimeStampedModel):
     phone = models.CharField(max_length=30, blank=True)
     email = models.EmailField(blank=True)
     opening_hours = models.TextField(blank=True, help_text=_("e.g. Mon–Sat 08:00–22:00"))
+    # Printed as its own page in quotations (about us, services, experience, clients).
+    company_profile = models.TextField(_("Company profile"), blank=True)
 
     currency = models.CharField(max_length=3, default="USD")
     currency_symbol = models.CharField(max_length=5, default="$")

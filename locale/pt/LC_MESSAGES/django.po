@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-14 15:55+0900\n"
+"POT-Creation-Date: 2026-10-15 15:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,30 +18,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: apps/accounts/forms.py:11
 msgid "Restaurant name"
 msgstr "Nome do restaurante"
 
+#: apps/accounts/forms.py:12 apps/storefront/forms.py:19
 msgid "Your name"
 msgstr "O seu nome"
 
+#: apps/accounts/forms.py:13 apps/dashboard/forms.py:107
+#: apps/dashboard/forms.py:364
 msgid "Email"
 msgstr "Email"
 
+#: apps/accounts/forms.py:13
 msgid "You'll sign in with this email. We'll send a confirmation link."
 msgstr "Vai iniciar sessão com este email. Enviaremos um link de confirmação."
 
+#: apps/accounts/forms.py:14
 msgid "Phone (optional)"
 msgstr "Telefone (opcional)"
 
+#: apps/accounts/forms.py:15 apps/dashboard/forms.py:366
+#: templates/accounts/login.html:13
 msgid "Password"
 msgstr "Palavra-passe"
 
+#: apps/accounts/forms.py:16
 msgid ""
 "I confirm I own or manage this restaurant, and I accept the terms of service."
 msgstr ""
 "Confirmo que sou proprietário ou gerente deste restaurante e aceito os "
 "termos de serviço."
 
+#: apps/accounts/forms.py:23
 msgid ""
 "An account with this email already exists. Try logging in or resetting your "
 "password."
@@ -49,23 +59,29 @@ msgstr ""
 "Já existe uma conta com este email. Tente iniciar sessão ou repor a palavra-"
 "passe."
 
+#: apps/accounts/forms.py:29
 msgid "Enter the restaurant's name."
 msgstr "Introduza o nome do restaurante."
 
+#: apps/accounts/forms.py:35
 msgid "Sign-up failed. Please try again."
 msgstr "O registo falhou. Tente novamente."
 
+#: apps/accounts/views.py:48
 msgid "Too many failed login attempts. Please try again in 15 minutes."
 msgstr "Demasiadas tentativas falhadas. Tente novamente dentro de 15 minutos."
 
+#: apps/accounts/views.py:74
 msgid "Too many sign-ups from your network. Please try again in an hour."
 msgstr ""
 "Demasiados registos a partir da sua rede. Tente novamente dentro de uma hora."
 
+#: apps/accounts/views.py:85
 #, python-format
 msgid "Welcome! We sent a confirmation link to %(email)s."
 msgstr "Bem-vindo! Enviámos um link de confirmação para %(email)s."
 
+#: apps/accounts/views.py:88
 msgid ""
 "Your account is ready, but we couldn't send the confirmation email. Use "
 "“Resend email” below."
@@ -73,12 +89,14 @@ msgstr ""
 "A sua conta está pronta, mas não foi possível enviar o email de confirmação. "
 "Use “Reenviar email” abaixo."
 
+#: apps/accounts/views.py:99
 msgid ""
 "This confirmation link is invalid or has expired. Log in and request a new "
 "one."
 msgstr ""
 "Este link de confirmação é inválido ou expirou. Inicie sessão e peça um novo."
 
+#: apps/accounts/views.py:103
 msgid ""
 "Email confirmed — your restaurant is now live! Customers can scan your QR "
 "codes."
@@ -86,6 +104,7 @@ msgstr ""
 "Email confirmado — o seu restaurante já está ativo! Os clientes podem ler os "
 "seus códigos QR."
 
+#: apps/accounts/views.py:105
 msgid ""
 "Email confirmed. Your restaurant is waiting for approval by the platform "
 "team."
@@ -93,152 +112,207 @@ msgstr ""
 "Email confirmado. O seu restaurante aguarda aprovação da equipa da "
 "plataforma."
 
+#: apps/accounts/views.py:107
 msgid "Email confirmed."
 msgstr "Email confirmado."
 
+#: apps/accounts/views.py:116
 msgid "Your email is already confirmed."
 msgstr "O seu email já está confirmado."
 
+#: apps/accounts/views.py:118
 msgid "Please wait a while before requesting another email."
 msgstr "Aguarde um pouco antes de pedir outro email."
 
+#: apps/accounts/views.py:122
 #, python-format
 msgid "Confirmation email sent to %(email)s."
 msgstr "Email de confirmação enviado para %(email)s."
 
+#: apps/accounts/views.py:125
 msgid "We couldn't send the email right now. Please try again later."
 msgstr "Não foi possível enviar o email agora. Tente mais tarde."
 
+#: apps/billing/models.py:32
 msgid "Analytics page (trends, busy times, best sellers)."
 msgstr "Página de análise (tendências, horas de movimento, mais vendidos)."
 
+#: apps/billing/models.py:33
 msgid "Cash register: opening change and end-of-day reconciliation."
 msgstr "Caixa: troco inicial e conferência no fim do dia."
 
+#: apps/billing/models.py:34
 msgid "Quotations for catering and procurement bids."
 msgstr "Cotações para catering e concursos públicos."
 
+#: apps/billing/models.py:35
 msgid "Daily expenses and profit per day, week, month and year."
 msgstr "Despesas diárias e lucro por dia, semana, mês e ano."
 
+#: apps/billing/models.py:36
 msgid "Several branches under one owner, with an all-branches overview."
 msgstr ""
 "Várias filiais com o mesmo proprietário, com uma visão de todas as filiais."
 
+#: apps/billing/models.py:37
 msgid "Ordering API for websites, apps and delivery partners."
 msgstr "API de pedidos para sites, apps e parceiros de entrega."
 
+#: apps/billing/models.py:98
 msgid "Trial"
 msgstr "Período experimental"
 
+#: apps/billing/models.py:98 apps/dashboard/forms.py:256
+#: apps/dashboard/forms.py:403 apps/restaurants/models.py:135
+#: templates/dashboard/branch_manage.html:9
+#: templates/dashboard/branch_manage.html:49 templates/dashboard/staff.html:23
 msgid "Active"
 msgstr "Ativo"
 
+#: apps/billing/models.py:98
 msgid "Payment due"
 msgstr "Pagamento em atraso"
 
+#: apps/billing/models.py:98
 msgid "Expired"
 msgstr "Expirado"
 
+#: apps/billing/models.py:98 apps/orders/models.py:29
+#: templates/dashboard/car_wash.html:39 templates/dashboard/reports.html:27
 msgid "Cancelled"
 msgstr "Cancelado"
 
+#: apps/billing/models.py:146
 msgid "Complimentary"
 msgstr "Gratuito (oferta)"
 
+#: apps/billing/models.py:148
 msgid "Free plan"
 msgstr "Plano gratuito"
 
+#: apps/billing/models.py:169 templates/dashboard/branches.html:52
 msgid "Open"
 msgstr "Em aberto"
 
+#: apps/billing/models.py:169 apps/orders/models.py:73
+#: templates/dashboard/car_wash.html:71
+#: templates/dashboard/table_detail.html:55
+#: templates/dashboard/table_detail.html:57
+#: templates/dashboard/table_detail.html:93
 msgid "Paid"
 msgstr "Pago"
 
+#: apps/billing/models.py:169
 msgid "Void"
 msgstr "Anulada"
 
+#: apps/core/django_strings.py:14
 msgid "This field is required."
 msgstr ""
 
+#: apps/core/django_strings.py:15
 msgid "Enter a valid email address."
 msgstr ""
 
+#: apps/core/django_strings.py:16
 msgid "Enter a whole number."
 msgstr ""
 
+#: apps/core/django_strings.py:17
 msgid "Enter a number."
 msgstr ""
 
+#: apps/core/django_strings.py:18
 msgid "Enter a valid value."
 msgstr ""
 
+#: apps/core/django_strings.py:19
 msgid "Enter a valid date."
 msgstr ""
 
+#: apps/core/django_strings.py:20
 #, python-format
 msgid "Ensure this value is greater than or equal to %(limit_value)s."
 msgstr ""
 
+#: apps/core/django_strings.py:21
 #, python-format
 msgid "Ensure this value is less than or equal to %(limit_value)s."
 msgstr ""
 
+#: apps/core/django_strings.py:22
 #, python-format
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr ""
 
+#: apps/core/django_strings.py:23
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
+#: apps/core/django_strings.py:24
 msgid ""
 "Upload a valid image. The file you uploaded was either not an image or a "
 "corrupted image."
 msgstr ""
 
+#: apps/core/django_strings.py:25
 msgid "Currently"
 msgstr ""
 
+#: apps/core/django_strings.py:26
 msgid "Change"
 msgstr ""
 
+#: apps/core/django_strings.py:27
 msgid "Clear"
 msgstr ""
 
+#: apps/core/django_strings.py:28
 msgid "Yes"
 msgstr ""
 
+#: apps/core/django_strings.py:29
 msgid "No"
 msgstr "Não"
 
+#: apps/core/django_strings.py:30
 msgid "Unknown"
 msgstr ""
 
+#: apps/core/django_strings.py:32
 msgid "Your old password was entered incorrectly. Please enter it again."
 msgstr ""
 
+#: apps/core/django_strings.py:33
 msgid "Old password"
 msgstr ""
 
+#: apps/core/django_strings.py:34
 msgid "New password"
 msgstr ""
 
+#: apps/core/django_strings.py:35
 msgid "New password confirmation"
 msgstr ""
 
+#: apps/core/django_strings.py:36
 msgid "The two password fields didn’t match."
 msgstr ""
 
+#: apps/core/django_strings.py:37
 msgid "This password is too common."
 msgstr ""
 
+#: apps/core/django_strings.py:38
 msgid "This password is entirely numeric."
 msgstr ""
 
+#: apps/core/django_strings.py:39
 #, python-format
 msgid "The password is too similar to the %(verbose_name)s."
 msgstr ""
 
+#: apps/core/django_strings.py:41
 #, python-format
 msgid ""
 "This password is too short. It must contain at least %(min_length)d "
@@ -249,496 +323,677 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
+#: apps/core/django_strings.py:46
 #, python-format
 msgid "%(num)d year"
 msgid_plural "%(num)d years"
 msgstr[0] ""
 msgstr[1] ""
 
+#: apps/core/django_strings.py:47
 #, python-format
 msgid "%(num)d month"
 msgid_plural "%(num)d months"
 msgstr[0] ""
 msgstr[1] ""
 
+#: apps/core/django_strings.py:48
 #, python-format
 msgid "%(num)d week"
 msgid_plural "%(num)d weeks"
 msgstr[0] ""
 msgstr[1] ""
 
+#: apps/core/django_strings.py:49
 #, python-format
 msgid "%(num)d day"
 msgid_plural "%(num)d days"
 msgstr[0] ""
 msgstr[1] ""
 
+#: apps/core/django_strings.py:50
 #, python-format
 msgid "%(num)d hour"
 msgid_plural "%(num)d hours"
 msgstr[0] ""
 msgstr[1] ""
 
+#: apps/core/django_strings.py:51
 #, python-format
 msgid "%(num)d minute"
 msgid_plural "%(num)d minutes"
 msgstr[0] ""
 msgstr[1] ""
 
+#: apps/core/django_strings.py:53
 msgid "Monday"
 msgstr ""
 
+#: apps/core/django_strings.py:53
 msgid "Tuesday"
 msgstr ""
 
+#: apps/core/django_strings.py:53
 msgid "Wednesday"
 msgstr ""
 
+#: apps/core/django_strings.py:53
 msgid "Thursday"
 msgstr ""
 
+#: apps/core/django_strings.py:54
 msgid "Friday"
 msgstr ""
 
+#: apps/core/django_strings.py:54
 msgid "Saturday"
 msgstr ""
 
+#: apps/core/django_strings.py:54
 msgid "Sunday"
 msgstr ""
 
+#: apps/core/django_strings.py:55 apps/dashboard/views.py:1197
 msgid "Mon"
 msgstr ""
 
+#: apps/core/django_strings.py:55 apps/dashboard/views.py:1197
 msgid "Tue"
 msgstr ""
 
+#: apps/core/django_strings.py:55 apps/dashboard/views.py:1197
 msgid "Wed"
 msgstr ""
 
+#: apps/core/django_strings.py:55 apps/dashboard/views.py:1197
 msgid "Thu"
 msgstr ""
 
+#: apps/core/django_strings.py:56 apps/dashboard/views.py:1197
 msgid "Fri"
 msgstr ""
 
+#: apps/core/django_strings.py:56 apps/dashboard/views.py:1197
 msgid "Sat"
 msgstr ""
 
+#: apps/core/django_strings.py:56 apps/dashboard/views.py:1197
 msgid "Sun"
 msgstr ""
 
+#: apps/core/django_strings.py:57
 msgid "January"
 msgstr ""
 
+#: apps/core/django_strings.py:57
 msgid "February"
 msgstr ""
 
+#: apps/core/django_strings.py:57
 msgid "March"
 msgstr ""
 
+#: apps/core/django_strings.py:57
 msgid "April"
 msgstr ""
 
+#: apps/core/django_strings.py:58
 msgid "May"
 msgstr ""
 
+#: apps/core/django_strings.py:58
 msgid "June"
 msgstr ""
 
+#: apps/core/django_strings.py:58
 msgid "July"
 msgstr ""
 
+#: apps/core/django_strings.py:58
 msgid "August"
 msgstr ""
 
+#: apps/core/django_strings.py:59
 msgid "September"
 msgstr ""
 
+#: apps/core/django_strings.py:59
 msgid "October"
 msgstr ""
 
+#: apps/core/django_strings.py:59
 msgid "November"
 msgstr ""
 
+#: apps/core/django_strings.py:59
 msgid "December"
 msgstr ""
 
+#: apps/core/django_strings.py:60
 msgid "jan"
 msgstr ""
 
+#: apps/core/django_strings.py:60
 msgid "feb"
 msgstr ""
 
+#: apps/core/django_strings.py:60
 msgid "mar"
 msgstr ""
 
+#: apps/core/django_strings.py:60
 msgid "apr"
 msgstr ""
 
+#: apps/core/django_strings.py:61
 msgid "may"
 msgstr ""
 
+#: apps/core/django_strings.py:61
 msgid "jun"
 msgstr ""
 
+#: apps/core/django_strings.py:61
 msgid "jul"
 msgstr ""
 
+#: apps/core/django_strings.py:61
 msgid "aug"
 msgstr ""
 
+#: apps/core/django_strings.py:62
 msgid "sep"
 msgstr ""
 
+#: apps/core/django_strings.py:62
 msgid "oct"
 msgstr ""
 
+#: apps/core/django_strings.py:62
 msgid "nov"
 msgstr ""
 
+#: apps/core/django_strings.py:62
 msgid "dec"
 msgstr ""
 
+#: apps/core/django_strings.py:63
 msgctxt "alt. month"
 msgid "January"
 msgstr ""
 
+#: apps/core/django_strings.py:63
 msgctxt "alt. month"
 msgid "February"
 msgstr ""
 
+#: apps/core/django_strings.py:64
 msgctxt "alt. month"
 msgid "March"
 msgstr ""
 
+#: apps/core/django_strings.py:64
 msgctxt "alt. month"
 msgid "April"
 msgstr ""
 
+#: apps/core/django_strings.py:65
 msgctxt "alt. month"
 msgid "May"
 msgstr ""
 
+#: apps/core/django_strings.py:65
 msgctxt "alt. month"
 msgid "June"
 msgstr ""
 
+#: apps/core/django_strings.py:66
 msgctxt "alt. month"
 msgid "July"
 msgstr ""
 
+#: apps/core/django_strings.py:66
 msgctxt "alt. month"
 msgid "August"
 msgstr ""
 
+#: apps/core/django_strings.py:67
 msgctxt "alt. month"
 msgid "September"
 msgstr ""
 
+#: apps/core/django_strings.py:67
 msgctxt "alt. month"
 msgid "October"
 msgstr ""
 
+#: apps/core/django_strings.py:68
 msgctxt "alt. month"
 msgid "November"
 msgstr ""
 
+#: apps/core/django_strings.py:68
 msgctxt "alt. month"
 msgid "December"
 msgstr ""
 
+#: apps/core/images.py:32
 #, python-format
 msgid "Image is too large (max %(mb)s MB)."
 msgstr "A imagem é demasiado grande (máx. %(mb)s MB)."
 
+#: apps/core/images.py:37
 msgid "Only JPEG, PNG and WebP images are allowed."
 msgstr "Só são permitidas imagens JPEG, PNG e WebP."
 
+#: apps/core/images.py:39
 msgid "Image dimensions are too large."
 msgstr "As dimensões da imagem são demasiado grandes."
 
+#: apps/core/images.py:42
 msgid "Upload a valid image file."
 msgstr "Carregue um ficheiro de imagem válido."
 
+#: apps/core/permissions.py:18 templates/dashboard/staff.html:32
 msgid "Owner"
 msgstr "Proprietário"
 
+#: apps/core/permissions.py:19 templates/dashboard/staff.html:33
 msgid "Manager"
 msgstr "Gerente"
 
+#: apps/core/permissions.py:20 templates/dashboard/base.html:92
+#: templates/dashboard/staff.html:34
 msgid "Kitchen"
 msgstr "Cozinha"
 
+#: apps/core/permissions.py:21 templates/dashboard/staff.html:35
 msgid "Waiter / Cashier"
 msgstr "Empregado / Caixa"
 
+#: apps/dashboard/api.py:87
 msgid "Unknown table."
 msgstr "Mesa desconhecida."
 
+#: apps/dashboard/api.py:92
 msgid "That guest is not at this table any more."
 msgstr "Esse cliente já não está nesta mesa."
 
+#: apps/dashboard/api.py:125 apps/dashboard/views.py:250
 msgid "Your role cannot cancel orders."
 msgstr "A sua função não permite cancelar pedidos."
 
+#: apps/dashboard/api.py:199
 msgid "No orders to print."
 msgstr "Não há pedidos para imprimir."
 
+#: apps/dashboard/carwash.py:83 templates/dashboard/car_wash.html:42
+#: templates/dashboard/car_wash.html:50 templates/dashboard/car_wash.html:90
+#: templates/dashboard/new_order.html:20
+#: templates/dashboard/table_detail.html:3
+#: templates/dashboard/table_detail.html:9 templates/dashboard/tables.html:21
 #, python-format
 msgid "Table %(n)s"
 msgstr "Mesa %(n)s"
 
+#: apps/dashboard/carwash.py:83
 msgid "walk-in"
 msgstr "sem mesa"
 
+#: apps/dashboard/carwash.py:84
 #, python-format
 msgid "Car wash #%(number)s for %(plate)s (%(where)s) added."
 msgstr "Lavagem #%(number)s para %(plate)s (%(where)s) adicionada."
 
+#: apps/dashboard/carwash.py:87
 msgid "Choose a package."
 msgstr "Escolha um pacote."
 
+#: apps/dashboard/carwash.py:127
 msgid "Only unpaid car wash orders can be moved to a table."
 msgstr "Só lavagens não pagas podem ser passadas para uma mesa."
 
+#: apps/dashboard/carwash.py:137
 #, python-format
 msgid ""
 "Car wash for %(plate)s added to the bill of table %(n)s (%(count)s order(s))."
 msgstr ""
 "Lavagem de %(plate)s adicionada à conta da mesa %(n)s (%(count)s pedido(s))."
 
+#: apps/dashboard/carwash.py:149
 #, python-format
 msgid "Car wash #%(number)s cancelled."
 msgstr "Lavagem #%(number)s cancelada."
 
+#: apps/dashboard/carwash.py:178
 msgid ""
 "New car wash QR code made. Old printouts no longer work — print the new one."
 msgstr ""
 "Novo código QR da lavagem criado. Os impressos antigos deixam de funcionar — "
 "imprima o novo."
 
+#: apps/dashboard/carwash.py:211 apps/menu/service_types.py:31
+#: templates/dashboard/analytics.html:115 templates/dashboard/reports.html:37
 msgid "Café"
 msgstr "Café"
 
+#: apps/dashboard/carwash.py:243
 msgid "Bill preview"
 msgstr "Pré-visualização da conta"
 
+#: apps/dashboard/carwash.py:261
 msgid "Nothing left to bill: these orders are paid. Reprint from the history."
 msgstr ""
 "Nada a faturar: estes pedidos estão pagos. Reimprima a partir do histórico."
 
+#: apps/dashboard/carwash.py:269
 msgid "Your role cannot take payments."
 msgstr "A sua função não pode receber pagamentos."
 
+#: apps/dashboard/forms.py:82
 msgid "How VAT is charged"
 msgstr "Como o IVA é cobrado"
 
+#: apps/dashboard/forms.py:83
 msgid "Add VAT on top of menu prices"
 msgstr "Somar IVA aos preços do menu"
 
+#: apps/dashboard/forms.py:83
 msgid "Menu prices already include VAT"
 msgstr "Os preços do menu já incluem IVA"
 
+#: apps/dashboard/forms.py:106 apps/dashboard/forms.py:162
+#: apps/dashboard/forms.py:199 apps/dashboard/forms.py:244
+#: apps/dashboard/forms.py:363 apps/integrations/forms.py:12
+#: apps/integrations/forms.py:26 apps/integrations/models.py:26
+#: templates/dashboard/api.html:28 templates/dashboard/item_form.html:28
+#: templates/dashboard/staff.html:16 templates/dashboard/staff.html:21
 msgid "Name"
 msgstr "Nome"
 
+#: apps/dashboard/forms.py:106 apps/dashboard/forms.py:199
+#: templates/dashboard/api_docs.html:77
+#: templates/dashboard/quotations/edit.html:66
+#: templates/dashboard/quotations/edit.html:71
+#: templates/dashboard/quotations/edit.html:120
+#: templates/dashboard/quotations/print.html:120
 msgid "Description"
 msgstr "Descrição"
 
+#: apps/dashboard/forms.py:106 templates/dashboard/settings.html:22
 msgid "Logo"
 msgstr "Logótipo"
 
+#: apps/dashboard/forms.py:106
 msgid "Cover image"
 msgstr "Imagem de capa"
 
+#: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
+#: apps/quotations/forms.py:31 apps/restaurants/models.py:345
 msgid "Address"
 msgstr "Morada"
 
+#: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
+#: templates/dashboard/order_detail.html:21
+#: templates/dashboard/quotations/print.html:163
 msgid "Phone"
 msgstr "Telefone"
 
+#: apps/dashboard/forms.py:107 templates/dashboard/quotations/print.html:165
 msgid "Opening hours"
 msgstr "Horário"
 
+#: apps/dashboard/forms.py:108
 msgid "Currency"
 msgstr "Moeda"
 
+#: apps/dashboard/forms.py:108
 msgid "Currency symbol"
 msgstr "Símbolo da moeda"
 
+#: apps/dashboard/forms.py:109
 msgid "Service charge (%)"
 msgstr "Taxa de serviço (%)"
 
+#: apps/dashboard/forms.py:109
 msgid "Default menu language"
 msgstr "Língua predefinida do menu"
 
+#: apps/dashboard/forms.py:110
 msgid "Default preparation time (minutes)"
 msgstr "Tempo de preparação predefinido (minutos)"
 
+#: apps/dashboard/forms.py:111
 msgid "Accepting orders"
 msgstr "Aceitar pedidos"
 
+#: apps/dashboard/forms.py:111 apps/restaurants/models.py:59
 msgid "Show my menu on Google"
 msgstr "Mostrar o meu menu no Google"
 
+#: apps/dashboard/forms.py:111
 msgid "Cash drawer enabled"
 msgstr "Gaveta de dinheiro ativa"
 
+#: apps/dashboard/forms.py:112
 msgid "Printer IP address"
 msgstr "Endereço IP da impressora"
 
+#: apps/dashboard/forms.py:112
 msgid "Printer port"
 msgstr "Porta da impressora"
 
+#: apps/dashboard/forms.py:112
 msgid "Drawer pin"
 msgstr "Pino da gaveta"
 
+#: apps/dashboard/forms.py:113
 msgid "After a payment"
 msgstr "Depois de um pagamento"
 
+#: apps/dashboard/forms.py:113
 msgid "Receipt printer"
 msgstr "Impressora de recibos"
 
+#: apps/dashboard/forms.py:114
 msgid "Paper width"
 msgstr "Largura do papel"
 
+#: apps/dashboard/forms.py:114
 msgid "Receipt footer"
 msgstr "Rodapé do recibo"
 
+#: apps/dashboard/forms.py:115
 msgid "A cash drawer is plugged into the receipt printer"
 msgstr "Há uma gaveta de dinheiro ligada à impressora de recibos"
 
+#: apps/dashboard/forms.py:116
 msgid "Charge VAT"
 msgstr "Cobrar IVA"
 
+#: apps/dashboard/forms.py:116
 msgid "VAT rate (%)"
 msgstr "Taxa de IVA (%)"
 
+#: apps/dashboard/forms.py:117
 msgid "Tax name"
 msgstr "Nome do imposto"
 
+#: apps/dashboard/forms.py:118 templates/dashboard/quotations/print.html:87
+#: templates/dashboard/quotations/print.html:167
 msgid "Tax ID"
 msgstr "NIF"
 
+#: apps/dashboard/forms.py:119 apps/restaurants/models.py:106
 msgid "Default bill print mode"
 msgstr "Modo de impressão da conta"
 
+#: apps/dashboard/forms.py:119 apps/dashboard/views.py:872
+#: apps/menu/service_types.py:32 apps/restaurants/models.py:112
+#: templates/dashboard/base.html:33 templates/dashboard/car_wash.html:3
+#: templates/dashboard/car_wash.html:8 templates/dashboard/menu.html:22
+#: templates/dashboard/table_detail.html:65
 msgid "Car wash"
 msgstr "Lavagem de carros"
 
+#: apps/dashboard/forms.py:120 apps/restaurants/models.py:115
 msgid "Car wash name"
 msgstr "Nome da lavagem"
 
+#: apps/dashboard/forms.py:120 apps/restaurants/models.py:118
 msgid "Print a car wash ticket automatically"
 msgstr "Imprimir talão de lavagem automaticamente"
 
+#: apps/dashboard/forms.py:150
 msgid "Enter the receipt printer's IP address to print receipts on it."
 msgstr "Introduza o endereço IP da impressora de recibos para imprimir nela."
 
+#: apps/dashboard/forms.py:152
 msgid "Enter the VAT rate, e.g. 10."
 msgstr "Introduza a taxa de IVA, ex.: 10."
 
+#: apps/dashboard/forms.py:154
 msgid "Enter the receipt printer's IP address to use the cash drawer."
 msgstr ""
 "Introduza o endereço IP da impressora de recibos para usar a gaveta de "
 "dinheiro."
 
+#: apps/dashboard/forms.py:162 apps/menu/models.py:22
+#: templates/dashboard/base.html:26 templates/dashboard/reports.html:36
 msgid "Service"
 msgstr "Serviço"
 
+#: apps/dashboard/forms.py:162 apps/dashboard/forms.py:201
+#: apps/dashboard/forms.py:244 templates/dashboard/item_form.html:30
 msgid "Position"
 msgstr "Posição"
 
+#: apps/dashboard/forms.py:163
 msgid "Visible to customers"
 msgstr "Visível para os clientes"
 
+#: apps/dashboard/forms.py:183
 msgid "A category with this name already exists."
 msgstr "Já existe uma categoria com este nome."
 
+#: apps/dashboard/forms.py:199 apps/expenses/forms.py:16
+#: templates/dashboard/expenses.html:91 templates/dashboard/expenses.html:95
+#: templates/dashboard/menu.html:13
 msgid "Category"
 msgstr "Categoria"
 
+#: apps/dashboard/forms.py:199 apps/dashboard/forms.py:244
+#: templates/dashboard/item_form.html:29
 msgid "Price"
 msgstr "Preço"
 
+#: apps/dashboard/forms.py:200
 msgid "Photo"
 msgstr "Fotografia"
 
+#: apps/dashboard/forms.py:200
 msgid "Available (untick = Sold Out)"
 msgstr "Disponível (desmarcar = Esgotado)"
 
+#: apps/dashboard/forms.py:201
 msgid "Preparation time (minutes)"
 msgstr "Tempo de preparação (minutos)"
 
+#: apps/dashboard/forms.py:206
 msgid "Price for a motorbike"
 msgstr "Preço para mota"
 
+#: apps/dashboard/forms.py:208 apps/dashboard/forms.py:212
 msgid "Car wash packages only. Leave empty to use the normal price (cars)."
 msgstr ""
 "Só para pacotes de lavagem. Deixe vazio para usar o preço normal (carros)."
 
+#: apps/dashboard/forms.py:210
 msgid "Price for a pickup / SUV"
 msgstr "Preço para pickup / SUV"
 
+#: apps/dashboard/forms.py:244 templates/dashboard/item_form.html:31
+#: templates/dashboard/menu.html:44 templates/dashboard/menu.html:65
 msgid "Available"
 msgstr "Disponível"
 
+#: apps/dashboard/forms.py:256
 msgid "Table number"
 msgstr "Número da mesa"
 
+#: apps/dashboard/forms.py:256
 msgid "Label"
 msgstr "Etiqueta"
 
+#: apps/dashboard/forms.py:256
 msgid "Seats"
 msgstr "Lugares"
 
+#: apps/dashboard/forms.py:268
 msgid "This table number already exists."
 msgstr "Este número de mesa já existe."
 
+#: apps/dashboard/forms.py:277
 msgid "From table"
 msgstr "Da mesa"
 
+#: apps/dashboard/forms.py:278 templates/dashboard/car_wash.html:48
 msgid "To table"
 msgstr "Até à mesa"
 
+#: apps/dashboard/forms.py:284
 msgid "Choose a range of at most 200 tables, with end ≥ start."
 msgstr "Escolha um intervalo de no máximo 200 mesas, com fim ≥ início."
 
+#: apps/dashboard/forms.py:291
 msgid "Staff member"
 msgstr "Funcionário"
 
+#: apps/dashboard/forms.py:292 apps/dashboard/forms.py:365
+#: apps/dashboard/forms.py:403 templates/dashboard/branch_manage.html:44
+#: templates/dashboard/branch_manage.html:48 templates/dashboard/staff.html:16
+#: templates/dashboard/staff.html:22
 msgid "Role"
 msgstr "Função"
 
+#: apps/dashboard/forms.py:308
 #, python-format
 msgid "Branch names must use your brand name, e.g. “%(example)s”."
 msgstr ""
 "Os nomes das filiais devem usar o nome da sua marca, ex.: “%(example)s”."
 
+#: apps/dashboard/forms.py:316 apps/dashboard/forms.py:350
 msgid "Branch name"
 msgstr "Nome da filial"
 
+#: apps/dashboard/forms.py:317
 msgid ""
 "Must use your brand name, e.g. Kafe Atauro – Comoro. Customers see this name."
 msgstr ""
 "Deve usar o nome da sua marca, ex.: Kafe Atauro – Comoro. Os clientes veem "
 "este nome."
 
+#: apps/dashboard/forms.py:318
 msgid "Branch address"
 msgstr "Morada da filial"
 
+#: apps/dashboard/forms.py:319
 msgid "Branch phone number"
 msgstr "Telefone da filial"
 
+#: apps/dashboard/forms.py:320 templates/dashboard/branch_manage.html:23
 msgid "Storefront photo"
 msgstr "Foto da fachada"
 
+#: apps/dashboard/forms.py:321
 msgid "A photo of the branch from outside, showing the brand name."
 msgstr "Uma foto da filial vista de fora, com o nome da marca visível."
 
+#: apps/dashboard/forms.py:323 apps/restaurants/models.py:340
 msgid "Business registration number"
 msgstr "Número de registo da empresa"
 
+#: apps/dashboard/forms.py:324
 msgid ""
 "All branches must belong to the same business registration as the main "
 "branch."
@@ -746,123 +1001,167 @@ msgstr ""
 "Todas as filiais devem pertencer ao mesmo registo comercial da filial "
 "principal."
 
+#: apps/dashboard/forms.py:325 apps/restaurants/models.py:343
 msgid "Owner name"
 msgstr "Nome do proprietário"
 
+#: apps/dashboard/forms.py:326
 msgid "Copy from"
 msgstr "Copiar de"
 
+#: apps/dashboard/forms.py:327
 msgid "Start empty"
 msgstr "Começar vazio"
 
+#: apps/dashboard/forms.py:328
 msgid "Copy the menu (categories, dishes, photos, add-ons)"
 msgstr "Copiar o menu (categorias, pratos, fotografias, extras)"
 
+#: apps/dashboard/forms.py:330
 msgid "Copy settings (currency, service charge, VAT, receipts, logo)"
 msgstr "Copiar definições (moeda, taxa de serviço, IVA, recibos, logótipo)"
 
+#: apps/dashboard/forms.py:362
 msgid "Username"
 msgstr "Nome de utilizador"
 
+#: apps/dashboard/forms.py:367
 msgid "Share it with the staff member; they can change it later."
 msgstr "Partilhe-a com o funcionário; poderá alterá-la depois."
 
+#: apps/dashboard/forms.py:378
 msgid "An account with this email already exists."
 msgstr "Já existe uma conta com este email."
 
+#: apps/dashboard/forms.py:385
 msgid "This username is already taken."
 msgstr "Este nome de utilizador já está a ser usado."
 
+#: apps/dashboard/forms.py:407
 msgid "Method"
 msgstr "Método"
 
+#: apps/dashboard/forms.py:408 apps/expenses/forms.py:17
+#: templates/dashboard/billing.html:53 templates/dashboard/billing.html:59
+#: templates/dashboard/cash_register.html:53
+#: templates/dashboard/expenses.html:91 templates/dashboard/expenses.html:98
+#: templates/dashboard/quotations/edit.html:66
+#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/revenue.html:35 templates/dashboard/revenue.html:42
 msgid "Amount"
 msgstr "Montante"
 
+#: apps/dashboard/forms.py:409 templates/dashboard/quotations/print.html:96
 msgid "Reference"
 msgstr "Referência"
 
+#: apps/dashboard/forms.py:410
 msgid "Receipt / transfer reference"
 msgstr "Referência do recibo / transferência"
 
+#: apps/dashboard/forms.py:414
 msgid "Order # / name"
 msgstr "N.º do pedido / nome"
 
+#: apps/dashboard/views.py:116
 msgid "Add your logo, address and opening hours"
 msgstr "Adicione o logótipo, a morada e o horário"
 
+#: apps/dashboard/views.py:118
 msgid "Create menu categories (e.g. Rice, Drinks)"
 msgstr "Crie categorias do menu (ex.: Arroz, Bebidas)"
 
+#: apps/dashboard/views.py:120
 msgid "Add your dishes with photos and prices"
 msgstr "Adicione os pratos com fotografias e preços"
 
+#: apps/dashboard/views.py:121
 msgid "Create your tables"
 msgstr "Crie as suas mesas"
 
+#: apps/dashboard/views.py:122
 msgid "Print the QR codes and place one on each table"
 msgstr "Imprima os códigos QR e coloque um em cada mesa"
 
+#: apps/dashboard/views.py:124
 msgid "Add kitchen and waiter accounts"
 msgstr "Adicione contas para a cozinha e os empregados"
 
+#: apps/dashboard/views.py:256
 #, python-format
 msgid "Order #%(number)s → %(status)s."
 msgstr "Pedido n.º %(number)s → %(status)s."
 
+#: apps/dashboard/views.py:271
 #, python-format
 msgid "Payment recorded. Order #%(number)s is now %(status)s."
 msgstr "Pagamento registado. O pedido n.º %(number)s está agora: %(status)s."
 
+#: apps/dashboard/views.py:283
 msgid "Accept"
 msgstr "Aceitar"
 
+#: apps/dashboard/views.py:283
 msgid "Start preparing"
 msgstr "Começar a preparar"
 
+#: apps/dashboard/views.py:284
 msgid "Mark ready"
 msgstr "Marcar como pronto"
 
+#: apps/dashboard/views.py:284
 msgid "Complete"
 msgstr "Concluir"
 
+#: apps/dashboard/views.py:284
 msgid "Cancel order"
 msgstr "Cancelar pedido"
 
+#: apps/dashboard/views.py:312
 msgid "Enter the cash received as a number, e.g. 20 or 20.00."
 msgstr "Introduza o dinheiro recebido como número, ex.: 20 ou 20.00."
 
+#: apps/dashboard/views.py:314
 msgid "Enter a valid cash amount."
 msgstr "Introduza um montante válido."
 
+#: apps/dashboard/views.py:324
 #, python-format
 msgid "GIVE CHANGE: %(change)s  (received %(received)s, total %(total)s)"
 msgstr "DAR TROCO: %(change)s  (recebido %(received)s, total %(total)s)"
 
+#: apps/dashboard/views.py:334
 #, python-format
 msgid "Exact amount received: %(total)s. No change."
 msgstr "Valor exato recebido: %(total)s. Sem troco."
 
+#: apps/dashboard/views.py:348
 #, python-format
 msgid "Receipt not printed: %(reason)s"
 msgstr "Recibo não impresso: %(reason)s"
 
+#: apps/dashboard/views.py:387 apps/payments/drawer.py:108
 msgid "Cash drawer opened."
 msgstr "Gaveta de dinheiro aberta."
 
+#: apps/dashboard/views.py:389
 #, python-format
 msgid "Payment saved, but the cash drawer did not open: %(reason)s"
 msgstr "Pagamento guardado, mas a gaveta não abriu: %(reason)s"
 
+#: apps/dashboard/views.py:401 apps/payments/models.py:57
 msgid "Cash payment"
 msgstr "Pagamento em dinheiro"
 
+#: apps/dashboard/views.py:401
 msgid "No sale"
 msgstr "Sem venda"
 
+#: apps/dashboard/views.py:401
 msgid "Printer test"
 msgstr "Teste da impressora"
 
+#: apps/dashboard/views.py:430
 msgid ""
 "Printing a test slip. If the cash drawer is set up in the printer driver, it "
 "opens too."
@@ -870,52 +1169,66 @@ msgstr ""
 "A imprimir um talão de teste. Se a gaveta estiver configurada no controlador "
 "da impressora, também abre."
 
+#: apps/dashboard/views.py:451
 #, python-format
 msgid "Cash register opened with %(amount)s change."
 msgstr "Caixa aberta com %(amount)s de troco."
 
+#: apps/dashboard/views.py:456
 msgid "Cash movement recorded."
 msgstr "Movimento de dinheiro registado."
 
+#: apps/dashboard/views.py:505 apps/dashboard/views.py:632
+#: apps/dashboard/views.py:654
 #, python-format
 msgid "Marked as paid: %(numbers)s."
 msgstr "Marcados como pagos: %(numbers)s."
 
+#: apps/dashboard/views.py:525
 msgid "Your role cannot manage tables."
 msgstr "A sua função não permite gerir mesas."
 
+#: apps/dashboard/views.py:539
 #, python-format
 msgid "Limit reached: a restaurant can have up to %(n)s tables on your plan."
 msgstr "Limite atingido: o seu plano permite até %(n)s mesas."
 
+#: apps/dashboard/views.py:543
 #, python-format
 msgid "Created %(n)s table."
 msgid_plural "Created %(n)s tables."
 msgstr[0] "Criada %(n)s mesa."
 msgstr[1] "Criadas %(n)s mesas."
 
+#: apps/dashboard/views.py:548
 #, python-format
 msgid "Limit reached: your plan allows %(n)s tables."
 msgstr "Limite atingido: o seu plano permite %(n)s mesas."
 
+#: apps/dashboard/views.py:552
 #, python-format
 msgid "Table %(number)s created."
 msgstr "Mesa %(number)s criada."
 
+#: apps/dashboard/views.py:617
 #, python-format
 msgid "Guest %(n)s"
 msgstr "Cliente %(n)s"
 
+#: apps/dashboard/views.py:637
 msgid "This guest has nothing left to pay."
 msgstr "Este cliente não tem nada por pagar."
 
+#: apps/dashboard/views.py:662
 msgid "There were no unpaid orders at this table."
 msgstr "Não havia pedidos por pagar nesta mesa."
 
+#: apps/dashboard/views.py:665
 #, python-format
 msgid "Table %(number)s is now free."
 msgstr "A mesa %(number)s está agora livre."
 
+#: apps/dashboard/views.py:674
 #, python-format
 msgid ""
 "Table %(number)s is now free. Customers must scan the QR code again to order."
@@ -923,17 +1236,21 @@ msgstr ""
 "A mesa %(number)s está agora livre. Os clientes têm de ler o código QR outra "
 "vez para pedir."
 
+#: apps/dashboard/views.py:685
 msgid "Table updated. Reprint its QR code if you changed the number."
 msgstr "Mesa atualizada. Volte a imprimir o código QR se mudou o número."
 
+#: apps/dashboard/views.py:688
 #, python-format
 msgid "Edit table %(number)s"
 msgstr "Editar mesa %(number)s"
 
+#: apps/dashboard/views.py:697
 #, python-format
 msgid "Table %(number)s deleted."
 msgstr "Mesa %(number)s eliminada."
 
+#: apps/dashboard/views.py:706
 #, python-format
 msgid ""
 "New QR code generated for table %(number)s. Old printed codes no longer work "
@@ -942,62 +1259,80 @@ msgstr ""
 "Novo código QR gerado para a mesa %(number)s. Os códigos antigos já não "
 "funcionam — imprima o novo."
 
+#: apps/dashboard/views.py:774
 msgid "Category saved."
 msgstr "Categoria guardada."
 
+#: apps/dashboard/views.py:778
 #, python-format
 msgid "Edit category: %(name)s"
 msgstr "Editar categoria: %(name)s"
 
+#: apps/dashboard/views.py:778
 msgid "New category"
 msgstr "Nova categoria"
 
+#: apps/dashboard/views.py:790
 msgid "Category deleted."
 msgstr "Categoria eliminada."
 
+#: apps/dashboard/views.py:792
 msgid "Move or delete the dishes in this category first."
 msgstr "Mova ou elimine primeiro os pratos desta categoria."
 
+#: apps/dashboard/views.py:804
 msgid "Create a category first."
 msgstr "Crie primeiro uma categoria."
 
+#: apps/dashboard/views.py:808
 #, python-format
 msgid "Limit reached: your plan allows %(n)s dishes."
 msgstr "Limite atingido: o seu plano permite %(n)s pratos."
 
+#: apps/dashboard/views.py:818
 #, python-format
 msgid "“%(name)s” saved."
 msgstr "“%(name)s” guardado."
 
+#: apps/dashboard/views.py:831
 #, python-format
 msgid "“%(name)s” deleted."
 msgstr "“%(name)s” eliminado."
 
+#: apps/dashboard/views.py:843
 msgid "Restaurant settings saved."
 msgstr "Definições do restaurante guardadas."
 
+#: apps/dashboard/views.py:855
 msgid "Profile"
 msgstr "Perfil"
 
+#: apps/dashboard/views.py:855
 msgid "How your restaurant appears to customers."
 msgstr "Como o seu restaurante aparece aos clientes."
 
+#: apps/dashboard/views.py:857
 msgid "Branding"
 msgstr "Imagem"
 
+#: apps/dashboard/views.py:858
 msgid "Shown at the top of your menu. JPEG, PNG or WebP up to 5 MB."
 msgstr "Aparece no topo do menu. JPEG, PNG ou WebP até 5 MB."
 
+#: apps/dashboard/views.py:860
 msgid "Ordering & money"
 msgstr "Pedidos e dinheiro"
 
+#: apps/dashboard/views.py:861
 msgid "Pause ordering at any time; prices are shown in this currency."
 msgstr ""
 "Pause os pedidos a qualquer momento; os preços são mostrados nesta moeda."
 
+#: apps/dashboard/views.py:863
 msgid "Tax (VAT)"
 msgstr "Imposto (IVA)"
 
+#: apps/dashboard/views.py:864
 msgid ""
 "Off by default. Switch it on only if your restaurant must charge VAT. Past "
 "orders keep the VAT they were placed with."
@@ -1005,9 +1340,11 @@ msgstr ""
 "Desativado por defeito. Ative apenas se o seu restaurante tiver de cobrar "
 "IVA. Os pedidos anteriores mantêm o IVA com que foram feitos."
 
+#: apps/dashboard/views.py:867
 msgid "Customer menu language"
 msgstr "Língua do menu para clientes"
 
+#: apps/dashboard/views.py:868
 msgid ""
 "Customers can switch language on the menu; untranslated text falls back to "
 "English."
@@ -1015,12 +1352,15 @@ msgstr ""
 "Os clientes podem mudar a língua no menu; o texto não traduzido aparece em "
 "inglês."
 
+#: apps/dashboard/views.py:870
 msgid "Receipts"
 msgstr "Recibos"
 
+#: apps/dashboard/views.py:870
 msgid "What happens after a payment is recorded."
 msgstr "O que acontece depois de registar um pagamento."
 
+#: apps/dashboard/views.py:873
 msgid ""
 "Sell car wash packages from the same table QR as your café. Car wash orders "
 "go to the Car wash screen (and a printed ticket), not to the kitchen. Add a "
@@ -1031,9 +1371,11 @@ msgstr ""
 "Crie uma categoria do menu com o serviço “Lavagem de carros” para os seus "
 "pacotes."
 
+#: apps/dashboard/views.py:877
 msgid "Receipt printer & cash drawer"
 msgstr "Impressora de recibos e gaveta de dinheiro"
 
+#: apps/dashboard/views.py:878
 msgid ""
 "Print receipts on the receipt printer of the cashier computer. A cash drawer "
 "plugged into that printer opens automatically on cash payments."
@@ -1041,18 +1383,22 @@ msgstr ""
 "Imprima recibos na impressora de recibos do computador da caixa. Uma gaveta "
 "ligada a essa impressora abre automaticamente nos pagamentos em dinheiro."
 
+#: apps/dashboard/views.py:908 apps/dashboard/views.py:1076
 #, python-format
 msgid "Limit reached: your plan allows %(n)s staff accounts."
 msgstr "Limite atingido: o seu plano permite %(n)s contas de funcionários."
 
+#: apps/dashboard/views.py:912
 #, python-format
 msgid "%(name)s now also works at this branch."
 msgstr "%(name)s passa também a trabalhar nesta filial."
 
+#: apps/dashboard/views.py:921
 #, python-format
 msgid "Staff account “%(username)s” created."
 msgstr "Conta de funcionário “%(username)s” criada."
 
+#: apps/dashboard/views.py:964
 #, python-format
 msgid ""
 "Branch “%(name)s” requested. The platform team will review it; meanwhile you "
@@ -1061,6 +1407,7 @@ msgstr ""
 "Filial “%(name)s” pedida. A equipa da plataforma vai analisá-la; entretanto "
 "pode preparar o menu e a equipa."
 
+#: apps/dashboard/views.py:971
 #, python-format
 msgid ""
 "Invoice %(number)s created for an extra branch. The slot is added as soon as "
@@ -1069,27 +1416,35 @@ msgstr ""
 "Fatura %(number)s criada para uma filial extra. A vaga é adicionada assim "
 "que for paga."
 
+#: apps/dashboard/views.py:976
 msgid "One unused extra branch removed from your subscription."
 msgstr "Uma filial extra não usada foi removida da sua subscrição."
 
+#: apps/dashboard/views.py:978
 msgid "Every extra branch is in use. Deactivate a branch first."
 msgstr "Todas as filiais extra estão em uso. Desative primeiro uma filial."
 
+#: apps/dashboard/views.py:996 templates/dashboard/revenue.html:28
 msgid "All sources"
 msgstr "Todas as origens"
 
+#: apps/dashboard/views.py:996
 msgid "Orders (QR & waiter)"
 msgstr "Pedidos (QR e empregado)"
 
+#: apps/dashboard/views.py:996
 msgid "Manual entries"
 msgstr "Registos manuais"
 
+#: apps/dashboard/views.py:997
 msgid "Ordering API (all keys)"
 msgstr "API de pedidos (todas as chaves)"
 
+#: apps/dashboard/views.py:1034
 msgid "Branch details saved."
 msgstr "Dados da filial guardados."
 
+#: apps/dashboard/views.py:1039
 #, python-format
 msgid ""
 "%(name)s is deactivated: customers can't order and its staff can't sign in "
@@ -1098,6 +1453,7 @@ msgstr ""
 "%(name)s está desativada: os clientes não podem pedir e a sua equipa não "
 "pode entrar. O histórico é mantido."
 
+#: apps/dashboard/views.py:1046
 msgid ""
 "No free branch slot: all branches in your plan are in use. Add an extra "
 "branch on the Branches page first."
@@ -1105,179 +1461,259 @@ msgstr ""
 "Sem vagas livres: todas as filiais do seu plano estão em uso. Adicione "
 "primeiro uma filial extra na página Filiais."
 
+#: apps/dashboard/views.py:1051
 #, python-format
 msgid "%(name)s is active again."
 msgstr "%(name)s está ativa novamente."
 
+#: apps/dashboard/views.py:1072
 msgid "Sent for review again."
 msgstr "Enviada novamente para análise."
 
+#: apps/dashboard/views.py:1083
 #, python-format
 msgid "Staff account “%(username)s” created for %(branch)s."
 msgstr "Conta “%(username)s” criada para %(branch)s."
 
+#: apps/dashboard/views.py:1091
 #, python-format
 msgid "Access updated for %(name)s."
 msgstr "Acesso atualizado para %(name)s."
 
+#: apps/dashboard/views.py:1119
 msgid "Thank you! Your business profile is under review."
 msgstr "Obrigado! O perfil da sua empresa está em análise."
 
+#: apps/dashboard/views.py:1144
 msgid "You cannot demote or deactivate yourself."
 msgstr "Não pode baixar a sua própria função nem desativar-se."
 
+#: apps/dashboard/views.py:1147
 msgid "Staff member updated."
 msgstr "Funcionário atualizado."
 
+#: apps/dashboard/views.py:1150 templates/dashboard/item_form.html:3
+#: templates/dashboard/menu.html:47
 #, python-format
 msgid "Edit %(name)s"
 msgstr "Editar %(name)s"
 
+#: apps/dashboard/views.py:1182 templates/dashboard/analytics.html:52
+#: templates/dashboard/api_docs.html:114 templates/dashboard/base.html:32
+#: templates/dashboard/expenses.html:21 templates/dashboard/expenses.html:47
+#: templates/dashboard/expenses.html:54 templates/dashboard/expenses.html:58
+#: templates/dashboard/reports.html:23 templates/dashboard/reports.html:36
+#: templates/dashboard/reports.html:37 templates/dashboard/reports.html:71
+#: templates/dashboard/reports.html:72 templates/dashboard/revenue.html:3
+#: templates/dashboard/revenue.html:8
 msgid "Revenue"
 msgstr "Receita"
 
+#: apps/dashboard/views.py:1182
 msgid "Completed orders"
 msgstr "Pedidos concluídos"
 
+#: apps/dashboard/views.py:1182 templates/dashboard/reports.html:25
 msgid "Average order"
 msgstr "Pedido médio"
 
+#: apps/dashboard/views.py:1183
 msgid "Cancelled orders"
 msgstr "Pedidos cancelados"
 
+#: apps/dashboard/views.py:1193
 msgid " pts"
 msgstr " p.p."
 
+#: apps/dashboard/views.py:1311
 msgid "Choose a different plan."
 msgstr "Escolha um plano diferente."
 
+#: apps/dashboard/views.py:1314
 #, python-format
 msgid "Request sent: change to %(plan)s. We'll confirm shortly."
 msgstr "Pedido enviado: mudar para %(plan)s. Confirmaremos em breve."
 
+#: apps/dashboard/views.py:1322 templates/dashboard/base.html:95
+#: templates/dashboard/table_detail.html:6
 msgid "Tables"
 msgstr "Mesas"
 
+#: apps/dashboard/views.py:1323
 msgid "Dishes"
 msgstr "Pratos"
 
+#: apps/dashboard/views.py:1324 templates/dashboard/branch_manage.html:40
 msgid "Staff accounts"
 msgstr "Contas de funcionários"
 
+#: apps/expenses/forms.py:14
 msgid "e.g. Rice 25 kg, gas refill, market vegetables"
 msgstr "ex.: Arroz 25 kg, gás, legumes do mercado"
 
+#: apps/expenses/forms.py:16 apps/expenses/forms.py:31
+#: templates/dashboard/expenses.html:91
+#: templates/dashboard/quotations/list.html:26
+#: templates/dashboard/quotations/list.html:32
+#: templates/dashboard/quotations/print.html:94
+#: templates/dashboard/revenue.html:35
 msgid "Date"
 msgstr "Data"
 
+#: apps/expenses/forms.py:16 templates/dashboard/expenses.html:91
+#: templates/dashboard/expenses.html:96
 msgid "What was bought"
 msgstr "O que foi comprado"
 
+#: apps/expenses/forms.py:17 templates/dashboard/expenses.html:91
+#: templates/dashboard/expenses.html:97
 msgid "Paid with"
 msgstr "Pago com"
 
+#: apps/expenses/forms.py:29
 msgid "e.g. Walk-in sales, catering for Ministry"
 msgstr "ex.: Vendas ao balcão, catering para o Ministério"
 
+#: apps/expenses/forms.py:31
 msgid "Amount (USD)"
 msgstr "Montante (USD)"
 
+#: apps/expenses/forms.py:31 templates/dashboard/revenue.html:35
+#: templates/dashboard/revenue.html:40
 msgid "Payment method"
 msgstr "Método de pagamento"
 
+#: apps/expenses/forms.py:31 templates/dashboard/cash_register.html:71
 msgid "Note (optional)"
 msgstr "Nota (opcional)"
 
+#: apps/expenses/models.py:16
 msgid "Ingredients & food supplies"
 msgstr "Ingredientes e mantimentos"
 
+#: apps/expenses/models.py:17
 msgid "Drinks"
 msgstr "Bebidas"
 
+#: apps/expenses/models.py:18
 msgid "Gas & fuel"
 msgstr "Gás e combustível"
 
+#: apps/expenses/models.py:19
 msgid "Electricity, water & internet"
 msgstr "Eletricidade, água e internet"
 
+#: apps/expenses/models.py:20
 msgid "Rent"
 msgstr "Renda"
 
+#: apps/expenses/models.py:21
 msgid "Salaries & wages"
 msgstr "Salários"
 
+#: apps/expenses/models.py:22
 msgid "Transport"
 msgstr "Transporte"
 
+#: apps/expenses/models.py:23
 msgid "Equipment & tableware"
 msgstr "Equipamento e loiça"
 
+#: apps/expenses/models.py:24
 msgid "Repairs & cleaning"
 msgstr "Reparações e limpeza"
 
+#: apps/expenses/models.py:25 apps/expenses/models.py:28
+#: apps/expenses/models.py:51
 msgid "Other"
 msgstr "Outro"
 
+#: apps/expenses/models.py:28 apps/expenses/models.py:51
+#: apps/orders/models.py:58 apps/payments/providers.py:105
 msgid "Cash"
 msgstr "Dinheiro"
 
+#: apps/expenses/models.py:28 apps/orders/models.py:60
 msgid "Bank transfer"
 msgstr "Transferência bancária"
 
+#: apps/expenses/models.py:51
 msgid "Transfer"
 msgstr "Transferência"
 
+#: apps/expenses/models.py:62 apps/expenses/models.py:76
+#: templates/dashboard/revenue.html:28
 msgid "Manual"
 msgstr "Manual"
 
+#: apps/expenses/models.py:62 templates/dashboard/revenue.html:28
 msgid "API"
 msgstr "API"
 
+#: apps/expenses/views.py:52
 #, python-format
 msgid "Expense saved: %(what)s, %(amount)s."
 msgstr "Despesa guardada: %(what)s, %(amount)s."
 
+#: apps/expenses/views.py:81
 msgid "Expense updated."
 msgstr "Despesa atualizada."
 
+#: apps/expenses/views.py:84
 msgid "Edit expense"
 msgstr "Editar despesa"
 
+#: apps/expenses/views.py:95
 msgid "Expense deleted."
 msgstr "Despesa eliminada."
 
+#: apps/expenses/views.py:133
 #, python-format
 msgid "Revenue recorded: %(amount)s."
 msgstr "Receita registada: %(amount)s."
 
+#: apps/expenses/views.py:163
 msgid "Revenue entry deleted."
 msgstr "Registo de receita apagado."
 
+#: apps/integrations/forms.py:12 apps/integrations/models.py:26
 msgid "e.g. Website, Mobile app, Delivery partner"
 msgstr "ex.: Site, App móvel, Parceiro de entrega"
 
+#: apps/integrations/forms.py:13 apps/integrations/models.py:27
 msgid "Test (sandbox) key"
 msgstr "Chave de teste (sandbox)"
 
+#: apps/integrations/forms.py:14 apps/integrations/models.py:28
 msgid "Test orders are not sent to the kitchen and never count as revenue."
 msgstr ""
 "Os pedidos de teste não vão para a cozinha e nunca contam como receita."
 
+#: apps/integrations/forms.py:17 apps/integrations/forms.py:28
+#: templates/dashboard/api.html:28 templates/dashboard/api.html:33
+#: templates/dashboard/base.html:45 templates/dashboard/billing.html:83
+#: templates/dashboard/branch_manage.html:6 templates/dashboard/branches.html:3
+#: templates/dashboard/branches.html:8 templates/dashboard/upgrade.html:15
 msgid "Branches"
 msgstr "Filiais"
 
+#: apps/integrations/forms.py:17
 msgid "Leave all unticked to allow every branch."
 msgstr "Deixe tudo desmarcado para permitir todas as filiais."
 
+#: apps/integrations/models.py:97
 msgid "Webhook URL"
 msgstr "URL do webhook"
 
+#: apps/integrations/models.py:97
 msgid "Must start with https://"
 msgstr "Tem de começar por https://"
 
+#: apps/integrations/models.py:100
 msgid "Also send orders not placed through the API"
 msgstr "Enviar também pedidos que não vieram da API"
 
+#: apps/integrations/models.py:101
 msgid ""
 "Off: only orders created with your API keys. On: every order of your "
 "branches (QR, waiter, API)."
@@ -1285,352 +1721,497 @@ msgstr ""
 "Desligado: só pedidos criados com as suas chaves API. Ligado: todos os "
 "pedidos das suas filiais (QR, empregado, API)."
 
+#: apps/integrations/views.py:44
 #, python-format
 msgid "You can have up to %(n)s active API keys."
 msgstr "Pode ter até %(n)s chaves API ativas."
 
+#: apps/integrations/views.py:55
 #, python-format
 msgid "API key “%(name)s” revoked. Requests with it are now refused."
 msgstr "Chave API “%(name)s” revogada. Os pedidos com ela são agora recusados."
 
+#: apps/integrations/views.py:62
 msgid "API key saved."
 msgstr "Chave API guardada."
 
+#: apps/integrations/views.py:66
 #, python-format
 msgid "You can have up to %(n)s webhooks."
 msgstr "Pode ter até %(n)s webhooks."
 
+#: apps/integrations/views.py:71
 msgid "Webhook added. Its signing secret is shown below."
 msgstr "Webhook adicionado. O segredo de assinatura aparece abaixo."
 
+#: apps/integrations/views.py:77
 msgid "Webhook removed."
 msgstr "Webhook removido."
 
+#: apps/integrations/views.py:83
 msgid "Test event sent. Refresh in a few seconds to see the result."
 msgstr ""
 "Evento de teste enviado. Atualize daqui a alguns segundos para ver o "
 "resultado."
 
+#: apps/menu/models.py:19
 msgid "Lower numbers appear first."
 msgstr "Os números mais baixos aparecem primeiro."
 
+#: apps/menu/models.py:20
 msgid "Hidden categories are not shown to customers."
 msgstr "As categorias ocultas não são mostradas aos clientes."
 
+#: apps/menu/models.py:23
 msgid "Café items go to the kitchen; car wash packages go to the counter."
 msgstr ""
 "Os artigos do café vão para a cozinha; os pacotes de lavagem vão para o "
 "balcão."
 
+#: apps/menu/models.py:44
 msgid "Untick to mark as Sold Out."
 msgstr "Desmarque para marcar como Esgotado."
 
+#: apps/menu/models.py:47
 msgid "Typical preparation time; leave blank to use the restaurant default."
 msgstr ""
 "Tempo de preparação habitual; deixe em branco para usar o predefinido do "
 "restaurante."
 
+#: apps/menu/service_types.py:40
 msgid "Car"
 msgstr "Carro"
 
+#: apps/menu/service_types.py:40
 msgid "Motorbike"
 msgstr "Mota"
 
+#: apps/menu/service_types.py:40
 msgid "Pickup / SUV"
 msgstr "Pickup / SUV"
 
+#: apps/orders/models.py:24 templates/dashboard/kitchen.html:19
 msgid "New"
 msgstr "Novo"
 
+#: apps/orders/models.py:25 apps/quotations/models.py:28
+#: templates/dashboard/quotations/list.html:18
 msgid "Accepted"
 msgstr "Aceite"
 
+#: apps/orders/models.py:26 templates/dashboard/kitchen.html:20
 msgid "Preparing"
 msgstr "Em preparação"
 
+#: apps/orders/models.py:27 templates/dashboard/kitchen.html:21
 msgid "Ready"
 msgstr "Pronto"
 
+#: apps/orders/models.py:28 templates/dashboard/reports.html:26
+#: templates/dashboard/reports.html:36 templates/dashboard/reports.html:37
 msgid "Completed"
 msgstr "Concluído"
 
+#: apps/orders/models.py:57
 msgid "Pay at restaurant"
 msgstr "Pagar no restaurante"
 
+#: apps/orders/models.py:59
 msgid "Manual payment"
 msgstr "Pagamento manual"
 
+#: apps/orders/models.py:61
 msgid "Visa / Mastercard"
 msgstr "Visa / Mastercard"
 
+#: apps/orders/models.py:62
 msgid "Online payment gateway"
 msgstr "Pagamento online"
 
+#: apps/orders/models.py:63
 msgid "QR payment"
 msgstr "Pagamento por QR"
 
+#: apps/orders/models.py:73
 msgid "Unpaid"
 msgstr "Por pagar"
 
+#: apps/orders/models.py:73 apps/payments/models.py:23
 msgid "Refunded"
 msgstr "Reembolsado"
 
+#: apps/orders/models.py:103
 msgid "VAT is part of the item prices (not added on top)."
 msgstr "O IVA faz parte dos preços dos artigos (não é somado)."
 
+#: apps/orders/models.py:123 templates/dashboard/order_detail.html:20
+#: templates/dashboard/table_detail.html:110
 msgid "QR code"
 msgstr "Código QR"
 
+#: apps/orders/models.py:123 templates/dashboard/base.html:47
+#: templates/dashboard/staff.html:3 templates/dashboard/staff.html:8
 msgid "Staff"
 msgstr "Funcionários"
 
+#: apps/orders/models.py:124 templates/dashboard/analytics.html:101
+#: templates/dashboard/api.html:3 templates/dashboard/api.html:8
+#: templates/dashboard/api_docs.html:6 templates/dashboard/base.html:46
+#: templates/dashboard/order_detail.html:20 templates/dashboard/upgrade.html:18
 msgid "Ordering API"
 msgstr "API de pedidos"
 
+#: apps/orders/models.py:222 templates/dashboard/base.html:29
+#: templates/dashboard/base.html:93 templates/dashboard/new_order.html:3
+#: templates/dashboard/new_order.html:5 templates/dashboard/new_order.html:9
+#: templates/dashboard/orders.html:11 templates/dashboard/overview.html:22
 msgid "New order"
 msgstr "Novo pedido"
 
+#: apps/orders/models.py:222
 msgid "Order cancelled"
 msgstr "Pedido cancelado"
 
+#: apps/orders/services.py:101
 msgid "Your cart is empty."
 msgstr "O seu carrinho está vazio."
 
+#: apps/orders/services.py:124
 msgid "Invalid quantity."
 msgstr "Quantidade inválida."
 
+#: apps/orders/services.py:129
 msgid "Invalid add-on selected."
 msgstr "Extra inválido selecionado."
 
+#: apps/orders/services.py:138
 #, python-format
 msgid "Enter the plate number for %(item)s."
 msgstr "Introduza a matrícula para %(item)s."
 
+#: apps/orders/services.py:142
 msgid "Invalid vehicle type."
 msgstr "Tipo de veículo inválido."
 
+#: apps/orders/services.py:151
 msgid "Some items are no longer available."
 msgstr "Alguns artigos já não estão disponíveis."
 
+#: apps/orders/services.py:192
 msgid "This restaurant is not accepting orders right now."
 msgstr "Este restaurante não está a aceitar pedidos neste momento."
 
+#: apps/orders/services.py:194
 msgid "Invalid table."
 msgstr "Mesa inválida."
 
+#: apps/orders/services.py:290
 #, python-format
 msgid "Cannot change order from %(from)s to %(to)s."
 msgstr "Não é possível mudar o pedido de %(from)s para %(to)s."
 
+#: apps/payments/cash_sessions.py:47 apps/payments/cash_sessions.py:49
 msgid "Enter whole numbers for the notes and coins."
 msgstr "Introduza números inteiros para as notas e moedas."
 
+#: apps/payments/cash_sessions.py:61
 msgid "Enter the amount as a number, e.g. 50 or 50.00."
 msgstr "Introduza o valor como número, ex.: 50 ou 50.00."
 
+#: apps/payments/cash_sessions.py:63
 msgid "Enter a valid amount."
 msgstr "Introduza um valor válido."
 
+#: apps/payments/cash_sessions.py:78
 msgid "The cash register is already open."
 msgstr "A caixa já está aberta."
 
+#: apps/payments/cash_sessions.py:83 apps/payments/cash_sessions.py:137
 msgid "This cash session is already closed."
 msgstr "Esta sessão de caixa já está fechada."
 
+#: apps/payments/cash_sessions.py:85
 msgid "Enter an amount greater than zero."
 msgstr "Introduza um valor maior que zero."
 
+#: apps/payments/cash_sessions.py:87
 msgid "Write a short reason, e.g. “bought ice”."
 msgstr "Escreva um motivo curto, ex.: “comprei gelo”."
 
+#: apps/payments/drawer.py:46
 msgid ""
 "Can't find this printer address. Use the printer's IP, e.g. 192.168.1.50."
 msgstr ""
 "Não foi possível encontrar este endereço. Use o IP da impressora, ex.: "
 "192.168.1.50."
 
+#: apps/payments/drawer.py:51
 msgid ""
 "The printer must be on the local network (e.g. 192.168.x.x or 10.x.x.x)."
 msgstr ""
 "A impressora tem de estar na rede local (ex.: 192.168.x.x ou 10.x.x.x)."
 
+#: apps/payments/drawer.py:79
 msgid "Cash drawer is not set up."
 msgstr "A gaveta de dinheiro não está configurada."
 
+#: apps/payments/drawer.py:87
 msgid "Printing a slip to open the cash drawer."
 msgstr "A imprimir um talão para abrir a gaveta."
 
+#: apps/payments/drawer.py:97
 #, python-format
 msgid "Printer at %(target)s did not respond. Is it switched on and connected?"
 msgstr "A impressora em %(target)s não respondeu. Está ligada e conectada?"
 
+#: apps/payments/drawer.py:99 apps/payments/receipts.py:202
 #, python-format
 msgid "Could not reach the printer at %(target)s (%(error)s)."
 msgstr "Não foi possível contactar a impressora em %(target)s (%(error)s)."
 
+#: apps/payments/models.py:23 apps/restaurants/models.py:135
+#: templates/dashboard/branch_manage.html:9
+#: templates/dashboard/branches.html:42
 msgid "Pending"
 msgstr "Pendente"
 
+#: apps/payments/models.py:23
 msgid "Succeeded"
 msgstr "Concluído"
 
+#: apps/payments/models.py:23 templates/dashboard/settings.html:60
 msgid "Failed"
 msgstr "Falhou"
 
+#: apps/payments/models.py:57
 msgid "No sale / change"
 msgstr "Sem venda / troco"
 
+#: apps/payments/models.py:57 templates/dashboard/api.html:31
 msgid "Test"
 msgstr "Teste"
 
+#: apps/payments/models.py:86
 msgid "Notes and coins counted, e.g. {\"20\": 2}."
 msgstr "Notas e moedas contadas, ex.: {\"20\": 2}."
 
+#: apps/payments/models.py:125 templates/dashboard/cash_register.html:39
+#: templates/dashboard/cash_register.html:52
 msgid "Cash in"
 msgstr "Entrada de dinheiro"
 
+#: apps/payments/models.py:125 templates/dashboard/cash_register.html:40
+#: templates/dashboard/cash_register.html:52
 msgid "Cash out"
 msgstr "Saída de dinheiro"
 
+#: apps/payments/providers.py:106
 msgid "Manual / other"
 msgstr "Manual / outro"
 
+#: apps/payments/providers.py:107
 msgid "Bank transfer (manual check)"
 msgstr "Transferência bancária (verificação manual)"
 
+#: apps/payments/providers.py:108
 msgid "Card (external terminal)"
 msgstr "Cartão (terminal externo)"
 
+#: apps/payments/providers.py:109
 msgid "QR payment (manual check)"
 msgstr "Pagamento por QR (verificação manual)"
 
+#: apps/payments/receipts.py:186
 msgid "Nothing to print."
 msgstr "Nada para imprimir."
 
+#: apps/payments/receipts.py:193
 msgid "Network receipt printer is not set up."
 msgstr "A impressora de recibos de rede não está configurada."
 
+#: apps/payments/receipts.py:200
 #, python-format
 msgid "Printer at %(target)s did not respond. Is it switched on?"
 msgstr "A impressora em %(target)s não respondeu. Está ligada?"
 
+#: apps/payments/receipts.py:206
 msgid "Receipt printed."
 msgstr "Recibo impresso."
 
+#: apps/payments/services.py:86 apps/payments/services.py:136
 msgid "This order was cancelled; there is nothing to pay."
 msgstr "Este pedido foi cancelado; não há nada a pagar."
 
+#: apps/payments/services.py:88 apps/payments/services.py:138
 #, python-format
 msgid "Order #%(number)s is already paid."
 msgstr "O pedido n.º %(number)s já está pago."
 
+#: apps/payments/services.py:97
 msgid "There is nothing left to pay."
 msgstr "Não há mais nada a pagar."
 
+#: apps/payments/services.py:104
 #, python-format
 msgid "Not enough cash: received %(received)s but %(due)s is due."
 msgstr "Dinheiro insuficiente: recebido %(received)s, mas são devidos %(due)s."
 
+#: apps/payments/services.py:142
 msgid "Amount must be greater than zero."
 msgstr "O montante tem de ser maior que zero."
 
+#: apps/quotations/forms.py:30
 msgid "Client contact person"
 msgstr "Pessoa de contacto"
 
+#: apps/quotations/forms.py:30
 msgid "Organisation"
 msgstr "Organização"
 
+#: apps/quotations/forms.py:31
 msgid "Phone / email"
 msgstr "Telefone / email"
 
+#: apps/quotations/forms.py:32
 msgid "Tender / procurement reference"
 msgstr "Referência do concurso / aprovisionamento"
 
+#: apps/quotations/forms.py:32 templates/dashboard/quotations/list.html:26
+#: templates/dashboard/quotations/list.html:31
 msgid "Subject"
 msgstr "Assunto"
 
+#: apps/quotations/forms.py:33 templates/dashboard/quotations/print.html:113
 msgid "Event / delivery date"
 msgstr "Data do evento / entrega"
 
+#: apps/quotations/forms.py:33 templates/dashboard/quotations/print.html:114
 msgid "Number of guests"
 msgstr "Número de convidados"
 
+#: apps/quotations/forms.py:34
 msgid "Quotation date"
 msgstr "Data da cotação"
 
+#: apps/quotations/forms.py:34 templates/dashboard/quotations/print.html:95
 msgid "Valid until"
 msgstr "Válida até"
 
+#: apps/quotations/forms.py:35
 msgid "Document language"
 msgstr "Língua do documento"
 
+#: apps/quotations/forms.py:35 templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:14
+#: templates/dashboard/api_docs.html:26 templates/dashboard/billing.html:53
+#: templates/dashboard/billing.html:60
+#: templates/dashboard/branch_manage.html:44
+#: templates/dashboard/branch_manage.html:49
+#: templates/dashboard/quotations/list.html:26
+#: templates/dashboard/quotations/list.html:34
+#: templates/dashboard/staff.html:16 templates/dashboard/staff.html:23
 msgid "Status"
 msgstr "Estado"
 
+#: apps/quotations/forms.py:36
 msgid "Discount (amount)"
 msgstr "Desconto (valor)"
 
+#: apps/quotations/forms.py:36
 msgid "VAT (%)"
 msgstr "IVA (%)"
 
+#: apps/quotations/forms.py:37
 msgid "Terms, payment & bank details"
 msgstr "Condições, pagamento e dados bancários"
 
+#: apps/quotations/forms.py:40
 msgid "e.g. Lunch catering for training workshop"
 msgstr "ex.: Almoço para workshop de formação"
 
+#: apps/quotations/forms.py:41
 msgid "0 = no VAT."
 msgstr "0 = sem IVA."
 
+#: apps/quotations/forms.py:48
 msgid "Must be on or after the quotation date."
 msgstr "Tem de ser igual ou posterior à data da cotação."
 
+#: apps/quotations/forms.py:72
 #, python-format
 msgid "Line %(n)s: enter numbers for quantity and price."
 msgstr "Linha %(n)s: introduza números na quantidade e no preço."
 
+#: apps/quotations/forms.py:75
 #, python-format
 msgid "Line %(n)s: enter a description."
 msgstr "Linha %(n)s: introduza uma descrição."
 
+#: apps/quotations/forms.py:78
 #, python-format
 msgid "Line %(n)s: quantity and price must be valid positive numbers."
 msgstr ""
 "Linha %(n)s: a quantidade e o preço têm de ser números positivos válidos."
 
+#: apps/quotations/forms.py:87
 msgid "Add at least one line."
 msgstr "Adicione pelo menos uma linha."
 
+#: apps/quotations/models.py:28 templates/dashboard/quotations/list.html:16
 msgid "Draft"
 msgstr "Rascunho"
 
+#: apps/quotations/models.py:28 templates/dashboard/quotations/list.html:17
 msgid "Sent"
 msgstr "Enviada"
 
+#: apps/quotations/models.py:28 apps/restaurants/models.py:136
+#: apps/restaurants/models.py:335 templates/dashboard/branch_manage.html:9
+#: templates/dashboard/branches.html:43
+#: templates/dashboard/quotations/list.html:19
 msgid "Rejected"
 msgstr "Rejeitada"
 
+#: apps/quotations/views.py:43
+msgid "Company profile saved."
+msgstr "Perfil da empresa guardado."
+
+#: apps/quotations/views.py:105
 #, python-format
 msgid "Quotation %(number)s saved."
 msgstr "Cotação %(number)s guardada."
 
+#: apps/quotations/views.py:142
 #, python-format
 msgid "Copied as %(number)s. Update the dates and prices if needed."
 msgstr "Copiada como %(number)s. Atualize as datas e os preços se necessário."
 
+#: apps/quotations/views.py:153
 #, python-format
 msgid "Quotation %(number)s deleted."
 msgstr "Cotação %(number)s eliminada."
 
+#: apps/restaurants/models.py:17
 msgid "Use letters, numbers and dashes only (max 20), e.g. 12 or A-3."
 msgstr "Use apenas letras, números e hífenes (máx. 20), ex.: 12 ou A-3."
 
+#: apps/restaurants/models.py:32
 msgid "e.g. Mon–Sat 08:00–22:00"
 msgstr "ex.: Seg–Sáb 08:00–22:00"
 
+#: apps/restaurants/models.py:34 templates/dashboard/quotations/list.html:11
+#: templates/dashboard/quotations/print.html:149
+#: templates/dashboard/quotations/profile.html:3
+#: templates/dashboard/quotations/profile.html:9
+#: templates/dashboard/quotations/profile.html:20
+msgid "Company profile"
+msgstr "Perfil da empresa"
+
+#: apps/restaurants/models.py:43
 msgid "Charge VAT on orders."
 msgstr "Cobrar IVA nos pedidos."
 
+#: apps/restaurants/models.py:49
 msgid ""
 "Add on top: the bill total goes up by the VAT. Already included: totals stay "
 "the same and receipts show the VAT part."
@@ -1638,24 +2219,35 @@ msgstr ""
 "Somar: o total da conta aumenta com o IVA. Já incluído: os totais não mudam "
 "e os recibos mostram a parte do IVA."
 
+#: apps/restaurants/models.py:52
 msgid "Name printed on bills, e.g. VAT or IVA."
 msgstr "Nome impresso nas contas, ex.: VAT ou IVA."
 
+#: apps/restaurants/models.py:53
 msgid "Tax ID printed on receipts."
 msgstr "NIF impresso nos recibos."
 
-msgid "Let Google and other search engines list your restaurant, menu, prices and dish photos."
-msgstr "Permitir que o Google e outros motores de busca mostrem o seu restaurante, menu, preços e fotos dos pratos."
+#: apps/restaurants/models.py:60
+msgid ""
+"Let Google and other search engines list your restaurant, menu, prices and "
+"dish photos."
+msgstr ""
+"Permitir que o Google e outros motores de busca mostrem o seu restaurante, "
+"menu, preços e fotos dos pratos."
 
+#: apps/restaurants/models.py:65
 msgid "Pin 2 (most drawers)"
 msgstr "Pino 2 (a maioria das gavetas)"
 
+#: apps/restaurants/models.py:65
 msgid "Pin 5"
 msgstr "Pino 5"
 
+#: apps/restaurants/models.py:67
 msgid "Open the cash drawer automatically when a cash payment is recorded."
 msgstr "Abrir a gaveta automaticamente ao registar um pagamento em dinheiro."
 
+#: apps/restaurants/models.py:70
 msgid ""
 "IP address of the receipt printer the drawer is plugged into, e.g. "
 "192.168.1.50"
@@ -1663,11 +2255,13 @@ msgstr ""
 "Endereço IP da impressora de recibos onde a gaveta está ligada, ex.: "
 "192.168.1.50"
 
+#: apps/restaurants/models.py:74
 msgid "Raw printing port; 9100 for almost all network receipt printers."
 msgstr ""
 "Porta de impressão direta; 9100 para quase todas as impressoras de recibos "
 "de rede."
 
+#: apps/restaurants/models.py:81
 msgid ""
 "The cash drawer is plugged into the receipt printer of this computer. A "
 "small slip prints to open it."
@@ -1675,50 +2269,64 @@ msgstr ""
 "A gaveta está ligada à impressora de recibos deste computador. Imprime-se um "
 "pequeno talão para a abrir."
 
+#: apps/restaurants/models.py:87
 msgid "Ask \"Print receipt?\" after each payment"
 msgstr "Perguntar “Imprimir recibo?” após cada pagamento"
 
+#: apps/restaurants/models.py:88
 msgid "Always print after payment"
 msgstr "Imprimir sempre após o pagamento"
 
+#: apps/restaurants/models.py:89
 msgid "Never print automatically"
 msgstr "Nunca imprimir automaticamente"
 
+#: apps/restaurants/models.py:93
 msgid "This device's printer (print dialog)"
 msgstr "Impressora deste dispositivo (janela de impressão)"
 
+#: apps/restaurants/models.py:94
 msgid "Network receipt printer (prints directly)"
 msgstr "Impressora de recibos de rede (imprime diretamente)"
 
+#: apps/restaurants/models.py:99
 msgid "80 mm paper"
 msgstr "Papel de 80 mm"
 
+#: apps/restaurants/models.py:99
 msgid "58 mm paper"
 msgstr "Papel de 58 mm"
 
+#: apps/restaurants/models.py:100
 msgid "Paper width of the network receipt printer."
 msgstr "Largura do papel da impressora de recibos."
 
+#: apps/restaurants/models.py:104
 msgid "One combined bill"
 msgstr "Uma conta conjunta"
 
+#: apps/restaurants/models.py:104
 msgid "Separate bill per service"
 msgstr "Conta separada por serviço"
 
+#: apps/restaurants/models.py:107
 msgid ""
 "Used when a table has orders for several services (e.g. café and car wash)."
 msgstr ""
 "Usado quando uma mesa tem pedidos de vários serviços (ex.: café e lavagem)."
 
+#: apps/restaurants/models.py:113
 msgid ""
 "Customers can order car wash packages from the table QR, together with café "
 "items."
 msgstr ""
 "Os clientes podem pedir pacotes de lavagem pelo QR da mesa, junto com o café."
 
+#: apps/restaurants/models.py:116
 msgid "Shown to customers and on car wash bills, e.g. Timor Car Wash."
 msgstr "Mostrado aos clientes e nas contas de lavagem, ex.: Timor Car Wash."
 
+#: apps/restaurants/models.py:119
 msgid ""
 "For each new car wash order: on the network receipt printer if set up, "
 "otherwise from the Car wash screen when it is open."
@@ -1726,100 +2334,140 @@ msgstr ""
 "Para cada nova lavagem: na impressora de rede se estiver configurada; caso "
 "contrário, a partir do ecrã Lavagem quando estiver aberto."
 
+#: apps/restaurants/models.py:127
 msgid "The main branch this sub-branch belongs to."
 msgstr "A filial principal a que esta sub-filial pertence."
 
+#: apps/restaurants/models.py:130
 msgid "Set when the main branch deactivates this sub-branch."
 msgstr "Definido quando a filial principal desativa esta sub-filial."
 
+#: apps/restaurants/models.py:136 templates/dashboard/branch_manage.html:9
+#: templates/dashboard/branches.html:44
 msgid "Suspended"
 msgstr "Suspensa"
 
+#: apps/restaurants/models.py:217
 msgid "Optional, e.g. 'Terrace' or 'Window'."
 msgstr "Opcional, ex.: 'Esplanada' ou 'Janela'."
 
+#: apps/restaurants/models.py:335 templates/dashboard/business_profile.html:11
 msgid "Incomplete"
 msgstr "Incompleto"
 
+#: apps/restaurants/models.py:335 templates/dashboard/branches.html:97
+#: templates/dashboard/business_profile.html:9
 msgid "Under review"
 msgstr "Em análise"
 
+#: apps/restaurants/models.py:335 templates/dashboard/branches.html:95
+#: templates/dashboard/business_profile.html:8
 msgid "Verified"
 msgstr "Verificado"
 
+#: apps/restaurants/models.py:341
 msgid "e.g. your SERVE certificate number or tax number (NIF)."
 msgstr "ex.: o número do certificado SERVE ou o número de contribuinte (NIF)."
 
+#: apps/restaurants/models.py:344
 msgid "The legal owner of the business."
 msgstr "O proprietário legal da empresa."
 
+#: apps/restaurants/models.py:346
 msgid "Phone number"
 msgstr "Número de telefone"
 
+#: apps/storefront/forms.py:19
 msgid "Restaurant / café name"
 msgstr "Nome do restaurante / café"
 
+#: apps/storefront/forms.py:20
 msgid "WhatsApp or phone number"
 msgstr "WhatsApp ou telefone"
 
+#: apps/storefront/forms.py:20
 msgid "Best time to call"
 msgstr "Melhor hora para ligar"
 
+#: apps/storefront/forms.py:21
 msgid "Please set up my menu for me (I'll send photos of my menu on WhatsApp)"
 msgstr "Por favor, configurem o meu menu (envio fotos do menu pelo WhatsApp)"
 
+#: apps/storefront/forms.py:30
 msgid "Any time"
 msgstr "A qualquer hora"
 
+#: apps/storefront/forms.py:30
 msgid "Morning"
 msgstr "Manhã"
 
+#: apps/storefront/forms.py:31
 msgid "Afternoon"
 msgstr "Tarde"
 
+#: apps/storefront/forms.py:31
 msgid "Evening"
 msgstr "Noite"
 
+#: apps/storefront/forms.py:36
 msgid "Enter a phone number we can call, e.g. +670 7712 3456."
 msgstr "Introduza um número para onde possamos ligar, ex.: +670 7712 3456."
 
+#: apps/storefront/forms.py:42
 msgid "Something went wrong. Please try again."
 msgstr "Algo correu mal. Tente novamente."
 
+#: templates/accounts/login.html:3 templates/accounts/login.html:8
+#: templates/accounts/login.html:15
 msgctxt "login page"
 msgid "Log in"
 msgstr "Iniciar sessão"
 
+#: templates/accounts/login.html:11
 msgid "Wrong email/username or password."
 msgstr "Email/nome de utilizador ou palavra-passe incorretos."
 
+#: templates/accounts/login.html:12
 msgid "Email or username"
 msgstr "Email ou nome de utilizador"
 
+#: templates/accounts/login.html:17
 msgid "Forgot your password?"
 msgstr "Esqueceu a palavra-passe?"
 
+#: templates/accounts/login.html:18
 msgid "New restaurant?"
 msgstr "Novo restaurante?"
 
+#: templates/accounts/login.html:18
 msgid "Register here"
 msgstr "Registe-se aqui"
 
+#: templates/accounts/password_change.html:3
+#: templates/accounts/password_change.html:8 templates/dashboard/base.html:84
 msgid "Change password"
 msgstr "Alterar palavra-passe"
 
+#: templates/accounts/password_change.html:10 templates/dashboard/api.html:39
+#: templates/dashboard/branch_manage.html:36
+#: templates/dashboard/revenue.html:61 templates/dashboard/simple_form.html:10
 msgid "Save"
 msgstr "Guardar"
 
+#: templates/accounts/password_change.html:12
+#: templates/dashboard/simple_form.html:5 templates/storefront/terms.html:40
 msgid "Back"
 msgstr "Voltar"
 
+#: templates/accounts/password_reset.html:3
 msgid "Reset password"
 msgstr "Repor palavra-passe"
 
+#: templates/accounts/password_reset.html:8
 msgid "Reset your password"
 msgstr "Repor a palavra-passe"
 
+#: templates/accounts/password_reset.html:9
 msgid ""
 "Enter the email you registered with. We'll send you a link to choose a new "
 "password."
@@ -1827,12 +2475,16 @@ msgstr ""
 "Introduza o email com que se registou. Enviaremos um link para escolher uma "
 "nova palavra-passe."
 
+#: templates/accounts/password_reset.html:12
 msgid "Send reset link"
 msgstr "Enviar link"
 
+#: templates/accounts/password_reset.html:14
+#: templates/accounts/password_reset_done.html:10
 msgid "Back to log in"
 msgstr "Voltar ao início de sessão"
 
+#: templates/accounts/password_reset.html:15
 msgid ""
 "Staff accounts created by a restaurant owner without an email: ask the owner "
 "to reset your password."
@@ -1840,33 +2492,48 @@ msgstr ""
 "Contas de funcionários criadas pelo proprietário sem email: peça ao "
 "proprietário para repor a sua palavra-passe."
 
+#: templates/accounts/password_reset_complete.html:3
+#: templates/accounts/password_reset_complete.html:8
 msgid "Password changed"
 msgstr "Palavra-passe alterada"
 
+#: templates/accounts/password_reset_complete.html:9
 msgid "You can now log in with your new password."
 msgstr "Já pode iniciar sessão com a nova palavra-passe."
 
+#: templates/accounts/password_reset_complete.html:10
+#: templates/accounts/signup.html:29 templates/storefront/home.html:24
+#: templates/storefront/home.html:38
 msgid "Log in"
 msgstr "Iniciar sessão"
 
+#: templates/accounts/password_reset_confirm.html:3
+#: templates/accounts/password_reset_confirm.html:9
 msgid "Choose a new password"
 msgstr "Escolha uma nova palavra-passe"
 
+#: templates/accounts/password_reset_confirm.html:12
 msgid "Save new password"
 msgstr "Guardar nova palavra-passe"
 
+#: templates/accounts/password_reset_confirm.html:15
 msgid "Link expired"
 msgstr "Link expirado"
 
+#: templates/accounts/password_reset_confirm.html:16
 msgid "This password reset link is invalid or was already used."
 msgstr "Este link para repor a palavra-passe é inválido ou já foi usado."
 
+#: templates/accounts/password_reset_confirm.html:16
 msgid "Request a new one"
 msgstr "Peça um novo"
 
+#: templates/accounts/password_reset_done.html:3
+#: templates/accounts/password_reset_done.html:8
 msgid "Check your email"
 msgstr "Verifique o seu email"
 
+#: templates/accounts/password_reset_done.html:9
 msgid ""
 "If an account exists for that email, we've sent a link to reset your "
 "password. It may take a few minutes; check your spam folder too."
@@ -1874,9 +2541,12 @@ msgstr ""
 "Se existir uma conta com esse email, enviámos um link para repor a palavra-"
 "passe. Pode demorar alguns minutos; verifique também a pasta de spam."
 
+#: templates/accounts/signup.html:3 templates/accounts/signup.html:8
+#: templates/storefront/home.html:37
 msgid "Register your restaurant"
 msgstr "Registe o seu restaurante"
 
+#: templates/accounts/signup.html:9
 msgid ""
 "Free to start. Set up your menu, print a QR code for each table, and start "
 "taking orders. Your customers don't need an app or an account."
@@ -1884,12 +2554,15 @@ msgstr ""
 "Grátis para começar. Configure o menu, imprima um código QR para cada mesa e "
 "comece a receber pedidos. Os clientes não precisam de app nem de conta."
 
+#: templates/accounts/signup.html:23
 msgid "Read the terms of service"
 msgstr "Ler os termos de serviço"
 
+#: templates/accounts/signup.html:26
 msgid "Create my restaurant"
 msgstr "Criar o meu restaurante"
 
+#: templates/accounts/signup.html:27
 msgid ""
 "New restaurants are reviewed by our team before they go live. You can set up "
 "your menu in the meantime."
@@ -1897,90 +2570,156 @@ msgstr ""
 "Os novos restaurantes são revistos pela nossa equipa antes de ficarem "
 "ativos. Entretanto, pode configurar o menu."
 
+#: templates/accounts/signup.html:29
 msgid "Already registered?"
 msgstr "Já tem conta?"
 
+#: templates/dashboard/_cash_count.html:4
 msgid "Count notes and coins"
 msgstr "Contar notas e moedas"
 
+#: templates/dashboard/_cash_count.html:6
 msgid "Note / coin"
 msgstr "Nota / moeda"
 
+#: templates/dashboard/_cash_count.html:6
 msgid "How many"
 msgstr "Quantidade"
 
+#: templates/dashboard/_cash_count.html:6
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:13
+#: templates/dashboard/car_wash.html:35 templates/dashboard/car_wash.html:43
+#: templates/dashboard/new_order.html:44
+#: templates/dashboard/order_detail.html:29
+#: templates/dashboard/order_detail.html:47
+#: templates/dashboard/quotations/list.html:26
+#: templates/dashboard/quotations/list.html:33
+#: templates/dashboard/reports.html:38
+#: templates/dashboard/table_detail.html:102
+#: templates/dashboard/table_detail.html:103
 msgid "Total"
 msgstr "Total"
 
+#: templates/dashboard/_cash_diff.html:1
 msgid "Exact"
 msgstr "Certo"
 
+#: templates/dashboard/_cash_diff.html:1
 msgid "over"
 msgstr "a mais"
 
+#: templates/dashboard/_cash_diff.html:1
 msgid "short"
 msgstr "em falta"
 
+#: templates/dashboard/_form_fields.html:7
 msgid "Translations · Tetum, Bahasa Indonesia"
 msgstr "Traduções · Tétum, Bahasa Indonesia"
 
+#: templates/dashboard/_form_fields.html:8
 msgid "Leave blank to show the English text."
 msgstr "Deixe em branco para mostrar o texto em inglês."
 
+#: templates/dashboard/_language_menu.html:2
+#: templates/dashboard/_language_menu.html:4 templates/dashboard/base.html:62
+#: templates/dashboard/base.html:102 templates/dashboard/order_detail.html:23
+#: templates/storefront/_landing_language.html:3
 msgid "Language"
 msgstr "Língua"
 
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/car_wash.html:35 templates/dashboard/new_order.html:37
+#: templates/dashboard/settings.html:52 templates/dashboard/settings.html:59
 msgid "Order"
 msgstr "Pedido"
 
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:10
+#: templates/dashboard/car_wash.html:50 templates/dashboard/car_wash.html:89
+#: templates/dashboard/new_order.html:17
+#: templates/dashboard/order_detail.html:18 templates/dashboard/orders.html:22
 msgid "Table"
 msgstr "Mesa"
 
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:11
+#: templates/dashboard/order_detail.html:19
 msgid "Customer"
 msgstr "Cliente"
 
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:12
+#: templates/dashboard/quotations/edit.html:51
 msgid "Items"
 msgstr "Artigos"
 
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:15
+#: templates/dashboard/order_detail.html:85
 msgid "Payment"
 msgstr "Pagamento"
 
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:29 templates/dashboard/api.html:104
+#: templates/dashboard/settings.html:52 templates/dashboard/settings.html:56
 msgid "Time"
 msgstr "Hora"
 
+#: templates/dashboard/_orders_table.html:9
+#: templates/dashboard/table_detail.html:68
 msgid "waiter"
 msgstr "empregado"
 
+#: templates/dashboard/_orders_table.html:10
+#: templates/dashboard/order_detail.html:18
 msgid "Counter"
 msgstr "Balcão"
 
+#: templates/dashboard/_orders_table.html:17
+#: templates/dashboard/table_detail.html:70
 #, python-format
 msgid "Paid with #%(n)s"
 msgstr "Pago com o #%(n)s"
 
+#: templates/dashboard/_orders_table.html:20
+#: templates/dashboard/order_detail.html:96
+#: templates/dashboard/table_detail.html:73
 #, python-format
 msgid "Order %(n)s · paid together"
 msgstr "Pedido %(n)s · pago em conjunto"
 
+#: templates/dashboard/_orders_table.html:21
+#: templates/dashboard/order_detail.html:102
+#: templates/dashboard/table_detail.html:74
 #, python-format
 msgid "Order #%(n)s · cash payment"
 msgstr "Pedido n.º %(n)s · pagamento em dinheiro"
 
+#: templates/dashboard/_orders_table.html:23
+#: templates/dashboard/order_detail.html:98
+#: templates/dashboard/order_detail.html:104
 msgid "Cash received"
 msgstr "Dinheiro recebido"
 
+#: templates/dashboard/_orders_table.html:23
+#: templates/dashboard/table_detail.html:76
 msgid "Mark paid"
 msgstr "Marcar como pago"
 
+#: templates/dashboard/_orders_table.html:36
 msgid "No orders yet."
 msgstr "Ainda não há pedidos."
 
+#: templates/dashboard/_printer_guide.html:3
 msgid "Set up the receipt printer and cash drawer (about 10 minutes)"
 msgstr "Configurar a impressora de recibos e a gaveta (cerca de 10 minutos)"
 
+#: templates/dashboard/_printer_guide.html:6
 msgid "Install the printer on the cashier computer."
 msgstr "Instale a impressora no computador da caixa."
 
+#: templates/dashboard/_printer_guide.html:7
 msgid ""
 "Connect it by USB (or Wi-Fi/Bluetooth), install the driver from the "
 "printer's CD or the maker's website, and set it as the default printer. "
@@ -1990,9 +2729,11 @@ msgstr ""
 "da impressora ou do site do fabricante e defina-a como impressora "
 "predefinida. Escolha papel de 80 mm (ou 58 mm nas impressoras pequenas)."
 
+#: templates/dashboard/_printer_guide.html:10
 msgid "Plug in the cash drawer."
 msgstr "Ligue a gaveta de dinheiro."
 
+#: templates/dashboard/_printer_guide.html:11
 msgid ""
 "The drawer cable (a phone-style plug) goes into the printer's port marked "
 "“DK” or “Drawer”."
@@ -2000,9 +2741,11 @@ msgstr ""
 "O cabo da gaveta (ficha tipo telefone) liga-se à porta da impressora marcada "
 "“DK” ou “Drawer”."
 
+#: templates/dashboard/_printer_guide.html:14
 msgid "Tell the printer driver to open the drawer."
 msgstr "Configure o controlador da impressora para abrir a gaveta."
 
+#: templates/dashboard/_printer_guide.html:15
 msgid ""
 "On Windows: Settings → Printers → your receipt printer → Printing "
 "preferences (or Printer properties). Look for “Cash drawer” or “Peripherals” "
@@ -2013,6 +2756,7 @@ msgstr ""
 "drawer” ou “Peripherals” e escolha “Open drawer #1 before printing”. O nome "
 "varia conforme a marca:"
 
+#: templates/dashboard/_printer_guide.html:17
 msgid ""
 "Printing preferences → Document settings / Printer settings → Cash drawer → "
 "“Open drawer #1 before printing”."
@@ -2020,12 +2764,14 @@ msgstr ""
 "Printing preferences → Document settings / Printer settings → Cash drawer → "
 "“Open drawer #1 before printing”."
 
+#: templates/dashboard/_printer_guide.html:18
 msgid ""
 "Printer properties → Device settings → “Cash drawer” → open before printing."
 msgstr ""
 "Printer properties → Device settings → “Cash drawer” → abrir antes de "
 "imprimir."
 
+#: templates/dashboard/_printer_guide.html:19
 msgid ""
 "Printer properties → Device settings → Peripheral unit type “Cash drawer”, "
 "open at “Document top”."
@@ -2033,9 +2779,11 @@ msgstr ""
 "Printer properties → Device settings → Peripheral unit type “Cash drawer”, "
 "abrir em “Document top”."
 
+#: templates/dashboard/_printer_guide.html:23
 msgid "Turn on the switch above and save."
 msgstr "Ative o interruptor acima e guarde."
 
+#: templates/dashboard/_printer_guide.html:24
 msgid ""
 "From now on, every cash payment and every “Open drawer (no sale)” prints a "
 "small slip, and the driver opens the drawer."
@@ -2043,9 +2791,11 @@ msgstr ""
 "A partir daí, cada pagamento em dinheiro e cada “Abrir gaveta (sem venda)” "
 "imprime um pequeno talão e o controlador abre a gaveta."
 
+#: templates/dashboard/_printer_guide.html:27
 msgid "Optional: print without the print window."
 msgstr "Opcional: imprimir sem a janela de impressão."
 
+#: templates/dashboard/_printer_guide.html:28
 msgid ""
 "Make a Chrome shortcut for the dashboard: right-click the Chrome icon → "
 "Properties, and add --kiosk-printing at the end of “Target” (after the "
@@ -2057,9 +2807,11 @@ msgstr ""
 "“Destino” (depois das aspas). Abra o painel com esse atalho e os recibos e "
 "talões imprimem logo na impressora predefinida."
 
+#: templates/dashboard/_printer_guide.html:31
 msgid "Test it"
 msgstr "Teste"
 
+#: templates/dashboard/_printer_guide.html:31
 msgid ""
 "use “Print test slip” below. The slip should print and the drawer should "
 "open. If the drawer stays closed, check step 3 (some drawers need “drawer "
@@ -2069,6 +2821,7 @@ msgstr ""
 "abrir. Se a gaveta não abrir, verifique o passo 3 (algumas gavetas precisam "
 "de “drawer #2”)."
 
+#: templates/dashboard/_printer_guide.html:34
 msgid ""
 "Phones and tablets: print through the printer maker's app or print service. "
 "Whether the drawer opens depends on that app."
@@ -2076,152 +2829,211 @@ msgstr ""
 "Telemóveis e tablets: imprima através da app ou do serviço de impressão do "
 "fabricante. Se a gaveta abre depende dessa app."
 
+#: templates/dashboard/analytics.html:3 templates/dashboard/analytics.html:8
+#: templates/dashboard/base.html:39 templates/dashboard/billing.html:83
+#: templates/dashboard/reports.html:12 templates/dashboard/upgrade.html:9
 msgid "Analytics"
 msgstr "Análise"
 
+#: templates/dashboard/analytics.html:9
 #, python-format
 msgid "compared with %(a)s – %(b)s"
 msgstr "comparado com %(a)s – %(b)s"
 
+#: templates/dashboard/analytics.html:11
 msgid "Reports & CSV"
 msgstr "Relatórios e CSV"
 
+#: templates/dashboard/analytics.html:16 templates/dashboard/expenses.html:27
 msgid "Date range"
 msgstr "Período"
 
+#: templates/dashboard/analytics.html:17
 msgid "7 days"
 msgstr "7 dias"
 
+#: templates/dashboard/analytics.html:18
 msgid "30 days"
 msgstr "30 dias"
 
+#: templates/dashboard/analytics.html:19
 msgid "90 days"
 msgstr "90 dias"
 
+#: templates/dashboard/analytics.html:20 templates/dashboard/expenses.html:18
+#: templates/dashboard/expenses.html:30
 msgid "This month"
 msgstr "Este mês"
 
+#: templates/dashboard/analytics.html:24 templates/dashboard/expenses.html:35
+#: templates/dashboard/orders.html:23
 msgid "From date"
 msgstr "Desde a data"
 
+#: templates/dashboard/analytics.html:25 templates/dashboard/expenses.html:36
+#: templates/dashboard/orders.html:24
 msgid "To date"
 msgstr "Até à data"
 
+#: templates/dashboard/analytics.html:26 templates/dashboard/expenses.html:37
+#: templates/dashboard/reports.html:19
 msgid "Apply"
 msgstr "Aplicar"
 
+#: templates/dashboard/analytics.html:36
 msgid "vs previous period"
 msgstr "vs período anterior"
 
+#: templates/dashboard/analytics.html:37
 msgid "No earlier data to compare"
 msgstr "Sem dados anteriores para comparar"
 
+#: templates/dashboard/analytics.html:43 templates/dashboard/reports.html:55
 msgid "Revenue per day"
 msgstr "Receita por dia"
 
+#: templates/dashboard/analytics.html:44
 msgid "Completed orders. The gray line is the previous period, day by day."
 msgstr "Pedidos concluídos. A linha cinzenta é o período anterior, dia a dia."
 
+#: templates/dashboard/analytics.html:46 templates/dashboard/analytics.html:175
 msgid "This period"
 msgstr "Este período"
 
+#: templates/dashboard/analytics.html:47 templates/dashboard/analytics.html:52
+#: templates/dashboard/analytics.html:176
 msgid "Previous period"
 msgstr "Período anterior"
 
+#: templates/dashboard/analytics.html:49
 msgid "Revenue per day, this period compared with the previous period"
 msgstr "Receita por dia, este período comparado com o anterior"
 
+#: templates/dashboard/analytics.html:50 templates/dashboard/analytics.html:72
 msgid "Show as table"
 msgstr "Ver como tabela"
 
+#: templates/dashboard/analytics.html:52 templates/dashboard/branches.html:16
+#: templates/dashboard/expenses.html:54
 msgid "Day"
 msgstr "Dia"
 
+#: templates/dashboard/analytics.html:60
 msgid "Busy times"
 msgstr "Horas de movimento"
 
+#: templates/dashboard/analytics.html:61
 msgid "Orders by weekday and hour. Darker = more orders."
 msgstr "Pedidos por dia da semana e hora. Mais escuro = mais pedidos."
 
+#: templates/dashboard/analytics.html:62
 msgid "Busiest"
 msgstr "Mais movimentado"
 
+#: templates/dashboard/analytics.html:62
 msgid "No orders in this period yet."
 msgstr "Ainda não há pedidos neste período."
 
+#: templates/dashboard/analytics.html:68 templates/dashboard/analytics.html:115
+#: templates/dashboard/table_detail.html:11
+#: templates/dashboard/table_detail.html:49
 #, python-format
 msgid "%(n)s order"
 msgid_plural "%(n)s orders"
 msgstr[0] "%(n)s pedido"
 msgstr[1] "%(n)s pedidos"
 
+#: templates/dashboard/analytics.html:71
 msgid "orders per hour"
 msgstr "pedidos por hora"
 
+#: templates/dashboard/analytics.html:82
 msgid "How customers pay"
 msgstr "Como os clientes pagam"
 
+#: templates/dashboard/analytics.html:83
 #, python-format
 msgid "Payments received in this period: %(total)s"
 msgstr "Pagamentos recebidos neste período: %(total)s"
 
+#: templates/dashboard/analytics.html:85
 msgid "Share of each payment method"
 msgstr "Peso de cada método de pagamento"
 
+#: templates/dashboard/analytics.html:91
 #, python-format
 msgid "%(n)s payment"
 msgid_plural "%(n)s payments"
 msgstr[0] "%(n)s pagamento"
 msgstr[1] "%(n)s pagamentos"
 
+#: templates/dashboard/analytics.html:95
 msgid "No payments in this period yet."
 msgstr "Ainda não há pagamentos neste período."
 
+#: templates/dashboard/analytics.html:97
 msgid "Where orders come from"
 msgstr "De onde vêm os pedidos"
 
+#: templates/dashboard/analytics.html:99
 msgid "Customer's phone (QR)"
 msgstr "Telemóvel do cliente (QR)"
 
+#: templates/dashboard/analytics.html:100
 msgid "Entered by waiter"
 msgstr "Registado pelo empregado"
 
+#: templates/dashboard/analytics.html:102
 msgid "At a table"
 msgstr "Numa mesa"
 
+#: templates/dashboard/analytics.html:103 templates/dashboard/new_order.html:19
+#: templates/dashboard/order_detail.html:10
 msgid "Counter / takeaway"
 msgstr "Balcão / para levar"
 
+#: templates/dashboard/analytics.html:110 templates/dashboard/reports.html:33
 msgid "Revenue by service"
 msgstr "Receita por serviço"
 
+#: templates/dashboard/analytics.html:111
 msgid "Café and car wash, from completed orders."
 msgstr "Café e lavagem, dos pedidos concluídos."
 
+#: templates/dashboard/analytics.html:125
 msgid "Sales by category"
 msgstr "Vendas por categoria"
 
+#: templates/dashboard/analytics.html:126
 msgid "Revenue from completed orders."
 msgstr "Receita dos pedidos concluídos."
 
+#: templates/dashboard/analytics.html:129
+#: templates/dashboard/analytics.html:142
 #, python-format
 msgid "%(n)s sold"
 msgid_plural "%(n)s sold"
 msgstr[0] "%(n)s vendido"
 msgstr[1] "%(n)s vendidos"
 
+#: templates/dashboard/analytics.html:134
+#: templates/dashboard/analytics.html:147 templates/dashboard/reports.html:64
 msgid "No completed orders in this period."
 msgstr "Não há pedidos concluídos neste período."
 
+#: templates/dashboard/analytics.html:138
 msgid "Best-selling dishes"
 msgstr "Pratos mais vendidos"
 
+#: templates/dashboard/analytics.html:139
 msgid "Top 10 by revenue · number sold after the dot."
 msgstr "Top 10 por receita · quantidade vendida depois do ponto."
 
+#: templates/dashboard/analytics.html:149
 msgid "Not sold in this period"
 msgstr "Não vendidos neste período"
 
+#: templates/dashboard/analytics.html:150
 msgid ""
 "Available dishes nobody ordered. Consider a better photo, a lower price or "
 "removing them."
@@ -2229,31 +3041,42 @@ msgstr ""
 "Pratos disponíveis que ninguém pediu. Pense numa foto melhor, num preço mais "
 "baixo ou em retirá-los."
 
+#: templates/dashboard/analytics.html:157
 msgid "Kitchen speed"
 msgstr "Rapidez da cozinha"
 
+#: templates/dashboard/analytics.html:158
 msgid "Time from order placed to “Ready”."
 msgstr "Tempo desde o pedido até “Pronto”."
 
+#: templates/dashboard/analytics.html:161
 msgid "Average"
 msgstr "Média"
 
+#: templates/dashboard/analytics.html:161
+#: templates/dashboard/analytics.html:162
+#: templates/dashboard/order_detail.html:22
 #, python-format
 msgid "%(m)s min"
 msgstr "%(m)s min"
 
+#: templates/dashboard/analytics.html:162
 msgid "Typical (median)"
 msgstr "Típico (mediana)"
 
+#: templates/dashboard/analytics.html:163
 msgid "Ready on time"
 msgstr "Pronto a tempo"
 
+#: templates/dashboard/analytics.html:164
 msgid "Orders measured"
 msgstr "Pedidos medidos"
 
+#: templates/dashboard/analytics.html:166
 msgid "No orders marked ready in this period."
 msgstr "Nenhum pedido marcado como pronto neste período."
 
+#: templates/dashboard/api.html:9
 msgid ""
 "Let your website, mobile ordering app or delivery partners send orders to "
 "your branches. Orders appear live on the branch's dashboard and count as "
@@ -2263,21 +3086,31 @@ msgstr ""
 "pedidos às suas filiais. Os pedidos aparecem em tempo real no painel da "
 "filial e contam como receita quando concluídos."
 
+#: templates/dashboard/api.html:11 templates/dashboard/api_docs.html:3
+#: templates/dashboard/api_docs.html:9
 msgid "API documentation"
 msgstr "Documentação da API"
 
+#: templates/dashboard/api.html:14
 msgid "API access is disabled."
 msgstr "O acesso à API está desativado."
 
+#: templates/dashboard/api.html:14 templates/dashboard/api.html:57
+#: templates/dashboard/branches.html:93
+#: templates/dashboard/business_profile.html:3
+#: templates/dashboard/business_profile.html:7
 msgid "Business profile"
 msgstr "Perfil da empresa"
 
+#: templates/dashboard/api.html:18
 msgid "Your new API key"
 msgstr "A sua nova chave API"
 
+#: templates/dashboard/api.html:19
 msgid "Copy it now: for your security it is shown only once."
 msgstr "Copie-a agora: por segurança só é mostrada uma vez."
 
+#: templates/dashboard/api.html:19
 msgid ""
 "Afterwards only its last 4 characters are visible. If you lose it, revoke it "
 "and create a new one."
@@ -2285,59 +3118,81 @@ msgstr ""
 "Depois só os últimos 4 caracteres ficam visíveis. Se a perder, revogue-a e "
 "crie uma nova."
 
+#: templates/dashboard/api.html:20
 msgid "Copied"
 msgstr "Copiado"
 
+#: templates/dashboard/api.html:20
 msgid "Copy"
 msgstr "Copiar"
 
+#: templates/dashboard/api.html:25
 msgid "API keys"
 msgstr "Chaves API"
 
+#: templates/dashboard/api.html:28 templates/dashboard/api.html:32
+#: templates/dashboard/api.html:98 templates/dashboard/api.html:104
+#: templates/dashboard/api.html:108
 msgid "Key"
 msgstr "Chave"
 
+#: templates/dashboard/api.html:28 templates/dashboard/api.html:34
 msgid "Last used"
 msgstr "Último uso"
 
+#: templates/dashboard/api.html:31 templates/dashboard/base.html:20
+#: templates/dashboard/home.html:15
 msgid "Live"
 msgstr "Ativo"
 
+#: templates/dashboard/api.html:31
 msgid "Revoked"
 msgstr "Revogada"
 
+#: templates/dashboard/api.html:31
 #, python-format
 msgid "Created %(d)s"
 msgstr "Criada em %(d)s"
 
+#: templates/dashboard/api.html:33 templates/dashboard/branches.html:58
 msgid "All branches"
 msgstr "Todas as filiais"
 
+#: templates/dashboard/api.html:36 templates/dashboard/expenses.html:100
+#: templates/dashboard/staff.html:24 templates/dashboard/tables.html:31
 msgid "Edit"
 msgstr "Editar"
 
+#: templates/dashboard/api.html:41
 #, python-format
 msgid "Revoke “%(n)s”? Apps using it stop working immediately."
 msgstr "Revogar “%(n)s”? As apps que a usam deixam de funcionar imediatamente."
 
+#: templates/dashboard/api.html:41
 msgid "Revoke"
 msgstr "Revogar"
 
+#: templates/dashboard/api.html:46
 msgid "No API keys yet."
 msgstr "Ainda não há chaves API."
 
+#: templates/dashboard/api.html:50
 msgid "Create an API key"
 msgstr "Criar uma chave API"
 
+#: templates/dashboard/api.html:53
 msgid "Create key"
 msgstr "Criar chave"
 
+#: templates/dashboard/api.html:57
 msgid "API keys can be created once your business profile is verified."
 msgstr "Pode criar chaves API depois de o perfil da empresa ser verificado."
 
+#: templates/dashboard/api.html:62 templates/dashboard/api_docs.html:98
 msgid "Webhooks"
 msgstr "Webhooks"
 
+#: templates/dashboard/api.html:63
 msgid ""
 "We send a POST request to your URL whenever an order is created or changes "
 "status (received, preparing, ready, completed, cancelled). Check the X-"
@@ -2347,48 +3202,63 @@ msgstr ""
 "de estado (recebido, em preparação, pronto, concluído, cancelado). Verifique "
 "o cabeçalho X-QRMenu-Signature com o segredo de assinatura."
 
+#: templates/dashboard/api.html:66
 msgid "On"
 msgstr "Ligado"
 
+#: templates/dashboard/api.html:66
 msgid "Off"
 msgstr "Desligado"
 
+#: templates/dashboard/api.html:66 templates/dashboard/overview.html:59
 msgid "All orders"
 msgstr "Todos os pedidos"
 
+#: templates/dashboard/api.html:66
 msgid "API orders"
 msgstr "Pedidos da API"
 
+#: templates/dashboard/api.html:68
 msgid "Send test"
 msgstr "Enviar teste"
 
+#: templates/dashboard/api.html:69
 msgid "Turn off"
 msgstr "Desligar"
 
+#: templates/dashboard/api.html:69
 msgid "Turn on"
 msgstr "Ligar"
 
+#: templates/dashboard/api.html:70
 msgid "Remove this webhook?"
 msgstr "Remover este webhook?"
 
+#: templates/dashboard/api.html:70 templates/dashboard/item_form.html:32
 msgid "Remove"
 msgstr "Remover"
 
+#: templates/dashboard/api.html:72
 msgid "Signing secret"
 msgstr "Segredo de assinatura"
 
+#: templates/dashboard/api.html:73
 msgid "test"
 msgstr "teste"
 
+#: templates/dashboard/api.html:78
 msgid "Add a webhook"
 msgstr "Adicionar um webhook"
 
+#: templates/dashboard/api.html:81
 msgid "Add webhook"
 msgstr "Adicionar webhook"
 
+#: templates/dashboard/api.html:89
 msgid "Test orders"
 msgstr "Pedidos de teste"
 
+#: templates/dashboard/api.html:90
 msgid ""
 "Orders made with a test key. They are not sent to the kitchen and never "
 "count as revenue."
@@ -2396,47 +3266,65 @@ msgstr ""
 "Pedidos feitos com uma chave de teste. Não vão para a cozinha e nunca contam "
 "como receita."
 
+#: templates/dashboard/api.html:96
 msgid "Request log"
 msgstr "Registo de pedidos"
 
+#: templates/dashboard/api.html:98
 msgid "All keys"
 msgstr "Todas as chaves"
 
+#: templates/dashboard/api.html:99 templates/dashboard/api.html:104
+#: templates/dashboard/api.html:110 templates/dashboard/settings.html:52
+#: templates/dashboard/settings.html:60
 msgid "Result"
 msgstr "Resultado"
 
+#: templates/dashboard/api.html:99 templates/dashboard/orders.html:15
+#: templates/dashboard/quotations/list.html:15
 msgid "All"
 msgstr "Todos"
 
+#: templates/dashboard/api.html:99
 msgid "Success"
 msgstr "Sucesso"
 
+#: templates/dashboard/api.html:99 templates/dashboard/api_docs.html:21
 msgid "Errors"
 msgstr "Erros"
 
+#: templates/dashboard/api.html:100 templates/dashboard/orders.html:25
+#: templates/dashboard/revenue.html:29
 msgid "Filter"
 msgstr "Filtrar"
 
+#: templates/dashboard/api.html:104 templates/dashboard/api.html:109
 msgid "Request"
 msgstr "Pedido"
 
+#: templates/dashboard/api.html:114
 msgid "The last 100 requests are shown; the log is kept for 90 days."
 msgstr ""
 "São mostrados os últimos 100 pedidos; o registo é guardado durante 90 dias."
 
+#: templates/dashboard/api.html:115
 msgid "No requests yet."
 msgstr "Ainda não há pedidos."
 
+#: templates/dashboard/api_docs.html:10
 msgid "REST API with JSON, for your website, ordering app or delivery partner."
 msgstr ""
 "API REST com JSON, para o seu site, app de pedidos ou parceiro de entrega."
 
+#: templates/dashboard/api_docs.html:10
 msgid "Base URL"
 msgstr "URL base"
 
+#: templates/dashboard/api_docs.html:15
 msgid "Authentication"
 msgstr "Autenticação"
 
+#: templates/dashboard/api_docs.html:16
 msgid ""
 "Send your API key in the Authorization header of every request. Requests "
 "must use HTTPS."
@@ -2444,6 +3332,7 @@ msgstr ""
 "Envie a sua chave API no cabeçalho Authorization de cada pedido. Os pedidos "
 "têm de usar HTTPS."
 
+#: templates/dashboard/api_docs.html:18
 msgid ""
 "Keys starting with <code>qrm_test_</code> are test (sandbox) keys: every "
 "endpoint works the same, but orders are simulated. They are not sent to the "
@@ -2453,6 +3342,7 @@ msgstr ""
 "todos os endpoints funcionam igual, mas os pedidos são simulados. Não vão "
 "para a cozinha e nunca contam como receita."
 
+#: templates/dashboard/api_docs.html:19
 #, python-format
 msgid ""
 "Each key may make %(rate)s requests per minute. Above that you get HTTP 429 "
@@ -2462,24 +3352,30 @@ msgstr ""
 "429 com um cabeçalho Retry-After. Todos os pedidos ficam registados na "
 "página API de pedidos."
 
+#: templates/dashboard/api_docs.html:22
 msgid ""
 "Errors use the HTTP status code and a JSON body with a code and a message:"
 msgstr ""
 "Os erros usam o código de estado HTTP e um corpo JSON com um código e uma "
 "mensagem:"
 
+#: templates/dashboard/api_docs.html:26
 msgid "Code"
 msgstr "Código"
 
+#: templates/dashboard/api_docs.html:26
 msgid "Meaning"
 msgstr "Significado"
 
+#: templates/dashboard/api_docs.html:28
 msgid "No key, wrong key, or the key was revoked."
 msgstr "Sem chave, chave errada ou chave revogada."
 
+#: templates/dashboard/api_docs.html:29
 msgid "The request was not made over HTTPS."
 msgstr "O pedido não foi feito por HTTPS."
 
+#: templates/dashboard/api_docs.html:30
 msgid ""
 "The account is not on an active Pro plan, or the business profile is not "
 "verified. API access is switched off automatically."
@@ -2487,12 +3383,15 @@ msgstr ""
 "A conta não tem um plano Pro ativo, ou o perfil da empresa não está "
 "verificado. O acesso à API é desligado automaticamente."
 
+#: templates/dashboard/api_docs.html:31
 msgid "The branch is not one this key may use."
 msgstr "A filial não é uma das que esta chave pode usar."
 
+#: templates/dashboard/api_docs.html:32
 msgid "Unknown order or endpoint."
 msgstr "Pedido ou endpoint desconhecido."
 
+#: templates/dashboard/api_docs.html:33
 msgid ""
 "The order can't be placed or changed: sold-out items, a total that doesn't "
 "match the menu prices, a branch that is closed, or a status change that "
@@ -2502,12 +3401,15 @@ msgstr ""
 "corresponde aos preços do menu, uma filial fechada ou uma mudança de estado "
 "não permitida."
 
+#: templates/dashboard/api_docs.html:34
 msgid "Too many requests; wait a minute."
 msgstr "Demasiados pedidos; aguarde um minuto."
 
+#: templates/dashboard/api_docs.html:39
 msgid "The branches this key can use (only live branches)."
 msgstr "As filiais que esta chave pode usar (só filiais ativas)."
 
+#: templates/dashboard/api_docs.html:46
 msgid ""
 "Menu categories, items, add-ons and prices of one branch. Use the item and "
 "add-on ids in orders."
@@ -2515,6 +3417,7 @@ msgstr ""
 "Categorias, artigos, extras e preços do menu de uma filial. Use os ids dos "
 "artigos e extras nos pedidos."
 
+#: templates/dashboard/api_docs.html:55
 msgid ""
 "Create an order. Prices always come from the menu; if you send a total and "
 "it doesn't match, the order is refused with the correct total. The order "
@@ -2524,12 +3427,15 @@ msgstr ""
 "corresponda, o pedido é recusado com o total correto. O pedido aparece logo "
 "no painel da filial com uma notificação."
 
+#: templates/dashboard/api_docs.html:77
 msgid "Field"
 msgstr "Campo"
 
+#: templates/dashboard/api_docs.html:79
 msgid "Branch id (optional when the key can use only one branch)."
 msgstr "Id da filial (opcional quando a chave só pode usar uma filial)."
 
+#: templates/dashboard/api_docs.html:80
 msgid ""
 "1–50 lines: menu_item (id), quantity (1–50), options (add-on ids, optional), "
 "note (optional)."
@@ -2537,9 +3443,11 @@ msgstr ""
 "1–50 linhas: menu_item (id), quantity (1–50), options (ids de extras, "
 "opcional), note (opcional)."
 
+#: templates/dashboard/api_docs.html:81
 msgid "Optional. The total you expect; checked against the menu prices."
 msgstr "Opcional. O total que espera; verificado com os preços do menu."
 
+#: templates/dashboard/api_docs.html:83
 msgid ""
 "true when the customer already paid in your app (the order is recorded as "
 "paid)."
@@ -2547,9 +3455,11 @@ msgstr ""
 "true quando o cliente já pagou na sua app (o pedido fica registado como "
 "pago)."
 
+#: templates/dashboard/api_docs.html:84
 msgid "Optional."
 msgstr "Opcional."
 
+#: templates/dashboard/api_docs.html:85
 msgid ""
 "Optional: your own order number. Sending the same reference again returns "
 "the existing order instead of creating a duplicate, so retries are safe."
@@ -2558,9 +3468,11 @@ msgstr ""
 "novamente devolve o pedido existente em vez de criar um duplicado, por isso "
 "repetir é seguro."
 
+#: templates/dashboard/api_docs.html:90
 msgid "Order details and current status."
 msgstr "Detalhes do pedido e estado atual."
 
+#: templates/dashboard/api_docs.html:94
 msgid ""
 "Change the status. Statuses: received → preparing → ready → completed; an "
 "order can be cancelled until it is ready. Only completed orders count as "
@@ -2570,6 +3482,7 @@ msgstr ""
 "pode ser cancelado até estar pronto. Só os pedidos concluídos contam como "
 "receita; os cancelados nunca."
 
+#: templates/dashboard/api_docs.html:99
 msgid ""
 "Add a webhook URL on the Ordering API page. When an order is created or its "
 "status changes, we POST this JSON to your URL (timeout 5 seconds, no "
@@ -2579,6 +3492,7 @@ msgstr ""
 "criado ou muda de estado, enviamos este JSON por POST para o seu URL (limite "
 "de 5 segundos, sem redirecionamentos):"
 
+#: templates/dashboard/api_docs.html:108
 msgid ""
 "Events: order.created, order.status_changed, and ping (the Send test "
 "button). To check that a request really comes from us, compute HMAC-SHA256 "
@@ -2590,6 +3504,7 @@ msgstr ""
 "timestamp, um ponto e o corpo original com o seu segredo de assinatura, e "
 "compare com a assinatura:"
 
+#: templates/dashboard/api_docs.html:115
 msgid ""
 "When an API order is completed, it is added to the branch's revenue as an "
 "entry with the source “API – key name”. On the Branches page you can filter "
@@ -2599,102 +3514,157 @@ msgstr ""
 "um registo com a origem “API – nome da chave”. Na página Filiais pode "
 "filtrar a receita por origem."
 
+#: templates/dashboard/base.html:7 templates/storefront/home.html:24
 msgid "Dashboard"
 msgstr "Painel"
 
+#: templates/dashboard/base.html:15
 msgid "Main navigation"
 msgstr "Navegação principal"
 
+#: templates/dashboard/base.html:20
 msgid "Not public yet"
 msgstr "Ainda não é público"
 
+#: templates/dashboard/base.html:22
 msgid "Close menu"
 msgstr "Fechar menu"
 
+#: templates/dashboard/base.html:27 templates/dashboard/overview.html:3
 msgid "Overview"
 msgstr "Resumo"
 
+#: templates/dashboard/base.html:28 templates/dashboard/kitchen.html:3
+#: templates/dashboard/kitchen.html:4 templates/dashboard/kitchen.html:9
+#: templates/dashboard/overview.html:23
 msgid "Kitchen queue"
 msgstr "Fila da cozinha"
 
+#: templates/dashboard/base.html:30 templates/dashboard/base.html:94
+#: templates/dashboard/order_detail.html:6 templates/dashboard/orders.html:3
+#: templates/dashboard/orders.html:8 templates/dashboard/reports.html:24
+#: templates/dashboard/reports.html:36 templates/dashboard/reports.html:37
+#: templates/dashboard/table_detail.html:102
+#: templates/dashboard/table_detail.html:103
 msgid "Orders"
 msgstr "Pedidos"
 
+#: templates/dashboard/base.html:31
 msgid "Tables &amp; QR"
 msgstr "Mesas e QR"
 
+#: templates/dashboard/base.html:34 templates/dashboard/billing.html:83
+#: templates/dashboard/cash_register.html:3
+#: templates/dashboard/cash_register.html:8 templates/dashboard/upgrade.html:12
 msgid "Cash register"
 msgstr "Caixa"
 
+#: templates/dashboard/base.html:37 templates/dashboard/branches.html:53
 msgid "Manage"
 msgstr "Gestão"
 
+#: templates/dashboard/base.html:38 templates/dashboard/car_wash.html:93
+#: templates/dashboard/item_form.html:6 templates/dashboard/menu.html:3
+#: templates/dashboard/menu.html:8
+#: templates/dashboard/quotations/print.html:178
 msgid "Menu"
 msgstr "Menu"
 
+#: templates/dashboard/base.html:40 templates/dashboard/reports.html:3
+#: templates/dashboard/reports.html:8 templates/storefront/home.html:71
 msgid "Reports"
 msgstr "Relatórios"
 
+#: templates/dashboard/base.html:41 templates/dashboard/billing.html:83
+#: templates/dashboard/expenses.html:3 templates/dashboard/expenses.html:8
+#: templates/dashboard/upgrade.html:21
 msgid "Expenses & profit"
 msgstr "Despesas e lucro"
 
+#: templates/dashboard/base.html:42 templates/dashboard/billing.html:83
+#: templates/dashboard/quotations/edit.html:6
+#: templates/dashboard/quotations/list.html:3
+#: templates/dashboard/quotations/list.html:8
+#: templates/dashboard/quotations/profile.html:6
+#: templates/dashboard/upgrade.html:24
 msgid "Quotations"
 msgstr "Cotações"
 
+#: templates/dashboard/base.html:43
 msgid "Restaurant"
 msgstr "Restaurante"
 
+#: templates/dashboard/base.html:44 templates/dashboard/billing.html:3
+#: templates/dashboard/billing.html:6
 msgid "Billing"
 msgstr "Faturação"
 
+#: templates/dashboard/base.html:52
 msgid "View public menu"
 msgstr "Ver menu público"
 
+#: templates/dashboard/base.html:58
 msgid "Open menu"
 msgstr "Abrir menu"
 
+#: templates/dashboard/base.html:65
 msgid "Live connection"
 msgstr "Ligação em direto"
 
+#: templates/dashboard/base.html:65
 msgid "Connecting"
 msgstr "A ligar"
 
+#: templates/dashboard/base.html:68
 msgid "Open the cash drawer (no sale)? This is logged."
 msgstr "Abrir a gaveta de dinheiro (sem venda)? Isto fica registado."
 
+#: templates/dashboard/base.html:70
 msgid "Open cash drawer (no sale)"
 msgstr "Abrir gaveta (sem venda)"
 
+#: templates/dashboard/base.html:70
 msgid "Open cash drawer"
 msgstr "Abrir gaveta de dinheiro"
 
+#: templates/dashboard/base.html:73 templates/dashboard/notifications.html:3
+#: templates/dashboard/notifications.html:6
 msgid "Notifications"
 msgstr "Notificações"
 
+#: templates/dashboard/base.html:75
 msgid "Account menu"
 msgstr "Menu da conta"
 
+#: templates/dashboard/base.html:82
 msgid "Platform console"
 msgstr "Consola da plataforma"
 
+#: templates/dashboard/base.html:83 templates/dashboard/branch_closed.html:18
 msgid "Switch restaurant"
 msgstr "Mudar de restaurante"
 
+#: templates/dashboard/base.html:85 templates/dashboard/home.html:23
 msgid "Log out"
 msgstr "Terminar sessão"
 
+#: templates/dashboard/base.html:90
 msgid "Quick navigation"
 msgstr "Navegação rápida"
 
+#: templates/dashboard/base.html:91
 msgid "Home"
 msgstr "Início"
 
+#: templates/dashboard/base.html:112
 msgid "the owner's email"
 msgstr "o email do proprietário"
 
+#: templates/dashboard/base.html:112
 msgid "Confirm your email to go live."
 msgstr "Confirme o seu email para ficar ativo."
 
+#: templates/dashboard/base.html:112
 #, python-format
 msgid ""
 "We sent a link to <strong>%(email)s</strong>. Until then only your staff can "
@@ -2703,12 +3673,15 @@ msgstr ""
 "Enviámos um link para <strong>%(email)s</strong>. Até lá só os seus "
 "funcionários veem o menu; entretanto, configure o menu e as mesas."
 
+#: templates/dashboard/base.html:114
 msgid "Resend email"
 msgstr "Reenviar email"
 
+#: templates/dashboard/base.html:118
 msgid "Branch waiting for approval."
 msgstr "Filial a aguardar aprovação."
 
+#: templates/dashboard/base.html:118
 msgid ""
 "The platform team checks every new branch. Until it is approved, the branch "
 "is hidden and can't record revenue. You can set up its menu and tables in "
@@ -2718,25 +3691,32 @@ msgstr ""
 "fica oculta e não pode registar receita. Entretanto pode preparar o menu e "
 "as mesas."
 
+#: templates/dashboard/base.html:121
 msgid "Branch request not approved."
 msgstr "Pedido de filial não aprovado."
 
+#: templates/dashboard/base.html:121
 msgid "Correct the details and send it again from Branches."
 msgstr "Corrija os dados e envie novamente a partir de Filiais."
 
+#: templates/dashboard/base.html:124
 msgid "Branch suspended by the platform."
 msgstr "Filial suspensa pela plataforma."
 
+#: templates/dashboard/base.html:124
 msgid "Customers can't see its menu and it can't record revenue."
 msgstr "Os clientes não veem o menu e não pode registar receita."
 
+#: templates/dashboard/base.html:124 templates/dashboard/base.html:130
 #, python-format
 msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
 msgstr "Contacte <a href=\"mailto:%(email)s\">%(email)s</a>."
 
+#: templates/dashboard/base.html:127
 msgid "Waiting for approval."
 msgstr "A aguardar aprovação."
 
+#: templates/dashboard/base.html:127
 msgid ""
 "Our team reviews new restaurants before they go public. You can keep setting "
 "up your menu and tables."
@@ -2744,54 +3724,68 @@ msgstr ""
 "A nossa equipa revê os novos restaurantes antes de ficarem públicos. Pode "
 "continuar a configurar o menu e as mesas."
 
+#: templates/dashboard/base.html:130
 msgid "This restaurant is not public."
 msgstr "Este restaurante não é público."
 
+#: templates/dashboard/base.html:130
 msgid ""
 "It has been suspended by the platform. Customers can't see the menu or order."
 msgstr ""
 "Foi suspenso pela plataforma. Os clientes não podem ver o menu nem fazer "
 "pedidos."
 
+#: templates/dashboard/base.html:137
 #, python-format
 msgid "Your free trial ends in %(days)s day."
 msgid_plural "Your free trial ends in %(days)s days."
 msgstr[0] "O seu período experimental termina dentro de %(days)s dia."
 msgstr[1] "O seu período experimental termina dentro de %(days)s dias."
 
+#: templates/dashboard/base.html:137
 msgid "Pay the invoice to keep taking orders."
 msgstr "Pague a fatura para continuar a receber pedidos."
 
+#: templates/dashboard/base.html:138
 msgid "Payment due."
 msgstr "Pagamento em atraso."
 
+#: templates/dashboard/base.html:138
 #, python-format
 msgid ""
 "Your subscription ended on %(date)s; ordering will be switched off soon."
 msgstr ""
 "A sua subscrição terminou em %(date)s; os pedidos serão desativados em breve."
 
+#: templates/dashboard/base.html:139
 msgid "Subscription expired."
 msgstr "Subscrição expirada."
 
+#: templates/dashboard/base.html:139
 msgid "Customers can't place orders until the invoice is paid."
 msgstr "Os clientes não podem fazer pedidos até a fatura ser paga."
 
+#: templates/dashboard/base.html:140
 msgid "Subscription cancelled."
 msgstr "Subscrição cancelada."
 
+#: templates/dashboard/base.html:140
 msgid "Customers can't place orders."
 msgstr "Os clientes não podem fazer pedidos."
 
+#: templates/dashboard/base.html:141 templates/dashboard/branches.html:79
 msgid "View billing"
 msgstr "Ver faturação"
 
+#: templates/dashboard/base.html:148
 msgid "Your business profile needs changes."
 msgstr "O perfil da sua empresa precisa de alterações."
 
+#: templates/dashboard/base.html:148
 msgid "Complete your business profile."
 msgstr "Complete o perfil da sua empresa."
 
+#: templates/dashboard/base.html:148
 msgid ""
 "We verify every business before it can add branches. It takes two minutes: "
 "registration number, owner, address and phone."
@@ -2799,12 +3793,16 @@ msgstr ""
 "Verificamos cada empresa antes de poder adicionar filiais. Demora dois "
 "minutos: número de registo, proprietário, morada e telefone."
 
+#: templates/dashboard/base.html:149 templates/dashboard/base.html:157
+#: templates/dashboard/branches.html:102
 msgid "Complete now"
 msgstr "Completar agora"
 
+#: templates/dashboard/base.html:154
 msgid "Complete your business profile"
 msgstr "Complete o perfil da sua empresa"
 
+#: templates/dashboard/base.html:155
 msgid ""
 "Please add your business registration number (e.g. SERVE certificate or tax "
 "number), the owner's name, your address and phone number. Our team verifies "
@@ -2814,50 +3812,65 @@ msgstr ""
 "nome do proprietário, a morada e o telefone. A nossa equipa verifica e "
 "depois pode adicionar filiais."
 
+#: templates/dashboard/base.html:158
 msgid "Remind me later"
 msgstr "Lembrar mais tarde"
 
+#: templates/dashboard/billing.html:6
 msgid "Your plan, usage and invoices."
 msgstr "O seu plano, utilização e faturas."
 
+#: templates/dashboard/billing.html:10
 msgid "Billing isn't set up on this platform yet."
 msgstr "A faturação ainda não está configurada nesta plataforma."
 
+#: templates/dashboard/billing.html:17
 msgid "Current plan"
 msgstr "Plano atual"
 
+#: templates/dashboard/billing.html:22 templates/dashboard/billing.html:81
+#: templates/dashboard/upgrade.html:28 templates/storefront/home.html:116
 msgid "Free"
 msgstr "Grátis"
 
+#: templates/dashboard/billing.html:22 templates/dashboard/upgrade.html:28
+#: templates/storefront/home.html:116
 msgid "month"
 msgstr "mês"
 
+#: templates/dashboard/billing.html:23
 #, python-format
 msgid "+ %(n)s extra branch × $%(price)s = $%(total)s / month"
 msgid_plural "+ %(n)s extra branches × $%(price)s = $%(total)s / month"
 msgstr[0] "+ %(n)s filial extra × $%(price)s = $%(total)s / mês"
 msgstr[1] "+ %(n)s filiais extra × $%(price)s = $%(total)s / mês"
 
+#: templates/dashboard/billing.html:25
 msgid "Your account is complimentary. There's nothing to pay."
 msgstr "A sua conta é gratuita. Não há nada a pagar."
 
+#: templates/dashboard/billing.html:27
 #, python-format
 msgid "Free trial until <strong>%(date)s</strong>"
 msgstr "Período experimental até <strong>%(date)s</strong>"
 
+#: templates/dashboard/billing.html:27
 #, python-format
 msgid "%(n)s day left"
 msgid_plural "%(n)s days left"
 msgstr[0] "falta %(n)s dia"
 msgstr[1] "faltam %(n)s dias"
 
+#: templates/dashboard/billing.html:27
 msgid "Pay the invoice before then to keep taking orders."
 msgstr "Pague a fatura antes disso para continuar a receber pedidos."
 
+#: templates/dashboard/billing.html:29
 #, python-format
 msgid "Paid until <strong>%(date)s</strong>."
 msgstr "Pago até <strong>%(date)s</strong>."
 
+#: templates/dashboard/billing.html:31
 #, python-format
 msgid ""
 "Your subscription ended on %(date)s. Please pay the open invoice. Ordering "
@@ -2866,6 +3879,7 @@ msgstr ""
 "A sua subscrição terminou em %(date)s. Pague a fatura em aberto. Os pedidos "
 "serão desativados em breve."
 
+#: templates/dashboard/billing.html:33
 msgid ""
 "Your subscription has expired. Customers can't order until the invoice is "
 "paid."
@@ -2873,13 +3887,16 @@ msgstr ""
 "A sua subscrição expirou. Os clientes não podem fazer pedidos até a fatura "
 "ser paga."
 
+#: templates/dashboard/billing.html:35
 msgid "Your subscription was cancelled."
 msgstr "A sua subscrição foi cancelada."
 
+#: templates/dashboard/billing.html:35
 #, python-format
 msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a> to reactivate."
 msgstr "Contacte <a href=\"mailto:%(email)s\">%(email)s</a> para reativar."
 
+#: templates/dashboard/billing.html:37
 #, python-format
 msgid ""
 "Change to <strong>%(plan)s</strong> requested %(ago)s ago. Waiting for "
@@ -2888,30 +3905,39 @@ msgstr ""
 "Mudança para <strong>%(plan)s</strong> pedida há %(ago)s. A aguardar "
 "confirmação."
 
+#: templates/dashboard/billing.html:39
 msgid "Usage"
 msgstr "Utilização"
 
+#: templates/dashboard/billing.html:49
 msgid "Invoices"
 msgstr "Faturas"
 
+#: templates/dashboard/billing.html:53
 msgid "Invoice"
 msgstr "Fatura"
 
+#: templates/dashboard/billing.html:53 templates/dashboard/billing.html:57
 msgid "Period"
 msgstr "Período"
 
+#: templates/dashboard/billing.html:53 templates/dashboard/billing.html:58
 msgid "Due"
 msgstr "Vencimento"
 
+#: templates/dashboard/billing.html:60
 msgid "Overdue"
 msgstr "Em atraso"
 
+#: templates/dashboard/billing.html:65
 msgid "No invoices yet."
 msgstr "Ainda não há faturas."
 
+#: templates/dashboard/billing.html:72
 msgid "How to pay"
 msgstr "Como pagar"
 
+#: templates/dashboard/billing.html:74
 msgid ""
 "Use the invoice number as the payment reference. Your subscription is "
 "extended as soon as we confirm the payment."
@@ -2919,12 +3945,15 @@ msgstr ""
 "Use o número da fatura como referência do pagamento. A subscrição é "
 "prolongada assim que confirmarmos o pagamento."
 
+#: templates/dashboard/billing.html:78
 msgid "Plans"
 msgstr "Planos"
 
+#: templates/dashboard/billing.html:81
 msgid "mo"
 msgstr "mês"
 
+#: templates/dashboard/billing.html:82
 #, python-format
 msgid "Main branch + %(n)s branch; extra branches $%(price)s/month each"
 msgid_plural ""
@@ -2932,30 +3961,40 @@ msgid_plural ""
 msgstr[0] "Filial principal + %(n)s filial; filiais extra $%(price)s/mês cada"
 msgstr[1] "Filial principal + %(n)s filiais; filiais extra $%(price)s/mês cada"
 
+#: templates/dashboard/billing.html:83
 #, python-format
 msgid "%(t)s tables · %(d)s dishes · %(s)s staff"
 msgstr "%(t)s mesas · %(d)s pratos · %(s)s funcionários"
 
+#: templates/dashboard/billing.html:84
 msgid "Your plan"
 msgstr "O seu plano"
 
+#: templates/dashboard/billing.html:85
 msgid "Requested"
 msgstr "Pedido"
 
+#: templates/dashboard/billing.html:87
 #, python-format
 msgid "Request a change to %(plan)s?"
 msgstr "Pedir a mudança para %(plan)s?"
 
+#: templates/dashboard/billing.html:87
 #, python-format
 msgid "Switch to %(plan)s"
 msgstr "Mudar para %(plan)s"
 
+#: templates/dashboard/branch_closed.html:3
+#: templates/dashboard/branch_closed.html:9
 msgid "Branch deactivated"
 msgstr "Filial desativada"
 
+#: templates/dashboard/branch_closed.html:3
+#: templates/dashboard/branch_closed.html:15
 msgid "Branch not active"
 msgstr "Filial não ativa"
 
+#: templates/dashboard/branch_closed.html:10
 msgid ""
 "The main branch has deactivated this branch. Ask the owner if you need "
 "access again."
@@ -2963,9 +4002,11 @@ msgstr ""
 "A filial principal desativou esta filial. Peça acesso ao proprietário se "
 "precisar."
 
+#: templates/dashboard/branch_closed.html:12
 msgid "Waiting for approval"
 msgstr "A aguardar aprovação"
 
+#: templates/dashboard/branch_closed.html:13
 msgid ""
 "This new branch is being reviewed by the platform team. You can use it once "
 "it is approved."
@@ -2973,6 +4014,7 @@ msgstr ""
 "Esta nova filial está a ser analisada pela equipa da plataforma. Pode usá-la "
 "depois de aprovada."
 
+#: templates/dashboard/branch_closed.html:16
 msgid ""
 "This branch has been suspended or was not approved by the platform. Ask the "
 "owner for details."
@@ -2980,19 +4022,26 @@ msgstr ""
 "Esta filial foi suspensa ou não foi aprovada pela plataforma. Peça detalhes "
 "ao proprietário."
 
+#: templates/dashboard/branch_manage.html:9
+#: templates/dashboard/branches.html:41
 msgid "Deactivated"
 msgstr "Desativada"
 
+#: templates/dashboard/branch_manage.html:9
+#: templates/dashboard/branches.html:45 templates/dashboard/home.html:15
 msgid "Not live"
 msgstr "Inativo"
 
+#: templates/dashboard/branch_manage.html:10
 #, python-format
 msgid "Sub-branch of %(main)s."
 msgstr "Sub-filial de %(main)s."
 
+#: templates/dashboard/branch_manage.html:12
 msgid "Open its dashboard"
 msgstr "Abrir o painel dela"
 
+#: templates/dashboard/branch_manage.html:16
 msgid ""
 "Waiting for approval by the platform team. Meanwhile you can set up its "
 "menu, tables and staff; it goes live and can record revenue once approved."
@@ -3001,9 +4050,11 @@ msgstr ""
 "menu, as mesas e a equipa; fica ativa e pode registar receita depois de "
 "aprovada."
 
+#: templates/dashboard/branch_manage.html:20
 msgid "Request not approved"
 msgstr "Pedido não aprovado"
 
+#: templates/dashboard/branch_manage.html:22
 msgid ""
 "Correct the branch details below if needed, optionally add a new storefront "
 "photo, and send it again."
@@ -3011,30 +4062,40 @@ msgstr ""
 "Corrija os dados da filial abaixo se necessário, adicione opcionalmente uma "
 "nova foto da fachada e envie novamente."
 
+#: templates/dashboard/branch_manage.html:24
 msgid "Send again"
 msgstr "Enviar novamente"
 
+#: templates/dashboard/branch_manage.html:27
 msgid "Suspended by the platform."
 msgstr "Suspensa pela plataforma."
 
+#: templates/dashboard/branch_manage.html:34
 msgid "Branch details"
 msgstr "Dados da filial"
 
+#: templates/dashboard/branch_manage.html:44 templates/dashboard/staff.html:16
 msgid "User"
 msgstr "Utilizador"
 
+#: templates/dashboard/branch_manage.html:49 templates/dashboard/staff.html:23
+#: templates/dashboard/tables.html:25
 msgid "Disabled"
 msgstr "Desativado"
 
+#: templates/dashboard/branch_manage.html:52
 msgid "Disable"
 msgstr "Desativar"
 
+#: templates/dashboard/branch_manage.html:52
 msgid "Enable"
 msgstr "Ativar"
 
+#: templates/dashboard/branch_manage.html:64
 msgid "Add staff account"
 msgstr "Adicionar conta da equipa"
 
+#: templates/dashboard/branch_manage.html:65
 msgid ""
 "A branch manager or cashier for this branch. They only see this branch: its "
 "orders and its own revenue."
@@ -3042,15 +4103,19 @@ msgstr ""
 "Um gerente ou caixa desta filial. Só vê esta filial: os seus pedidos e a sua "
 "própria receita."
 
+#: templates/dashboard/branch_manage.html:67 templates/dashboard/staff.html:43
 msgid "Create account"
 msgstr "Criar conta"
 
+#: templates/dashboard/branch_manage.html:71
 msgid "Reactivate branch"
 msgstr "Reativar filial"
 
+#: templates/dashboard/branch_manage.html:71
 msgid "Deactivate branch"
 msgstr "Desativar filial"
 
+#: templates/dashboard/branch_manage.html:73
 #, python-format
 msgid ""
 "Deactivated on %(d)s. Reactivating brings back its menu, QR codes and staff "
@@ -3059,9 +4124,11 @@ msgstr ""
 "Desativada em %(d)s. Reativar repõe o menu, os códigos QR e o acesso da "
 "equipa."
 
+#: templates/dashboard/branch_manage.html:74
 msgid "Reactivate"
 msgstr "Reativar"
 
+#: templates/dashboard/branch_manage.html:76
 msgid ""
 "Customers can no longer order, its QR codes stop working and its staff can't "
 "sign in to it. Nothing is deleted, and you can reactivate it at any time."
@@ -3069,13 +4136,16 @@ msgstr ""
 "Os clientes deixam de poder pedir, os códigos QR deixam de funcionar e a "
 "equipa não pode entrar. Nada é apagado e pode reativá-la a qualquer momento."
 
+#: templates/dashboard/branch_manage.html:77
 #, python-format
 msgid "Deactivate %(n)s?"
 msgstr "Desativar %(n)s?"
 
+#: templates/dashboard/branch_manage.html:77
 msgid "Deactivate"
 msgstr "Desativar"
 
+#: templates/dashboard/branches.html:9
 #, python-format
 msgid ""
 "%(name)s (main branch) and its sub-branches. Revenue = completed orders + "
@@ -3084,60 +4154,82 @@ msgstr ""
 "%(name)s (filial principal) e as suas sub-filiais. Receita = pedidos "
 "concluídos + vendas registadas por cada filial."
 
+#: templates/dashboard/branches.html:15
 msgid "Previous day"
 msgstr "Dia anterior"
 
+#: templates/dashboard/branches.html:17
 msgid "Next day"
 msgstr "Dia seguinte"
 
+#: templates/dashboard/branches.html:18 templates/dashboard/branches.html:19
+#: templates/dashboard/expenses.html:18 templates/dashboard/expenses.html:28
+#: templates/dashboard/revenue.html:30
 msgid "Today"
 msgstr "Hoje"
 
+#: templates/dashboard/branches.html:20
 msgid "Revenue source"
 msgstr "Origem da receita"
 
+#: templates/dashboard/branches.html:24
 msgid "All branches · this day"
 msgstr "Todas as filiais · este dia"
 
+#: templates/dashboard/branches.html:25 templates/dashboard/revenue.html:15
+#: templates/dashboard/revenue.html:17
 #, python-format
 msgid "Orders %(o)s · manual %(m)s · API %(a)s"
 msgstr "Pedidos %(o)s · manual %(m)s · API %(a)s"
 
+#: templates/dashboard/branches.html:26
 #, python-format
 msgid "Week from %(d)s"
 msgstr "Semana desde %(d)s"
 
+#: templates/dashboard/branches.html:31
 msgid "Revenue by branch"
 msgstr "Receita por filial"
 
+#: templates/dashboard/branches.html:34
 msgid "Branch"
 msgstr "Filial"
 
+#: templates/dashboard/branches.html:34 templates/dashboard/branches.html:48
 msgid "This day"
 msgstr "Este dia"
 
+#: templates/dashboard/branches.html:34 templates/dashboard/branches.html:49
 msgid "Week"
 msgstr "Semana"
 
+#: templates/dashboard/branches.html:34 templates/dashboard/branches.html:50
+#: templates/dashboard/expenses.html:54
 msgid "Month"
 msgstr "Mês"
 
+#: templates/dashboard/branches.html:40
 msgid "Main branch"
 msgstr "Filial principal"
 
+#: templates/dashboard/branches.html:48
 #, python-format
 msgid "incl. %(m)s recorded"
 msgstr "incl. %(m)s registado"
 
+#: templates/dashboard/branches.html:63
 msgid "This day compared"
 msgstr "Comparação deste dia"
 
+#: templates/dashboard/branches.html:64
 msgid "Revenue per branch for this day"
 msgstr "Receita por filial neste dia"
 
+#: templates/dashboard/branches.html:73
 msgid "Branch slots"
 msgstr "Vagas de filiais"
 
+#: templates/dashboard/branches.html:76
 #, python-format
 msgid ""
 "Your plan includes %(included)s branches besides the main branch; you have "
@@ -3146,6 +4238,7 @@ msgstr ""
 "O seu plano inclui %(included)s filiais além da principal; tem %(extra)s "
 "extra. Filiais pendentes, rejeitadas e desativadas não ocupam vaga."
 
+#: templates/dashboard/branches.html:79
 #, python-format
 msgid ""
 "Invoice %(number)s (%(amount)s) for an extra branch is waiting for payment. "
@@ -3154,16 +4247,20 @@ msgstr ""
 "A fatura %(number)s (%(amount)s) de uma filial extra aguarda pagamento. A "
 "vaga é adicionada depois de paga."
 
+#: templates/dashboard/branches.html:82
 #, python-format
 msgid "Add an extra branch (%(price)s/month)"
 msgstr "Adicionar filial extra (%(price)s/mês)"
 
+#: templates/dashboard/branches.html:85
 msgid "Remove one unused extra branch from your subscription?"
 msgstr "Remover uma filial extra não usada da sua subscrição?"
 
+#: templates/dashboard/branches.html:86
 msgid "Remove an unused extra branch"
 msgstr "Remover uma filial extra não usada"
 
+#: templates/dashboard/branches.html:98
 msgid ""
 "You can request branches once the platform team has verified your business "
 "profile."
@@ -3171,6 +4268,7 @@ msgstr ""
 "Pode pedir filiais depois de a equipa da plataforma verificar o perfil da "
 "sua empresa."
 
+#: templates/dashboard/branches.html:100
 msgid ""
 "To request branches, first complete your business profile. The platform team "
 "verifies it."
@@ -3178,12 +4276,15 @@ msgstr ""
 "Para pedir filiais, complete primeiro o perfil da sua empresa. A equipa da "
 "plataforma verifica-o."
 
+#: templates/dashboard/branches.html:102
 msgid "View"
 msgstr "Ver"
 
+#: templates/dashboard/branches.html:109
 msgid "Request a new branch"
 msgstr "Pedir uma nova filial"
 
+#: templates/dashboard/branches.html:110
 msgid ""
 "The platform team reviews every new branch: it must be the same business, "
 "using your brand name. Until it is approved, the branch is hidden and can't "
@@ -3195,6 +4296,7 @@ msgstr ""
 "receita. Tem os seus próprios códigos QR, mesas e equipa; continua a ser o "
 "proprietário, com o mesmo login."
 
+#: templates/dashboard/branches.html:111
 msgid ""
 "All branch slots in your plan are in use. You can still send the request; it "
 "is activated once you add an extra branch."
@@ -3202,12 +4304,15 @@ msgstr ""
 "Todas as vagas de filial do seu plano estão em uso. Pode enviar o pedido na "
 "mesma; será ativada quando adicionar uma filial extra."
 
+#: templates/dashboard/branches.html:113
 msgid "Send request"
 msgstr "Enviar pedido"
 
+#: templates/dashboard/business_profile.html:10
 msgid "Needs changes"
 msgstr "Precisa de alterações"
 
+#: templates/dashboard/business_profile.html:12
 msgid ""
 "The legal details of your business. The platform team verifies them before "
 "you can add branches; all branches must belong to this same business."
@@ -3216,6 +4321,7 @@ msgstr ""
 "poder adicionar filiais; todas as filiais devem pertencer a esta mesma "
 "empresa."
 
+#: templates/dashboard/business_profile.html:17
 msgid ""
 "Thank you! We are checking your details, usually within one working day. You "
 "can keep using QR Menu and recording revenue in the meantime."
@@ -3223,9 +4329,11 @@ msgstr ""
 "Obrigado! Estamos a verificar os seus dados, normalmente num dia útil. "
 "Entretanto pode continuar a usar o QR Menu e a registar receita."
 
+#: templates/dashboard/business_profile.html:19
 msgid "Please correct your details and send them again."
 msgstr "Corrija os seus dados e envie novamente."
 
+#: templates/dashboard/business_profile.html:21
 msgid ""
 "Your business is verified. You can request branches on the Branches page. "
 "Changing these details sends them for review again."
@@ -3233,12 +4341,15 @@ msgstr ""
 "A sua empresa está verificada. Pode pedir filiais na página Filiais. Alterar "
 "estes dados envia-os novamente para análise."
 
+#: templates/dashboard/business_profile.html:27
 msgid "Save and send for review"
 msgstr "Guardar e enviar para análise"
 
+#: templates/dashboard/business_profile.html:27
 msgid "Send for verification"
 msgstr "Enviar para verificação"
 
+#: templates/dashboard/car_wash.html:9
 msgid ""
 "Car wash orders from tables and walk-in customers. They don't go to the "
 "kitchen: give the ticket to the car wash team. They are completed "
@@ -3248,65 +4359,92 @@ msgstr ""
 "entregue o talão à equipa da lavagem. Ficam concluídas automaticamente "
 "quando pagas."
 
+#: templates/dashboard/car_wash.html:12
 msgid "Today & unpaid"
 msgstr "Hoje e por pagar"
 
+#: templates/dashboard/car_wash.html:12
 msgid "All, incl. cancelled"
 msgstr "Todas, incl. canceladas"
 
+#: templates/dashboard/car_wash.html:13
 msgid "Refresh"
 msgstr "Atualizar"
 
+#: templates/dashboard/car_wash.html:21
 msgid "Walk-in cars waiting to pay"
 msgstr "Carros sem mesa por pagar"
 
+#: templates/dashboard/car_wash.html:25
 #, python-format
 msgid "Walk-in · %(p)s"
 msgstr "Sem mesa · %(p)s"
 
+#: templates/dashboard/car_wash.html:25
 msgid "Bill / pay"
 msgstr "Conta / pagar"
 
+#: templates/dashboard/car_wash.html:31
 msgid "Car wash orders"
 msgstr "Pedidos de lavagem"
 
+#: templates/dashboard/car_wash.html:35 templates/dashboard/car_wash.html:40
 msgid "Plate"
 msgstr "Matrícula"
 
+#: templates/dashboard/car_wash.html:35 templates/dashboard/car_wash.html:41
+#: templates/dashboard/car_wash.html:85
 msgid "Package"
 msgstr "Pacote"
 
+#: templates/dashboard/car_wash.html:35 templates/dashboard/car_wash.html:42
 msgid "Where"
 msgstr "Onde"
 
+#: templates/dashboard/car_wash.html:42
 msgid "Walk-in"
 msgstr "Sem mesa"
 
+#: templates/dashboard/car_wash.html:45
 msgid "Ticket"
 msgstr "Talão"
 
+#: templates/dashboard/car_wash.html:51
 msgid "Add to bill"
 msgstr "Adicionar à conta"
 
+#: templates/dashboard/car_wash.html:56
 #, python-format
 msgid "Cancel car wash #%(n)s?"
 msgstr "Cancelar a lavagem #%(n)s?"
 
+#: templates/dashboard/car_wash.html:56 templates/dashboard/item_form.html:47
+#: templates/dashboard/new_order.html:77
+#: templates/dashboard/quotations/edit.html:107
+#: templates/dashboard/quotations/profile.html:29
+#: templates/dashboard/simple_form.html:10
 msgid "Cancel"
 msgstr "Cancelar"
 
+#: templates/dashboard/car_wash.html:64
 msgid "No car wash orders yet today."
 msgstr "Ainda não há lavagens hoje."
 
+#: templates/dashboard/car_wash.html:69
+#: templates/dashboard/table_detail.html:91
 msgid "Printed bills"
 msgstr "Contas impressas"
 
+#: templates/dashboard/car_wash.html:72
+#: templates/dashboard/table_detail.html:94
 msgid "Reprint (COPY)"
 msgstr "Reimprimir (CÓPIA)"
 
+#: templates/dashboard/car_wash.html:82
 msgid "New car wash order"
 msgstr "Nova lavagem"
 
+#: templates/dashboard/car_wash.html:83
 msgid ""
 "For a car dropped off at the counter. Choose a table to put it on that "
 "table's bill, or leave it as walk-in (the bill is under the plate number)."
@@ -3314,33 +4452,42 @@ msgstr ""
 "Para um carro deixado no balcão. Escolha uma mesa para o pôr na conta dessa "
 "mesa, ou deixe sem mesa (a conta fica na matrícula)."
 
+#: templates/dashboard/car_wash.html:84 templates/dashboard/new_order.html:62
 msgid "Plate number"
 msgstr "Matrícula"
 
+#: templates/dashboard/car_wash.html:86
 msgid "No car wash packages yet"
 msgstr "Ainda não há pacotes de lavagem"
 
+#: templates/dashboard/car_wash.html:87 templates/dashboard/new_order.html:65
 msgid "Vehicle type"
 msgstr "Tipo de veículo"
 
+#: templates/dashboard/car_wash.html:90
 msgid "Walk-in (no table)"
 msgstr "Sem mesa"
 
+#: templates/dashboard/car_wash.html:91
 msgid "Customer name"
 msgstr "Nome do cliente"
 
+#: templates/dashboard/car_wash.html:92
 msgid "Add car wash"
 msgstr "Adicionar lavagem"
 
+#: templates/dashboard/car_wash.html:93
 msgid ""
 "Add a menu category with the service “Car wash” and your packages first."
 msgstr ""
 "Crie primeiro uma categoria do menu com o serviço “Lavagem de carros” e os "
 "seus pacotes."
 
+#: templates/dashboard/car_wash.html:98
 msgid "Walk-in car wash QR"
 msgstr "QR da lavagem (sem mesa)"
 
+#: templates/dashboard/car_wash.html:99
 msgid ""
 "Put this QR code at the wash bay or counter. It opens only the car wash "
 "menu; orders are billed under the plate number."
@@ -3348,28 +4495,36 @@ msgstr ""
 "Coloque este código QR na zona de lavagem ou no balcão. Abre só o menu de "
 "lavagem; os pedidos ficam na matrícula."
 
+#: templates/dashboard/car_wash.html:101
+#: templates/dashboard/table_detail.html:113
 msgid "Open the customer link"
 msgstr "Abrir o link do cliente"
 
+#: templates/dashboard/car_wash.html:105
 msgid "Make a new QR code? The printed one will STOP working."
 msgstr "Criar um novo código QR? O impresso deixa de FUNCIONAR."
 
+#: templates/dashboard/car_wash.html:105
 msgid "New code"
 msgstr "Novo código"
 
+#: templates/dashboard/car_wash.html:108
 msgid "Tickets print on the network receipt printer."
 msgstr "Os talões imprimem na impressora de rede."
 
+#: templates/dashboard/car_wash.html:108
 msgid "Keep this screen open: new car wash tickets print here automatically."
 msgstr ""
 "Mantenha este ecrã aberto: os talões de lavagem imprimem aqui "
 "automaticamente."
 
+#: templates/dashboard/car_wash.html:108
 msgid "Tip: switch on automatic tickets in Restaurant settings → Car wash."
 msgstr ""
 "Dica: ative os talões automáticos em Definições do restaurante → Lavagem de "
 "carros."
 
+#: templates/dashboard/cash_register.html:9
 msgid ""
 "Enter the change in the drawer before selling starts. At the end, count the "
 "drawer and compare it with what the system expects."
@@ -3377,125 +4532,182 @@ msgstr ""
 "Introduza o troco da gaveta antes de começar a vender. No fim, conte a "
 "gaveta e compare com o que o sistema espera."
 
+#: templates/dashboard/cash_register.html:16
 msgid "Start of day: change in the drawer"
 msgstr "Início do dia: troco na gaveta"
 
+#: templates/dashboard/cash_register.html:17
 msgid ""
 "Count the notes and coins you put in the drawer as change (the opening "
 "float)."
 msgstr "Conte as notas e moedas que pôs na gaveta como troco (fundo de caixa)."
 
+#: templates/dashboard/cash_register.html:19
 msgid "Change in the drawer"
 msgstr "Troco na gaveta"
 
+#: templates/dashboard/cash_register.html:21
 msgid "Open cash register"
 msgstr "Abrir a caixa"
 
+#: templates/dashboard/cash_register.html:24
 #, python-format
 msgid "Open since %(t)s · by %(name)s"
 msgstr "Aberta desde %(t)s · por %(name)s"
 
+#: templates/dashboard/cash_register.html:24
+#: templates/dashboard/table_detail.html:11
 #, python-format
 msgid "Open since %(t)s"
 msgstr "Aberta desde %(t)s"
 
+#: templates/dashboard/cash_register.html:26
+#: templates/dashboard/cash_register.html:37
+#: templates/dashboard/cash_register.html:83
+#: templates/dashboard/cash_register.html:88
 msgid "Opening change"
 msgstr "Troco inicial"
 
+#: templates/dashboard/cash_register.html:27
 #, python-format
 msgid "Cash sales (%(n)s payment)"
 msgid_plural "Cash sales (%(n)s payments)"
 msgstr[0] "Vendas em dinheiro (%(n)s pagamento)"
 msgstr[1] "Vendas em dinheiro (%(n)s pagamentos)"
 
+#: templates/dashboard/cash_register.html:28
 msgid "Cash in · out"
 msgstr "Entradas · saídas"
 
+#: templates/dashboard/cash_register.html:29
+#: templates/dashboard/cash_register.html:41
 msgid "Expected in the drawer"
 msgstr "Esperado na gaveta"
 
+#: templates/dashboard/cash_register.html:34
 msgid "How it adds up"
 msgstr "Como se calcula"
 
+#: templates/dashboard/cash_register.html:38
 msgid "Cash sales"
 msgstr "Vendas em dinheiro"
 
+#: templates/dashboard/cash_register.html:38
+#: templates/dashboard/order_detail.html:89
 #, python-format
 msgid "received %(got)s, change %(change)s"
 msgstr "recebido %(got)s, troco %(change)s"
 
+#: templates/dashboard/cash_register.html:44
 msgid "Other payments (not in the drawer)"
 msgstr "Outros pagamentos (não estão na gaveta)"
 
+#: templates/dashboard/cash_register.html:46
 msgid "None yet."
 msgstr "Ainda nenhum."
 
+#: templates/dashboard/cash_register.html:48
 msgid "Cash in / out"
 msgstr "Entradas / saídas de dinheiro"
 
+#: templates/dashboard/cash_register.html:52
 msgid "Cash in or out"
 msgstr "Entrada ou saída"
 
+#: templates/dashboard/cash_register.html:54
 msgid "Reason, e.g. bought ice"
 msgstr "Motivo, ex.: comprei gelo"
 
+#: templates/dashboard/cash_register.html:54
+#: templates/dashboard/settings.html:52 templates/dashboard/settings.html:57
 msgid "Reason"
 msgstr "Motivo"
 
+#: templates/dashboard/cash_register.html:55
+#: templates/dashboard/new_order.html:78
+#: templates/dashboard/table_detail.html:50
 msgid "Add"
 msgstr "Adicionar"
 
+#: templates/dashboard/cash_register.html:60
 msgid "Close the cash register with this count? This can't be undone."
 msgstr "Fechar a caixa com esta contagem? Não é possível anular."
 
+#: templates/dashboard/cash_register.html:62
 msgid "End of day: count the drawer"
 msgstr "Fim do dia: contar a gaveta"
 
+#: templates/dashboard/cash_register.html:63
 msgid "Count all the cash in the drawer, including the opening change."
 msgstr "Conte todo o dinheiro da gaveta, incluindo o troco inicial."
 
+#: templates/dashboard/cash_register.html:65
 msgid "Cash counted"
 msgstr "Dinheiro contado"
 
+#: templates/dashboard/cash_register.html:68
+#: templates/dashboard/cash_register.html:83
+#: templates/dashboard/cash_register.html:91
 msgid "Difference"
 msgstr "Diferença"
 
+#: templates/dashboard/cash_register.html:72
 msgid "e.g. $1 coin missing"
 msgstr "ex.: falta uma moeda de $1"
 
+#: templates/dashboard/cash_register.html:73
 msgid "Close & reconcile"
 msgstr "Fechar e conferir"
 
+#: templates/dashboard/cash_register.html:79
 msgid "Past sessions"
 msgstr "Sessões anteriores"
 
+#: templates/dashboard/cash_register.html:83
+#: templates/dashboard/settings.html:60
+#: templates/dashboard/table_detail.html:102
+#: templates/dashboard/table_detail.html:103
 msgid "Opened"
 msgstr "Aberta"
 
+#: templates/dashboard/cash_register.html:83
+#: templates/dashboard/cash_register.html:87
+#: templates/dashboard/table_detail.html:102
+#: templates/dashboard/table_detail.html:103
 msgid "Closed"
 msgstr "Fechada"
 
+#: templates/dashboard/cash_register.html:83
+#: templates/dashboard/cash_register.html:89
 msgid "Expected"
 msgstr "Esperado"
 
+#: templates/dashboard/cash_register.html:83
+#: templates/dashboard/cash_register.html:90
 msgid "Counted"
 msgstr "Contado"
 
+#: templates/dashboard/cash_register.html:92
 msgid "Report"
 msgstr "Relatório"
 
+#: templates/dashboard/cash_register.html:97
 msgid "No closed sessions yet."
 msgstr "Ainda não há sessões fechadas."
 
+#: templates/dashboard/cash_register.html:108
 msgid "Exact: the drawer matches."
 msgstr "Certo: a gaveta bate certo."
 
+#: templates/dashboard/cash_register.html:109
 msgid "Over: more cash than expected."
 msgstr "A mais: há mais dinheiro do que o esperado."
 
+#: templates/dashboard/cash_register.html:110
 msgid "Short: less cash than expected."
 msgstr "Em falta: há menos dinheiro do que o esperado."
 
+#: templates/dashboard/expenses.html:9
 msgid ""
 "Write down what you spend each day. Profit = revenue from completed orders − "
 "expenses."
@@ -3503,66 +4715,88 @@ msgstr ""
 "Registe o que gasta todos os dias. Lucro = receita dos pedidos concluídos − "
 "despesas."
 
+#: templates/dashboard/expenses.html:11 templates/dashboard/reports.html:13
 msgid "Export CSV"
 msgstr "Exportar CSV"
 
+#: templates/dashboard/expenses.html:18 templates/dashboard/expenses.html:29
 msgid "This week"
 msgstr "Esta semana"
 
+#: templates/dashboard/expenses.html:18 templates/dashboard/expenses.html:31
 msgid "This year"
 msgstr "Este ano"
 
+#: templates/dashboard/expenses.html:20 templates/dashboard/expenses.html:49
 msgid "Loss"
 msgstr "Prejuízo"
 
+#: templates/dashboard/expenses.html:20 templates/dashboard/expenses.html:49
+#: templates/dashboard/expenses.html:54 templates/dashboard/expenses.html:60
 msgid "Profit"
 msgstr "Lucro"
 
+#: templates/dashboard/expenses.html:21 templates/dashboard/expenses.html:48
+#: templates/dashboard/expenses.html:54 templates/dashboard/expenses.html:59
 msgid "Expenses"
 msgstr "Despesas"
 
+#: templates/dashboard/expenses.html:44 templates/dashboard/revenue.html:16
 #, python-format
 msgid "%(a)s – %(b)s"
 msgstr "%(a)s – %(b)s"
 
+#: templates/dashboard/expenses.html:50
 #, python-format
 msgid "Profit margin: %(m)s%% of revenue"
 msgstr "Margem de lucro: %(m)s%% da receita"
 
+#: templates/dashboard/expenses.html:65
 msgid "No sales or expenses in this period yet."
 msgstr "Ainda não há vendas nem despesas neste período."
 
+#: templates/dashboard/expenses.html:68
 msgid "Expenses by category"
 msgstr "Despesas por categoria"
 
+#: templates/dashboard/expenses.html:79
 msgid "Add an expense"
 msgstr "Adicionar despesa"
 
+#: templates/dashboard/expenses.html:81
 msgid "Save expense"
 msgstr "Guardar despesa"
 
+#: templates/dashboard/expenses.html:87
 msgid "Expenses in this period"
 msgstr "Despesas neste período"
 
+#: templates/dashboard/expenses.html:101
 msgid "Delete this expense?"
 msgstr "Eliminar esta despesa?"
 
+#: templates/dashboard/expenses.html:103 templates/dashboard/revenue.html:46
 msgid "Delete"
 msgstr "Eliminar"
 
+#: templates/dashboard/expenses.html:110
 msgid "No expenses in this period. Add your first one above."
 msgstr "Sem despesas neste período. Adicione a primeira acima."
 
+#: templates/dashboard/home.html:3
 msgid "Your restaurants"
 msgstr "Os seus restaurantes"
 
+#: templates/dashboard/home.html:8
 msgid "Choose a restaurant"
 msgstr "Escolha um restaurante"
 
+#: templates/dashboard/home.html:9
 #, python-format
 msgid "Signed in as %(name)s"
 msgstr "Sessão iniciada como %(name)s"
 
+#: templates/dashboard/home.html:20
 msgid ""
 "Your account is not linked to a restaurant yet. Ask the restaurant owner to "
 "add you as staff."
@@ -3570,25 +4804,31 @@ msgstr ""
 "A sua conta ainda não está ligada a um restaurante. Peça ao proprietário "
 "para o adicionar como funcionário."
 
+#: templates/dashboard/home.html:20
 #, python-format
 msgid "Or <a href=\"%(url)s\">create a restaurant</a> in the platform admin."
 msgstr ""
 "Ou <a href=\"%(url)s\">crie um restaurante</a> na administração da "
 "plataforma."
 
+#: templates/dashboard/home.html:22
 msgid "Open the platform console"
 msgstr "Abrir a consola da plataforma"
 
+#: templates/dashboard/item_form.html:3 templates/dashboard/item_form.html:7
 msgid "Add a dish"
 msgstr "Adicionar prato"
 
+#: templates/dashboard/item_form.html:7
 #, python-format
 msgid "Edit “%(name)s”"
 msgstr "Editar “%(name)s”"
 
+#: templates/dashboard/item_form.html:13
 msgid "Dish details"
 msgstr "Detalhes do prato"
 
+#: templates/dashboard/item_form.html:16
 msgid ""
 "Images: JPEG, PNG or WebP up to 5 MB. They're automatically resized and "
 "converted to WebP for fast loading."
@@ -3596,9 +4836,11 @@ msgstr ""
 "Imagens: JPEG, PNG ou WebP até 5 MB. São redimensionadas e convertidas para "
 "WebP automaticamente para carregarem depressa."
 
+#: templates/dashboard/item_form.html:20
 msgid "Add-ons &amp; extras"
 msgstr "Extras e complementos"
 
+#: templates/dashboard/item_form.html:21
 msgid ""
 "Optional extras customers can tick, e.g. “Fried Egg +$0.50”. Use price 0 for "
 "free options like “No onions”."
@@ -3606,43 +4848,56 @@ msgstr ""
 "Extras opcionais que os clientes podem escolher, ex.: “Ovo estrelado +"
 "$0.50”. Use preço 0 para opções grátis como “Sem cebola”."
 
+#: templates/dashboard/item_form.html:34
 msgid "Translations"
 msgstr "Traduções"
 
+#: templates/dashboard/item_form.html:42
 msgid "Need more rows? Save, and two new empty rows will appear."
 msgstr "Precisa de mais linhas? Guarde e aparecerão duas linhas vazias novas."
 
+#: templates/dashboard/item_form.html:46
 msgid "Save dish"
 msgstr "Guardar prato"
 
+#: templates/dashboard/item_form.html:52
 #, python-format
 msgid "Delete %(name)s? Past orders are kept."
 msgstr "Eliminar %(name)s? Os pedidos anteriores são mantidos."
 
+#: templates/dashboard/item_form.html:53
 msgid "Delete this dish"
 msgstr "Eliminar este prato"
 
+#: templates/dashboard/kitchen.html:10
 msgid "Loading…"
 msgstr "A carregar…"
 
+#: templates/dashboard/kitchen.html:13
 msgid "Enable sound"
 msgstr "Ativar som"
 
+#: templates/dashboard/kitchen.html:14
 msgid "Full screen"
 msgstr "Ecrã inteiro"
 
+#: templates/dashboard/kitchen.html:18
 msgid "Columns"
 msgstr "Colunas"
 
+#: templates/dashboard/kitchen.html:26
 msgid "NEW ORDERS"
 msgstr "NOVOS PEDIDOS"
 
+#: templates/dashboard/kitchen.html:30
 msgid "PREPARING"
 msgstr "EM PREPARAÇÃO"
 
+#: templates/dashboard/kitchen.html:34
 msgid "READY"
 msgstr "PRONTO"
 
+#: templates/dashboard/menu.html:9
 msgid ""
 "Tap the switch to mark a dish <strong>Sold out</strong>. Customers' menus "
 "update immediately."
@@ -3650,43 +4905,55 @@ msgstr ""
 "Toque no interruptor para marcar um prato como <strong>Esgotado</strong>. Os "
 "menus dos clientes atualizam-se de imediato."
 
+#: templates/dashboard/menu.html:14
 msgid "Add dish"
 msgstr "Adicionar prato"
 
+#: templates/dashboard/menu.html:22
 msgid "Hidden"
 msgstr "Oculta"
 
+#: templates/dashboard/menu.html:25 templates/dashboard/reports.html:71
 msgid "Dish"
 msgstr "Prato"
 
+#: templates/dashboard/menu.html:26
 msgid "Edit category"
 msgstr "Editar categoria"
 
+#: templates/dashboard/menu.html:27
 #, python-format
 msgid "Delete category %(name)s?"
 msgstr "Eliminar a categoria %(name)s?"
 
+#: templates/dashboard/menu.html:27
 msgid "Delete category"
 msgstr "Eliminar categoria"
 
+#: templates/dashboard/menu.html:38
 #, python-format
 msgid "%(n)s add-on"
 msgid_plural "%(n)s add-ons"
 msgstr[0] "%(n)s extra"
 msgstr[1] "%(n)s extras"
 
+#: templates/dashboard/menu.html:44 templates/dashboard/menu.html:65
 msgid "Sold Out"
 msgstr "Esgotado"
 
+#: templates/dashboard/menu.html:47
 msgid "Edit dish"
 msgstr "Editar prato"
 
+#: templates/dashboard/menu.html:52
 msgid "No dishes in this category yet."
 msgstr "Ainda não há pratos nesta categoria."
 
+#: templates/dashboard/menu.html:56
 msgid "Your menu is empty."
 msgstr "O seu menu está vazio."
 
+#: templates/dashboard/menu.html:56
 #, python-format
 msgid ""
 "<a href=\"%(url)s\">Create your first category</a> (e.g. Breakfast, Main "
@@ -3695,6 +4962,7 @@ msgstr ""
 "<a href=\"%(url)s\">Crie a primeira categoria</a> (ex.: Pequeno-almoço, "
 "Pratos principais, Bebidas)."
 
+#: templates/dashboard/new_order.html:10
 msgid ""
 "For guests without a smartphone. Choose the table and guest, tap dishes (and "
 "car wash packages), then send: everything goes on one bill."
@@ -3702,195 +4970,273 @@ msgstr ""
 "Para clientes sem smartphone. Escolha a mesa e o cliente, toque nos pratos "
 "(e pacotes de lavagem) e envie: fica tudo numa só conta."
 
+#: templates/dashboard/new_order.html:23
 msgid "Guest"
 msgstr "Cliente"
 
+#: templates/dashboard/new_order.html:24
 msgid "New guest"
 msgstr "Novo cliente"
 
+#: templates/dashboard/new_order.html:26
 msgid "Name (optional)"
 msgstr "Nome (opcional)"
 
+#: templates/dashboard/new_order.html:27
 msgid "e.g. Maria"
 msgstr "ex.: Maria"
 
+#: templates/dashboard/new_order.html:32
 msgid "Search dishes…"
 msgstr "Procurar pratos…"
 
+#: templates/dashboard/new_order.html:32
 msgid "Search dishes"
 msgstr "Procurar pratos"
 
+#: templates/dashboard/new_order.html:38
 msgid "Tap dishes to add them."
 msgstr "Toque nos pratos para os adicionar."
 
+#: templates/dashboard/new_order.html:41
+#: templates/dashboard/order_detail.html:44
+#: templates/dashboard/quotations/edit.html:90
+#: templates/dashboard/quotations/print.html:128
 msgid "Subtotal"
 msgstr "Subtotal"
 
+#: templates/dashboard/new_order.html:42
+#: templates/dashboard/order_detail.html:45
 msgid "Service charge"
 msgstr "Taxa de serviço"
 
+#: templates/dashboard/new_order.html:43
+#: templates/dashboard/order_detail.html:46
 msgid "included"
 msgstr "incluído"
 
+#: templates/dashboard/new_order.html:46
 msgid "Note for the kitchen (optional)"
 msgstr "Nota para a cozinha (opcional)"
 
+#: templates/dashboard/new_order.html:48
 msgid "Send to kitchen"
 msgstr "Enviar para a cozinha"
 
+#: templates/dashboard/new_order.html:51
 msgid "Print one bill for this order"
 msgstr "Imprimir uma conta para este pedido"
 
+#: templates/dashboard/new_order.html:64
 msgid "Enter the plate number."
 msgstr "Introduza a matrícula."
 
+#: templates/dashboard/new_order.html:69
+#: templates/dashboard/order_detail.html:71 templates/dashboard/revenue.html:35
+#: templates/dashboard/revenue.html:41
 msgid "Note"
 msgstr "Nota"
 
+#: templates/dashboard/new_order.html:70
 msgid "e.g. no spicy"
 msgstr "ex.: sem picante"
 
+#: templates/dashboard/new_order.html:72
 msgid "Less"
 msgstr "Menos"
 
+#: templates/dashboard/new_order.html:74
 msgid "More"
 msgstr "Mais"
 
+#: templates/dashboard/notifications.html:8
 msgid "Mark all as read"
 msgstr "Marcar tudo como lido"
 
+#: templates/dashboard/notifications.html:18
 #, python-format
 msgid "%(t)s ago"
 msgstr "há %(t)s"
 
+#: templates/dashboard/notifications.html:22
 msgid "No notifications."
 msgstr "Sem notificações."
 
+#: templates/dashboard/notifications.html:27 templates/dashboard/orders.html:32
 msgid "Newer"
 msgstr "Mais recentes"
 
+#: templates/dashboard/notifications.html:28 templates/dashboard/orders.html:34
 msgid "Older"
 msgstr "Mais antigos"
 
+#: templates/dashboard/order_detail.html:3
+#: templates/dashboard/order_detail.html:9
 #, python-format
 msgid "Order #%(n)s"
 msgstr "Pedido n.º %(n)s"
 
+#: templates/dashboard/order_detail.html:10
 #, python-format
 msgid "Table %(t)s"
 msgstr "Mesa %(t)s"
 
+#: templates/dashboard/order_detail.html:20
 msgid "Ordered via"
 msgstr "Pedido através de"
 
+#: templates/dashboard/order_detail.html:20
 msgid "Waiter"
 msgstr "Empregado"
 
+#: templates/dashboard/order_detail.html:22
 msgid "Est. prep"
 msgstr "Prep. estimada"
 
+#: templates/dashboard/order_detail.html:29
 msgid "Item"
 msgstr "Artigo"
 
+#: templates/dashboard/order_detail.html:29
+#: templates/dashboard/quotations/edit.html:66
+#: templates/dashboard/quotations/edit.html:73
+#: templates/dashboard/quotations/edit.html:122
+#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/reports.html:71
 msgid "Qty"
 msgstr "Qtd."
 
+#: templates/dashboard/order_detail.html:29
+#: templates/dashboard/quotations/edit.html:66
+#: templates/dashboard/quotations/edit.html:72
+#: templates/dashboard/quotations/edit.html:121
+#: templates/dashboard/quotations/print.html:120
 msgid "Unit"
 msgstr "Unid."
 
+#: templates/dashboard/order_detail.html:56
 msgid "History"
 msgstr "Histórico"
 
+#: templates/dashboard/order_detail.html:68
 msgid "Update status"
 msgstr "Atualizar estado"
 
+#: templates/dashboard/order_detail.html:71
 msgid "Note (optional, e.g. cancel reason)"
 msgstr "Nota (opcional, ex.: motivo do cancelamento)"
 
+#: templates/dashboard/order_detail.html:76
 msgid "Cancel this order?"
 msgstr "Cancelar este pedido?"
 
+#: templates/dashboard/order_detail.html:86
 msgid "Receipt"
 msgstr "Recibo"
 
+#: templates/dashboard/order_detail.html:86
 msgid "Bill"
 msgstr "Conta"
 
+#: templates/dashboard/order_detail.html:87
 #, python-format
 msgid "Customer chose: %(m)s"
 msgstr "O cliente escolheu: %(m)s"
 
+#: templates/dashboard/order_detail.html:89
 #, python-format
 msgid "ref %(ref)s"
 msgstr "ref. %(ref)s"
 
+#: templates/dashboard/order_detail.html:92
 #, python-format
 msgid "Paid so far %(paid)s · <strong>Still due %(due)s</strong>"
 msgstr "Pago até agora %(paid)s · <strong>Falta pagar %(due)s</strong>"
 
+#: templates/dashboard/order_detail.html:94
 #, python-format
 msgid "Ordered together (%(n)s): paid as one sum, change given once."
 msgstr "Pedidos juntos (%(n)s): pagos como um só valor, troco dado uma vez."
 
+#: templates/dashboard/order_detail.html:108
 msgid "Other method or partial payment"
 msgstr "Outro método ou pagamento parcial"
 
+#: templates/dashboard/order_detail.html:112
 msgid "Record payment"
 msgstr "Registar pagamento"
 
+#: templates/dashboard/orders.html:9
 msgid "Every order from QR codes and waiters."
 msgstr "Todos os pedidos dos códigos QR e dos empregados."
 
+#: templates/dashboard/orders.html:14
+#: templates/dashboard/quotations/list.html:14
 msgid "Filter by status"
 msgstr "Filtrar por estado"
 
+#: templates/dashboard/orders.html:21
 msgid "Order # or name"
 msgstr "N.º do pedido ou nome"
 
+#: templates/dashboard/orders.html:21
 msgid "Order number or customer name"
 msgstr "Número do pedido ou nome do cliente"
 
+#: templates/dashboard/orders.html:33
 #, python-format
 msgid "Page %(n)s of %(total)s"
 msgstr "Página %(n)s de %(total)s"
 
+#: templates/dashboard/overview.html:8
 #, python-format
 msgid "Good to see you, %(name)s"
 msgstr "Bom vê-lo, %(name)s"
 
+#: templates/dashboard/overview.html:8
 msgid "Good to see you"
 msgstr "Bom vê-lo"
 
+#: templates/dashboard/overview.html:9
 #, python-format
 msgid "Today at %(name)s"
 msgstr "Hoje em %(name)s"
 
+#: templates/dashboard/overview.html:14
 msgid "Ordering is switched off: customers can view the menu but can't order."
 msgstr ""
 "Os pedidos estão desativados: os clientes veem o menu mas não podem pedir."
 
+#: templates/dashboard/overview.html:14
 msgid "Turn it back on"
 msgstr "Voltar a ativar"
 
+#: templates/dashboard/overview.html:18
 msgid "Before selling starts, enter the change in the cash drawer."
 msgstr "Antes de começar a vender, registe o troco na gaveta."
 
+#: templates/dashboard/overview.html:18
 msgid "Open the cash register"
 msgstr "Abrir a caixa"
 
+#: templates/dashboard/overview.html:24
 msgid "Tables &amp; bills"
 msgstr "Mesas e contas"
 
+#: templates/dashboard/overview.html:25 templates/dashboard/overview.html:53
 msgid "Sold out items"
 msgstr "Artigos esgotados"
 
+#: templates/dashboard/overview.html:31
 msgid "Get your restaurant ready"
 msgstr "Prepare o seu restaurante"
 
+#: templates/dashboard/overview.html:32
 #, python-format
 msgid "%(done)s of %(total)s done"
 msgstr "%(done)s de %(total)s feitos"
 
+#: templates/dashboard/overview.html:43
 #, python-format
 msgid ""
 "Tip: open <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener\">your menu</"
@@ -3899,27 +5245,37 @@ msgstr ""
 "Dica: abra <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener\">o seu "
 "menu</a> no telemóvel para ver o que os clientes vão ver."
 
+#: templates/dashboard/overview.html:48
 msgid "Orders today"
 msgstr "Pedidos hoje"
 
+#: templates/dashboard/overview.html:49
 msgid "Revenue today"
 msgstr "Receita hoje"
 
+#: templates/dashboard/overview.html:50
 msgid "New · cooking"
 msgstr "Novos · a cozinhar"
 
+#: templates/dashboard/overview.html:51
 msgid "Ready to serve"
 msgstr "Prontos a servir"
 
+#: templates/dashboard/overview.html:52
 msgid "Occupied tables"
 msgstr "Mesas ocupadas"
 
+#: templates/dashboard/overview.html:58
 msgid "Latest orders"
 msgstr "Últimos pedidos"
 
+#: templates/dashboard/quotations/edit.html:3
+#: templates/dashboard/quotations/edit.html:9
+#: templates/dashboard/quotations/list.html:11
 msgid "New quotation"
 msgstr "Nova cotação"
 
+#: templates/dashboard/quotations/edit.html:10
 msgid ""
 "Add dishes from your menu or type your own lines (delivery, service staff, "
 "equipment…)."
@@ -3927,66 +5283,118 @@ msgstr ""
 "Adicione pratos do menu ou escreva as suas linhas (entrega, pessoal de "
 "serviço, equipamento…)."
 
+#: templates/dashboard/quotations/edit.html:14
 msgid "Print / PDF"
 msgstr "Imprimir / PDF"
 
+#: templates/dashboard/quotations/edit.html:15
 msgid "Duplicate"
 msgstr "Duplicar"
 
+#: templates/dashboard/quotations/edit.html:26
+#: templates/dashboard/quotations/list.html:26
+#: templates/dashboard/quotations/list.html:30
 msgid "Client"
 msgstr "Cliente"
 
+#: templates/dashboard/quotations/edit.html:36
+#: templates/dashboard/quotations/print.html:6
+#: templates/dashboard/quotations/print.html:180
 msgid "Quotation"
 msgstr "Cotação"
 
+#: templates/dashboard/quotations/edit.html:53
 msgid "Dish from your menu"
 msgstr "Prato do menu"
 
+#: templates/dashboard/quotations/edit.html:54
 msgid "Choose a dish from your menu…"
 msgstr "Escolha um prato do menu…"
 
+#: templates/dashboard/quotations/edit.html:59
 msgid "Add from menu"
 msgstr "Adicionar do menu"
 
+#: templates/dashboard/quotations/edit.html:60
+msgid ""
+"Add every dish on your menu as a line? You can change or remove each line "
+"afterwards."
+msgstr ""
+"Adicionar todos os pratos do menu como linhas? Depois pode alterar ou "
+"remover cada linha."
+
+#: templates/dashboard/quotations/edit.html:60
+msgid "Add all menu items"
+msgstr "Adicionar todo o menu"
+
+#: templates/dashboard/quotations/edit.html:61
 msgid "Add custom line"
 msgstr "Adicionar linha própria"
 
+#: templates/dashboard/quotations/edit.html:66
+#: templates/dashboard/quotations/edit.html:74
+#: templates/dashboard/quotations/edit.html:123
+#: templates/dashboard/quotations/print.html:120
 msgid "Unit price"
 msgstr "Preço unitário"
 
+#: templates/dashboard/quotations/edit.html:76
+#: templates/dashboard/quotations/edit.html:125
 msgid "Remove line"
 msgstr "Remover linha"
 
+#: templates/dashboard/quotations/edit.html:82
+msgid "Remove all lines from this quotation?"
+msgstr "Remover todas as linhas desta cotação?"
+
+#: templates/dashboard/quotations/edit.html:82
+msgid "Remove all lines"
+msgstr "Remover todas as linhas"
+
+#: templates/dashboard/quotations/edit.html:83
 msgid "No lines yet. Add dishes from your menu or a custom line."
 msgstr "Ainda sem linhas. Adicione pratos do menu ou uma linha própria."
 
+#: templates/dashboard/quotations/edit.html:85
+#: templates/dashboard/quotations/edit.html:136
 msgid "pax"
 msgstr "pax"
 
+#: templates/dashboard/quotations/edit.html:85
 msgid "plate"
 msgstr "prato"
 
+#: templates/dashboard/quotations/edit.html:85
 msgid "box"
 msgstr "caixa"
 
+#: templates/dashboard/quotations/edit.html:86
 msgid "pcs"
 msgstr "unid."
 
+#: templates/dashboard/quotations/edit.html:86
 msgid "set"
 msgstr "conjunto"
 
+#: templates/dashboard/quotations/edit.html:86
 msgid "day"
 msgstr "dia"
 
+#: templates/dashboard/quotations/edit.html:86
 msgid "trip"
 msgstr "viagem"
 
+#: templates/dashboard/quotations/edit.html:93
+#: templates/dashboard/quotations/print.html:130
 msgid "VAT"
 msgstr "IVA"
 
+#: templates/dashboard/quotations/edit.html:94
+#: templates/dashboard/quotations/print.html:131
 msgid "Grand total"
 msgstr "Total geral"
 
+#: templates/dashboard/quotations/edit.html:101
 #, python-format
 msgid ""
 "Printed at the bottom, e.g. 50%% deposit on confirmation, payment within 14 "
@@ -3996,99 +5404,232 @@ msgstr ""
 "Impresso no fim, ex.: 50%% de sinal na confirmação, pagamento em 14 dias, "
 "dados bancários. As novas cotações começam com as condições da última."
 
+#: templates/dashboard/quotations/edit.html:106
 msgid "Save quotation"
 msgstr "Guardar cotação"
 
+#: templates/dashboard/quotations/edit.html:112
 #, python-format
 msgid "Delete quotation %(n)s?"
 msgstr "Eliminar a cotação %(n)s?"
 
+#: templates/dashboard/quotations/edit.html:113
 msgid "Delete this quotation"
 msgstr "Eliminar esta cotação"
 
+#: templates/dashboard/quotations/list.html:9
 msgid ""
 "Price offers for catering, events and procurement bids. Print or save as PDF."
 msgstr ""
 "Propostas de preço para catering, eventos e concursos. Imprima ou guarde em "
 "PDF."
 
+#: templates/dashboard/quotations/list.html:26
+#: templates/dashboard/quotations/print.html:93
 msgid "Number"
 msgstr "Número"
 
+#: templates/dashboard/quotations/list.html:35
+#: templates/dashboard/table_detail.html:117 templates/dashboard/tables.html:30
 msgid "Print"
 msgstr "Imprimir"
 
+#: templates/dashboard/quotations/list.html:41
 msgid "No quotations yet."
 msgstr "Ainda não há cotações."
 
+#: templates/dashboard/quotations/list.html:41
 msgid "Create your first quotation"
 msgstr "Criar a primeira cotação"
 
+#: templates/dashboard/quotations/print.html:74
 msgid "Print / save as PDF"
 msgstr "Imprimir / guardar em PDF"
 
+#: templates/dashboard/quotations/print.html:75
 msgid "Close"
 msgstr "Fechar"
 
+#: templates/dashboard/quotations/print.html:76
+#, fuzzy
+#| msgid "Add many tables"
+msgid "Add company profile"
+msgstr "Adicionar várias mesas"
+
+#: templates/dashboard/quotations/print.html:77
+msgid "Add menu pages with photos"
+msgstr "Juntar páginas do menu com fotos"
+
+#: templates/dashboard/quotations/print.html:91
 msgid "QUOTATION"
 msgstr "COTAÇÃO"
 
+#: templates/dashboard/quotations/print.html:103
 msgctxt "recipient"
 msgid "To"
 msgstr "Para"
 
+#: templates/dashboard/quotations/print.html:105
 msgid "Attn."
 msgstr "A/C"
 
+#: templates/dashboard/quotations/print.html:111
 msgid "Details"
 msgstr "Detalhes"
 
+#: templates/dashboard/quotations/print.html:120
 msgid "No."
 msgstr "N.º"
 
+#: templates/dashboard/quotations/print.html:129
 msgid "Discount"
 msgstr "Desconto"
 
+#: templates/dashboard/quotations/print.html:134
 msgid "Amount in words"
 msgstr "Valor por extenso"
 
+#: templates/dashboard/quotations/print.html:136
 msgid "Terms & conditions"
 msgstr "Termos e condições"
 
+#: templates/dashboard/quotations/print.html:139
 msgid "For"
 msgstr "Por"
 
+#: templates/dashboard/quotations/print.html:139
 msgid "Name, signature & stamp"
 msgstr "Nome, assinatura e carimbo"
 
+#: templates/dashboard/quotations/print.html:140
 msgid "Accepted by the client"
 msgstr "Aceite pelo cliente"
 
+#: templates/dashboard/quotations/print.html:140
 msgid "Name, signature, stamp & date"
 msgstr "Nome, assinatura, carimbo e data"
 
+#: templates/dashboard/quotations/print.html:160
+#, fuzzy
+#| msgid "8. Contact"
+msgid "Contact"
+msgstr "8. Contacto"
+
+#: templates/dashboard/quotations/print.html:166
+msgid "Registration no."
+msgstr "N.º de registo"
+
+#: templates/dashboard/quotations/profile.html:10
+msgid "Write it once: it is printed as its own page in every quotation, after the prices and before the menu pages."
+msgstr "Escreva-o uma vez: é impresso numa página própria em todas as cotações, depois dos preços e antes das páginas do menu."
+
+#: templates/dashboard/quotations/profile.html:17
+#, fuzzy
+#| msgid "Complete your business profile"
+msgid "About your business"
+msgstr "Complete o perfil da sua empresa"
+
+#: templates/dashboard/quotations/profile.html:18
+msgid "Tips: leave an empty line between sections. A line starting with ## (or a short line ending with :) becomes a heading; lines starting with - become a list. Your logo, cover photo, address, phone, email and opening hours are added automatically."
+msgstr "Dicas: deixe uma linha vazia entre secções. Uma linha que começa com ## (ou uma linha curta que termina com :) torna-se um título; linhas que começam com - tornam-se uma lista. O logótipo, a foto de capa, a morada, o telefone, o email e o horário são adicionados automaticamente."
+
+#: templates/dashboard/quotations/profile.html:24
+msgid "Replace the text with the example? You can edit it afterwards."
+msgstr "Substituir o texto pelo exemplo? Pode editá-lo depois."
+
+#: templates/dashboard/quotations/profile.html:24
+msgid "Start from an example"
+msgstr "Começar com um exemplo"
+
+#: templates/dashboard/quotations/profile.html:28
+msgid "Save company profile"
+msgstr "Guardar perfil da empresa"
+
+#: templates/dashboard/quotations/profile.html:33
+#, python-format
+msgid "%(name)s is a restaurant and catering service. We cook fresh local and international food every day and deliver it on time, from small meetings to large events."
+msgstr "%(name)s é um restaurante e serviço de catering. Cozinhamos comida fresca, local e internacional, todos os dias e entregamos a horas, desde pequenas reuniões a grandes eventos."
+
+#: templates/dashboard/quotations/profile.html:35
+#, fuzzy
+#| msgid "Terms of service"
+msgid "Our services"
+msgstr "Termos de serviço"
+
+#: templates/dashboard/quotations/profile.html:36
+msgid "Lunch and dinner catering for offices, workshops and trainings"
+msgstr "Catering de almoço e jantar para escritórios, workshops e formações"
+
+#: templates/dashboard/quotations/profile.html:37
+msgid "Coffee breaks and snack boxes"
+msgstr "Coffee breaks e caixas de lanche"
+
+#: templates/dashboard/quotations/profile.html:38
+msgid "Weddings, parties and private events"
+msgstr "Casamentos, festas e eventos privados"
+
+#: templates/dashboard/quotations/profile.html:39
+msgid "Delivery, setup, serving staff and equipment"
+msgstr "Entrega, montagem, pessoal de serviço e equipamento"
+
+#: templates/dashboard/quotations/profile.html:41
+msgid "Why choose us"
+msgstr "Porquê escolher-nos"
+
+#: templates/dashboard/quotations/profile.html:42
+msgid "Fresh ingredients bought locally every day"
+msgstr "Ingredientes frescos comprados localmente todos os dias"
+
+#: templates/dashboard/quotations/profile.html:43
+msgid "Clean kitchen and trained staff"
+msgstr "Cozinha limpa e pessoal formado"
+
+#: templates/dashboard/quotations/profile.html:44
+msgid "Menus adapted to your budget and number of guests"
+msgstr "Menus adaptados ao seu orçamento e número de convidados"
+
+#: templates/dashboard/quotations/profile.html:45
+msgid "Experience with government offices, NGOs and companies"
+msgstr "Experiência com serviços do governo, ONG e empresas"
+
+#: templates/dashboard/quotations/profile.html:47
+msgid "Our clients"
+msgstr "Os nossos clientes"
+
+#: templates/dashboard/quotations/profile.html:48
+msgid "[List some clients or events you have served.]"
+msgstr "[Indique alguns clientes ou eventos que já serviu.]"
+
+#: templates/dashboard/reports.html:17 templates/dashboard/revenue.html:26
 msgid "From"
 msgstr "De"
 
+#: templates/dashboard/reports.html:18 templates/dashboard/revenue.html:27
 msgid "To"
 msgstr "Até"
 
+#: templates/dashboard/reports.html:28
 msgid "VAT collected"
 msgstr "IVA cobrado"
 
+#: templates/dashboard/reports.html:44
 #, python-format
 msgid "Best sellers · %(name)s"
 msgstr "Mais vendidos · %(name)s"
 
+#: templates/dashboard/reports.html:46 templates/dashboard/reports.html:75
 msgid "No data yet."
 msgstr "Ainda não há dados."
 
+#: templates/dashboard/reports.html:67
 msgid "Best sellers"
 msgstr "Mais vendidos"
 
+#: templates/dashboard/reports.html:72
 msgid "Sold"
 msgstr "Vendidos"
 
+#: templates/dashboard/revenue.html:9
 #, python-format
 msgid ""
 "%(name)s only. Record sales that weren't entered as orders, e.g. walk-in "
@@ -4097,30 +5638,40 @@ msgstr ""
 "Apenas %(name)s. Registe vendas que não foram feitas como pedidos, ex.: "
 "vendas em dinheiro ao balcão. Os pedidos são contados automaticamente."
 
+#: templates/dashboard/revenue.html:14
 msgid "Today's revenue"
 msgstr "Receita de hoje"
 
+#: templates/dashboard/revenue.html:23
 msgid "Recorded entries"
 msgstr "Registos"
 
+#: templates/dashboard/revenue.html:28 templates/dashboard/revenue.html:35
+#: templates/dashboard/revenue.html:39
 msgid "Source"
 msgstr "Origem"
 
+#: templates/dashboard/revenue.html:44
 msgid "Delete this entry?"
 msgstr "Apagar este registo?"
 
+#: templates/dashboard/revenue.html:49
 msgid "Total recorded"
 msgstr "Total registado"
 
+#: templates/dashboard/revenue.html:52
 msgid "No recorded entries for these dates."
 msgstr "Sem registos para estas datas."
 
+#: templates/dashboard/revenue.html:59 templates/dashboard/revenue.html:65
 msgid "Record revenue"
 msgstr "Registar receita"
 
+#: templates/dashboard/revenue.html:66
 msgid "This branch is deactivated."
 msgstr "Esta filial está desativada."
 
+#: templates/dashboard/revenue.html:66
 msgid ""
 "This branch is waiting for approval by the platform team. It can record "
 "revenue once approved."
@@ -4128,18 +5679,23 @@ msgstr ""
 "Esta filial aguarda aprovação da equipa da plataforma. Pode registar receita "
 "depois de aprovada."
 
+#: templates/dashboard/revenue.html:66
 msgid "This branch is not active, so it can't record revenue."
 msgstr "Esta filial não está ativa, por isso não pode registar receita."
 
+#: templates/dashboard/settings.html:3 templates/dashboard/settings.html:8
 msgid "Restaurant settings"
 msgstr "Definições do restaurante"
 
+#: templates/dashboard/settings.html:9
 msgid "Public menu:"
 msgstr "Menu público:"
 
+#: templates/dashboard/settings.html:23
 msgid "Cover"
 msgstr "Capa"
 
+#: templates/dashboard/settings.html:30
 msgid ""
 "Plug the drawer into the printer's RJ11 “DK” port. To find the printer's IP, "
 "hold FEED while switching it on to print a self-test page."
@@ -4148,64 +5704,82 @@ msgstr ""
 "impressora, mantenha FEED premido ao ligá-la para imprimir uma página de "
 "teste."
 
+#: templates/dashboard/settings.html:31
 msgid "Step-by-step setup guide"
 msgstr "Guia de configuração passo a passo"
 
+#: templates/dashboard/settings.html:36
 msgid "Save settings"
 msgstr "Guardar definições"
 
+#: templates/dashboard/settings.html:42
 msgid "Cash drawer test &amp; log"
 msgstr "Teste e registo da gaveta"
 
+#: templates/dashboard/settings.html:45
 msgid "Test drawer"
 msgstr "Testar gaveta"
 
+#: templates/dashboard/settings.html:46
 msgid "Print test slip"
 msgstr "Imprimir talão de teste"
 
+#: templates/dashboard/settings.html:52 templates/dashboard/settings.html:58
 msgid "By"
 msgstr "Por"
 
+#: templates/dashboard/settings.html:60
 msgid "Slip printed"
 msgstr "Talão impresso"
 
+#: templates/dashboard/settings.html:67
 msgid "No drawer openings yet."
 msgstr "A gaveta ainda não foi aberta."
 
+#: templates/dashboard/staff.html:9
 msgid "Accounts for your team. Each person signs in with their own username."
 msgstr ""
 "Contas para a sua equipa. Cada pessoa inicia sessão com o seu próprio nome "
 "de utilizador."
 
+#: templates/dashboard/staff.html:20
 msgid "you"
 msgstr "você"
 
+#: templates/dashboard/staff.html:30
 msgid "What each role can do"
 msgstr "O que cada função pode fazer"
 
+#: templates/dashboard/staff.html:32
 msgid "everything, including staff accounts."
 msgstr "tudo, incluindo as contas dos funcionários."
 
+#: templates/dashboard/staff.html:33
 msgid ""
 "menu, tables &amp; QR codes, restaurant settings, orders, payments, reports."
 msgstr ""
 "menu, mesas e códigos QR, definições do restaurante, pedidos, pagamentos, "
 "relatórios."
 
+#: templates/dashboard/staff.html:34
 msgid "kitchen queue, order status, mark dishes sold out."
 msgstr "fila da cozinha, estado dos pedidos, marcar pratos como esgotados."
 
+#: templates/dashboard/staff.html:35
 msgid "take orders, kitchen queue, cancel orders, payments, free tables."
 msgstr ""
 "registar pedidos, fila da cozinha, cancelar pedidos, pagamentos, libertar "
 "mesas."
 
+#: templates/dashboard/staff.html:41
 msgid "Add staff member"
 msgstr "Adicionar funcionário"
 
+#: templates/dashboard/staff.html:48
 msgid "From another branch"
 msgstr "De outra filial"
 
+#: templates/dashboard/staff.html:49
 msgid ""
 "Someone who already works at one of your other branches can use the same "
 "login here."
@@ -4213,59 +5787,76 @@ msgstr ""
 "Quem já trabalha numa das suas outras filiais pode usar aqui o mesmo início "
 "de sessão."
 
+#: templates/dashboard/staff.html:51
 msgid "Add to this branch"
 msgstr "Adicionar a esta filial"
 
+#: templates/dashboard/table_detail.html:10 templates/dashboard/tables.html:24
 msgid "Occupied"
 msgstr "Ocupada"
 
+#: templates/dashboard/table_detail.html:10 templates/dashboard/tables.html:24
 msgctxt "table"
 msgid "Free"
 msgstr "Livre"
 
+#: templates/dashboard/table_detail.html:13
 msgid "Add order"
 msgstr "Adicionar pedido"
 
+#: templates/dashboard/table_detail.html:19
 msgid "Current bill"
 msgstr "Conta atual"
 
+#: templates/dashboard/table_detail.html:21
 #, python-format
 msgid "Print bill · Table %(n)s"
 msgstr "Imprimir conta · Mesa %(n)s"
 
+#: templates/dashboard/table_detail.html:21
 msgid "Print bill"
 msgstr "Imprimir conta"
 
+#: templates/dashboard/table_detail.html:24
 msgid "Free this table? Everyone who scanned it must scan again to order."
 msgstr ""
 "Libertar esta mesa? Quem a leu terá de ler o código outra vez para pedir."
 
+#: templates/dashboard/table_detail.html:25
 msgid "Free table"
 msgstr "Libertar mesa"
 
+#: templates/dashboard/table_detail.html:33
 msgid "Unpaid at this table"
 msgstr "Por pagar nesta mesa"
 
+#: templates/dashboard/table_detail.html:35
 #, python-format
 msgid "Table %(n)s · whole bill"
 msgstr "Mesa %(n)s · conta inteira"
 
+#: templates/dashboard/table_detail.html:37
 msgid "Whole table paid"
 msgstr "Mesa inteira paga"
 
+#: templates/dashboard/table_detail.html:38
 msgid "Paid &amp; free table"
 msgstr "Pago e libertar mesa"
 
+#: templates/dashboard/table_detail.html:42
 msgid "Everything at this table is paid."
 msgstr "Tudo nesta mesa está pago."
 
+#: templates/dashboard/table_detail.html:53
 #, python-format
 msgid "Table %(n)s · %(guest)s"
 msgstr "Mesa %(n)s · %(guest)s"
 
+#: templates/dashboard/table_detail.html:84
 msgid "Table is open, but nothing has been ordered yet."
 msgstr "A mesa está aberta, mas ainda não há pedidos."
 
+#: templates/dashboard/table_detail.html:87
 msgid ""
 "This table is free. A bill starts when a customer scans the QR code or a "
 "waiter adds an order."
@@ -4273,15 +5864,19 @@ msgstr ""
 "Esta mesa está livre. Abre-se uma conta quando um cliente lê o código QR ou "
 "um empregado adiciona um pedido."
 
+#: templates/dashboard/table_detail.html:99
 msgid "Recent bills"
 msgstr "Contas recentes"
 
+#: templates/dashboard/table_detail.html:121
 msgid "Generate a new QR code? The currently printed code will STOP working."
 msgstr "Gerar um novo código QR? O código impresso atual DEIXARÁ de funcionar."
 
+#: templates/dashboard/table_detail.html:122
 msgid "Regenerate QR code"
 msgstr "Gerar novo código QR"
 
+#: templates/dashboard/table_detail.html:124
 msgid ""
 "Use this if a code was copied or misused. Old printouts stop working "
 "immediately."
@@ -4289,59 +5884,76 @@ msgstr ""
 "Use isto se um código foi copiado ou mal usado. As impressões antigas deixam "
 "de funcionar de imediato."
 
+#: templates/dashboard/table_detail.html:126
 #, python-format
 msgid "Delete table %(n)s? Past orders are kept."
 msgstr "Eliminar a mesa %(n)s? Os pedidos anteriores são mantidos."
 
+#: templates/dashboard/table_detail.html:127
 msgid "Delete table"
 msgstr "Eliminar mesa"
 
+#: templates/dashboard/tables.html:3 templates/dashboard/tables.html:8
 msgid "Tables &amp; QR codes"
 msgstr "Mesas e códigos QR"
 
+#: templates/dashboard/tables.html:9
 msgid ""
 "Each table has its own QR code. Customers scan it to see the menu and order."
 msgstr ""
 "Cada mesa tem o seu código QR. Os clientes leem-no para ver o menu e pedir."
 
+#: templates/dashboard/tables.html:11
 msgid "Print all QR codes"
 msgstr "Imprimir todos os códigos QR"
 
+#: templates/dashboard/tables.html:20
 #, python-format
 msgid "QR code for table %(n)s"
 msgstr "Código QR da mesa %(n)s"
 
+#: templates/dashboard/tables.html:24
 #, python-format
 msgid "%(n)s active"
 msgstr "%(n)s ativos"
 
+#: templates/dashboard/tables.html:29
 msgid "Download PNG"
 msgstr "Descarregar PNG"
 
+#: templates/dashboard/tables.html:37
 msgid "No tables yet. Add your first table below."
 msgstr "Ainda não há mesas. Adicione a primeira mesa abaixo."
 
+#: templates/dashboard/tables.html:45
 msgid "Add a table"
 msgstr "Adicionar mesa"
 
+#: templates/dashboard/tables.html:46
 msgid "Use numbers or short codes like 12 or A-3."
 msgstr "Use números ou códigos curtos como 12 ou A-3."
 
+#: templates/dashboard/tables.html:48
 msgid "Add table"
 msgstr "Adicionar mesa"
 
+#: templates/dashboard/tables.html:52
 msgid "Add many tables"
 msgstr "Adicionar várias mesas"
 
+#: templates/dashboard/tables.html:53
 msgid "Creates numbered tables, skipping numbers that already exist."
 msgstr "Cria mesas numeradas, ignorando os números que já existem."
 
+#: templates/dashboard/tables.html:55
 msgid "Create tables"
 msgstr "Criar mesas"
 
+#: templates/dashboard/upgrade.html:3
 msgid "Upgrade your plan"
 msgstr "Mude de plano"
 
+#: templates/dashboard/upgrade.html:10
 msgid ""
 "See how sales compare with last period, your busiest hours and days, best-"
 "selling and unsold dishes, how customers pay and how fast the kitchen is."
@@ -4350,6 +5962,7 @@ msgstr ""
 "movimento, os pratos mais e menos vendidos, como os clientes pagam e a "
 "rapidez da cozinha."
 
+#: templates/dashboard/upgrade.html:13
 msgid ""
 "Enter the change in the drawer before selling, record cash in and out, and "
 "reconcile at the end of the day: expected vs counted, over or short, with a "
@@ -4359,6 +5972,7 @@ msgstr ""
 "no fim do dia: esperado vs contado, a mais ou em falta, com relatório para "
 "imprimir."
 
+#: templates/dashboard/upgrade.html:16
 msgid ""
 "Open more branches under the same login, copy your menu to them in one "
 "click, and see revenue and profit for every branch and for the whole "
@@ -4367,6 +5981,7 @@ msgstr ""
 "Abra mais filiais com o mesmo início de sessão, copie o menu para elas num "
 "clique e veja a receita e o lucro de cada filial e de todo o negócio."
 
+#: templates/dashboard/upgrade.html:19
 msgid ""
 "Connect your own website, mobile ordering app or delivery partners. Their "
 "orders arrive live in the right branch, are counted as revenue when "
@@ -4376,6 +5991,7 @@ msgstr ""
 "em tempo real à filial certa, contam como receita quando concluídos, e tem "
 "chaves API, webhooks, registo de pedidos e uma chave de teste."
 
+#: templates/dashboard/upgrade.html:22
 msgid ""
 "Write down what you spend each day and see your real profit for today, this "
 "week, this month and this year."
@@ -4383,6 +5999,7 @@ msgstr ""
 "Registe o que gasta todos os dias e veja o lucro real de hoje, desta semana, "
 "deste mês e deste ano."
 
+#: templates/dashboard/upgrade.html:25
 msgid ""
 "Create professional price offers for catering, events and procurement bids "
 "from your menu, with amount in words, and print them as PDF in four "
@@ -4392,33 +6009,53 @@ msgstr ""
 "partir do seu menu, com valor por extenso, e imprima em PDF em quatro "
 "línguas."
 
+#: templates/dashboard/upgrade.html:27
 msgid "Available in:"
 msgstr "Disponível em:"
 
+#: templates/dashboard/upgrade.html:27
 msgid "Not included in your current plan."
 msgstr "Não incluído no seu plano atual."
 
+#: templates/dashboard/upgrade.html:30
 msgid "Upgrade to Pro"
 msgstr "Mudar para Pro"
 
+#: templates/dashboard/upgrade.html:30
 msgid "See plans & upgrade"
 msgstr "Ver planos e fazer upgrade"
 
+#: templates/dashboard/upgrade.html:32
 msgid "Ask the restaurant owner to upgrade the plan."
 msgstr "Peça ao proprietário do restaurante para mudar de plano."
 
+#: templates/storefront/home.html:4 templates/storefront/home.html:10
 msgid "QR menu & table ordering for restaurants"
 msgstr "Menu QR e pedidos à mesa para restaurantes"
 
-msgid "QR code menu and table ordering for restaurants and cafés in Timor-Leste. Customers scan, order from their phone, and the order goes straight to your kitchen. 30 days free."
-msgstr "Menu com código QR e pedidos à mesa para restaurantes e cafés em Timor-Leste. Os clientes leem o código, pedem pelo telemóvel e o pedido vai direto para a cozinha. 30 dias grátis."
+#: templates/storefront/home.html:6
+msgid ""
+"QR code menu and table ordering for restaurants and cafés in Timor-Leste. "
+"Customers scan, order from their phone, and the order goes straight to your "
+"kitchen. 30 days free."
+msgstr ""
+"Menu com código QR e pedidos à mesa para restaurantes e cafés em Timor-"
+"Leste. Os clientes leem o código, pedem pelo telemóvel e o pedido vai direto "
+"para a cozinha. 30 dias grátis."
 
-msgid "Customers scan the QR code on the table, order from their phone, and the order goes straight to your kitchen."
-msgstr "Os clientes leem o código QR na mesa, pedem pelo telemóvel e o pedido vai direto para a sua cozinha."
+#: templates/storefront/home.html:11
+msgid ""
+"Customers scan the QR code on the table, order from their phone, and the "
+"order goes straight to your kitchen."
+msgstr ""
+"Os clientes leem o código QR na mesa, pedem pelo telemóvel e o pedido vai "
+"direto para a sua cozinha."
 
+#: templates/storefront/home.html:29
 msgid "Scan. Order. Enjoy."
 msgstr "Scan. Pedir. Bom apetite."
 
+#: templates/storefront/home.html:30
 msgid ""
 "A QR code menu and table ordering for your restaurant. Customers scan the "
 "code on the table, order from their phone, and the order goes straight to "
@@ -4428,18 +6065,23 @@ msgstr ""
 "leem o código na mesa, pedem pelo telemóvel e o pedido vai diretamente para "
 "a cozinha. Não precisam de app nem de conta."
 
+#: templates/storefront/home.html:33 templates/storefront/home.html:129
 msgid "Open dashboard"
 msgstr "Abrir painel"
 
+#: templates/storefront/home.html:40
 msgid "Rather talk to us? We call you back and set up your menu for you →"
 msgstr "Prefere falar connosco? Ligamos-lhe e configuramos o seu menu →"
 
+#: templates/storefront/home.html:47
 msgid "How it works"
 msgstr "Como funciona"
 
+#: templates/storefront/home.html:50
 msgid "Create your menu"
 msgstr "Crie o seu menu"
 
+#: templates/storefront/home.html:50
 msgid ""
 "Add dishes, photos, prices and add-ons in English, Tetum and Bahasa "
 "Indonesia."
@@ -4447,15 +6089,19 @@ msgstr ""
 "Adicione pratos, fotografias, preços e extras em inglês, tétum e bahasa "
 "indonésio."
 
+#: templates/storefront/home.html:51
 msgid "Print your QR codes"
 msgstr "Imprima os seus códigos QR"
 
+#: templates/storefront/home.html:51
 msgid "One code per table. Print them and place one on each table."
 msgstr "Um código por mesa. Imprima-os e coloque um em cada mesa."
 
+#: templates/storefront/home.html:52
 msgid "Receive orders live"
 msgstr "Receba pedidos em direto"
 
+#: templates/storefront/home.html:52
 msgid ""
 "Orders appear instantly on the kitchen screen with a sound alert. Customers "
 "can follow their order on their phone."
@@ -4463,9 +6109,11 @@ msgstr ""
 "Os pedidos aparecem de imediato no ecrã da cozinha com um alerta sonoro. Os "
 "clientes podem acompanhar o pedido no telemóvel."
 
+#: templates/storefront/home.html:57
 msgid "Video: how customers order with QR Menu"
 msgstr "Vídeo: como os clientes fazem pedidos com o QR Menu"
 
+#: templates/storefront/home.html:60
 msgid ""
 "Watch how a customer orders, from scanning the table's QR code to the "
 "kitchen (50 seconds)."
@@ -4473,9 +6121,11 @@ msgstr ""
 "Veja como um cliente faz o pedido, desde ler o código QR da mesa até à "
 "cozinha (50 segundos)."
 
+#: templates/storefront/home.html:66
 msgid "Works on any phone"
 msgstr "Funciona em qualquer telemóvel"
 
+#: templates/storefront/home.html:66
 msgid ""
 "Customers scan with the phone camera. No app, no account, and it loads fast "
 "on slow connections."
@@ -4483,37 +6133,48 @@ msgstr ""
 "Os clientes leem com a câmara do telemóvel. Sem app, sem conta, e carrega "
 "depressa mesmo com ligações lentas."
 
+#: templates/storefront/home.html:67
 msgid "Kitchen screen"
 msgstr "Ecrã da cozinha"
 
+#: templates/storefront/home.html:67
 msgid "New → Preparing → Ready → Completed, with timers and notes."
 msgstr "Novo → Em preparação → Pronto → Concluído, com temporizadores e notas."
 
+#: templates/storefront/home.html:68
 msgid "Tables & sessions"
 msgstr "Mesas e sessões"
 
+#: templates/storefront/home.html:68
 msgid ""
 "Several people can order from one table, and you see one bill per table."
 msgstr "Várias pessoas podem pedir da mesma mesa, e vê uma conta por mesa."
 
+#: templates/storefront/home.html:69
 msgid "Cash & change"
 msgstr "Dinheiro e troco"
 
+#: templates/storefront/home.html:69
 msgid "Mark orders paid in one tap, and see the change to give back."
 msgstr "Marque pedidos como pagos com um toque e veja o troco a dar."
 
+#: templates/storefront/home.html:70
 msgid "Sold out in one tap"
 msgstr "Esgotado com um toque"
 
+#: templates/storefront/home.html:70
 msgid "Customers' menus update immediately."
 msgstr "Os menus dos clientes atualizam-se de imediato."
 
+#: templates/storefront/home.html:71
 msgid "Daily revenue, best sellers and CSV export."
 msgstr "Receita diária, mais vendidos e exportação CSV."
 
+#: templates/storefront/home.html:78
 msgid "We call you back"
 msgstr "Nós ligamos-lhe"
 
+#: templates/storefront/home.html:79
 msgid ""
 "No time to set it up? Leave your number. We call you, answer your questions, "
 "and if you like we set up your menu for you: just send us photos of your "
@@ -4523,18 +6184,23 @@ msgstr ""
 "suas perguntas e, se quiser, configuramos o seu menu: basta enviar fotos do "
 "menu pelo WhatsApp. Grátis, sem compromisso."
 
+#: templates/storefront/home.html:81
 msgid "We enter your dishes, prices and photos"
 msgstr "Inserimos os seus pratos, preços e fotos"
 
+#: templates/storefront/home.html:82
 msgid "We help you print the QR codes for your tables"
 msgstr "Ajudamos a imprimir os códigos QR das mesas"
 
+#: templates/storefront/home.html:83
 msgid "In English, Tetum or Bahasa Indonesia"
 msgstr "Em inglês, tétum ou indonésio"
 
+#: templates/storefront/home.html:89
 msgid "Thank you! We will call you soon."
 msgstr "Obrigado! Vamos ligar-lhe em breve."
 
+#: templates/storefront/home.html:90
 msgid ""
 "Usually the same day. You can already send photos of your menu to our "
 "WhatsApp."
@@ -4542,6 +6208,7 @@ msgstr ""
 "Normalmente no mesmo dia. Já pode enviar fotos do seu menu para o nosso "
 "WhatsApp."
 
+#: templates/storefront/home.html:96
 msgid ""
 "Too many requests from this network. Please try again later or message us on "
 "WhatsApp."
@@ -4549,91 +6216,116 @@ msgstr ""
 "Demasiados pedidos desta rede. Tente mais tarde ou envie-nos mensagem pelo "
 "WhatsApp."
 
+#: templates/storefront/home.html:101
 msgid "Call me back"
 msgstr "Liguem-me"
 
+#: templates/storefront/home.html:102
 msgid "We only use your number to contact you about QR Menu."
 msgstr "Só usamos o seu número para o contactar sobre o QR Menu."
 
+#: templates/storefront/home.html:109
 msgid "Pricing"
 msgstr "Preços"
 
+#: templates/storefront/home.html:110
 msgid "Simple monthly plans. No setup fees."
 msgstr "Planos mensais simples. Sem custos de instalação."
 
+#: templates/storefront/home.html:110
 #, python-format
 msgid "New restaurants get a %(days)s-day free trial."
 msgid_plural "New restaurants get a %(days)s-day free trial."
 msgstr[0] "Os novos restaurantes têm %(days)s dia de teste grátis."
 msgstr[1] "Os novos restaurantes têm %(days)s dias de teste grátis."
 
+#: templates/storefront/home.html:114
 msgid "Most popular"
 msgstr "Mais popular"
 
+#: templates/storefront/home.html:119
 #, python-format
 msgid "Up to %(n)s table"
 msgid_plural "Up to %(n)s tables"
 msgstr[0] "Até %(n)s mesa"
 msgstr[1] "Até %(n)s mesas"
 
+#: templates/storefront/home.html:120
 #, python-format
 msgid "Up to %(n)s dish"
 msgid_plural "Up to %(n)s dishes"
 msgstr[0] "Até %(n)s prato"
 msgstr[1] "Até %(n)s pratos"
 
+#: templates/storefront/home.html:121
 #, python-format
 msgid "Up to %(n)s staff account"
 msgid_plural "Up to %(n)s staff accounts"
 msgstr[0] "Até %(n)s conta de funcionário"
 msgstr[1] "Até %(n)s contas de funcionários"
 
+#: templates/storefront/home.html:122
 msgid "Sales analytics"
 msgstr "Análise de vendas"
 
+#: templates/storefront/home.html:123
 msgid "Cash register & end-of-day reconciliation"
 msgstr "Caixa e conferência no fim do dia"
 
+#: templates/storefront/home.html:124
 msgid "Quotations for catering & tenders"
 msgstr "Cotações para catering e concursos"
 
+#: templates/storefront/home.html:125
 msgid "Daily expenses & profit"
 msgstr "Despesas diárias e lucro"
 
+#: templates/storefront/home.html:126
 #, python-format
 msgid "Main branch + %(n)s branch, one login"
 msgid_plural "Main branch + %(n)s branches, one login"
 msgstr[0] "Filial principal + %(n)s filial, um só login"
 msgstr[1] "Filial principal + %(n)s filiais, um só login"
 
+#: templates/storefront/home.html:127
 msgid "Ordering API for your website, apps & delivery partners"
 msgstr "API de pedidos para o seu site, apps e parceiros de entrega"
 
+#: templates/storefront/home.html:130
 msgid "Get started"
 msgstr "Começar"
 
+#: templates/storefront/home.html:138
 msgid "Are you a customer?"
 msgstr "É cliente?"
 
+#: templates/storefront/home.html:139
 msgid "To order, please scan the QR code on your table."
 msgstr "Para pedir, leia o código QR na sua mesa."
 
+#: templates/storefront/home.html:142
 #, python-format
 msgid "Hello! I'd like to know more about %(name)s."
 msgstr "Olá! Gostaria de saber mais sobre o %(name)s."
 
+#: templates/storefront/home.html:144 templates/storefront/terms.html:4
+#: templates/storefront/terms.html:14
 msgid "Terms of service"
 msgstr "Termos de serviço"
 
+#: templates/storefront/home.html:152
 msgid "Chat with us on WhatsApp"
 msgstr "Fale connosco no WhatsApp"
 
+#: templates/storefront/terms.html:15
 msgid "Last updated: 9 October 2026"
 msgstr "Última atualização: 9 de outubro de 2026"
 
+#: templates/storefront/terms.html:17
 msgid "1. The service"
 msgstr "1. O serviço"
 
+#: templates/storefront/terms.html:18
 #, python-format
 msgid ""
 "%(name)s provides QR code menus, table ordering and restaurant management "
@@ -4644,9 +6336,11 @@ msgstr ""
 "a negócios de restauração (\"você\"). Ao registar-se, aceita estes termos em "
 "nome da sua empresa."
 
+#: templates/storefront/terms.html:20
 msgid "2. Your account"
 msgstr "2. A sua conta"
 
+#: templates/storefront/terms.html:21
 msgid ""
 "You must give correct information about your business and keep your login "
 "details secret. You are responsible for everything done with your account "
@@ -4659,9 +6353,11 @@ msgstr ""
 "contas da sua equipa. Podemos pedir a verificação da sua empresa (por "
 "exemplo com o registo comercial ou o NIF) antes de usar algumas funções."
 
+#: templates/storefront/terms.html:23
 msgid "3. Branches"
 msgstr "3. Filiais"
 
+#: templates/storefront/terms.html:24
 msgid ""
 "All branches in one account must be owned and operated by the same business, "
 "under the same business registration and brand name."
@@ -4669,6 +6365,7 @@ msgstr ""
 "Todas as filiais de uma conta devem pertencer e ser geridas pela mesma "
 "empresa, com o mesmo registo comercial e nome de marca."
 
+#: templates/storefront/terms.html:24
 msgid ""
 "Each new branch is reviewed by our team before it is activated. A branch "
 "that belongs to a different business is not allowed: we may suspend it, or "
@@ -4678,9 +6375,11 @@ msgstr ""
 "permitida uma filial de outra empresa: podemos suspendê-la ou passá-la para "
 "uma conta separada, faturada separadamente."
 
+#: templates/storefront/terms.html:26
 msgid "4. Plans and payment"
 msgstr "4. Planos e pagamento"
 
+#: templates/storefront/terms.html:27
 msgid ""
 "Plans are billed monthly in US dollars. Each plan includes a fixed number of "
 "branches; extra branches are a monthly add-on. If an invoice is not paid "
@@ -4692,9 +6391,11 @@ msgstr ""
 "fatura não for paga após o período de tolerância, os pedidos são desligados "
 "até ao pagamento. Os preços podem mudar com 30 dias de aviso."
 
+#: templates/storefront/terms.html:29
 msgid "5. Your data"
 msgstr "5. Os seus dados"
 
+#: templates/storefront/terms.html:30
 msgid ""
 "Your menus, orders and revenue records belong to you. We use them only to "
 "provide the service and keep each branch's data separate. We don't sell your "
@@ -4704,9 +6405,11 @@ msgstr ""
 "para prestar o serviço e mantemos os dados de cada filial separados. Não "
 "vendemos os seus dados."
 
+#: templates/storefront/terms.html:32
 msgid "6. Acceptable use"
 msgstr "6. Utilização aceitável"
 
+#: templates/storefront/terms.html:33
 msgid ""
 "Don't use the service for anything illegal, to mislead customers, or to "
 "disrupt the platform. We may suspend accounts that break these terms."
@@ -4714,9 +6417,11 @@ msgstr ""
 "Não use o serviço para nada ilegal, para enganar clientes ou para perturbar "
 "a plataforma. Podemos suspender contas que violem estes termos."
 
+#: templates/storefront/terms.html:35
 msgid "7. Liability"
 msgstr "7. Responsabilidade"
 
+#: templates/storefront/terms.html:36
 msgid ""
 "We work hard to keep the service available, but we can't guarantee it will "
 "always be uninterrupted. To the extent the law allows, we are not liable for "
@@ -4726,9 +6431,11 @@ msgstr ""
 "nunca será interrompido. Na medida permitida por lei, não somos responsáveis "
 "por perdas indiretas, como vendas perdidas."
 
+#: templates/storefront/terms.html:38
 msgid "8. Contact"
 msgstr "8. Contacto"
 
+#: templates/storefront/terms.html:39
 msgid "Questions about these terms:"
 msgstr "Questões sobre estes termos:"
 

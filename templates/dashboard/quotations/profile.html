@@ -1,0 +1,60 @@
+{% extends "dashboard/base.html" %}
+{% load i18n ui_icons %}
+{% block title %}{% translate "Company profile" %}{% endblock %}
+{% block content %}
+{% with r=request.restaurant %}
+<a class="back-link" href="{% url 'dashboard:quotations' r.slug %}">{% icon "arrow-left" %} {% translate "Quotations" %}</a>
+<div class="page-head">
+  <div>
+    <h1>{% translate "Company profile" %}</h1>
+    <p class="page-sub">{% translate "Write it once: it is printed as its own page in every quotation, after the prices and before the menu pages." %}</p>
+  </div>
+</div>
+
+<form method="post" class="form">
+  {% csrf_token %}
+  <section class="card">
+    <h2 class="fieldset-title">{% icon "store" %} {% translate "About your business" %}</h2>
+    <p class="fieldset-desc">{% translate "Tips: leave an empty line between sections. A line starting with ## (or a short line ending with :) becomes a heading; lines starting with - become a list. Your logo, cover photo, address, phone, email and opening hours are added automatically." %}</p>
+    <div class="field">
+      <label for="id_company_profile">{% translate "Company profile" %}</label>
+      <textarea id="id_company_profile" name="company_profile" rows="18" maxlength="{{ profile_max }}">{{ r.company_profile }}</textarea>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn" id="use-example" data-confirm="{% translate "Replace the text with the example? You can edit it afterwards." %}">{% icon "pen" %} {% translate "Start from an example" %}</button>
+    </div>
+  </section>
+  <div class="actions sticky-actions">
+    <button class="btn btn-primary btn-lg" type="submit">{% icon "check" %} {% translate "Save company profile" %}</button>
+    <a class="btn" href="{% url 'dashboard:quotations' r.slug %}">{% translate "Cancel" %}</a>
+  </div>
+</form>
+
+<template id="profile-example">{% blocktranslate trimmed with name=r.name asvar intro %}{{ name }} is a restaurant and catering service. We cook fresh local and international food every day and deliver it on time, from small meetings to large events.{% endblocktranslate %}{{ intro }}
+
+## {% translate "Our services" %}
+- {% translate "Lunch and dinner catering for offices, workshops and trainings" %}
+- {% translate "Coffee breaks and snack boxes" %}
+- {% translate "Weddings, parties and private events" %}
+- {% translate "Delivery, setup, serving staff and equipment" %}
+
+## {% translate "Why choose us" %}
+- {% translate "Fresh ingredients bought locally every day" %}
+- {% translate "Clean kitchen and trained staff" %}
+- {% translate "Menus adapted to your budget and number of guests" %}
+- {% translate "Experience with government offices, NGOs and companies" %}
+
+## {% translate "Our clients" %}
+{% translate "[List some clients or events you have served.]" %}</template>
+{% endwith %}
+{% endblock %}
+{% block scripts %}
+<script>
+  document.getElementById("use-example").addEventListener("click", (e) => {
+    const box = document.getElementById("id_company_profile");
+    if (box.value.trim() && !confirm(e.currentTarget.dataset.confirm)) return;
+    box.value = document.getElementById("profile-example").content.textContent.trim();
+    box.focus();
+  });
+</script>
+{% endblock %}

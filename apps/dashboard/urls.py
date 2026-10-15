@@ -73,6 +73,7 @@ urlpatterns = [
     path(f"dashboard/{R}expenses/<int:pk>/delete/", expenses.expense_delete, name="expense_delete"),
     path(f"dashboard/{R}quotations/", quotes.quotation_list, name="quotations"),
     path(f"dashboard/{R}quotations/new/", quotes.quotation_create, name="quotation_create"),
+    path(f"dashboard/{R}quotations/company-profile/", quotes.quotation_profile, name="quotation_profile"),
     path(f"dashboard/{R}quotations/<int:pk>/", quotes.quotation_edit, name="quotation_edit"),
     path(f"dashboard/{R}quotations/<int:pk>/print/", quotes.quotation_print, name="quotation_print"),
     path(f"dashboard/{R}quotations/<int:pk>/duplicate/", quotes.quotation_duplicate, name="quotation_duplicate"),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-14 15:55+0900\n"
+"POT-Creation-Date: 2026-10-15 15:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,56 +18,72 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: apps/accounts/forms.py:11
 msgid "Restaurant name"
 msgstr "Nama restoran"
 
+#: apps/accounts/forms.py:12 apps/storefront/forms.py:19
 msgid "Your name"
 msgstr "Nama Anda"
 
+#: apps/accounts/forms.py:13 apps/dashboard/forms.py:107
+#: apps/dashboard/forms.py:364
 msgid "Email"
 msgstr "Email"
 
+#: apps/accounts/forms.py:13
 msgid "You'll sign in with this email. We'll send a confirmation link."
 msgstr ""
 "Anda akan masuk dengan email ini. Kami akan mengirim tautan konfirmasi."
 
+#: apps/accounts/forms.py:14
 msgid "Phone (optional)"
 msgstr "Telepon (opsional)"
 
+#: apps/accounts/forms.py:15 apps/dashboard/forms.py:366
+#: templates/accounts/login.html:13
 msgid "Password"
 msgstr "Kata sandi"
 
+#: apps/accounts/forms.py:16
 msgid ""
 "I confirm I own or manage this restaurant, and I accept the terms of service."
 msgstr ""
 "Saya menyatakan memiliki atau mengelola restoran ini, dan menerima ketentuan "
 "layanan."
 
+#: apps/accounts/forms.py:23
 msgid ""
 "An account with this email already exists. Try logging in or resetting your "
 "password."
 msgstr ""
 "Akun dengan email ini sudah ada. Coba masuk atau atur ulang kata sandi Anda."
 
+#: apps/accounts/forms.py:29
 msgid "Enter the restaurant's name."
 msgstr "Masukkan nama restoran."
 
+#: apps/accounts/forms.py:35
 msgid "Sign-up failed. Please try again."
 msgstr "Pendaftaran gagal. Silakan coba lagi."
 
+#: apps/accounts/views.py:48
 msgid "Too many failed login attempts. Please try again in 15 minutes."
 msgstr ""
 "Terlalu banyak percobaan masuk yang gagal. Silakan coba lagi dalam 15 menit."
 
+#: apps/accounts/views.py:74
 msgid "Too many sign-ups from your network. Please try again in an hour."
 msgstr ""
 "Terlalu banyak pendaftaran dari jaringan Anda. Silakan coba lagi dalam satu "
 "jam."
 
+#: apps/accounts/views.py:85
 #, python-format
 msgid "Welcome! We sent a confirmation link to %(email)s."
 msgstr "Selamat datang! Kami telah mengirim tautan konfirmasi ke %(email)s."
 
+#: apps/accounts/views.py:88
 msgid ""
 "Your account is ready, but we couldn't send the confirmation email. Use "
 "“Resend email” below."
@@ -75,6 +91,7 @@ msgstr ""
 "Akun Anda sudah siap, tetapi kami tidak dapat mengirim email konfirmasi. "
 "Gunakan “Kirim ulang email” di bawah."
 
+#: apps/accounts/views.py:99
 msgid ""
 "This confirmation link is invalid or has expired. Log in and request a new "
 "one."
@@ -82,6 +99,7 @@ msgstr ""
 "Tautan konfirmasi ini tidak valid atau sudah kedaluwarsa. Masuk dan minta "
 "tautan baru."
 
+#: apps/accounts/views.py:103
 msgid ""
 "Email confirmed — your restaurant is now live! Customers can scan your QR "
 "codes."
@@ -89,156 +107,212 @@ msgstr ""
 "Email dikonfirmasi — restoran Anda sekarang aktif! Pelanggan dapat memindai "
 "kode QR Anda."
 
+#: apps/accounts/views.py:105
 msgid ""
 "Email confirmed. Your restaurant is waiting for approval by the platform "
 "team."
 msgstr "Email dikonfirmasi. Restoran Anda menunggu persetujuan tim platform."
 
+#: apps/accounts/views.py:107
 msgid "Email confirmed."
 msgstr "Email dikonfirmasi."
 
+#: apps/accounts/views.py:116
 msgid "Your email is already confirmed."
 msgstr "Email Anda sudah dikonfirmasi."
 
+#: apps/accounts/views.py:118
 msgid "Please wait a while before requesting another email."
 msgstr "Harap tunggu sebentar sebelum meminta email lain."
 
+#: apps/accounts/views.py:122
 #, python-format
 msgid "Confirmation email sent to %(email)s."
 msgstr "Email konfirmasi telah dikirim ke %(email)s."
 
+#: apps/accounts/views.py:125
 msgid "We couldn't send the email right now. Please try again later."
 msgstr "Kami tidak dapat mengirim email saat ini. Silakan coba lagi nanti."
 
+#: apps/billing/models.py:32
 msgid "Analytics page (trends, busy times, best sellers)."
 msgstr "Halaman analitik (tren, waktu ramai, terlaris)."
 
+#: apps/billing/models.py:33
 msgid "Cash register: opening change and end-of-day reconciliation."
 msgstr "Kas: kembalian awal dan pencocokan akhir hari."
 
+#: apps/billing/models.py:34
 msgid "Quotations for catering and procurement bids."
 msgstr "Penawaran untuk katering dan tender pengadaan."
 
+#: apps/billing/models.py:35
 msgid "Daily expenses and profit per day, week, month and year."
 msgstr "Pengeluaran harian dan laba per hari, minggu, bulan, dan tahun."
 
+#: apps/billing/models.py:36
 msgid "Several branches under one owner, with an all-branches overview."
 msgstr "Beberapa cabang dengan satu pemilik, dengan ringkasan semua cabang."
 
+#: apps/billing/models.py:37
 msgid "Ordering API for websites, apps and delivery partners."
 msgstr "API pemesanan untuk situs web, aplikasi, dan mitra pengantaran."
 
+#: apps/billing/models.py:98
 msgid "Trial"
 msgstr "Uji coba"
 
+#: apps/billing/models.py:98 apps/dashboard/forms.py:256
+#: apps/dashboard/forms.py:403 apps/restaurants/models.py:135
+#: templates/dashboard/branch_manage.html:9
+#: templates/dashboard/branch_manage.html:49 templates/dashboard/staff.html:23
 msgid "Active"
 msgstr "Aktif"
 
+#: apps/billing/models.py:98
 msgid "Payment due"
 msgstr "Pembayaran jatuh tempo"
 
+#: apps/billing/models.py:98
 msgid "Expired"
 msgstr "Kedaluwarsa"
 
+#: apps/billing/models.py:98 apps/orders/models.py:29
+#: templates/dashboard/car_wash.html:39 templates/dashboard/reports.html:27
 msgid "Cancelled"
 msgstr "Dibatalkan"
 
+#: apps/billing/models.py:146
 msgid "Complimentary"
 msgstr "Gratis (khusus)"
 
+#: apps/billing/models.py:148
 msgid "Free plan"
 msgstr "Paket gratis"
 
+#: apps/billing/models.py:169 templates/dashboard/branches.html:52
 msgid "Open"
 msgstr "Terbuka"
 
+#: apps/billing/models.py:169 apps/orders/models.py:73
+#: templates/dashboard/car_wash.html:71
+#: templates/dashboard/table_detail.html:55
+#: templates/dashboard/table_detail.html:57
+#: templates/dashboard/table_detail.html:93
 msgid "Paid"
 msgstr "Lunas"
 
+#: apps/billing/models.py:169
 msgid "Void"
 msgstr "Dibatalkan"
 
+#: apps/core/django_strings.py:14
 msgid "This field is required."
 msgstr ""
 
+#: apps/core/django_strings.py:15
 msgid "Enter a valid email address."
 msgstr ""
 
+#: apps/core/django_strings.py:16
 msgid "Enter a whole number."
 msgstr ""
 
+#: apps/core/django_strings.py:17
 msgid "Enter a number."
 msgstr ""
 
+#: apps/core/django_strings.py:18
 msgid "Enter a valid value."
 msgstr ""
 
+#: apps/core/django_strings.py:19
 msgid "Enter a valid date."
 msgstr ""
 
+#: apps/core/django_strings.py:20
 #, python-format
 msgid "Ensure this value is greater than or equal to %(limit_value)s."
 msgstr ""
 
+#: apps/core/django_strings.py:21
 #, python-format
 msgid "Ensure this value is less than or equal to %(limit_value)s."
 msgstr ""
 
+#: apps/core/django_strings.py:22
 #, python-format
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr ""
 
+#: apps/core/django_strings.py:23
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
+#: apps/core/django_strings.py:24
 msgid ""
 "Upload a valid image. The file you uploaded was either not an image or a "
 "corrupted image."
 msgstr ""
 
+#: apps/core/django_strings.py:25
 msgid "Currently"
 msgstr ""
 
+#: apps/core/django_strings.py:26
 msgid "Change"
 msgstr ""
 
+#: apps/core/django_strings.py:27
 msgid "Clear"
 msgstr ""
 
+#: apps/core/django_strings.py:28
 msgid "Yes"
 msgstr ""
 
+#: apps/core/django_strings.py:29
 msgid "No"
 msgstr "Tidak"
 
+#: apps/core/django_strings.py:30
 msgid "Unknown"
 msgstr ""
 
+#: apps/core/django_strings.py:32
 msgid "Your old password was entered incorrectly. Please enter it again."
 msgstr ""
 
+#: apps/core/django_strings.py:33
 msgid "Old password"
 msgstr ""
 
+#: apps/core/django_strings.py:34
 msgid "New password"
 msgstr ""
 
+#: apps/core/django_strings.py:35
 msgid "New password confirmation"
 msgstr ""
 
+#: apps/core/django_strings.py:36
 msgid "The two password fields didn’t match."
 msgstr ""
 
+#: apps/core/django_strings.py:37
 msgid "This password is too common."
 msgstr ""
 
+#: apps/core/django_strings.py:38
 msgid "This password is entirely numeric."
 msgstr ""
 
+#: apps/core/django_strings.py:39
 #, python-format
 msgid "The password is too similar to the %(verbose_name)s."
 msgstr ""
 
+#: apps/core/django_strings.py:41
 #, python-format
 msgid ""
 "This password is too short. It must contain at least %(min_length)d "
@@ -248,486 +322,667 @@ msgid_plural ""
 "characters."
 msgstr[0] ""
 
+#: apps/core/django_strings.py:46
 #, python-format
 msgid "%(num)d year"
 msgid_plural "%(num)d years"
 msgstr[0] ""
 
+#: apps/core/django_strings.py:47
 #, python-format
 msgid "%(num)d month"
 msgid_plural "%(num)d months"
 msgstr[0] ""
 
+#: apps/core/django_strings.py:48
 #, python-format
 msgid "%(num)d week"
 msgid_plural "%(num)d weeks"
 msgstr[0] ""
 
+#: apps/core/django_strings.py:49
 #, python-format
 msgid "%(num)d day"
 msgid_plural "%(num)d days"
 msgstr[0] ""
 
+#: apps/core/django_strings.py:50
 #, python-format
 msgid "%(num)d hour"
 msgid_plural "%(num)d hours"
 msgstr[0] ""
 
+#: apps/core/django_strings.py:51
 #, python-format
 msgid "%(num)d minute"
 msgid_plural "%(num)d minutes"
 msgstr[0] ""
 
+#: apps/core/django_strings.py:53
 msgid "Monday"
 msgstr ""
 
+#: apps/core/django_strings.py:53
 msgid "Tuesday"
 msgstr ""
 
+#: apps/core/django_strings.py:53
 msgid "Wednesday"
 msgstr ""
 
+#: apps/core/django_strings.py:53
 msgid "Thursday"
 msgstr ""
 
+#: apps/core/django_strings.py:54
 msgid "Friday"
 msgstr ""
 
+#: apps/core/django_strings.py:54
 msgid "Saturday"
 msgstr ""
 
+#: apps/core/django_strings.py:54
 msgid "Sunday"
 msgstr ""
 
+#: apps/core/django_strings.py:55 apps/dashboard/views.py:1197
 msgid "Mon"
 msgstr ""
 
+#: apps/core/django_strings.py:55 apps/dashboard/views.py:1197
 msgid "Tue"
 msgstr ""
 
+#: apps/core/django_strings.py:55 apps/dashboard/views.py:1197
 msgid "Wed"
 msgstr ""
 
+#: apps/core/django_strings.py:55 apps/dashboard/views.py:1197
 msgid "Thu"
 msgstr ""
 
+#: apps/core/django_strings.py:56 apps/dashboard/views.py:1197
 msgid "Fri"
 msgstr ""
 
+#: apps/core/django_strings.py:56 apps/dashboard/views.py:1197
 msgid "Sat"
 msgstr ""
 
+#: apps/core/django_strings.py:56 apps/dashboard/views.py:1197
 msgid "Sun"
 msgstr ""
 
+#: apps/core/django_strings.py:57
 msgid "January"
 msgstr ""
 
+#: apps/core/django_strings.py:57
 msgid "February"
 msgstr ""
 
+#: apps/core/django_strings.py:57
 msgid "March"
 msgstr ""
 
+#: apps/core/django_strings.py:57
 msgid "April"
 msgstr ""
 
+#: apps/core/django_strings.py:58
 msgid "May"
 msgstr ""
 
+#: apps/core/django_strings.py:58
 msgid "June"
 msgstr ""
 
+#: apps/core/django_strings.py:58
 msgid "July"
 msgstr ""
 
+#: apps/core/django_strings.py:58
 msgid "August"
 msgstr ""
 
+#: apps/core/django_strings.py:59
 msgid "September"
 msgstr ""
 
+#: apps/core/django_strings.py:59
 msgid "October"
 msgstr ""
 
+#: apps/core/django_strings.py:59
 msgid "November"
 msgstr ""
 
+#: apps/core/django_strings.py:59
 msgid "December"
 msgstr ""
 
+#: apps/core/django_strings.py:60
 msgid "jan"
 msgstr ""
 
+#: apps/core/django_strings.py:60
 msgid "feb"
 msgstr ""
 
+#: apps/core/django_strings.py:60
 msgid "mar"
 msgstr ""
 
+#: apps/core/django_strings.py:60
 msgid "apr"
 msgstr ""
 
+#: apps/core/django_strings.py:61
 msgid "may"
 msgstr ""
 
+#: apps/core/django_strings.py:61
 msgid "jun"
 msgstr ""
 
+#: apps/core/django_strings.py:61
 msgid "jul"
 msgstr ""
 
+#: apps/core/django_strings.py:61
 msgid "aug"
 msgstr ""
 
+#: apps/core/django_strings.py:62
 msgid "sep"
 msgstr ""
 
+#: apps/core/django_strings.py:62
 msgid "oct"
 msgstr ""
 
+#: apps/core/django_strings.py:62
 msgid "nov"
 msgstr ""
 
+#: apps/core/django_strings.py:62
 msgid "dec"
 msgstr ""
 
+#: apps/core/django_strings.py:63
 msgctxt "alt. month"
 msgid "January"
 msgstr ""
 
+#: apps/core/django_strings.py:63
 msgctxt "alt. month"
 msgid "February"
 msgstr ""
 
+#: apps/core/django_strings.py:64
 msgctxt "alt. month"
 msgid "March"
 msgstr ""
 
+#: apps/core/django_strings.py:64
 msgctxt "alt. month"
 msgid "April"
 msgstr ""
 
+#: apps/core/django_strings.py:65
 msgctxt "alt. month"
 msgid "May"
 msgstr ""
 
+#: apps/core/django_strings.py:65
 msgctxt "alt. month"
 msgid "June"
 msgstr ""
 
+#: apps/core/django_strings.py:66
 msgctxt "alt. month"
 msgid "July"
 msgstr ""
 
+#: apps/core/django_strings.py:66
 msgctxt "alt. month"
 msgid "August"
 msgstr ""
 
+#: apps/core/django_strings.py:67
 msgctxt "alt. month"
 msgid "September"
 msgstr ""
 
+#: apps/core/django_strings.py:67
 msgctxt "alt. month"
 msgid "October"
 msgstr ""
 
+#: apps/core/django_strings.py:68
 msgctxt "alt. month"
 msgid "November"
 msgstr ""
 
+#: apps/core/django_strings.py:68
 msgctxt "alt. month"
 msgid "December"
 msgstr ""
 
+#: apps/core/images.py:32
 #, python-format
 msgid "Image is too large (max %(mb)s MB)."
 msgstr "Gambar terlalu besar (maks. %(mb)s MB)."
 
+#: apps/core/images.py:37
 msgid "Only JPEG, PNG and WebP images are allowed."
 msgstr "Hanya gambar JPEG, PNG, dan WebP yang diizinkan."
 
+#: apps/core/images.py:39
 msgid "Image dimensions are too large."
 msgstr "Dimensi gambar terlalu besar."
 
+#: apps/core/images.py:42
 msgid "Upload a valid image file."
 msgstr "Unggah file gambar yang valid."
 
+#: apps/core/permissions.py:18 templates/dashboard/staff.html:32
 msgid "Owner"
 msgstr "Pemilik"
 
+#: apps/core/permissions.py:19 templates/dashboard/staff.html:33
 msgid "Manager"
 msgstr "Manajer"
 
+#: apps/core/permissions.py:20 templates/dashboard/base.html:92
+#: templates/dashboard/staff.html:34
 msgid "Kitchen"
 msgstr "Dapur"
 
+#: apps/core/permissions.py:21 templates/dashboard/staff.html:35
 msgid "Waiter / Cashier"
 msgstr "Pelayan / Kasir"
 
+#: apps/dashboard/api.py:87
 msgid "Unknown table."
 msgstr "Meja tidak dikenal."
 
+#: apps/dashboard/api.py:92
 msgid "That guest is not at this table any more."
 msgstr "Tamu itu sudah tidak di meja ini."
 
+#: apps/dashboard/api.py:125 apps/dashboard/views.py:250
 msgid "Your role cannot cancel orders."
 msgstr "Peran Anda tidak dapat membatalkan pesanan."
 
+#: apps/dashboard/api.py:199
 msgid "No orders to print."
 msgstr "Tidak ada pesanan untuk dicetak."
 
+#: apps/dashboard/carwash.py:83 templates/dashboard/car_wash.html:42
+#: templates/dashboard/car_wash.html:50 templates/dashboard/car_wash.html:90
+#: templates/dashboard/new_order.html:20
+#: templates/dashboard/table_detail.html:3
+#: templates/dashboard/table_detail.html:9 templates/dashboard/tables.html:21
 #, python-format
 msgid "Table %(n)s"
 msgstr "Meja %(n)s"
 
+#: apps/dashboard/carwash.py:83
 msgid "walk-in"
 msgstr "tanpa meja"
 
+#: apps/dashboard/carwash.py:84
 #, python-format
 msgid "Car wash #%(number)s for %(plate)s (%(where)s) added."
 msgstr "Cuci kendaraan #%(number)s untuk %(plate)s (%(where)s) ditambahkan."
 
+#: apps/dashboard/carwash.py:87
 msgid "Choose a package."
 msgstr "Pilih paket."
 
+#: apps/dashboard/carwash.py:127
 msgid "Only unpaid car wash orders can be moved to a table."
 msgstr "Hanya pesanan cuci yang belum dibayar yang bisa dipindah ke meja."
 
+#: apps/dashboard/carwash.py:137
 #, python-format
 msgid ""
 "Car wash for %(plate)s added to the bill of table %(n)s (%(count)s order(s))."
 msgstr ""
 "Cuci untuk %(plate)s ditambahkan ke tagihan meja %(n)s (%(count)s pesanan)."
 
+#: apps/dashboard/carwash.py:149
 #, python-format
 msgid "Car wash #%(number)s cancelled."
 msgstr "Cuci #%(number)s dibatalkan."
 
+#: apps/dashboard/carwash.py:178
 msgid ""
 "New car wash QR code made. Old printouts no longer work — print the new one."
 msgstr ""
 "Kode QR cuci baru dibuat. Cetakan lama tidak berlaku — cetak yang baru."
 
+#: apps/dashboard/carwash.py:211 apps/menu/service_types.py:31
+#: templates/dashboard/analytics.html:115 templates/dashboard/reports.html:37
 msgid "Café"
 msgstr "Kafe"
 
+#: apps/dashboard/carwash.py:243
 msgid "Bill preview"
 msgstr "Pratinjau tagihan"
 
+#: apps/dashboard/carwash.py:261
 msgid "Nothing left to bill: these orders are paid. Reprint from the history."
 msgstr ""
 "Tidak ada yang perlu ditagih: pesanan ini sudah dibayar. Cetak ulang dari "
 "riwayat."
 
+#: apps/dashboard/carwash.py:269
 msgid "Your role cannot take payments."
 msgstr "Peran Anda tidak bisa menerima pembayaran."
 
+#: apps/dashboard/forms.py:82
 msgid "How VAT is charged"
 msgstr "Cara PPN dikenakan"
 
+#: apps/dashboard/forms.py:83
 msgid "Add VAT on top of menu prices"
 msgstr "Tambahkan PPN ke harga menu"
 
+#: apps/dashboard/forms.py:83
 msgid "Menu prices already include VAT"
 msgstr "Harga menu sudah termasuk PPN"
 
+#: apps/dashboard/forms.py:106 apps/dashboard/forms.py:162
+#: apps/dashboard/forms.py:199 apps/dashboard/forms.py:244
+#: apps/dashboard/forms.py:363 apps/integrations/forms.py:12
+#: apps/integrations/forms.py:26 apps/integrations/models.py:26
+#: templates/dashboard/api.html:28 templates/dashboard/item_form.html:28
+#: templates/dashboard/staff.html:16 templates/dashboard/staff.html:21
 msgid "Name"
 msgstr "Nama"
 
+#: apps/dashboard/forms.py:106 apps/dashboard/forms.py:199
+#: templates/dashboard/api_docs.html:77
+#: templates/dashboard/quotations/edit.html:66
+#: templates/dashboard/quotations/edit.html:71
+#: templates/dashboard/quotations/edit.html:120
+#: templates/dashboard/quotations/print.html:120
 msgid "Description"
 msgstr "Deskripsi"
 
+#: apps/dashboard/forms.py:106 templates/dashboard/settings.html:22
 msgid "Logo"
 msgstr "Logo"
 
+#: apps/dashboard/forms.py:106
 msgid "Cover image"
 msgstr "Gambar sampul"
 
+#: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
+#: apps/quotations/forms.py:31 apps/restaurants/models.py:345
 msgid "Address"
 msgstr "Alamat"
 
+#: apps/dashboard/forms.py:107 apps/dashboard/forms.py:350
+#: templates/dashboard/order_detail.html:21
+#: templates/dashboard/quotations/print.html:163
 msgid "Phone"
 msgstr "Telepon"
 
+#: apps/dashboard/forms.py:107 templates/dashboard/quotations/print.html:165
 msgid "Opening hours"
 msgstr "Jam buka"
 
+#: apps/dashboard/forms.py:108
 msgid "Currency"
 msgstr "Mata uang"
 
+#: apps/dashboard/forms.py:108
 msgid "Currency symbol"
 msgstr "Simbol mata uang"
 
+#: apps/dashboard/forms.py:109
 msgid "Service charge (%)"
 msgstr "Biaya layanan (%)"
 
+#: apps/dashboard/forms.py:109
 msgid "Default menu language"
 msgstr "Bahasa menu bawaan"
 
+#: apps/dashboard/forms.py:110
 msgid "Default preparation time (minutes)"
 msgstr "Waktu persiapan bawaan (menit)"
 
+#: apps/dashboard/forms.py:111
 msgid "Accepting orders"
 msgstr "Menerima pesanan"
 
+#: apps/dashboard/forms.py:111 apps/restaurants/models.py:59
 msgid "Show my menu on Google"
 msgstr "Tampilkan menu saya di Google"
 
+#: apps/dashboard/forms.py:111
 msgid "Cash drawer enabled"
 msgstr "Laci kas aktif"
 
+#: apps/dashboard/forms.py:112
 msgid "Printer IP address"
 msgstr "Alamat IP printer"
 
+#: apps/dashboard/forms.py:112
 msgid "Printer port"
 msgstr "Port printer"
 
+#: apps/dashboard/forms.py:112
 msgid "Drawer pin"
 msgstr "Pin laci"
 
+#: apps/dashboard/forms.py:113
 msgid "After a payment"
 msgstr "Setelah pembayaran"
 
+#: apps/dashboard/forms.py:113
 msgid "Receipt printer"
 msgstr "Printer struk"
 
+#: apps/dashboard/forms.py:114
 msgid "Paper width"
 msgstr "Lebar kertas"
 
+#: apps/dashboard/forms.py:114
 msgid "Receipt footer"
 msgstr "Catatan kaki struk"
 
+#: apps/dashboard/forms.py:115
 msgid "A cash drawer is plugged into the receipt printer"
 msgstr "Laci kas tersambung ke printer struk"
 
+#: apps/dashboard/forms.py:116
 msgid "Charge VAT"
 msgstr "Kenakan PPN"
 
+#: apps/dashboard/forms.py:116
 msgid "VAT rate (%)"
 msgstr "Tarif PPN (%)"
 
+#: apps/dashboard/forms.py:117
 msgid "Tax name"
 msgstr "Nama pajak"
 
+#: apps/dashboard/forms.py:118 templates/dashboard/quotations/print.html:87
+#: templates/dashboard/quotations/print.html:167
 msgid "Tax ID"
 msgstr "NPWP"
 
+#: apps/dashboard/forms.py:119 apps/restaurants/models.py:106
 msgid "Default bill print mode"
 msgstr "Mode cetak tagihan bawaan"
 
+#: apps/dashboard/forms.py:119 apps/dashboard/views.py:872
+#: apps/menu/service_types.py:32 apps/restaurants/models.py:112
+#: templates/dashboard/base.html:33 templates/dashboard/car_wash.html:3
+#: templates/dashboard/car_wash.html:8 templates/dashboard/menu.html:22
+#: templates/dashboard/table_detail.html:65
 msgid "Car wash"
 msgstr "Cuci kendaraan"
 
+#: apps/dashboard/forms.py:120 apps/restaurants/models.py:115
 msgid "Car wash name"
 msgstr "Nama cuci kendaraan"
 
+#: apps/dashboard/forms.py:120 apps/restaurants/models.py:118
 msgid "Print a car wash ticket automatically"
 msgstr "Cetak tiket cuci otomatis"
 
+#: apps/dashboard/forms.py:150
 msgid "Enter the receipt printer's IP address to print receipts on it."
 msgstr "Masukkan alamat IP printer struk untuk mencetak struk."
 
+#: apps/dashboard/forms.py:152
 msgid "Enter the VAT rate, e.g. 10."
 msgstr "Masukkan tarif PPN, mis. 10."
 
+#: apps/dashboard/forms.py:154
 msgid "Enter the receipt printer's IP address to use the cash drawer."
 msgstr "Masukkan alamat IP printer struk untuk menggunakan laci kas."
 
+#: apps/dashboard/forms.py:162 apps/menu/models.py:22
+#: templates/dashboard/base.html:26 templates/dashboard/reports.html:36
 msgid "Service"
 msgstr "Layanan"
 
+#: apps/dashboard/forms.py:162 apps/dashboard/forms.py:201
+#: apps/dashboard/forms.py:244 templates/dashboard/item_form.html:30
 msgid "Position"
 msgstr "Urutan"
 
+#: apps/dashboard/forms.py:163
 msgid "Visible to customers"
 msgstr "Terlihat oleh pelanggan"
 
+#: apps/dashboard/forms.py:183
 msgid "A category with this name already exists."
 msgstr "Kategori dengan nama ini sudah ada."
 
+#: apps/dashboard/forms.py:199 apps/expenses/forms.py:16
+#: templates/dashboard/expenses.html:91 templates/dashboard/expenses.html:95
+#: templates/dashboard/menu.html:13
 msgid "Category"
 msgstr "Kategori"
 
+#: apps/dashboard/forms.py:199 apps/dashboard/forms.py:244
+#: templates/dashboard/item_form.html:29
 msgid "Price"
 msgstr "Harga"
 
+#: apps/dashboard/forms.py:200
 msgid "Photo"
 msgstr "Foto"
 
+#: apps/dashboard/forms.py:200
 msgid "Available (untick = Sold Out)"
 msgstr "Tersedia (hapus centang = Habis)"
 
+#: apps/dashboard/forms.py:201
 msgid "Preparation time (minutes)"
 msgstr "Waktu persiapan (menit)"
 
+#: apps/dashboard/forms.py:206
 msgid "Price for a motorbike"
 msgstr "Harga untuk motor"
 
+#: apps/dashboard/forms.py:208 apps/dashboard/forms.py:212
 msgid "Car wash packages only. Leave empty to use the normal price (cars)."
 msgstr "Hanya paket cuci. Kosongkan untuk memakai harga normal (mobil)."
 
+#: apps/dashboard/forms.py:210
 msgid "Price for a pickup / SUV"
 msgstr "Harga untuk pickup / SUV"
 
+#: apps/dashboard/forms.py:244 templates/dashboard/item_form.html:31
+#: templates/dashboard/menu.html:44 templates/dashboard/menu.html:65
 msgid "Available"
 msgstr "Tersedia"
 
+#: apps/dashboard/forms.py:256
 msgid "Table number"
 msgstr "Nomor meja"
 
+#: apps/dashboard/forms.py:256
 msgid "Label"
 msgstr "Label"
 
+#: apps/dashboard/forms.py:256
 msgid "Seats"
 msgstr "Kursi"
 
+#: apps/dashboard/forms.py:268
 msgid "This table number already exists."
 msgstr "Nomor meja ini sudah ada."
 
+#: apps/dashboard/forms.py:277
 msgid "From table"
 msgstr "Dari meja"
 
+#: apps/dashboard/forms.py:278 templates/dashboard/car_wash.html:48
 msgid "To table"
 msgstr "Sampai meja"
 
+#: apps/dashboard/forms.py:284
 msgid "Choose a range of at most 200 tables, with end ≥ start."
 msgstr "Pilih rentang maksimal 200 meja, dengan akhir ≥ awal."
 
+#: apps/dashboard/forms.py:291
 msgid "Staff member"
 msgstr "Staf"
 
+#: apps/dashboard/forms.py:292 apps/dashboard/forms.py:365
+#: apps/dashboard/forms.py:403 templates/dashboard/branch_manage.html:44
+#: templates/dashboard/branch_manage.html:48 templates/dashboard/staff.html:16
+#: templates/dashboard/staff.html:22
 msgid "Role"
 msgstr "Peran"
 
+#: apps/dashboard/forms.py:308
 #, python-format
 msgid "Branch names must use your brand name, e.g. “%(example)s”."
 msgstr "Nama cabang harus memakai nama merek Anda, mis. “%(example)s”."
 
+#: apps/dashboard/forms.py:316 apps/dashboard/forms.py:350
 msgid "Branch name"
 msgstr "Nama cabang"
 
+#: apps/dashboard/forms.py:317
 msgid ""
 "Must use your brand name, e.g. Kafe Atauro – Comoro. Customers see this name."
 msgstr ""
 "Harus memakai nama merek Anda, mis. Kafe Atauro – Comoro. Pelanggan melihat "
 "nama ini."
 
+#: apps/dashboard/forms.py:318
 msgid "Branch address"
 msgstr "Alamat cabang"
 
+#: apps/dashboard/forms.py:319
 msgid "Branch phone number"
 msgstr "Nomor telepon cabang"
 
+#: apps/dashboard/forms.py:320 templates/dashboard/branch_manage.html:23
 msgid "Storefront photo"
 msgstr "Foto tampak depan"
 
+#: apps/dashboard/forms.py:321
 msgid "A photo of the branch from outside, showing the brand name."
 msgstr "Foto cabang dari luar yang menampilkan nama merek."
 
+#: apps/dashboard/forms.py:323 apps/restaurants/models.py:340
 msgid "Business registration number"
 msgstr "Nomor registrasi usaha"
 
+#: apps/dashboard/forms.py:324
 msgid ""
 "All branches must belong to the same business registration as the main "
 "branch."
@@ -735,123 +990,167 @@ msgstr ""
 "Semua cabang harus berada di bawah registrasi usaha yang sama dengan cabang "
 "utama."
 
+#: apps/dashboard/forms.py:325 apps/restaurants/models.py:343
 msgid "Owner name"
 msgstr "Nama pemilik"
 
+#: apps/dashboard/forms.py:326
 msgid "Copy from"
 msgstr "Salin dari"
 
+#: apps/dashboard/forms.py:327
 msgid "Start empty"
 msgstr "Mulai kosong"
 
+#: apps/dashboard/forms.py:328
 msgid "Copy the menu (categories, dishes, photos, add-ons)"
 msgstr "Salin menu (kategori, hidangan, foto, tambahan)"
 
+#: apps/dashboard/forms.py:330
 msgid "Copy settings (currency, service charge, VAT, receipts, logo)"
 msgstr "Salin pengaturan (mata uang, biaya layanan, PPN, struk, logo)"
 
+#: apps/dashboard/forms.py:362
 msgid "Username"
 msgstr "Nama pengguna"
 
+#: apps/dashboard/forms.py:367
 msgid "Share it with the staff member; they can change it later."
 msgstr "Bagikan kepada staf; mereka dapat mengubahnya nanti."
 
+#: apps/dashboard/forms.py:378
 msgid "An account with this email already exists."
 msgstr "Akun dengan email ini sudah ada."
 
+#: apps/dashboard/forms.py:385
 msgid "This username is already taken."
 msgstr "Nama pengguna ini sudah dipakai."
 
+#: apps/dashboard/forms.py:407
 msgid "Method"
 msgstr "Metode"
 
+#: apps/dashboard/forms.py:408 apps/expenses/forms.py:17
+#: templates/dashboard/billing.html:53 templates/dashboard/billing.html:59
+#: templates/dashboard/cash_register.html:53
+#: templates/dashboard/expenses.html:91 templates/dashboard/expenses.html:98
+#: templates/dashboard/quotations/edit.html:66
+#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/revenue.html:35 templates/dashboard/revenue.html:42
 msgid "Amount"
 msgstr "Jumlah"
 
+#: apps/dashboard/forms.py:409 templates/dashboard/quotations/print.html:96
 msgid "Reference"
 msgstr "Referensi"
 
+#: apps/dashboard/forms.py:410
 msgid "Receipt / transfer reference"
 msgstr "Referensi struk / transfer"
 
+#: apps/dashboard/forms.py:414
 msgid "Order # / name"
 msgstr "No. pesanan / nama"
 
+#: apps/dashboard/views.py:116
 msgid "Add your logo, address and opening hours"
 msgstr "Tambahkan logo, alamat, dan jam buka"
 
+#: apps/dashboard/views.py:118
 msgid "Create menu categories (e.g. Rice, Drinks)"
 msgstr "Buat kategori menu (mis. Nasi, Minuman)"
 
+#: apps/dashboard/views.py:120
 msgid "Add your dishes with photos and prices"
 msgstr "Tambahkan hidangan dengan foto dan harga"
 
+#: apps/dashboard/views.py:121
 msgid "Create your tables"
 msgstr "Buat meja Anda"
 
+#: apps/dashboard/views.py:122
 msgid "Print the QR codes and place one on each table"
 msgstr "Cetak kode QR dan letakkan satu di setiap meja"
 
+#: apps/dashboard/views.py:124
 msgid "Add kitchen and waiter accounts"
 msgstr "Tambahkan akun dapur dan pelayan"
 
+#: apps/dashboard/views.py:256
 #, python-format
 msgid "Order #%(number)s → %(status)s."
 msgstr "Pesanan #%(number)s → %(status)s."
 
+#: apps/dashboard/views.py:271
 #, python-format
 msgid "Payment recorded. Order #%(number)s is now %(status)s."
 msgstr "Pembayaran dicatat. Pesanan #%(number)s sekarang %(status)s."
 
+#: apps/dashboard/views.py:283
 msgid "Accept"
 msgstr "Terima"
 
+#: apps/dashboard/views.py:283
 msgid "Start preparing"
 msgstr "Mulai siapkan"
 
+#: apps/dashboard/views.py:284
 msgid "Mark ready"
 msgstr "Tandai siap"
 
+#: apps/dashboard/views.py:284
 msgid "Complete"
 msgstr "Selesaikan"
 
+#: apps/dashboard/views.py:284
 msgid "Cancel order"
 msgstr "Batalkan pesanan"
 
+#: apps/dashboard/views.py:312
 msgid "Enter the cash received as a number, e.g. 20 or 20.00."
 msgstr "Masukkan uang tunai yang diterima sebagai angka, mis. 20 atau 20.00."
 
+#: apps/dashboard/views.py:314
 msgid "Enter a valid cash amount."
 msgstr "Masukkan jumlah tunai yang valid."
 
+#: apps/dashboard/views.py:324
 #, python-format
 msgid "GIVE CHANGE: %(change)s  (received %(received)s, total %(total)s)"
 msgstr "BERI KEMBALIAN: %(change)s  (diterima %(received)s, total %(total)s)"
 
+#: apps/dashboard/views.py:334
 #, python-format
 msgid "Exact amount received: %(total)s. No change."
 msgstr "Uang pas diterima: %(total)s. Tanpa kembalian."
 
+#: apps/dashboard/views.py:348
 #, python-format
 msgid "Receipt not printed: %(reason)s"
 msgstr "Struk tidak dicetak: %(reason)s"
 
+#: apps/dashboard/views.py:387 apps/payments/drawer.py:108
 msgid "Cash drawer opened."
 msgstr "Laci kas terbuka."
 
+#: apps/dashboard/views.py:389
 #, python-format
 msgid "Payment saved, but the cash drawer did not open: %(reason)s"
 msgstr "Pembayaran tersimpan, tetapi laci kas tidak terbuka: %(reason)s"
 
+#: apps/dashboard/views.py:401 apps/payments/models.py:57
 msgid "Cash payment"
 msgstr "Pembayaran tunai"
 
+#: apps/dashboard/views.py:401
 msgid "No sale"
 msgstr "Tanpa penjualan"
 
+#: apps/dashboard/views.py:401
 msgid "Printer test"
 msgstr "Uji printer"
 
+#: apps/dashboard/views.py:430
 msgid ""
 "Printing a test slip. If the cash drawer is set up in the printer driver, it "
 "opens too."
@@ -859,51 +1158,65 @@ msgstr ""
 "Mencetak slip uji. Jika laci kas sudah diatur di driver printer, laci juga "
 "terbuka."
 
+#: apps/dashboard/views.py:451
 #, python-format
 msgid "Cash register opened with %(amount)s change."
 msgstr "Kas dibuka dengan uang kembalian %(amount)s."
 
+#: apps/dashboard/views.py:456
 msgid "Cash movement recorded."
 msgstr "Pergerakan kas dicatat."
 
+#: apps/dashboard/views.py:505 apps/dashboard/views.py:632
+#: apps/dashboard/views.py:654
 #, python-format
 msgid "Marked as paid: %(numbers)s."
 msgstr "Ditandai lunas: %(numbers)s."
 
+#: apps/dashboard/views.py:525
 msgid "Your role cannot manage tables."
 msgstr "Peran Anda tidak dapat mengelola meja."
 
+#: apps/dashboard/views.py:539
 #, python-format
 msgid "Limit reached: a restaurant can have up to %(n)s tables on your plan."
 msgstr "Batas tercapai: paket Anda mengizinkan hingga %(n)s meja."
 
+#: apps/dashboard/views.py:543
 #, python-format
 msgid "Created %(n)s table."
 msgid_plural "Created %(n)s tables."
 msgstr[0] "%(n)s meja dibuat."
 
+#: apps/dashboard/views.py:548
 #, python-format
 msgid "Limit reached: your plan allows %(n)s tables."
 msgstr "Batas tercapai: paket Anda mengizinkan %(n)s meja."
 
+#: apps/dashboard/views.py:552
 #, python-format
 msgid "Table %(number)s created."
 msgstr "Meja %(number)s dibuat."
 
+#: apps/dashboard/views.py:617
 #, python-format
 msgid "Guest %(n)s"
 msgstr "Tamu %(n)s"
 
+#: apps/dashboard/views.py:637
 msgid "This guest has nothing left to pay."
 msgstr "Tamu ini tidak memiliki sisa tagihan."
 
+#: apps/dashboard/views.py:662
 msgid "There were no unpaid orders at this table."
 msgstr "Tidak ada pesanan yang belum dibayar di meja ini."
 
+#: apps/dashboard/views.py:665
 #, python-format
 msgid "Table %(number)s is now free."
 msgstr "Meja %(number)s sekarang kosong."
 
+#: apps/dashboard/views.py:674
 #, python-format
 msgid ""
 "Table %(number)s is now free. Customers must scan the QR code again to order."
@@ -911,17 +1224,21 @@ msgstr ""
 "Meja %(number)s sekarang kosong. Pelanggan harus memindai kode QR lagi untuk "
 "memesan."
 
+#: apps/dashboard/views.py:685
 msgid "Table updated. Reprint its QR code if you changed the number."
 msgstr "Meja diperbarui. Cetak ulang kode QR-nya jika Anda mengubah nomornya."
 
+#: apps/dashboard/views.py:688
 #, python-format
 msgid "Edit table %(number)s"
 msgstr "Ubah meja %(number)s"
 
+#: apps/dashboard/views.py:697
 #, python-format
 msgid "Table %(number)s deleted."
 msgstr "Meja %(number)s dihapus."
 
+#: apps/dashboard/views.py:706
 #, python-format
 msgid ""
 "New QR code generated for table %(number)s. Old printed codes no longer work "
@@ -930,61 +1247,79 @@ msgstr ""
 "Kode QR baru dibuat untuk meja %(number)s. Kode lama yang tercetak tidak "
 "berlaku lagi — cetak yang baru."
 
+#: apps/dashboard/views.py:774
 msgid "Category saved."
 msgstr "Kategori disimpan."
 
+#: apps/dashboard/views.py:778
 #, python-format
 msgid "Edit category: %(name)s"
 msgstr "Ubah kategori: %(name)s"
 
+#: apps/dashboard/views.py:778
 msgid "New category"
 msgstr "Kategori baru"
 
+#: apps/dashboard/views.py:790
 msgid "Category deleted."
 msgstr "Kategori dihapus."
 
+#: apps/dashboard/views.py:792
 msgid "Move or delete the dishes in this category first."
 msgstr "Pindahkan atau hapus dulu hidangan di kategori ini."
 
+#: apps/dashboard/views.py:804
 msgid "Create a category first."
 msgstr "Buat kategori terlebih dahulu."
 
+#: apps/dashboard/views.py:808
 #, python-format
 msgid "Limit reached: your plan allows %(n)s dishes."
 msgstr "Batas tercapai: paket Anda mengizinkan %(n)s hidangan."
 
+#: apps/dashboard/views.py:818
 #, python-format
 msgid "“%(name)s” saved."
 msgstr "“%(name)s” disimpan."
 
+#: apps/dashboard/views.py:831
 #, python-format
 msgid "“%(name)s” deleted."
 msgstr "“%(name)s” dihapus."
 
+#: apps/dashboard/views.py:843
 msgid "Restaurant settings saved."
 msgstr "Pengaturan restoran disimpan."
 
+#: apps/dashboard/views.py:855
 msgid "Profile"
 msgstr "Profil"
 
+#: apps/dashboard/views.py:855
 msgid "How your restaurant appears to customers."
 msgstr "Bagaimana restoran Anda tampil bagi pelanggan."
 
+#: apps/dashboard/views.py:857
 msgid "Branding"
 msgstr "Branding"
 
+#: apps/dashboard/views.py:858
 msgid "Shown at the top of your menu. JPEG, PNG or WebP up to 5 MB."
 msgstr "Ditampilkan di bagian atas menu. JPEG, PNG, atau WebP hingga 5 MB."
 
+#: apps/dashboard/views.py:860
 msgid "Ordering & money"
 msgstr "Pesanan & uang"
 
+#: apps/dashboard/views.py:861
 msgid "Pause ordering at any time; prices are shown in this currency."
 msgstr "Jeda pesanan kapan saja; harga ditampilkan dalam mata uang ini."
 
+#: apps/dashboard/views.py:863
 msgid "Tax (VAT)"
 msgstr "Pajak (PPN)"
 
+#: apps/dashboard/views.py:864
 msgid ""
 "Off by default. Switch it on only if your restaurant must charge VAT. Past "
 "orders keep the VAT they were placed with."
@@ -992,9 +1327,11 @@ msgstr ""
 "Nonaktif secara bawaan. Aktifkan hanya jika restoran Anda wajib memungut "
 "PPN. Pesanan lama tetap memakai PPN saat dipesan."
 
+#: apps/dashboard/views.py:867
 msgid "Customer menu language"
 msgstr "Bahasa menu pelanggan"
 
+#: apps/dashboard/views.py:868
 msgid ""
 "Customers can switch language on the menu; untranslated text falls back to "
 "English."
@@ -1002,12 +1339,15 @@ msgstr ""
 "Pelanggan dapat mengganti bahasa di menu; teks yang belum diterjemahkan "
 "tampil dalam bahasa Inggris."
 
+#: apps/dashboard/views.py:870
 msgid "Receipts"
 msgstr "Struk"
 
+#: apps/dashboard/views.py:870
 msgid "What happens after a payment is recorded."
 msgstr "Apa yang terjadi setelah pembayaran dicatat."
 
+#: apps/dashboard/views.py:873
 msgid ""
 "Sell car wash packages from the same table QR as your café. Car wash orders "
 "go to the Car wash screen (and a printed ticket), not to the kitchen. Add a "
@@ -1017,9 +1357,11 @@ msgstr ""
 "cuci masuk ke layar Cuci kendaraan (dan tiket cetak), bukan ke dapur. "
 "Tambahkan kategori menu dengan layanan “Cuci kendaraan” untuk paket Anda."
 
+#: apps/dashboard/views.py:877
 msgid "Receipt printer & cash drawer"
 msgstr "Printer struk & laci kas"
 
+#: apps/dashboard/views.py:878
 msgid ""
 "Print receipts on the receipt printer of the cashier computer. A cash drawer "
 "plugged into that printer opens automatically on cash payments."
@@ -1027,18 +1369,22 @@ msgstr ""
 "Cetak struk di printer struk komputer kasir. Laci kas yang tersambung ke "
 "printer itu terbuka otomatis saat pembayaran tunai."
 
+#: apps/dashboard/views.py:908 apps/dashboard/views.py:1076
 #, python-format
 msgid "Limit reached: your plan allows %(n)s staff accounts."
 msgstr "Batas tercapai: paket Anda mengizinkan %(n)s akun staf."
 
+#: apps/dashboard/views.py:912
 #, python-format
 msgid "%(name)s now also works at this branch."
 msgstr "%(name)s kini juga bekerja di cabang ini."
 
+#: apps/dashboard/views.py:921
 #, python-format
 msgid "Staff account “%(username)s” created."
 msgstr "Akun staf “%(username)s” dibuat."
 
+#: apps/dashboard/views.py:964
 #, python-format
 msgid ""
 "Branch “%(name)s” requested. The platform team will review it; meanwhile you "
@@ -1047,6 +1393,7 @@ msgstr ""
 "Cabang “%(name)s” diajukan. Tim platform akan meninjaunya; sementara itu "
 "Anda bisa menyiapkan menu dan stafnya."
 
+#: apps/dashboard/views.py:971
 #, python-format
 msgid ""
 "Invoice %(number)s created for an extra branch. The slot is added as soon as "
@@ -1055,27 +1402,35 @@ msgstr ""
 "Faktur %(number)s dibuat untuk cabang tambahan. Slot ditambahkan begitu "
 "dibayar."
 
+#: apps/dashboard/views.py:976
 msgid "One unused extra branch removed from your subscription."
 msgstr "Satu cabang tambahan yang tidak dipakai dihapus dari langganan Anda."
 
+#: apps/dashboard/views.py:978
 msgid "Every extra branch is in use. Deactivate a branch first."
 msgstr "Semua cabang tambahan sedang dipakai. Nonaktifkan satu cabang dulu."
 
+#: apps/dashboard/views.py:996 templates/dashboard/revenue.html:28
 msgid "All sources"
 msgstr "Semua sumber"
 
+#: apps/dashboard/views.py:996
 msgid "Orders (QR & waiter)"
 msgstr "Pesanan (QR & pelayan)"
 
+#: apps/dashboard/views.py:996
 msgid "Manual entries"
 msgstr "Catatan manual"
 
+#: apps/dashboard/views.py:997
 msgid "Ordering API (all keys)"
 msgstr "API pemesanan (semua kunci)"
 
+#: apps/dashboard/views.py:1034
 msgid "Branch details saved."
 msgstr "Detail cabang disimpan."
 
+#: apps/dashboard/views.py:1039
 #, python-format
 msgid ""
 "%(name)s is deactivated: customers can't order and its staff can't sign in "
@@ -1084,6 +1439,7 @@ msgstr ""
 "%(name)s dinonaktifkan: pelanggan tidak bisa memesan dan stafnya tidak bisa "
 "masuk. Riwayatnya tetap disimpan."
 
+#: apps/dashboard/views.py:1046
 msgid ""
 "No free branch slot: all branches in your plan are in use. Add an extra "
 "branch on the Branches page first."
@@ -1091,181 +1447,261 @@ msgstr ""
 "Tidak ada slot kosong: semua cabang di paket Anda sedang dipakai. Tambahkan "
 "cabang tambahan di halaman Cabang dulu."
 
+#: apps/dashboard/views.py:1051
 #, python-format
 msgid "%(name)s is active again."
 msgstr "%(name)s aktif kembali."
 
+#: apps/dashboard/views.py:1072
 msgid "Sent for review again."
 msgstr "Dikirim lagi untuk ditinjau."
 
+#: apps/dashboard/views.py:1083
 #, python-format
 msgid "Staff account “%(username)s” created for %(branch)s."
 msgstr "Akun “%(username)s” dibuat untuk %(branch)s."
 
+#: apps/dashboard/views.py:1091
 #, python-format
 msgid "Access updated for %(name)s."
 msgstr "Akses diperbarui untuk %(name)s."
 
+#: apps/dashboard/views.py:1119
 msgid "Thank you! Your business profile is under review."
 msgstr "Terima kasih! Profil usaha Anda sedang ditinjau."
 
+#: apps/dashboard/views.py:1144
 msgid "You cannot demote or deactivate yourself."
 msgstr "Anda tidak dapat menurunkan peran atau menonaktifkan diri sendiri."
 
+#: apps/dashboard/views.py:1147
 msgid "Staff member updated."
 msgstr "Staf diperbarui."
 
+#: apps/dashboard/views.py:1150 templates/dashboard/item_form.html:3
+#: templates/dashboard/menu.html:47
 #, python-format
 msgid "Edit %(name)s"
 msgstr "Ubah %(name)s"
 
+#: apps/dashboard/views.py:1182 templates/dashboard/analytics.html:52
+#: templates/dashboard/api_docs.html:114 templates/dashboard/base.html:32
+#: templates/dashboard/expenses.html:21 templates/dashboard/expenses.html:47
+#: templates/dashboard/expenses.html:54 templates/dashboard/expenses.html:58
+#: templates/dashboard/reports.html:23 templates/dashboard/reports.html:36
+#: templates/dashboard/reports.html:37 templates/dashboard/reports.html:71
+#: templates/dashboard/reports.html:72 templates/dashboard/revenue.html:3
+#: templates/dashboard/revenue.html:8
 msgid "Revenue"
 msgstr "Pendapatan"
 
+#: apps/dashboard/views.py:1182
 msgid "Completed orders"
 msgstr "Pesanan selesai"
 
+#: apps/dashboard/views.py:1182 templates/dashboard/reports.html:25
 msgid "Average order"
 msgstr "Rata-rata pesanan"
 
+#: apps/dashboard/views.py:1183
 msgid "Cancelled orders"
 msgstr "Pesanan dibatalkan"
 
+#: apps/dashboard/views.py:1193
 msgid " pts"
 msgstr " poin"
 
+#: apps/dashboard/views.py:1311
 msgid "Choose a different plan."
 msgstr "Pilih paket lain."
 
+#: apps/dashboard/views.py:1314
 #, python-format
 msgid "Request sent: change to %(plan)s. We'll confirm shortly."
 msgstr ""
 "Permintaan terkirim: ganti ke %(plan)s. Kami akan segera mengonfirmasi."
 
+#: apps/dashboard/views.py:1322 templates/dashboard/base.html:95
+#: templates/dashboard/table_detail.html:6
 msgid "Tables"
 msgstr "Meja"
 
+#: apps/dashboard/views.py:1323
 msgid "Dishes"
 msgstr "Hidangan"
 
+#: apps/dashboard/views.py:1324 templates/dashboard/branch_manage.html:40
 msgid "Staff accounts"
 msgstr "Akun staf"
 
+#: apps/expenses/forms.py:14
 msgid "e.g. Rice 25 kg, gas refill, market vegetables"
 msgstr "mis. Beras 25 kg, isi ulang gas, sayur pasar"
 
+#: apps/expenses/forms.py:16 apps/expenses/forms.py:31
+#: templates/dashboard/expenses.html:91
+#: templates/dashboard/quotations/list.html:26
+#: templates/dashboard/quotations/list.html:32
+#: templates/dashboard/quotations/print.html:94
+#: templates/dashboard/revenue.html:35
 msgid "Date"
 msgstr "Tanggal"
 
+#: apps/expenses/forms.py:16 templates/dashboard/expenses.html:91
+#: templates/dashboard/expenses.html:96
 msgid "What was bought"
 msgstr "Yang dibeli"
 
+#: apps/expenses/forms.py:17 templates/dashboard/expenses.html:91
+#: templates/dashboard/expenses.html:97
 msgid "Paid with"
 msgstr "Dibayar dengan"
 
+#: apps/expenses/forms.py:29
 msgid "e.g. Walk-in sales, catering for Ministry"
 msgstr "mis. Penjualan langsung, katering untuk Kementerian"
 
+#: apps/expenses/forms.py:31
 msgid "Amount (USD)"
 msgstr "Jumlah (USD)"
 
+#: apps/expenses/forms.py:31 templates/dashboard/revenue.html:35
+#: templates/dashboard/revenue.html:40
 msgid "Payment method"
 msgstr "Metode pembayaran"
 
+#: apps/expenses/forms.py:31 templates/dashboard/cash_register.html:71
 msgid "Note (optional)"
 msgstr "Catatan (opsional)"
 
+#: apps/expenses/models.py:16
 msgid "Ingredients & food supplies"
 msgstr "Bahan & persediaan makanan"
 
+#: apps/expenses/models.py:17
 msgid "Drinks"
 msgstr "Minuman"
 
+#: apps/expenses/models.py:18
 msgid "Gas & fuel"
 msgstr "Gas & bahan bakar"
 
+#: apps/expenses/models.py:19
 msgid "Electricity, water & internet"
 msgstr "Listrik, air & internet"
 
+#: apps/expenses/models.py:20
 msgid "Rent"
 msgstr "Sewa"
 
+#: apps/expenses/models.py:21
 msgid "Salaries & wages"
 msgstr "Gaji & upah"
 
+#: apps/expenses/models.py:22
 msgid "Transport"
 msgstr "Transportasi"
 
+#: apps/expenses/models.py:23
 msgid "Equipment & tableware"
 msgstr "Peralatan & alat makan"
 
+#: apps/expenses/models.py:24
 msgid "Repairs & cleaning"
 msgstr "Perbaikan & kebersihan"
 
+#: apps/expenses/models.py:25 apps/expenses/models.py:28
+#: apps/expenses/models.py:51
 msgid "Other"
 msgstr "Lainnya"
 
+#: apps/expenses/models.py:28 apps/expenses/models.py:51
+#: apps/orders/models.py:58 apps/payments/providers.py:105
 msgid "Cash"
 msgstr "Tunai"
 
+#: apps/expenses/models.py:28 apps/orders/models.py:60
 msgid "Bank transfer"
 msgstr "Transfer bank"
 
+#: apps/expenses/models.py:51
 msgid "Transfer"
 msgstr "Transfer"
 
+#: apps/expenses/models.py:62 apps/expenses/models.py:76
+#: templates/dashboard/revenue.html:28
 msgid "Manual"
 msgstr "Manual"
 
+#: apps/expenses/models.py:62 templates/dashboard/revenue.html:28
 msgid "API"
 msgstr "API"
 
+#: apps/expenses/views.py:52
 #, python-format
 msgid "Expense saved: %(what)s, %(amount)s."
 msgstr "Pengeluaran disimpan: %(what)s, %(amount)s."
 
+#: apps/expenses/views.py:81
 msgid "Expense updated."
 msgstr "Pengeluaran diperbarui."
 
+#: apps/expenses/views.py:84
 msgid "Edit expense"
 msgstr "Ubah pengeluaran"
 
+#: apps/expenses/views.py:95
 msgid "Expense deleted."
 msgstr "Pengeluaran dihapus."
 
+#: apps/expenses/views.py:133
 #, python-format
 msgid "Revenue recorded: %(amount)s."
 msgstr "Pendapatan dicatat: %(amount)s."
 
+#: apps/expenses/views.py:163
 msgid "Revenue entry deleted."
 msgstr "Catatan pendapatan dihapus."
 
+#: apps/integrations/forms.py:12 apps/integrations/models.py:26
 msgid "e.g. Website, Mobile app, Delivery partner"
 msgstr "mis. Situs web, Aplikasi seluler, Mitra pengantaran"
 
+#: apps/integrations/forms.py:13 apps/integrations/models.py:27
 msgid "Test (sandbox) key"
 msgstr "Kunci uji (sandbox)"
 
+#: apps/integrations/forms.py:14 apps/integrations/models.py:28
 msgid "Test orders are not sent to the kitchen and never count as revenue."
 msgstr ""
 "Pesanan uji tidak dikirim ke dapur dan tidak pernah dihitung sebagai "
 "pendapatan."
 
+#: apps/integrations/forms.py:17 apps/integrations/forms.py:28
+#: templates/dashboard/api.html:28 templates/dashboard/api.html:33
+#: templates/dashboard/base.html:45 templates/dashboard/billing.html:83
+#: templates/dashboard/branch_manage.html:6 templates/dashboard/branches.html:3
+#: templates/dashboard/branches.html:8 templates/dashboard/upgrade.html:15
 msgid "Branches"
 msgstr "Cabang"
 
+#: apps/integrations/forms.py:17
 msgid "Leave all unticked to allow every branch."
 msgstr "Biarkan semua tidak dicentang untuk mengizinkan semua cabang."
 
+#: apps/integrations/models.py:97
 msgid "Webhook URL"
 msgstr "URL webhook"
 
+#: apps/integrations/models.py:97
 msgid "Must start with https://"
 msgstr "Harus diawali https://"
 
+#: apps/integrations/models.py:100
 msgid "Also send orders not placed through the API"
 msgstr "Kirim juga pesanan yang tidak melalui API"
 
+#: apps/integrations/models.py:101
 msgid ""
 "Off: only orders created with your API keys. On: every order of your "
 "branches (QR, waiter, API)."
@@ -1273,347 +1709,492 @@ msgstr ""
 "Mati: hanya pesanan yang dibuat dengan kunci API Anda. Nyala: semua pesanan "
 "cabang Anda (QR, pelayan, API)."
 
+#: apps/integrations/views.py:44
 #, python-format
 msgid "You can have up to %(n)s active API keys."
 msgstr "Anda bisa memiliki hingga %(n)s kunci API aktif."
 
+#: apps/integrations/views.py:55
 #, python-format
 msgid "API key “%(name)s” revoked. Requests with it are now refused."
 msgstr "Kunci API “%(name)s” dicabut. Permintaan dengannya kini ditolak."
 
+#: apps/integrations/views.py:62
 msgid "API key saved."
 msgstr "Kunci API disimpan."
 
+#: apps/integrations/views.py:66
 #, python-format
 msgid "You can have up to %(n)s webhooks."
 msgstr "Anda bisa memiliki hingga %(n)s webhook."
 
+#: apps/integrations/views.py:71
 msgid "Webhook added. Its signing secret is shown below."
 msgstr "Webhook ditambahkan. Rahasia penandatanganannya ada di bawah."
 
+#: apps/integrations/views.py:77
 msgid "Webhook removed."
 msgstr "Webhook dihapus."
 
+#: apps/integrations/views.py:83
 msgid "Test event sent. Refresh in a few seconds to see the result."
 msgstr ""
 "Event uji dikirim. Muat ulang dalam beberapa detik untuk melihat hasilnya."
 
+#: apps/menu/models.py:19
 msgid "Lower numbers appear first."
 msgstr "Angka lebih kecil tampil lebih dulu."
 
+#: apps/menu/models.py:20
 msgid "Hidden categories are not shown to customers."
 msgstr "Kategori tersembunyi tidak ditampilkan kepada pelanggan."
 
+#: apps/menu/models.py:23
 msgid "Café items go to the kitchen; car wash packages go to the counter."
 msgstr "Item kafe ke dapur; paket cuci ke kasir."
 
+#: apps/menu/models.py:44
 msgid "Untick to mark as Sold Out."
 msgstr "Hapus centang untuk menandai Habis."
 
+#: apps/menu/models.py:47
 msgid "Typical preparation time; leave blank to use the restaurant default."
 msgstr "Waktu persiapan biasa; kosongkan untuk memakai bawaan restoran."
 
+#: apps/menu/service_types.py:40
 msgid "Car"
 msgstr "Mobil"
 
+#: apps/menu/service_types.py:40
 msgid "Motorbike"
 msgstr "Motor"
 
+#: apps/menu/service_types.py:40
 msgid "Pickup / SUV"
 msgstr "Pickup / SUV"
 
+#: apps/orders/models.py:24 templates/dashboard/kitchen.html:19
 msgid "New"
 msgstr "Baru"
 
+#: apps/orders/models.py:25 apps/quotations/models.py:28
+#: templates/dashboard/quotations/list.html:18
 msgid "Accepted"
 msgstr "Diterima"
 
+#: apps/orders/models.py:26 templates/dashboard/kitchen.html:20
 msgid "Preparing"
 msgstr "Disiapkan"
 
+#: apps/orders/models.py:27 templates/dashboard/kitchen.html:21
 msgid "Ready"
 msgstr "Siap"
 
+#: apps/orders/models.py:28 templates/dashboard/reports.html:26
+#: templates/dashboard/reports.html:36 templates/dashboard/reports.html:37
 msgid "Completed"
 msgstr "Selesai"
 
+#: apps/orders/models.py:57
 msgid "Pay at restaurant"
 msgstr "Bayar di restoran"
 
+#: apps/orders/models.py:59
 msgid "Manual payment"
 msgstr "Pembayaran manual"
 
+#: apps/orders/models.py:61
 msgid "Visa / Mastercard"
 msgstr "Visa / Mastercard"
 
+#: apps/orders/models.py:62
 msgid "Online payment gateway"
 msgstr "Gerbang pembayaran online"
 
+#: apps/orders/models.py:63
 msgid "QR payment"
 msgstr "Pembayaran QR"
 
+#: apps/orders/models.py:73
 msgid "Unpaid"
 msgstr "Belum dibayar"
 
+#: apps/orders/models.py:73 apps/payments/models.py:23
 msgid "Refunded"
 msgstr "Dikembalikan"
 
+#: apps/orders/models.py:103
 msgid "VAT is part of the item prices (not added on top)."
 msgstr "PPN sudah termasuk dalam harga item (tidak ditambahkan)."
 
+#: apps/orders/models.py:123 templates/dashboard/order_detail.html:20
+#: templates/dashboard/table_detail.html:110
 msgid "QR code"
 msgstr "Kode QR"
 
+#: apps/orders/models.py:123 templates/dashboard/base.html:47
+#: templates/dashboard/staff.html:3 templates/dashboard/staff.html:8
 msgid "Staff"
 msgstr "Staf"
 
+#: apps/orders/models.py:124 templates/dashboard/analytics.html:101
+#: templates/dashboard/api.html:3 templates/dashboard/api.html:8
+#: templates/dashboard/api_docs.html:6 templates/dashboard/base.html:46
+#: templates/dashboard/order_detail.html:20 templates/dashboard/upgrade.html:18
 msgid "Ordering API"
 msgstr "API pemesanan"
 
+#: apps/orders/models.py:222 templates/dashboard/base.html:29
+#: templates/dashboard/base.html:93 templates/dashboard/new_order.html:3
+#: templates/dashboard/new_order.html:5 templates/dashboard/new_order.html:9
+#: templates/dashboard/orders.html:11 templates/dashboard/overview.html:22
 msgid "New order"
 msgstr "Pesanan baru"
 
+#: apps/orders/models.py:222
 msgid "Order cancelled"
 msgstr "Pesanan dibatalkan"
 
+#: apps/orders/services.py:101
 msgid "Your cart is empty."
 msgstr "Keranjang Anda kosong."
 
+#: apps/orders/services.py:124
 msgid "Invalid quantity."
 msgstr "Jumlah tidak valid."
 
+#: apps/orders/services.py:129
 msgid "Invalid add-on selected."
 msgstr "Tambahan yang dipilih tidak valid."
 
+#: apps/orders/services.py:138
 #, python-format
 msgid "Enter the plate number for %(item)s."
 msgstr "Masukkan nomor polisi untuk %(item)s."
 
+#: apps/orders/services.py:142
 msgid "Invalid vehicle type."
 msgstr "Jenis kendaraan tidak valid."
 
+#: apps/orders/services.py:151
 msgid "Some items are no longer available."
 msgstr "Beberapa item sudah tidak tersedia."
 
+#: apps/orders/services.py:192
 msgid "This restaurant is not accepting orders right now."
 msgstr "Restoran ini sedang tidak menerima pesanan."
 
+#: apps/orders/services.py:194
 msgid "Invalid table."
 msgstr "Meja tidak valid."
 
+#: apps/orders/services.py:290
 #, python-format
 msgid "Cannot change order from %(from)s to %(to)s."
 msgstr "Tidak dapat mengubah pesanan dari %(from)s ke %(to)s."
 
+#: apps/payments/cash_sessions.py:47 apps/payments/cash_sessions.py:49
 msgid "Enter whole numbers for the notes and coins."
 msgstr "Masukkan bilangan bulat untuk uang kertas dan koin."
 
+#: apps/payments/cash_sessions.py:61
 msgid "Enter the amount as a number, e.g. 50 or 50.00."
 msgstr "Masukkan jumlah sebagai angka, mis. 50 atau 50.00."
 
+#: apps/payments/cash_sessions.py:63
 msgid "Enter a valid amount."
 msgstr "Masukkan jumlah yang valid."
 
+#: apps/payments/cash_sessions.py:78
 msgid "The cash register is already open."
 msgstr "Kas sudah dibuka."
 
+#: apps/payments/cash_sessions.py:83 apps/payments/cash_sessions.py:137
 msgid "This cash session is already closed."
 msgstr "Sesi kas ini sudah ditutup."
 
+#: apps/payments/cash_sessions.py:85
 msgid "Enter an amount greater than zero."
 msgstr "Masukkan jumlah lebih dari nol."
 
+#: apps/payments/cash_sessions.py:87
 msgid "Write a short reason, e.g. “bought ice”."
 msgstr "Tulis alasan singkat, mis. “beli es”."
 
+#: apps/payments/drawer.py:46
 msgid ""
 "Can't find this printer address. Use the printer's IP, e.g. 192.168.1.50."
 msgstr ""
 "Alamat printer ini tidak ditemukan. Gunakan IP printer, mis. 192.168.1.50."
 
+#: apps/payments/drawer.py:51
 msgid ""
 "The printer must be on the local network (e.g. 192.168.x.x or 10.x.x.x)."
 msgstr ""
 "Printer harus berada di jaringan lokal (mis. 192.168.x.x atau 10.x.x.x)."
 
+#: apps/payments/drawer.py:79
 msgid "Cash drawer is not set up."
 msgstr "Laci kas belum diatur."
 
+#: apps/payments/drawer.py:87
 msgid "Printing a slip to open the cash drawer."
 msgstr "Mencetak slip untuk membuka laci kas."
 
+#: apps/payments/drawer.py:97
 #, python-format
 msgid "Printer at %(target)s did not respond. Is it switched on and connected?"
 msgstr ""
 "Printer di %(target)s tidak merespons. Apakah sudah menyala dan tersambung?"
 
+#: apps/payments/drawer.py:99 apps/payments/receipts.py:202
 #, python-format
 msgid "Could not reach the printer at %(target)s (%(error)s)."
 msgstr "Tidak dapat menghubungi printer di %(target)s (%(error)s)."
 
+#: apps/payments/models.py:23 apps/restaurants/models.py:135
+#: templates/dashboard/branch_manage.html:9
+#: templates/dashboard/branches.html:42
 msgid "Pending"
 msgstr "Tertunda"
 
+#: apps/payments/models.py:23
 msgid "Succeeded"
 msgstr "Berhasil"
 
+#: apps/payments/models.py:23 templates/dashboard/settings.html:60
 msgid "Failed"
 msgstr "Gagal"
 
+#: apps/payments/models.py:57
 msgid "No sale / change"
 msgstr "Tanpa penjualan / kembalian"
 
+#: apps/payments/models.py:57 templates/dashboard/api.html:31
 msgid "Test"
 msgstr "Tes"
 
+#: apps/payments/models.py:86
 msgid "Notes and coins counted, e.g. {\"20\": 2}."
 msgstr "Uang kertas dan koin yang dihitung, mis. {\"20\": 2}."
 
+#: apps/payments/models.py:125 templates/dashboard/cash_register.html:39
+#: templates/dashboard/cash_register.html:52
 msgid "Cash in"
 msgstr "Kas masuk"
 
+#: apps/payments/models.py:125 templates/dashboard/cash_register.html:40
+#: templates/dashboard/cash_register.html:52
 msgid "Cash out"
 msgstr "Kas keluar"
 
+#: apps/payments/providers.py:106
 msgid "Manual / other"
 msgstr "Manual / lainnya"
 
+#: apps/payments/providers.py:107
 msgid "Bank transfer (manual check)"
 msgstr "Transfer bank (cek manual)"
 
+#: apps/payments/providers.py:108
 msgid "Card (external terminal)"
 msgstr "Kartu (terminal eksternal)"
 
+#: apps/payments/providers.py:109
 msgid "QR payment (manual check)"
 msgstr "Pembayaran QR (cek manual)"
 
+#: apps/payments/receipts.py:186
 msgid "Nothing to print."
 msgstr "Tidak ada yang dicetak."
 
+#: apps/payments/receipts.py:193
 msgid "Network receipt printer is not set up."
 msgstr "Printer struk jaringan belum diatur."
 
+#: apps/payments/receipts.py:200
 #, python-format
 msgid "Printer at %(target)s did not respond. Is it switched on?"
 msgstr "Printer di %(target)s tidak merespons. Apakah sudah menyala?"
 
+#: apps/payments/receipts.py:206
 msgid "Receipt printed."
 msgstr "Struk dicetak."
 
+#: apps/payments/services.py:86 apps/payments/services.py:136
 msgid "This order was cancelled; there is nothing to pay."
 msgstr "Pesanan ini dibatalkan; tidak ada yang perlu dibayar."
 
+#: apps/payments/services.py:88 apps/payments/services.py:138
 #, python-format
 msgid "Order #%(number)s is already paid."
 msgstr "Pesanan #%(number)s sudah lunas."
 
+#: apps/payments/services.py:97
 msgid "There is nothing left to pay."
 msgstr "Tidak ada sisa yang perlu dibayar."
 
+#: apps/payments/services.py:104
 #, python-format
 msgid "Not enough cash: received %(received)s but %(due)s is due."
 msgstr "Uang tunai kurang: diterima %(received)s tetapi tagihan %(due)s."
 
+#: apps/payments/services.py:142
 msgid "Amount must be greater than zero."
 msgstr "Jumlah harus lebih dari nol."
 
+#: apps/quotations/forms.py:30
 msgid "Client contact person"
 msgstr "Narahubung klien"
 
+#: apps/quotations/forms.py:30
 msgid "Organisation"
 msgstr "Organisasi"
 
+#: apps/quotations/forms.py:31
 msgid "Phone / email"
 msgstr "Telepon / email"
 
+#: apps/quotations/forms.py:32
 msgid "Tender / procurement reference"
 msgstr "Referensi tender / pengadaan"
 
+#: apps/quotations/forms.py:32 templates/dashboard/quotations/list.html:26
+#: templates/dashboard/quotations/list.html:31
 msgid "Subject"
 msgstr "Perihal"
 
+#: apps/quotations/forms.py:33 templates/dashboard/quotations/print.html:113
 msgid "Event / delivery date"
 msgstr "Tanggal acara / pengantaran"
 
+#: apps/quotations/forms.py:33 templates/dashboard/quotations/print.html:114
 msgid "Number of guests"
 msgstr "Jumlah tamu"
 
+#: apps/quotations/forms.py:34
 msgid "Quotation date"
 msgstr "Tanggal penawaran"
 
+#: apps/quotations/forms.py:34 templates/dashboard/quotations/print.html:95
 msgid "Valid until"
 msgstr "Berlaku sampai"
 
+#: apps/quotations/forms.py:35
 msgid "Document language"
 msgstr "Bahasa dokumen"
 
+#: apps/quotations/forms.py:35 templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:14
+#: templates/dashboard/api_docs.html:26 templates/dashboard/billing.html:53
+#: templates/dashboard/billing.html:60
+#: templates/dashboard/branch_manage.html:44
+#: templates/dashboard/branch_manage.html:49
+#: templates/dashboard/quotations/list.html:26
+#: templates/dashboard/quotations/list.html:34
+#: templates/dashboard/staff.html:16 templates/dashboard/staff.html:23
 msgid "Status"
 msgstr "Status"
 
+#: apps/quotations/forms.py:36
 msgid "Discount (amount)"
 msgstr "Diskon (jumlah)"
 
+#: apps/quotations/forms.py:36
 msgid "VAT (%)"
 msgstr "PPN (%)"
 
+#: apps/quotations/forms.py:37
 msgid "Terms, payment & bank details"
 msgstr "Syarat, pembayaran & rekening bank"
 
+#: apps/quotations/forms.py:40
 msgid "e.g. Lunch catering for training workshop"
 msgstr "mis. Katering makan siang untuk lokakarya pelatihan"
 
+#: apps/quotations/forms.py:41
 msgid "0 = no VAT."
 msgstr "0 = tanpa PPN."
 
+#: apps/quotations/forms.py:48
 msgid "Must be on or after the quotation date."
 msgstr "Harus pada atau setelah tanggal penawaran."
 
+#: apps/quotations/forms.py:72
 #, python-format
 msgid "Line %(n)s: enter numbers for quantity and price."
 msgstr "Baris %(n)s: masukkan angka untuk jumlah dan harga."
 
+#: apps/quotations/forms.py:75
 #, python-format
 msgid "Line %(n)s: enter a description."
 msgstr "Baris %(n)s: masukkan deskripsi."
 
+#: apps/quotations/forms.py:78
 #, python-format
 msgid "Line %(n)s: quantity and price must be valid positive numbers."
 msgstr "Baris %(n)s: jumlah dan harga harus angka positif yang valid."
 
+#: apps/quotations/forms.py:87
 msgid "Add at least one line."
 msgstr "Tambahkan minimal satu baris."
 
+#: apps/quotations/models.py:28 templates/dashboard/quotations/list.html:16
 msgid "Draft"
 msgstr "Draf"
 
+#: apps/quotations/models.py:28 templates/dashboard/quotations/list.html:17
 msgid "Sent"
 msgstr "Terkirim"
 
+#: apps/quotations/models.py:28 apps/restaurants/models.py:136
+#: apps/restaurants/models.py:335 templates/dashboard/branch_manage.html:9
+#: templates/dashboard/branches.html:43
+#: templates/dashboard/quotations/list.html:19
 msgid "Rejected"
 msgstr "Ditolak"
 
+#: apps/quotations/views.py:43
+msgid "Company profile saved."
+msgstr "Profil perusahaan disimpan."
+
+#: apps/quotations/views.py:105
 #, python-format
 msgid "Quotation %(number)s saved."
 msgstr "Penawaran %(number)s disimpan."
 
+#: apps/quotations/views.py:142
 #, python-format
 msgid "Copied as %(number)s. Update the dates and prices if needed."
 msgstr "Disalin sebagai %(number)s. Perbarui tanggal dan harga bila perlu."
 
+#: apps/quotations/views.py:153
 #, python-format
 msgid "Quotation %(number)s deleted."
 msgstr "Penawaran %(number)s dihapus."
 
+#: apps/restaurants/models.py:17
 msgid "Use letters, numbers and dashes only (max 20), e.g. 12 or A-3."
 msgstr ""
 "Gunakan huruf, angka, dan tanda hubung saja (maks. 20), mis. 12 atau A-3."
 
+#: apps/restaurants/models.py:32
 msgid "e.g. Mon–Sat 08:00–22:00"
 msgstr "mis. Sen–Sab 08:00–22:00"
 
+#: apps/restaurants/models.py:34 templates/dashboard/quotations/list.html:11
+#: templates/dashboard/quotations/print.html:149
+#: templates/dashboard/quotations/profile.html:3
+#: templates/dashboard/quotations/profile.html:9
+#: templates/dashboard/quotations/profile.html:20
+msgid "Company profile"
+msgstr "Profil perusahaan"
+
+#: apps/restaurants/models.py:43
 msgid "Charge VAT on orders."
 msgstr "Kenakan PPN pada pesanan."
 
+#: apps/restaurants/models.py:49
 msgid ""
 "Add on top: the bill total goes up by the VAT. Already included: totals stay "
 "the same and receipts show the VAT part."
@@ -1621,32 +2202,45 @@ msgstr ""
 "Tambahkan: total tagihan naik sebesar PPN. Sudah termasuk: total tidak "
 "berubah dan struk menampilkan bagian PPN."
 
+#: apps/restaurants/models.py:52
 msgid "Name printed on bills, e.g. VAT or IVA."
 msgstr "Nama yang dicetak di tagihan, mis. VAT atau PPN."
 
+#: apps/restaurants/models.py:53
 msgid "Tax ID printed on receipts."
 msgstr "NPWP yang dicetak di struk."
 
-msgid "Let Google and other search engines list your restaurant, menu, prices and dish photos."
-msgstr "Izinkan Google dan mesin pencari lain menampilkan restoran, menu, harga, dan foto hidangan Anda."
+#: apps/restaurants/models.py:60
+msgid ""
+"Let Google and other search engines list your restaurant, menu, prices and "
+"dish photos."
+msgstr ""
+"Izinkan Google dan mesin pencari lain menampilkan restoran, menu, harga, dan "
+"foto hidangan Anda."
 
+#: apps/restaurants/models.py:65
 msgid "Pin 2 (most drawers)"
 msgstr "Pin 2 (kebanyakan laci)"
 
+#: apps/restaurants/models.py:65
 msgid "Pin 5"
 msgstr "Pin 5"
 
+#: apps/restaurants/models.py:67
 msgid "Open the cash drawer automatically when a cash payment is recorded."
 msgstr "Buka laci kas otomatis saat pembayaran tunai dicatat."
 
+#: apps/restaurants/models.py:70
 msgid ""
 "IP address of the receipt printer the drawer is plugged into, e.g. "
 "192.168.1.50"
 msgstr "Alamat IP printer struk tempat laci tersambung, mis. 192.168.1.50"
 
+#: apps/restaurants/models.py:74
 msgid "Raw printing port; 9100 for almost all network receipt printers."
 msgstr "Port cetak langsung; 9100 untuk hampir semua printer struk jaringan."
 
+#: apps/restaurants/models.py:81
 msgid ""
 "The cash drawer is plugged into the receipt printer of this computer. A "
 "small slip prints to open it."
@@ -1654,49 +2248,63 @@ msgstr ""
 "Laci kas tersambung ke printer struk komputer ini. Slip kecil dicetak untuk "
 "membukanya."
 
+#: apps/restaurants/models.py:87
 msgid "Ask \"Print receipt?\" after each payment"
 msgstr "Tanya “Cetak struk?” setelah setiap pembayaran"
 
+#: apps/restaurants/models.py:88
 msgid "Always print after payment"
 msgstr "Selalu cetak setelah pembayaran"
 
+#: apps/restaurants/models.py:89
 msgid "Never print automatically"
 msgstr "Jangan pernah cetak otomatis"
 
+#: apps/restaurants/models.py:93
 msgid "This device's printer (print dialog)"
 msgstr "Printer perangkat ini (dialog cetak)"
 
+#: apps/restaurants/models.py:94
 msgid "Network receipt printer (prints directly)"
 msgstr "Printer struk jaringan (cetak langsung)"
 
+#: apps/restaurants/models.py:99
 msgid "80 mm paper"
 msgstr "Kertas 80 mm"
 
+#: apps/restaurants/models.py:99
 msgid "58 mm paper"
 msgstr "Kertas 58 mm"
 
+#: apps/restaurants/models.py:100
 msgid "Paper width of the network receipt printer."
 msgstr "Lebar kertas printer struk."
 
+#: apps/restaurants/models.py:104
 msgid "One combined bill"
 msgstr "Satu tagihan gabungan"
 
+#: apps/restaurants/models.py:104
 msgid "Separate bill per service"
 msgstr "Tagihan terpisah per layanan"
 
+#: apps/restaurants/models.py:107
 msgid ""
 "Used when a table has orders for several services (e.g. café and car wash)."
 msgstr ""
 "Dipakai saat satu meja punya pesanan beberapa layanan (mis. kafe dan cuci)."
 
+#: apps/restaurants/models.py:113
 msgid ""
 "Customers can order car wash packages from the table QR, together with café "
 "items."
 msgstr "Pelanggan bisa memesan paket cuci dari QR meja, bersama item kafe."
 
+#: apps/restaurants/models.py:116
 msgid "Shown to customers and on car wash bills, e.g. Timor Car Wash."
 msgstr "Ditampilkan ke pelanggan dan di tagihan cuci, mis. Timor Car Wash."
 
+#: apps/restaurants/models.py:119
 msgid ""
 "For each new car wash order: on the network receipt printer if set up, "
 "otherwise from the Car wash screen when it is open."
@@ -1704,100 +2312,140 @@ msgstr ""
 "Untuk setiap pesanan cuci baru: di printer jaringan bila ada, jika tidak "
 "dari layar Cuci kendaraan saat terbuka."
 
+#: apps/restaurants/models.py:127
 msgid "The main branch this sub-branch belongs to."
 msgstr "Cabang utama tempat sub-cabang ini berada."
 
+#: apps/restaurants/models.py:130
 msgid "Set when the main branch deactivates this sub-branch."
 msgstr "Diisi saat cabang utama menonaktifkan sub-cabang ini."
 
+#: apps/restaurants/models.py:136 templates/dashboard/branch_manage.html:9
+#: templates/dashboard/branches.html:44
 msgid "Suspended"
 msgstr "Ditangguhkan"
 
+#: apps/restaurants/models.py:217
 msgid "Optional, e.g. 'Terrace' or 'Window'."
 msgstr "Opsional, mis. 'Teras' atau 'Jendela'."
 
+#: apps/restaurants/models.py:335 templates/dashboard/business_profile.html:11
 msgid "Incomplete"
 msgstr "Belum lengkap"
 
+#: apps/restaurants/models.py:335 templates/dashboard/branches.html:97
+#: templates/dashboard/business_profile.html:9
 msgid "Under review"
 msgstr "Sedang ditinjau"
 
+#: apps/restaurants/models.py:335 templates/dashboard/branches.html:95
+#: templates/dashboard/business_profile.html:8
 msgid "Verified"
 msgstr "Terverifikasi"
 
+#: apps/restaurants/models.py:341
 msgid "e.g. your SERVE certificate number or tax number (NIF)."
 msgstr "mis. nomor sertifikat SERVE atau nomor pajak (NIF)."
 
+#: apps/restaurants/models.py:344
 msgid "The legal owner of the business."
 msgstr "Pemilik sah usaha ini."
 
+#: apps/restaurants/models.py:346
 msgid "Phone number"
 msgstr "Nomor telepon"
 
+#: apps/storefront/forms.py:19
 msgid "Restaurant / café name"
 msgstr "Nama restoran / kafe"
 
+#: apps/storefront/forms.py:20
 msgid "WhatsApp or phone number"
 msgstr "WhatsApp atau nomor telepon"
 
+#: apps/storefront/forms.py:20
 msgid "Best time to call"
 msgstr "Waktu terbaik untuk ditelepon"
 
+#: apps/storefront/forms.py:21
 msgid "Please set up my menu for me (I'll send photos of my menu on WhatsApp)"
 msgstr "Tolong siapkan menu saya (saya kirim foto menu lewat WhatsApp)"
 
+#: apps/storefront/forms.py:30
 msgid "Any time"
 msgstr "Kapan saja"
 
+#: apps/storefront/forms.py:30
 msgid "Morning"
 msgstr "Pagi"
 
+#: apps/storefront/forms.py:31
 msgid "Afternoon"
 msgstr "Siang/sore"
 
+#: apps/storefront/forms.py:31
 msgid "Evening"
 msgstr "Malam"
 
+#: apps/storefront/forms.py:36
 msgid "Enter a phone number we can call, e.g. +670 7712 3456."
 msgstr "Masukkan nomor yang bisa kami telepon, mis. +670 7712 3456."
 
+#: apps/storefront/forms.py:42
 msgid "Something went wrong. Please try again."
 msgstr "Terjadi kesalahan. Silakan coba lagi."
 
+#: templates/accounts/login.html:3 templates/accounts/login.html:8
+#: templates/accounts/login.html:15
 msgctxt "login page"
 msgid "Log in"
 msgstr "Masuk"
 
+#: templates/accounts/login.html:11
 msgid "Wrong email/username or password."
 msgstr "Email/nama pengguna atau kata sandi salah."
 
+#: templates/accounts/login.html:12
 msgid "Email or username"
 msgstr "Email atau nama pengguna"
 
+#: templates/accounts/login.html:17
 msgid "Forgot your password?"
 msgstr "Lupa kata sandi?"
 
+#: templates/accounts/login.html:18
 msgid "New restaurant?"
 msgstr "Restoran baru?"
 
+#: templates/accounts/login.html:18
 msgid "Register here"
 msgstr "Daftar di sini"
 
+#: templates/accounts/password_change.html:3
+#: templates/accounts/password_change.html:8 templates/dashboard/base.html:84
 msgid "Change password"
 msgstr "Ubah kata sandi"
 
+#: templates/accounts/password_change.html:10 templates/dashboard/api.html:39
+#: templates/dashboard/branch_manage.html:36
+#: templates/dashboard/revenue.html:61 templates/dashboard/simple_form.html:10
 msgid "Save"
 msgstr "Simpan"
 
+#: templates/accounts/password_change.html:12
+#: templates/dashboard/simple_form.html:5 templates/storefront/terms.html:40
 msgid "Back"
 msgstr "Kembali"
 
+#: templates/accounts/password_reset.html:3
 msgid "Reset password"
 msgstr "Atur ulang kata sandi"
 
+#: templates/accounts/password_reset.html:8
 msgid "Reset your password"
 msgstr "Atur ulang kata sandi Anda"
 
+#: templates/accounts/password_reset.html:9
 msgid ""
 "Enter the email you registered with. We'll send you a link to choose a new "
 "password."
@@ -1805,12 +2453,16 @@ msgstr ""
 "Masukkan email yang Anda daftarkan. Kami akan mengirim tautan untuk memilih "
 "kata sandi baru."
 
+#: templates/accounts/password_reset.html:12
 msgid "Send reset link"
 msgstr "Kirim tautan"
 
+#: templates/accounts/password_reset.html:14
+#: templates/accounts/password_reset_done.html:10
 msgid "Back to log in"
 msgstr "Kembali ke halaman masuk"
 
+#: templates/accounts/password_reset.html:15
 msgid ""
 "Staff accounts created by a restaurant owner without an email: ask the owner "
 "to reset your password."
@@ -1818,33 +2470,48 @@ msgstr ""
 "Akun staf yang dibuat pemilik tanpa email: minta pemilik mengatur ulang kata "
 "sandi Anda."
 
+#: templates/accounts/password_reset_complete.html:3
+#: templates/accounts/password_reset_complete.html:8
 msgid "Password changed"
 msgstr "Kata sandi diubah"
 
+#: templates/accounts/password_reset_complete.html:9
 msgid "You can now log in with your new password."
 msgstr "Sekarang Anda dapat masuk dengan kata sandi baru."
 
+#: templates/accounts/password_reset_complete.html:10
+#: templates/accounts/signup.html:29 templates/storefront/home.html:24
+#: templates/storefront/home.html:38
 msgid "Log in"
 msgstr "Masuk"
 
+#: templates/accounts/password_reset_confirm.html:3
+#: templates/accounts/password_reset_confirm.html:9
 msgid "Choose a new password"
 msgstr "Pilih kata sandi baru"
 
+#: templates/accounts/password_reset_confirm.html:12
 msgid "Save new password"
 msgstr "Simpan kata sandi baru"
 
+#: templates/accounts/password_reset_confirm.html:15
 msgid "Link expired"
 msgstr "Tautan kedaluwarsa"
 
+#: templates/accounts/password_reset_confirm.html:16
 msgid "This password reset link is invalid or was already used."
 msgstr "Tautan atur ulang kata sandi ini tidak valid atau sudah digunakan."
 
+#: templates/accounts/password_reset_confirm.html:16
 msgid "Request a new one"
 msgstr "Minta yang baru"
 
+#: templates/accounts/password_reset_done.html:3
+#: templates/accounts/password_reset_done.html:8
 msgid "Check your email"
 msgstr "Periksa email Anda"
 
+#: templates/accounts/password_reset_done.html:9
 msgid ""
 "If an account exists for that email, we've sent a link to reset your "
 "password. It may take a few minutes; check your spam folder too."
@@ -1853,9 +2520,12 @@ msgstr ""
 "mengatur ulang kata sandi. Mungkin perlu beberapa menit; periksa juga folder "
 "spam."
 
+#: templates/accounts/signup.html:3 templates/accounts/signup.html:8
+#: templates/storefront/home.html:37
 msgid "Register your restaurant"
 msgstr "Daftarkan restoran Anda"
 
+#: templates/accounts/signup.html:9
 msgid ""
 "Free to start. Set up your menu, print a QR code for each table, and start "
 "taking orders. Your customers don't need an app or an account."
@@ -1863,12 +2533,15 @@ msgstr ""
 "Gratis untuk memulai. Siapkan menu, cetak kode QR untuk setiap meja, dan "
 "mulai menerima pesanan. Pelanggan tidak perlu aplikasi atau akun."
 
+#: templates/accounts/signup.html:23
 msgid "Read the terms of service"
 msgstr "Baca ketentuan layanan"
 
+#: templates/accounts/signup.html:26
 msgid "Create my restaurant"
 msgstr "Buat restoran saya"
 
+#: templates/accounts/signup.html:27
 msgid ""
 "New restaurants are reviewed by our team before they go live. You can set up "
 "your menu in the meantime."
@@ -1876,90 +2549,156 @@ msgstr ""
 "Restoran baru ditinjau oleh tim kami sebelum aktif. Sementara itu, Anda "
 "dapat menyiapkan menu."
 
+#: templates/accounts/signup.html:29
 msgid "Already registered?"
 msgstr "Sudah terdaftar?"
 
+#: templates/dashboard/_cash_count.html:4
 msgid "Count notes and coins"
 msgstr "Hitung uang kertas dan koin"
 
+#: templates/dashboard/_cash_count.html:6
 msgid "Note / coin"
 msgstr "Uang kertas / koin"
 
+#: templates/dashboard/_cash_count.html:6
 msgid "How many"
 msgstr "Jumlah"
 
+#: templates/dashboard/_cash_count.html:6
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:13
+#: templates/dashboard/car_wash.html:35 templates/dashboard/car_wash.html:43
+#: templates/dashboard/new_order.html:44
+#: templates/dashboard/order_detail.html:29
+#: templates/dashboard/order_detail.html:47
+#: templates/dashboard/quotations/list.html:26
+#: templates/dashboard/quotations/list.html:33
+#: templates/dashboard/reports.html:38
+#: templates/dashboard/table_detail.html:102
+#: templates/dashboard/table_detail.html:103
 msgid "Total"
 msgstr "Total"
 
+#: templates/dashboard/_cash_diff.html:1
 msgid "Exact"
 msgstr "Pas"
 
+#: templates/dashboard/_cash_diff.html:1
 msgid "over"
 msgstr "lebih"
 
+#: templates/dashboard/_cash_diff.html:1
 msgid "short"
 msgstr "kurang"
 
+#: templates/dashboard/_form_fields.html:7
 msgid "Translations · Tetum, Bahasa Indonesia"
 msgstr "Terjemahan · Tetun, Bahasa Indonesia"
 
+#: templates/dashboard/_form_fields.html:8
 msgid "Leave blank to show the English text."
 msgstr "Kosongkan untuk menampilkan teks bahasa Inggris."
 
+#: templates/dashboard/_language_menu.html:2
+#: templates/dashboard/_language_menu.html:4 templates/dashboard/base.html:62
+#: templates/dashboard/base.html:102 templates/dashboard/order_detail.html:23
+#: templates/storefront/_landing_language.html:3
 msgid "Language"
 msgstr "Bahasa"
 
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/car_wash.html:35 templates/dashboard/new_order.html:37
+#: templates/dashboard/settings.html:52 templates/dashboard/settings.html:59
 msgid "Order"
 msgstr "Pesanan"
 
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:10
+#: templates/dashboard/car_wash.html:50 templates/dashboard/car_wash.html:89
+#: templates/dashboard/new_order.html:17
+#: templates/dashboard/order_detail.html:18 templates/dashboard/orders.html:22
 msgid "Table"
 msgstr "Meja"
 
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:11
+#: templates/dashboard/order_detail.html:19
 msgid "Customer"
 msgstr "Pelanggan"
 
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:12
+#: templates/dashboard/quotations/edit.html:51
 msgid "Items"
 msgstr "Item"
 
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:15
+#: templates/dashboard/order_detail.html:85
 msgid "Payment"
 msgstr "Pembayaran"
 
+#: templates/dashboard/_orders_table.html:5
+#: templates/dashboard/_orders_table.html:29 templates/dashboard/api.html:104
+#: templates/dashboard/settings.html:52 templates/dashboard/settings.html:56
 msgid "Time"
 msgstr "Waktu"
 
+#: templates/dashboard/_orders_table.html:9
+#: templates/dashboard/table_detail.html:68
 msgid "waiter"
 msgstr "pelayan"
 
+#: templates/dashboard/_orders_table.html:10
+#: templates/dashboard/order_detail.html:18
 msgid "Counter"
 msgstr "Kasir"
 
+#: templates/dashboard/_orders_table.html:17
+#: templates/dashboard/table_detail.html:70
 #, python-format
 msgid "Paid with #%(n)s"
 msgstr "Dibayar bersama #%(n)s"
 
+#: templates/dashboard/_orders_table.html:20
+#: templates/dashboard/order_detail.html:96
+#: templates/dashboard/table_detail.html:73
 #, python-format
 msgid "Order %(n)s · paid together"
 msgstr "Pesanan %(n)s · dibayar bersama"
 
+#: templates/dashboard/_orders_table.html:21
+#: templates/dashboard/order_detail.html:102
+#: templates/dashboard/table_detail.html:74
 #, python-format
 msgid "Order #%(n)s · cash payment"
 msgstr "Pesanan #%(n)s · pembayaran tunai"
 
+#: templates/dashboard/_orders_table.html:23
+#: templates/dashboard/order_detail.html:98
+#: templates/dashboard/order_detail.html:104
 msgid "Cash received"
 msgstr "Tunai diterima"
 
+#: templates/dashboard/_orders_table.html:23
+#: templates/dashboard/table_detail.html:76
 msgid "Mark paid"
 msgstr "Tandai lunas"
 
+#: templates/dashboard/_orders_table.html:36
 msgid "No orders yet."
 msgstr "Belum ada pesanan."
 
+#: templates/dashboard/_printer_guide.html:3
 msgid "Set up the receipt printer and cash drawer (about 10 minutes)"
 msgstr "Siapkan printer struk dan laci kas (sekitar 10 menit)"
 
+#: templates/dashboard/_printer_guide.html:6
 msgid "Install the printer on the cashier computer."
 msgstr "Pasang printer di komputer kasir."
 
+#: templates/dashboard/_printer_guide.html:7
 msgid ""
 "Connect it by USB (or Wi-Fi/Bluetooth), install the driver from the "
 "printer's CD or the maker's website, and set it as the default printer. "
@@ -1969,9 +2708,11 @@ msgstr ""
 "atau situs produsen, lalu jadikan printer bawaan. Pilih kertas 80 mm (atau "
 "58 mm untuk printer kecil)."
 
+#: templates/dashboard/_printer_guide.html:10
 msgid "Plug in the cash drawer."
 msgstr "Sambungkan laci kas."
 
+#: templates/dashboard/_printer_guide.html:11
 msgid ""
 "The drawer cable (a phone-style plug) goes into the printer's port marked "
 "“DK” or “Drawer”."
@@ -1979,9 +2720,11 @@ msgstr ""
 "Kabel laci (colokan seperti telepon) masuk ke port printer bertanda “DK” "
 "atau “Drawer”."
 
+#: templates/dashboard/_printer_guide.html:14
 msgid "Tell the printer driver to open the drawer."
 msgstr "Atur driver printer agar membuka laci."
 
+#: templates/dashboard/_printer_guide.html:15
 msgid ""
 "On Windows: Settings → Printers → your receipt printer → Printing "
 "preferences (or Printer properties). Look for “Cash drawer” or “Peripherals” "
@@ -1991,6 +2734,7 @@ msgstr ""
 "(atau Printer properties). Cari “Cash drawer” atau “Peripherals” lalu pilih "
 "“Open drawer #1 before printing”. Namanya berbeda tiap merek:"
 
+#: templates/dashboard/_printer_guide.html:17
 msgid ""
 "Printing preferences → Document settings / Printer settings → Cash drawer → "
 "“Open drawer #1 before printing”."
@@ -1998,11 +2742,13 @@ msgstr ""
 "Printing preferences → Document settings / Printer settings → Cash drawer → "
 "“Open drawer #1 before printing”."
 
+#: templates/dashboard/_printer_guide.html:18
 msgid ""
 "Printer properties → Device settings → “Cash drawer” → open before printing."
 msgstr ""
 "Printer properties → Device settings → “Cash drawer” → buka sebelum mencetak."
 
+#: templates/dashboard/_printer_guide.html:19
 msgid ""
 "Printer properties → Device settings → Peripheral unit type “Cash drawer”, "
 "open at “Document top”."
@@ -2010,9 +2756,11 @@ msgstr ""
 "Printer properties → Device settings → Peripheral unit type “Cash drawer”, "
 "buka di “Document top”."
 
+#: templates/dashboard/_printer_guide.html:23
 msgid "Turn on the switch above and save."
 msgstr "Aktifkan sakelar di atas lalu simpan."
 
+#: templates/dashboard/_printer_guide.html:24
 msgid ""
 "From now on, every cash payment and every “Open drawer (no sale)” prints a "
 "small slip, and the driver opens the drawer."
@@ -2020,9 +2768,11 @@ msgstr ""
 "Mulai sekarang, setiap pembayaran tunai dan setiap “Buka laci kas (tanpa "
 "penjualan)” mencetak slip kecil, dan driver membuka laci."
 
+#: templates/dashboard/_printer_guide.html:27
 msgid "Optional: print without the print window."
 msgstr "Opsional: cetak tanpa jendela cetak."
 
+#: templates/dashboard/_printer_guide.html:28
 msgid ""
 "Make a Chrome shortcut for the dashboard: right-click the Chrome icon → "
 "Properties, and add --kiosk-printing at the end of “Target” (after the "
@@ -2034,9 +2784,11 @@ msgstr ""
 "dasbor dengan pintasan itu, maka struk dan slip langsung tercetak di printer "
 "bawaan."
 
+#: templates/dashboard/_printer_guide.html:31
 msgid "Test it"
 msgstr "Uji"
 
+#: templates/dashboard/_printer_guide.html:31
 msgid ""
 "use “Print test slip” below. The slip should print and the drawer should "
 "open. If the drawer stays closed, check step 3 (some drawers need “drawer "
@@ -2046,6 +2798,7 @@ msgstr ""
 "terbuka. Jika laci tetap tertutup, periksa langkah 3 (beberapa laci perlu "
 "“drawer #2”)."
 
+#: templates/dashboard/_printer_guide.html:34
 msgid ""
 "Phones and tablets: print through the printer maker's app or print service. "
 "Whether the drawer opens depends on that app."
@@ -2053,149 +2806,208 @@ msgstr ""
 "Ponsel dan tablet: cetak melalui aplikasi atau layanan cetak produsen "
 "printer. Apakah laci terbuka tergantung aplikasi tersebut."
 
+#: templates/dashboard/analytics.html:3 templates/dashboard/analytics.html:8
+#: templates/dashboard/base.html:39 templates/dashboard/billing.html:83
+#: templates/dashboard/reports.html:12 templates/dashboard/upgrade.html:9
 msgid "Analytics"
 msgstr "Analitik"
 
+#: templates/dashboard/analytics.html:9
 #, python-format
 msgid "compared with %(a)s – %(b)s"
 msgstr "dibandingkan dengan %(a)s – %(b)s"
 
+#: templates/dashboard/analytics.html:11
 msgid "Reports & CSV"
 msgstr "Laporan & CSV"
 
+#: templates/dashboard/analytics.html:16 templates/dashboard/expenses.html:27
 msgid "Date range"
 msgstr "Rentang tanggal"
 
+#: templates/dashboard/analytics.html:17
 msgid "7 days"
 msgstr "7 hari"
 
+#: templates/dashboard/analytics.html:18
 msgid "30 days"
 msgstr "30 hari"
 
+#: templates/dashboard/analytics.html:19
 msgid "90 days"
 msgstr "90 hari"
 
+#: templates/dashboard/analytics.html:20 templates/dashboard/expenses.html:18
+#: templates/dashboard/expenses.html:30
 msgid "This month"
 msgstr "Bulan ini"
 
+#: templates/dashboard/analytics.html:24 templates/dashboard/expenses.html:35
+#: templates/dashboard/orders.html:23
 msgid "From date"
 msgstr "Dari tanggal"
 
+#: templates/dashboard/analytics.html:25 templates/dashboard/expenses.html:36
+#: templates/dashboard/orders.html:24
 msgid "To date"
 msgstr "Sampai tanggal"
 
+#: templates/dashboard/analytics.html:26 templates/dashboard/expenses.html:37
+#: templates/dashboard/reports.html:19
 msgid "Apply"
 msgstr "Terapkan"
 
+#: templates/dashboard/analytics.html:36
 msgid "vs previous period"
 msgstr "vs periode sebelumnya"
 
+#: templates/dashboard/analytics.html:37
 msgid "No earlier data to compare"
 msgstr "Belum ada data sebelumnya untuk dibandingkan"
 
+#: templates/dashboard/analytics.html:43 templates/dashboard/reports.html:55
 msgid "Revenue per day"
 msgstr "Pendapatan per hari"
 
+#: templates/dashboard/analytics.html:44
 msgid "Completed orders. The gray line is the previous period, day by day."
 msgstr "Pesanan selesai. Garis abu-abu adalah periode sebelumnya, per hari."
 
+#: templates/dashboard/analytics.html:46 templates/dashboard/analytics.html:175
 msgid "This period"
 msgstr "Periode ini"
 
+#: templates/dashboard/analytics.html:47 templates/dashboard/analytics.html:52
+#: templates/dashboard/analytics.html:176
 msgid "Previous period"
 msgstr "Periode sebelumnya"
 
+#: templates/dashboard/analytics.html:49
 msgid "Revenue per day, this period compared with the previous period"
 msgstr "Pendapatan per hari, periode ini dibandingkan periode sebelumnya"
 
+#: templates/dashboard/analytics.html:50 templates/dashboard/analytics.html:72
 msgid "Show as table"
 msgstr "Tampilkan sebagai tabel"
 
+#: templates/dashboard/analytics.html:52 templates/dashboard/branches.html:16
+#: templates/dashboard/expenses.html:54
 msgid "Day"
 msgstr "Hari"
 
+#: templates/dashboard/analytics.html:60
 msgid "Busy times"
 msgstr "Waktu ramai"
 
+#: templates/dashboard/analytics.html:61
 msgid "Orders by weekday and hour. Darker = more orders."
 msgstr "Pesanan per hari dan jam. Lebih gelap = lebih banyak pesanan."
 
+#: templates/dashboard/analytics.html:62
 msgid "Busiest"
 msgstr "Paling ramai"
 
+#: templates/dashboard/analytics.html:62
 msgid "No orders in this period yet."
 msgstr "Belum ada pesanan pada periode ini."
 
+#: templates/dashboard/analytics.html:68 templates/dashboard/analytics.html:115
+#: templates/dashboard/table_detail.html:11
+#: templates/dashboard/table_detail.html:49
 #, python-format
 msgid "%(n)s order"
 msgid_plural "%(n)s orders"
 msgstr[0] "%(n)s pesanan"
 
+#: templates/dashboard/analytics.html:71
 msgid "orders per hour"
 msgstr "pesanan per jam"
 
+#: templates/dashboard/analytics.html:82
 msgid "How customers pay"
 msgstr "Cara pelanggan membayar"
 
+#: templates/dashboard/analytics.html:83
 #, python-format
 msgid "Payments received in this period: %(total)s"
 msgstr "Pembayaran diterima pada periode ini: %(total)s"
 
+#: templates/dashboard/analytics.html:85
 msgid "Share of each payment method"
 msgstr "Porsi setiap metode pembayaran"
 
+#: templates/dashboard/analytics.html:91
 #, python-format
 msgid "%(n)s payment"
 msgid_plural "%(n)s payments"
 msgstr[0] "%(n)s pembayaran"
 
+#: templates/dashboard/analytics.html:95
 msgid "No payments in this period yet."
 msgstr "Belum ada pembayaran pada periode ini."
 
+#: templates/dashboard/analytics.html:97
 msgid "Where orders come from"
 msgstr "Asal pesanan"
 
+#: templates/dashboard/analytics.html:99
 msgid "Customer's phone (QR)"
 msgstr "Ponsel pelanggan (QR)"
 
+#: templates/dashboard/analytics.html:100
 msgid "Entered by waiter"
 msgstr "Dimasukkan pelayan"
 
+#: templates/dashboard/analytics.html:102
 msgid "At a table"
 msgstr "Di meja"
 
+#: templates/dashboard/analytics.html:103 templates/dashboard/new_order.html:19
+#: templates/dashboard/order_detail.html:10
 msgid "Counter / takeaway"
 msgstr "Kasir / bawa pulang"
 
+#: templates/dashboard/analytics.html:110 templates/dashboard/reports.html:33
 msgid "Revenue by service"
 msgstr "Pendapatan per layanan"
 
+#: templates/dashboard/analytics.html:111
 msgid "Café and car wash, from completed orders."
 msgstr "Kafe dan cuci, dari pesanan selesai."
 
+#: templates/dashboard/analytics.html:125
 msgid "Sales by category"
 msgstr "Penjualan per kategori"
 
+#: templates/dashboard/analytics.html:126
 msgid "Revenue from completed orders."
 msgstr "Pendapatan dari pesanan selesai."
 
+#: templates/dashboard/analytics.html:129
+#: templates/dashboard/analytics.html:142
 #, python-format
 msgid "%(n)s sold"
 msgid_plural "%(n)s sold"
 msgstr[0] "%(n)s terjual"
 
+#: templates/dashboard/analytics.html:134
+#: templates/dashboard/analytics.html:147 templates/dashboard/reports.html:64
 msgid "No completed orders in this period."
 msgstr "Tidak ada pesanan selesai pada periode ini."
 
+#: templates/dashboard/analytics.html:138
 msgid "Best-selling dishes"
 msgstr "Hidangan terlaris"
 
+#: templates/dashboard/analytics.html:139
 msgid "Top 10 by revenue · number sold after the dot."
 msgstr "10 teratas menurut pendapatan · jumlah terjual setelah titik."
 
+#: templates/dashboard/analytics.html:149
 msgid "Not sold in this period"
 msgstr "Tidak terjual pada periode ini"
 
+#: templates/dashboard/analytics.html:150
 msgid ""
 "Available dishes nobody ordered. Consider a better photo, a lower price or "
 "removing them."
@@ -2203,31 +3015,42 @@ msgstr ""
 "Hidangan tersedia yang tidak dipesan siapa pun. Pertimbangkan foto lebih "
 "baik, harga lebih rendah, atau menghapusnya."
 
+#: templates/dashboard/analytics.html:157
 msgid "Kitchen speed"
 msgstr "Kecepatan dapur"
 
+#: templates/dashboard/analytics.html:158
 msgid "Time from order placed to “Ready”."
 msgstr "Waktu dari pesanan dibuat hingga “Siap”."
 
+#: templates/dashboard/analytics.html:161
 msgid "Average"
 msgstr "Rata-rata"
 
+#: templates/dashboard/analytics.html:161
+#: templates/dashboard/analytics.html:162
+#: templates/dashboard/order_detail.html:22
 #, python-format
 msgid "%(m)s min"
 msgstr "%(m)s mnt"
 
+#: templates/dashboard/analytics.html:162
 msgid "Typical (median)"
 msgstr "Umumnya (median)"
 
+#: templates/dashboard/analytics.html:163
 msgid "Ready on time"
 msgstr "Siap tepat waktu"
 
+#: templates/dashboard/analytics.html:164
 msgid "Orders measured"
 msgstr "Pesanan diukur"
 
+#: templates/dashboard/analytics.html:166
 msgid "No orders marked ready in this period."
 msgstr "Tidak ada pesanan ditandai siap pada periode ini."
 
+#: templates/dashboard/api.html:9
 msgid ""
 "Let your website, mobile ordering app or delivery partners send orders to "
 "your branches. Orders appear live on the branch's dashboard and count as "
@@ -2237,21 +3060,31 @@ msgstr ""
 "pesanan ke cabang. Pesanan langsung muncul di dasbor cabang dan dihitung "
 "sebagai pendapatan saat selesai."
 
+#: templates/dashboard/api.html:11 templates/dashboard/api_docs.html:3
+#: templates/dashboard/api_docs.html:9
 msgid "API documentation"
 msgstr "Dokumentasi API"
 
+#: templates/dashboard/api.html:14
 msgid "API access is disabled."
 msgstr "Akses API dinonaktifkan."
 
+#: templates/dashboard/api.html:14 templates/dashboard/api.html:57
+#: templates/dashboard/branches.html:93
+#: templates/dashboard/business_profile.html:3
+#: templates/dashboard/business_profile.html:7
 msgid "Business profile"
 msgstr "Profil usaha"
 
+#: templates/dashboard/api.html:18
 msgid "Your new API key"
 msgstr "Kunci API baru Anda"
 
+#: templates/dashboard/api.html:19
 msgid "Copy it now: for your security it is shown only once."
 msgstr "Salin sekarang: demi keamanan, kunci hanya ditampilkan sekali."
 
+#: templates/dashboard/api.html:19
 msgid ""
 "Afterwards only its last 4 characters are visible. If you lose it, revoke it "
 "and create a new one."
@@ -2259,59 +3092,81 @@ msgstr ""
 "Setelah itu hanya 4 karakter terakhir yang terlihat. Jika hilang, cabut dan "
 "buat yang baru."
 
+#: templates/dashboard/api.html:20
 msgid "Copied"
 msgstr "Disalin"
 
+#: templates/dashboard/api.html:20
 msgid "Copy"
 msgstr "Salin"
 
+#: templates/dashboard/api.html:25
 msgid "API keys"
 msgstr "Kunci API"
 
+#: templates/dashboard/api.html:28 templates/dashboard/api.html:32
+#: templates/dashboard/api.html:98 templates/dashboard/api.html:104
+#: templates/dashboard/api.html:108
 msgid "Key"
 msgstr "Kunci"
 
+#: templates/dashboard/api.html:28 templates/dashboard/api.html:34
 msgid "Last used"
 msgstr "Terakhir dipakai"
 
+#: templates/dashboard/api.html:31 templates/dashboard/base.html:20
+#: templates/dashboard/home.html:15
 msgid "Live"
 msgstr "Aktif"
 
+#: templates/dashboard/api.html:31
 msgid "Revoked"
 msgstr "Dicabut"
 
+#: templates/dashboard/api.html:31
 #, python-format
 msgid "Created %(d)s"
 msgstr "Dibuat %(d)s"
 
+#: templates/dashboard/api.html:33 templates/dashboard/branches.html:58
 msgid "All branches"
 msgstr "Semua cabang"
 
+#: templates/dashboard/api.html:36 templates/dashboard/expenses.html:100
+#: templates/dashboard/staff.html:24 templates/dashboard/tables.html:31
 msgid "Edit"
 msgstr "Ubah"
 
+#: templates/dashboard/api.html:41
 #, python-format
 msgid "Revoke “%(n)s”? Apps using it stop working immediately."
 msgstr "Cabut “%(n)s”? Aplikasi yang memakainya langsung berhenti bekerja."
 
+#: templates/dashboard/api.html:41
 msgid "Revoke"
 msgstr "Cabut"
 
+#: templates/dashboard/api.html:46
 msgid "No API keys yet."
 msgstr "Belum ada kunci API."
 
+#: templates/dashboard/api.html:50
 msgid "Create an API key"
 msgstr "Buat kunci API"
 
+#: templates/dashboard/api.html:53
 msgid "Create key"
 msgstr "Buat kunci"
 
+#: templates/dashboard/api.html:57
 msgid "API keys can be created once your business profile is verified."
 msgstr "Kunci API bisa dibuat setelah profil usaha terverifikasi."
 
+#: templates/dashboard/api.html:62 templates/dashboard/api_docs.html:98
 msgid "Webhooks"
 msgstr "Webhook"
 
+#: templates/dashboard/api.html:63
 msgid ""
 "We send a POST request to your URL whenever an order is created or changes "
 "status (received, preparing, ready, completed, cancelled). Check the X-"
@@ -2321,48 +3176,63 @@ msgstr ""
 "berubah status (diterima, disiapkan, siap, selesai, dibatalkan). Periksa "
 "header X-QRMenu-Signature dengan rahasia penandatanganan."
 
+#: templates/dashboard/api.html:66
 msgid "On"
 msgstr "Nyala"
 
+#: templates/dashboard/api.html:66
 msgid "Off"
 msgstr "Mati"
 
+#: templates/dashboard/api.html:66 templates/dashboard/overview.html:59
 msgid "All orders"
 msgstr "Semua pesanan"
 
+#: templates/dashboard/api.html:66
 msgid "API orders"
 msgstr "Pesanan API"
 
+#: templates/dashboard/api.html:68
 msgid "Send test"
 msgstr "Kirim uji"
 
+#: templates/dashboard/api.html:69
 msgid "Turn off"
 msgstr "Matikan"
 
+#: templates/dashboard/api.html:69
 msgid "Turn on"
 msgstr "Nyalakan"
 
+#: templates/dashboard/api.html:70
 msgid "Remove this webhook?"
 msgstr "Hapus webhook ini?"
 
+#: templates/dashboard/api.html:70 templates/dashboard/item_form.html:32
 msgid "Remove"
 msgstr "Hapus"
 
+#: templates/dashboard/api.html:72
 msgid "Signing secret"
 msgstr "Rahasia penandatanganan"
 
+#: templates/dashboard/api.html:73
 msgid "test"
 msgstr "uji"
 
+#: templates/dashboard/api.html:78
 msgid "Add a webhook"
 msgstr "Tambah webhook"
 
+#: templates/dashboard/api.html:81
 msgid "Add webhook"
 msgstr "Tambah webhook"
 
+#: templates/dashboard/api.html:89
 msgid "Test orders"
 msgstr "Pesanan uji"
 
+#: templates/dashboard/api.html:90
 msgid ""
 "Orders made with a test key. They are not sent to the kitchen and never "
 "count as revenue."
@@ -2370,47 +3240,65 @@ msgstr ""
 "Pesanan dengan kunci uji. Tidak dikirim ke dapur dan tidak pernah dihitung "
 "sebagai pendapatan."
 
+#: templates/dashboard/api.html:96
 msgid "Request log"
 msgstr "Log permintaan"
 
+#: templates/dashboard/api.html:98
 msgid "All keys"
 msgstr "Semua kunci"
 
+#: templates/dashboard/api.html:99 templates/dashboard/api.html:104
+#: templates/dashboard/api.html:110 templates/dashboard/settings.html:52
+#: templates/dashboard/settings.html:60
 msgid "Result"
 msgstr "Hasil"
 
+#: templates/dashboard/api.html:99 templates/dashboard/orders.html:15
+#: templates/dashboard/quotations/list.html:15
 msgid "All"
 msgstr "Semua"
 
+#: templates/dashboard/api.html:99
 msgid "Success"
 msgstr "Berhasil"
 
+#: templates/dashboard/api.html:99 templates/dashboard/api_docs.html:21
 msgid "Errors"
 msgstr "Galat"
 
+#: templates/dashboard/api.html:100 templates/dashboard/orders.html:25
+#: templates/dashboard/revenue.html:29
 msgid "Filter"
 msgstr "Saring"
 
+#: templates/dashboard/api.html:104 templates/dashboard/api.html:109
 msgid "Request"
 msgstr "Permintaan"
 
+#: templates/dashboard/api.html:114
 msgid "The last 100 requests are shown; the log is kept for 90 days."
 msgstr "100 permintaan terakhir ditampilkan; log disimpan 90 hari."
 
+#: templates/dashboard/api.html:115
 msgid "No requests yet."
 msgstr "Belum ada permintaan."
 
+#: templates/dashboard/api_docs.html:10
 msgid "REST API with JSON, for your website, ordering app or delivery partner."
 msgstr ""
 "API REST dengan JSON, untuk situs web, aplikasi pemesanan, atau mitra "
 "pengantaran Anda."
 
+#: templates/dashboard/api_docs.html:10
 msgid "Base URL"
 msgstr "URL dasar"
 
+#: templates/dashboard/api_docs.html:15
 msgid "Authentication"
 msgstr "Autentikasi"
 
+#: templates/dashboard/api_docs.html:16
 msgid ""
 "Send your API key in the Authorization header of every request. Requests "
 "must use HTTPS."
@@ -2418,6 +3306,7 @@ msgstr ""
 "Kirim kunci API di header Authorization pada setiap permintaan. Permintaan "
 "wajib memakai HTTPS."
 
+#: templates/dashboard/api_docs.html:18
 msgid ""
 "Keys starting with <code>qrm_test_</code> are test (sandbox) keys: every "
 "endpoint works the same, but orders are simulated. They are not sent to the "
@@ -2427,6 +3316,7 @@ msgstr ""
 "endpoint bekerja sama, tetapi pesanan disimulasikan. Tidak dikirim ke dapur "
 "dan tidak pernah dihitung sebagai pendapatan."
 
+#: templates/dashboard/api_docs.html:19
 #, python-format
 msgid ""
 "Each key may make %(rate)s requests per minute. Above that you get HTTP 429 "
@@ -2436,22 +3326,28 @@ msgstr ""
 "mendapat HTTP 429 dengan header Retry-After. Setiap permintaan dicatat di "
 "halaman API pemesanan."
 
+#: templates/dashboard/api_docs.html:22
 msgid ""
 "Errors use the HTTP status code and a JSON body with a code and a message:"
 msgstr "Galat memakai kode status HTTP dan isi JSON berisi kode dan pesan:"
 
+#: templates/dashboard/api_docs.html:26
 msgid "Code"
 msgstr "Kode"
 
+#: templates/dashboard/api_docs.html:26
 msgid "Meaning"
 msgstr "Arti"
 
+#: templates/dashboard/api_docs.html:28
 msgid "No key, wrong key, or the key was revoked."
 msgstr "Tanpa kunci, kunci salah, atau kunci sudah dicabut."
 
+#: templates/dashboard/api_docs.html:29
 msgid "The request was not made over HTTPS."
 msgstr "Permintaan tidak melalui HTTPS."
 
+#: templates/dashboard/api_docs.html:30
 msgid ""
 "The account is not on an active Pro plan, or the business profile is not "
 "verified. API access is switched off automatically."
@@ -2459,12 +3355,15 @@ msgstr ""
 "Akun tidak memiliki paket Pro aktif, atau profil usaha belum terverifikasi. "
 "Akses API otomatis dimatikan."
 
+#: templates/dashboard/api_docs.html:31
 msgid "The branch is not one this key may use."
 msgstr "Cabang ini bukan yang boleh dipakai kunci ini."
 
+#: templates/dashboard/api_docs.html:32
 msgid "Unknown order or endpoint."
 msgstr "Pesanan atau endpoint tidak dikenal."
 
+#: templates/dashboard/api_docs.html:33
 msgid ""
 "The order can't be placed or changed: sold-out items, a total that doesn't "
 "match the menu prices, a branch that is closed, or a status change that "
@@ -2473,12 +3372,15 @@ msgstr ""
 "Pesanan tidak bisa dibuat atau diubah: item habis, total tidak sesuai harga "
 "menu, cabang tutup, atau perubahan status yang tidak diizinkan."
 
+#: templates/dashboard/api_docs.html:34
 msgid "Too many requests; wait a minute."
 msgstr "Terlalu banyak permintaan; tunggu satu menit."
 
+#: templates/dashboard/api_docs.html:39
 msgid "The branches this key can use (only live branches)."
 msgstr "Cabang yang bisa dipakai kunci ini (hanya cabang aktif)."
 
+#: templates/dashboard/api_docs.html:46
 msgid ""
 "Menu categories, items, add-ons and prices of one branch. Use the item and "
 "add-on ids in orders."
@@ -2486,6 +3388,7 @@ msgstr ""
 "Kategori menu, item, tambahan, dan harga satu cabang. Pakai id item dan "
 "tambahan dalam pesanan."
 
+#: templates/dashboard/api_docs.html:55
 msgid ""
 "Create an order. Prices always come from the menu; if you send a total and "
 "it doesn't match, the order is refused with the correct total. The order "
@@ -2495,12 +3398,15 @@ msgstr ""
 "cocok, pesanan ditolak beserta total yang benar. Pesanan langsung muncul di "
 "dasbor cabang dengan notifikasi."
 
+#: templates/dashboard/api_docs.html:77
 msgid "Field"
 msgstr "Kolom"
 
+#: templates/dashboard/api_docs.html:79
 msgid "Branch id (optional when the key can use only one branch)."
 msgstr "Id cabang (opsional jika kunci hanya bisa memakai satu cabang)."
 
+#: templates/dashboard/api_docs.html:80
 msgid ""
 "1–50 lines: menu_item (id), quantity (1–50), options (add-on ids, optional), "
 "note (optional)."
@@ -2508,18 +3414,22 @@ msgstr ""
 "1–50 baris: menu_item (id), quantity (1–50), options (id tambahan, "
 "opsional), note (opsional)."
 
+#: templates/dashboard/api_docs.html:81
 msgid "Optional. The total you expect; checked against the menu prices."
 msgstr "Opsional. Total yang Anda harapkan; dicek terhadap harga menu."
 
+#: templates/dashboard/api_docs.html:83
 msgid ""
 "true when the customer already paid in your app (the order is recorded as "
 "paid)."
 msgstr ""
 "true jika pelanggan sudah membayar di aplikasi Anda (pesanan dicatat lunas)."
 
+#: templates/dashboard/api_docs.html:84
 msgid "Optional."
 msgstr "Opsional."
 
+#: templates/dashboard/api_docs.html:85
 msgid ""
 "Optional: your own order number. Sending the same reference again returns "
 "the existing order instead of creating a duplicate, so retries are safe."
@@ -2528,9 +3438,11 @@ msgstr ""
 "mengembalikan pesanan yang ada alih-alih membuat duplikat, jadi pengulangan "
 "aman."
 
+#: templates/dashboard/api_docs.html:90
 msgid "Order details and current status."
 msgstr "Detail pesanan dan status saat ini."
 
+#: templates/dashboard/api_docs.html:94
 msgid ""
 "Change the status. Statuses: received → preparing → ready → completed; an "
 "order can be cancelled until it is ready. Only completed orders count as "
@@ -2540,6 +3452,7 @@ msgstr ""
 "dibatalkan sampai siap. Hanya pesanan selesai yang dihitung pendapatan; yang "
 "dibatalkan tidak pernah."
 
+#: templates/dashboard/api_docs.html:99
 msgid ""
 "Add a webhook URL on the Ordering API page. When an order is created or its "
 "status changes, we POST this JSON to your URL (timeout 5 seconds, no "
@@ -2549,6 +3462,7 @@ msgstr ""
 "berubah status, kami POST JSON ini ke URL Anda (batas 5 detik, tanpa "
 "pengalihan):"
 
+#: templates/dashboard/api_docs.html:108
 msgid ""
 "Events: order.created, order.status_changed, and ping (the Send test "
 "button). To check that a request really comes from us, compute HMAC-SHA256 "
@@ -2560,6 +3474,7 @@ msgstr ""
 "timestamp, titik, dan isi mentah dengan rahasia penandatanganan, lalu "
 "bandingkan dengan tanda tangannya:"
 
+#: templates/dashboard/api_docs.html:115
 msgid ""
 "When an API order is completed, it is added to the branch's revenue as an "
 "entry with the source “API – key name”. On the Branches page you can filter "
@@ -2569,102 +3484,157 @@ msgstr ""
 "catatan bersumber “API – nama kunci”. Di halaman Cabang Anda bisa menyaring "
 "pendapatan per sumber."
 
+#: templates/dashboard/base.html:7 templates/storefront/home.html:24
 msgid "Dashboard"
 msgstr "Dasbor"
 
+#: templates/dashboard/base.html:15
 msgid "Main navigation"
 msgstr "Navigasi utama"
 
+#: templates/dashboard/base.html:20
 msgid "Not public yet"
 msgstr "Belum publik"
 
+#: templates/dashboard/base.html:22
 msgid "Close menu"
 msgstr "Tutup menu"
 
+#: templates/dashboard/base.html:27 templates/dashboard/overview.html:3
 msgid "Overview"
 msgstr "Ringkasan"
 
+#: templates/dashboard/base.html:28 templates/dashboard/kitchen.html:3
+#: templates/dashboard/kitchen.html:4 templates/dashboard/kitchen.html:9
+#: templates/dashboard/overview.html:23
 msgid "Kitchen queue"
 msgstr "Antrean dapur"
 
+#: templates/dashboard/base.html:30 templates/dashboard/base.html:94
+#: templates/dashboard/order_detail.html:6 templates/dashboard/orders.html:3
+#: templates/dashboard/orders.html:8 templates/dashboard/reports.html:24
+#: templates/dashboard/reports.html:36 templates/dashboard/reports.html:37
+#: templates/dashboard/table_detail.html:102
+#: templates/dashboard/table_detail.html:103
 msgid "Orders"
 msgstr "Pesanan"
 
+#: templates/dashboard/base.html:31
 msgid "Tables &amp; QR"
 msgstr "Meja &amp; QR"
 
+#: templates/dashboard/base.html:34 templates/dashboard/billing.html:83
+#: templates/dashboard/cash_register.html:3
+#: templates/dashboard/cash_register.html:8 templates/dashboard/upgrade.html:12
 msgid "Cash register"
 msgstr "Kas"
 
+#: templates/dashboard/base.html:37 templates/dashboard/branches.html:53
 msgid "Manage"
 msgstr "Kelola"
 
+#: templates/dashboard/base.html:38 templates/dashboard/car_wash.html:93
+#: templates/dashboard/item_form.html:6 templates/dashboard/menu.html:3
+#: templates/dashboard/menu.html:8
+#: templates/dashboard/quotations/print.html:178
 msgid "Menu"
 msgstr "Menu"
 
+#: templates/dashboard/base.html:40 templates/dashboard/reports.html:3
+#: templates/dashboard/reports.html:8 templates/storefront/home.html:71
 msgid "Reports"
 msgstr "Laporan"
 
+#: templates/dashboard/base.html:41 templates/dashboard/billing.html:83
+#: templates/dashboard/expenses.html:3 templates/dashboard/expenses.html:8
+#: templates/dashboard/upgrade.html:21
 msgid "Expenses & profit"
 msgstr "Pengeluaran & laba"
 
+#: templates/dashboard/base.html:42 templates/dashboard/billing.html:83
+#: templates/dashboard/quotations/edit.html:6
+#: templates/dashboard/quotations/list.html:3
+#: templates/dashboard/quotations/list.html:8
+#: templates/dashboard/quotations/profile.html:6
+#: templates/dashboard/upgrade.html:24
 msgid "Quotations"
 msgstr "Penawaran harga"
 
+#: templates/dashboard/base.html:43
 msgid "Restaurant"
 msgstr "Restoran"
 
+#: templates/dashboard/base.html:44 templates/dashboard/billing.html:3
+#: templates/dashboard/billing.html:6
 msgid "Billing"
 msgstr "Tagihan"
 
+#: templates/dashboard/base.html:52
 msgid "View public menu"
 msgstr "Lihat menu publik"
 
+#: templates/dashboard/base.html:58
 msgid "Open menu"
 msgstr "Buka menu"
 
+#: templates/dashboard/base.html:65
 msgid "Live connection"
 msgstr "Koneksi langsung"
 
+#: templates/dashboard/base.html:65
 msgid "Connecting"
 msgstr "Menghubungkan"
 
+#: templates/dashboard/base.html:68
 msgid "Open the cash drawer (no sale)? This is logged."
 msgstr "Buka laci kas (tanpa penjualan)? Ini akan dicatat."
 
+#: templates/dashboard/base.html:70
 msgid "Open cash drawer (no sale)"
 msgstr "Buka laci kas (tanpa penjualan)"
 
+#: templates/dashboard/base.html:70
 msgid "Open cash drawer"
 msgstr "Buka laci kas"
 
+#: templates/dashboard/base.html:73 templates/dashboard/notifications.html:3
+#: templates/dashboard/notifications.html:6
 msgid "Notifications"
 msgstr "Notifikasi"
 
+#: templates/dashboard/base.html:75
 msgid "Account menu"
 msgstr "Menu akun"
 
+#: templates/dashboard/base.html:82
 msgid "Platform console"
 msgstr "Konsol platform"
 
+#: templates/dashboard/base.html:83 templates/dashboard/branch_closed.html:18
 msgid "Switch restaurant"
 msgstr "Ganti restoran"
 
+#: templates/dashboard/base.html:85 templates/dashboard/home.html:23
 msgid "Log out"
 msgstr "Keluar"
 
+#: templates/dashboard/base.html:90
 msgid "Quick navigation"
 msgstr "Navigasi cepat"
 
+#: templates/dashboard/base.html:91
 msgid "Home"
 msgstr "Beranda"
 
+#: templates/dashboard/base.html:112
 msgid "the owner's email"
 msgstr "email pemilik"
 
+#: templates/dashboard/base.html:112
 msgid "Confirm your email to go live."
 msgstr "Konfirmasi email Anda agar aktif."
 
+#: templates/dashboard/base.html:112
 #, python-format
 msgid ""
 "We sent a link to <strong>%(email)s</strong>. Until then only your staff can "
@@ -2674,12 +3644,15 @@ msgstr ""
 "staf Anda yang dapat melihat menu, jadi siapkan menu dan meja Anda terlebih "
 "dahulu."
 
+#: templates/dashboard/base.html:114
 msgid "Resend email"
 msgstr "Kirim ulang email"
 
+#: templates/dashboard/base.html:118
 msgid "Branch waiting for approval."
 msgstr "Cabang menunggu persetujuan."
 
+#: templates/dashboard/base.html:118
 msgid ""
 "The platform team checks every new branch. Until it is approved, the branch "
 "is hidden and can't record revenue. You can set up its menu and tables in "
@@ -2689,27 +3662,34 @@ msgstr ""
 "disembunyikan dan tidak bisa mencatat pendapatan. Sementara itu Anda bisa "
 "menyiapkan menu dan mejanya."
 
+#: templates/dashboard/base.html:121
 msgid "Branch request not approved."
 msgstr "Pengajuan cabang tidak disetujui."
 
+#: templates/dashboard/base.html:121
 msgid "Correct the details and send it again from Branches."
 msgstr "Perbaiki detailnya dan kirim lagi dari Cabang."
 
+#: templates/dashboard/base.html:124
 msgid "Branch suspended by the platform."
 msgstr "Cabang ditangguhkan oleh platform."
 
+#: templates/dashboard/base.html:124
 msgid "Customers can't see its menu and it can't record revenue."
 msgstr ""
 "Pelanggan tidak bisa melihat menunya dan cabang ini tidak bisa mencatat "
 "pendapatan."
 
+#: templates/dashboard/base.html:124 templates/dashboard/base.html:130
 #, python-format
 msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a>."
 msgstr "Hubungi <a href=\"mailto:%(email)s\">%(email)s</a>."
 
+#: templates/dashboard/base.html:127
 msgid "Waiting for approval."
 msgstr "Menunggu persetujuan."
 
+#: templates/dashboard/base.html:127
 msgid ""
 "Our team reviews new restaurants before they go public. You can keep setting "
 "up your menu and tables."
@@ -2717,53 +3697,67 @@ msgstr ""
 "Tim kami meninjau restoran baru sebelum dipublikasikan. Anda dapat terus "
 "menyiapkan menu dan meja."
 
+#: templates/dashboard/base.html:130
 msgid "This restaurant is not public."
 msgstr "Restoran ini tidak publik."
 
+#: templates/dashboard/base.html:130
 msgid ""
 "It has been suspended by the platform. Customers can't see the menu or order."
 msgstr ""
 "Restoran ini ditangguhkan oleh platform. Pelanggan tidak dapat melihat menu "
 "atau memesan."
 
+#: templates/dashboard/base.html:137
 #, python-format
 msgid "Your free trial ends in %(days)s day."
 msgid_plural "Your free trial ends in %(days)s days."
 msgstr[0] "Uji coba gratis Anda berakhir dalam %(days)s hari."
 
+#: templates/dashboard/base.html:137
 msgid "Pay the invoice to keep taking orders."
 msgstr "Bayar tagihan agar tetap dapat menerima pesanan."
 
+#: templates/dashboard/base.html:138
 msgid "Payment due."
 msgstr "Pembayaran jatuh tempo."
 
+#: templates/dashboard/base.html:138
 #, python-format
 msgid ""
 "Your subscription ended on %(date)s; ordering will be switched off soon."
 msgstr ""
 "Langganan Anda berakhir pada %(date)s; pemesanan akan segera dinonaktifkan."
 
+#: templates/dashboard/base.html:139
 msgid "Subscription expired."
 msgstr "Langganan kedaluwarsa."
 
+#: templates/dashboard/base.html:139
 msgid "Customers can't place orders until the invoice is paid."
 msgstr "Pelanggan tidak dapat memesan sampai tagihan dibayar."
 
+#: templates/dashboard/base.html:140
 msgid "Subscription cancelled."
 msgstr "Langganan dibatalkan."
 
+#: templates/dashboard/base.html:140
 msgid "Customers can't place orders."
 msgstr "Pelanggan tidak dapat memesan."
 
+#: templates/dashboard/base.html:141 templates/dashboard/branches.html:79
 msgid "View billing"
 msgstr "Lihat tagihan"
 
+#: templates/dashboard/base.html:148
 msgid "Your business profile needs changes."
 msgstr "Profil usaha Anda perlu diperbaiki."
 
+#: templates/dashboard/base.html:148
 msgid "Complete your business profile."
 msgstr "Lengkapi profil usaha Anda."
 
+#: templates/dashboard/base.html:148
 msgid ""
 "We verify every business before it can add branches. It takes two minutes: "
 "registration number, owner, address and phone."
@@ -2771,12 +3765,16 @@ msgstr ""
 "Kami memverifikasi setiap usaha sebelum bisa menambah cabang. Hanya dua "
 "menit: nomor registrasi, pemilik, alamat, dan telepon."
 
+#: templates/dashboard/base.html:149 templates/dashboard/base.html:157
+#: templates/dashboard/branches.html:102
 msgid "Complete now"
 msgstr "Lengkapi sekarang"
 
+#: templates/dashboard/base.html:154
 msgid "Complete your business profile"
 msgstr "Lengkapi profil usaha Anda"
 
+#: templates/dashboard/base.html:155
 msgid ""
 "Please add your business registration number (e.g. SERVE certificate or tax "
 "number), the owner's name, your address and phone number. Our team verifies "
@@ -2786,48 +3784,63 @@ msgstr ""
 "nama pemilik, alamat, dan nomor telepon. Tim kami memverifikasinya, lalu "
 "Anda bisa menambah cabang."
 
+#: templates/dashboard/base.html:158
 msgid "Remind me later"
 msgstr "Ingatkan nanti"
 
+#: templates/dashboard/billing.html:6
 msgid "Your plan, usage and invoices."
 msgstr "Paket, penggunaan, dan tagihan Anda."
 
+#: templates/dashboard/billing.html:10
 msgid "Billing isn't set up on this platform yet."
 msgstr "Tagihan belum diatur di platform ini."
 
+#: templates/dashboard/billing.html:17
 msgid "Current plan"
 msgstr "Paket saat ini"
 
+#: templates/dashboard/billing.html:22 templates/dashboard/billing.html:81
+#: templates/dashboard/upgrade.html:28 templates/storefront/home.html:116
 msgid "Free"
 msgstr "Gratis"
 
+#: templates/dashboard/billing.html:22 templates/dashboard/upgrade.html:28
+#: templates/storefront/home.html:116
 msgid "month"
 msgstr "bulan"
 
+#: templates/dashboard/billing.html:23
 #, python-format
 msgid "+ %(n)s extra branch × $%(price)s = $%(total)s / month"
 msgid_plural "+ %(n)s extra branches × $%(price)s = $%(total)s / month"
 msgstr[0] "+ %(n)s cabang tambahan × $%(price)s = $%(total)s / bulan"
 
+#: templates/dashboard/billing.html:25
 msgid "Your account is complimentary. There's nothing to pay."
 msgstr "Akun Anda gratis. Tidak ada yang perlu dibayar."
 
+#: templates/dashboard/billing.html:27
 #, python-format
 msgid "Free trial until <strong>%(date)s</strong>"
 msgstr "Uji coba gratis hingga <strong>%(date)s</strong>"
 
+#: templates/dashboard/billing.html:27
 #, python-format
 msgid "%(n)s day left"
 msgid_plural "%(n)s days left"
 msgstr[0] "sisa %(n)s hari"
 
+#: templates/dashboard/billing.html:27
 msgid "Pay the invoice before then to keep taking orders."
 msgstr "Bayar tagihan sebelum itu agar tetap dapat menerima pesanan."
 
+#: templates/dashboard/billing.html:29
 #, python-format
 msgid "Paid until <strong>%(date)s</strong>."
 msgstr "Lunas hingga <strong>%(date)s</strong>."
 
+#: templates/dashboard/billing.html:31
 #, python-format
 msgid ""
 "Your subscription ended on %(date)s. Please pay the open invoice. Ordering "
@@ -2836,6 +3849,7 @@ msgstr ""
 "Langganan Anda berakhir pada %(date)s. Harap bayar tagihan yang terbuka. "
 "Pemesanan akan segera dinonaktifkan."
 
+#: templates/dashboard/billing.html:33
 msgid ""
 "Your subscription has expired. Customers can't order until the invoice is "
 "paid."
@@ -2843,15 +3857,18 @@ msgstr ""
 "Langganan Anda kedaluwarsa. Pelanggan tidak dapat memesan sampai tagihan "
 "dibayar."
 
+#: templates/dashboard/billing.html:35
 msgid "Your subscription was cancelled."
 msgstr "Langganan Anda dibatalkan."
 
+#: templates/dashboard/billing.html:35
 #, python-format
 msgid "Contact <a href=\"mailto:%(email)s\">%(email)s</a> to reactivate."
 msgstr ""
 "Hubungi <a href=\"mailto:%(email)s\">%(email)s</a> untuk mengaktifkan "
 "kembali."
 
+#: templates/dashboard/billing.html:37
 #, python-format
 msgid ""
 "Change to <strong>%(plan)s</strong> requested %(ago)s ago. Waiting for "
@@ -2860,30 +3877,39 @@ msgstr ""
 "Perubahan ke <strong>%(plan)s</strong> diminta %(ago)s lalu. Menunggu "
 "konfirmasi."
 
+#: templates/dashboard/billing.html:39
 msgid "Usage"
 msgstr "Penggunaan"
 
+#: templates/dashboard/billing.html:49
 msgid "Invoices"
 msgstr "Tagihan"
 
+#: templates/dashboard/billing.html:53
 msgid "Invoice"
 msgstr "Tagihan"
 
+#: templates/dashboard/billing.html:53 templates/dashboard/billing.html:57
 msgid "Period"
 msgstr "Periode"
 
+#: templates/dashboard/billing.html:53 templates/dashboard/billing.html:58
 msgid "Due"
 msgstr "Jatuh tempo"
 
+#: templates/dashboard/billing.html:60
 msgid "Overdue"
 msgstr "Terlambat"
 
+#: templates/dashboard/billing.html:65
 msgid "No invoices yet."
 msgstr "Belum ada tagihan."
 
+#: templates/dashboard/billing.html:72
 msgid "How to pay"
 msgstr "Cara membayar"
 
+#: templates/dashboard/billing.html:74
 msgid ""
 "Use the invoice number as the payment reference. Your subscription is "
 "extended as soon as we confirm the payment."
@@ -2891,12 +3917,15 @@ msgstr ""
 "Gunakan nomor tagihan sebagai referensi pembayaran. Langganan Anda "
 "diperpanjang segera setelah kami mengonfirmasi pembayaran."
 
+#: templates/dashboard/billing.html:78
 msgid "Plans"
 msgstr "Paket"
 
+#: templates/dashboard/billing.html:81
 msgid "mo"
 msgstr "bln"
 
+#: templates/dashboard/billing.html:82
 #, python-format
 msgid "Main branch + %(n)s branch; extra branches $%(price)s/month each"
 msgid_plural ""
@@ -2904,30 +3933,40 @@ msgid_plural ""
 msgstr[0] ""
 "Cabang utama + %(n)s cabang; cabang tambahan $%(price)s/bulan per cabang"
 
+#: templates/dashboard/billing.html:83
 #, python-format
 msgid "%(t)s tables · %(d)s dishes · %(s)s staff"
 msgstr "%(t)s meja · %(d)s hidangan · %(s)s staf"
 
+#: templates/dashboard/billing.html:84
 msgid "Your plan"
 msgstr "Paket Anda"
 
+#: templates/dashboard/billing.html:85
 msgid "Requested"
 msgstr "Diminta"
 
+#: templates/dashboard/billing.html:87
 #, python-format
 msgid "Request a change to %(plan)s?"
 msgstr "Minta perubahan ke %(plan)s?"
 
+#: templates/dashboard/billing.html:87
 #, python-format
 msgid "Switch to %(plan)s"
 msgstr "Ganti ke %(plan)s"
 
+#: templates/dashboard/branch_closed.html:3
+#: templates/dashboard/branch_closed.html:9
 msgid "Branch deactivated"
 msgstr "Cabang dinonaktifkan"
 
+#: templates/dashboard/branch_closed.html:3
+#: templates/dashboard/branch_closed.html:15
 msgid "Branch not active"
 msgstr "Cabang tidak aktif"
 
+#: templates/dashboard/branch_closed.html:10
 msgid ""
 "The main branch has deactivated this branch. Ask the owner if you need "
 "access again."
@@ -2935,9 +3974,11 @@ msgstr ""
 "Cabang utama telah menonaktifkan cabang ini. Hubungi pemilik jika Anda perlu "
 "akses lagi."
 
+#: templates/dashboard/branch_closed.html:12
 msgid "Waiting for approval"
 msgstr "Menunggu persetujuan"
 
+#: templates/dashboard/branch_closed.html:13
 msgid ""
 "This new branch is being reviewed by the platform team. You can use it once "
 "it is approved."
@@ -2945,6 +3986,7 @@ msgstr ""
 "Cabang baru ini sedang ditinjau tim platform. Anda bisa memakainya setelah "
 "disetujui."
 
+#: templates/dashboard/branch_closed.html:16
 msgid ""
 "This branch has been suspended or was not approved by the platform. Ask the "
 "owner for details."
@@ -2952,19 +3994,26 @@ msgstr ""
 "Cabang ini ditangguhkan atau tidak disetujui oleh platform. Tanyakan "
 "detailnya kepada pemilik."
 
+#: templates/dashboard/branch_manage.html:9
+#: templates/dashboard/branches.html:41
 msgid "Deactivated"
 msgstr "Nonaktif"
 
+#: templates/dashboard/branch_manage.html:9
+#: templates/dashboard/branches.html:45 templates/dashboard/home.html:15
 msgid "Not live"
 msgstr "Tidak aktif"
 
+#: templates/dashboard/branch_manage.html:10
 #, python-format
 msgid "Sub-branch of %(main)s."
 msgstr "Sub-cabang dari %(main)s."
 
+#: templates/dashboard/branch_manage.html:12
 msgid "Open its dashboard"
 msgstr "Buka dasbornya"
 
+#: templates/dashboard/branch_manage.html:16
 msgid ""
 "Waiting for approval by the platform team. Meanwhile you can set up its "
 "menu, tables and staff; it goes live and can record revenue once approved."
@@ -2972,9 +4021,11 @@ msgstr ""
 "Menunggu persetujuan tim platform. Sementara itu Anda bisa menyiapkan menu, "
 "meja, dan staf; cabang aktif dan bisa mencatat pendapatan setelah disetujui."
 
+#: templates/dashboard/branch_manage.html:20
 msgid "Request not approved"
 msgstr "Pengajuan tidak disetujui"
 
+#: templates/dashboard/branch_manage.html:22
 msgid ""
 "Correct the branch details below if needed, optionally add a new storefront "
 "photo, and send it again."
@@ -2982,30 +4033,40 @@ msgstr ""
 "Perbaiki detail cabang di bawah bila perlu, tambahkan foto tampak depan baru "
 "(opsional), lalu kirim lagi."
 
+#: templates/dashboard/branch_manage.html:24
 msgid "Send again"
 msgstr "Kirim lagi"
 
+#: templates/dashboard/branch_manage.html:27
 msgid "Suspended by the platform."
 msgstr "Ditangguhkan oleh platform."
 
+#: templates/dashboard/branch_manage.html:34
 msgid "Branch details"
 msgstr "Detail cabang"
 
+#: templates/dashboard/branch_manage.html:44 templates/dashboard/staff.html:16
 msgid "User"
 msgstr "Pengguna"
 
+#: templates/dashboard/branch_manage.html:49 templates/dashboard/staff.html:23
+#: templates/dashboard/tables.html:25
 msgid "Disabled"
 msgstr "Nonaktif"
 
+#: templates/dashboard/branch_manage.html:52
 msgid "Disable"
 msgstr "Nonaktifkan"
 
+#: templates/dashboard/branch_manage.html:52
 msgid "Enable"
 msgstr "Aktifkan"
 
+#: templates/dashboard/branch_manage.html:64
 msgid "Add staff account"
 msgstr "Tambah akun staf"
 
+#: templates/dashboard/branch_manage.html:65
 msgid ""
 "A branch manager or cashier for this branch. They only see this branch: its "
 "orders and its own revenue."
@@ -3013,15 +4074,19 @@ msgstr ""
 "Manajer atau kasir untuk cabang ini. Mereka hanya melihat cabang ini: "
 "pesanannya dan pendapatannya sendiri."
 
+#: templates/dashboard/branch_manage.html:67 templates/dashboard/staff.html:43
 msgid "Create account"
 msgstr "Buat akun"
 
+#: templates/dashboard/branch_manage.html:71
 msgid "Reactivate branch"
 msgstr "Aktifkan kembali cabang"
 
+#: templates/dashboard/branch_manage.html:71
 msgid "Deactivate branch"
 msgstr "Nonaktifkan cabang"
 
+#: templates/dashboard/branch_manage.html:73
 #, python-format
 msgid ""
 "Deactivated on %(d)s. Reactivating brings back its menu, QR codes and staff "
@@ -3030,9 +4095,11 @@ msgstr ""
 "Dinonaktifkan pada %(d)s. Mengaktifkan kembali memulihkan menu, kode QR, dan "
 "akses staf."
 
+#: templates/dashboard/branch_manage.html:74
 msgid "Reactivate"
 msgstr "Aktifkan kembali"
 
+#: templates/dashboard/branch_manage.html:76
 msgid ""
 "Customers can no longer order, its QR codes stop working and its staff can't "
 "sign in to it. Nothing is deleted, and you can reactivate it at any time."
@@ -3041,13 +4108,16 @@ msgstr ""
 "tidak bisa masuk. Tidak ada yang dihapus, dan Anda bisa mengaktifkannya "
 "kembali kapan saja."
 
+#: templates/dashboard/branch_manage.html:77
 #, python-format
 msgid "Deactivate %(n)s?"
 msgstr "Nonaktifkan %(n)s?"
 
+#: templates/dashboard/branch_manage.html:77
 msgid "Deactivate"
 msgstr "Nonaktifkan"
 
+#: templates/dashboard/branches.html:9
 #, python-format
 msgid ""
 "%(name)s (main branch) and its sub-branches. Revenue = completed orders + "
@@ -3056,60 +4126,82 @@ msgstr ""
 "%(name)s (cabang utama) dan sub-cabangnya. Pendapatan = pesanan selesai + "
 "penjualan yang dicatat tiap cabang."
 
+#: templates/dashboard/branches.html:15
 msgid "Previous day"
 msgstr "Hari sebelumnya"
 
+#: templates/dashboard/branches.html:17
 msgid "Next day"
 msgstr "Hari berikutnya"
 
+#: templates/dashboard/branches.html:18 templates/dashboard/branches.html:19
+#: templates/dashboard/expenses.html:18 templates/dashboard/expenses.html:28
+#: templates/dashboard/revenue.html:30
 msgid "Today"
 msgstr "Hari ini"
 
+#: templates/dashboard/branches.html:20
 msgid "Revenue source"
 msgstr "Sumber pendapatan"
 
+#: templates/dashboard/branches.html:24
 msgid "All branches · this day"
 msgstr "Semua cabang · hari ini"
 
+#: templates/dashboard/branches.html:25 templates/dashboard/revenue.html:15
+#: templates/dashboard/revenue.html:17
 #, python-format
 msgid "Orders %(o)s · manual %(m)s · API %(a)s"
 msgstr "Pesanan %(o)s · manual %(m)s · API %(a)s"
 
+#: templates/dashboard/branches.html:26
 #, python-format
 msgid "Week from %(d)s"
 msgstr "Minggu sejak %(d)s"
 
+#: templates/dashboard/branches.html:31
 msgid "Revenue by branch"
 msgstr "Pendapatan per cabang"
 
+#: templates/dashboard/branches.html:34
 msgid "Branch"
 msgstr "Cabang"
 
+#: templates/dashboard/branches.html:34 templates/dashboard/branches.html:48
 msgid "This day"
 msgstr "Hari ini"
 
+#: templates/dashboard/branches.html:34 templates/dashboard/branches.html:49
 msgid "Week"
 msgstr "Minggu"
 
+#: templates/dashboard/branches.html:34 templates/dashboard/branches.html:50
+#: templates/dashboard/expenses.html:54
 msgid "Month"
 msgstr "Bulan"
 
+#: templates/dashboard/branches.html:40
 msgid "Main branch"
 msgstr "Cabang utama"
 
+#: templates/dashboard/branches.html:48
 #, python-format
 msgid "incl. %(m)s recorded"
 msgstr "termasuk %(m)s dicatat"
 
+#: templates/dashboard/branches.html:63
 msgid "This day compared"
 msgstr "Perbandingan hari ini"
 
+#: templates/dashboard/branches.html:64
 msgid "Revenue per branch for this day"
 msgstr "Pendapatan per cabang untuk hari ini"
 
+#: templates/dashboard/branches.html:73
 msgid "Branch slots"
 msgstr "Slot cabang"
 
+#: templates/dashboard/branches.html:76
 #, python-format
 msgid ""
 "Your plan includes %(included)s branches besides the main branch; you have "
@@ -3119,6 +4211,7 @@ msgstr ""
 "%(extra)s tambahan. Cabang yang menunggu, ditolak, atau nonaktif tidak "
 "memakai slot."
 
+#: templates/dashboard/branches.html:79
 #, python-format
 msgid ""
 "Invoice %(number)s (%(amount)s) for an extra branch is waiting for payment. "
@@ -3127,16 +4220,20 @@ msgstr ""
 "Faktur %(number)s (%(amount)s) untuk cabang tambahan menunggu pembayaran. "
 "Slot ditambahkan setelah dibayar."
 
+#: templates/dashboard/branches.html:82
 #, python-format
 msgid "Add an extra branch (%(price)s/month)"
 msgstr "Tambah cabang tambahan (%(price)s/bulan)"
 
+#: templates/dashboard/branches.html:85
 msgid "Remove one unused extra branch from your subscription?"
 msgstr "Hapus satu cabang tambahan yang tidak dipakai dari langganan Anda?"
 
+#: templates/dashboard/branches.html:86
 msgid "Remove an unused extra branch"
 msgstr "Hapus cabang tambahan yang tidak dipakai"
 
+#: templates/dashboard/branches.html:98
 msgid ""
 "You can request branches once the platform team has verified your business "
 "profile."
@@ -3144,6 +4241,7 @@ msgstr ""
 "Anda bisa mengajukan cabang setelah tim platform memverifikasi profil usaha "
 "Anda."
 
+#: templates/dashboard/branches.html:100
 msgid ""
 "To request branches, first complete your business profile. The platform team "
 "verifies it."
@@ -3151,12 +4249,15 @@ msgstr ""
 "Untuk mengajukan cabang, lengkapi dulu profil usaha Anda. Tim platform akan "
 "memverifikasinya."
 
+#: templates/dashboard/branches.html:102
 msgid "View"
 msgstr "Lihat"
 
+#: templates/dashboard/branches.html:109
 msgid "Request a new branch"
 msgstr "Ajukan cabang baru"
 
+#: templates/dashboard/branches.html:110
 msgid ""
 "The platform team reviews every new branch: it must be the same business, "
 "using your brand name. Until it is approved, the branch is hidden and can't "
@@ -3168,6 +4269,7 @@ msgstr ""
 "mencatat pendapatan. Cabang punya kode QR, meja, dan staf sendiri; Anda "
 "tetap pemilik dengan login yang sama."
 
+#: templates/dashboard/branches.html:111
 msgid ""
 "All branch slots in your plan are in use. You can still send the request; it "
 "is activated once you add an extra branch."
@@ -3175,12 +4277,15 @@ msgstr ""
 "Semua slot cabang di paket Anda sedang dipakai. Anda tetap bisa mengirim "
 "pengajuan; cabang diaktifkan setelah Anda menambah cabang tambahan."
 
+#: templates/dashboard/branches.html:113
 msgid "Send request"
 msgstr "Kirim pengajuan"
 
+#: templates/dashboard/business_profile.html:10
 msgid "Needs changes"
 msgstr "Perlu diperbaiki"
 
+#: templates/dashboard/business_profile.html:12
 msgid ""
 "The legal details of your business. The platform team verifies them before "
 "you can add branches; all branches must belong to this same business."
@@ -3188,6 +4293,7 @@ msgstr ""
 "Data legal usaha Anda. Tim platform memverifikasinya sebelum Anda bisa "
 "menambah cabang; semua cabang harus milik usaha yang sama ini."
 
+#: templates/dashboard/business_profile.html:17
 msgid ""
 "Thank you! We are checking your details, usually within one working day. You "
 "can keep using QR Menu and recording revenue in the meantime."
@@ -3195,9 +4301,11 @@ msgstr ""
 "Terima kasih! Kami sedang memeriksa data Anda, biasanya dalam satu hari "
 "kerja. Sementara itu Anda tetap bisa memakai QR Menu dan mencatat pendapatan."
 
+#: templates/dashboard/business_profile.html:19
 msgid "Please correct your details and send them again."
 msgstr "Perbaiki data Anda dan kirim lagi."
 
+#: templates/dashboard/business_profile.html:21
 msgid ""
 "Your business is verified. You can request branches on the Branches page. "
 "Changing these details sends them for review again."
@@ -3205,12 +4313,15 @@ msgstr ""
 "Usaha Anda sudah terverifikasi. Anda bisa mengajukan cabang di halaman "
 "Cabang. Mengubah data ini akan mengirimnya untuk ditinjau lagi."
 
+#: templates/dashboard/business_profile.html:27
 msgid "Save and send for review"
 msgstr "Simpan dan kirim untuk ditinjau"
 
+#: templates/dashboard/business_profile.html:27
 msgid "Send for verification"
 msgstr "Kirim untuk verifikasi"
 
+#: templates/dashboard/car_wash.html:9
 msgid ""
 "Car wash orders from tables and walk-in customers. They don't go to the "
 "kitchen: give the ticket to the car wash team. They are completed "
@@ -3219,65 +4330,92 @@ msgstr ""
 "Pesanan cuci dari meja dan pelanggan tanpa meja. Tidak ke dapur: berikan "
 "tiket ke tim cuci. Otomatis selesai setelah dibayar."
 
+#: templates/dashboard/car_wash.html:12
 msgid "Today & unpaid"
 msgstr "Hari ini & belum bayar"
 
+#: templates/dashboard/car_wash.html:12
 msgid "All, incl. cancelled"
 msgstr "Semua, termasuk batal"
 
+#: templates/dashboard/car_wash.html:13
 msgid "Refresh"
 msgstr "Muat ulang"
 
+#: templates/dashboard/car_wash.html:21
 msgid "Walk-in cars waiting to pay"
 msgstr "Kendaraan tanpa meja menunggu bayar"
 
+#: templates/dashboard/car_wash.html:25
 #, python-format
 msgid "Walk-in · %(p)s"
 msgstr "Tanpa meja · %(p)s"
 
+#: templates/dashboard/car_wash.html:25
 msgid "Bill / pay"
 msgstr "Tagihan / bayar"
 
+#: templates/dashboard/car_wash.html:31
 msgid "Car wash orders"
 msgstr "Pesanan cuci"
 
+#: templates/dashboard/car_wash.html:35 templates/dashboard/car_wash.html:40
 msgid "Plate"
 msgstr "Nopol"
 
+#: templates/dashboard/car_wash.html:35 templates/dashboard/car_wash.html:41
+#: templates/dashboard/car_wash.html:85
 msgid "Package"
 msgstr "Paket"
 
+#: templates/dashboard/car_wash.html:35 templates/dashboard/car_wash.html:42
 msgid "Where"
 msgstr "Di mana"
 
+#: templates/dashboard/car_wash.html:42
 msgid "Walk-in"
 msgstr "Tanpa meja"
 
+#: templates/dashboard/car_wash.html:45
 msgid "Ticket"
 msgstr "Tiket"
 
+#: templates/dashboard/car_wash.html:51
 msgid "Add to bill"
 msgstr "Tambah ke tagihan"
 
+#: templates/dashboard/car_wash.html:56
 #, python-format
 msgid "Cancel car wash #%(n)s?"
 msgstr "Batalkan cuci #%(n)s?"
 
+#: templates/dashboard/car_wash.html:56 templates/dashboard/item_form.html:47
+#: templates/dashboard/new_order.html:77
+#: templates/dashboard/quotations/edit.html:107
+#: templates/dashboard/quotations/profile.html:29
+#: templates/dashboard/simple_form.html:10
 msgid "Cancel"
 msgstr "Batal"
 
+#: templates/dashboard/car_wash.html:64
 msgid "No car wash orders yet today."
 msgstr "Belum ada pesanan cuci hari ini."
 
+#: templates/dashboard/car_wash.html:69
+#: templates/dashboard/table_detail.html:91
 msgid "Printed bills"
 msgstr "Tagihan tercetak"
 
+#: templates/dashboard/car_wash.html:72
+#: templates/dashboard/table_detail.html:94
 msgid "Reprint (COPY)"
 msgstr "Cetak ulang (SALINAN)"
 
+#: templates/dashboard/car_wash.html:82
 msgid "New car wash order"
 msgstr "Pesanan cuci baru"
 
+#: templates/dashboard/car_wash.html:83
 msgid ""
 "For a car dropped off at the counter. Choose a table to put it on that "
 "table's bill, or leave it as walk-in (the bill is under the plate number)."
@@ -3285,32 +4423,41 @@ msgstr ""
 "Untuk kendaraan yang dititipkan di kasir. Pilih meja agar masuk tagihan meja "
 "itu, atau biarkan tanpa meja (tagihan atas nomor polisi)."
 
+#: templates/dashboard/car_wash.html:84 templates/dashboard/new_order.html:62
 msgid "Plate number"
 msgstr "Nomor polisi"
 
+#: templates/dashboard/car_wash.html:86
 msgid "No car wash packages yet"
 msgstr "Belum ada paket cuci"
 
+#: templates/dashboard/car_wash.html:87 templates/dashboard/new_order.html:65
 msgid "Vehicle type"
 msgstr "Jenis kendaraan"
 
+#: templates/dashboard/car_wash.html:90
 msgid "Walk-in (no table)"
 msgstr "Tanpa meja"
 
+#: templates/dashboard/car_wash.html:91
 msgid "Customer name"
 msgstr "Nama pelanggan"
 
+#: templates/dashboard/car_wash.html:92
 msgid "Add car wash"
 msgstr "Tambah cuci"
 
+#: templates/dashboard/car_wash.html:93
 msgid ""
 "Add a menu category with the service “Car wash” and your packages first."
 msgstr ""
 "Tambahkan dulu kategori menu dengan layanan “Cuci kendaraan” dan paket Anda."
 
+#: templates/dashboard/car_wash.html:98
 msgid "Walk-in car wash QR"
 msgstr "QR cuci (tanpa meja)"
 
+#: templates/dashboard/car_wash.html:99
 msgid ""
 "Put this QR code at the wash bay or counter. It opens only the car wash "
 "menu; orders are billed under the plate number."
@@ -3318,24 +4465,32 @@ msgstr ""
 "Pasang kode QR ini di tempat cuci atau kasir. Hanya membuka menu cuci; "
 "pesanan ditagih atas nomor polisi."
 
+#: templates/dashboard/car_wash.html:101
+#: templates/dashboard/table_detail.html:113
 msgid "Open the customer link"
 msgstr "Buka tautan pelanggan"
 
+#: templates/dashboard/car_wash.html:105
 msgid "Make a new QR code? The printed one will STOP working."
 msgstr "Buat kode QR baru? Yang sudah dicetak akan TIDAK berlaku."
 
+#: templates/dashboard/car_wash.html:105
 msgid "New code"
 msgstr "Kode baru"
 
+#: templates/dashboard/car_wash.html:108
 msgid "Tickets print on the network receipt printer."
 msgstr "Tiket dicetak di printer jaringan."
 
+#: templates/dashboard/car_wash.html:108
 msgid "Keep this screen open: new car wash tickets print here automatically."
 msgstr "Biarkan layar ini terbuka: tiket cuci baru tercetak otomatis di sini."
 
+#: templates/dashboard/car_wash.html:108
 msgid "Tip: switch on automatic tickets in Restaurant settings → Car wash."
 msgstr "Tips: aktifkan tiket otomatis di Pengaturan restoran → Cuci kendaraan."
 
+#: templates/dashboard/cash_register.html:9
 msgid ""
 "Enter the change in the drawer before selling starts. At the end, count the "
 "drawer and compare it with what the system expects."
@@ -3343,9 +4498,11 @@ msgstr ""
 "Masukkan uang kembalian di laci sebelum mulai berjualan. Di akhir, hitung "
 "laci dan bandingkan dengan perkiraan sistem."
 
+#: templates/dashboard/cash_register.html:16
 msgid "Start of day: change in the drawer"
 msgstr "Awal hari: uang kembalian di laci"
 
+#: templates/dashboard/cash_register.html:17
 msgid ""
 "Count the notes and coins you put in the drawer as change (the opening "
 "float)."
@@ -3353,116 +4510,171 @@ msgstr ""
 "Hitung uang kertas dan koin yang Anda masukkan ke laci sebagai kembalian "
 "(modal awal)."
 
+#: templates/dashboard/cash_register.html:19
 msgid "Change in the drawer"
 msgstr "Uang kembalian di laci"
 
+#: templates/dashboard/cash_register.html:21
 msgid "Open cash register"
 msgstr "Buka kas"
 
+#: templates/dashboard/cash_register.html:24
 #, python-format
 msgid "Open since %(t)s · by %(name)s"
 msgstr "Dibuka sejak %(t)s · oleh %(name)s"
 
+#: templates/dashboard/cash_register.html:24
+#: templates/dashboard/table_detail.html:11
 #, python-format
 msgid "Open since %(t)s"
 msgstr "Dibuka sejak %(t)s"
 
+#: templates/dashboard/cash_register.html:26
+#: templates/dashboard/cash_register.html:37
+#: templates/dashboard/cash_register.html:83
+#: templates/dashboard/cash_register.html:88
 msgid "Opening change"
 msgstr "Kembalian awal"
 
+#: templates/dashboard/cash_register.html:27
 #, python-format
 msgid "Cash sales (%(n)s payment)"
 msgid_plural "Cash sales (%(n)s payments)"
 msgstr[0] "Penjualan tunai (%(n)s pembayaran)"
 
+#: templates/dashboard/cash_register.html:28
 msgid "Cash in · out"
 msgstr "Kas masuk · keluar"
 
+#: templates/dashboard/cash_register.html:29
+#: templates/dashboard/cash_register.html:41
 msgid "Expected in the drawer"
 msgstr "Seharusnya di laci"
 
+#: templates/dashboard/cash_register.html:34
 msgid "How it adds up"
 msgstr "Cara perhitungannya"
 
+#: templates/dashboard/cash_register.html:38
 msgid "Cash sales"
 msgstr "Penjualan tunai"
 
+#: templates/dashboard/cash_register.html:38
+#: templates/dashboard/order_detail.html:89
 #, python-format
 msgid "received %(got)s, change %(change)s"
 msgstr "diterima %(got)s, kembalian %(change)s"
 
+#: templates/dashboard/cash_register.html:44
 msgid "Other payments (not in the drawer)"
 msgstr "Pembayaran lain (tidak di laci)"
 
+#: templates/dashboard/cash_register.html:46
 msgid "None yet."
 msgstr "Belum ada."
 
+#: templates/dashboard/cash_register.html:48
 msgid "Cash in / out"
 msgstr "Kas masuk / keluar"
 
+#: templates/dashboard/cash_register.html:52
 msgid "Cash in or out"
 msgstr "Kas masuk atau keluar"
 
+#: templates/dashboard/cash_register.html:54
 msgid "Reason, e.g. bought ice"
 msgstr "Alasan, mis. beli es"
 
+#: templates/dashboard/cash_register.html:54
+#: templates/dashboard/settings.html:52 templates/dashboard/settings.html:57
 msgid "Reason"
 msgstr "Alasan"
 
+#: templates/dashboard/cash_register.html:55
+#: templates/dashboard/new_order.html:78
+#: templates/dashboard/table_detail.html:50
 msgid "Add"
 msgstr "Tambah"
 
+#: templates/dashboard/cash_register.html:60
 msgid "Close the cash register with this count? This can't be undone."
 msgstr "Tutup kas dengan hitungan ini? Tidak dapat dibatalkan."
 
+#: templates/dashboard/cash_register.html:62
 msgid "End of day: count the drawer"
 msgstr "Akhir hari: hitung laci"
 
+#: templates/dashboard/cash_register.html:63
 msgid "Count all the cash in the drawer, including the opening change."
 msgstr "Hitung semua uang di laci, termasuk uang kembalian awal."
 
+#: templates/dashboard/cash_register.html:65
 msgid "Cash counted"
 msgstr "Uang yang dihitung"
 
+#: templates/dashboard/cash_register.html:68
+#: templates/dashboard/cash_register.html:83
+#: templates/dashboard/cash_register.html:91
 msgid "Difference"
 msgstr "Selisih"
 
+#: templates/dashboard/cash_register.html:72
 msgid "e.g. $1 coin missing"
 msgstr "mis. koin $1 hilang"
 
+#: templates/dashboard/cash_register.html:73
 msgid "Close & reconcile"
 msgstr "Tutup & cocokkan"
 
+#: templates/dashboard/cash_register.html:79
 msgid "Past sessions"
 msgstr "Sesi sebelumnya"
 
+#: templates/dashboard/cash_register.html:83
+#: templates/dashboard/settings.html:60
+#: templates/dashboard/table_detail.html:102
+#: templates/dashboard/table_detail.html:103
 msgid "Opened"
 msgstr "Dibuka"
 
+#: templates/dashboard/cash_register.html:83
+#: templates/dashboard/cash_register.html:87
+#: templates/dashboard/table_detail.html:102
+#: templates/dashboard/table_detail.html:103
 msgid "Closed"
 msgstr "Ditutup"
 
+#: templates/dashboard/cash_register.html:83
+#: templates/dashboard/cash_register.html:89
 msgid "Expected"
 msgstr "Seharusnya"
 
+#: templates/dashboard/cash_register.html:83
+#: templates/dashboard/cash_register.html:90
 msgid "Counted"
 msgstr "Dihitung"
 
+#: templates/dashboard/cash_register.html:92
 msgid "Report"
 msgstr "Laporan"
 
+#: templates/dashboard/cash_register.html:97
 msgid "No closed sessions yet."
 msgstr "Belum ada sesi yang ditutup."
 
+#: templates/dashboard/cash_register.html:108
 msgid "Exact: the drawer matches."
 msgstr "Pas: isi laci sesuai."
 
+#: templates/dashboard/cash_register.html:109
 msgid "Over: more cash than expected."
 msgstr "Lebih: uang lebih banyak dari seharusnya."
 
+#: templates/dashboard/cash_register.html:110
 msgid "Short: less cash than expected."
 msgstr "Kurang: uang lebih sedikit dari seharusnya."
 
+#: templates/dashboard/expenses.html:9
 msgid ""
 "Write down what you spend each day. Profit = revenue from completed orders − "
 "expenses."
@@ -3470,67 +4682,89 @@ msgstr ""
 "Catat pengeluaran setiap hari. Laba = pendapatan dari pesanan selesai − "
 "pengeluaran."
 
+#: templates/dashboard/expenses.html:11 templates/dashboard/reports.html:13
 msgid "Export CSV"
 msgstr "Ekspor CSV"
 
+#: templates/dashboard/expenses.html:18 templates/dashboard/expenses.html:29
 msgid "This week"
 msgstr "Minggu ini"
 
+#: templates/dashboard/expenses.html:18 templates/dashboard/expenses.html:31
 msgid "This year"
 msgstr "Tahun ini"
 
+#: templates/dashboard/expenses.html:20 templates/dashboard/expenses.html:49
 msgid "Loss"
 msgstr "Rugi"
 
+#: templates/dashboard/expenses.html:20 templates/dashboard/expenses.html:49
+#: templates/dashboard/expenses.html:54 templates/dashboard/expenses.html:60
 msgid "Profit"
 msgstr "Laba"
 
+#: templates/dashboard/expenses.html:21 templates/dashboard/expenses.html:48
+#: templates/dashboard/expenses.html:54 templates/dashboard/expenses.html:59
 msgid "Expenses"
 msgstr "Pengeluaran"
 
+#: templates/dashboard/expenses.html:44 templates/dashboard/revenue.html:16
 #, python-format
 msgid "%(a)s – %(b)s"
 msgstr "%(a)s – %(b)s"
 
+#: templates/dashboard/expenses.html:50
 #, python-format
 msgid "Profit margin: %(m)s%% of revenue"
 msgstr "Margin laba: %(m)s%% dari pendapatan"
 
+#: templates/dashboard/expenses.html:65
 msgid "No sales or expenses in this period yet."
 msgstr "Belum ada penjualan atau pengeluaran pada periode ini."
 
+#: templates/dashboard/expenses.html:68
 msgid "Expenses by category"
 msgstr "Pengeluaran per kategori"
 
+#: templates/dashboard/expenses.html:79
 msgid "Add an expense"
 msgstr "Tambah pengeluaran"
 
+#: templates/dashboard/expenses.html:81
 msgid "Save expense"
 msgstr "Simpan pengeluaran"
 
+#: templates/dashboard/expenses.html:87
 msgid "Expenses in this period"
 msgstr "Pengeluaran pada periode ini"
 
+#: templates/dashboard/expenses.html:101
 msgid "Delete this expense?"
 msgstr "Hapus pengeluaran ini?"
 
+#: templates/dashboard/expenses.html:103 templates/dashboard/revenue.html:46
 msgid "Delete"
 msgstr "Hapus"
 
+#: templates/dashboard/expenses.html:110
 msgid "No expenses in this period. Add your first one above."
 msgstr ""
 "Tidak ada pengeluaran pada periode ini. Tambahkan yang pertama di atas."
 
+#: templates/dashboard/home.html:3
 msgid "Your restaurants"
 msgstr "Restoran Anda"
 
+#: templates/dashboard/home.html:8
 msgid "Choose a restaurant"
 msgstr "Pilih restoran"
 
+#: templates/dashboard/home.html:9
 #, python-format
 msgid "Signed in as %(name)s"
 msgstr "Masuk sebagai %(name)s"
 
+#: templates/dashboard/home.html:20
 msgid ""
 "Your account is not linked to a restaurant yet. Ask the restaurant owner to "
 "add you as staff."
@@ -3538,23 +4772,29 @@ msgstr ""
 "Akun Anda belum terhubung ke restoran. Minta pemilik restoran menambahkan "
 "Anda sebagai staf."
 
+#: templates/dashboard/home.html:20
 #, python-format
 msgid "Or <a href=\"%(url)s\">create a restaurant</a> in the platform admin."
 msgstr "Atau <a href=\"%(url)s\">buat restoran</a> di admin platform."
 
+#: templates/dashboard/home.html:22
 msgid "Open the platform console"
 msgstr "Buka konsol platform"
 
+#: templates/dashboard/item_form.html:3 templates/dashboard/item_form.html:7
 msgid "Add a dish"
 msgstr "Tambah hidangan"
 
+#: templates/dashboard/item_form.html:7
 #, python-format
 msgid "Edit “%(name)s”"
 msgstr "Ubah “%(name)s”"
 
+#: templates/dashboard/item_form.html:13
 msgid "Dish details"
 msgstr "Detail hidangan"
 
+#: templates/dashboard/item_form.html:16
 msgid ""
 "Images: JPEG, PNG or WebP up to 5 MB. They're automatically resized and "
 "converted to WebP for fast loading."
@@ -3562,9 +4802,11 @@ msgstr ""
 "Gambar: JPEG, PNG, atau WebP hingga 5 MB. Otomatis diubah ukurannya dan "
 "dikonversi ke WebP agar cepat dimuat."
 
+#: templates/dashboard/item_form.html:20
 msgid "Add-ons &amp; extras"
 msgstr "Tambahan &amp; ekstra"
 
+#: templates/dashboard/item_form.html:21
 msgid ""
 "Optional extras customers can tick, e.g. “Fried Egg +$0.50”. Use price 0 for "
 "free options like “No onions”."
@@ -3572,43 +4814,56 @@ msgstr ""
 "Ekstra opsional yang bisa dipilih pelanggan, mis. “Telur ceplok +$0.50”. "
 "Gunakan harga 0 untuk opsi gratis seperti “Tanpa bawang”."
 
+#: templates/dashboard/item_form.html:34
 msgid "Translations"
 msgstr "Terjemahan"
 
+#: templates/dashboard/item_form.html:42
 msgid "Need more rows? Save, and two new empty rows will appear."
 msgstr "Butuh baris lagi? Simpan, lalu dua baris kosong baru akan muncul."
 
+#: templates/dashboard/item_form.html:46
 msgid "Save dish"
 msgstr "Simpan hidangan"
 
+#: templates/dashboard/item_form.html:52
 #, python-format
 msgid "Delete %(name)s? Past orders are kept."
 msgstr "Hapus %(name)s? Pesanan sebelumnya tetap disimpan."
 
+#: templates/dashboard/item_form.html:53
 msgid "Delete this dish"
 msgstr "Hapus hidangan ini"
 
+#: templates/dashboard/kitchen.html:10
 msgid "Loading…"
 msgstr "Memuat…"
 
+#: templates/dashboard/kitchen.html:13
 msgid "Enable sound"
 msgstr "Aktifkan suara"
 
+#: templates/dashboard/kitchen.html:14
 msgid "Full screen"
 msgstr "Layar penuh"
 
+#: templates/dashboard/kitchen.html:18
 msgid "Columns"
 msgstr "Kolom"
 
+#: templates/dashboard/kitchen.html:26
 msgid "NEW ORDERS"
 msgstr "PESANAN BARU"
 
+#: templates/dashboard/kitchen.html:30
 msgid "PREPARING"
 msgstr "DISIAPKAN"
 
+#: templates/dashboard/kitchen.html:34
 msgid "READY"
 msgstr "SIAP"
 
+#: templates/dashboard/menu.html:9
 msgid ""
 "Tap the switch to mark a dish <strong>Sold out</strong>. Customers' menus "
 "update immediately."
@@ -3616,42 +4871,54 @@ msgstr ""
 "Ketuk sakelar untuk menandai hidangan <strong>Habis</strong>. Menu pelanggan "
 "langsung diperbarui."
 
+#: templates/dashboard/menu.html:14
 msgid "Add dish"
 msgstr "Tambah hidangan"
 
+#: templates/dashboard/menu.html:22
 msgid "Hidden"
 msgstr "Tersembunyi"
 
+#: templates/dashboard/menu.html:25 templates/dashboard/reports.html:71
 msgid "Dish"
 msgstr "Hidangan"
 
+#: templates/dashboard/menu.html:26
 msgid "Edit category"
 msgstr "Ubah kategori"
 
+#: templates/dashboard/menu.html:27
 #, python-format
 msgid "Delete category %(name)s?"
 msgstr "Hapus kategori %(name)s?"
 
+#: templates/dashboard/menu.html:27
 msgid "Delete category"
 msgstr "Hapus kategori"
 
+#: templates/dashboard/menu.html:38
 #, python-format
 msgid "%(n)s add-on"
 msgid_plural "%(n)s add-ons"
 msgstr[0] "%(n)s tambahan"
 
+#: templates/dashboard/menu.html:44 templates/dashboard/menu.html:65
 msgid "Sold Out"
 msgstr "Habis"
 
+#: templates/dashboard/menu.html:47
 msgid "Edit dish"
 msgstr "Ubah hidangan"
 
+#: templates/dashboard/menu.html:52
 msgid "No dishes in this category yet."
 msgstr "Belum ada hidangan di kategori ini."
 
+#: templates/dashboard/menu.html:56
 msgid "Your menu is empty."
 msgstr "Menu Anda kosong."
 
+#: templates/dashboard/menu.html:56
 #, python-format
 msgid ""
 "<a href=\"%(url)s\">Create your first category</a> (e.g. Breakfast, Main "
@@ -3660,6 +4927,7 @@ msgstr ""
 "<a href=\"%(url)s\">Buat kategori pertama Anda</a> (mis. Sarapan, Hidangan "
 "Utama, Minuman)."
 
+#: templates/dashboard/new_order.html:10
 msgid ""
 "For guests without a smartphone. Choose the table and guest, tap dishes (and "
 "car wash packages), then send: everything goes on one bill."
@@ -3667,197 +4935,275 @@ msgstr ""
 "Untuk tamu tanpa smartphone. Pilih meja dan tamu, ketuk hidangan (dan paket "
 "cuci), lalu kirim: semuanya masuk satu tagihan."
 
+#: templates/dashboard/new_order.html:23
 msgid "Guest"
 msgstr "Tamu"
 
+#: templates/dashboard/new_order.html:24
 msgid "New guest"
 msgstr "Tamu baru"
 
+#: templates/dashboard/new_order.html:26
 msgid "Name (optional)"
 msgstr "Nama (opsional)"
 
+#: templates/dashboard/new_order.html:27
 msgid "e.g. Maria"
 msgstr "mis. Maria"
 
+#: templates/dashboard/new_order.html:32
 msgid "Search dishes…"
 msgstr "Cari hidangan…"
 
+#: templates/dashboard/new_order.html:32
 msgid "Search dishes"
 msgstr "Cari hidangan"
 
+#: templates/dashboard/new_order.html:38
 msgid "Tap dishes to add them."
 msgstr "Ketuk hidangan untuk menambahkannya."
 
+#: templates/dashboard/new_order.html:41
+#: templates/dashboard/order_detail.html:44
+#: templates/dashboard/quotations/edit.html:90
+#: templates/dashboard/quotations/print.html:128
 msgid "Subtotal"
 msgstr "Subtotal"
 
+#: templates/dashboard/new_order.html:42
+#: templates/dashboard/order_detail.html:45
 msgid "Service charge"
 msgstr "Biaya layanan"
 
+#: templates/dashboard/new_order.html:43
+#: templates/dashboard/order_detail.html:46
 msgid "included"
 msgstr "termasuk"
 
+#: templates/dashboard/new_order.html:46
 msgid "Note for the kitchen (optional)"
 msgstr "Catatan untuk dapur (opsional)"
 
+#: templates/dashboard/new_order.html:48
 msgid "Send to kitchen"
 msgstr "Kirim ke dapur"
 
+#: templates/dashboard/new_order.html:51
 msgid "Print one bill for this order"
 msgstr "Cetak satu tagihan untuk pesanan ini"
 
+#: templates/dashboard/new_order.html:64
 msgid "Enter the plate number."
 msgstr "Masukkan nomor polisi."
 
+#: templates/dashboard/new_order.html:69
+#: templates/dashboard/order_detail.html:71 templates/dashboard/revenue.html:35
+#: templates/dashboard/revenue.html:41
 msgid "Note"
 msgstr "Catatan"
 
+#: templates/dashboard/new_order.html:70
 msgid "e.g. no spicy"
 msgstr "mis. tidak pedas"
 
+#: templates/dashboard/new_order.html:72
 msgid "Less"
 msgstr "Kurangi"
 
+#: templates/dashboard/new_order.html:74
 msgid "More"
 msgstr "Tambah"
 
+#: templates/dashboard/notifications.html:8
 msgid "Mark all as read"
 msgstr "Tandai semua sudah dibaca"
 
+#: templates/dashboard/notifications.html:18
 #, python-format
 msgid "%(t)s ago"
 msgstr "%(t)s lalu"
 
+#: templates/dashboard/notifications.html:22
 msgid "No notifications."
 msgstr "Tidak ada notifikasi."
 
+#: templates/dashboard/notifications.html:27 templates/dashboard/orders.html:32
 msgid "Newer"
 msgstr "Lebih baru"
 
+#: templates/dashboard/notifications.html:28 templates/dashboard/orders.html:34
 msgid "Older"
 msgstr "Lebih lama"
 
+#: templates/dashboard/order_detail.html:3
+#: templates/dashboard/order_detail.html:9
 #, python-format
 msgid "Order #%(n)s"
 msgstr "Pesanan #%(n)s"
 
+#: templates/dashboard/order_detail.html:10
 #, python-format
 msgid "Table %(t)s"
 msgstr "Meja %(t)s"
 
+#: templates/dashboard/order_detail.html:20
 msgid "Ordered via"
 msgstr "Dipesan melalui"
 
+#: templates/dashboard/order_detail.html:20
 msgid "Waiter"
 msgstr "Pelayan"
 
+#: templates/dashboard/order_detail.html:22
 msgid "Est. prep"
 msgstr "Est. persiapan"
 
+#: templates/dashboard/order_detail.html:29
 msgid "Item"
 msgstr "Item"
 
+#: templates/dashboard/order_detail.html:29
+#: templates/dashboard/quotations/edit.html:66
+#: templates/dashboard/quotations/edit.html:73
+#: templates/dashboard/quotations/edit.html:122
+#: templates/dashboard/quotations/print.html:120
+#: templates/dashboard/reports.html:71
 msgid "Qty"
 msgstr "Jml"
 
+#: templates/dashboard/order_detail.html:29
+#: templates/dashboard/quotations/edit.html:66
+#: templates/dashboard/quotations/edit.html:72
+#: templates/dashboard/quotations/edit.html:121
+#: templates/dashboard/quotations/print.html:120
 msgid "Unit"
 msgstr "Satuan"
 
+#: templates/dashboard/order_detail.html:56
 msgid "History"
 msgstr "Riwayat"
 
+#: templates/dashboard/order_detail.html:68
 msgid "Update status"
 msgstr "Perbarui status"
 
+#: templates/dashboard/order_detail.html:71
 msgid "Note (optional, e.g. cancel reason)"
 msgstr "Catatan (opsional, mis. alasan pembatalan)"
 
+#: templates/dashboard/order_detail.html:76
 msgid "Cancel this order?"
 msgstr "Batalkan pesanan ini?"
 
+#: templates/dashboard/order_detail.html:86
 msgid "Receipt"
 msgstr "Struk"
 
+#: templates/dashboard/order_detail.html:86
 msgid "Bill"
 msgstr "Tagihan"
 
+#: templates/dashboard/order_detail.html:87
 #, python-format
 msgid "Customer chose: %(m)s"
 msgstr "Pilihan pelanggan: %(m)s"
 
+#: templates/dashboard/order_detail.html:89
 #, python-format
 msgid "ref %(ref)s"
 msgstr "ref %(ref)s"
 
+#: templates/dashboard/order_detail.html:92
 #, python-format
 msgid "Paid so far %(paid)s · <strong>Still due %(due)s</strong>"
 msgstr "Sudah dibayar %(paid)s · <strong>Sisa %(due)s</strong>"
 
+#: templates/dashboard/order_detail.html:94
 #, python-format
 msgid "Ordered together (%(n)s): paid as one sum, change given once."
 msgstr ""
 "Dipesan bersama (%(n)s): dibayar sebagai satu jumlah, kembalian sekali."
 
+#: templates/dashboard/order_detail.html:108
 msgid "Other method or partial payment"
 msgstr "Metode lain atau pembayaran sebagian"
 
+#: templates/dashboard/order_detail.html:112
 msgid "Record payment"
 msgstr "Catat pembayaran"
 
+#: templates/dashboard/orders.html:9
 msgid "Every order from QR codes and waiters."
 msgstr "Semua pesanan dari kode QR dan pelayan."
 
+#: templates/dashboard/orders.html:14
+#: templates/dashboard/quotations/list.html:14
 msgid "Filter by status"
 msgstr "Saring menurut status"
 
+#: templates/dashboard/orders.html:21
 msgid "Order # or name"
 msgstr "No. pesanan atau nama"
 
+#: templates/dashboard/orders.html:21
 msgid "Order number or customer name"
 msgstr "Nomor pesanan atau nama pelanggan"
 
+#: templates/dashboard/orders.html:33
 #, python-format
 msgid "Page %(n)s of %(total)s"
 msgstr "Halaman %(n)s dari %(total)s"
 
+#: templates/dashboard/overview.html:8
 #, python-format
 msgid "Good to see you, %(name)s"
 msgstr "Senang bertemu Anda, %(name)s"
 
+#: templates/dashboard/overview.html:8
 msgid "Good to see you"
 msgstr "Senang bertemu Anda"
 
+#: templates/dashboard/overview.html:9
 #, python-format
 msgid "Today at %(name)s"
 msgstr "Hari ini di %(name)s"
 
+#: templates/dashboard/overview.html:14
 msgid "Ordering is switched off: customers can view the menu but can't order."
 msgstr ""
 "Pemesanan dinonaktifkan: pelanggan dapat melihat menu tetapi tidak dapat "
 "memesan."
 
+#: templates/dashboard/overview.html:14
 msgid "Turn it back on"
 msgstr "Aktifkan kembali"
 
+#: templates/dashboard/overview.html:18
 msgid "Before selling starts, enter the change in the cash drawer."
 msgstr "Sebelum mulai berjualan, masukkan uang kembalian di laci kas."
 
+#: templates/dashboard/overview.html:18
 msgid "Open the cash register"
 msgstr "Buka kas"
 
+#: templates/dashboard/overview.html:24
 msgid "Tables &amp; bills"
 msgstr "Meja &amp; tagihan"
 
+#: templates/dashboard/overview.html:25 templates/dashboard/overview.html:53
 msgid "Sold out items"
 msgstr "Item habis"
 
+#: templates/dashboard/overview.html:31
 msgid "Get your restaurant ready"
 msgstr "Siapkan restoran Anda"
 
+#: templates/dashboard/overview.html:32
 #, python-format
 msgid "%(done)s of %(total)s done"
 msgstr "%(done)s dari %(total)s selesai"
 
+#: templates/dashboard/overview.html:43
 #, python-format
 msgid ""
 "Tip: open <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener\">your menu</"
@@ -3866,27 +5212,37 @@ msgstr ""
 "Tips: buka <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener\">menu Anda</"
 "a> di ponsel untuk melihat tampilan bagi pelanggan."
 
+#: templates/dashboard/overview.html:48
 msgid "Orders today"
 msgstr "Pesanan hari ini"
 
+#: templates/dashboard/overview.html:49
 msgid "Revenue today"
 msgstr "Pendapatan hari ini"
 
+#: templates/dashboard/overview.html:50
 msgid "New · cooking"
 msgstr "Baru · dimasak"
 
+#: templates/dashboard/overview.html:51
 msgid "Ready to serve"
 msgstr "Siap disajikan"
 
+#: templates/dashboard/overview.html:52
 msgid "Occupied tables"
 msgstr "Meja terisi"
 
+#: templates/dashboard/overview.html:58
 msgid "Latest orders"
 msgstr "Pesanan terbaru"
 
+#: templates/dashboard/quotations/edit.html:3
+#: templates/dashboard/quotations/edit.html:9
+#: templates/dashboard/quotations/list.html:11
 msgid "New quotation"
 msgstr "Penawaran baru"
 
+#: templates/dashboard/quotations/edit.html:10
 msgid ""
 "Add dishes from your menu or type your own lines (delivery, service staff, "
 "equipment…)."
@@ -3894,66 +5250,118 @@ msgstr ""
 "Tambahkan hidangan dari menu atau ketik baris sendiri (pengantaran, staf "
 "layanan, peralatan…)."
 
+#: templates/dashboard/quotations/edit.html:14
 msgid "Print / PDF"
 msgstr "Cetak / PDF"
 
+#: templates/dashboard/quotations/edit.html:15
 msgid "Duplicate"
 msgstr "Duplikat"
 
+#: templates/dashboard/quotations/edit.html:26
+#: templates/dashboard/quotations/list.html:26
+#: templates/dashboard/quotations/list.html:30
 msgid "Client"
 msgstr "Klien"
 
+#: templates/dashboard/quotations/edit.html:36
+#: templates/dashboard/quotations/print.html:6
+#: templates/dashboard/quotations/print.html:180
 msgid "Quotation"
 msgstr "Penawaran"
 
+#: templates/dashboard/quotations/edit.html:53
 msgid "Dish from your menu"
 msgstr "Hidangan dari menu"
 
+#: templates/dashboard/quotations/edit.html:54
 msgid "Choose a dish from your menu…"
 msgstr "Pilih hidangan dari menu…"
 
+#: templates/dashboard/quotations/edit.html:59
 msgid "Add from menu"
 msgstr "Tambah dari menu"
 
+#: templates/dashboard/quotations/edit.html:60
+msgid ""
+"Add every dish on your menu as a line? You can change or remove each line "
+"afterwards."
+msgstr ""
+"Tambahkan semua hidangan di menu sebagai baris? Anda bisa mengubah atau "
+"menghapus setiap baris setelahnya."
+
+#: templates/dashboard/quotations/edit.html:60
+msgid "Add all menu items"
+msgstr "Tambah semua menu"
+
+#: templates/dashboard/quotations/edit.html:61
 msgid "Add custom line"
 msgstr "Tambah baris manual"
 
+#: templates/dashboard/quotations/edit.html:66
+#: templates/dashboard/quotations/edit.html:74
+#: templates/dashboard/quotations/edit.html:123
+#: templates/dashboard/quotations/print.html:120
 msgid "Unit price"
 msgstr "Harga satuan"
 
+#: templates/dashboard/quotations/edit.html:76
+#: templates/dashboard/quotations/edit.html:125
 msgid "Remove line"
 msgstr "Hapus baris"
 
+#: templates/dashboard/quotations/edit.html:82
+msgid "Remove all lines from this quotation?"
+msgstr "Hapus semua baris dari penawaran ini?"
+
+#: templates/dashboard/quotations/edit.html:82
+msgid "Remove all lines"
+msgstr "Hapus semua baris"
+
+#: templates/dashboard/quotations/edit.html:83
 msgid "No lines yet. Add dishes from your menu or a custom line."
 msgstr "Belum ada baris. Tambahkan hidangan dari menu atau baris manual."
 
+#: templates/dashboard/quotations/edit.html:85
+#: templates/dashboard/quotations/edit.html:136
 msgid "pax"
 msgstr "pax"
 
+#: templates/dashboard/quotations/edit.html:85
 msgid "plate"
 msgstr "piring"
 
+#: templates/dashboard/quotations/edit.html:85
 msgid "box"
 msgstr "kotak"
 
+#: templates/dashboard/quotations/edit.html:86
 msgid "pcs"
 msgstr "pcs"
 
+#: templates/dashboard/quotations/edit.html:86
 msgid "set"
 msgstr "set"
 
+#: templates/dashboard/quotations/edit.html:86
 msgid "day"
 msgstr "hari"
 
+#: templates/dashboard/quotations/edit.html:86
 msgid "trip"
 msgstr "perjalanan"
 
+#: templates/dashboard/quotations/edit.html:93
+#: templates/dashboard/quotations/print.html:130
 msgid "VAT"
 msgstr "PPN"
 
+#: templates/dashboard/quotations/edit.html:94
+#: templates/dashboard/quotations/print.html:131
 msgid "Grand total"
 msgstr "Total keseluruhan"
 
+#: templates/dashboard/quotations/edit.html:101
 #, python-format
 msgid ""
 "Printed at the bottom, e.g. 50%% deposit on confirmation, payment within 14 "
@@ -3964,99 +5372,232 @@ msgstr ""
 "dalam 14 hari, rekening bank. Penawaran baru memakai syarat dari penawaran "
 "terakhir."
 
+#: templates/dashboard/quotations/edit.html:106
 msgid "Save quotation"
 msgstr "Simpan penawaran"
 
+#: templates/dashboard/quotations/edit.html:112
 #, python-format
 msgid "Delete quotation %(n)s?"
 msgstr "Hapus penawaran %(n)s?"
 
+#: templates/dashboard/quotations/edit.html:113
 msgid "Delete this quotation"
 msgstr "Hapus penawaran ini"
 
+#: templates/dashboard/quotations/list.html:9
 msgid ""
 "Price offers for catering, events and procurement bids. Print or save as PDF."
 msgstr ""
 "Penawaran harga untuk katering, acara, dan tender pengadaan. Cetak atau "
 "simpan sebagai PDF."
 
+#: templates/dashboard/quotations/list.html:26
+#: templates/dashboard/quotations/print.html:93
 msgid "Number"
 msgstr "Nomor"
 
+#: templates/dashboard/quotations/list.html:35
+#: templates/dashboard/table_detail.html:117 templates/dashboard/tables.html:30
 msgid "Print"
 msgstr "Cetak"
 
+#: templates/dashboard/quotations/list.html:41
 msgid "No quotations yet."
 msgstr "Belum ada penawaran."
 
+#: templates/dashboard/quotations/list.html:41
 msgid "Create your first quotation"
 msgstr "Buat penawaran pertama"
 
+#: templates/dashboard/quotations/print.html:74
 msgid "Print / save as PDF"
 msgstr "Cetak / simpan sebagai PDF"
 
+#: templates/dashboard/quotations/print.html:75
 msgid "Close"
 msgstr "Tutup"
 
+#: templates/dashboard/quotations/print.html:76
+#, fuzzy
+#| msgid "Add many tables"
+msgid "Add company profile"
+msgstr "Tambah banyak meja"
+
+#: templates/dashboard/quotations/print.html:77
+msgid "Add menu pages with photos"
+msgstr "Tambahkan halaman menu dengan foto"
+
+#: templates/dashboard/quotations/print.html:91
 msgid "QUOTATION"
 msgstr "PENAWARAN HARGA"
 
+#: templates/dashboard/quotations/print.html:103
 msgctxt "recipient"
 msgid "To"
 msgstr "Kepada"
 
+#: templates/dashboard/quotations/print.html:105
 msgid "Attn."
 msgstr "U.p."
 
+#: templates/dashboard/quotations/print.html:111
 msgid "Details"
 msgstr "Rincian"
 
+#: templates/dashboard/quotations/print.html:120
 msgid "No."
 msgstr "No."
 
+#: templates/dashboard/quotations/print.html:129
 msgid "Discount"
 msgstr "Diskon"
 
+#: templates/dashboard/quotations/print.html:134
 msgid "Amount in words"
 msgstr "Terbilang"
 
+#: templates/dashboard/quotations/print.html:136
 msgid "Terms & conditions"
 msgstr "Syarat & ketentuan"
 
+#: templates/dashboard/quotations/print.html:139
 msgid "For"
 msgstr "Untuk"
 
+#: templates/dashboard/quotations/print.html:139
 msgid "Name, signature & stamp"
 msgstr "Nama, tanda tangan & stempel"
 
+#: templates/dashboard/quotations/print.html:140
 msgid "Accepted by the client"
 msgstr "Disetujui oleh klien"
 
+#: templates/dashboard/quotations/print.html:140
 msgid "Name, signature, stamp & date"
 msgstr "Nama, tanda tangan, stempel & tanggal"
 
+#: templates/dashboard/quotations/print.html:160
+#, fuzzy
+#| msgid "8. Contact"
+msgid "Contact"
+msgstr "8. Kontak"
+
+#: templates/dashboard/quotations/print.html:166
+msgid "Registration no."
+msgstr "No. registrasi"
+
+#: templates/dashboard/quotations/profile.html:10
+msgid "Write it once: it is printed as its own page in every quotation, after the prices and before the menu pages."
+msgstr "Tulis sekali saja: dicetak di halaman tersendiri di setiap penawaran, setelah harga dan sebelum halaman menu."
+
+#: templates/dashboard/quotations/profile.html:17
+#, fuzzy
+#| msgid "Complete your business profile"
+msgid "About your business"
+msgstr "Lengkapi profil usaha Anda"
+
+#: templates/dashboard/quotations/profile.html:18
+msgid "Tips: leave an empty line between sections. A line starting with ## (or a short line ending with :) becomes a heading; lines starting with - become a list. Your logo, cover photo, address, phone, email and opening hours are added automatically."
+msgstr "Tips: beri satu baris kosong di antara bagian. Baris yang diawali ## (atau baris pendek yang diakhiri :) menjadi judul; baris yang diawali - menjadi daftar. Logo, foto sampul, alamat, telepon, email dan jam buka ditambahkan otomatis."
+
+#: templates/dashboard/quotations/profile.html:24
+msgid "Replace the text with the example? You can edit it afterwards."
+msgstr "Ganti teks dengan contoh? Anda bisa mengeditnya setelahnya."
+
+#: templates/dashboard/quotations/profile.html:24
+msgid "Start from an example"
+msgstr "Mulai dari contoh"
+
+#: templates/dashboard/quotations/profile.html:28
+msgid "Save company profile"
+msgstr "Simpan profil perusahaan"
+
+#: templates/dashboard/quotations/profile.html:33
+#, python-format
+msgid "%(name)s is a restaurant and catering service. We cook fresh local and international food every day and deliver it on time, from small meetings to large events."
+msgstr "%(name)s adalah restoran dan layanan katering. Kami memasak makanan lokal dan internasional yang segar setiap hari dan mengantarnya tepat waktu, dari rapat kecil hingga acara besar."
+
+#: templates/dashboard/quotations/profile.html:35
+#, fuzzy
+#| msgid "Terms of service"
+msgid "Our services"
+msgstr "Ketentuan layanan"
+
+#: templates/dashboard/quotations/profile.html:36
+msgid "Lunch and dinner catering for offices, workshops and trainings"
+msgstr "Katering makan siang dan malam untuk kantor, lokakarya dan pelatihan"
+
+#: templates/dashboard/quotations/profile.html:37
+msgid "Coffee breaks and snack boxes"
+msgstr "Coffee break dan kotak snack"
+
+#: templates/dashboard/quotations/profile.html:38
+msgid "Weddings, parties and private events"
+msgstr "Pernikahan, pesta dan acara pribadi"
+
+#: templates/dashboard/quotations/profile.html:39
+msgid "Delivery, setup, serving staff and equipment"
+msgstr "Pengantaran, penataan, staf pelayan dan peralatan"
+
+#: templates/dashboard/quotations/profile.html:41
+msgid "Why choose us"
+msgstr "Mengapa memilih kami"
+
+#: templates/dashboard/quotations/profile.html:42
+msgid "Fresh ingredients bought locally every day"
+msgstr "Bahan segar dibeli dari pasar lokal setiap hari"
+
+#: templates/dashboard/quotations/profile.html:43
+msgid "Clean kitchen and trained staff"
+msgstr "Dapur bersih dan staf terlatih"
+
+#: templates/dashboard/quotations/profile.html:44
+msgid "Menus adapted to your budget and number of guests"
+msgstr "Menu disesuaikan dengan anggaran dan jumlah tamu Anda"
+
+#: templates/dashboard/quotations/profile.html:45
+msgid "Experience with government offices, NGOs and companies"
+msgstr "Berpengalaman dengan kantor pemerintah, LSM dan perusahaan"
+
+#: templates/dashboard/quotations/profile.html:47
+msgid "Our clients"
+msgstr "Klien kami"
+
+#: templates/dashboard/quotations/profile.html:48
+msgid "[List some clients or events you have served.]"
+msgstr "[Sebutkan beberapa klien atau acara yang pernah Anda layani.]"
+
+#: templates/dashboard/reports.html:17 templates/dashboard/revenue.html:26
 msgid "From"
 msgstr "Dari"
 
+#: templates/dashboard/reports.html:18 templates/dashboard/revenue.html:27
 msgid "To"
 msgstr "Sampai"
 
+#: templates/dashboard/reports.html:28
 msgid "VAT collected"
 msgstr "PPN terkumpul"
 
+#: templates/dashboard/reports.html:44
 #, python-format
 msgid "Best sellers · %(name)s"
 msgstr "Terlaris · %(name)s"
 
+#: templates/dashboard/reports.html:46 templates/dashboard/reports.html:75
 msgid "No data yet."
 msgstr "Belum ada data."
 
+#: templates/dashboard/reports.html:67
 msgid "Best sellers"
 msgstr "Terlaris"
 
+#: templates/dashboard/reports.html:72
 msgid "Sold"
 msgstr "Terjual"
 
+#: templates/dashboard/revenue.html:9
 #, python-format
 msgid ""
 "%(name)s only. Record sales that weren't entered as orders, e.g. walk-in "
@@ -4065,30 +5606,40 @@ msgstr ""
 "Hanya %(name)s. Catat penjualan yang tidak masuk sebagai pesanan, mis. "
 "penjualan tunai langsung. Pesanan dihitung otomatis."
 
+#: templates/dashboard/revenue.html:14
 msgid "Today's revenue"
 msgstr "Pendapatan hari ini"
 
+#: templates/dashboard/revenue.html:23
 msgid "Recorded entries"
 msgstr "Catatan tercatat"
 
+#: templates/dashboard/revenue.html:28 templates/dashboard/revenue.html:35
+#: templates/dashboard/revenue.html:39
 msgid "Source"
 msgstr "Sumber"
 
+#: templates/dashboard/revenue.html:44
 msgid "Delete this entry?"
 msgstr "Hapus catatan ini?"
 
+#: templates/dashboard/revenue.html:49
 msgid "Total recorded"
 msgstr "Total dicatat"
 
+#: templates/dashboard/revenue.html:52
 msgid "No recorded entries for these dates."
 msgstr "Tidak ada catatan untuk tanggal ini."
 
+#: templates/dashboard/revenue.html:59 templates/dashboard/revenue.html:65
 msgid "Record revenue"
 msgstr "Catat pendapatan"
 
+#: templates/dashboard/revenue.html:66
 msgid "This branch is deactivated."
 msgstr "Cabang ini dinonaktifkan."
 
+#: templates/dashboard/revenue.html:66
 msgid ""
 "This branch is waiting for approval by the platform team. It can record "
 "revenue once approved."
@@ -4096,18 +5647,23 @@ msgstr ""
 "Cabang ini menunggu persetujuan tim platform. Cabang bisa mencatat "
 "pendapatan setelah disetujui."
 
+#: templates/dashboard/revenue.html:66
 msgid "This branch is not active, so it can't record revenue."
 msgstr "Cabang ini tidak aktif, jadi tidak bisa mencatat pendapatan."
 
+#: templates/dashboard/settings.html:3 templates/dashboard/settings.html:8
 msgid "Restaurant settings"
 msgstr "Pengaturan restoran"
 
+#: templates/dashboard/settings.html:9
 msgid "Public menu:"
 msgstr "Menu publik:"
 
+#: templates/dashboard/settings.html:23
 msgid "Cover"
 msgstr "Sampul"
 
+#: templates/dashboard/settings.html:30
 msgid ""
 "Plug the drawer into the printer's RJ11 “DK” port. To find the printer's IP, "
 "hold FEED while switching it on to print a self-test page."
@@ -4115,62 +5671,80 @@ msgstr ""
 "Colokkan laci ke port RJ11 “DK” pada printer. Untuk mengetahui IP printer, "
 "tahan FEED sambil menyalakannya untuk mencetak halaman uji."
 
+#: templates/dashboard/settings.html:31
 msgid "Step-by-step setup guide"
 msgstr "Panduan penyiapan langkah demi langkah"
 
+#: templates/dashboard/settings.html:36
 msgid "Save settings"
 msgstr "Simpan pengaturan"
 
+#: templates/dashboard/settings.html:42
 msgid "Cash drawer test &amp; log"
 msgstr "Uji &amp; log laci kas"
 
+#: templates/dashboard/settings.html:45
 msgid "Test drawer"
 msgstr "Uji laci"
 
+#: templates/dashboard/settings.html:46
 msgid "Print test slip"
 msgstr "Cetak slip uji"
 
+#: templates/dashboard/settings.html:52 templates/dashboard/settings.html:58
 msgid "By"
 msgstr "Oleh"
 
+#: templates/dashboard/settings.html:60
 msgid "Slip printed"
 msgstr "Slip dicetak"
 
+#: templates/dashboard/settings.html:67
 msgid "No drawer openings yet."
 msgstr "Laci belum pernah dibuka."
 
+#: templates/dashboard/staff.html:9
 msgid "Accounts for your team. Each person signs in with their own username."
 msgstr ""
 "Akun untuk tim Anda. Setiap orang masuk dengan nama penggunanya sendiri."
 
+#: templates/dashboard/staff.html:20
 msgid "you"
 msgstr "Anda"
 
+#: templates/dashboard/staff.html:30
 msgid "What each role can do"
 msgstr "Yang dapat dilakukan setiap peran"
 
+#: templates/dashboard/staff.html:32
 msgid "everything, including staff accounts."
 msgstr "semuanya, termasuk akun staf."
 
+#: templates/dashboard/staff.html:33
 msgid ""
 "menu, tables &amp; QR codes, restaurant settings, orders, payments, reports."
 msgstr ""
 "menu, meja &amp; kode QR, pengaturan restoran, pesanan, pembayaran, laporan."
 
+#: templates/dashboard/staff.html:34
 msgid "kitchen queue, order status, mark dishes sold out."
 msgstr "antrean dapur, status pesanan, tandai hidangan habis."
 
+#: templates/dashboard/staff.html:35
 msgid "take orders, kitchen queue, cancel orders, payments, free tables."
 msgstr ""
 "menerima pesanan, antrean dapur, membatalkan pesanan, pembayaran, "
 "mengosongkan meja."
 
+#: templates/dashboard/staff.html:41
 msgid "Add staff member"
 msgstr "Tambah staf"
 
+#: templates/dashboard/staff.html:48
 msgid "From another branch"
 msgstr "Dari cabang lain"
 
+#: templates/dashboard/staff.html:49
 msgid ""
 "Someone who already works at one of your other branches can use the same "
 "login here."
@@ -4178,60 +5752,77 @@ msgstr ""
 "Orang yang sudah bekerja di salah satu cabang Anda yang lain bisa memakai "
 "login yang sama di sini."
 
+#: templates/dashboard/staff.html:51
 msgid "Add to this branch"
 msgstr "Tambahkan ke cabang ini"
 
+#: templates/dashboard/table_detail.html:10 templates/dashboard/tables.html:24
 msgid "Occupied"
 msgstr "Terisi"
 
+#: templates/dashboard/table_detail.html:10 templates/dashboard/tables.html:24
 msgctxt "table"
 msgid "Free"
 msgstr "Kosong"
 
+#: templates/dashboard/table_detail.html:13
 msgid "Add order"
 msgstr "Tambah pesanan"
 
+#: templates/dashboard/table_detail.html:19
 msgid "Current bill"
 msgstr "Tagihan saat ini"
 
+#: templates/dashboard/table_detail.html:21
 #, python-format
 msgid "Print bill · Table %(n)s"
 msgstr "Cetak tagihan · Meja %(n)s"
 
+#: templates/dashboard/table_detail.html:21
 msgid "Print bill"
 msgstr "Cetak tagihan"
 
+#: templates/dashboard/table_detail.html:24
 msgid "Free this table? Everyone who scanned it must scan again to order."
 msgstr ""
 "Kosongkan meja ini? Semua yang sudah memindai harus memindai lagi untuk "
 "memesan."
 
+#: templates/dashboard/table_detail.html:25
 msgid "Free table"
 msgstr "Kosongkan meja"
 
+#: templates/dashboard/table_detail.html:33
 msgid "Unpaid at this table"
 msgstr "Belum dibayar di meja ini"
 
+#: templates/dashboard/table_detail.html:35
 #, python-format
 msgid "Table %(n)s · whole bill"
 msgstr "Meja %(n)s · seluruh tagihan"
 
+#: templates/dashboard/table_detail.html:37
 msgid "Whole table paid"
 msgstr "Seluruh meja lunas"
 
+#: templates/dashboard/table_detail.html:38
 msgid "Paid &amp; free table"
 msgstr "Lunas &amp; kosongkan meja"
 
+#: templates/dashboard/table_detail.html:42
 msgid "Everything at this table is paid."
 msgstr "Semua di meja ini sudah lunas."
 
+#: templates/dashboard/table_detail.html:53
 #, python-format
 msgid "Table %(n)s · %(guest)s"
 msgstr "Meja %(n)s · %(guest)s"
 
+#: templates/dashboard/table_detail.html:84
 msgid "Table is open, but nothing has been ordered yet."
 msgstr "Meja terbuka, tetapi belum ada pesanan."
 
+#: templates/dashboard/table_detail.html:87
 msgid ""
 "This table is free. A bill starts when a customer scans the QR code or a "
 "waiter adds an order."
@@ -4239,16 +5830,20 @@ msgstr ""
 "Meja ini kosong. Tagihan dimulai saat pelanggan memindai kode QR atau "
 "pelayan menambahkan pesanan."
 
+#: templates/dashboard/table_detail.html:99
 msgid "Recent bills"
 msgstr "Tagihan terbaru"
 
+#: templates/dashboard/table_detail.html:121
 msgid "Generate a new QR code? The currently printed code will STOP working."
 msgstr ""
 "Buat kode QR baru? Kode yang tercetak saat ini akan BERHENTI berfungsi."
 
+#: templates/dashboard/table_detail.html:122
 msgid "Regenerate QR code"
 msgstr "Buat ulang kode QR"
 
+#: templates/dashboard/table_detail.html:124
 msgid ""
 "Use this if a code was copied or misused. Old printouts stop working "
 "immediately."
@@ -4256,60 +5851,77 @@ msgstr ""
 "Gunakan ini jika kode disalin atau disalahgunakan. Cetakan lama langsung "
 "tidak berlaku."
 
+#: templates/dashboard/table_detail.html:126
 #, python-format
 msgid "Delete table %(n)s? Past orders are kept."
 msgstr "Hapus meja %(n)s? Pesanan sebelumnya tetap disimpan."
 
+#: templates/dashboard/table_detail.html:127
 msgid "Delete table"
 msgstr "Hapus meja"
 
+#: templates/dashboard/tables.html:3 templates/dashboard/tables.html:8
 msgid "Tables &amp; QR codes"
 msgstr "Meja &amp; kode QR"
 
+#: templates/dashboard/tables.html:9
 msgid ""
 "Each table has its own QR code. Customers scan it to see the menu and order."
 msgstr ""
 "Setiap meja punya kode QR sendiri. Pelanggan memindainya untuk melihat menu "
 "dan memesan."
 
+#: templates/dashboard/tables.html:11
 msgid "Print all QR codes"
 msgstr "Cetak semua kode QR"
 
+#: templates/dashboard/tables.html:20
 #, python-format
 msgid "QR code for table %(n)s"
 msgstr "Kode QR untuk meja %(n)s"
 
+#: templates/dashboard/tables.html:24
 #, python-format
 msgid "%(n)s active"
 msgstr "%(n)s aktif"
 
+#: templates/dashboard/tables.html:29
 msgid "Download PNG"
 msgstr "Unduh PNG"
 
+#: templates/dashboard/tables.html:37
 msgid "No tables yet. Add your first table below."
 msgstr "Belum ada meja. Tambahkan meja pertama Anda di bawah."
 
+#: templates/dashboard/tables.html:45
 msgid "Add a table"
 msgstr "Tambah meja"
 
+#: templates/dashboard/tables.html:46
 msgid "Use numbers or short codes like 12 or A-3."
 msgstr "Gunakan angka atau kode singkat seperti 12 atau A-3."
 
+#: templates/dashboard/tables.html:48
 msgid "Add table"
 msgstr "Tambah meja"
 
+#: templates/dashboard/tables.html:52
 msgid "Add many tables"
 msgstr "Tambah banyak meja"
 
+#: templates/dashboard/tables.html:53
 msgid "Creates numbered tables, skipping numbers that already exist."
 msgstr "Membuat meja bernomor, melewati nomor yang sudah ada."
 
+#: templates/dashboard/tables.html:55
 msgid "Create tables"
 msgstr "Buat meja"
 
+#: templates/dashboard/upgrade.html:3
 msgid "Upgrade your plan"
 msgstr "Tingkatkan paket Anda"
 
+#: templates/dashboard/upgrade.html:10
 msgid ""
 "See how sales compare with last period, your busiest hours and days, best-"
 "selling and unsold dishes, how customers pay and how fast the kitchen is."
@@ -4318,6 +5930,7 @@ msgstr ""
 "hidangan terlaris dan tidak laku, cara pelanggan membayar, dan kecepatan "
 "dapur."
 
+#: templates/dashboard/upgrade.html:13
 msgid ""
 "Enter the change in the drawer before selling, record cash in and out, and "
 "reconcile at the end of the day: expected vs counted, over or short, with a "
@@ -4326,6 +5939,7 @@ msgstr ""
 "Catat kembalian sebelum berjualan, kas masuk dan keluar, lalu cocokkan di "
 "akhir hari: seharusnya vs dihitung, lebih atau kurang, dengan laporan cetak."
 
+#: templates/dashboard/upgrade.html:16
 msgid ""
 "Open more branches under the same login, copy your menu to them in one "
 "click, and see revenue and profit for every branch and for the whole "
@@ -4335,6 +5949,7 @@ msgstr ""
 "dengan sekali klik, dan lihat pendapatan serta laba setiap cabang dan "
 "seluruh usaha."
 
+#: templates/dashboard/upgrade.html:19
 msgid ""
 "Connect your own website, mobile ordering app or delivery partners. Their "
 "orders arrive live in the right branch, are counted as revenue when "
@@ -4344,6 +5959,7 @@ msgstr ""
 "Pesanan masuk langsung ke cabang yang tepat, dihitung pendapatan saat "
 "selesai, dan Anda mendapat kunci API, webhook, log permintaan, dan kunci uji."
 
+#: templates/dashboard/upgrade.html:22
 msgid ""
 "Write down what you spend each day and see your real profit for today, this "
 "week, this month and this year."
@@ -4351,6 +5967,7 @@ msgstr ""
 "Catat pengeluaran setiap hari dan lihat laba sebenarnya hari ini, minggu "
 "ini, bulan ini, dan tahun ini."
 
+#: templates/dashboard/upgrade.html:25
 msgid ""
 "Create professional price offers for catering, events and procurement bids "
 "from your menu, with amount in words, and print them as PDF in four "
@@ -4359,33 +5976,53 @@ msgstr ""
 "Buat penawaran harga profesional untuk katering, acara, dan tender dari menu "
 "Anda, dengan terbilang, dan cetak sebagai PDF dalam empat bahasa."
 
+#: templates/dashboard/upgrade.html:27
 msgid "Available in:"
 msgstr "Tersedia di:"
 
+#: templates/dashboard/upgrade.html:27
 msgid "Not included in your current plan."
 msgstr "Tidak termasuk dalam paket Anda saat ini."
 
+#: templates/dashboard/upgrade.html:30
 msgid "Upgrade to Pro"
 msgstr "Tingkatkan ke Pro"
 
+#: templates/dashboard/upgrade.html:30
 msgid "See plans & upgrade"
 msgstr "Lihat paket & tingkatkan"
 
+#: templates/dashboard/upgrade.html:32
 msgid "Ask the restaurant owner to upgrade the plan."
 msgstr "Minta pemilik restoran untuk meningkatkan paket."
 
+#: templates/storefront/home.html:4 templates/storefront/home.html:10
 msgid "QR menu & table ordering for restaurants"
 msgstr "Menu QR & pemesanan di meja untuk restoran"
 
-msgid "QR code menu and table ordering for restaurants and cafés in Timor-Leste. Customers scan, order from their phone, and the order goes straight to your kitchen. 30 days free."
-msgstr "Menu kode QR dan pemesanan di meja untuk restoran dan kafe di Timor-Leste. Pelanggan memindai, memesan dari ponsel, dan pesanan langsung ke dapur. Gratis 30 hari."
+#: templates/storefront/home.html:6
+msgid ""
+"QR code menu and table ordering for restaurants and cafés in Timor-Leste. "
+"Customers scan, order from their phone, and the order goes straight to your "
+"kitchen. 30 days free."
+msgstr ""
+"Menu kode QR dan pemesanan di meja untuk restoran dan kafe di Timor-Leste. "
+"Pelanggan memindai, memesan dari ponsel, dan pesanan langsung ke dapur. "
+"Gratis 30 hari."
 
-msgid "Customers scan the QR code on the table, order from their phone, and the order goes straight to your kitchen."
-msgstr "Pelanggan memindai kode QR di meja, memesan dari ponsel, dan pesanan langsung ke dapur Anda."
+#: templates/storefront/home.html:11
+msgid ""
+"Customers scan the QR code on the table, order from their phone, and the "
+"order goes straight to your kitchen."
+msgstr ""
+"Pelanggan memindai kode QR di meja, memesan dari ponsel, dan pesanan "
+"langsung ke dapur Anda."
 
+#: templates/storefront/home.html:29
 msgid "Scan. Order. Enjoy."
 msgstr "Scan. Pesan. Nikmati."
 
+#: templates/storefront/home.html:30
 msgid ""
 "A QR code menu and table ordering for your restaurant. Customers scan the "
 "code on the table, order from their phone, and the order goes straight to "
@@ -4395,18 +6032,23 @@ msgstr ""
 "kode di meja, memesan dari ponsel, dan pesanan langsung masuk ke dapur. "
 "Mereka tidak perlu aplikasi atau akun."
 
+#: templates/storefront/home.html:33 templates/storefront/home.html:129
 msgid "Open dashboard"
 msgstr "Buka dasbor"
 
+#: templates/storefront/home.html:40
 msgid "Rather talk to us? We call you back and set up your menu for you →"
 msgstr "Lebih suka bicara langsung? Kami telepon balik dan siapkan menu Anda →"
 
+#: templates/storefront/home.html:47
 msgid "How it works"
 msgstr "Cara kerjanya"
 
+#: templates/storefront/home.html:50
 msgid "Create your menu"
 msgstr "Buat menu Anda"
 
+#: templates/storefront/home.html:50
 msgid ""
 "Add dishes, photos, prices and add-ons in English, Tetum and Bahasa "
 "Indonesia."
@@ -4414,15 +6056,19 @@ msgstr ""
 "Tambahkan hidangan, foto, harga, dan tambahan dalam bahasa Inggris, Tetun, "
 "dan Bahasa Indonesia."
 
+#: templates/storefront/home.html:51
 msgid "Print your QR codes"
 msgstr "Cetak kode QR Anda"
 
+#: templates/storefront/home.html:51
 msgid "One code per table. Print them and place one on each table."
 msgstr "Satu kode per meja. Cetak dan letakkan satu di setiap meja."
 
+#: templates/storefront/home.html:52
 msgid "Receive orders live"
 msgstr "Terima pesanan secara langsung"
 
+#: templates/storefront/home.html:52
 msgid ""
 "Orders appear instantly on the kitchen screen with a sound alert. Customers "
 "can follow their order on their phone."
@@ -4430,9 +6076,11 @@ msgstr ""
 "Pesanan langsung muncul di layar dapur dengan bunyi peringatan. Pelanggan "
 "dapat memantau pesanan di ponsel."
 
+#: templates/storefront/home.html:57
 msgid "Video: how customers order with QR Menu"
 msgstr "Video: cara pelanggan memesan dengan QR Menu"
 
+#: templates/storefront/home.html:60
 msgid ""
 "Watch how a customer orders, from scanning the table's QR code to the "
 "kitchen (50 seconds)."
@@ -4440,9 +6088,11 @@ msgstr ""
 "Lihat cara pelanggan memesan, dari memindai kode QR di meja hingga ke dapur "
 "(50 detik)."
 
+#: templates/storefront/home.html:66
 msgid "Works on any phone"
 msgstr "Bisa di ponsel apa saja"
 
+#: templates/storefront/home.html:66
 msgid ""
 "Customers scan with the phone camera. No app, no account, and it loads fast "
 "on slow connections."
@@ -4450,41 +6100,52 @@ msgstr ""
 "Pelanggan memindai dengan kamera ponsel. Tanpa aplikasi, tanpa akun, dan "
 "cepat dimuat meski koneksi lambat."
 
+#: templates/storefront/home.html:67
 msgid "Kitchen screen"
 msgstr "Layar dapur"
 
+#: templates/storefront/home.html:67
 msgid "New → Preparing → Ready → Completed, with timers and notes."
 msgstr "Baru → Disiapkan → Siap → Selesai, dengan pengatur waktu dan catatan."
 
+#: templates/storefront/home.html:68
 msgid "Tables & sessions"
 msgstr "Meja & sesi"
 
+#: templates/storefront/home.html:68
 msgid ""
 "Several people can order from one table, and you see one bill per table."
 msgstr ""
 "Beberapa orang dapat memesan dari satu meja, dan Anda melihat satu tagihan "
 "per meja."
 
+#: templates/storefront/home.html:69
 msgid "Cash & change"
 msgstr "Tunai & kembalian"
 
+#: templates/storefront/home.html:69
 msgid "Mark orders paid in one tap, and see the change to give back."
 msgstr ""
 "Tandai pesanan lunas dengan sekali ketuk, dan lihat kembalian yang harus "
 "diberikan."
 
+#: templates/storefront/home.html:70
 msgid "Sold out in one tap"
 msgstr "Tandai habis sekali ketuk"
 
+#: templates/storefront/home.html:70
 msgid "Customers' menus update immediately."
 msgstr "Menu pelanggan langsung diperbarui."
 
+#: templates/storefront/home.html:71
 msgid "Daily revenue, best sellers and CSV export."
 msgstr "Pendapatan harian, menu terlaris, dan ekspor CSV."
 
+#: templates/storefront/home.html:78
 msgid "We call you back"
 msgstr "Kami telepon balik"
 
+#: templates/storefront/home.html:79
 msgid ""
 "No time to set it up? Leave your number. We call you, answer your questions, "
 "and if you like we set up your menu for you: just send us photos of your "
@@ -4494,18 +6155,23 @@ msgstr ""
 "pertanyaan Anda, dan bila mau kami siapkan menu Anda: cukup kirim foto menu "
 "lewat WhatsApp. Gratis, tanpa kewajiban."
 
+#: templates/storefront/home.html:81
 msgid "We enter your dishes, prices and photos"
 msgstr "Kami masukkan hidangan, harga, dan foto Anda"
 
+#: templates/storefront/home.html:82
 msgid "We help you print the QR codes for your tables"
 msgstr "Kami bantu cetak kode QR untuk meja Anda"
 
+#: templates/storefront/home.html:83
 msgid "In English, Tetum or Bahasa Indonesia"
 msgstr "Dalam bahasa Inggris, Tetun, atau Indonesia"
 
+#: templates/storefront/home.html:89
 msgid "Thank you! We will call you soon."
 msgstr "Terima kasih! Kami akan segera menelepon Anda."
 
+#: templates/storefront/home.html:90
 msgid ""
 "Usually the same day. You can already send photos of your menu to our "
 "WhatsApp."
@@ -4513,6 +6179,7 @@ msgstr ""
 "Biasanya di hari yang sama. Anda sudah bisa mengirim foto menu ke WhatsApp "
 "kami."
 
+#: templates/storefront/home.html:96
 msgid ""
 "Too many requests from this network. Please try again later or message us on "
 "WhatsApp."
@@ -4520,86 +6187,111 @@ msgstr ""
 "Terlalu banyak permintaan dari jaringan ini. Coba lagi nanti atau kirim "
 "pesan lewat WhatsApp."
 
+#: templates/storefront/home.html:101
 msgid "Call me back"
 msgstr "Telepon saya"
 
+#: templates/storefront/home.html:102
 msgid "We only use your number to contact you about QR Menu."
 msgstr "Kami hanya memakai nomor Anda untuk menghubungi soal QR Menu."
 
+#: templates/storefront/home.html:109
 msgid "Pricing"
 msgstr "Harga"
 
+#: templates/storefront/home.html:110
 msgid "Simple monthly plans. No setup fees."
 msgstr "Paket bulanan sederhana. Tanpa biaya pemasangan."
 
+#: templates/storefront/home.html:110
 #, python-format
 msgid "New restaurants get a %(days)s-day free trial."
 msgid_plural "New restaurants get a %(days)s-day free trial."
 msgstr[0] "Restoran baru mendapat uji coba gratis %(days)s hari."
 
+#: templates/storefront/home.html:114
 msgid "Most popular"
 msgstr "Paling populer"
 
+#: templates/storefront/home.html:119
 #, python-format
 msgid "Up to %(n)s table"
 msgid_plural "Up to %(n)s tables"
 msgstr[0] "Hingga %(n)s meja"
 
+#: templates/storefront/home.html:120
 #, python-format
 msgid "Up to %(n)s dish"
 msgid_plural "Up to %(n)s dishes"
 msgstr[0] "Hingga %(n)s hidangan"
 
+#: templates/storefront/home.html:121
 #, python-format
 msgid "Up to %(n)s staff account"
 msgid_plural "Up to %(n)s staff accounts"
 msgstr[0] "Hingga %(n)s akun staf"
 
+#: templates/storefront/home.html:122
 msgid "Sales analytics"
 msgstr "Analitik penjualan"
 
+#: templates/storefront/home.html:123
 msgid "Cash register & end-of-day reconciliation"
 msgstr "Kas & pencocokan akhir hari"
 
+#: templates/storefront/home.html:124
 msgid "Quotations for catering & tenders"
 msgstr "Penawaran untuk katering & tender"
 
+#: templates/storefront/home.html:125
 msgid "Daily expenses & profit"
 msgstr "Pengeluaran harian & laba"
 
+#: templates/storefront/home.html:126
 #, python-format
 msgid "Main branch + %(n)s branch, one login"
 msgid_plural "Main branch + %(n)s branches, one login"
 msgstr[0] "Cabang utama + %(n)s cabang, satu login"
 
+#: templates/storefront/home.html:127
 msgid "Ordering API for your website, apps & delivery partners"
 msgstr "API pemesanan untuk situs web, aplikasi & mitra pengantaran"
 
+#: templates/storefront/home.html:130
 msgid "Get started"
 msgstr "Mulai"
 
+#: templates/storefront/home.html:138
 msgid "Are you a customer?"
 msgstr "Anda pelanggan?"
 
+#: templates/storefront/home.html:139
 msgid "To order, please scan the QR code on your table."
 msgstr "Untuk memesan, silakan pindai kode QR di meja Anda."
 
+#: templates/storefront/home.html:142
 #, python-format
 msgid "Hello! I'd like to know more about %(name)s."
 msgstr "Halo! Saya ingin tahu lebih lanjut tentang %(name)s."
 
+#: templates/storefront/home.html:144 templates/storefront/terms.html:4
+#: templates/storefront/terms.html:14
 msgid "Terms of service"
 msgstr "Ketentuan layanan"
 
+#: templates/storefront/home.html:152
 msgid "Chat with us on WhatsApp"
 msgstr "Hubungi kami di WhatsApp"
 
+#: templates/storefront/terms.html:15
 msgid "Last updated: 9 October 2026"
 msgstr "Terakhir diperbarui: 9 Oktober 2026"
 
+#: templates/storefront/terms.html:17
 msgid "1. The service"
 msgstr "1. Layanan"
 
+#: templates/storefront/terms.html:18
 #, python-format
 msgid ""
 "%(name)s provides QR code menus, table ordering and restaurant management "
@@ -4610,9 +6302,11 @@ msgstr ""
 "restoran untuk usaha makanan (\"Anda\"). Dengan mendaftar, Anda menerima "
 "ketentuan ini atas nama usaha Anda."
 
+#: templates/storefront/terms.html:20
 msgid "2. Your account"
 msgstr "2. Akun Anda"
 
+#: templates/storefront/terms.html:21
 msgid ""
 "You must give correct information about your business and keep your login "
 "details secret. You are responsible for everything done with your account "
@@ -4626,9 +6320,11 @@ msgstr ""
 "(misalnya dengan registrasi usaha atau nomor pajak) sebelum Anda memakai "
 "beberapa fitur."
 
+#: templates/storefront/terms.html:23
 msgid "3. Branches"
 msgstr "3. Cabang"
 
+#: templates/storefront/terms.html:24
 msgid ""
 "All branches in one account must be owned and operated by the same business, "
 "under the same business registration and brand name."
@@ -4636,6 +6332,7 @@ msgstr ""
 "Semua cabang dalam satu akun harus dimiliki dan dijalankan oleh usaha yang "
 "sama, dengan registrasi usaha dan nama merek yang sama."
 
+#: templates/storefront/terms.html:24
 msgid ""
 "Each new branch is reviewed by our team before it is activated. A branch "
 "that belongs to a different business is not allowed: we may suspend it, or "
@@ -4645,9 +6342,11 @@ msgstr ""
 "lain tidak diizinkan: kami dapat menangguhkannya atau memindahkannya ke akun "
 "terpisah yang ditagih terpisah."
 
+#: templates/storefront/terms.html:26
 msgid "4. Plans and payment"
 msgstr "4. Paket dan pembayaran"
 
+#: templates/storefront/terms.html:27
 msgid ""
 "Plans are billed monthly in US dollars. Each plan includes a fixed number of "
 "branches; extra branches are a monthly add-on. If an invoice is not paid "
@@ -4659,9 +6358,11 @@ msgstr ""
 "setelah masa tenggang, pemesanan dimatikan sampai dibayar. Harga dapat "
 "berubah dengan pemberitahuan 30 hari."
 
+#: templates/storefront/terms.html:29
 msgid "5. Your data"
 msgstr "5. Data Anda"
 
+#: templates/storefront/terms.html:30
 msgid ""
 "Your menus, orders and revenue records belong to you. We use them only to "
 "provide the service and keep each branch's data separate. We don't sell your "
@@ -4671,9 +6372,11 @@ msgstr ""
 "memakainya hanya untuk menyediakan layanan dan memisahkan data setiap "
 "cabang. Kami tidak menjual data Anda."
 
+#: templates/storefront/terms.html:32
 msgid "6. Acceptable use"
 msgstr "6. Penggunaan yang wajar"
 
+#: templates/storefront/terms.html:33
 msgid ""
 "Don't use the service for anything illegal, to mislead customers, or to "
 "disrupt the platform. We may suspend accounts that break these terms."
@@ -4682,9 +6385,11 @@ msgstr ""
 "mengganggu platform. Kami dapat menangguhkan akun yang melanggar ketentuan "
 "ini."
 
+#: templates/storefront/terms.html:35
 msgid "7. Liability"
 msgstr "7. Tanggung jawab"
 
+#: templates/storefront/terms.html:36
 msgid ""
 "We work hard to keep the service available, but we can't guarantee it will "
 "always be uninterrupted. To the extent the law allows, we are not liable for "
@@ -4694,9 +6399,11 @@ msgstr ""
 "selalu tanpa gangguan. Sejauh diizinkan hukum, kami tidak bertanggung jawab "
 "atas kerugian tidak langsung seperti kehilangan penjualan."
 
+#: templates/storefront/terms.html:38
 msgid "8. Contact"
 msgstr "8. Kontak"
 
+#: templates/storefront/terms.html:39
 msgid "Questions about these terms:"
 msgstr "Pertanyaan tentang ketentuan ini:"
 
