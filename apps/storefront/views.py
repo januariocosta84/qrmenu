@@ -1,3 +1,4 @@
+import os
 import secrets
 
 from django.conf import settings
@@ -65,11 +66,35 @@ def home(request):
     })
 
 
+# User manual PDFs (built by docs/manual/build.py into static/manual/), in the order shown.
+MANUALS = [("en", "English", "manual/QR-Menu-User-Manual-EN.pdf"),
+           ("tet", "Tetun", "manual/QR-Menu-Manual-Uzuariu-TET.pdf"),
+           ("id", "Bahasa Indonesia", "manual/QR-Menu-Panduan-Pengguna-ID.pdf")]
+
+
+def manuals() -> list[dict]:
+    """The manual downloads, the reader's language first (Portuguese readers get English)."""
+    from django.contrib.staticfiles import finders
+    from django.utils.translation import get_language
+
+    lang = get_language() or "en"
+    out = []
+    for code, label, path in MANUALS:
+        found = finders.find(path)
+        if found:
+            out.append({"code": code, "label": label, "path": path, "current": code == lang,
+                        "size": f"{os.path.getsize(found) / 1024 / 1024:.1f} MB"})
+    if not any(m["current"] for m in out) and out:
+        out[0]["current"] = True
+    return sorted(out, key=lambda m: not m["current"])
+
+
 def _home_context():
     from apps.billing.models import BillingSettings, Plan
 
     billing = BillingSettings.load()
     return {
+        "manuals": manuals(),
         "seo_base": (settings.PUBLIC_BASE_URL or "").rstrip("/"),
         "google_site_verification": settings.GOOGLE_SITE_VERIFICATION,
         "signup_open": settings.SIGNUP_MODE != "closed",

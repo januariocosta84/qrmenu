@@ -40,7 +40,7 @@ class UILanguageMiddleware:
         return None
 
 
-STAFF_PATHS = ("/dashboard/", "/accounts/", "/api/v1/r/", "/api/v1/auth/", "/i18n/", "/jsi18n/")
+STAFF_PATHS = ("/dashboard/", "/accounts/", "/api/v1/r/", "/api/v1/auth/", "/i18n/", "/jsi18n/", "/demo/")
 
 
 class StaffLanguageMiddleware:

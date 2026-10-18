@@ -4,6 +4,7 @@
 {% block title %}{% translate "Try the demo" %} · {{ platform_name }}{% endblock %}
 {% block body_class %}landing{% endblock %}
 {% block content %}
+{% icon_sprite %}
 <header class="land-hero land-hero-slim">
   <nav class="land-nav">
     <a class="land-brand" href="{% url 'storefront:home' %}">▦ {{ platform_name }}</a>

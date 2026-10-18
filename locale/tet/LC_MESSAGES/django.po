@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 21:21+0900\n"
+"POT-Creation-Date: 2026-10-18 11:57+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2417,8 +2417,11 @@ msgid "Your %(platform)s demo"
 msgstr "Ita-nia demo %(platform)s"
 
 #: apps/storefront/demo.py:194
-msgid "This is a demo: changes are not saved. Register your restaurant to use it for real."
-msgstr "Ida-ne'e demo: mudansa la rai. Rejista ita-nia restaurante atu uza duni."
+msgid ""
+"This is a demo: changes are not saved. Register your restaurant to use it "
+"for real."
+msgstr ""
+"Ida-ne'e demo: mudansa la rai. Rejista ita-nia restaurante atu uza duni."
 
 #: apps/storefront/forms.py:19
 msgid "Restaurant / café name"
@@ -2569,7 +2572,7 @@ msgstr "Husu ida foun"
 
 #: templates/accounts/password_reset_done.html:3
 #: templates/accounts/password_reset_done.html:8
-#: templates/storefront/demo.html:23
+#: templates/storefront/demo.html:24
 msgid "Check your email"
 msgstr "Haree ita-nia email"
 
@@ -6145,49 +6148,73 @@ msgstr "Haree planu no hasa'e"
 msgid "Ask the restaurant owner to upgrade the plan."
 msgstr "Husu restaurante na'in atu hasa'e planu."
 
-#: templates/storefront/demo.html:4 templates/storefront/demo.html:14
+#: templates/storefront/demo.html:4 templates/storefront/demo.html:15
 #: templates/storefront/home.html:38
 msgid "Try the demo"
 msgstr "Koko demo"
 
-#: templates/storefront/demo.html:15
+#: templates/storefront/demo.html:16
 #, python-format
-msgid "See %(platform_name)s working in a real café: the dashboard, kitchen screen, orders, menu, reports and quotations. Fill in the form and we email you a link to open the demo. It works for %(days)s day."
-msgid_plural "See %(platform_name)s working in a real café: the dashboard, kitchen screen, orders, menu, reports and quotations. Fill in the form and we email you a link to open the demo. It works for %(days)s days."
-msgstr[0] "Haree %(platform_name)s servisu iha kafé loos ida: painel, ekran dapur, pedidu, menu, relatóriu no kotasaun. Prenxe formuláriu no ami haruka link liu husi email atu loke demo. Funsiona ba loron %(days)s."
-msgstr[1] "Haree %(platform_name)s servisu iha kafé loos ida: painel, ekran dapur, pedidu, menu, relatóriu no kotasaun. Prenxe formuláriu no ami haruka link liu husi email atu loke demo. Funsiona ba loron %(days)s."
+msgid ""
+"See %(platform_name)s working in a real café: the dashboard, kitchen screen, "
+"orders, menu, reports and quotations. Fill in the form and we email you a "
+"link to open the demo. It works for %(days)s day."
+msgid_plural ""
+"See %(platform_name)s working in a real café: the dashboard, kitchen screen, "
+"orders, menu, reports and quotations. Fill in the form and we email you a "
+"link to open the demo. It works for %(days)s days."
+msgstr[0] ""
+"Haree %(platform_name)s servisu iha kafé loos ida: painel, ekran dapur, "
+"pedidu, menu, relatóriu no kotasaun. Prenxe formuláriu no ami haruka link "
+"liu husi email atu loke demo. Funsiona ba loron %(days)s."
+msgstr[1] ""
+"Haree %(platform_name)s servisu iha kafé loos ida: painel, ekran dapur, "
+"pedidu, menu, relatóriu no kotasaun. Prenxe formuláriu no ami haruka link "
+"liu husi email atu loke demo. Funsiona ba loron %(days)s."
 
-#: templates/storefront/demo.html:18
+#: templates/storefront/demo.html:19
 msgid "The demo is not available right now."
 msgstr "Demo la disponivel agora."
 
-#: templates/storefront/demo.html:19
+#: templates/storefront/demo.html:20
 msgid "Ask us to call you back instead →"
 msgstr "Husu ami atu telefone ita →"
 
-#: templates/storefront/demo.html:24
-msgid "We sent you the link to open the demo. If it is not in your inbox after a few minutes, look in the spam folder."
-msgstr "Ami haruka ona link atu loke demo. Se la iha ita-nia inbox depois minutu balun, haree iha pasta spam."
+#: templates/storefront/demo.html:25
+msgid ""
+"We sent you the link to open the demo. If it is not in your inbox after a "
+"few minutes, look in the spam folder."
+msgstr ""
+"Ami haruka ona link atu loke demo. Se la iha ita-nia inbox depois minutu "
+"balun, haree iha pasta spam."
 
-#: templates/storefront/demo.html:27
-msgid "That demo link has expired or is not valid. Fill in the form to get a new one."
+#: templates/storefront/demo.html:28
+msgid ""
+"That demo link has expired or is not valid. Fill in the form to get a new "
+"one."
 msgstr "Link demo ne'e la válidu ona. Prenxe formuláriu atu simu foun ida."
 
-#: templates/storefront/demo.html:30
+#: templates/storefront/demo.html:31
 msgid "Too many requests. Please try again later."
 msgstr "Pedidu barak liu. Favor koko fali depois."
 
-#: templates/storefront/demo.html:31
-msgid "We could not send the email to this address. Please check it and try again."
-msgstr "La konsege haruka email ba enderesu ida-ne'e. Favor verifika no koko fali."
+#: templates/storefront/demo.html:32
+msgid ""
+"We could not send the email to this address. Please check it and try again."
+msgstr ""
+"La konsege haruka email ba enderesu ida-ne'e. Favor verifika no koko fali."
 
-#: templates/storefront/demo.html:35
+#: templates/storefront/demo.html:36
 msgid "Email me the demo link"
 msgstr "Haruka link demo mai ha'u"
 
-#: templates/storefront/demo.html:36
-msgid "The demo is view only: you can open every page, but changes are not saved. We only use your details to contact you about QR Menu."
-msgstr "Demo ne'e haree de'it: ita bele loke pájina hotu, maibé mudansa la rai. Ami uza ita-nia dadus de'it atu kontaktu ita kona-ba QR Menu."
+#: templates/storefront/demo.html:37
+msgid ""
+"The demo is view only: you can open every page, but changes are not saved. "
+"We only use your details to contact you about QR Menu."
+msgstr ""
+"Demo ne'e haree de'it: ita bele loke pájina hotu, maibé mudansa la rai. Ami "
+"uza ita-nia dadus de'it atu kontaktu ita kona-ba QR Menu."
 
 #: templates/storefront/email/demo.html:5 templates/storefront/email/demo.txt:1
 #, python-format
@@ -6196,8 +6223,12 @@ msgstr "Olá %(name)s,"
 
 #: templates/storefront/email/demo.html:6 templates/storefront/email/demo.txt:3
 #, python-format
-msgid "Thank you for your interest in %(platform)s. Open the demo of %(restaurant)s with this link:"
-msgstr "Obrigadu ba ita-nia interese iha %(platform)s. Loke demo %(restaurant)s ho link ida-ne'e:"
+msgid ""
+"Thank you for your interest in %(platform)s. Open the demo of %(restaurant)s "
+"with this link:"
+msgstr ""
+"Obrigadu ba ita-nia interese iha %(platform)s. Loke demo %(restaurant)s ho "
+"link ida-ne'e:"
 
 #: templates/storefront/email/demo.html:7
 msgid "Open the demo"
@@ -6205,10 +6236,18 @@ msgstr "Loke demo"
 
 #: templates/storefront/email/demo.html:8 templates/storefront/email/demo.txt:7
 #, python-format
-msgid "The link works for %(days)s day. The demo is view only: you can open every page, but changes are not saved."
-msgid_plural "The link works for %(days)s days. The demo is view only: you can open every page, but changes are not saved."
-msgstr[0] "Link funsiona ba loron %(days)s. Demo ne'e haree de'it: ita bele loke pájina hotu, maibé mudansa la rai."
-msgstr[1] "Link funsiona ba loron %(days)s. Demo ne'e haree de'it: ita bele loke pájina hotu, maibé mudansa la rai."
+msgid ""
+"The link works for %(days)s day. The demo is view only: you can open every "
+"page, but changes are not saved."
+msgid_plural ""
+"The link works for %(days)s days. The demo is view only: you can open every "
+"page, but changes are not saved."
+msgstr[0] ""
+"Link funsiona ba loron %(days)s. Demo ne'e haree de'it: ita bele loke pájina "
+"hotu, maibé mudansa la rai."
+msgstr[1] ""
+"Link funsiona ba loron %(days)s. Demo ne'e haree de'it: ita bele loke pájina "
+"hotu, maibé mudansa la rai."
 
 #: templates/storefront/email/demo.html:9 templates/storefront/email/demo.txt:9
 msgid "See the menu as your customers see it:"
@@ -6495,17 +6534,49 @@ msgstr "Ita kliente?"
 msgid "To order, please scan the QR code on your table."
 msgstr "Atu pede, favór scan kódigu QR iha ita-nia meza."
 
-#: templates/storefront/home.html:143
+#: templates/storefront/home.html:147 templates/storefront/home.html:169
+msgid "User manual"
+msgstr "Manuál uzuáriu"
+
+#: templates/storefront/home.html:148
+msgid ""
+"A step-by-step guide with screenshots for owners, managers, kitchen staff, "
+"waiters and cashiers."
+msgstr ""
+"Matadalan pasu ba pasu ho foto ekran ba na'in, jerente, funsionáriu kozinha, "
+"serbidór no kaixa."
+
+#: templates/storefront/home.html:159
+msgid "Hardware notice"
+msgstr "Avizu kona-ba ekipamentu"
+
+#: templates/storefront/home.html:160
+msgid "QR Menu is a software service. We do not sell hardware such as computers, cash drawers or receipt printers."
+msgstr "QR Menu mak servisu software. Ami la faan ekipamentu hanesan komputadór, gaveta osan ka imprimidora resibu."
+
+#: templates/storefront/home.html:161
+msgid "However, if your restaurant or café needs any of this equipment, we're happy to help. We can provide a quotation for the hardware and installation, so you get everything set up and ready to use with QR Menu."
+msgstr "Maibé, se ita-nia restaurante ka kafé presiza ekipamentu sira ne'e, ami kontente atu ajuda. Ami bele fó kotasaun ba ekipamentu no instalasaun, atu buat hotu prepara ona no prontu atu uza ho QR Menu."
+
+#: templates/storefront/home.html:162
+msgid "Hello! I'd like a quotation for hardware (computer, cash drawer, receipt printer) and installation for QR Menu."
+msgstr "Olá! Ha'u hakarak kotasaun ba ekipamentu (komputadór, gaveta osan, imprimidora resibu) no instalasaun ba QR Menu."
+
+#: templates/storefront/home.html:163
+msgid "Contact us on WhatsApp for a free quote"
+msgstr "Kontaktu ami iha WhatsApp atu hetan kotasaun gratuitu"
+
+#: templates/storefront/home.html:167
 #, python-format
 msgid "Hello! I'd like to know more about %(name)s."
 msgstr "Olá! Ha'u hakarak hatene liu tan kona-ba %(name)s."
 
-#: templates/storefront/home.html:145 templates/storefront/terms.html:4
+#: templates/storefront/home.html:169 templates/storefront/terms.html:4
 #: templates/storefront/terms.html:14
 msgid "Terms of service"
 msgstr "Termu servisu"
 
-#: templates/storefront/home.html:153
+#: templates/storefront/home.html:177
 msgid "Chat with us on WhatsApp"
 msgstr "Ko'alia ho ami iha WhatsApp"
 

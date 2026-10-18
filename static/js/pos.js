@@ -81,7 +81,7 @@
       b.appendChild(pic);
       b.appendChild(el("strong", null, i.name));
       b.appendChild(el("span", null, i.is_available ? money(cents(i.price)) : _("Sold out")));
-      if (i.options.length) b.appendChild(el("small", "muted", "+ add-ons"));
+      if (i.options.length) b.appendChild(el("small", "muted", "+ " + _("add-ons")));
       if (needsVehicle(i)) b.appendChild(el("small", "muted", _("+ plate number")));
       b.addEventListener("click", () => (i.options.length || needsVehicle(i) ? openItem(i) : addLine(i.id, 1, [], "")));
       return b;

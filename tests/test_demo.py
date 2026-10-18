@@ -124,6 +124,13 @@ class DemoTests(TestCase):
         self.assertContains(resp, "Maria Soares")
         self.assertContains(resp, "maria@example.com")
 
+    def test_demo_page_and_email_follow_the_chosen_language(self):
+        self.client.cookies["dash_lang"] = "tet"
+        self.assertContains(self.client.get(self.url), "Koko demo")
+        self.client.post(self.url, FORM)
+        self.assertEqual(DemoRequest.objects.get().language, "tet")
+        self.assertIn("Loke demo", mail.outbox[0].alternatives[0][0])
+
     @override_settings(DEMO_RESTAURANT="")
     def test_no_demo_configured(self):
         self.assertContains(self.client.get(self.url), "The demo is not available right now.")

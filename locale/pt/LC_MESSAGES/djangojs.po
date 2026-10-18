@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 21:44+0900\n"
+"POT-Creation-Date: 2026-10-18 11:28+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -339,6 +339,10 @@ msgstr "Novo cliente"
 #: static/js/pos.js:83
 msgid "Sold out"
 msgstr "Esgotado"
+
+#: static/js/pos.js:84
+msgid "add-ons"
+msgstr "extras"
 
 #: static/js/pos.js:85
 msgid "+ plate number"
