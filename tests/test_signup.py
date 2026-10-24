@@ -32,45 +32,130 @@ def verify_link_from_outbox():
     return re.search(r"http://testserver(/accounts/verify/[^/\s]+/)", body).group(1)
 
 
+def code_from_outbox():
+    return re.search(r"^\s+(\d{6})\s*$", mail.outbox[-1].body, re.M).group(1)
+
+
+def legacy_unverified_owner():
+    """An owner from before sign-up codes: account exists, email not confirmed yet."""
+    return signup_service.register_restaurant(restaurant_name="Warung Lama", full_name="Ana Lama",
+                                              email="ana@example.com", password="a-Strong-pass-2024")
+
+
 class SignupTests(TestCase):
     def setUp(self):
         cache.clear()
 
-    def signup(self, client=None, **overrides):
-        return (client or self.client).post(reverse("accounts:signup"), {**SIGNUP, **overrides})
+    def signup(self, client=None, complete=True, **overrides):
+        """Fill in the form and, unless complete=False, enter the emailed code."""
+        client = client or self.client
+        resp = client.post(reverse("accounts:signup"), {**SIGNUP, **overrides})
+        if complete and resp.status_code == 302 and resp["Location"] == reverse("accounts:signup_verify"):
+            resp = client.post(reverse("accounts:signup_verify"), {"code": code_from_outbox()})
+        return resp
 
-    def test_signup_creates_private_restaurant_and_sends_email(self):
-        resp = self.signup()
+    def test_no_account_until_the_emailed_code_is_entered(self):
+        resp = self.signup(complete=False)
+        self.assertRedirects(resp, reverse("accounts:signup_verify"))
+        self.assertFalse(User.objects.exists())
+        self.assertFalse(Restaurant.objects.exists())
+        self.assertEqual(mail.outbox[0].to, ["budi@example.com"])
+        code = code_from_outbox()
+        self.assertIn(code, mail.outbox[0].subject)
+        page = self.client.get(reverse("accounts:signup_verify"))
+        self.assertContains(page, "budi@example.com")
+        self.assertNotContains(page, code)  # the code is only in the email
+
+        resp = self.client.post(reverse("accounts:signup_verify"), {"code": code})
         restaurant = Restaurant.objects.get()
         self.assertRedirects(resp, reverse("dashboard:overview", args=[restaurant.slug]), fetch_redirect_response=False)
         self.assertEqual(restaurant.slug, "warung-sederhana")
-        self.assertFalse(restaurant.is_active)
+        self.assertTrue(restaurant.is_active)  # open sign-up: live once the email is proven
         user = User.objects.get()
         self.assertEqual((user.email, user.username, user.first_name), ("budi@example.com", "budi@example.com", "Budi"))
+        self.assertTrue(user.email_verified)
+        self.assertTrue(user.check_password(SIGNUP["password"]))
         self.assertEqual(RestaurantStaff.objects.get().role, Role.OWNER)
-        self.assertEqual(len(mail.outbox), 1)
-        self.assertIn("/accounts/verify/", mail.outbox[0].body)
-        # Dashboard works (owner is logged in) and shows the banner + checklist.
         page = self.client.get(reverse("dashboard:overview", args=[restaurant.slug]))
-        self.assertContains(page, "Confirm your email to go live")
         self.assertContains(page, "Get your restaurant ready")
+        self.assertNotContains(page, "Confirm your email to go live")
+        self.assertEqual(Client().get(reverse("storefront:menu", args=[restaurant.slug])).status_code, 200)
 
-    def test_not_public_until_verified_but_owner_can_preview(self):
+    def test_wrong_codes_then_locked(self):
+        self.signup(complete=False)
+        url = reverse("accounts:signup_verify")
+        for _ in range(4):
+            self.assertContains(self.client.post(url, {"code": "000000"}), "not right", status_code=400)
+        resp = self.client.post(url, {"code": "000000"})
+        self.assertRedirects(resp, reverse("accounts:signup"))
+        self.assertFalse(User.objects.exists())
+        # the right code no longer works either: the sign-up has to start again
+        self.assertRedirects(self.client.post(url, {"code": code_from_outbox()}), reverse("accounts:signup"))
+        self.assertFalse(User.objects.exists())
+
+    def test_expired_code(self):
+        self.signup(complete=False)
+        session = self.client.session
+        pending = session[signup_service.PENDING_KEY]
+        pending["expires"] = 0
+        session[signup_service.PENDING_KEY] = pending
+        session.save()
+        resp = self.client.post(reverse("accounts:signup_verify"), {"code": code_from_outbox()})
+        self.assertContains(resp, "expired", status_code=400)
+        self.assertFalse(User.objects.exists())
+
+    def test_resend_waits_a_minute_and_is_limited(self):
+        self.signup(complete=False)
+        url = reverse("accounts:signup_verify")
+        self.assertContains(self.client.post(url, {"action": "resend"}), "Please wait", status_code=400)
+        old = code_from_outbox()
+        for _ in range(2):
+            session = self.client.session
+            pending = session[signup_service.PENDING_KEY]
+            pending["sent_at"] = 0
+            session[signup_service.PENDING_KEY] = pending
+            session.save()
+            self.assertRedirects(self.client.post(url, {"action": "resend"}), url)
+        self.assertEqual(len(mail.outbox), 3)
+        self.assertContains(self.client.post(url, {"action": "resend"}), "No more codes", status_code=400)
+        new = code_from_outbox()
+        if new != old:  # an earlier code stops working once a new one is sent
+            self.assertContains(self.client.post(url, {"code": old}), "not right", status_code=400)
+        self.client.post(url, {"code": new})
+        self.assertTrue(User.objects.get().email_verified)
+
+    def test_code_page_needs_the_form_first(self):
+        self.assertRedirects(self.client.get(reverse("accounts:signup_verify")), reverse("accounts:signup"))
+
+    def test_codes_per_email_are_limited(self):
+        for _ in range(3):
+            self.signup(Client(), complete=False)
+        resp = self.signup(Client(), complete=False)
+        self.assertContains(resp, "Too many codes")
+        self.assertEqual(len(mail.outbox), 3)
+
+    def test_email_taken_while_waiting_for_the_code(self):
+        self.signup(complete=False)
+        mine = code_from_outbox()
+        self.signup(Client())  # same email finished first in another browser
+        resp = self.client.post(reverse("accounts:signup_verify"), {"code": mine})
+        self.assertRedirects(resp, reverse("accounts:login"), fetch_redirect_response=False)
+        self.assertEqual(User.objects.count(), 1)
+
+    @override_settings(SIGNUP_MODE="approval")
+    def test_not_public_until_approved_but_owner_can_preview(self):
         self.signup()
         r = Restaurant.objects.get()
         Table.objects.create(restaurant=r, number="1")
         self.assertEqual(Client().get(reverse("storefront:menu", args=[r.slug])).status_code, 404)
         self.assertContains(self.client.get(reverse("storefront:menu", args=[r.slug])), "Preview")
 
-    def test_verification_publishes_restaurant(self):
-        self.signup()
-        link = verify_link_from_outbox()
+    def test_legacy_verification_link_publishes_restaurant(self):
+        user, _r = legacy_unverified_owner()
+        link = reverse("accounts:verify_email", args=[signup_service.make_verify_token(user)])
         resp = self.client.get(link, follow=True)
         self.assertContains(resp, "now live")
-        r = Restaurant.objects.get()
-        self.assertTrue(r.is_active)
-        self.assertTrue(User.objects.get().email_verified)
-        self.assertEqual(Client().get(reverse("storefront:menu", args=[r.slug])).status_code, 200)
+        self.assertTrue(Restaurant.objects.get().is_active)
 
     def test_login_with_email_case_insensitive(self):
         self.signup()
@@ -79,14 +164,14 @@ class SignupTests(TestCase):
         self.assertEqual(resp.status_code, 302)
 
     def test_tampered_or_other_token_rejected(self):
-        self.signup()
-        link = verify_link_from_outbox()
+        user, _r = legacy_unverified_owner()
+        link = reverse("accounts:verify_email", args=[signup_service.make_verify_token(user)])
         self.client.get(link[:-3] + "xx/", follow=True)
         self.assertFalse(Restaurant.objects.get().is_active)
 
     def test_token_invalid_after_email_change(self):
-        self.signup()
-        link = verify_link_from_outbox()
+        user, _r = legacy_unverified_owner()
+        link = reverse("accounts:verify_email", args=[signup_service.make_verify_token(user)])
         User.objects.update(email="other@example.com")
         self.client.get(link)
         self.assertFalse(Restaurant.objects.get().is_active)
@@ -122,7 +207,6 @@ class SignupTests(TestCase):
     @override_settings(SIGNUP_MODE="approval", ADMINS=[("Ops", "ops@platform.test")])
     def test_approval_mode(self):
         self.signup()
-        self.client.get(verify_link_from_outbox())
         r = Restaurant.objects.get()
         self.assertFalse(r.is_active)
         self.assertTrue(any("waiting for approval" in m.subject.lower() for m in mail.outbox))
@@ -137,13 +221,14 @@ class SignupTests(TestCase):
         self.assertTrue(r.is_active)
 
     def test_resend_verification_is_throttled_and_safe_redirect(self):
-        self.signup()
+        user, _r = legacy_unverified_owner()
+        self.client.force_login(user)
         url = reverse("accounts:resend_verification")
         resp = self.client.post(url, {"next": "https://evil.example/"})
         self.assertEqual(resp["Location"], reverse("dashboard:home"))
         for _ in range(4):
             self.client.post(url)
-        self.assertEqual(len(mail.outbox), 1 + 3)  # signup + 3 resends, then throttled
+        self.assertEqual(len(mail.outbox), 3)  # 3 resends, then throttled
 
     def test_password_reset_flow(self):
         self.signup()

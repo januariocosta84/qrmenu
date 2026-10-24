@@ -84,7 +84,7 @@ An owner registers once, builds the menu and tables, adds staff, and the restaur
 
 1. On the home page click **Register your restaurant** (or **Try the demo** first to look around a sample café).
 2. Enter restaurant name, your name, email, phone (optional) and a password, and confirm you own or manage the restaurant.
-3. Open the confirmation link sent to your email. Until then the dashboard asks you to verify your email.
+3. Press **Continue: email me a code**. We email you a 6-digit code: enter it on the next page within 10 minutes (**Send a new code** if it doesn't arrive). Only then are your account and restaurant created, so a fake or mistyped email can't register.
 4. The platform team reviews new restaurants. While you wait (“Waiting for approval”), you can set up everything below; customers cannot order yet.
 
 ![Try the demo: fill in the form and the demo link arrives by email](demo)

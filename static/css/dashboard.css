@@ -538,6 +538,7 @@ input[type=checkbox], input[type=radio] { width: 18px; height: 18px; accent-colo
 .auth-card.wide { max-width: 560px; }
 .auth-card h1 { margin-bottom: 8px; }
 .auth-card > .muted { margin-bottom: 20px; }
+.auth-card .btn-block { white-space: normal; text-align: center; line-height: 1.25; }
 .auth-brand { display: flex; align-items: center; gap: 8px; font-weight: 800; color: var(--brand-600); margin-bottom: 20px; }
 @media (max-width: 480px) { .auth-card { padding: 22px 18px; border-radius: 12px; } .auth .content { padding-top: 72px; } }
 .restaurant-list { list-style: none; padding: 0; margin: 0 0 16px; }

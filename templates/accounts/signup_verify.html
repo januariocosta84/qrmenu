@@ -1,0 +1,26 @@
+{% extends "dashboard/base.html" %}
+{% load ui_icons i18n %}
+{% block title %}{% translate "Confirm your email" %}{% endblock %}
+{% block body_class %}auth{% endblock %}
+{% block content %}
+<div class="auth-card">
+  <a class="auth-brand" href="{% url 'storefront:home' %}">{% icon "qr" "i-lg" %} {{ platform_name }}</a>
+  <h1>{% translate "Confirm your email" %}</h1>
+  <p class="muted">{% blocktranslate trimmed with minutes=minutes %}We sent a 6-digit code to <strong>{{ email }}</strong>. Enter it below to create your restaurant. The code works for {{ minutes }} minutes.{% endblocktranslate %}</p>
+  {% if error %}<div class="msg msg-error">{% icon "alert" %}<span>{{ error }}</span></div>{% endif %}
+  <form method="post" class="form" novalidate>
+    {% csrf_token %}
+    <div class="field">
+      <label for="otp-code">{% translate "Verification code" %}</label>
+      <input id="otp-code" name="code" class="otp-input" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]*" maxlength="6" placeholder="••••••" required autofocus>
+    </div>
+    <button class="btn btn-primary btn-block btn-lg" type="submit">{% icon "check" %} {% translate "Confirm and create my restaurant" %}</button>
+  </form>
+  <p class="help">{% translate "No email? Check the spam folder, or ask for a new code." %}</p>
+  <div class="btn-row">
+    {% if can_resend %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="resend"><button class="btn btn-sm" type="submit">{% icon "refresh" %} {% translate "Send a new code" %}</button></form>{% endif %}
+    <a class="btn btn-sm btn-ghost" href="{% url 'accounts:signup' %}">{% translate "Change email" %}</a>
+  </div>
+</div>
+<style>.otp-input { font-size: 1.8rem; letter-spacing: .5em; text-align: center; font-variant-numeric: tabular-nums; }</style>
+{% endblock %}

@@ -23,7 +23,7 @@
       <a class="small" href="{% url 'storefront:terms' %}" target="_blank" rel="noopener">{% translate "Read the terms of service" %}</a>
       {% for e in form.accept.errors %}<small class="err">{{ e }}</small>{% endfor %}
     </div>
-    <button class="btn btn-primary btn-block btn-lg" type="submit">{% translate "Create my restaurant" %}</button>
+    <button class="btn btn-primary btn-block btn-lg" type="submit">{% translate "Continue: email me a code" %}</button>
     {% if approval_required %}<p class="help">{% translate "New restaurants are reviewed by our team before they go live. You can set up your menu in the meantime." %}</p>{% endif %}
   </form>
   <p class="small">{% translate "Already registered?" %} <a href="{% url 'accounts:login' %}">{% translate "Log in" %}</a></p>

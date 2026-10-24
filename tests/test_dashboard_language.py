@@ -138,7 +138,9 @@ class LandingPageWhatsAppTests(TestCase):
     def test_whatsapp_link_with_greeting(self):
         self.client.cookies[settings.LANGUAGE_COOKIE_NAME] = "pt"
         resp = self.client.get("/")
-        self.assertContains(resp, f"https://wa.me/{settings.SUPPORT_WHATSAPP}?text=Ol%C3%A1", count=2)
+        # footer + floating button greet; the hardware notice asks for a quote
+        self.assertContains(resp, f"https://wa.me/{settings.SUPPORT_WHATSAPP}?text=Ol%C3%A1", count=3)
+        self.assertContains(resp, "Gostaria%20de%20uma%20cota%C3%A7%C3%A3o", count=1)
         self.assertContains(resp, 'class="wa-float"', count=1)
 
 

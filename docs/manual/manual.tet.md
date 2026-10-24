@@ -84,7 +84,7 @@ Na'in rejista dala ida, kria menu no meza, aumenta funsionáriu, no restaurante 
 
 1. Iha pájina prinsipál klik **Rejistu ita-nia restaurante** (ka **Koko demo** uluk atu haree kafé ezemplu ida).
 2. Hatama naran restaurante, ita-nia naran, email, telefone (opsionál) no palavra-pase, no konfirma katak ita na'in ka jere restaurante ne'e.
-3. Loke link konfirmasaun ne'ebé haruka ba ita-nia email. To'o ne'ebá painel husu ita atu konfirma ita-nia email.
+3. Hili **Kontinua: haruka kódigu ba ha'u-nia email**. Ami haruka kódigu númeru 6 ba ita-nia email: hatama iha pájina tuir mai iha minutu 10 nia laran (**Haruka kódigu foun** se la to'o). Depois ne'e mak ita-nia konta no restaurante kria, nune'e email falsu ka sala labele rejista.
 4. Ekipa plataforma revee restaurante foun sira. Durante ita hein ("Hein aprovasaun"), ita bele prepara buat hotu iha kraik; kliente seidauk bele halo pedidu.
 
 ![Koko demo: prenxe formuláriu no link demo mai iha email](demo)

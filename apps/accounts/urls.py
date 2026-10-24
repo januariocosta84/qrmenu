@@ -9,6 +9,7 @@ urlpatterns = [
     path("login/", views.RateLimitedLoginView.as_view(), name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("signup/", views.signup, name="signup"),
+    path("signup/verify/", views.signup_verify, name="signup_verify"),
     path("verify/<str:token>/", views.verify_email, name="verify_email"),
     path("verify-resend/", views.resend_verification, name="resend_verification"),
     path(

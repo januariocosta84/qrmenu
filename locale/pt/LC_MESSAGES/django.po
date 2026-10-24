@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qrmenu dashboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-18 11:57+0900\n"
+"POT-Creation-Date: 2026-10-24 12:32+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,8 +33,8 @@ msgid "Email"
 msgstr "Email"
 
 #: apps/accounts/forms.py:13
-msgid "You'll sign in with this email. We'll send a confirmation link."
-msgstr "Vai iniciar sessão com este email. Enviaremos um link de confirmação."
+msgid "You'll sign in with this email. We'll send a 6-digit code to confirm it."
+msgstr "Vai entrar com este email. Enviamos um código de 6 dígitos para o confirmar."
 
 #: apps/accounts/forms.py:14
 msgid "Phone (optional)"
@@ -52,7 +52,7 @@ msgstr ""
 "Confirmo que sou proprietário ou gerente deste restaurante e aceito os "
 "termos de serviço."
 
-#: apps/accounts/forms.py:23
+#: apps/accounts/forms.py:23 apps/accounts/views.py:124
 msgid ""
 "An account with this email already exists. Try logging in or resetting your "
 "password."
@@ -68,44 +68,55 @@ msgstr "Introduza o nome do restaurante."
 msgid "Sign-up failed. Please try again."
 msgstr "O registo falhou. Tente novamente."
 
-#: apps/accounts/views.py:48
+#: apps/accounts/signup.py:160
+#, python-format
+msgid "%(code)s is your %(platform)s verification code"
+msgstr "%(code)s é o seu código de verificação do %(platform)s"
+
+#: apps/accounts/views.py:49
 msgid "Too many failed login attempts. Please try again in 15 minutes."
 msgstr "Demasiadas tentativas falhadas. Tente novamente dentro de 15 minutos."
 
-#: apps/accounts/views.py:74
+#: apps/accounts/views.py:76
 msgid "Too many sign-ups from your network. Please try again in an hour."
 msgstr ""
 "Demasiados registos a partir da sua rede. Tente novamente dentro de uma hora."
 
-#: apps/accounts/views.py:85
-#, python-format
-msgid "Welcome! We sent a confirmation link to %(email)s."
-msgstr "Bem-vindo! Enviámos um link de confirmação para %(email)s."
+#: apps/accounts/views.py:80
+msgid "Too many codes were sent to this email. Please try again in an hour."
+msgstr "Foram enviados demasiados códigos para este email. Tente novamente daqui a uma hora."
 
 #: apps/accounts/views.py:88
-msgid ""
-"Your account is ready, but we couldn't send the confirmation email. Use "
-"“Resend email” below."
-msgstr ""
-"A sua conta está pronta, mas não foi possível enviar o email de confirmação. "
-"Use “Reenviar email” abaixo."
+msgid "We couldn't send an email to this address. Please check it and try again."
+msgstr "Não foi possível enviar um email para este endereço. Verifique-o e tente novamente."
 
-#: apps/accounts/views.py:99
-msgid ""
-"This confirmation link is invalid or has expired. Log in and request a new "
-"one."
-msgstr ""
-"Este link de confirmação é inválido ou expirou. Inicie sessão e peça um novo."
+#: apps/accounts/views.py:102
+msgid "Please fill in the registration form first."
+msgstr "Preencha primeiro o formulário de registo."
 
-#: apps/accounts/views.py:103
-msgid ""
-"Email confirmed — your restaurant is now live! Customers can scan your QR "
-"codes."
-msgstr ""
-"Email confirmado — o seu restaurante já está ativo! Os clientes podem ler os "
-"seus códigos QR."
+#: apps/accounts/views.py:108
+msgid "No more codes can be sent for this registration. Please start again."
+msgstr "Não é possível enviar mais códigos para este registo. Comece de novo."
 
-#: apps/accounts/views.py:105
+#: apps/accounts/views.py:110
+#, python-format
+msgid "Please wait %(s)s seconds before asking for a new code."
+msgstr "Aguarde %(s)s segundos antes de pedir um novo código."
+
+#: apps/accounts/views.py:114
+#, python-format
+msgid "We sent a new code to %(email)s."
+msgstr "Enviámos um novo código para %(email)s."
+
+#: apps/accounts/views.py:118 apps/accounts/views.py:176
+msgid "We couldn't send the email right now. Please try again later."
+msgstr "Não foi possível enviar o email agora. Tente mais tarde."
+
+#: apps/accounts/views.py:130
+msgid "Email confirmed. Welcome! Your restaurant is ready: add your menu and tables."
+msgstr "Email confirmado. Bem-vindo! O seu restaurante está pronto: adicione o menu e as mesas."
+
+#: apps/accounts/views.py:132 apps/accounts/views.py:156
 msgid ""
 "Email confirmed. Your restaurant is waiting for approval by the platform "
 "team."
@@ -113,26 +124,49 @@ msgstr ""
 "Email confirmado. O seu restaurante aguarda aprovação da equipa da "
 "plataforma."
 
-#: apps/accounts/views.py:107
+#: apps/accounts/views.py:136
+msgid "Too many wrong codes. Please fill in the form again to get a new code."
+msgstr "Demasiados códigos errados. Preencha o formulário novamente para receber um novo código."
+
+#: apps/accounts/views.py:138
+msgid "This code has expired. Ask for a new code below."
+msgstr "Este código expirou. Peça um novo código abaixo."
+
+#: apps/accounts/views.py:139
+msgid "That code is not right. Check the email and try again."
+msgstr "Esse código não está certo. Verifique o email e tente novamente."
+
+#: apps/accounts/views.py:150
+msgid ""
+"This confirmation link is invalid or has expired. Log in and request a new "
+"one."
+msgstr ""
+"Este link de confirmação é inválido ou expirou. Inicie sessão e peça um novo."
+
+#: apps/accounts/views.py:154
+msgid ""
+"Email confirmed — your restaurant is now live! Customers can scan your QR "
+"codes."
+msgstr ""
+"Email confirmado — o seu restaurante já está ativo! Os clientes podem ler os "
+"seus códigos QR."
+
+#: apps/accounts/views.py:158
 msgid "Email confirmed."
 msgstr "Email confirmado."
 
-#: apps/accounts/views.py:116
+#: apps/accounts/views.py:167
 msgid "Your email is already confirmed."
 msgstr "O seu email já está confirmado."
 
-#: apps/accounts/views.py:118
+#: apps/accounts/views.py:169
 msgid "Please wait a while before requesting another email."
 msgstr "Aguarde um pouco antes de pedir outro email."
 
-#: apps/accounts/views.py:122
+#: apps/accounts/views.py:173
 #, python-format
 msgid "Confirmation email sent to %(email)s."
 msgstr "Email de confirmação enviado para %(email)s."
-
-#: apps/accounts/views.py:125
-msgid "We couldn't send the email right now. Please try again later."
-msgstr "Não foi possível enviar o email agora. Tente mais tarde."
 
 #: apps/billing/models.py:32
 msgid "Analytics page (trends, busy times, best sellers)."
@@ -2474,6 +2508,26 @@ msgstr "Noite"
 msgid "Enter a phone number we can call, e.g. +670 7712 3456."
 msgstr "Introduza um número para onde possamos ligar, ex.: +670 7712 3456."
 
+#: templates/accounts/email/signup_code.txt:1
+#: templates/storefront/email/demo.html:5 templates/storefront/email/demo.txt:1
+#, python-format
+msgid "Hello %(name)s,"
+msgstr "Olá %(name)s,"
+
+#: templates/accounts/email/signup_code.txt:3
+#, python-format
+msgid "Your code to register %(restaurant)s on %(platform)s is:"
+msgstr "O seu código para registar %(restaurant)s no %(platform)s é:"
+
+#: templates/accounts/email/signup_code.txt:7
+#, python-format
+msgid "Enter it on the registration page. It works for %(minutes)s minutes."
+msgstr "Introduza-o na página de registo. É válido durante %(minutes)s minutos."
+
+#: templates/accounts/email/signup_code.txt:9
+msgid "If you did not try to register, ignore this email: no account is created without this code."
+msgstr "Se não tentou registar-se, ignore este email: nenhuma conta é criada sem este código."
+
 #: templates/accounts/login.html:3 templates/accounts/login.html:8
 #: templates/accounts/login.html:15
 msgctxt "login page"
@@ -2618,8 +2672,8 @@ msgid "Read the terms of service"
 msgstr "Ler os termos de serviço"
 
 #: templates/accounts/signup.html:26
-msgid "Create my restaurant"
-msgstr "Criar o meu restaurante"
+msgid "Continue: email me a code"
+msgstr "Continuar: enviar-me um código"
 
 #: templates/accounts/signup.html:27
 msgid ""
@@ -2632,6 +2686,36 @@ msgstr ""
 #: templates/accounts/signup.html:29
 msgid "Already registered?"
 msgstr "Já tem conta?"
+
+#: templates/accounts/signup_verify.html:3
+#: templates/accounts/signup_verify.html:8
+msgid "Confirm your email"
+msgstr "Confirme o seu email"
+
+#: templates/accounts/signup_verify.html:9
+#, python-format
+msgid "We sent a 6-digit code to <strong>%(email)s</strong>. Enter it below to create your restaurant. The code works for %(minutes)s minutes."
+msgstr "Enviámos um código de 6 dígitos para <strong>%(email)s</strong>. Introduza-o abaixo para criar o seu restaurante. O código é válido durante %(minutes)s minutos."
+
+#: templates/accounts/signup_verify.html:14
+msgid "Verification code"
+msgstr "Código de verificação"
+
+#: templates/accounts/signup_verify.html:17
+msgid "Confirm and create my restaurant"
+msgstr "Confirmar e criar o meu restaurante"
+
+#: templates/accounts/signup_verify.html:19
+msgid "No email? Check the spam folder, or ask for a new code."
+msgstr "Não recebeu o email? Veja a pasta de spam ou peça um novo código."
+
+#: templates/accounts/signup_verify.html:21
+msgid "Send a new code"
+msgstr "Enviar um novo código"
+
+#: templates/accounts/signup_verify.html:22
+msgid "Change email"
+msgstr "Alterar email"
 
 #: templates/dashboard/_cash_count.html:4
 msgid "Count notes and coins"
@@ -6262,11 +6346,6 @@ msgstr ""
 "A demonstração é só para ver: pode abrir todas as páginas, mas as alterações "
 "não são guardadas. Só usamos os seus dados para o contactar sobre o QR Menu."
 
-#: templates/storefront/email/demo.html:5 templates/storefront/email/demo.txt:1
-#, python-format
-msgid "Hello %(name)s,"
-msgstr "Olá %(name)s,"
-
 #: templates/storefront/email/demo.html:6 templates/storefront/email/demo.txt:3
 #, python-format
 msgid ""
@@ -6599,16 +6678,30 @@ msgid "Hardware notice"
 msgstr "Aviso sobre equipamento"
 
 #: templates/storefront/home.html:160
-msgid "QR Menu is a software service. We do not sell hardware such as computers, cash drawers or receipt printers."
-msgstr "O QR Menu é um serviço de software. Não vendemos equipamento como computadores, gavetas de dinheiro ou impressoras de talões."
+msgid ""
+"QR Menu is a software service. We do not sell hardware such as computers, "
+"cash drawers or receipt printers."
+msgstr ""
+"O QR Menu é um serviço de software. Não vendemos equipamento como "
+"computadores, gavetas de dinheiro ou impressoras de talões."
 
 #: templates/storefront/home.html:161
-msgid "However, if your restaurant or café needs any of this equipment, we're happy to help. We can provide a quotation for the hardware and installation, so you get everything set up and ready to use with QR Menu."
-msgstr "No entanto, se o seu restaurante ou café precisar deste equipamento, teremos todo o gosto em ajudar. Podemos enviar uma cotação do equipamento e da instalação, para ficar tudo montado e pronto a usar com o QR Menu."
+msgid ""
+"However, if your restaurant or café needs any of this equipment, we're happy "
+"to help. We can provide a quotation for the hardware and installation, so "
+"you get everything set up and ready to use with QR Menu."
+msgstr ""
+"No entanto, se o seu restaurante ou café precisar deste equipamento, teremos "
+"todo o gosto em ajudar. Podemos enviar uma cotação do equipamento e da "
+"instalação, para ficar tudo montado e pronto a usar com o QR Menu."
 
 #: templates/storefront/home.html:162
-msgid "Hello! I'd like a quotation for hardware (computer, cash drawer, receipt printer) and installation for QR Menu."
-msgstr "Olá! Gostaria de uma cotação de equipamento (computador, gaveta de dinheiro, impressora de talões) e instalação para o QR Menu."
+msgid ""
+"Hello! I'd like a quotation for hardware (computer, cash drawer, receipt "
+"printer) and installation for QR Menu."
+msgstr ""
+"Olá! Gostaria de uma cotação de equipamento (computador, gaveta de dinheiro, "
+"impressora de talões) e instalação para o QR Menu."
 
 #: templates/storefront/home.html:163
 msgid "Contact us on WhatsApp for a free quote"
@@ -6749,6 +6842,13 @@ msgstr "8. Contacto"
 #: templates/storefront/terms.html:39
 msgid "Questions about these terms:"
 msgstr "Questões sobre estes termos:"
+
+#~ msgid ""
+#~ "Your account is ready, but we couldn't send the confirmation email. Use "
+#~ "“Resend email” below."
+#~ msgstr ""
+#~ "A sua conta está pronta, mas não foi possível enviar o email de "
+#~ "confirmação. Use “Reenviar email” abaixo."
 
 #, python-format
 #~ msgid "Order #%(number)s marked as paid."

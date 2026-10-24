@@ -2,7 +2,7 @@ import logging
 
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
@@ -19,6 +19,7 @@ from . import signup as signup_service
 from .forms import SignupForm
 
 logger = logging.getLogger(__name__)
+User = get_user_model()
 
 
 def _key(request, username: str) -> str:
@@ -64,6 +65,7 @@ class RateLimitedLoginView(auth_views.LoginView):
 
 
 def signup(request):
+    """Step 1: the owner's details. Nothing is created yet: a 6-digit code goes to the email first."""
     if settings.SIGNUP_MODE == "closed":
         raise Http404
     if request.user.is_authenticated:
@@ -73,24 +75,73 @@ def signup(request):
         if _hit(f"signup:{client_ip(request)}", 3600) > settings.SIGNUPS_PER_IP_PER_HOUR:
             messages.error(request, _("Too many sign-ups from your network. Please try again in an hour."))
         elif form.is_valid():
-            d = form.cleaned_data
-            user, restaurant = signup_service.register_restaurant(
-                restaurant_name=d["restaurant_name"], full_name=d["full_name"], email=d["email"],
-                password=d["password"], phone=d.get("phone", ""),
-            )
-            login(request, user, backend="apps.accounts.backends.EmailOrUsernameBackend")
-            request.session["profile_prompt"] = True
-            try:
-                signup_service.send_verification_email(request, user)
-                messages.success(request, _("Welcome! We sent a confirmation link to %(email)s.") % {"email": user.email})
-            except Exception:
-                logger.exception("Verification email to %s failed", user.email)
-                messages.warning(request, _("Your account is ready, but we couldn't send the confirmation email. "
-                                            "Use “Resend email” below."))
-            return redirect("dashboard:overview", restaurant.slug)
+            email = form.cleaned_data["email"]
+            if _hit(f"signup-code:{email}", 3600) > 3:  # don't let anyone flood an inbox with codes
+                messages.error(request, _("Too many codes were sent to this email. Please try again in an hour."))
+            else:
+                try:
+                    signup_service.start_signup(request, form.cleaned_data)
+                    return redirect("accounts:signup_verify")
+                except Exception:
+                    logger.exception("Sign-up code to %s failed", email)
+                    request.session.pop(signup_service.PENDING_KEY, None)
+                    form.add_error("email", _("We couldn't send an email to this address. Please check it and try again."))
     return render(request, "accounts/signup.html", {
         "form": form, "approval_required": settings.SIGNUP_MODE == "approval",
     })
+
+
+def signup_verify(request):
+    """Step 2: the code from the email. Only the right code creates the account and the restaurant."""
+    if settings.SIGNUP_MODE == "closed":
+        raise Http404
+    if request.user.is_authenticated:
+        return redirect("dashboard:home")
+    pending = signup_service.pending_signup(request)
+    if not pending:
+        messages.info(request, _("Please fill in the registration form first."))
+        return redirect("accounts:signup")
+    error = ""
+    if request.method == "POST" and request.POST.get("action") == "resend":
+        wait = signup_service.can_resend(pending)
+        if wait < 0:
+            error = _("No more codes can be sent for this registration. Please start again.")
+        elif wait:
+            error = _("Please wait %(s)s seconds before asking for a new code.") % {"s": wait}
+        else:
+            try:
+                signup_service.send_signup_code(request)
+                messages.success(request, _("We sent a new code to %(email)s.") % {"email": pending["email"]})
+                return redirect("accounts:signup_verify")
+            except Exception:
+                logger.exception("Sign-up code to %s failed", pending["email"])
+                error = _("We couldn't send the email right now. Please try again later.")
+    elif request.method == "POST":
+        result = signup_service.check_signup_code(request, request.POST.get("code", ""))
+        if result == "ok":
+            if User.objects.filter(email__iexact=pending["email"]).exists():  # registered meanwhile, e.g. in another tab
+                request.session.pop(signup_service.PENDING_KEY, None)
+                messages.error(request, _("An account with this email already exists. Try logging in or resetting your password."))
+                return redirect("accounts:login")
+            user, restaurant, published = signup_service.finish_signup(request)
+            login(request, user, backend="apps.accounts.backends.EmailOrUsernameBackend")
+            request.session["profile_prompt"] = True
+            if settings.SIGNUP_MODE == "open":
+                messages.success(request, _("Email confirmed. Welcome! Your restaurant is ready: add your menu and tables."))
+            else:
+                messages.success(request, _("Email confirmed. Your restaurant is waiting for approval by the platform team."))
+            return redirect("dashboard:overview", restaurant.slug)
+        if result in ("locked", "missing"):
+            request.session.pop(signup_service.PENDING_KEY, None)
+            messages.error(request, _("Too many wrong codes. Please fill in the form again to get a new code."))
+            return redirect("accounts:signup")
+        error = (_("This code has expired. Ask for a new code below.") if result == "expired"
+                 else _("That code is not right. Check the email and try again."))
+    pending = signup_service.pending_signup(request)
+    return render(request, "accounts/signup_verify.html", {
+        "email": pending["email"], "error": error, "minutes": signup_service.CODE_TTL // 60,
+        "can_resend": signup_service.can_resend(pending) >= 0,
+    }, status=400 if error else 200)
 
 
 def verify_email(request, token):

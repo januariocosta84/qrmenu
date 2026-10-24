@@ -80,6 +80,8 @@ class SubscriptionRulesTests(Base):
             "restaurant_name": "New Place", "full_name": "Ana Silva", "email": "ana@example.com",
             "password": "a-Strong-pass-2024", "accept": "on", "website": "",
         })
+        from .test_signup import code_from_outbox
+        self.client.post(reverse("accounts:signup_verify"), {"code": code_from_outbox()})
         sub = Subscription.objects.get(restaurant__name="New Place")
         self.assertEqual(sub.plan, self.standard)
         self.assertEqual(sub.state, Subscription.TRIAL)

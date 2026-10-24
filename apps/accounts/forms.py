@@ -10,7 +10,7 @@ User = get_user_model()
 class SignupForm(forms.Form):
     restaurant_name = forms.CharField(max_length=120, label=_("Restaurant name"))
     full_name = forms.CharField(max_length=150, label=_("Your name"))
-    email = forms.EmailField(label=_("Email"), help_text=_("You'll sign in with this email. We'll send a confirmation link."))
+    email = forms.EmailField(label=_("Email"), help_text=_("You'll sign in with this email. We'll send a 6-digit code to confirm it."))
     phone = forms.CharField(max_length=30, required=False, label=_("Phone (optional)"))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}), label=_("Password"))
     accept = forms.BooleanField(label=_("I confirm I own or manage this restaurant, and I accept the terms of service."))

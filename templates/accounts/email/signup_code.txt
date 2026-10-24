@@ -1,0 +1,12 @@
+{% load i18n %}{% autoescape off %}{% blocktranslate with name=name %}Hello {{ name }},{% endblocktranslate %}
+
+{% blocktranslate trimmed with platform=platform restaurant=restaurant %}Your code to register {{ restaurant }} on {{ platform }} is:{% endblocktranslate %}
+
+    {{ code }}
+
+{% blocktranslate trimmed with minutes=minutes %}Enter it on the registration page. It works for {{ minutes }} minutes.{% endblocktranslate %}
+
+{% translate "If you did not try to register, ignore this email: no account is created without this code." %}
+
+— {{ platform }}
+{% endautoescape %}

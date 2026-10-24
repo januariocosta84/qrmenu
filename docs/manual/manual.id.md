@@ -84,7 +84,7 @@ Pemilik mendaftar sekali, membuat menu dan meja, menambah staf, dan restoran akt
 
 1. Di beranda klik **Daftarkan restoran Anda** (atau **Coba demo** dulu untuk melihat kafe contoh).
 2. Masukkan nama restoran, nama Anda, email, telepon (opsional) dan kata sandi, lalu konfirmasi bahwa Anda pemilik atau pengelola restoran.
-3. Buka tautan konfirmasi yang dikirim ke email Anda. Sampai saat itu dasbor meminta Anda mengonfirmasi email.
+3. Tekan **Lanjut: kirim kode ke email saya**. Kami mengirim kode 6 digit ke email Anda: masukkan di halaman berikutnya dalam 10 menit (**Kirim kode baru** jika belum masuk). Baru setelah itu akun dan restoran Anda dibuat, sehingga email palsu atau salah ketik tidak bisa mendaftar.
 4. Tim platform meninjau restoran baru. Selama menunggu ("Menunggu persetujuan"), Anda bisa menyiapkan semua hal di bawah; pelanggan belum bisa memesan.
 
 ![Coba demo: isi formulir dan tautan demo dikirim lewat email](demo)
